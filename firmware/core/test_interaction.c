@@ -145,6 +145,48 @@ static void test_typed_asr_is_still_confirmed(void)
        "I4 even a context-assisted command still needs physical confirmation for one handoff");
 }
 
+static core_link_key_t link_key(void)
+{
+    core_link_key_t key;
+    for (unsigned i = 0; i < SHA256_LEN; i++) key.pair_key[i] = (uint8_t)(0x41u + i);
+    key.pair_id = 0x434F5245u; /* local provisioning label only */
+    return key;
+}
+
+static void test_authenticated_nucleus_path(void)
+{
+    interaction_t it;
+    core_link_key_t key = link_key();
+    core_link_tx_t tx;
+    core_link_rx_t rx;
+    intent_observation_t o;
+    hcp_msg_t out;
+    uint8_t wire[CORE_LINK_WIRE_LEN];
+
+    printf("\n== I5  authenticated Nucleus result still enters the same gate ==\n");
+    interaction_init(&it, NULL);
+    core_link_tx_init(&tx);
+    core_link_rx_init(&rx);
+    interaction_push_to_talk(&it, 100);
+    o = asr(interaction_session_id(&it), VOICE_COMMAND_ARRIVE, 92, 10);
+    o.source = INTENT_SOURCE_NUCLEUS;
+    core_link_seal_nucleus_intent(&tx, &key, 120, interaction_session_id(&it), 300, &o, wire);
+    ok(interaction_core_link_result(&it, &rx, &key, wire, sizeof(wire), NULL, 200) == INTERACTION_OK &&
+       it.state == INTERACTION_AWAIT_CONFIRM && interaction_take_send(&it, &out) == INTERACTION_E_STATE,
+       "I5 authenticated Nucleus command becomes only a local draft, never a send");
+    ok(interaction_confirm(&it, 1, 220) == INTERACTION_OK &&
+       interaction_take_send(&it, &out) == INTERACTION_OK && out.intent == it.cfg.lexicon.intent_arrive,
+       "I5 the encrypted local path still requires physical confirmation and one handoff");
+
+    interaction_push_to_talk(&it, 400);
+    o.session_id = interaction_session_id(&it);
+    core_link_seal_nucleus_intent(&tx, &key, 420, interaction_session_id(&it), 600, &o, wire);
+    wire[CORE_LINK_HEADER_LEN] ^= 1u;
+    ok(interaction_core_link_result(&it, &rx, &key, wire, sizeof(wire), NULL, 500) == INTERACTION_E_UNTRUSTED &&
+       it.state == INTERACTION_LISTENING && interaction_take_send(&it, &out) == INTERACTION_E_STATE,
+       "I5 tampered companion ciphertext is rejected without ending or authorizing the live session");
+}
+
 static void test_confirmation_timeout_and_telemetry(void)
 {
     interaction_t it;
@@ -173,6 +215,7 @@ int main(void)
     test_only_confirmed_draft_sends();
     test_terminal_paths_clear_drafts();
     test_typed_asr_is_still_confirmed();
+    test_authenticated_nucleus_path();
     test_confirmation_timeout_and_telemetry();
     if (FAILED) {
         printf("INTERACTION TESTS FAILED\n");

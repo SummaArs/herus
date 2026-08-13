@@ -440,9 +440,10 @@ Collected because each one has a plausible-looking wrong answer.
 ## 9. Reproduce
 
 ```bash
-./prove.sh                       # all ten suites and 33 proof invariants
+./prove.sh                       # all eleven suites and 34 proof invariants
 python3 tools/budget.py          # §8 frame ledger, §9 ranges, §10 Beat timing
 cd firmware && make net          # P1-P8 of this document, as tests that can fail
+cd firmware && make control-link # authenticated companion-control envelope, expiry and replay
 ```
 
 If the frame ledger's assertion fires, P1 has regressed. If any airtime in §2

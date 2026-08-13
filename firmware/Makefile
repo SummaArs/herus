@@ -1,10 +1,16 @@
 # Herus firmware — everything that can be proven on a host, proven on a host.
 #
-#   make            all nine suites
+#   make            all fifteen suites
 #   make algebra    the two algebra suites (hv/sbc/lexicon)
 #   make nucleus    the local, bounded semantic-intelligence suite
 #   make voice      the controlled-language and bounded-haptics suite
 #   make intent     the session/confidence/ambiguity gateway suite
+#   make dialogue   the bounded local conversational-intelligence suite
+#   make model-lab  the measured local-model acceptance and reply-shield suite
+#   make assurance  the Grand Finale cross-module safety composition suite
+#   make capstone   the Grand Finale end-to-end safety-chain suite
+#   make trust      the explicit Core/Nucleus binding lifecycle suite
+#   make control-link the authenticated Core/Nucleus control-envelope suite
 #   make interaction the push-to-talk, confirmation and one-shot runtime suite
 #   make interaction-rig deterministic adapter and validation-lab scenarios
 #   make net        the protocol suite (crypto, session, weave, beat, framing)
@@ -25,9 +31,9 @@ INC     := -Icore -Inet -Iport -Itest
 CORE    := core/hv.c core/sbc.c core/lexicon.c core/hcp.c
 NET     := net/crypto.c net/session.c net/region.c net/weave.c net/beat.c net/link.c
 
-.PHONY: all algebra nucleus voice intent interaction interaction-rig net radio syntax vectors clean
+.PHONY: all algebra nucleus voice intent dialogue model-lab assurance capstone trust control-link interaction interaction-rig net radio syntax vectors clean
 
-all: algebra nucleus voice intent interaction interaction-rig net radio syntax
+all: algebra nucleus voice intent dialogue model-lab assurance capstone trust control-link interaction interaction-rig net radio syntax
 	@echo ""
 	@echo "=================================================="
 	@echo "ALL FIRMWARE SUITES PASS"
@@ -58,14 +64,44 @@ intent: build
 	$(CC) $(CFLAGS) $(INC) core/intent_gate.c core/test_intent_gate.c -o build/test_intent_gate
 	./build/test_intent_gate
 
+dialogue: build
+	@echo "--- dialogue: bounded local conversation and model authority boundary ---"
+	$(CC) $(CFLAGS) $(INC) net/crypto.c core/dialogue.c core/test_dialogue.c -o build/test_dialogue
+	./build/test_dialogue
+
+model-lab: build
+	@echo "--- model lab: target evidence, budgets and display-only reply shield ---"
+	$(CC) $(CFLAGS) $(INC) net/crypto.c core/model_lab.c core/test_model_lab.c -o build/test_model_lab
+	./build/test_model_lab
+
+assurance: build
+	@echo "--- assurance: Grand Finale composition, revocation and zero agency ---"
+	$(CC) $(CFLAGS) $(INC) core/assurance.c core/test_assurance.c -o build/test_assurance
+	./build/test_assurance
+
+capstone: build
+	@echo "--- capstone: Grand Finale dialogue, model, interaction and trust chain ---"
+	$(CC) $(CFLAGS) $(INC) net/crypto.c net/core_link.c net/trust.c core/voice.c core/intent_gate.c core/interaction.c core/dialogue.c core/model_lab.c core/assurance.c core/test_capstone.c -o build/test_capstone
+	./build/test_capstone
+
+trust: build
+	@echo "--- trust lifecycle: explicit pairing, protected storage and revocation ---"
+	$(CC) $(CFLAGS) $(INC) net/crypto.c net/core_link.c net/trust.c net/test_trust.c -o build/test_trust
+	./build/test_trust
+
+control-link: build
+	@echo "--- Core/Nucleus control link: AEAD, expiry and replay protection ---"
+	$(CC) $(CFLAGS) $(INC) net/crypto.c net/core_link.c net/test_core_link.c -o build/test_core_link
+	./build/test_core_link
+
 interaction: build
 	@echo "--- interaction: push-to-talk, confirmation and one-shot send gate ---"
-	$(CC) $(CFLAGS) $(INC) core/voice.c core/intent_gate.c core/interaction.c core/test_interaction.c -o build/test_interaction
+	$(CC) $(CFLAGS) $(INC) net/crypto.c net/core_link.c core/voice.c core/intent_gate.c core/assurance.c core/interaction.c core/test_interaction.c -o build/test_interaction
 	./build/test_interaction
 
 interaction-rig: build
 	@echo "--- interaction rig: deterministic adapter and validation-lab scenarios ---"
-	$(CC) $(CFLAGS) $(INC) core/voice.c core/intent_gate.c core/interaction.c core/interaction_rig.c core/test_interaction_rig.c -o build/test_interaction_rig
+	$(CC) $(CFLAGS) $(INC) net/crypto.c net/core_link.c core/voice.c core/intent_gate.c core/assurance.c core/interaction.c core/interaction_rig.c core/test_interaction_rig.c -o build/test_interaction_rig
 	./build/test_interaction_rig
 
 net: build
