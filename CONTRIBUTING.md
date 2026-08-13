@@ -32,9 +32,10 @@ the documents**.
 
 | Target | Command | What it proves |
 |---|---|---|
-| Everything | `./prove.sh` | 5 suites + 27 code invariants + 74 system invariants |
+| Everything | `./prove.sh` | 6 suites + 28 code invariants + 74 system invariants |
 | Algebra | `cd firmware && make algebra` | Binding, bundling, resonator, HCP, dense vs sparse |
 | Núcleo | `cd firmware && make nucleus` | Consentimento opt-in, memória limitada, confiança, expiração e apagamento local |
+| Voz e háptica | `cd firmware && make voice` | Linguagem controlada, rascunho confirmável, SOS bloqueado e vibração limitada |
 | Protocol | `cd firmware && make net` | Crypto vs OpenSSL, ratchet, framing, Weave, Beat |
 | Radio | `cd firmware && make radio` | SX1262 command sequences against a recording mock bus |
 | ESP32-S3 app | `cd firmware && make syntax` | Type-checks the app against stub IDF headers, no board |
@@ -49,7 +50,7 @@ on the machine that runs it.
 ## 2. What a change looks like here
 
 1. **Write the failing test first.** `firmware/test/test_net.c` for the wire,
-   `firmware/core/test_*.c` for the algebra and Núcleo, `firmware/test/test_radio.c` for
+   `firmware/core/test_*.c` for algebra, Núcleo e voz/háptica, `firmware/test/test_radio.c` for
    the driver, `sim/scenarios.c` for behaviour of the system.
 2. **Make it pass**, without weakening any other invariant.
 3. **Add it to the ledger** in `prove.sh` if it is a property and not just a

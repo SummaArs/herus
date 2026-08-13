@@ -21,6 +21,7 @@ firmware/
     lexicon.[ch]   derived codebook, learned prototypes with a drift guard, resonator
     hcp.[ch]       Herus Composition Protocol rev 0.2 — meaning <-> 24 bytes
     nucleus.[ch]   Nucleus: opt-in, bounded semantic transition memory
+    voice.[ch]     Voice: controlled PT parsing and bounded haptic plans
   net/       the wire — portable, no radio, testable on a Mac
     crypto.[ch]    SHA-256, HMAC, HKDF, ChaCha20, Poly1305, AEAD. Nothing else.
     session.[ch]   symmetric ratchet, ephemeral addresses, skipped keys, rate limit
@@ -50,7 +51,7 @@ Below it: eight functions and a radio.
 
 ## 2. What is proven, and by what
 
-`./prove.sh` runs five suites and gates 27 code invariants. It exits non-zero if any
+`./prove.sh` runs six suites and gates 28 code invariants. It exits non-zero if any
 one of them regresses, and it is the only thing standing between you and a
 plausible-looking bug in a device you will trust with an emergency.
 
@@ -58,6 +59,7 @@ plausible-looking bug in a device you will trust with an emergency.
 |---|---|---|
 | **algebra** | quasi-orthogonality vs closed form, exact invertibility, bundle capacity, resonator convergence, learning with an enforced separation floor, 9-slot HCP round trip | measurement next to theory |
 | **Nucleus** | consentimento opt-in, memória com capacidade fixa, confiança explícita, supressão de auto-sugestão, expiração e apagamento local | testes determinísticos sem I/O, alocação, rádio ou rede |
+| **voice** | interpretação local de português controlado, rascunho confirmável, SOS bloqueado e planos hápticos limitados | testes determinísticos sem microfone, ASR, rádio, GPIO ou driver de vibração |
 | **protocol** | crypto correctness, forward secrecy, replay, forgery, rate limiting, out-of-order recovery, forward compatibility, canonical encoding, flood termination, Beat drift | 50 random cases per primitive against OpenSSL, plus adversarial cases |
 | **radio** | command ordering, frequency word, PA table coherence, sync word, BUSY discipline, duty-cycle arithmetic, and that the selftest diagnoses each plausible bring-up fault | a recording mock bus |
 | **physical** | airtime, dwell, range, energy, frame ledger | `tools/budget.py` |
@@ -145,6 +147,7 @@ Stated plainly, because a firmware document that only lists features is a brochu
 | **Echo (symbol → audio)** | Received meanings print on the console instead of speaking. | Phase 2 |
 | **Tier 0.5 receive path** | The app transmits sketch beacons; decoding them means `lex_search_sketch()` on a frame received in implicit/CRC-off mode. All the pieces exist and are tested; the app does not wire them together. | Phase 2, alongside the 2–4 dB falsification test |
 | **Nucleus hardware integration** | `nucleus.[ch]` proves local learning constraints on host only. The Core↔Nucleus encrypted link, power domain, charger, antenna and UI confirmation have not yet been wired to hardware. | Nucleus-0 onward; see [06-NUCLEO.md](06-NUCLEO.md) |
+| **Voice/haptic hardware integration** | `voice.[ch]` proves parsing, confirmation and vibration bounds on host only. Button-gated microphone, local ASR, audio front-end, confirmation UX and ERM/LRA driver are not yet wired. | Advance 1 hardware track; see [07-VOZ-HAPTICA.md](07-VOZ-HAPTICA.md) |
 | **Ratchet state persistence** | A reboot loses the session; re-pair. | Phase 4 |
 | **eFuse ritual** | Until flash encryption, secure boot, JTAG-off and UART-download-off are burned, session keys sit in readable RAM and "the key never leaves the chip" is true and irrelevant. | Phase 4, one-way, sacrificial board first |
 

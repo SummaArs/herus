@@ -9,12 +9,13 @@
 #   ./prove.sh            full run
 #   ./prove.sh --quiet    verdict lines only
 #
-# Five suites, each independently falsifiable:
+# Six suites, each independently falsifiable:
 #   1  algebra      quasi-orthogonality, bundling, resonator, learning, HCP
 #   2  nucleus      bounded, opt-in local semantic intelligence
-#   3  protocol     crypto vs OpenSSL, ratchet, framing, Weave, Beat, canonicality
-#   4  radio        SX1262 command sequences against a recording mock bus
-#   5  physical     RF, energy and the frame ledger, from tools/budget.py
+#   3  voice        controlled local language and bounded haptic feedback
+#   4  protocol     crypto vs OpenSSL, ratchet, framing, Weave, Beat, canonicality
+#   5  radio        SX1262 command sequences against a recording mock bus
+#   6  physical     RF, energy and the frame ledger, from tools/budget.py
 #
 # The Nucleus suite is intentionally separate: privacy and non-autonomy are
 # properties that must fail a build when regressed, not promises in a document.
@@ -39,17 +40,22 @@ banner "2/5  nucleus (bounded local semantic intelligence)"
 [ "$QUIET" = 0 ] && cat /tmp/herus_n.log
 grep -q "FAIL" /tmp/herus_n.log && FAIL=1 || true
 
-banner "3/5  protocol (crypto, ratchet, framing, Weave, Beat)"
+banner "3/6  voice (controlled language, confirmation, bounded haptics)"
+( cd firmware && make voice ) > /tmp/herus_v.log 2>&1 || FAIL=1
+[ "$QUIET" = 0 ] && cat /tmp/herus_v.log
+grep -q "FAIL" /tmp/herus_v.log && FAIL=1 || true
+
+banner "4/6  protocol (crypto, ratchet, framing, Weave, Beat)"
 ( cd firmware && make net ) > /tmp/herus_b.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_b.log
 grep -q "FAIL" /tmp/herus_b.log && FAIL=1 || true
 
-banner "4/5  radio driver (SX1262 command sequences, no hardware)"
+banner "5/6  radio driver (SX1262 command sequences, no hardware)"
 ( cd firmware && make radio && make syntax ) > /tmp/herus_r.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_r.log
 grep -q "FAIL" /tmp/herus_r.log && FAIL=1 || true
 
-banner "5/5  physical layer, energy and frame ledger"
+banner "6/6  physical layer, energy and frame ledger"
 python3 tools/budget.py > /tmp/herus_c.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_c.log
 
@@ -74,6 +80,9 @@ check "9-slot composed record round-trips"   "9/9 recovered exactly" /tmp/herus_
 
 # --- nucleus --------------------------------------------------------------
 check "Nucleus learning is opt-in, bounded and non-autonomous" "NUCLEUS INVARIANTS HOLD" /tmp/herus_n.log
+
+# --- voice ---------------------------------------------------------------
+check "Voice remains local, confirmed and haptically bounded" "VOICE/HAPTIC INVARIANTS HOLD" /tmp/herus_v.log
 
 # --- protocol -------------------------------------------------------------
 check "crypto agrees with an independent implementation" "V6 AEAD encrypt+decrypt matches the reference" /tmp/herus_b.log

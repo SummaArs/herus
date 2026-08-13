@@ -1,8 +1,9 @@
 # Herus firmware — everything that can be proven on a host, proven on a host.
 #
-#   make            all five suites
+#   make            all six suites
 #   make algebra    the two algebra suites (hv/sbc/lexicon)
 #   make nucleus    the local, bounded semantic-intelligence suite
+#   make voice      the controlled-language and bounded-haptics suite
 #   make net        the protocol suite (crypto, session, weave, beat, framing)
 #   make radio      the SX1262 command sequences, against a recording mock bus
 #   make syntax     type-check the ESP32-S3 app without an ESP32 present
@@ -21,9 +22,9 @@ INC     := -Icore -Inet -Iport -Itest
 CORE    := core/hv.c core/sbc.c core/lexicon.c core/hcp.c
 NET     := net/crypto.c net/session.c net/region.c net/weave.c net/beat.c net/link.c
 
-.PHONY: all algebra nucleus net radio syntax vectors clean
+.PHONY: all algebra nucleus voice net radio syntax vectors clean
 
-all: algebra nucleus net radio syntax
+all: algebra nucleus voice net radio syntax
 	@echo ""
 	@echo "=================================================="
 	@echo "ALL FIRMWARE SUITES PASS"
@@ -43,6 +44,11 @@ nucleus: build
 	@echo "--- nucleus: bounded local semantic intelligence ---"
 	$(CC) $(CFLAGS) $(INC) core/nucleus.c core/test_nucleus.c -o build/test_nucleus
 	./build/test_nucleus
+
+voice: build
+	@echo "--- voice: controlled language and bounded haptics ---"
+	$(CC) $(CFLAGS) $(INC) core/voice.c core/test_voice.c -o build/test_voice
+	./build/test_voice
 
 net: build
 	@echo "--- protocol: crypto, ratchet, framing, weave, beat ---"
