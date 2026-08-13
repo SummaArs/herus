@@ -54,6 +54,22 @@ static void test_fail_closed_and_critical(void)
        "V2 spoken help is a private critical draft, never an autonomous public SOS");
 }
 
+static void test_typed_commands(void)
+{
+    voice_lexicon_t lex;
+    voice_result_t r;
+
+    printf("\n== V3  typed local-ASR commands retain semantic bounds ==\n");
+    voice_lexicon_default(&lex);
+    ok(voice_from_command(VOICE_COMMAND_ARRIVE, 12, &lex, &r) == VOICE_DRAFT &&
+       r.draft.intent == lex.intent_arrive && r.draft.nslot == 1 &&
+       r.draft.slot[0].filler == lex.minute_filler_base + 12 && r.requires_confirmation,
+       "V3 a typed arrival command creates the same bounded semantic-only draft");
+    ok(voice_from_command(VOICE_COMMAND_HELP, 1, &lex, &r) == VOICE_REJECTED &&
+       voice_from_command(VOICE_COMMAND_CANCEL, 1, &lex, &r) == VOICE_REJECTED,
+       "V3 help and cancel reject unsupported duration parameters instead of guessing");
+}
+
 static void test_haptics(void)
 {
     haptic_plan_t p;
@@ -73,6 +89,7 @@ int main(void)
 {
     test_arrival();
     test_fail_closed_and_critical();
+    test_typed_commands();
     test_haptics();
     if (FAILED) {
         printf("VOICE TESTS FAILED\n");
