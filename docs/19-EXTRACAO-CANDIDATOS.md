@@ -100,14 +100,16 @@ A composição com `memory_policy` só retorna uma disposição de privacidade. 
 |---|---|
 | ASR em português no ESP32-S3 | Não há integração, corpus, WER, intenção correta ou avaliação de ruído medida |
 | LLM local | Não há perfil de alvo, pesos, memória, p95, energia ou avaliação de segurança aceitos |
-| Resumo ou conteúdo de memória | A saída não possui campo textual; o cofre do Passo 4 ainda não foi definido |
+| Resumo ou conteúdo de memória | A saída não possui campo textual; o cofre do Passo 4 persiste somente cartão tipado mínimo e ainda não há consolidação humana |
 | Compreensão de conversa aberta | A gramática atual é deliberadamente limitada e falha fechada |
 | Detecção completa de conteúdo de terceiros/sensível | Marcadores são testes de segurança, não classificação semântica universal |
 | Integração AFE/VAD/I2S/DMA | O Passo 2 só prova o contrato portátil de captura; hardware precisa ser medido |
 
-## 8. Próximo passo
+## 8. Continuidade: cofre implementado em host
 
-O Passo 4 criará o cofre local de memória: um formato de cartão semântico mínimo, persistência cifrada, interface de armazenamento protegido, procedência, acesso e apagamento verificável. O cofre só aceitará candidatos já avaliados; ele nunca receberá áudio bruto, transcrição persistente ou uma LLM com autoridade de escrita direta.
+O Passo 4 agora define o [cofre local de memória](20-COFRE-MEMORIA.md): cartão semântico mínimo, persistência cifrada por AEAD, autorização humana separada, piso de geração anti-rollback e apagamento fail-closed. O cofre não recebe `memory_candidate_t`, áudio bruto, transcrição persistente nem uma LLM com autoridade direta de escrita; ele revalida um cartão independente, já sujeito à política, e requer confirmação humana canônica.
+
+A prova é portável e em host. A porta de armazenamento precisa de backend ESP32-S3 revisado para NVS cifrada/raiz protegida e uma âncora de geração realmente durável antes de qualquer alegação de proteção física. O próximo avanço será consolidação humana, expiração, revisão, conflito e remoção — não expansão indiscriminada do conteúdo armazenado.
 
 ## Referências
 

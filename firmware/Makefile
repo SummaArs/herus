@@ -10,6 +10,7 @@
 #   make memory-policy the selective-memory relevance and retention-policy suite
 #   make memory-capture the explicit, bounded and transient capture-session suite
 #   make memory-extract the typed, conservative and non-retaining extraction suite
+#   make memory-vault the authorised, encrypted and anti-rollback memory vault suite
 #   make assurance  the Grand Finale cross-module safety composition suite
 #   make capstone   the Grand Finale end-to-end safety-chain suite
 #   make trust      the explicit Core/Nucleus binding lifecycle suite
@@ -34,9 +35,9 @@ INC     := -Icore -Inet -Iport -Itest
 CORE    := core/hv.c core/sbc.c core/lexicon.c core/hcp.c
 NET     := net/crypto.c net/session.c net/region.c net/weave.c net/beat.c net/link.c
 
-.PHONY: all algebra nucleus voice intent dialogue model-lab memory-policy memory-capture memory-extract assurance capstone trust control-link interaction interaction-rig net radio syntax vectors clean
+.PHONY: all algebra nucleus voice intent dialogue model-lab memory-policy memory-capture memory-extract memory-vault assurance capstone trust control-link interaction interaction-rig net radio syntax vectors clean
 
-all: algebra nucleus voice intent dialogue model-lab memory-policy memory-capture memory-extract assurance capstone trust control-link interaction interaction-rig net radio syntax
+all: algebra nucleus voice intent dialogue model-lab memory-policy memory-capture memory-extract memory-vault assurance capstone trust control-link interaction interaction-rig net radio syntax
 	@echo ""
 	@echo "=================================================="
 	@echo "ALL FIRMWARE SUITES PASS"
@@ -91,6 +92,11 @@ memory-extract: build
 	@echo "--- memory extract: typed candidate, uncertainty and zero retention ---"
 	$(CC) $(CFLAGS) $(INC) core/memory_capture.c core/memory_policy.c core/memory_extract.c core/test_memory_extract.c -o build/test_memory_extract
 	./build/test_memory_extract
+
+memory-vault: build
+	@echo "--- memory vault: explicit authority, AEAD and monotonic anti-rollback ---"
+	$(CC) $(CFLAGS) $(INC) net/crypto.c core/memory_policy.c core/memory_vault.c core/test_memory_vault.c -o build/test_memory_vault
+	./build/test_memory_vault
 
 assurance: build
 	@echo "--- assurance: Grand Finale composition, revocation and zero agency ---"
