@@ -23,7 +23,7 @@ O cofre é deliberadamente posterior à política de relevância, à sessão fí
 | Passo 2 — captura | Janela física, limitada e transitória | Não | O cartão deve declarar sessão autorizada. |
 | Passo 3 — extração | Candidato tipado e incerto | Não | Não há API de candidato para `seal`. |
 | **Passo 4 — cofre** | Cartão mínimo cifrado | **Sim, após confirmação humana** | Uma única unidade selada, reversível por erase. |
-| Passo 5 — consolidação | Fluxo humano de revisão/curadoria | Ainda não implementado | Será o emissor disciplinado da autorização. |
+| Passo 5 — consolidação | Fluxo humano de revisão/curadoria | Só através do cofre | Emite autorização disciplinada após confirmação física. |
 
 A separação evita converter classificação estatística em uma ordem de retenção. Mesmo que, no futuro, uma LLM local ajude a explicar ou recuperar memória, ela não terá uma chamada direta que escreva no cofre. A confirmação física continua sendo requisito de arquitetura, não um detalhe de interface.
 
@@ -122,9 +122,11 @@ cd ..
 
 Um resultado positivo demonstra que o código host cumpre esses contratos sob os cenários injetados. Ele não mede alcance, consumo, WER, latência de modelo, resistência a extração física ou segurança de hardware.
 
-## 8. Próximo passo
+## 8. Continuidade: consolidação humana implementada em host
 
-O Passo 5 não deve ampliar o conteúdo do cartão indiscriminadamente. Ele deve projetar a consolidação humana: emissão verificável da autorização, expiração, revisão, conflito, remoção e recuperação local. Só depois desse fluxo estar definido poderá existir uma camada de recuperação semântica; nenhuma LLM deve receber autoridade para escrever diretamente no cofre.
+O Passo 5 agora implementa a [consolidação humana](21-CONSOLIDACAO-HUMANA.md): proposta transitória, revisão física limitada, expiração sem retenção, conflito sem resolução automática, emissão disciplinada de recibo, recuperação por identificador e remoção controlada. O módulo continua sem texto livre, busca semântica, rede, LLM ou autoridade autônoma.
+
+O próximo passo poderá investigar recuperação semântica controlada. Mesmo nessa etapa futura, uma LLM permanece uma fonte de sugestão; confirmação humana, consolidação e cofre continuam sendo os únicos caminhos de retenção.
 
 ## Referências
 
