@@ -1,11 +1,12 @@
 # Herus firmware — everything that can be proven on a host, proven on a host.
 #
-#   make            all twelve suites
+#   make            all thirteen suites
 #   make algebra    the two algebra suites (hv/sbc/lexicon)
 #   make nucleus    the local, bounded semantic-intelligence suite
 #   make voice      the controlled-language and bounded-haptics suite
 #   make intent     the session/confidence/ambiguity gateway suite
 #   make dialogue   the bounded local conversational-intelligence suite
+#   make model-lab  the measured local-model acceptance and reply-shield suite
 #   make trust      the explicit Core/Nucleus binding lifecycle suite
 #   make control-link the authenticated Core/Nucleus control-envelope suite
 #   make interaction the push-to-talk, confirmation and one-shot runtime suite
@@ -28,9 +29,9 @@ INC     := -Icore -Inet -Iport -Itest
 CORE    := core/hv.c core/sbc.c core/lexicon.c core/hcp.c
 NET     := net/crypto.c net/session.c net/region.c net/weave.c net/beat.c net/link.c
 
-.PHONY: all algebra nucleus voice intent dialogue trust control-link interaction interaction-rig net radio syntax vectors clean
+.PHONY: all algebra nucleus voice intent dialogue model-lab trust control-link interaction interaction-rig net radio syntax vectors clean
 
-all: algebra nucleus voice intent dialogue trust control-link interaction interaction-rig net radio syntax
+all: algebra nucleus voice intent dialogue model-lab trust control-link interaction interaction-rig net radio syntax
 	@echo ""
 	@echo "=================================================="
 	@echo "ALL FIRMWARE SUITES PASS"
@@ -65,6 +66,11 @@ dialogue: build
 	@echo "--- dialogue: bounded local conversation and model authority boundary ---"
 	$(CC) $(CFLAGS) $(INC) net/crypto.c core/dialogue.c core/test_dialogue.c -o build/test_dialogue
 	./build/test_dialogue
+
+model-lab: build
+	@echo "--- model lab: target evidence, budgets and display-only reply shield ---"
+	$(CC) $(CFLAGS) $(INC) net/crypto.c core/model_lab.c core/test_model_lab.c -o build/test_model_lab
+	./build/test_model_lab
 
 trust: build
 	@echo "--- trust lifecycle: explicit pairing, protected storage and revocation ---"

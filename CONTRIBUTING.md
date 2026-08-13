@@ -32,12 +32,13 @@ the documents**.
 
 | Target | Command | What it proves |
 |---|---|---|
-| Everything | `./prove.sh` | 13 suites + 38 proof invariants + 74 system invariants |
+| Everything | `./prove.sh` | 14 suites + 40 proof invariants + 74 system invariants |
 | Algebra | `cd firmware && make algebra` | Binding, bundling, resonator, HCP, dense vs sparse |
 | Núcleo | `cd firmware && make nucleus` | Consentimento opt-in, memória limitada, confiança, expiração e apagamento local |
 | Voz e háptica | `cd firmware && make voice` | Linguagem controlada, rascunho confirmável, SOS bloqueado e vibração limitada |
 | Gateway de intenção | `cd firmware && make intent` | Sessão física, confiança, ambiguidade e contexto sem autoridade de envio |
 | Diálogo local | `cd firmware && make dialogue` | Turno físico, fala transitória, cartões tipados, falha sem rede, apagamento e autoridade de transmissão zero |
+| Laboratório de modelo | `cd firmware && make model-lab` | Perfil medido no alvo, orçamento de recurso, cobertura funcional/adversarial, zero rede/agência e escudo display-only |
 | Ciclo de confiança Core↔Núcleo | `cd firmware && make trust` | Associação física dupla, SAS, persistência protegida, revogação e apagamento fail-closed |
 | Enlace Core↔Núcleo | `cd firmware && make control-link` | AEAD, sequência, expiração e rejeição de replay sob um vínculo já ativo |
 | Runtime | `cd firmware && make interaction` | Push-to-talk, confirmação, prazo, perda de fonte, envio único e telemetria local |
