@@ -1,6 +1,6 @@
 # Herus firmware — everything that can be proven on a host, proven on a host.
 #
-#   make            all sixteen suites
+#   make            all seventeen suites
 #   make algebra    the two algebra suites (hv/sbc/lexicon)
 #   make nucleus    the local, bounded semantic-intelligence suite
 #   make voice      the controlled-language and bounded-haptics suite
@@ -8,6 +8,7 @@
 #   make dialogue   the bounded local conversational-intelligence suite
 #   make model-lab  the measured local-model acceptance and reply-shield suite
 #   make memory-policy the selective-memory relevance and retention-policy suite
+#   make memory-capture the explicit, bounded and transient capture-session suite
 #   make assurance  the Grand Finale cross-module safety composition suite
 #   make capstone   the Grand Finale end-to-end safety-chain suite
 #   make trust      the explicit Core/Nucleus binding lifecycle suite
@@ -32,9 +33,9 @@ INC     := -Icore -Inet -Iport -Itest
 CORE    := core/hv.c core/sbc.c core/lexicon.c core/hcp.c
 NET     := net/crypto.c net/session.c net/region.c net/weave.c net/beat.c net/link.c
 
-.PHONY: all algebra nucleus voice intent dialogue model-lab memory-policy assurance capstone trust control-link interaction interaction-rig net radio syntax vectors clean
+.PHONY: all algebra nucleus voice intent dialogue model-lab memory-policy memory-capture assurance capstone trust control-link interaction interaction-rig net radio syntax vectors clean
 
-all: algebra nucleus voice intent dialogue model-lab memory-policy assurance capstone trust control-link interaction interaction-rig net radio syntax
+all: algebra nucleus voice intent dialogue model-lab memory-policy memory-capture assurance capstone trust control-link interaction interaction-rig net radio syntax
 	@echo ""
 	@echo "=================================================="
 	@echo "ALL FIRMWARE SUITES PASS"
@@ -79,6 +80,11 @@ memory-policy: build
 	@echo "--- memory policy: consent, relevance, review and no persistence ---"
 	$(CC) $(CFLAGS) $(INC) core/memory_policy.c core/test_memory_policy.c -o build/test_memory_policy
 	./build/test_memory_policy
+
+memory-capture: build
+	@echo "--- memory capture: physical session, timeout and transient discard ---"
+	$(CC) $(CFLAGS) $(INC) core/memory_capture.c core/test_memory_capture.c -o build/test_memory_capture
+	./build/test_memory_capture
 
 assurance: build
 	@echo "--- assurance: Grand Finale composition, revocation and zero agency ---"
