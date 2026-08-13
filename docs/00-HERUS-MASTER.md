@@ -529,10 +529,10 @@ a price.
 
 ```bash
 cd ~/Python/herus
-./prove.sh                        # 6 suites, 28 code invariants, all green
+./prove.sh                        # 11 suites, 34 proof invariants, all green
 ```
 
-That covers the algebra, the opt-in bounded Nucleus predictor, controlled local voice/haptic contracts, the protocol (crypto differentially tested against
+That covers the algebra, the opt-in bounded Nucleus predictor, controlled local voice/haptic contracts, the session-bound intent-confidence gateway, the authenticated Core↔Nucleus control envelope, the confirmed interaction runtime, the deterministic validation lab and telemetry gates, the preregistered study method, the protocol (crypto differentially tested against
 OpenSSL, ratchet, replay, forgery, flooding, Beat drift), the SX1262 command
 sequences against a recording mock bus, and every RF and energy number.
 

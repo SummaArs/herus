@@ -1,0 +1,46 @@
+{
+  "study_id": "HERUS-A4-001",
+  "version": "1.0",
+  "status": "preregistered-no-data",
+  "language": "pt-BR",
+  "participants": ["p01", "p02", "p03", "p04", "p05", "p06", "p07", "p08", "p09", "p10", "p11", "p12"],
+  "sources": ["core", "nucleus"],
+  "source_order": "counterbalanced-by-participant-parity",
+  "positive_items": [
+    {"item_id": "pos-arrive-quiet", "scenario": "quiet", "expected": "arrive"},
+    {"item_id": "pos-arrive-conversation", "scenario": "conversation", "expected": "arrive"},
+    {"item_id": "pos-arrive-street", "scenario": "street", "expected": "arrive"},
+    {"item_id": "pos-arrive-wind", "scenario": "wind", "expected": "arrive"},
+    {"item_id": "pos-arrive-time-quiet", "scenario": "quiet", "expected": "arrive"},
+    {"item_id": "pos-arrive-time-conversation", "scenario": "conversation", "expected": "arrive"},
+    {"item_id": "pos-arrive-time-street", "scenario": "street", "expected": "arrive"},
+    {"item_id": "pos-arrive-time-wind", "scenario": "wind", "expected": "arrive"},
+    {"item_id": "pos-help-quiet", "scenario": "quiet", "expected": "help"},
+    {"item_id": "pos-help-conversation", "scenario": "conversation", "expected": "help"},
+    {"item_id": "pos-help-street", "scenario": "street", "expected": "help"},
+    {"item_id": "pos-help-wind", "scenario": "wind", "expected": "help"},
+    {"item_id": "pos-cancel-quiet", "scenario": "quiet", "expected": "cancel"},
+    {"item_id": "pos-cancel-conversation", "scenario": "conversation", "expected": "cancel"},
+    {"item_id": "pos-cancel-street", "scenario": "street", "expected": "cancel"},
+    {"item_id": "pos-cancel-wind", "scenario": "wind", "expected": "cancel"}
+  ],
+  "negative_templates": [
+    {"item_id": "neg-conversation", "scenario": "conversation", "repetitions": 5},
+    {"item_id": "neg-wind", "scenario": "wind", "repetitions": 5},
+    {"item_id": "neg-named-entity", "scenario": "quiet", "repetitions": 5},
+    {"item_id": "neg-out-of-lexicon", "scenario": "street", "repetitions": 5},
+    {"item_id": "neg-silence", "scenario": "quiet", "repetitions": 5}
+  ],
+  "thresholds": {
+    "intent_lower_wilson_95": 0.90,
+    "negative_upper_wilson_95": 0.01,
+    "max_p95_latency_ms": 2500,
+    "nucleus_latency_advantage_ms": 250,
+    "nucleus_energy_fraction_max": 0.80
+  },
+  "outcomes": ["sent", "cancelled", "rejected", "timed_out", "source_lost"],
+  "privacy": {
+    "forbid": ["audio", "transcript", "embedding", "identity", "location", "key", "radio_address"],
+    "allow": ["participant_pseudonym", "source", "scenario", "expected", "observed", "timestamps", "measured_energy", "firmware_revision", "device_id"]
+  }
+}
