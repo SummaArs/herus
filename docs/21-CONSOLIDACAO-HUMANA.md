@@ -97,9 +97,11 @@ cd ..
 
 Um resultado positivo prova as transições injetadas em host; não prova comportamento de usuário, qualidade de UX, precisão de reconhecimento de fala, confiabilidade de botão, retenção em calendário, sanitização física ou integração ESP-IDF.
 
-## 8. Próximo passo
+## 8. Continuidade: recuperação tipada implementada em host
 
-O Passo 6 deve investigar **recuperação semântica controlada**: como apresentar cartões existentes, incerteza e procedência sem texto bruto, busca remota, modelo com autoridade ou escrita. Qualquer adaptador de modelo continuará na fronteira de sugestão; a consolidação e o cofre permanecerão os únicos caminhos de retenção sob confirmação humana.
+O Passo 6 agora implementa a [recuperação semântica controlada](22-RECUPERACAO-SEMANTICA.md): matching local de cartões mínimos em RAM, consulta tipada limitada, limiar, margem de ambiguidade e apresentação de autoridade zero. Não há busca livre, cofre, escrita, rede, modelo ou resposta factual neste módulo.
+
+O próximo avanço deve estudar a interface humana de recuperação: como apresentar `MATCH`, `NO_MATCH` e `AMBIGUOUS` por voz, háptica ou tela sem ampliar conteúdo, sem apagar incerteza e sem conceder poder de retenção ou ação à camada de apresentação.
 
 ## Referências
 

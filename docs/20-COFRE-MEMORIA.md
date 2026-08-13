@@ -126,7 +126,7 @@ Um resultado positivo demonstra que o código host cumpre esses contratos sob os
 
 O Passo 5 agora implementa a [consolidação humana](21-CONSOLIDACAO-HUMANA.md): proposta transitória, revisão física limitada, expiração sem retenção, conflito sem resolução automática, emissão disciplinada de recibo, recuperação por identificador e remoção controlada. O módulo continua sem texto livre, busca semântica, rede, LLM ou autoridade autônoma.
 
-O próximo passo poderá investigar recuperação semântica controlada. Mesmo nessa etapa futura, uma LLM permanece uma fonte de sugestão; confirmação humana, consolidação e cofre continuam sendo os únicos caminhos de retenção.
+O Passo 6 agora implementa [recuperação semântica controlada](22-RECUPERACAO-SEMANTICA.md) como matching tipado puro em RAM, com limiar e ambiguidade explícita. Mesmo nessa camada, uma LLM permanece uma fonte de sugestão futura; confirmação humana, consolidação e cofre continuam sendo os únicos caminhos de retenção.
 
 ## Referências
 

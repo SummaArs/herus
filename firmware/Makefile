@@ -12,6 +12,7 @@
 #   make memory-extract the typed, conservative and non-retaining extraction suite
 #   make memory-vault the authorised, encrypted and anti-rollback memory vault suite
 #   make memory-consolidation the bounded human review, recall and removal suite
+#   make memory-retrieval the typed, local and ambiguity-safe presentation suite
 #   make assurance  the Grand Finale cross-module safety composition suite
 #   make capstone   the Grand Finale end-to-end safety-chain suite
 #   make trust      the explicit Core/Nucleus binding lifecycle suite
@@ -36,9 +37,9 @@ INC     := -Icore -Inet -Iport -Itest
 CORE    := core/hv.c core/sbc.c core/lexicon.c core/hcp.c
 NET     := net/crypto.c net/session.c net/region.c net/weave.c net/beat.c net/link.c
 
-.PHONY: all algebra nucleus voice intent dialogue model-lab memory-policy memory-capture memory-extract memory-vault memory-consolidation assurance capstone trust control-link interaction interaction-rig net radio syntax vectors clean
+.PHONY: all algebra nucleus voice intent dialogue model-lab memory-policy memory-capture memory-extract memory-vault memory-consolidation memory-retrieval assurance capstone trust control-link interaction interaction-rig net radio syntax vectors clean
 
-all: algebra nucleus voice intent dialogue model-lab memory-policy memory-capture memory-extract memory-vault memory-consolidation assurance capstone trust control-link interaction interaction-rig net radio syntax
+all: algebra nucleus voice intent dialogue model-lab memory-policy memory-capture memory-extract memory-vault memory-consolidation memory-retrieval assurance capstone trust control-link interaction interaction-rig net radio syntax
 	@echo ""
 	@echo "=================================================="
 	@echo "ALL FIRMWARE SUITES PASS"
@@ -103,6 +104,11 @@ memory-consolidation: build
 	@echo "--- memory consolidation: bounded human review, conflict, recall and removal ---"
 	$(CC) $(CFLAGS) $(INC) net/crypto.c core/memory_policy.c core/memory_vault.c core/memory_consolidation.c core/test_memory_consolidation.c -o build/test_memory_consolidation
 	./build/test_memory_consolidation
+
+memory-retrieval: build
+	@echo "--- memory retrieval: typed local matching, ambiguity and zero authority ---"
+	$(CC) $(CFLAGS) $(INC) core/memory_policy.c core/memory_retrieval.c core/test_memory_retrieval.c -o build/test_memory_retrieval
+	./build/test_memory_retrieval
 
 assurance: build
 	@echo "--- assurance: Grand Finale composition, revocation and zero agency ---"
