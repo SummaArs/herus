@@ -53,7 +53,7 @@ Below it: eight functions and a radio.
 
 ## 2. What is proven, and by what
 
-`./prove.sh` runs nineteen suites and gates 47 proof invariants. It exits non-zero if any
+`./prove.sh` runs twenty suites and gates 49 proof invariants. It exits non-zero if any
 one of them regresses, and it is the only thing standing between you and a
 plausible-looking bug in a device you will trust with an emergency.
 
@@ -67,6 +67,7 @@ plausible-looking bug in a device you will trust with an emergency.
 | **model lab** | perfil alvo/local identificado, orçamento de recurso, cobertura funcional/adversarial e recusa de rede/agência | testes de política com perfis sintéticos; não é perfil de modelo ou hardware |
 | **memory policy** | sessão autorizada, relevância explicável, revisão de conteúdo sensível/de terceiros e nenhuma persistência autônoma | testes determinísticos sem áudio, texto, ASR, LLM, armazenamento ou rede |
 | **memory capture** | gesto físico, janela limitada, entrega única, geração anti-buffer-atrasado, expiração, cancelamento e zeroização transitória | testes determinísticos sem microfone, I2S, DMA, AFE/VAD, ASR, LLM, armazenamento ou rádio |
+| **memory extract** | gramática local limitada, candidato tipado, origem/confiança, risco de terceiros/sensível e nenhuma retenção textual | testes determinísticos sem ASR real, LLM, cofre, diálogo, HCP, rede ou rádio |
 | **assurance** | composição fail-closed de PTT, intenção, confirmação, trust, frescor, revogação e fronteira de modelo | testes determinísticos sem criar HCP, pacote, link ou rádio |
 | **capstone** | cadeia diálogo→modelo→interação→trust, precedência de revogação e handoff único | testes de módulos portáveis; não representa BLE, ASR, LLM ou energia física |
 | **trust lifecycle** | associação física dupla, SAS, derivação, persistência opaca, revogação e zeroização | testes determinísticos sem BLE real, secure element, RNG alvo ou backend persistente |
