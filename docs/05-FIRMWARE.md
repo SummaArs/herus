@@ -53,7 +53,7 @@ Below it: eight functions and a radio.
 
 ## 2. What is proven, and by what
 
-`./prove.sh` runs nine suites and gates 32 proof invariants. It exits non-zero if any
+`./prove.sh` runs ten suites and gates 33 proof invariants. It exits non-zero if any
 one of them regresses, and it is the only thing standing between you and a
 plausible-looking bug in a device you will trust with an emergency.
 
@@ -62,6 +62,7 @@ plausible-looking bug in a device you will trust with an emergency.
 | **algebra** | quasi-orthogonality vs closed form, exact invertibility, bundle capacity, resonator convergence, learning with an enforced separation floor, 9-slot HCP round trip | measurement next to theory |
 | **Nucleus** | consentimento opt-in, memória com capacidade fixa, confiança explícita, supressão de auto-sugestão, expiração e apagamento local | testes determinísticos sem I/O, alocação, rádio ou rede |
 | **voice** | interpretação local de português controlado, rascunho confirmável, SOS bloqueado e planos hápticos limitados | testes determinísticos sem microfone, ASR, rádio, GPIO ou driver de vibração |
+| **intent gateway** | sessão física, limiar de confiança, margem de ambiguidade, contexto limitado e rejeição de resultado obsoleto | testes determinísticos sem áudio, transcrição, Núcleo físico, rádio ou transporte |
 | **interaction** | push-to-talk, prazo, perda de fonte, confirmação, handoff de uso único e telemetria sem fala | testes determinísticos sem microfone, ASR, rádio, GPIO, chave ou relógio de sistema |
 | **validation lab** | rig de adaptadores, sequência de captura/apresentação/háptica, handoff único e rejeição de logs inseguros | testes determinísticos em host; não representa uma medição física |
 | **preregistered study** | plano congelado, balanceamento, intervalos de Wilson, gates H1–H5 e rejeição de dados inseguros | testes de método com fixtures; não representa resultado de participantes ou hardware |
@@ -154,6 +155,7 @@ Stated plainly, because a firmware document that only lists features is a brochu
 | **Nucleus hardware integration** | `nucleus.[ch]` proves local learning constraints on host only. The Core↔Nucleus encrypted link, power domain, charger, antenna and UI confirmation have not yet been wired to hardware. | Nucleus-0 onward; see [06-NUCLEO.md](06-NUCLEO.md) |
 | **Voice/haptic hardware integration** | `voice.[ch]` proves parsing, confirmation and vibration bounds on host only. Button-gated microphone, local ASR, audio front-end, confirmation UX and ERM/LRA driver are not yet wired. | Advance 1 hardware track; see [07-VOZ-HAPTICA.md](07-VOZ-HAPTICA.md) |
 | **Interaction hardware integration** | `interaction.[ch]` proves the event state machine on host only. ESP-SR adapter, Core↔Nucleus transport, actual button wiring, hardware clock and call into `link_send` remain ports above the runtime. | Advance 2 hardware track; see [08-RUNTIME-INTERACAO.md](08-RUNTIME-INTERACAO.md) |
+| **Intent gateway hardware adapter** | `intent_gate.[ch]` proves session/confidence policy only. Mapping ESP-SR command IDs and confidence fields, obtaining authorized Nucleus hints and carrying the session over an encrypted local link remain target adapters. | Advance 5 integration track; see [11-GATEWAY-CONFIANCA.md](11-GATEWAY-CONFIANCA.md) |
 | **Physical validation** | `interaction_rig.[ch]` and `tools/interactionlog.py` prove scenario sequencing and log gates only. A/B source choice, intent accuracy, false-draft rate, latency and energy still require a pre-registered hardware run. | Advance 3 lab track; see [09-VALIDACAO-FISICA.md](09-VALIDACAO-FISICA.md) |
 | **Confirmatory study** | `studyplan.py` and `interactionstudy.py` freeze and analyze the A4 protocol only. The fixture test validates the analyzer; it is not participant or hardware evidence. | Advance 4 research track; see [10-INVESTIGACAO-PREREGISTRADA.md](10-INVESTIGACAO-PREREGISTRADA.md) |
 | **Ratchet state persistence** | A reboot loses the session; re-pair. | Phase 4 |

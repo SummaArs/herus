@@ -1,9 +1,10 @@
 # Herus firmware — everything that can be proven on a host, proven on a host.
 #
-#   make            all eight suites
+#   make            all nine suites
 #   make algebra    the two algebra suites (hv/sbc/lexicon)
 #   make nucleus    the local, bounded semantic-intelligence suite
 #   make voice      the controlled-language and bounded-haptics suite
+#   make intent     the session/confidence/ambiguity gateway suite
 #   make interaction the push-to-talk, confirmation and one-shot runtime suite
 #   make interaction-rig deterministic adapter and validation-lab scenarios
 #   make net        the protocol suite (crypto, session, weave, beat, framing)
@@ -24,9 +25,9 @@ INC     := -Icore -Inet -Iport -Itest
 CORE    := core/hv.c core/sbc.c core/lexicon.c core/hcp.c
 NET     := net/crypto.c net/session.c net/region.c net/weave.c net/beat.c net/link.c
 
-.PHONY: all algebra nucleus voice interaction interaction-rig net radio syntax vectors clean
+.PHONY: all algebra nucleus voice intent interaction interaction-rig net radio syntax vectors clean
 
-all: algebra nucleus voice interaction interaction-rig net radio syntax
+all: algebra nucleus voice intent interaction interaction-rig net radio syntax
 	@echo ""
 	@echo "=================================================="
 	@echo "ALL FIRMWARE SUITES PASS"
@@ -52,14 +53,19 @@ voice: build
 	$(CC) $(CFLAGS) $(INC) core/voice.c core/test_voice.c -o build/test_voice
 	./build/test_voice
 
+intent: build
+	@echo "--- intent gateway: session, confidence, ambiguity and bounded context ---"
+	$(CC) $(CFLAGS) $(INC) core/intent_gate.c core/test_intent_gate.c -o build/test_intent_gate
+	./build/test_intent_gate
+
 interaction: build
 	@echo "--- interaction: push-to-talk, confirmation and one-shot send gate ---"
-	$(CC) $(CFLAGS) $(INC) core/voice.c core/interaction.c core/test_interaction.c -o build/test_interaction
+	$(CC) $(CFLAGS) $(INC) core/voice.c core/intent_gate.c core/interaction.c core/test_interaction.c -o build/test_interaction
 	./build/test_interaction
 
 interaction-rig: build
 	@echo "--- interaction rig: deterministic adapter and validation-lab scenarios ---"
-	$(CC) $(CFLAGS) $(INC) core/voice.c core/interaction.c core/interaction_rig.c core/test_interaction_rig.c -o build/test_interaction_rig
+	$(CC) $(CFLAGS) $(INC) core/voice.c core/intent_gate.c core/interaction.c core/interaction_rig.c core/test_interaction_rig.c -o build/test_interaction_rig
 	./build/test_interaction_rig
 
 net: build

@@ -1,7 +1,7 @@
 # HERUS
 
 [![prove](https://github.com/SummaArs/herus/actions/workflows/prove.yml/badge.svg)](https://github.com/SummaArs/herus/actions/workflows/prove.yml)
-&nbsp;·&nbsp; C11, no dependencies &nbsp;·&nbsp; 32 proof + 74 system invariants &nbsp;·&nbsp; pre-hardware
+&nbsp;·&nbsp; C11, no dependencies &nbsp;·&nbsp; 33 proof + 74 system invariants &nbsp;·&nbsp; pre-hardware
 
 **A private, off-grid, semantic communicator.** Herus transmits *meaning* — a
 2-byte symbol id into a shared, generatively-derived lexicon — and renders it
@@ -45,10 +45,11 @@ the hot path, and no always-on microphone.
 | [docs/08-RUNTIME-INTERACAO.md](docs/08-RUNTIME-INTERACAO.md) | **Advance 2.** Push-to-talk runtime, one-shot confirmed send gate, adapter boundary and privacy-preserving telemetry |
 | [docs/09-VALIDACAO-FISICA.md](docs/09-VALIDACAO-FISICA.md) | **Advance 3.** Physical-validation protocol, deterministic adapter rig, telemetry schema and pre-committed product gates |
 | [docs/10-INVESTIGACAO-PREREGISTRADA.md](docs/10-INVESTIGACAO-PREREGISTRADA.md) | **Advance 4.** Pre-registered Core-versus-Nucleus investigation, frozen sample plan, Wilson gates and reproducible decision rule |
-| `firmware/core/` | Portable C: both algebras, memory, resonator, HCP rev 0.2, Nucleus intelligence, interaction runtime and deterministic validation rig |
+| [docs/11-GATEWAY-CONFIANCA.md](docs/11-GATEWAY-CONFIANCA.md) | **Advance 5.** Session-bound local-ASR confidence gateway, ambiguity handling and bounded Nucleus context |
+| `firmware/core/` | Portable C: both algebras, memory, resonator, HCP rev 0.2, Nucleus intelligence, intent-confidence gateway, interaction runtime and deterministic validation rig |
 | `firmware/net/` | The wire: crypto, symmetric ratchet, region/dwell as compile-time assertions, Weave, Beat |
 | `firmware/port/` | The platform: an 8-function HAL, an SX1262 driver, the ESP32-S3 app and bring-up console |
-| `firmware/test/` | Eight proof suites, including Nucleus, voice/haptic, interaction-runtime and validation-lab invariants, crypto vectors from an independent implementation and an SX1262 mock bus |
+| `firmware/test/` | Nine firmware proof suites, including Nucleus, voice/haptic, intent gateway, interaction-runtime and validation-lab invariants, crypto vectors from an independent implementation and an SX1262 mock bus |
 | `firmware/ranger/` | Phase 0 measurement firmware for two LilyGO T3-S3 — no GPS, no display |
 | [sim/](sim/README.md) | **The bench.** A world of metres, milliseconds and mA around the unmodified firmware: range, mesh, crowding, adversaries, battery, drift |
 | `tools/budget.py` | Physical-layer, energy and frame-ledger model, stdlib only |
@@ -69,13 +70,14 @@ all in this tree.
 ./prove.sh
 ```
 
-About 30 seconds. Nine suites — algebra, Nucleus intelligence, controlled voice/haptics, interaction runtime, validation lab, preregistered study, protocol, radio driver and physical layer — plus the simulated bench, and **32 proof invariants and 74 system invariants checked rather than eyeballed**:
+About 30 seconds. Ten suites — algebra, Nucleus intelligence, controlled voice/haptics, intent gateway, interaction runtime, validation lab, preregistered study, protocol, radio driver and physical layer — plus the simulated bench, and **33 proof invariants and 74 system invariants checked rather than eyeballed**:
 
 ```
 PASS  P1 constant AIRTIME across meaning tiers
 PASS  P2 no frame exceeds the 400 ms dwell limit
 PASS  Nucleus learning is opt-in, bounded and non-autonomous
 PASS  Voice remains local, confirmed and haptically bounded
+PASS  Intent gateway is session-bound, confidence-gated and non-autonomous
 PASS  Interaction is push-to-talk, confirmed and one-shot
 PASS  Interaction rig keeps adapter sequencing non-transmitting
 PASS  Telemetry gates reject an unsafe send
@@ -113,6 +115,7 @@ the documentation. If a property is claimed and no test can fail, it is a hope.
 | Nucleus local intelligence | **implemented and host-proven** — bounded, opt-in semantic transition memory with confidence, expiry, explicit erase and no autonomous transmission; hardware integration remains future work — see [06-NUCLEO.md](docs/06-NUCLEO.md) |
 | Voice and haptic interaction | **implemented and host-proven** — controlled Portuguese intent parsing, no autonomous send/SOS, physical confirmation contract and bounded driver-independent vibration plans; local ASR and hardware integration remain future work — see [07-VOZ-HAPTICA.md](docs/07-VOZ-HAPTICA.md) |
 | Interaction runtime | **implemented and host-proven** — push-to-talk state machine, local-ASR adapter boundary, timeout/cancel/source-loss clearing, one-shot confirmed handoff and privacy-preserving telemetry; no microphone, ASR SDK, GPIO or radio wiring yet — see [08-RUNTIME-INTERACAO.md](docs/08-RUNTIME-INTERACAO.md) |
+| Intent confidence gateway | **implemented and host-proven** — typed local-ASR output must match a physical session and pass confidence/margin rules; stale, weak and ambiguous observations cannot create a sendable draft, while Nucleus context can only break an otherwise strong tie — see [11-GATEWAY-CONFIANCA.md](docs/11-GATEWAY-CONFIANCA.md) |
 | Physical validation path | **implemented and host-proven** — deterministic adapter rig, normative CSV, log validator and decision gates for intent, false drafts, latency, handoff and measured energy; no real device data has been collected — see [09-VALIDACAO-FISICA.md](docs/09-VALIDACAO-FISICA.md) |
 | Pre-registered investigation | **implemented and host-proven** — frozen Core-versus-Nucleus trial plan, sample size, Wilson intervals, product decision rule and analyzer; no confirmatory data has been collected — see [10-INVESTIGACAO-PREREGISTRADA.md](docs/10-INVESTIGACAO-PREREGISTRADA.md) |
 | Secure element (ATECC608A) | not wired: forward secrecy yes, post-compromise security and SOS signing not yet — see [05-FIRMWARE.md](docs/05-FIRMWARE.md) §4 |

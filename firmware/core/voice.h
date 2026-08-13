@@ -30,6 +30,15 @@ typedef enum {
     VOICE_REJECTED
 } voice_status_t;
 
+/* Typed local-ASR output. It carries only a configured command class; it is not
+ * a transcript, a wire value or permission to send. */
+typedef enum {
+    VOICE_COMMAND_NONE = 0,
+    VOICE_COMMAND_ARRIVE = 1,
+    VOICE_COMMAND_HELP = 2,
+    VOICE_COMMAND_CANCEL = 3
+} voice_command_t;
+
 typedef enum {
     VOICE_EVENT_DRAFT = 0,
     VOICE_EVENT_CRITICAL_DRAFT,
@@ -65,6 +74,14 @@ void voice_lexicon_default(voice_lexicon_t *out);
  * 1..60. Unknown or malformed text fails closed and never creates a draft. */
 voice_status_t voice_parse_pt(const char *transcript, const voice_lexicon_t *lexicon,
                               voice_result_t *out);
+
+/* Convert a bounded command id emitted by a local ASR adapter into the same
+ * semantic-only result used by the text parser. `minutes` is allowed only for
+ * ARRIVE and must be 0 or 1..60. This function never trusts a score, session or
+ * transport field; those belong to intent_gate and interaction respectively. */
+voice_status_t voice_from_command(voice_command_t command, uint8_t minutes,
+                                  const voice_lexicon_t *lexicon,
+                                  voice_result_t *out);
 
 /* Create an abstract vibration plan. The driver/HAL must still enforce electrical
  * and thermal safety. This function never actuates hardware. */
