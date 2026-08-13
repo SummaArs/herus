@@ -109,7 +109,7 @@ A composição com `memory_policy` só retorna uma disposição de privacidade. 
 
 O Passo 4 agora define o [cofre local de memória](20-COFRE-MEMORIA.md): cartão semântico mínimo, persistência cifrada por AEAD, autorização humana separada, piso de geração anti-rollback e apagamento fail-closed. O cofre não recebe `memory_candidate_t`, áudio bruto, transcrição persistente nem uma LLM com autoridade direta de escrita; ele revalida um cartão independente, já sujeito à política, e requer confirmação humana canônica.
 
-A prova é portável e em host. A porta de armazenamento precisa de backend ESP32-S3 revisado para NVS cifrada/raiz protegida e uma âncora de geração realmente durável antes de qualquer alegação de proteção física. O próximo avanço será consolidação humana, expiração, revisão, conflito e remoção — não expansão indiscriminada do conteúdo armazenado.
+A prova é portável e em host. A porta de armazenamento precisa de backend ESP32-S3 revisado para NVS cifrada/raiz protegida e uma âncora de geração realmente durável antes de qualquer alegação de proteção física. O avanço seguinte agora está definido na [consolidação humana](21-CONSOLIDACAO-HUMANA.md): expiração de revisão sem retenção, confirmação de mesma sessão, conflito bloqueante e remoção controlada — não expansão indiscriminada do conteúdo armazenado.
 
 ## Referências
 
