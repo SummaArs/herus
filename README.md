@@ -1,7 +1,7 @@
 # HERUS
 
 [![prove](https://github.com/SummaArs/herus/actions/workflows/prove.yml/badge.svg)](https://github.com/SummaArs/herus/actions/workflows/prove.yml)
-&nbsp;·&nbsp; C11, no dependencies &nbsp;·&nbsp; 28 code + 74 system invariants &nbsp;·&nbsp; pre-hardware
+&nbsp;·&nbsp; C11, no dependencies &nbsp;·&nbsp; 29 code + 74 system invariants &nbsp;·&nbsp; pre-hardware
 
 **A private, off-grid, semantic communicator.** Herus transmits *meaning* — a
 2-byte symbol id into a shared, generatively-derived lexicon — and renders it
@@ -42,10 +42,11 @@ the hot path, and no always-on microphone.
 | [docs/05-FIRMWARE.md](docs/05-FIRMWARE.md) | **The firmware, and how to get it onto hardware.** What is proven, what is deliberately missing, and the exact bench sequence |
 | [docs/06-NUCLEO.md](docs/06-NUCLEO.md) | **The pocket puck.** Architecture, privacy boundary, local intelligence, charging and the falsifiable hardware plan for the Nucleus |
 | [docs/07-VOZ-HAPTICA.md](docs/07-VOZ-HAPTICA.md) | **Advance 1.** Local controlled-language interaction, physical confirmation and bounded vibration feedback |
-| `firmware/core/` | Portable C: both algebras, memory, resonator, HCP rev 0.2, the bounded opt-in Nucleus predictor, and controlled voice/haptic contracts |
+| [docs/08-RUNTIME-INTERACAO.md](docs/08-RUNTIME-INTERACAO.md) | **Advance 2.** Push-to-talk runtime, one-shot confirmed send gate, adapter boundary and privacy-preserving telemetry |
+| `firmware/core/` | Portable C: both algebras, memory, resonator, HCP rev 0.2, Nucleus intelligence, voice/haptic contracts and the confirmed interaction runtime |
 | `firmware/net/` | The wire: crypto, symmetric ratchet, region/dwell as compile-time assertions, Weave, Beat |
 | `firmware/port/` | The platform: an 8-function HAL, an SX1262 driver, the ESP32-S3 app and bring-up console |
-| `firmware/test/` | Six proof suites, including Nucleus and voice/haptic privacy/behaviour invariants, crypto vectors from an independent implementation and an SX1262 mock bus |
+| `firmware/test/` | Seven proof suites, including Nucleus, voice/haptic and interaction-runtime invariants, crypto vectors from an independent implementation and an SX1262 mock bus |
 | `firmware/ranger/` | Phase 0 measurement firmware for two LilyGO T3-S3 — no GPS, no display |
 | [sim/](sim/README.md) | **The bench.** A world of metres, milliseconds and mA around the unmodified firmware: range, mesh, crowding, adversaries, battery, drift |
 | `tools/budget.py` | Physical-layer, energy and frame-ledger model, stdlib only |
@@ -64,13 +65,14 @@ all in this tree.
 ./prove.sh
 ```
 
-About 30 seconds. Six suites — algebra, Nucleus intelligence, controlled voice/haptics, protocol, radio driver and physical layer — plus the simulated bench, and **28 code invariants and 74 system invariants checked rather than eyeballed**:
+About 30 seconds. Seven suites — algebra, Nucleus intelligence, controlled voice/haptics, interaction runtime, protocol, radio driver and physical layer — plus the simulated bench, and **29 code invariants and 74 system invariants checked rather than eyeballed**:
 
 ```
 PASS  P1 constant AIRTIME across meaning tiers
 PASS  P2 no frame exceeds the 400 ms dwell limit
 PASS  Nucleus learning is opt-in, bounded and non-autonomous
 PASS  Voice remains local, confirmed and haptically bounded
+PASS  Interaction is push-to-talk, confirmed and one-shot
 PASS  crypto agrees with an independent implementation
 PASS  hypervectors are never transmitted
 PASS  every single-bit corruption is rejected
@@ -103,6 +105,7 @@ the documentation. If a property is claimed and no test can fail, it is a hope.
 | Behaviour as a system | **simulated** — the unmodified firmware run against a two-ray channel, a duty cycle, a crowd and an adversary. The bench reproduces the published range and all three energy roles from first principles, and its stress pass found four real defects, all now fixed: a link that never recovered from an outage, relay silence naming the recipient, an unbounded battery drain by any stranger, and a phase loop that manufactured its own noise ([sim/](sim/README.md)) |
 | Nucleus local intelligence | **implemented and host-proven** — bounded, opt-in semantic transition memory with confidence, expiry, explicit erase and no autonomous transmission; hardware integration remains future work — see [06-NUCLEO.md](docs/06-NUCLEO.md) |
 | Voice and haptic interaction | **implemented and host-proven** — controlled Portuguese intent parsing, no autonomous send/SOS, physical confirmation contract and bounded driver-independent vibration plans; local ASR and hardware integration remain future work — see [07-VOZ-HAPTICA.md](docs/07-VOZ-HAPTICA.md) |
+| Interaction runtime | **implemented and host-proven** — push-to-talk state machine, local-ASR adapter boundary, timeout/cancel/source-loss clearing, one-shot confirmed handoff and privacy-preserving telemetry; no microphone, ASR SDK, GPIO or radio wiring yet — see [08-RUNTIME-INTERACAO.md](docs/08-RUNTIME-INTERACAO.md) |
 | Secure element (ATECC608A) | not wired: forward secrecy yes, post-compromise security and SOS signing not yet — see [05-FIRMWARE.md](docs/05-FIRMWARE.md) §4 |
 | Hardware | **nothing built yet — Phase 0 is next** |
 

@@ -9,13 +9,14 @@
 #   ./prove.sh            full run
 #   ./prove.sh --quiet    verdict lines only
 #
-# Six suites, each independently falsifiable:
+# Seven suites, each independently falsifiable:
 #   1  algebra      quasi-orthogonality, bundling, resonator, learning, HCP
 #   2  nucleus      bounded, opt-in local semantic intelligence
 #   3  voice        controlled local language and bounded haptic feedback
-#   4  protocol     crypto vs OpenSSL, ratchet, framing, Weave, Beat, canonicality
-#   5  radio        SX1262 command sequences against a recording mock bus
-#   6  physical     RF, energy and the frame ledger, from tools/budget.py
+#   4  interaction  push-to-talk, confirmation, one-shot send and telemetry
+#   5  protocol     crypto vs OpenSSL, ratchet, framing, Weave, Beat, canonicality
+#   6  radio        SX1262 command sequences against a recording mock bus
+#   7  physical     RF, energy and the frame ledger, from tools/budget.py
 #
 # The Nucleus suite is intentionally separate: privacy and non-autonomy are
 # properties that must fail a build when regressed, not promises in a document.
@@ -45,17 +46,22 @@ banner "3/6  voice (controlled language, confirmation, bounded haptics)"
 [ "$QUIET" = 0 ] && cat /tmp/herus_v.log
 grep -q "FAIL" /tmp/herus_v.log && FAIL=1 || true
 
-banner "4/6  protocol (crypto, ratchet, framing, Weave, Beat)"
+banner "4/7  interaction (push-to-talk, confirmation, one-shot send)"
+( cd firmware && make interaction ) > /tmp/herus_i.log 2>&1 || FAIL=1
+[ "$QUIET" = 0 ] && cat /tmp/herus_i.log
+grep -q "FAIL" /tmp/herus_i.log && FAIL=1 || true
+
+banner "5/7  protocol (crypto, ratchet, framing, Weave, Beat)"
 ( cd firmware && make net ) > /tmp/herus_b.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_b.log
 grep -q "FAIL" /tmp/herus_b.log && FAIL=1 || true
 
-banner "5/6  radio driver (SX1262 command sequences, no hardware)"
+banner "6/7  radio driver (SX1262 command sequences, no hardware)"
 ( cd firmware && make radio && make syntax ) > /tmp/herus_r.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_r.log
 grep -q "FAIL" /tmp/herus_r.log && FAIL=1 || true
 
-banner "6/6  physical layer, energy and frame ledger"
+banner "7/7  physical layer, energy and frame ledger"
 python3 tools/budget.py > /tmp/herus_c.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_c.log
 
@@ -83,6 +89,9 @@ check "Nucleus learning is opt-in, bounded and non-autonomous" "NUCLEUS INVARIAN
 
 # --- voice ---------------------------------------------------------------
 check "Voice remains local, confirmed and haptically bounded" "VOICE/HAPTIC INVARIANTS HOLD" /tmp/herus_v.log
+
+# --- interaction ---------------------------------------------------------
+check "Interaction is push-to-talk, confirmed and one-shot" "INTERACTION INVARIANTS HOLD" /tmp/herus_i.log
 
 # --- protocol -------------------------------------------------------------
 check "crypto agrees with an independent implementation" "V6 AEAD encrypt+decrypt matches the reference" /tmp/herus_b.log
