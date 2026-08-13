@@ -238,6 +238,17 @@ int interaction_take_send(interaction_t *it, hcp_msg_t *out)
     return INTERACTION_OK;
 }
 
+int interaction_take_send_assured(interaction_t *it,
+                                  const assurance_snapshot_t *snapshot,
+                                  hcp_msg_t *out)
+{
+    assurance_decision_t decision;
+    if (!it || !snapshot || !out) return INTERACTION_E_ARG;
+    if (assurance_decide(snapshot, &decision) != ASSURANCE_OK)
+        return INTERACTION_E_UNTRUSTED;
+    return interaction_take_send(it, out);
+}
+
 int interaction_tick(interaction_t *it, uint32_t now_ms)
 {
     if (!it) return INTERACTION_E_ARG;
