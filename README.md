@@ -76,7 +76,7 @@ all in this tree.
 ./prove.sh
 ```
 
-About 30 seconds. Sixteen suites — algebra, Nucleus intelligence, controlled voice/haptics, intent gateway, **bounded local dialogue**, **local-model acceptance lab**, **Grand Finale assurance**, **capstone integration**, explicit Core↔Núcleo trust lifecycle, authenticated control link, interaction runtime, validation lab, readiness manifest, preregistered study, protocol, radio driver and physical layer — plus the simulated bench, and **43 proof invariants and 74 system invariants checked rather than eyeballed**:
+About 30 seconds. Seventeen suites — algebra, Nucleus intelligence, controlled voice/haptics, intent gateway, **bounded local dialogue**, **local-model acceptance lab**, **Grand Finale assurance**, **capstone integration**, explicit Core↔Núcleo trust lifecycle, authenticated control link, interaction runtime, validation lab, readiness manifest, preregistered study, protocol, radio driver and physical layer — plus the simulated bench, and **43 proof invariants and 74 system invariants checked rather than eyeballed**:
 
 ```
 PASS  P1 constant AIRTIME across meaning tiers

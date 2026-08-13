@@ -55,7 +55,7 @@ minutes, so you can trust the documents.
    xcode-select --install 2>/dev/null; cc --version && python3 --version && pip3 install cryptography
    ```
 
-2. Prove everything. One command, sixteen suites, 43 proof invariants:
+2. Prove everything. One command, seventeen suites, 43 proof invariants:
 
    ```bash
    ./prove.sh

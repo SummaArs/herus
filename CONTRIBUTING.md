@@ -32,7 +32,7 @@ the documents**.
 
 | Target | Command | What it proves |
 |---|---|---|
-| Everything | `./prove.sh` | 16 suites + 43 proof invariants + 74 system invariants |
+| Everything | `./prove.sh` | 17 suites + 43 proof invariants + 74 system invariants |
 | Algebra | `cd firmware && make algebra` | Binding, bundling, resonator, HCP, dense vs sparse |
 | Núcleo | `cd firmware && make nucleus` | Consentimento opt-in, memória limitada, confiança, expiração e apagamento local |
 | Voz e háptica | `cd firmware && make voice` | Linguagem controlada, rascunho confirmável, SOS bloqueado e vibração limitada |

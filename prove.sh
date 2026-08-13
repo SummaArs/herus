@@ -9,7 +9,7 @@
 #   ./prove.sh            full run
 #   ./prove.sh --quiet    verdict lines only
 #
-# Sixteen suites, each independently falsifiable:
+# Seventeen suites, each independently falsifiable:
 #   1  algebra      quasi-orthogonality, bundling, resonator, learning, HCP
 #   2  nucleus      bounded, opt-in local semantic intelligence
 #   3  voice        controlled local language and bounded haptic feedback
@@ -25,7 +25,8 @@
 #  13  readiness    frozen hardware-evidence manifest and privacy/schema gate
 #  14  study        preregistered plan, statistical gates and unsafe-send rejection
 #  15  protocol     crypto vs OpenSSL, ratchet, framing, Weave, Beat, canonicality
-#  16  radio+physical SX1262 mock bus plus RF, energy and frame ledger
+#  16  radio        SX1262 command sequences against a recording mock bus
+#  17  physical     RF, energy and the frame ledger, from tools/budget.py
 #
 # The Nucleus suite is intentionally separate: privacy and non-autonomy are
 # properties that must fail a build when regressed, not promises in a document.
@@ -115,12 +116,12 @@ banner "15/16 protocol (crypto, ratchet, framing, Weave, Beat)"
 [ "$QUIET" = 0 ] && cat /tmp/herus_b.log
 grep -q "FAIL" /tmp/herus_b.log && FAIL=1 || true
 
-banner "16/16 radio driver (SX1262 command sequences, no hardware)"
+banner "16/17 radio driver (SX1262 command sequences, no hardware)"
 ( cd firmware && make radio && make syntax ) > /tmp/herus_r.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_r.log
 grep -q "FAIL" /tmp/herus_r.log && FAIL=1 || true
 
-banner "16/16 physical layer, energy and frame ledger"
+banner "17/17 physical layer, energy and frame ledger"
 python3 tools/budget.py > /tmp/herus_c.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_c.log
 

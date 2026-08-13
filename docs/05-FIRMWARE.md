@@ -53,7 +53,7 @@ Below it: eight functions and a radio.
 
 ## 2. What is proven, and by what
 
-`./prove.sh` runs sixteen suites and gates 43 proof invariants. It exits non-zero if any
+`./prove.sh` runs seventeen suites and gates 43 proof invariants. It exits non-zero if any
 one of them regresses, and it is the only thing standing between you and a
 plausible-looking bug in a device you will trust with an emergency.
 
