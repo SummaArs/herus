@@ -1,7 +1,7 @@
 # HERUS
 
 [![prove](https://github.com/SummaArs/herus/actions/workflows/prove.yml/badge.svg)](https://github.com/SummaArs/herus/actions/workflows/prove.yml)
-&nbsp;·&nbsp; C11, no dependencies &nbsp;·&nbsp; 26 code + 74 system invariants &nbsp;·&nbsp; pre-hardware
+&nbsp;·&nbsp; C11, no dependencies &nbsp;·&nbsp; 27 code + 74 system invariants &nbsp;·&nbsp; pre-hardware
 
 **A private, off-grid, semantic communicator.** Herus transmits *meaning* — a
 2-byte symbol id into a shared, generatively-derived lexicon — and renders it
@@ -40,10 +40,11 @@ the hot path, and no always-on microphone.
 | [docs/03-BUILD-GUIDE.md](docs/03-BUILD-GUIDE.md) | **Start here to build.** Every phase in order, exact commands, one pre-committed kill criterion each |
 | [docs/04-PRODUCT.md](docs/04-PRODUCT.md) | How it gets sold: the Anchor (+28 dB, 25× the area, value at N=1), minting, seed-as-language, SKUs, and the honest odds |
 | [docs/05-FIRMWARE.md](docs/05-FIRMWARE.md) | **The firmware, and how to get it onto hardware.** What is proven, what is deliberately missing, and the exact bench sequence |
-| `firmware/core/` | Portable C: both algebras, memory, resonator, HCP rev 0.2 |
+| [docs/06-NUCLEO.md](docs/06-NUCLEO.md) | **The pocket puck.** Architecture, privacy boundary, local intelligence, charging and the falsifiable hardware plan for the Nucleus |
+| `firmware/core/` | Portable C: both algebras, memory, resonator, HCP rev 0.2, and the bounded opt-in Nucleus predictor |
 | `firmware/net/` | The wire: crypto, symmetric ratchet, region/dwell as compile-time assertions, Weave, Beat |
 | `firmware/port/` | The platform: an 8-function HAL, an SX1262 driver, the ESP32-S3 app and bring-up console |
-| `firmware/test/` | Four proof suites, including crypto vectors from an independent implementation and an SX1262 mock bus |
+| `firmware/test/` | Five proof suites, including Nucleus privacy/behaviour invariants, crypto vectors from an independent implementation and an SX1262 mock bus |
 | `firmware/ranger/` | Phase 0 measurement firmware for two LilyGO T3-S3 — no GPS, no display |
 | [sim/](sim/README.md) | **The bench.** A world of metres, milliseconds and mA around the unmodified firmware: range, mesh, crowding, adversaries, battery, drift |
 | `tools/budget.py` | Physical-layer, energy and frame-ledger model, stdlib only |
@@ -62,13 +63,12 @@ all in this tree.
 ./prove.sh
 ```
 
-About 30 seconds. Four suites — algebra, protocol, radio driver, physical layer
-— plus the simulated bench, and **26 code invariants and 74 system invariants
-checked rather than eyeballed**:
+About 30 seconds. Five suites — algebra, Nucleus intelligence, protocol, radio driver and physical layer — plus the simulated bench, and **27 code invariants and 74 system invariants checked rather than eyeballed**:
 
 ```
 PASS  P1 constant AIRTIME across meaning tiers
 PASS  P2 no frame exceeds the 400 ms dwell limit
+PASS  Nucleus learning is opt-in, bounded and non-autonomous
 PASS  crypto agrees with an independent implementation
 PASS  hypervectors are never transmitted
 PASS  every single-bit corruption is rejected
@@ -99,6 +99,7 @@ the documentation. If a property is claimed and no test can fail, it is a hope.
 | Link budget | **+15.2 dB over the published design, all of it buildable.** 8 dB of it was a mislabelled constant: `budget.py` used the European 14 dBm in a band where FCC 15.247 and ANATEL 14448 allow 30, and the SX1262's own PA reaches 22. Reach adds 2.5 dB, a receive LNA 4.7 dB. Band-antenna urban range **650 m → 1561 m**; a further 4 dB is projected from antenna work and is a bench question ([tools/frontier.py](tools/frontier.py), `sim hardware`) |
 | Modulation | **at the regulatory ceiling.** Two link profiles: Rich (SF9, 34 B, 9 slots) and Reach (SF10, 24 B, 4 slots, +2.5 dB → 422 m / 750 m urban). `region.h` asserts that 25 B at SF10 is illegal and that SF11 cannot carry one byte, so there is no rung above Reach without changing the band or the law |
 | Behaviour as a system | **simulated** — the unmodified firmware run against a two-ray channel, a duty cycle, a crowd and an adversary. The bench reproduces the published range and all three energy roles from first principles, and its stress pass found four real defects, all now fixed: a link that never recovered from an outage, relay silence naming the recipient, an unbounded battery drain by any stranger, and a phase loop that manufactured its own noise ([sim/](sim/README.md)) |
+| Nucleus local intelligence | **implemented and host-proven** — bounded, opt-in semantic transition memory with confidence, expiry, explicit erase and no autonomous transmission; hardware integration remains future work — see [06-NUCLEO.md](docs/06-NUCLEO.md) |
 | Secure element (ATECC608A) | not wired: forward secrecy yes, post-compromise security and SOS signing not yet — see [05-FIRMWARE.md](docs/05-FIRMWARE.md) §4 |
 | Hardware | **nothing built yet — Phase 0 is next** |
 

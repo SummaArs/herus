@@ -1,7 +1,8 @@
 # Herus firmware — everything that can be proven on a host, proven on a host.
 #
-#   make            all four suites
+#   make            all five suites
 #   make algebra    the two algebra suites (hv/sbc/lexicon)
+#   make nucleus    the local, bounded semantic-intelligence suite
 #   make net        the protocol suite (crypto, session, weave, beat, framing)
 #   make radio      the SX1262 command sequences, against a recording mock bus
 #   make syntax     type-check the ESP32-S3 app without an ESP32 present
@@ -20,15 +21,15 @@ INC     := -Icore -Inet -Iport -Itest
 CORE    := core/hv.c core/sbc.c core/lexicon.c core/hcp.c
 NET     := net/crypto.c net/session.c net/region.c net/weave.c net/beat.c net/link.c
 
-.PHONY: all algebra net radio syntax vectors clean
+.PHONY: all algebra nucleus net radio syntax vectors clean
 
-all: algebra net radio syntax
+all: algebra nucleus net radio syntax
 	@echo ""
 	@echo "=================================================="
 	@echo "ALL FIRMWARE SUITES PASS"
 	@echo "=================================================="
 
-algebra:
+algebra: build
 	@echo "--- algebra: hv + lexicon + hcp ---"
 	$(CC) $(CFLAGS) -DHV_LUT_POPCOUNT $(INC) core/hv.c core/lexicon.c core/hcp.c \
 	    core/test_herus.c -o build/test_herus $(LDLIBS)
@@ -37,6 +38,11 @@ algebra:
 	$(CC) $(CFLAGS) -DHV_LUT_POPCOUNT $(INC) core/hv.c core/sbc.c \
 	    core/test_algebra.c -o build/test_algebra $(LDLIBS)
 	./build/test_algebra
+
+nucleus: build
+	@echo "--- nucleus: bounded local semantic intelligence ---"
+	$(CC) $(CFLAGS) $(INC) core/nucleus.c core/test_nucleus.c -o build/test_nucleus
+	./build/test_nucleus
 
 net: build
 	@echo "--- protocol: crypto, ratchet, framing, weave, beat ---"

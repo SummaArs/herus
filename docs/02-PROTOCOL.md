@@ -440,7 +440,7 @@ Collected because each one has a plausible-looking wrong answer.
 ## 9. Reproduce
 
 ```bash
-./prove.sh                       # all four suites and 26 invariants
+./prove.sh                       # all five suites and 27 code invariants
 python3 tools/budget.py          # §8 frame ledger, §9 ranges, §10 Beat timing
 cd firmware && make net          # P1-P8 of this document, as tests that can fail
 ```

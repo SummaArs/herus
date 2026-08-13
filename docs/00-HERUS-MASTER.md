@@ -529,10 +529,10 @@ a price.
 
 ```bash
 cd ~/Python/herus
-./prove.sh                        # 4 suites, 26 invariants, all green
+./prove.sh                        # 5 suites, 27 code invariants, all green
 ```
 
-That covers the algebra, the protocol (crypto differentially tested against
+That covers the algebra, the opt-in bounded Nucleus predictor, the protocol (crypto differentially tested against
 OpenSSL, ratchet, replay, forgery, flooding, Beat drift), the SX1262 command
 sequences against a recording mock bus, and every RF and energy number.
 

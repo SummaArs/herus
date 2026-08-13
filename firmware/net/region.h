@@ -128,7 +128,7 @@ typedef struct {
     uint8_t     tag_len;
     uint8_t     max_slot;
     uint32_t    airtime_us;
-    int8_t      sens_dbm_x2;      /* sensitivity in half-dBm, so it stays integer */
+    int16_t     sens_dbm_x2;      /* sensitivity in half-dBm; -129.5 dBm needs 16 bits */
 } hz_link_profile_t;
 
 const hz_link_profile_t *hz_link(hz_link_t p);

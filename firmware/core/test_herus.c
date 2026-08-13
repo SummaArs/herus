@@ -3,6 +3,12 @@
  * Every quantitative claim in docs/ is produced by this file. If a claim is
  * not printed here, it is not a claim, it is a hope. Run: make test
  */
+/* clock_gettime/CLOCK_MONOTONIC are POSIX. Ask for that API explicitly so the
+ * proof builds in strict C11 mode instead of depending on libc defaults. */
+#ifndef _POSIX_C_SOURCE
+#define _POSIX_C_SOURCE 200809L
+#endif
+
 #include "lexicon.h"
 #include "hcp.h"
 #include <stdio.h>

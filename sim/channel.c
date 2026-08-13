@@ -18,6 +18,10 @@
 #include "sim.h"
 #include <math.h>
 
+/* M_PI is a common extension rather than an ISO C constant. Keep the propagation
+ * model self-contained so the bench builds under strict C11 toolchains. */
+#define SIM_PI 3.14159265358979323846
+
 /* Sensitivity is not a lookup table, it is thermal noise plus receiver noise
  * figure plus the demodulator's SNR limit:
  *
@@ -60,7 +64,7 @@ static double lambda_m(void) { return SIM_C / SIM_FREQ_HZ; }
 
 static double d_breakpoint_m(void)
 {
-    return 4.0 * M_PI * SIM_H_WRIST_M * SIM_H_WRIST_M / lambda_m();
+    return 4.0 * SIM_PI * SIM_H_WRIST_M * SIM_H_WRIST_M / lambda_m();
 }
 
 static double fspl_db(double d_m)

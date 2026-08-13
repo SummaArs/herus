@@ -9,14 +9,15 @@
 #   ./prove.sh            full run
 #   ./prove.sh --quiet    verdict lines only
 #
-# Four suites, each independently falsifiable:
+# Five suites, each independently falsifiable:
 #   1  algebra      quasi-orthogonality, bundling, resonator, learning, HCP
-#   2  protocol     crypto vs OpenSSL, ratchet, framing, Weave, Beat, canonicality
-#   3  radio        SX1262 command sequences against a recording mock bus
-#   4  physical     RF, energy and the frame ledger, from tools/budget.py
+#   2  nucleus      bounded, opt-in local semantic intelligence
+#   3  protocol     crypto vs OpenSSL, ratchet, framing, Weave, Beat, canonicality
+#   4  radio        SX1262 command sequences against a recording mock bus
+#   5  physical     RF, energy and the frame ledger, from tools/budget.py
 #
-# Suites 2 and 3 are new in this revision, and they exist because a document
-# cannot catch a wrong opcode or a forged tag. A test can.
+# The Nucleus suite is intentionally separate: privacy and non-autonomy are
+# properties that must fail a build when regressed, not promises in a document.
 set -e
 cd "$(dirname "$0")"
 
@@ -33,17 +34,22 @@ banner "1/4  algebra (hv + sbc + lexicon + hcp)"
 [ "$QUIET" = 0 ] && cat /tmp/herus_a.log
 grep -q "FAIL" /tmp/herus_a.log && FAIL=1 || true
 
-banner "2/4  protocol (crypto, ratchet, framing, Weave, Beat)"
+banner "2/5  nucleus (bounded local semantic intelligence)"
+( cd firmware && make nucleus ) > /tmp/herus_n.log 2>&1 || FAIL=1
+[ "$QUIET" = 0 ] && cat /tmp/herus_n.log
+grep -q "FAIL" /tmp/herus_n.log && FAIL=1 || true
+
+banner "3/5  protocol (crypto, ratchet, framing, Weave, Beat)"
 ( cd firmware && make net ) > /tmp/herus_b.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_b.log
 grep -q "FAIL" /tmp/herus_b.log && FAIL=1 || true
 
-banner "3/4  radio driver (SX1262 command sequences, no hardware)"
+banner "4/5  radio driver (SX1262 command sequences, no hardware)"
 ( cd firmware && make radio && make syntax ) > /tmp/herus_r.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_r.log
 grep -q "FAIL" /tmp/herus_r.log && FAIL=1 || true
 
-banner "4/4  physical layer, energy and frame ledger"
+banner "5/5  physical layer, energy and frame ledger"
 python3 tools/budget.py > /tmp/herus_c.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_c.log
 
@@ -65,6 +71,9 @@ check "P2 no frame exceeds the 400 ms dwell limit" "highest legal spreading fact
 check "binding is exactly invertible"        "round-trip failures: 0" /tmp/herus_a.log
 check "role order survives (errata E6)"      "roles now carry direction" /tmp/herus_a.log
 check "9-slot composed record round-trips"   "9/9 recovered exactly" /tmp/herus_a.log
+
+# --- nucleus --------------------------------------------------------------
+check "Nucleus learning is opt-in, bounded and non-autonomous" "NUCLEUS INVARIANTS HOLD" /tmp/herus_n.log
 
 # --- protocol -------------------------------------------------------------
 check "crypto agrees with an independent implementation" "V6 AEAD encrypt+decrypt matches the reference" /tmp/herus_b.log
