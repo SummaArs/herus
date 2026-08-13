@@ -92,9 +92,11 @@ cd ..
 
 O pipeline acrescenta duas invariantes: a apresentação física/one-shot com limpeza de estado e a exposição de incerteza sem selecionar contender. Um resultado positivo prova somente esses cenários injetados em host. Não mede inteligibilidade, WER, taxa de compreensão, aceitação, fadiga háptica, acessibilidade, autonomia de bateria, latência de periférico ou desempenho de LLM.
 
-## 7. Próximo passo
+## 7. Continuidade: Grand Finale de memória implementado em host
 
-O Passo 8 deve planejar a **avaliação humana e de hardware da recuperação**, antes de ampliar a superfície com linguagem natural ou modelo. A investigação deverá pré-registrar tarefas, critérios de parada, medidas de entendimento de `MATCH`/`NO_MATCH`/`AMBIGUOUS`, falsos entendimentos, eventos de cancelamento, energia e privacidade de logs. Não deve alegar que um sinal simbólico foi entendido apenas porque o código produziu um plano háptico.
+O Passo 8 agora implementa o [Grand Finale de memória](24-GRAND-FINALE-MEMORIA.md): uma fixture composta que percorre captura, extração, política, revisão, cofre, recuperação e apresentação, mais um auditor sem efeitos colaterais que bloqueia evidência ausente, conflito, política insegura, apresentação inválida ou presença de modelo no caminho. Ele não transforma os códigos simbólicos em voz, vibração ou tela reais.
+
+A próxima etapa é **evidência humana e de hardware**, antes de ampliar a superfície com linguagem natural ou modelo. A investigação deverá pré-registrar tarefas, critérios de parada, medidas de entendimento de `MATCH`/`NO_MATCH`/`AMBIGUOUS`, falsos entendimentos, eventos de cancelamento, energia e privacidade de logs. Não deve alegar que um sinal simbólico foi entendido apenas porque o código produziu um plano háptico.
 
 ## Referências
 

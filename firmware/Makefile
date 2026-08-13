@@ -14,6 +14,7 @@
 #   make memory-consolidation the bounded human review, recall and removal suite
 #   make memory-retrieval the typed, local and ambiguity-safe presentation suite
 #   make memory-retrieval-present the one-shot human status presentation suite
+#   make memory-finale the selective-memory Grand Finale composition suite
 #   make assurance  the Grand Finale cross-module safety composition suite
 #   make capstone   the Grand Finale end-to-end safety-chain suite
 #   make trust      the explicit Core/Nucleus binding lifecycle suite
@@ -38,9 +39,9 @@ INC     := -Icore -Inet -Iport -Itest
 CORE    := core/hv.c core/sbc.c core/lexicon.c core/hcp.c
 NET     := net/crypto.c net/session.c net/region.c net/weave.c net/beat.c net/link.c
 
-.PHONY: all algebra nucleus voice intent dialogue model-lab memory-policy memory-capture memory-extract memory-vault memory-consolidation memory-retrieval memory-retrieval-present assurance capstone trust control-link interaction interaction-rig net radio syntax vectors clean
+.PHONY: all algebra nucleus voice intent dialogue model-lab memory-policy memory-capture memory-extract memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale assurance capstone trust control-link interaction interaction-rig net radio syntax vectors clean
 
-all: algebra nucleus voice intent dialogue model-lab memory-policy memory-capture memory-extract memory-vault memory-consolidation memory-retrieval memory-retrieval-present assurance capstone trust control-link interaction interaction-rig net radio syntax
+all: algebra nucleus voice intent dialogue model-lab memory-policy memory-capture memory-extract memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale assurance capstone trust control-link interaction interaction-rig net radio syntax
 	@echo ""
 	@echo "=================================================="
 	@echo "ALL FIRMWARE SUITES PASS"
@@ -115,6 +116,11 @@ memory-retrieval-present: build
 	@echo "--- memory retrieval presentation: bounded status, uncertainty and zero authority ---"
 	$(CC) $(CFLAGS) $(INC) core/voice.c core/memory_retrieval_present.c core/test_memory_retrieval_present.c -o build/test_memory_retrieval_present
 	./build/test_memory_retrieval_present
+
+memory-finale: build
+	@echo "--- memory Grand Finale: composed human-gated private-memory chain ---"
+	$(CC) $(CFLAGS) $(INC) net/crypto.c core/voice.c core/memory_capture.c core/memory_policy.c core/memory_extract.c core/memory_vault.c core/memory_consolidation.c core/memory_retrieval.c core/memory_retrieval_present.c core/memory_finale.c core/test_memory_finale.c -o build/test_memory_finale
+	./build/test_memory_finale
 
 assurance: build
 	@echo "--- assurance: Grand Finale composition, revocation and zero agency ---"
