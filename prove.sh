@@ -9,18 +9,19 @@
 #   ./prove.sh            full run
 #   ./prove.sh --quiet    verdict lines only
 #
-# Eleven suites, each independently falsifiable:
+# Twelve suites, each independently falsifiable:
 #   1  algebra      quasi-orthogonality, bundling, resonator, learning, HCP
 #   2  nucleus      bounded, opt-in local semantic intelligence
 #   3  voice        controlled local language and bounded haptic feedback
 #   4  intent       session, confidence, ambiguity and bounded context gateway
-#   5  control-link authenticated Core/Nucleus envelope, expiry and replay protection
-#   6  interaction  push-to-talk, confirmation, one-shot send and telemetry
-#   7  validation   deterministic adapters and telemetry log gates
-#   8  study        preregistered plan, statistical gates and unsafe-send rejection
-#   9  protocol     crypto vs OpenSSL, ratchet, framing, Weave, Beat, canonicality
-#  10  radio        SX1262 command sequences against a recording mock bus
-#  11  physical     RF, energy and the frame ledger, from tools/budget.py
+#   5  trust        explicit pairing, SAS, protected persistence and revocation
+#   6  control-link authenticated Core/Nucleus envelope, expiry and replay protection
+#   7  interaction  push-to-talk, confirmation, one-shot send and telemetry
+#   8  validation   deterministic adapters and telemetry log gates
+#   9  study        preregistered plan, statistical gates and unsafe-send rejection
+#  10  protocol     crypto vs OpenSSL, ratchet, framing, Weave, Beat, canonicality
+#  11  radio        SX1262 command sequences against a recording mock bus
+#  12  physical     RF, energy and the frame ledger, from tools/budget.py
 #
 # The Nucleus suite is intentionally separate: privacy and non-autonomy are
 # properties that must fail a build when regressed, not promises in a document.
@@ -55,37 +56,42 @@ banner "4/11 intent gateway (session, confidence, ambiguity and bounded context)
 [ "$QUIET" = 0 ] && cat /tmp/herus_t.log
 grep -q "FAIL" /tmp/herus_t.log && FAIL=1 || true
 
-banner "5/11 Core/Nucleus control link (AEAD, expiry and replay protection)"
+banner "5/12 trust lifecycle (explicit pairing, SAS and revocation)"
+( cd firmware && make trust ) > /tmp/herus_k.log 2>&1 || FAIL=1
+[ "$QUIET" = 0 ] && cat /tmp/herus_k.log
+grep -q "FAIL" /tmp/herus_k.log && FAIL=1 || true
+
+banner "6/12 Core/Nucleus control link (AEAD, expiry and replay protection)"
 ( cd firmware && make control-link ) > /tmp/herus_l.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_l.log
 grep -q "FAIL" /tmp/herus_l.log && FAIL=1 || true
 
-banner "6/11 interaction (push-to-talk, confirmation and one-shot send)"
+banner "7/12 interaction (push-to-talk, confirmation and one-shot send)"
 ( cd firmware && make interaction ) > /tmp/herus_i.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_i.log
 grep -q "FAIL" /tmp/herus_i.log && FAIL=1 || true
 
-banner "7/11 validation lab (deterministic adapters and telemetry gates)"
+banner "8/12 validation lab (deterministic adapters and telemetry gates)"
 ( cd firmware && make interaction-rig && cd .. && ./tools/test_interactionlog.sh ) > /tmp/herus_g.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_g.log
 grep -q "FAIL" /tmp/herus_g.log && FAIL=1 || true
 
-banner "8/11 preregistered study (frozen plan, gates and unsafe-send rejection)"
+banner "9/12 preregistered study (frozen plan, gates and unsafe-send rejection)"
 python3 tools/test_interactionstudy.py > /tmp/herus_s.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_s.log
 grep -q "FAIL" /tmp/herus_s.log && FAIL=1 || true
 
-banner "9/11 protocol (crypto, ratchet, framing, Weave, Beat)"
+banner "10/12 protocol (crypto, ratchet, framing, Weave, Beat)"
 ( cd firmware && make net ) > /tmp/herus_b.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_b.log
 grep -q "FAIL" /tmp/herus_b.log && FAIL=1 || true
 
-banner "10/11 radio driver (SX1262 command sequences, no hardware)"
+banner "11/12 radio driver (SX1262 command sequences, no hardware)"
 ( cd firmware && make radio && make syntax ) > /tmp/herus_r.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_r.log
 grep -q "FAIL" /tmp/herus_r.log && FAIL=1 || true
 
-banner "11/11 physical layer, energy and frame ledger"
+banner "12/12 physical layer, energy and frame ledger"
 python3 tools/budget.py > /tmp/herus_c.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_c.log
 
@@ -116,6 +122,10 @@ check "Voice remains local, confirmed and haptically bounded" "VOICE/HAPTIC INVA
 
 # --- intent gateway ------------------------------------------------------
 check "Intent gateway is session-bound, confidence-gated and non-autonomous" "INTENT GATE INVARIANTS HOLD" /tmp/herus_t.log
+
+# --- Core/Nucleus trust lifecycle ----------------------------------------
+check "Trust requires physical pairing and matched SAS before activation" "pending offer has a six-digit SAS but cannot seal" /tmp/herus_k.log
+check "Trust revocation zeroizes RAM and fails closed" "erase failure fails closed and zeroizes RAM" /tmp/herus_k.log
 
 # --- Core/Nucleus control link -------------------------------------------
 check "Control link authenticates, expires and rejects replay" "CORE LINK INVARIANTS HOLD" /tmp/herus_l.log
