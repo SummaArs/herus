@@ -1,12 +1,13 @@
 # Herus firmware — everything that can be proven on a host, proven on a host.
 #
-#   make            all fifteen suites
+#   make            all sixteen suites
 #   make algebra    the two algebra suites (hv/sbc/lexicon)
 #   make nucleus    the local, bounded semantic-intelligence suite
 #   make voice      the controlled-language and bounded-haptics suite
 #   make intent     the session/confidence/ambiguity gateway suite
 #   make dialogue   the bounded local conversational-intelligence suite
 #   make model-lab  the measured local-model acceptance and reply-shield suite
+#   make memory-policy the selective-memory relevance and retention-policy suite
 #   make assurance  the Grand Finale cross-module safety composition suite
 #   make capstone   the Grand Finale end-to-end safety-chain suite
 #   make trust      the explicit Core/Nucleus binding lifecycle suite
@@ -31,9 +32,9 @@ INC     := -Icore -Inet -Iport -Itest
 CORE    := core/hv.c core/sbc.c core/lexicon.c core/hcp.c
 NET     := net/crypto.c net/session.c net/region.c net/weave.c net/beat.c net/link.c
 
-.PHONY: all algebra nucleus voice intent dialogue model-lab assurance capstone trust control-link interaction interaction-rig net radio syntax vectors clean
+.PHONY: all algebra nucleus voice intent dialogue model-lab memory-policy assurance capstone trust control-link interaction interaction-rig net radio syntax vectors clean
 
-all: algebra nucleus voice intent dialogue model-lab assurance capstone trust control-link interaction interaction-rig net radio syntax
+all: algebra nucleus voice intent dialogue model-lab memory-policy assurance capstone trust control-link interaction interaction-rig net radio syntax
 	@echo ""
 	@echo "=================================================="
 	@echo "ALL FIRMWARE SUITES PASS"
@@ -73,6 +74,11 @@ model-lab: build
 	@echo "--- model lab: target evidence, budgets and display-only reply shield ---"
 	$(CC) $(CFLAGS) $(INC) net/crypto.c core/model_lab.c core/test_model_lab.c -o build/test_model_lab
 	./build/test_model_lab
+
+memory-policy: build
+	@echo "--- memory policy: consent, relevance, review and no persistence ---"
+	$(CC) $(CFLAGS) $(INC) core/memory_policy.c core/test_memory_policy.c -o build/test_memory_policy
+	./build/test_memory_policy
 
 assurance: build
 	@echo "--- assurance: Grand Finale composition, revocation and zero agency ---"
