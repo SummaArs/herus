@@ -53,7 +53,7 @@ Below it: eight functions and a radio.
 
 ## 2. What is proven, and by what
 
-`./prove.sh` runs twenty suites and gates 49 proof invariants. It exits non-zero if any
+`./prove.sh` runs twenty-one suites and gates 51 proof invariants. It exits non-zero if any
 one of them regresses, and it is the only thing standing between you and a
 plausible-looking bug in a device you will trust with an emergency.
 
@@ -68,6 +68,7 @@ plausible-looking bug in a device you will trust with an emergency.
 | **memory policy** | sessão autorizada, relevância explicável, revisão de conteúdo sensível/de terceiros e nenhuma persistência autônoma | testes determinísticos sem áudio, texto, ASR, LLM, armazenamento ou rede |
 | **memory capture** | gesto físico, janela limitada, entrega única, geração anti-buffer-atrasado, expiração, cancelamento e zeroização transitória | testes determinísticos sem microfone, I2S, DMA, AFE/VAD, ASR, LLM, armazenamento ou rádio |
 | **memory extract** | gramática local limitada, candidato tipado, origem/confiança, risco de terceiros/sensível e nenhuma retenção textual | testes determinísticos sem ASR real, LLM, cofre, diálogo, HCP, rede ou rádio |
+| **memory vault** | autorização humana separada, cartão mínimo sem texto, HKDF por domínio/geração, AEAD de tag completa, piso anti-rollback e erase fail-closed | testes determinísticos com backend RAM host; não prova NVS cifrado, eFuse, secure element, atomicidade de flash ou resistência física |
 | **assurance** | composição fail-closed de PTT, intenção, confirmação, trust, frescor, revogação e fronteira de modelo | testes determinísticos sem criar HCP, pacote, link ou rádio |
 | **capstone** | cadeia diálogo→modelo→interação→trust, precedência de revogação e handoff único | testes de módulos portáveis; não representa BLE, ASR, LLM ou energia física |
 | **trust lifecycle** | associação física dupla, SAS, derivação, persistência opaca, revogação e zeroização | testes determinísticos sem BLE real, secure element, RNG alvo ou backend persistente |
@@ -170,6 +171,7 @@ Stated plainly, because a firmware document that only lists features is a brochu
 | **Physical validation** | `interaction_rig.[ch]` and `tools/interactionlog.py` prove scenario sequencing and log gates only. A/B source choice, intent accuracy, false-draft rate, latency and energy still require a pre-registered hardware run. | Advance 3 lab track; see [09-VALIDACAO-FISICA.md](09-VALIDACAO-FISICA.md) |
 | **Confirmatory study** | `studyplan.py` and `interactionstudy.py` freeze and analyze the A4 protocol only. The fixture test validates the analyzer; it is not participant or hardware evidence. | Advance 4 research track; see [10-INVESTIGACAO-PREREGISTRADA.md](10-INVESTIGACAO-PREREGISTRADA.md) |
 | **Ratchet state persistence** | A reboot loses the session; re-pair. | Phase 4 |
+| **Memory-vault target backend** | `memory_vault.[ch]` prova formato cifrado, chave por geração e bloqueio em falha com uma porta RAM. Raiz protegida, NVS cifrada, piso monotônico durável, recuperação após power-loss e erase físico ainda não foram integrados nem medidos. | Phase 4; ver [20-COFRE-MEMORIA.md](20-COFRE-MEMORIA.md) |
 | **eFuse ritual** | Until flash encryption, secure boot, JTAG-off and UART-download-off are burned, session keys sit in readable RAM and "the key never leaves the chip" is true and irrelevant. | Phase 4, one-way, sacrificial board first |
 
 ---
