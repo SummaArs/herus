@@ -1,0 +1,28 @@
+__pycache__/
+*.pyc
+.DS_Store
+
+# build outputs
+firmware/build/
+firmware/core/test_herus
+firmware/core/test_algebra
+sim/build/
+*.o
+*.a
+*.elf
+*.bin
+*.map
+
+# ESP-IDF
+firmware/port/esp32s3/build/
+firmware/port/esp32s3/sdkconfig
+firmware/port/esp32s3/sdkconfig.old
+firmware/port/esp32s3/managed_components/
+firmware/port/esp32s3/dependencies.lock
+
+# process scaffolding — how the port was built, not what it is
+.agents/
+ORIGINAL_REQUEST.md
+
+# field data — keep your Phase 0 baseline somewhere you will not lose it
+*.csv

@@ -1,0 +1,35 @@
+Copyright (c) 2026 Gustavo Gonçalves. All rights reserved.
+
+This repository — the source code, the firmware, the simulated bench, the
+documents and the figures in them — is proprietary and unpublished work.
+
+No licence is granted. You may not use, copy, modify, merge, publish,
+distribute, sublicense, sell, or create derivative works from any part of this
+repository without the prior written permission of the copyright holder.
+
+Access to this repository, by invitation or otherwise, does not grant any of
+the rights withheld above.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHOR BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY ARISING FROM, OUT
+OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN IT.
+
+---
+
+RADIO AND REGULATORY NOTICE
+
+This project drives a transmitter. The regulatory profiles in `firmware/net/`
+encode the author's reading of FCC 15.247, ANATEL Resolução 680/2017 and
+Ato 14448, and ETSI EN 300 220 as of 2026. They are compile-time assertions,
+not legal advice, and they are only as correct as that reading. Whoever
+transmits is responsible for what leaves their antenna: confirm the band, the
+duty cycle, the dwell time and the radiated power against the rules that apply
+where the hardware is switched on.
+
+CRYPTOGRAPHY NOTICE
+
+This project contains cryptographic code. Export, import and use of
+cryptographic software may be restricted in some jurisdictions. See
+SECURITY.md for what the cryptography does and does not currently protect.

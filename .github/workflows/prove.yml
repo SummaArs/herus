@@ -1,0 +1,62 @@
+####
+# Every number in docs/, re-derived; every invariant, re-checked — on two
+# compilers and two operating systems, so that a host-specific assumption fails
+# here instead of on the bench.
+#
+# There is deliberately no dependency-install step: prove.sh needs a C11
+# compiler, make and a stdlib-only python3, and nothing else. If this workflow
+# ever grows an `apt-get install`, something got linked that should not have
+# been.
+####
+name: prove
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  prove:
+    name: prove (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Toolchain in use
+        run: |
+          cc --version
+          make --version | head -1
+          python3 --version
+
+      - name: Prove
+        run: ./prove.sh | tee /tmp/prove.txt
+
+      # prove.sh exits non-zero on regression, so reaching this step means the
+      # verdict line is there. Publish the ledger where it can be read without
+      # opening the log.
+      - name: Publish the invariant ledger
+        if: always()
+        run: |
+          {
+            echo '## Invariants — ${{ matrix.os }}'
+            echo '```'
+            sed -n '/INVARIANT CHECKS/,$p' /tmp/prove.txt || echo 'the run did not reach the ledger'
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload full log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: prove-${{ matrix.os }}
+          path: /tmp/prove.txt
+          if-no-files-found: warn

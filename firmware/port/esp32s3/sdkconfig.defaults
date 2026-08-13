@@ -1,0 +1,31 @@
+# Herus defaults. Each line is a decision with a number behind it.
+
+CONFIG_IDF_TARGET="esp32s3"
+
+# USB Serial/JTAG is the T3-S3's native console: one cable, no UART bridge.
+CONFIG_ESP_CONSOLE_USB_SERIAL_JTAG=y
+
+# 240 MHz for the algebra benchmarks. The energy story is sleep-bound, not
+# compute-bound, so clock speed costs nothing when the duty cycle is 1%.
+CONFIG_ESP_DEFAULT_CPU_FREQ_MHZ_240=y
+
+# Radios OFF. Wi-Fi is 100+ mA and absent from the v2 silicon (00-HERUS-MASTER §2).
+# It stays out of the build so it cannot be switched on by accident.
+CONFIG_ESP_WIFI_ENABLED=n
+CONFIG_BT_ENABLED=n
+
+# Light sleep needs the RTC peripherals powered; GPIO wake needs this too.
+CONFIG_PM_ENABLE=y
+CONFIG_FREERTOS_USE_TICKLESS_IDLE=y
+
+# The lexicon sketch table is 16 KB and the accumulators are 20 KB each; leave the
+# heap check on during bring-up so an overflow is loud rather than mysterious.
+CONFIG_HEAP_POISONING_LIGHT=y
+
+# A stack overflow in the radio task must panic, not corrupt the ratchet state.
+CONFIG_FREERTOS_CHECK_STACKOVERFLOW_CANARY=y
+
+# Phase 4 turns these on. They are ONE-WAY (eFuses) — see 03-BUILD-GUIDE Phase 4,
+# and burn them on a sacrificial board first.
+# CONFIG_SECURE_FLASH_ENC_ENABLED=y
+# CONFIG_SECURE_BOOT=y
