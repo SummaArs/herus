@@ -74,7 +74,7 @@ int (*generate_local)(void *ctx, const dialogue_request_t *request,
 
 O backend alvo pode ser um modelo quantizado do ESP-DL que efetivamente caiba e seja medido, ou um coprocessador fisicamente local no Núcleo. Ele não pode ser um endpoint HTTP, uma chave de provedor, uma função de ferramenta nem um fallback em Wi-Fi. Um backend que retenha a fala ou envie dados viola o contrato de produto, mesmo se produzir respostas úteis.
 
-Antes de selecionar um modelo, é obrigatório medir em hardware real o maior uso de RAM/PSRAM, flash, tempo p50/p95 por turno, energia por turno, temperatura, recuperação após erro e taxa de saída rejeitada. Esses números não existem ainda; não há afirmação de tok/s, acurácia, latência ou autonomia em A8.
+Antes de selecionar um modelo, é obrigatório medir em hardware real o maior uso de RAM/PSRAM, flash, tempo p50/p95 por turno, energia por turno, temperatura, recuperação após erro e taxa de saída rejeitada. O [laboratório de aceitação A9](15-LAB-ACEITACAO-MODELO.md) exige que essa evidência seja comparada a orçamento pré-comprometido e que não exista tentativa de rede ou agência. Esses números não existem ainda; não há afirmação de tok/s, acurácia, latência ou autonomia em A8.
 
 ## 5. Protocolo de avaliação pré-implementação de modelo
 
@@ -102,3 +102,4 @@ Essas provas cobrem o contrato C11, não o comportamento de uma LLM real. Elas n
 [4] [OWASP GenAI Security Project — LLM01:2025 Prompt Injection](https://genai.owasp.org/llmrisk/llm01-prompt-injection/)
 [5] [HERUS — Runtime de interação](08-RUNTIME-INTERACAO.md)
 [6] [HERUS — Gateway de confiança de intenção](11-GATEWAY-CONFIANCA.md)
+[7] [HERUS — Laboratório de aceitação do modelo local](15-LAB-ACEITACAO-MODELO.md)

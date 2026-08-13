@@ -1,0 +1,109 @@
+{
+  "schema": "herus-hardware-readiness-v1",
+  "release": {
+    "label": "HERUS Grand Finale pre-hardware release candidate",
+    "baseline_command": "./prove.sh --quiet",
+    "baseline_requirement": "must_pass_before_any_flash",
+    "hardware_state": "pre_hardware"
+  },
+  "privacy": {
+    "telemetry_allowed": [
+      "gate_id",
+      "revision",
+      "timestamp_ms",
+      "distance_m",
+      "rssi_dbm",
+      "snr_db",
+      "packets_sent",
+      "packets_received",
+      "energy_uj",
+      "latency_ms",
+      "model_digest",
+      "measurement_unit"
+    ],
+    "product_log_forbidden": [
+      "audio",
+      "transcript",
+      "embedding",
+      "identity",
+      "location",
+      "key",
+      "pair_key",
+      "message_content"
+    ]
+  },
+  "gates": [
+    {
+      "id": "board-pin-map",
+      "domain": "bring_up",
+      "status": "pending",
+      "question": "Does the actual LilyGO T3-S3 revision match the verified pin map?",
+      "evidence_required": ["board_revision", "schematic_reference", "selftest_result"],
+      "claim_if_pass": "The board-specific HAL mapping may be used for the measured bench."
+    },
+    {
+      "id": "mechanical-volume",
+      "domain": "mechanical",
+      "status": "pending",
+      "question": "Does the 30x30x10 mm stack close within the pre-committed height gate?",
+      "evidence_required": ["caliper_height_mm", "shell_revision", "stack_description"],
+      "claim_if_pass": "The tested stack fits the stated shell revision only."
+    },
+    {
+      "id": "radio-bring-up",
+      "domain": "rf",
+      "status": "pending",
+      "question": "Do two boards exchange clean ranger CSV rows at one metre?",
+      "evidence_required": ["radio_profile", "packet_counts", "rssi_dbm", "selftest_result"],
+      "claim_if_pass": "The tested boards establish the defined short-range radio baseline."
+    },
+    {
+      "id": "urban-pdr",
+      "domain": "rf",
+      "status": "pending",
+      "question": "Does the pre-registered urban walk satisfy its PDR gate?",
+      "evidence_required": ["route_revision", "distance_m", "packets_sent", "packets_received", "rf_log_digest"],
+      "claim_if_pass": "Only the measured route, conditions and board revision have the recorded PDR."
+    },
+    {
+      "id": "tier05-comparison",
+      "domain": "rf",
+      "status": "pending",
+      "question": "Does the header-less Tier 0.5 hypothesis survive the matched physical comparison?",
+      "evidence_required": ["matched_profiles", "route_revision", "pdr_summary", "airtime_configuration"],
+      "claim_if_pass": "The measured comparison supports or rejects the Tier 0.5 hypothesis for that setup."
+    },
+    {
+      "id": "energy-instrumentation",
+      "domain": "power",
+      "status": "pending",
+      "question": "Does an instrumented PMIC or bench measurement supply energy with a declared unit?",
+      "evidence_required": ["instrument", "sampling_method", "energy_uj", "measurement_unit"],
+      "claim_if_pass": "The reported energy belongs only to the declared workload and instrument."
+    },
+    {
+      "id": "interaction-io",
+      "domain": "ux",
+      "status": "pending",
+      "question": "Are button, local ASR, haptic adapter and confirmation behavior measured with the frozen A3 protocol?",
+      "evidence_required": ["adapter_revision", "anonymized_trial_log_digest", "latency_ms", "energy_uj"],
+      "claim_if_pass": "The measured interaction gate applies only to the declared protocol and population."
+    },
+    {
+      "id": "companion-trust-port",
+      "domain": "security",
+      "status": "pending",
+      "question": "Are protected storage, target RNG, transport association and revocation wired on the target?",
+      "evidence_required": ["storage_backend", "rng_source", "transport_revision", "revocation_test_digest"],
+      "claim_if_pass": "The tested target port supports the documented trust lifecycle for its revision."
+    },
+    {
+      "id": "local-model-profile",
+      "domain": "model",
+      "status": "pending",
+      "question": "Does a local model satisfy the A9 resource and agency acceptance contract on the target?",
+      "evidence_required": ["model_digest", "peak_memory", "p95_latency_ms", "energy_uj", "adversarial_manifest_digest"],
+      "claim_if_pass": "Only the identified model/configuration satisfies the recorded target profile."
+    }
+  ]
+}
