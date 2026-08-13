@@ -1,7 +1,7 @@
 # HERUS
 
 [![prove](https://github.com/SummaArs/herus/actions/workflows/prove.yml/badge.svg)](https://github.com/SummaArs/herus/actions/workflows/prove.yml)
-&nbsp;·&nbsp; C11, no dependencies &nbsp;·&nbsp; 40 proof + 74 system invariants &nbsp;·&nbsp; pre-hardware
+&nbsp;·&nbsp; C11, no dependencies &nbsp;·&nbsp; 43 proof + 74 system invariants &nbsp;·&nbsp; pre-hardware release candidate
 
 **A private, off-grid, semantic communicator.** Herus transmits *meaning* — a
 2-byte symbol id into a shared, generatively-derived lexicon — and renders it
@@ -50,10 +50,11 @@ the hot path, and no always-on microphone.
 | [docs/13-CICLO-DE-CONFIANCA.md](docs/13-CICLO-DE-CONFIANCA.md) | **Advance 7.** Explicit Core↔Nucleus provisioning, six-digit SAS, protected-storage port, revocation and zeroization |
 | [docs/14-DIALOGO-LLM-LOCAL.md](docs/14-DIALOGO-LLM-LOCAL.md) | **Advance 8.** Bounded local conversation, model adapter, transient privacy and zero transmission authority |
 | [docs/15-LAB-ACEITACAO-MODELO.md](docs/15-LAB-ACEITACAO-MODELO.md) | **Advance 9.** Target-measured model acceptance, resource budgets, adversarial evidence and display-only response shield |
-| `firmware/core/` | Portable C: both algebras, memory, resonator, HCP rev 0.2, Nucleus intelligence, intent-confidence gateway, bounded dialogue, model-acceptance lab, interaction runtime and deterministic validation rig |
+| [docs/16-GRAND-FINALE.md](docs/16-GRAND-FINALE.md) | **Advance 10.** Cross-module assurance, capstone proof, hardware-readiness gates and honest bench handoff |
+| `firmware/core/` | Portable C: both algebras, memory, resonator, HCP rev 0.2, Nucleus intelligence, intent-confidence gateway, bounded dialogue, model-acceptance lab, Grand Finale assurance, interaction runtime and deterministic validation rig |
 | `firmware/net/` | The wire: crypto, symmetric ratchet, explicit Core↔Núcleo trust lifecycle, authenticated control envelope, region/dwell as compile-time assertions, Weave, Beat |
 | `firmware/port/` | The platform: an 8-function HAL, an SX1262 driver, the ESP32-S3 app and bring-up console |
-| `firmware/test/` | Thirteen firmware proof targets, including Nucleus, voice/haptic, intent gateway, bounded dialogue, model-acceptance lab, Core↔Núcleo trust lifecycle, control link, interaction-runtime and validation-lab invariants, crypto vectors from an independent implementation and an SX1262 mock bus |
+| `firmware/test/` | Fifteen firmware proof targets, including Nucleus, voice/haptic, intent gateway, bounded dialogue, model-acceptance lab, assurance, capstone, Core↔Núcleo trust lifecycle, control link, interaction-runtime and validation-lab invariants, crypto vectors from an independent implementation and an SX1262 mock bus |
 | `firmware/ranger/` | Phase 0 measurement firmware for two LilyGO T3-S3 — no GPS, no display |
 | [sim/](sim/README.md) | **The bench.** A world of metres, milliseconds and mA around the unmodified firmware: range, mesh, crowding, adversaries, battery, drift |
 | `tools/budget.py` | Physical-layer, energy and frame-ledger model, stdlib only |
@@ -61,6 +62,7 @@ the hot path, and no always-on microphone.
 | `tools/interactionlog.py` | Validates privacy-preserving interaction telemetry and applies the Advance 3 gates |
 | `tools/studyplan.py` / `tools/interactionstudy.py` | Materializes the frozen trial plan and performs only the pre-registered Core-versus-Nucleus analysis |
 | `tools/frontier.py` | Enumerates every (SF, BW) pair under both FCC regimes — where the remaining decibels are, and what each costs |
+| `tools/readiness_audit.py` | Validates the frozen hardware-readiness manifest; it rejects evidence-free approval and private product-log fields |
 | [CONTRIBUTING.md](CONTRIBUTING.md) | How to build and test, and the six things that are settled and why |
 | [SECURITY.md](SECURITY.md) | What the cryptography protects today, what it does not protect yet, and how to report a finding |
 
@@ -74,7 +76,7 @@ all in this tree.
 ./prove.sh
 ```
 
-About 30 seconds. Fourteen suites — algebra, Nucleus intelligence, controlled voice/haptics, intent gateway, **bounded local dialogue**, **local-model acceptance lab**, explicit Core↔Núcleo trust lifecycle, authenticated control link, interaction runtime, validation lab, preregistered study, protocol, radio driver and physical layer — plus the simulated bench, and **40 proof invariants and 74 system invariants checked rather than eyeballed**:
+About 30 seconds. Sixteen suites — algebra, Nucleus intelligence, controlled voice/haptics, intent gateway, **bounded local dialogue**, **local-model acceptance lab**, **Grand Finale assurance**, **capstone integration**, explicit Core↔Núcleo trust lifecycle, authenticated control link, interaction runtime, validation lab, readiness manifest, preregistered study, protocol, radio driver and physical layer — plus the simulated bench, and **43 proof invariants and 74 system invariants checked rather than eyeballed**:
 
 ```
 PASS  P1 constant AIRTIME across meaning tiers
@@ -86,6 +88,9 @@ PASS  Dialogue retains no transcript and clears local UX reply
 PASS  Dialogue output has zero transmission authority
 PASS  Model lab requires target-measured local and identified weights
 PASS  Model lab rejects resource, network and authority regressions
+PASS  Assurance fails closed across physical, trust and model state
+PASS  Capstone keeps dialogue and revoked trust out of handoff
+PASS  Hardware readiness manifest keeps evidence pending and private
 PASS  Trust requires physical pairing and matched SAS before activation
 PASS  Trust revocation zeroizes RAM and fails closed
 PASS  Control link authenticates, expires and rejects replay
@@ -104,7 +109,7 @@ PASS  flooding terminates
 PASS  SetPacketType precedes SetModulationParams
 PASS  the selftest diagnoses a wrong pin map
 ...
-ALL INVARIANTS HOLD — the documents reproduce and the firmware is safe to flash.
+ALL INVARIANTS HOLD — host contracts pass; controlled bench flash may begin, physical gates remain pending.
 ```
 
 If a figure appears in `docs/` and is not produced by `./prove.sh`, it is a bug in
@@ -129,6 +134,7 @@ the documentation. If a property is claimed and no test can fail, it is a hope.
 | Intent confidence gateway | **implemented and host-proven** — typed local-ASR output must match a physical session and pass confidence/margin rules; stale, weak and ambiguous observations cannot create a sendable draft, while Nucleus context can only break an otherwise strong tie — see [11-GATEWAY-CONFIANCA.md](docs/11-GATEWAY-CONFIANCA.md) |
 | Núcleo dialogue boundary | **implemented and host-proven** — a physically initiated local turn passes one transient utterance and at most four typed topic cards to an optional local-model adapter; replies have zero send authority and are erased after UX delivery. No LLM, ASR, TTS, target memory/energy measurement or cloud fallback is implemented — see [14-DIALOGO-LLM-LOCAL.md](docs/14-DIALOGO-LLM-LOCAL.md) |
 | Local-model acceptance lab | **implemented and host-proven** — a zero-default, fail-closed gate requires target measurement, a nonzero model/config digest, pre-committed flash/RAM/PSRAM/p95/energy budgets, full functional/adversarial coverage and zero network/authority attempts. No profile from a real model or board has been collected — see [15-LAB-ACEITACAO-MODELO.md](docs/15-LAB-ACEITACAO-MODELO.md) |
+| Grand Finale assurance | **implemented and host-proven** — cross-module assurance denies incomplete physical/intent/confirmation state, nonfresh or revoked companion state, and model profile/agency regressions; a capstone test proves dialogue text still cannot bypass a new PTT and that revoke dominates a confirmed draft. The hardware-readiness manifest has nine gates, all pending — see [16-GRAND-FINALE.md](docs/16-GRAND-FINALE.md) |
 | Core↔Nucleus trust lifecycle | **implemented and host-proven** — dual physical association mode, matched six-digit SAS, HKDF-derived binding, opaque protected-storage port, fail-closed revocation, RAM zeroization and A6 sequence reset; BLE LE Secure Connections/OOB, target RNG and the secure-element/encrypted-NVS backend remain target integration work — see [13-CICLO-DE-CONFIANCA.md](docs/13-CICLO-DE-CONFIANCA.md) |
 | Core↔Nucleus control link | **implemented and host-proven** — fixed-size AEAD envelope with pair binding, monotonic sequence, expiry and replay rejection before a Nucleus result can reach the intent gateway; it is now reachable through a currently active trust lifecycle — see [12-ENLACE-CORE-NUCLEO.md](docs/12-ENLACE-CORE-NUCLEO.md) |
 | Physical validation path | **implemented and host-proven** — deterministic adapter rig, normative CSV, log validator and decision gates for intent, false drafts, latency, handoff and measured energy; no real device data has been collected — see [09-VALIDACAO-FISICA.md](docs/09-VALIDACAO-FISICA.md) |

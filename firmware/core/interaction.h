@@ -11,6 +11,7 @@
 #include "voice.h"
 #include "intent_gate.h"
 #include "core_link.h"
+#include "assurance.h"
 
 #define INTERACTION_DEFAULT_LISTEN_MS   6000u
 #define INTERACTION_DEFAULT_CONFIRM_MS  8000u
@@ -124,6 +125,13 @@ int interaction_confirm(interaction_t *it, int accepted, uint32_t now_ms);
  * seq/ttl/prio and call link_send separately. On success the runtime returns IDLE
  * immediately, so a second call cannot send the same meaning again. */
 int interaction_take_send(interaction_t *it, hcp_msg_t *out);
+
+/* Grand Finale integration path: the caller supplies a nonsecret snapshot derived
+ * from live state. Assurance may only block the pre-existing one-time handoff; it
+ * cannot create a draft, HCP message or send. */
+int interaction_take_send_assured(interaction_t *it,
+                                  const assurance_snapshot_t *snapshot,
+                                  hcp_msg_t *out);
 
 /* Enforce listen and confirmation deadlines using caller-supplied monotonic ms. */
 int interaction_tick(interaction_t *it, uint32_t now_ms);
