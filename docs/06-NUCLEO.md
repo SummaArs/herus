@@ -41,7 +41,7 @@ A versão seguinte do vestível deve migrar para um controlador de baixo consumo
 |---|---|---|
 | Computação | ESP32-S3 N16R8 ou equivalente | Processa apenas dados explicitamente autorizados; nenhuma dependência de servidor. |
 | Rádio externo | SX1262 + filtro/matching por região | Antena destacável ou integrada ao case; potência configurada por perfil regional bloqueado. |
-| Enlace ao Core | BLE autenticado ou 2,4 GHz proprietário | Sessão rotacionada; sem pareamento implícito; SAS para primeira associação off-grid. |
+| Enlace ao Core | BLE autenticado ou 2,4 GHz proprietário | Sessão rotacionada; sem pareamento implícito; SAS para primeira associação off-grid; envelope de controle AEAD com sequência e expiração. |
 | Energia | LiPo/Li-ion de 2–3 Ah, BMS, medição coulomb | Bateria, temperatura e corrente são telemetria local; não fingir autonomia antes de medição. |
 | Carregamento | USB-C 5 V inicial, cradle com pinos magnéticos polarizados | O cradle identifica o Core antes de habilitar carga; limites térmicos e FOD são critérios de hardware. |
 | Armazenamento | Flash cifrada + contador monotônico/secure element na revisão de produto | Contexto, chaves e logs de manutenção têm políticas de retenção e apagamento. |
@@ -111,7 +111,7 @@ A Fase Núcleo-0 começa com uma caixa impressa, um devkit ESP32-S3, uma placa S
 
 ## 8. Ordem de execução
 
-O próximo protótipo deve provar o rádio e a base, não o acabamento. A sequência correta é: corrigir a prova host; integrar a memória associativa com testes; demonstrar Core→Núcleo→malha com ciphertext opaco; medir o enlace no bolso; medir relay e carregamento; apenas então desenhar PCB e enclosure final.
+O próximo protótipo deve provar o rádio e a base, não o acabamento. A sequência correta é: corrigir a prova host; integrar a memória associativa com testes; demonstrar Core→Núcleo→malha com ciphertext opaco; aplicar o contrato de controle autenticado do [Avanço 6](12-ENLACE-CORE-NUCLEO.md); medir o enlace no bolso; medir relay e carregamento; apenas então desenhar PCB e enclosure final.
 
 A meta final não é colocar “IA” no puck. É fazer com que uma pessoa em uma equipe opere com menos ambiguidade, mais alcance prático e menos dependência de infraestrutura, mantendo o significado e as chaves sob seu próprio controle.
 

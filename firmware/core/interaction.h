@@ -10,6 +10,7 @@
 #include <stdint.h>
 #include "voice.h"
 #include "intent_gate.h"
+#include "core_link.h"
 
 #define INTERACTION_DEFAULT_LISTEN_MS   6000u
 #define INTERACTION_DEFAULT_CONFIRM_MS  8000u
@@ -105,6 +106,13 @@ int interaction_transcript(interaction_t *it, const char *text, uint32_t now_ms)
  * confidence/ambiguity, and cannot bypass physical confirmation. */
 int interaction_asr_result(interaction_t *it, const intent_observation_t *obs,
                            const intent_context_hint_t *hint, uint32_t now_ms);
+
+/* Open a Nucleus->Core companion envelope, then submit its typed observation to
+ * the same gateway. Any envelope failure leaves the listening session untouched. */
+int interaction_core_link_result(interaction_t *it, core_link_rx_t *rx,
+                                 const core_link_key_t *key, const uint8_t *wire,
+                                 size_t wire_len, const intent_context_hint_t *hint,
+                                 uint32_t now_ms);
 
 /* Return the active/recent physical PTT session id for adapter tagging. */
 uint32_t interaction_session_id(const interaction_t *it);

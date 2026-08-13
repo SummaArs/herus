@@ -184,6 +184,19 @@ int interaction_asr_result(interaction_t *it, const intent_observation_t *obs,
     return apply_voice_result(it, status, now_ms);
 }
 
+int interaction_core_link_result(interaction_t *it, core_link_rx_t *rx,
+                                 const core_link_key_t *key, const uint8_t *wire,
+                                 size_t wire_len, const intent_context_hint_t *hint,
+                                 uint32_t now_ms)
+{
+    core_link_intent_t opened;
+    if (!it || !rx || !key || !wire) return INTERACTION_E_ARG;
+    if (it->state != INTERACTION_LISTENING) return INTERACTION_E_STATE;
+    if (core_link_open_nucleus_intent(rx, key, wire, wire_len, now_ms, &opened) != CORE_LINK_OK)
+        return INTERACTION_E_UNTRUSTED;
+    return interaction_asr_result(it, &opened.observation, hint, now_ms);
+}
+
 uint32_t interaction_session_id(const interaction_t *it)
 {
     return it ? it->session_id : 0u;

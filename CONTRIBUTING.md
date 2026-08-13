@@ -32,11 +32,12 @@ the documents**.
 
 | Target | Command | What it proves |
 |---|---|---|
-| Everything | `./prove.sh` | 10 suites + 33 proof invariants + 74 system invariants |
+| Everything | `./prove.sh` | 11 suites + 34 proof invariants + 74 system invariants |
 | Algebra | `cd firmware && make algebra` | Binding, bundling, resonator, HCP, dense vs sparse |
 | Núcleo | `cd firmware && make nucleus` | Consentimento opt-in, memória limitada, confiança, expiração e apagamento local |
 | Voz e háptica | `cd firmware && make voice` | Linguagem controlada, rascunho confirmável, SOS bloqueado e vibração limitada |
 | Gateway de intenção | `cd firmware && make intent` | Sessão física, confiança, ambiguidade e contexto sem autoridade de envio |
+| Enlace Core↔Núcleo | `cd firmware && make control-link` | AEAD, pareamento, sequência, expiração e rejeição de replay |
 | Runtime | `cd firmware && make interaction` | Push-to-talk, confirmação, prazo, perda de fonte, envio único e telemetria local |
 | Rig de validação | `cd firmware && make interaction-rig` | Sequenciamento determinístico de adaptadores e handoff único |
 | Telemetria | `./tools/test_interactionlog.sh` | CSV normativo rejeita envio sem confirmação |
@@ -55,7 +56,7 @@ on the machine that runs it.
 ## 2. What a change looks like here
 
 1. **Write the failing test first.** `firmware/test/test_net.c` for the wire,
-   `firmware/core/test_*.c` for algebra, Núcleo, voz/háptica, gateway, runtime e rig; `tools/test_interactionstudy.py` for pesquisa; `firmware/test/test_radio.c` for
+   `firmware/core/test_*.c` for algebra, Núcleo, voz/háptica, gateway, runtime e rig; `firmware/net/test_core_link.c` for controle autenticado; `tools/test_interactionstudy.py` for pesquisa; `firmware/test/test_radio.c` for
    the driver, `sim/scenarios.c` for behaviour of the system.
 2. **Make it pass**, without weakening any other invariant.
 3. **Add it to the ledger** in `prove.sh` if it is a property and not just a
