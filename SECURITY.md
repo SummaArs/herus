@@ -26,6 +26,7 @@ All of the following are checked by `./prove.sh` on every run — see
 | Flooding terminates | Weave dedup bounds relay fan-out; the bench floods and the count is bounded |
 | The decrypt path is rate limited | An unauthenticated stranger cannot drain the battery by making the node do work |
 | Constant airtime across meaning tiers (P1) | Traffic analysis cannot read the tier off the air, because every meaning-carrying frame occupies the radio for the same 246.8 ms |
+| Evidence-scoped threat classification | `make threat-model` rejects incomplete/noncanonical control evidence and distinguishes host-mitigated controls from target-pending and out-of-scope vectors; see [docs/25-MODELO-AMEACAS-EXECUTAVEL.md](docs/25-MODELO-AMEACAS-EXECUTAVEL.md) |
 
 ## What is NOT protected yet
 
@@ -52,6 +53,12 @@ consequences:
 - **Metadata beyond the frame.** The protocol hides the identifier and the
   tier. It does not hide that a transmission happened, or from roughly where.
   Direction-finding a LoRa burst is not hard.
+- **No supply-chain assurance yet.** The executable threat model makes this
+  absence explicit; there is not yet an SBOM, signed/reproducible build policy,
+  provenance verification or independent audit.
+- **Threat classification is not runtime security.** The host auditor checks
+  declared evidence fixtures and fails closed; it does not inspect a deployed
+  device, estimate likelihood/impact, detect compromise or close platform gates.
 
 ## Regulatory safety
 

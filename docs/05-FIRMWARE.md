@@ -53,7 +53,7 @@ Below it: eight functions and a radio.
 
 ## 2. What is proven, and by what
 
-`./prove.sh` runs twenty-five suites and gates 59 proof invariants. It exits non-zero if any
+`./prove.sh` runs twenty-six suites and gates 61 proof invariants. It exits non-zero if any
 one of them regresses, and it is the only thing standing between you and a
 plausible-looking bug in a device you will trust with an emergency.
 
@@ -73,6 +73,7 @@ plausible-looking bug in a device you will trust with an emergency.
 | **memory retrieval** | matching local sobre no máximo oito cartões tipados, consulta limitada, limiar, margem de ambiguidade e apresentação de autoridade zero | testes determinísticos sem cofre, NVS, dados pessoais, linguagem natural, embeddings, LLM, rede, UI ou métrica humana de utilidade |
 | **memory retrieval presentation** | status simbólico one-shot para match/no-match/ambiguidade, sessão física canônica, limpeza transitória e haptics abstratos limitados | testes determinísticos sem fala, motor, display, botão, acessibilidade, usuário, energia, latência, cofre, rede, rádio ou modelo |
 | **memory Grand Finale** | auditor puro e fixture composta captura→extração→política→revisão→cofre→recuperação→apresentação, com conflito/modelo bloqueantes | testes host com backend RAM; não prova banco multi-cartão, NVS/eFuse, power-loss, ASR, UI, pessoa, energia, latência, rede ou modelo local |
+| **threat model** | classificação pura de controles host completos, pendências de alvo e escopo não implementado para rádio, trust, memória, recuperação, modelo e telemetria | testes sintéticos de evidência; não é monitor de produção, pontuação de risco, pentest, auditoria independente, segurança física ou garantia de supply chain |
 | **assurance** | composição fail-closed de PTT, intenção, confirmação, trust, frescor, revogação e fronteira de modelo | testes determinísticos sem criar HCP, pacote, link ou rádio |
 | **capstone** | cadeia diálogo→modelo→interação→trust, precedência de revogação e handoff único | testes de módulos portáveis; não representa BLE, ASR, LLM ou energia física |
 | **trust lifecycle** | associação física dupla, SAS, derivação, persistência opaca, revogação e zeroização | testes determinísticos sem BLE real, secure element, RNG alvo ou backend persistente |
