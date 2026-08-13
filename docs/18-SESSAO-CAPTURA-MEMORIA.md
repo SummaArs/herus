@@ -103,7 +103,7 @@ Essas são provas de host em C11. Ainda não existem medição de microfone, tes
 
 ## 7. Próximo passo
 
-O Passo 3 introduzirá um extrator local de candidatos de memória. Ele receberá uma entrega transitória já autorizada, produzirá somente sinais tipados para `memory_policy`, terá gramática/saída verificável e permanecerá incapaz de persistir, enviar ou tratar sua interpretação como verdade.
+O Passo 3 já introduziu o [extrator local de candidatos](19-EXTRACAO-CANDIDATOS.md). Ele recebe uma entrada transitória já autorizada, produz somente sinais tipados para `memory_policy`, usa gramática/saída verificável e permanece incapaz de persistir, enviar ou tratar sua interpretação como verdade. O próximo limite será o cofre cifrado e reversível do Passo 4.
 
 ## Referências
 
