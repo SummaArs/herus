@@ -4,10 +4,30 @@
 #include <string.h>
 
 static int FAILED = 0;
+
+static void init_test(interaction_t *it)
+{
+    interaction_config_t cfg;
+    interaction_config_default(&cfg);
+    cfg.allow_test_transcript = 1;
+    interaction_init(it, &cfg);
+}
+
 static void ok(int cond, const char *what)
 {
     printf("  %-4s %s\n", cond ? "PASS" : "FAIL", what);
     if (!cond) FAILED = 1;
+}
+
+static void test_production_rejects_text_path(void)
+{
+    interaction_t it;
+    printf("\n== I0  production accepts typed local ASR, not raw test text ==\n");
+    interaction_init(&it, NULL);
+    interaction_push_to_talk(&it, 10);
+    ok(interaction_transcript(&it, "chego", 20) == INTERACTION_E_UNTRUSTED &&
+       it.state == INTERACTION_LISTENING && interaction_actions(&it)->start_capture,
+       "I0 raw transcript input is disabled by default and cannot end the live session");
 }
 
 static void test_only_confirmed_draft_sends(void)
@@ -16,7 +36,7 @@ static void test_only_confirmed_draft_sends(void)
     hcp_msg_t out;
 
     printf("\n== I1  push-to-talk -> local ASR -> confirmation -> one send ==\n");
-    interaction_init(&it, NULL);
+    init_test(&it);
     ok(interaction_push_to_talk(&it, 100) == INTERACTION_OK &&
        it.state == INTERACTION_LISTENING && interaction_actions(&it)->start_capture,
        "I1 only a push-to-talk event starts the local capture window");
@@ -48,7 +68,7 @@ static void test_terminal_paths_clear_drafts(void)
     hcp_msg_t out;
 
     printf("\n== I2  cancellation, timeout, source loss and help fail safely ==\n");
-    interaction_init(&it, NULL);
+    init_test(&it);
     interaction_push_to_talk(&it, 0);
     interaction_tick(&it, INTERACTION_DEFAULT_LISTEN_MS);
     ok(it.state == INTERACTION_TIMED_OUT && interaction_actions(&it)->stop_capture &&
@@ -78,13 +98,102 @@ static void test_terminal_paths_clear_drafts(void)
        "I2 spoken cancellation remains local and is accounted for as a terminal event");
 }
 
+static intent_observation_t asr(uint32_t session, voice_command_t command,
+                                 uint8_t confidence, uint8_t runner_up)
+{
+    intent_observation_t o;
+    o.source = INTENT_SOURCE_CORE;
+    o.session_id = session;
+    o.command = command;
+    o.minutes = 0;
+    o.confidence_pct = confidence;
+    o.runner_up_pct = runner_up;
+    return o;
+}
+
+static void test_typed_asr_is_still_confirmed(void)
+{
+    interaction_t it;
+    hcp_msg_t out;
+    intent_observation_t o;
+    intent_context_hint_t hint;
+
+    printf("\n== I4  typed ASR confidence gate remains non-transmitting ==\n");
+    interaction_init(&it, NULL);
+    interaction_push_to_talk(&it, 100);
+    o = asr(interaction_session_id(&it) - 1u, VOICE_COMMAND_ARRIVE, 100, 0);
+    ok(interaction_asr_result(&it, &o, NULL, 120) == INTERACTION_OK &&
+       it.state == INTERACTION_LISTENING && interaction_metrics(&it)->asr_stale == 1,
+       "I4 stale ASR output is ignored without ending the current physical session");
+
+    o = asr(interaction_session_id(&it), VOICE_COMMAND_ARRIVE, 75, 0);
+    ok(interaction_asr_result(&it, &o, NULL, 140) == INTERACTION_OK &&
+       it.state == INTERACTION_REJECTED && interaction_metrics(&it)->asr_low_confidence == 1 &&
+       interaction_take_send(&it, &out) == INTERACTION_E_STATE,
+       "I4 low confidence stops capture and cannot create a sendable draft");
+
+    interaction_push_to_talk(&it, 200);
+    hint.available = 1; hint.command = VOICE_COMMAND_ARRIVE;
+    hint.support = 3; hint.confidence_pct = 70;
+    o = asr(interaction_session_id(&it), VOICE_COMMAND_ARRIVE, 86, 75);
+    ok(interaction_asr_result(&it, &o, &hint, 300) == INTERACTION_OK &&
+       it.state == INTERACTION_AWAIT_CONFIRM && interaction_metrics(&it)->asr_context_assisted == 1 &&
+       interaction_take_send(&it, &out) == INTERACTION_E_STATE,
+       "I4 qualified context may disambiguate only into a confirmed local draft");
+    ok(interaction_confirm(&it, 1, 320) == INTERACTION_OK &&
+       interaction_take_send(&it, &out) == INTERACTION_OK && out.intent == it.cfg.lexicon.intent_arrive,
+       "I4 even a context-assisted command still needs physical confirmation for one handoff");
+}
+
+static core_link_key_t link_key(void)
+{
+    core_link_key_t key;
+    for (unsigned i = 0; i < SHA256_LEN; i++) key.pair_key[i] = (uint8_t)(0x41u + i);
+    key.pair_id = 0x434F5245u; /* local provisioning label only */
+    return key;
+}
+
+static void test_authenticated_nucleus_path(void)
+{
+    interaction_t it;
+    core_link_key_t key = link_key();
+    core_link_tx_t tx;
+    core_link_rx_t rx;
+    intent_observation_t o;
+    hcp_msg_t out;
+    uint8_t wire[CORE_LINK_WIRE_LEN];
+
+    printf("\n== I5  authenticated Nucleus result still enters the same gate ==\n");
+    interaction_init(&it, NULL);
+    core_link_tx_init(&tx);
+    core_link_rx_init(&rx);
+    interaction_push_to_talk(&it, 100);
+    o = asr(interaction_session_id(&it), VOICE_COMMAND_ARRIVE, 92, 10);
+    o.source = INTENT_SOURCE_NUCLEUS;
+    core_link_seal_nucleus_intent(&tx, &key, 120, interaction_session_id(&it), 300, &o, wire);
+    ok(interaction_core_link_result(&it, &rx, &key, wire, sizeof(wire), NULL, 200) == INTERACTION_OK &&
+       it.state == INTERACTION_AWAIT_CONFIRM && interaction_take_send(&it, &out) == INTERACTION_E_STATE,
+       "I5 authenticated Nucleus command becomes only a local draft, never a send");
+    ok(interaction_confirm(&it, 1, 220) == INTERACTION_OK &&
+       interaction_take_send(&it, &out) == INTERACTION_OK && out.intent == it.cfg.lexicon.intent_arrive,
+       "I5 the encrypted local path still requires physical confirmation and one handoff");
+
+    interaction_push_to_talk(&it, 400);
+    o.session_id = interaction_session_id(&it);
+    core_link_seal_nucleus_intent(&tx, &key, 420, interaction_session_id(&it), 600, &o, wire);
+    wire[CORE_LINK_HEADER_LEN] ^= 1u;
+    ok(interaction_core_link_result(&it, &rx, &key, wire, sizeof(wire), NULL, 500) == INTERACTION_E_UNTRUSTED &&
+       it.state == INTERACTION_LISTENING && interaction_take_send(&it, &out) == INTERACTION_E_STATE,
+       "I5 tampered companion ciphertext is rejected without ending or authorizing the live session");
+}
+
 static void test_confirmation_timeout_and_telemetry(void)
 {
     interaction_t it;
     const interaction_metrics_t *m;
 
     printf("\n== I3  confirmation deadline and privacy-preserving telemetry ==\n");
-    interaction_init(&it, NULL);
+    init_test(&it);
     interaction_push_to_talk(&it, 1000);
     interaction_transcript(&it, "estou chegando", 1100);
     interaction_tick(&it, 1100 + INTERACTION_DEFAULT_CONFIRM_MS);
@@ -102,8 +211,11 @@ static void test_confirmation_timeout_and_telemetry(void)
 
 int main(void)
 {
+    test_production_rejects_text_path();
     test_only_confirmed_draft_sends();
     test_terminal_paths_clear_drafts();
+    test_typed_asr_is_still_confirmed();
+    test_authenticated_nucleus_path();
     test_confirmation_timeout_and_telemetry();
     if (FAILED) {
         printf("INTERACTION TESTS FAILED\n");

@@ -18,8 +18,14 @@ static void apply_actions(interaction_rig_t *rig)
 
 void interaction_rig_init(interaction_rig_t *rig, const interaction_config_t *cfg)
 {
+    interaction_config_t host_cfg;
     if (!rig) return;
     memset(rig, 0, sizeof(*rig));
+    if (!cfg) {
+        interaction_config_default(&host_cfg);
+        host_cfg.allow_test_transcript = 1;
+        cfg = &host_cfg;
+    }
     interaction_init(&rig->runtime, cfg);
 }
 

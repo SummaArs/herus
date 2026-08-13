@@ -120,6 +120,44 @@ void voice_lexicon_default(voice_lexicon_t *out)
     out->minute_filler_base = 1;
 }
 
+voice_status_t voice_from_command(voice_command_t command, uint8_t minutes,
+                                  const voice_lexicon_t *lexicon,
+                                  voice_result_t *out)
+{
+    if (!out) return VOICE_REJECTED;
+    result_reset(out, VOICE_REJECTED, VOICE_EVENT_REJECTED);
+    if (!lexicon_valid(lexicon)) return out->status;
+
+    if (command == VOICE_COMMAND_CANCEL) {
+        if (minutes) return out->status;
+        result_reset(out, VOICE_CANCEL_LOCAL, VOICE_EVENT_CANCEL);
+        return out->status;
+    }
+    if (command == VOICE_COMMAND_HELP) {
+        if (minutes) return out->status;
+        result_reset(out, VOICE_DRAFT, VOICE_EVENT_CRITICAL_DRAFT);
+        out->draft.ver = HCP_VERSION;
+        out->draft.tier = HCP_TIER_GLYPH;
+        out->draft.intent = lexicon->intent_help;
+        out->requires_confirmation = 1;
+        return out->status;
+    }
+    if (command != VOICE_COMMAND_ARRIVE || minutes > 60u) return out->status;
+
+    result_reset(out, VOICE_DRAFT, VOICE_EVENT_DRAFT);
+    out->draft.ver = HCP_VERSION;
+    out->draft.tier = minutes ? HCP_TIER_COMPOSED : HCP_TIER_GLYPH;
+    out->draft.intent = lexicon->intent_arrive;
+    if (minutes) {
+        out->draft.nslot = 1;
+        out->draft.slot[0].role = lexicon->role_time;
+        out->draft.slot[0].filler = (uint16_t)(lexicon->minute_filler_base + minutes);
+        out->minutes = minutes;
+    }
+    out->requires_confirmation = 1;
+    return out->status;
+}
+
 voice_status_t voice_parse_pt(const char *transcript, const voice_lexicon_t *lexicon,
                               voice_result_t *out)
 {

@@ -9,6 +9,9 @@
 
 #include <stdint.h>
 #include "voice.h"
+#include "intent_gate.h"
+#include "core_link.h"
+#include "assurance.h"
 
 #define INTERACTION_DEFAULT_LISTEN_MS   6000u
 #define INTERACTION_DEFAULT_CONFIRM_MS  8000u
@@ -28,7 +31,8 @@ enum {
     INTERACTION_OK       =  0,
     INTERACTION_E_ARG    = -1,
     INTERACTION_E_STATE  = -2,
-    INTERACTION_E_SOURCE = -3
+    INTERACTION_E_SOURCE = -3,
+    INTERACTION_E_UNTRUSTED = -4
 };
 
 /* The portable runtime writes these desired effects after each event. A target
@@ -56,6 +60,10 @@ typedef struct {
     uint32_t rejected;
     uint32_t timed_out;
     uint32_t source_lost;
+    uint32_t asr_stale;
+    uint32_t asr_low_confidence;
+    uint32_t asr_ambiguous;
+    uint32_t asr_context_assisted;
     uint32_t last_latency_ms;     /* push-to-talk -> draft or terminal result */
     uint64_t measured_energy_uj;  /* caller-supplied PMIC/bench measurement only */
 } interaction_metrics_t;
@@ -64,12 +72,14 @@ typedef struct {
     voice_lexicon_t lexicon;
     uint32_t listen_timeout_ms;
     uint32_t confirm_timeout_ms;
+    uint8_t  allow_test_transcript; /* host-only parser path; production defaults to 0 */
 } interaction_config_t;
 
 typedef struct {
     interaction_config_t cfg;
     interaction_state_t  state;
     uint8_t              asr_available; /* local Core or trusted local Nucleus */
+    uint32_t             session_id;     /* nonzero, advances only on physical PTT */
     uint32_t             listen_started_ms;
     uint32_t             confirm_started_ms;
     hcp_msg_t            pending;       /* zero unless confirmation is pending/ready */
@@ -88,9 +98,25 @@ void interaction_set_asr_available(interaction_t *it, int available, uint32_t no
 /* Physical button press is the sole transition that starts capture. */
 int interaction_push_to_talk(interaction_t *it, uint32_t now_ms);
 
-/* Feed a local ASR transcript only while LISTENING. A valid draft moves to
- * AWAIT_CONFIRM; terminal parser outputs stop capture and clear state. */
+/* Feed a local ASR transcript only while LISTENING. This is disabled by default
+ * and exists only for host tests until a typed local-ASR adapter is wired. */
 int interaction_transcript(interaction_t *it, const char *text, uint32_t now_ms);
+
+/* Feed a typed observation from an on-Core or local-Nucleus ASR adapter. The
+ * gateway binds it to the active push-to-talk session, fails closed on low
+ * confidence/ambiguity, and cannot bypass physical confirmation. */
+int interaction_asr_result(interaction_t *it, const intent_observation_t *obs,
+                           const intent_context_hint_t *hint, uint32_t now_ms);
+
+/* Open a Nucleus->Core companion envelope, then submit its typed observation to
+ * the same gateway. Any envelope failure leaves the listening session untouched. */
+int interaction_core_link_result(interaction_t *it, core_link_rx_t *rx,
+                                 const core_link_key_t *key, const uint8_t *wire,
+                                 size_t wire_len, const intent_context_hint_t *hint,
+                                 uint32_t now_ms);
+
+/* Return the active/recent physical PTT session id for adapter tagging. */
+uint32_t interaction_session_id(const interaction_t *it);
 
 /* The physical confirmation handler may release a pending draft exactly once. */
 int interaction_confirm(interaction_t *it, int accepted, uint32_t now_ms);
@@ -99,6 +125,13 @@ int interaction_confirm(interaction_t *it, int accepted, uint32_t now_ms);
  * seq/ttl/prio and call link_send separately. On success the runtime returns IDLE
  * immediately, so a second call cannot send the same meaning again. */
 int interaction_take_send(interaction_t *it, hcp_msg_t *out);
+
+/* Grand Finale integration path: the caller supplies a nonsecret snapshot derived
+ * from live state. Assurance may only block the pre-existing one-time handoff; it
+ * cannot create a draft, HCP message or send. */
+int interaction_take_send_assured(interaction_t *it,
+                                  const assurance_snapshot_t *snapshot,
+                                  hcp_msg_t *out);
 
 /* Enforce listen and confirmation deadlines using caller-supplied monotonic ms. */
 int interaction_tick(interaction_t *it, uint32_t now_ms);
