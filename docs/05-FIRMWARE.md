@@ -21,6 +21,9 @@ firmware/
     lexicon.[ch]   derived codebook, learned prototypes with a drift guard, resonator
     hcp.[ch]       Herus Composition Protocol rev 0.2 — meaning <-> 24 bytes
     nucleus.[ch]   Nucleus: opt-in, bounded semantic transition memory
+    voice.[ch]     Voice: controlled PT parsing and bounded haptic plans
+    interaction.[ch] Runtime: push-to-talk, confirmation and one-shot handoff
+    interaction_rig.[ch] Lab: deterministic adapter sequencing and measured-energy handoff
   net/       the wire — portable, no radio, testable on a Mac
     crypto.[ch]    SHA-256, HMAC, HKDF, ChaCha20, Poly1305, AEAD. Nothing else.
     session.[ch]   symmetric ratchet, ephemeral addresses, skipped keys, rate limit
@@ -50,7 +53,7 @@ Below it: eight functions and a radio.
 
 ## 2. What is proven, and by what
 
-`./prove.sh` runs five suites and gates 27 code invariants. It exits non-zero if any
+`./prove.sh` runs seventeen suites and gates 43 proof invariants. It exits non-zero if any
 one of them regresses, and it is the only thing standing between you and a
 plausible-looking bug in a device you will trust with an emergency.
 
@@ -58,6 +61,18 @@ plausible-looking bug in a device you will trust with an emergency.
 |---|---|---|
 | **algebra** | quasi-orthogonality vs closed form, exact invertibility, bundle capacity, resonator convergence, learning with an enforced separation floor, 9-slot HCP round trip | measurement next to theory |
 | **Nucleus** | consentimento opt-in, memória com capacidade fixa, confiança explícita, supressão de auto-sugestão, expiração e apagamento local | testes determinísticos sem I/O, alocação, rádio ou rede |
+| **voice** | interpretação local de português controlado, rascunho confirmável, SOS bloqueado e planos hápticos limitados | testes determinísticos sem microfone, ASR, rádio, GPIO ou driver de vibração |
+| **intent gateway** | sessão física, limiar de confiança, margem de ambiguidade, contexto limitado e rejeição de resultado obsoleto | testes determinísticos sem áudio, transcrição, Núcleo físico, rádio ou transporte |
+| **dialogue** | turno físico, fala transitória, cartões tipados, resposta UX apagável e autoridade de transmissão zero | testes determinísticos sem ASR, TTS, LLM, rede, rádio ou armazenamento de transcrição |
+| **model lab** | perfil alvo/local identificado, orçamento de recurso, cobertura funcional/adversarial e recusa de rede/agência | testes de política com perfis sintéticos; não é perfil de modelo ou hardware |
+| **assurance** | composição fail-closed de PTT, intenção, confirmação, trust, frescor, revogação e fronteira de modelo | testes determinísticos sem criar HCP, pacote, link ou rádio |
+| **capstone** | cadeia diálogo→modelo→interação→trust, precedência de revogação e handoff único | testes de módulos portáveis; não representa BLE, ASR, LLM ou energia física |
+| **trust lifecycle** | associação física dupla, SAS, derivação, persistência opaca, revogação e zeroização | testes determinísticos sem BLE real, secure element, RNG alvo ou backend persistente |
+| **control link** | AEAD de tag completa, vínculo de par, direção, sequência, expiração, replay e entrega limitada de observação do Núcleo | testes determinísticos sem BLE, secure element, armazenamento persistente ou chave de produção |
+| **interaction** | push-to-talk, prazo, perda de fonte, confirmação, handoff de uso único e telemetria sem fala | testes determinísticos sem microfone, ASR, rádio, GPIO, chave ou relógio de sistema |
+| **validation lab** | rig de adaptadores, sequência de captura/apresentação/háptica, handoff único e rejeição de logs inseguros | testes determinísticos em host; não representa uma medição física |
+| **readiness manifest** | schema de gates, privacidade de logs e aprovação somente com arquivo de evidência | valida o plano de bancada; não cria uma medição ou aprova gate físico |
+| **preregistered study** | plano congelado, balanceamento, intervalos de Wilson, gates H1–H5 e rejeição de dados inseguros | testes de método com fixtures; não representa resultado de participantes ou hardware |
 | **protocol** | crypto correctness, forward secrecy, replay, forgery, rate limiting, out-of-order recovery, forward compatibility, canonical encoding, flood termination, Beat drift | 50 random cases per primitive against OpenSSL, plus adversarial cases |
 | **radio** | command ordering, frequency word, PA table coherence, sync word, BUSY discipline, duty-cycle arithmetic, and that the selftest diagnoses each plausible bring-up fault | a recording mock bus |
 | **physical** | airtime, dwell, range, energy, frame ledger | `tools/budget.py` |
@@ -145,6 +160,12 @@ Stated plainly, because a firmware document that only lists features is a brochu
 | **Echo (symbol → audio)** | Received meanings print on the console instead of speaking. | Phase 2 |
 | **Tier 0.5 receive path** | The app transmits sketch beacons; decoding them means `lex_search_sketch()` on a frame received in implicit/CRC-off mode. All the pieces exist and are tested; the app does not wire them together. | Phase 2, alongside the 2–4 dB falsification test |
 | **Nucleus hardware integration** | `nucleus.[ch]` proves local learning constraints on host only. The Core↔Nucleus encrypted link, power domain, charger, antenna and UI confirmation have not yet been wired to hardware. | Nucleus-0 onward; see [06-NUCLEO.md](06-NUCLEO.md) |
+| **Voice/haptic hardware integration** | `voice.[ch]` proves parsing, confirmation and vibration bounds on host only. Button-gated microphone, local ASR, audio front-end, confirmation UX and ERM/LRA driver are not yet wired. | Advance 1 hardware track; see [07-VOZ-HAPTICA.md](07-VOZ-HAPTICA.md) |
+| **Interaction hardware integration** | `interaction.[ch]` proves the event state machine on host only. ESP-SR adapter, Core↔Nucleus transport, actual button wiring, hardware clock and call into `link_send` remain ports above the runtime. | Advance 2 hardware track; see [08-RUNTIME-INTERACAO.md](08-RUNTIME-INTERACAO.md) |
+| **Intent gateway hardware adapter** | `intent_gate.[ch]` proves session/confidence policy only. Mapping ESP-SR command IDs and confidence fields, obtaining authorized Nucleus hints and carrying the session over an encrypted local link remain target adapters. | Advance 5 integration track; see [11-GATEWAY-CONFIANCA.md](11-GATEWAY-CONFIANCA.md) |
+| **Core↔Nucleus control transport** | `core_link.[ch]` proves application-envelope authentication, sequence and expiry only. LE Secure Connections/OOB association, protected `pair_key`, persistent anti-replay state, BLE GATT and clock source remain target ports. | Advance 6 integration track; see [12-ENLACE-CORE-NUCLEO.md](12-ENLACE-CORE-NUCLEO.md) |
+| **Physical validation** | `interaction_rig.[ch]` and `tools/interactionlog.py` prove scenario sequencing and log gates only. A/B source choice, intent accuracy, false-draft rate, latency and energy still require a pre-registered hardware run. | Advance 3 lab track; see [09-VALIDACAO-FISICA.md](09-VALIDACAO-FISICA.md) |
+| **Confirmatory study** | `studyplan.py` and `interactionstudy.py` freeze and analyze the A4 protocol only. The fixture test validates the analyzer; it is not participant or hardware evidence. | Advance 4 research track; see [10-INVESTIGACAO-PREREGISTRADA.md](10-INVESTIGACAO-PREREGISTRADA.md) |
 | **Ratchet state persistence** | A reboot loses the session; re-pair. | Phase 4 |
 | **eFuse ritual** | Until flash encryption, secure boot, JTAG-off and UART-download-off are burned, session keys sit in readable RAM and "the key never leaves the chip" is true and irrelevant. | Phase 4, one-way, sacrificial board first |
 
