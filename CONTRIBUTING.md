@@ -32,7 +32,7 @@ the documents**.
 
 | Target | Command | What it proves |
 |---|---|---|
-| Everything | `./prove.sh` | 18 suites + 45 proof invariants + 74 system invariants |
+| Everything | `./prove.sh` | 19 suites + 47 proof invariants + 74 system invariants |
 | Algebra | `cd firmware && make algebra` | Binding, bundling, resonator, HCP, dense vs sparse |
 | Núcleo | `cd firmware && make nucleus` | Consentimento opt-in, memória limitada, confiança, expiração e apagamento local |
 | Voz e háptica | `cd firmware && make voice` | Linguagem controlada, rascunho confirmável, SOS bloqueado e vibração limitada |
@@ -40,6 +40,7 @@ the documents**.
 | Diálogo local | `cd firmware && make dialogue` | Turno físico, fala transitória, cartões tipados, falha sem rede, apagamento e autoridade de transmissão zero |
 | Laboratório de modelo | `cd firmware && make model-lab` | Perfil medido no alvo, orçamento de recurso, cobertura funcional/adversarial, zero rede/agência e escudo display-only |
 | Política de memória | `cd firmware && make memory-policy` | Consentimento explícito, relevância conservadora, revisão obrigatória para dados sensíveis/de terceiros e nenhuma persistência no módulo |
+| Captura de memória | `cd firmware && make memory-capture` | Gesto físico, janela limitada, entrega única, expiração, cancelamento e descarte/zeroização transitórios |
 | Assurance Grand Finale | `cd firmware && make assurance` | Composição fail-closed de sessão, intenção, confirmação, trust, frescor, revogação e modelo |
 | Capstone Grand Finale | `cd firmware && make capstone` | Ataque à cadeia diálogo→modelo→interação→trust; nenhum bypass do handoff físico confirmado |
 | Readiness de hardware | `python3 tools/readiness_audit.py research/hardware_readiness_manifest.json --strict` | Gates pendentes, evidência obrigatória para aprovação e privacidade de logs |

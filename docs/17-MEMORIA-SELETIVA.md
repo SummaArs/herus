@@ -95,7 +95,7 @@ O perfil NIST AI 600-1 observa que modelos generativos podem produzir conteúdo 
 
 ## 7. Próximo passo
 
-O Passo 2 criará uma sessão explícita de captura de memória: gesto físico, indicador de coleta, janela limitada, descarte obrigatório de áudio/transcrição provisórios e nenhuma chamada de modelo ou persistência após expiração. Só então o Passo 3 poderá transformar sinais reais de extração em candidatos semânticos.
+O Passo 2 já criou a [sessão explícita de captura](18-SESSAO-CAPTURA-MEMORIA.md): gesto físico, indicador de coleta, janela limitada, entrega única e descarte obrigatório de buffers transitórios em sucesso, cancelamento, expiração ou falha. O Passo 3 poderá então transformar uma entrega já autorizada em sinais tipados para candidatos semânticos, ainda sem persistir ou transmitir conteúdo.
 
 ## Referências
 
