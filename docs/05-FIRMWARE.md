@@ -53,7 +53,7 @@ Below it: eight functions and a radio.
 
 ## 2. What is proven, and by what
 
-`./prove.sh` runs eight suites and gates 31 proof invariants. It exits non-zero if any
+`./prove.sh` runs nine suites and gates 32 proof invariants. It exits non-zero if any
 one of them regresses, and it is the only thing standing between you and a
 plausible-looking bug in a device you will trust with an emergency.
 
@@ -64,6 +64,7 @@ plausible-looking bug in a device you will trust with an emergency.
 | **voice** | interpretação local de português controlado, rascunho confirmável, SOS bloqueado e planos hápticos limitados | testes determinísticos sem microfone, ASR, rádio, GPIO ou driver de vibração |
 | **interaction** | push-to-talk, prazo, perda de fonte, confirmação, handoff de uso único e telemetria sem fala | testes determinísticos sem microfone, ASR, rádio, GPIO, chave ou relógio de sistema |
 | **validation lab** | rig de adaptadores, sequência de captura/apresentação/háptica, handoff único e rejeição de logs inseguros | testes determinísticos em host; não representa uma medição física |
+| **preregistered study** | plano congelado, balanceamento, intervalos de Wilson, gates H1–H5 e rejeição de dados inseguros | testes de método com fixtures; não representa resultado de participantes ou hardware |
 | **protocol** | crypto correctness, forward secrecy, replay, forgery, rate limiting, out-of-order recovery, forward compatibility, canonical encoding, flood termination, Beat drift | 50 random cases per primitive against OpenSSL, plus adversarial cases |
 | **radio** | command ordering, frequency word, PA table coherence, sync word, BUSY discipline, duty-cycle arithmetic, and that the selftest diagnoses each plausible bring-up fault | a recording mock bus |
 | **physical** | airtime, dwell, range, energy, frame ledger | `tools/budget.py` |
@@ -154,6 +155,7 @@ Stated plainly, because a firmware document that only lists features is a brochu
 | **Voice/haptic hardware integration** | `voice.[ch]` proves parsing, confirmation and vibration bounds on host only. Button-gated microphone, local ASR, audio front-end, confirmation UX and ERM/LRA driver are not yet wired. | Advance 1 hardware track; see [07-VOZ-HAPTICA.md](07-VOZ-HAPTICA.md) |
 | **Interaction hardware integration** | `interaction.[ch]` proves the event state machine on host only. ESP-SR adapter, Core↔Nucleus transport, actual button wiring, hardware clock and call into `link_send` remain ports above the runtime. | Advance 2 hardware track; see [08-RUNTIME-INTERACAO.md](08-RUNTIME-INTERACAO.md) |
 | **Physical validation** | `interaction_rig.[ch]` and `tools/interactionlog.py` prove scenario sequencing and log gates only. A/B source choice, intent accuracy, false-draft rate, latency and energy still require a pre-registered hardware run. | Advance 3 lab track; see [09-VALIDACAO-FISICA.md](09-VALIDACAO-FISICA.md) |
+| **Confirmatory study** | `studyplan.py` and `interactionstudy.py` freeze and analyze the A4 protocol only. The fixture test validates the analyzer; it is not participant or hardware evidence. | Advance 4 research track; see [10-INVESTIGACAO-PREREGISTRADA.md](10-INVESTIGACAO-PREREGISTRADA.md) |
 | **Ratchet state persistence** | A reboot loses the session; re-pair. | Phase 4 |
 | **eFuse ritual** | Until flash encryption, secure boot, JTAG-off and UART-download-off are burned, session keys sit in readable RAM and "the key never leaves the chip" is true and irrelevant. | Phase 4, one-way, sacrificial board first |
 

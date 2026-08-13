@@ -9,15 +9,16 @@
 #   ./prove.sh            full run
 #   ./prove.sh --quiet    verdict lines only
 #
-# Eight suites, each independently falsifiable:
+# Nine suites, each independently falsifiable:
 #   1  algebra      quasi-orthogonality, bundling, resonator, learning, HCP
 #   2  nucleus      bounded, opt-in local semantic intelligence
 #   3  voice        controlled local language and bounded haptic feedback
 #   4  interaction  push-to-talk, confirmation, one-shot send and telemetry
 #   5  validation   deterministic adapters and telemetry log gates
-#   6  protocol     crypto vs OpenSSL, ratchet, framing, Weave, Beat, canonicality
-#   7  radio        SX1262 command sequences against a recording mock bus
-#   8  physical     RF, energy and the frame ledger, from tools/budget.py
+#   6  study        preregistered plan, statistical gates and unsafe-send rejection
+#   7  protocol     crypto vs OpenSSL, ratchet, framing, Weave, Beat, canonicality
+#   8  radio        SX1262 command sequences against a recording mock bus
+#   9  physical     RF, energy and the frame ledger, from tools/budget.py
 #
 # The Nucleus suite is intentionally separate: privacy and non-autonomy are
 # properties that must fail a build when regressed, not promises in a document.
@@ -57,17 +58,22 @@ banner "5/8  validation lab (deterministic adapters and telemetry gates)"
 [ "$QUIET" = 0 ] && cat /tmp/herus_g.log
 grep -q "FAIL" /tmp/herus_g.log && FAIL=1 || true
 
-banner "6/8  protocol (crypto, ratchet, framing, Weave, Beat)"
+banner "6/9  preregistered study (frozen plan, gates and unsafe-send rejection)"
+python3 tools/test_interactionstudy.py > /tmp/herus_s.log 2>&1 || FAIL=1
+[ "$QUIET" = 0 ] && cat /tmp/herus_s.log
+grep -q "FAIL" /tmp/herus_s.log && FAIL=1 || true
+
+banner "7/9  protocol (crypto, ratchet, framing, Weave, Beat)"
 ( cd firmware && make net ) > /tmp/herus_b.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_b.log
 grep -q "FAIL" /tmp/herus_b.log && FAIL=1 || true
 
-banner "7/8  radio driver (SX1262 command sequences, no hardware)"
+banner "8/9  radio driver (SX1262 command sequences, no hardware)"
 ( cd firmware && make radio && make syntax ) > /tmp/herus_r.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_r.log
 grep -q "FAIL" /tmp/herus_r.log && FAIL=1 || true
 
-banner "8/8  physical layer, energy and frame ledger"
+banner "9/9  physical layer, energy and frame ledger"
 python3 tools/budget.py > /tmp/herus_c.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_c.log
 
@@ -102,6 +108,9 @@ check "Interaction is push-to-talk, confirmed and one-shot" "INTERACTION INVARIA
 # --- validation lab ------------------------------------------------------
 check "Interaction rig keeps adapter sequencing non-transmitting" "INTERACTION RIG INVARIANTS HOLD" /tmp/herus_g.log
 check "Telemetry gates reject an unsafe send" "INTERACTIONLOG INVARIANTS HOLD" /tmp/herus_g.log
+
+# --- preregistered study -------------------------------------------------
+check "Preregistered study keeps gates and rejects unsafe send" "PREREGISTRATION INVARIANTS HOLD" /tmp/herus_s.log
 
 # --- protocol -------------------------------------------------------------
 check "crypto agrees with an independent implementation" "V6 AEAD encrypt+decrypt matches the reference" /tmp/herus_b.log

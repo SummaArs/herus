@@ -1,7 +1,7 @@
 # HERUS
 
 [![prove](https://github.com/SummaArs/herus/actions/workflows/prove.yml/badge.svg)](https://github.com/SummaArs/herus/actions/workflows/prove.yml)
-&nbsp;·&nbsp; C11, no dependencies &nbsp;·&nbsp; 31 proof + 74 system invariants &nbsp;·&nbsp; pre-hardware
+&nbsp;·&nbsp; C11, no dependencies &nbsp;·&nbsp; 32 proof + 74 system invariants &nbsp;·&nbsp; pre-hardware
 
 **A private, off-grid, semantic communicator.** Herus transmits *meaning* — a
 2-byte symbol id into a shared, generatively-derived lexicon — and renders it
@@ -44,6 +44,7 @@ the hot path, and no always-on microphone.
 | [docs/07-VOZ-HAPTICA.md](docs/07-VOZ-HAPTICA.md) | **Advance 1.** Local controlled-language interaction, physical confirmation and bounded vibration feedback |
 | [docs/08-RUNTIME-INTERACAO.md](docs/08-RUNTIME-INTERACAO.md) | **Advance 2.** Push-to-talk runtime, one-shot confirmed send gate, adapter boundary and privacy-preserving telemetry |
 | [docs/09-VALIDACAO-FISICA.md](docs/09-VALIDACAO-FISICA.md) | **Advance 3.** Physical-validation protocol, deterministic adapter rig, telemetry schema and pre-committed product gates |
+| [docs/10-INVESTIGACAO-PREREGISTRADA.md](docs/10-INVESTIGACAO-PREREGISTRADA.md) | **Advance 4.** Pre-registered Core-versus-Nucleus investigation, frozen sample plan, Wilson gates and reproducible decision rule |
 | `firmware/core/` | Portable C: both algebras, memory, resonator, HCP rev 0.2, Nucleus intelligence, interaction runtime and deterministic validation rig |
 | `firmware/net/` | The wire: crypto, symmetric ratchet, region/dwell as compile-time assertions, Weave, Beat |
 | `firmware/port/` | The platform: an 8-function HAL, an SX1262 driver, the ESP32-S3 app and bring-up console |
@@ -53,6 +54,7 @@ the hot path, and no always-on microphone.
 | `tools/budget.py` | Physical-layer, energy and frame-ledger model, stdlib only |
 | `tools/fieldlog.py` | Turns a Phase 0 walk into a numeric verdict on both kill criteria |
 | `tools/interactionlog.py` | Validates privacy-preserving interaction telemetry and applies the Advance 3 gates |
+| `tools/studyplan.py` / `tools/interactionstudy.py` | Materializes the frozen trial plan and performs only the pre-registered Core-versus-Nucleus analysis |
 | `tools/frontier.py` | Enumerates every (SF, BW) pair under both FCC regimes — where the remaining decibels are, and what each costs |
 | [CONTRIBUTING.md](CONTRIBUTING.md) | How to build and test, and the six things that are settled and why |
 | [SECURITY.md](SECURITY.md) | What the cryptography protects today, what it does not protect yet, and how to report a finding |
@@ -67,7 +69,7 @@ all in this tree.
 ./prove.sh
 ```
 
-About 30 seconds. Eight suites — algebra, Nucleus intelligence, controlled voice/haptics, interaction runtime, validation lab, protocol, radio driver and physical layer — plus the simulated bench, and **31 proof invariants and 74 system invariants checked rather than eyeballed**:
+About 30 seconds. Nine suites — algebra, Nucleus intelligence, controlled voice/haptics, interaction runtime, validation lab, preregistered study, protocol, radio driver and physical layer — plus the simulated bench, and **32 proof invariants and 74 system invariants checked rather than eyeballed**:
 
 ```
 PASS  P1 constant AIRTIME across meaning tiers
@@ -77,6 +79,7 @@ PASS  Voice remains local, confirmed and haptically bounded
 PASS  Interaction is push-to-talk, confirmed and one-shot
 PASS  Interaction rig keeps adapter sequencing non-transmitting
 PASS  Telemetry gates reject an unsafe send
+PASS  Preregistered study keeps gates and rejects unsafe send
 PASS  crypto agrees with an independent implementation
 PASS  hypervectors are never transmitted
 PASS  every single-bit corruption is rejected
@@ -111,6 +114,7 @@ the documentation. If a property is claimed and no test can fail, it is a hope.
 | Voice and haptic interaction | **implemented and host-proven** — controlled Portuguese intent parsing, no autonomous send/SOS, physical confirmation contract and bounded driver-independent vibration plans; local ASR and hardware integration remain future work — see [07-VOZ-HAPTICA.md](docs/07-VOZ-HAPTICA.md) |
 | Interaction runtime | **implemented and host-proven** — push-to-talk state machine, local-ASR adapter boundary, timeout/cancel/source-loss clearing, one-shot confirmed handoff and privacy-preserving telemetry; no microphone, ASR SDK, GPIO or radio wiring yet — see [08-RUNTIME-INTERACAO.md](docs/08-RUNTIME-INTERACAO.md) |
 | Physical validation path | **implemented and host-proven** — deterministic adapter rig, normative CSV, log validator and decision gates for intent, false drafts, latency, handoff and measured energy; no real device data has been collected — see [09-VALIDACAO-FISICA.md](docs/09-VALIDACAO-FISICA.md) |
+| Pre-registered investigation | **implemented and host-proven** — frozen Core-versus-Nucleus trial plan, sample size, Wilson intervals, product decision rule and analyzer; no confirmatory data has been collected — see [10-INVESTIGACAO-PREREGISTRADA.md](docs/10-INVESTIGACAO-PREREGISTRADA.md) |
 | Secure element (ATECC608A) | not wired: forward secrecy yes, post-compromise security and SOS signing not yet — see [05-FIRMWARE.md](docs/05-FIRMWARE.md) §4 |
 | Hardware | **nothing built yet — Phase 0 is next** |
 
