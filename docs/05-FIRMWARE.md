@@ -53,7 +53,7 @@ Below it: eight functions and a radio.
 
 ## 2. What is proven, and by what
 
-`./prove.sh` runs twenty-three suites and gates 55 proof invariants. It exits non-zero if any
+`./prove.sh` runs twenty-four suites and gates 57 proof invariants. It exits non-zero if any
 one of them regresses, and it is the only thing standing between you and a
 plausible-looking bug in a device you will trust with an emergency.
 
@@ -71,6 +71,7 @@ plausible-looking bug in a device you will trust with an emergency.
 | **memory vault** | autorização humana separada, cartão mínimo sem texto, HKDF por domínio/geração, AEAD de tag completa, piso anti-rollback e erase fail-closed | testes determinísticos com backend RAM host; não prova NVS cifrado, eFuse, secure element, atomicidade de flash ou resistência física |
 | **memory consolidation** | revisão humana limitada, expiração sem retenção, sessão física canônica, conflito bloqueante, recibo, recuperação por identificador e remoção controlada | testes determinísticos com asserção de acesso sintética; não prova botão/gesto, relógio confiável, retenção por calendário, busca semântica ou sanitização de mídia |
 | **memory retrieval** | matching local sobre no máximo oito cartões tipados, consulta limitada, limiar, margem de ambiguidade e apresentação de autoridade zero | testes determinísticos sem cofre, NVS, dados pessoais, linguagem natural, embeddings, LLM, rede, UI ou métrica humana de utilidade |
+| **memory retrieval presentation** | status simbólico one-shot para match/no-match/ambiguidade, sessão física canônica, limpeza transitória e haptics abstratos limitados | testes determinísticos sem fala, motor, display, botão, acessibilidade, usuário, energia, latência, cofre, rede, rádio ou modelo |
 | **assurance** | composição fail-closed de PTT, intenção, confirmação, trust, frescor, revogação e fronteira de modelo | testes determinísticos sem criar HCP, pacote, link ou rádio |
 | **capstone** | cadeia diálogo→modelo→interação→trust, precedência de revogação e handoff único | testes de módulos portáveis; não representa BLE, ASR, LLM ou energia física |
 | **trust lifecycle** | associação física dupla, SAS, derivação, persistência opaca, revogação e zeroização | testes determinísticos sem BLE real, secure element, RNG alvo ou backend persistente |
@@ -175,7 +176,8 @@ Stated plainly, because a firmware document that only lists features is a brochu
 | **Ratchet state persistence** | A reboot loses the session; re-pair. | Phase 4 |
 | **Memory-vault target backend** | `memory_vault.[ch]` prova formato cifrado, chave por geração e bloqueio em falha com uma porta RAM. Raiz protegida, NVS cifrada, piso monotônico durável, recuperação após power-loss e erase físico ainda não foram integrados nem medidos. | Phase 4; ver [20-COFRE-MEMORIA.md](20-COFRE-MEMORIA.md) |
 | **Human-consolidation hardware adapter** | `memory_consolidation.[ch]` prova o protocolo de revisão em host. Botão/gesto, visualização de proposta, igualdade de sessão física, fonte de tempo, política de prazo e remoção de mídia precisam de implementação e evidência no alvo. | Phase 4; ver [21-CONSOLIDACAO-HUMANA.md](21-CONSOLIDACAO-HUMANA.md) |
-| **Controlled-retrieval integration** | `memory_retrieval.[ch]` prova ranking tipado puro em host. Aquisição autorizada de cartões, fonte física de acesso, UI para ambiguidade, linguagem natural, avaliação de relevância, índice persistente e qualquer adaptador de modelo ainda não existem. | Fase seguinte; ver [22-RECUPERACAO-SEMANTICA.md](22-RECUPERACAO-SEMANTICA.md) |
+| **Controlled-retrieval integration** | `memory_retrieval.[ch]` prova ranking tipado puro em host. Aquisição autorizada de cartões, fonte física de acesso, linguagem natural, avaliação de relevância, índice persistente e qualquer adaptador de modelo ainda não existem. | Fase seguinte; ver [22-RECUPERACAO-SEMANTICA.md](22-RECUPERACAO-SEMANTICA.md) |
+| **Human retrieval presentation adapter** | `memory_retrieval_present.[ch]` prova códigos de status, sessão, one-shot e limites de haptics em host. Voz, motor, display, botão, adaptação individual, acessibilidade, compreensão, telemetria privada, energia e latência exigem interface alvo e avaliação humana. | Fase seguinte; ver [23-INTERFACE-RECUPERACAO-HUMANA.md](23-INTERFACE-RECUPERACAO-HUMANA.md) |
 | **eFuse ritual** | Until flash encryption, secure boot, JTAG-off and UART-download-off are burned, session keys sit in readable RAM and "the key never leaves the chip" is true and irrelevant. | Phase 4, one-way, sacrificial board first |
 
 ---

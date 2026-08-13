@@ -99,9 +99,11 @@ A métrica apropriada em uma futura avaliação humana será definida antes de c
 | Controle físico | A asserção é um contrato de software. | Botão/gesto, relógio e UX de confirmação em hardware. |
 | Persistência/remoção | Não há escrita nem erase neste módulo. | Cofre e backend ESP-IDF com evidência de hardware. |
 
-## 7. Próximo passo
+## 7. Continuidade: interface humana implementada em host
 
-O Passo 7 deve aprofundar a **interface de recuperação humana**: como apresentar `MATCH`, `NO_MATCH` e `AMBIGUOUS` por voz/háptica/tela sem transformar a saída em fala de autoridade. A regra permanece: a recuperação pode sugerir; só uma revisão física pode decidir retenção, remoção ou qualquer ação externa.
+O Passo 7 agora implementa a [interface humana de recuperação](23-INTERFACE-RECUPERACAO-HUMANA.md): status simbólico one-shot para `MATCH`, `NO_MATCH` e `AMBIGUOUS`, com asserção física canônica, código de frase controlada, plano háptico abstrato e recusa de qualquer vencedor oculto em estados incertos. A camada não renderiza fala, vibração ou tela reais e não recebe poder de cofre, escrita, envio ou ação.
+
+O próximo avanço deve planejar a avaliação humana e de hardware dessa interface. A regra permanece: a recuperação pode sugerir; só uma revisão física pode decidir retenção, remoção ou qualquer ação externa.
 
 ## Referências
 
