@@ -1,6 +1,6 @@
 # Herus firmware — everything that can be proven on a host, proven on a host.
 #
-#   make            all sixteen suites
+#   make            all eighteen suites
 #   make algebra    the two algebra suites (hv/sbc/lexicon)
 #   make nucleus    the local, bounded semantic-intelligence suite
 #   make voice      the controlled-language and bounded-haptics suite
@@ -8,6 +8,13 @@
 #   make dialogue   the bounded local conversational-intelligence suite
 #   make model-lab  the measured local-model acceptance and reply-shield suite
 #   make memory-policy the selective-memory relevance and retention-policy suite
+#   make memory-capture the explicit, bounded and transient capture-session suite
+#   make memory-extract the typed, conservative and non-retaining extraction suite
+#   make memory-vault the authorised, encrypted and anti-rollback memory vault suite
+#   make memory-consolidation the bounded human review, recall and removal suite
+#   make memory-retrieval the typed, local and ambiguity-safe presentation suite
+#   make memory-retrieval-present the one-shot human status presentation suite
+#   make memory-finale the selective-memory Grand Finale composition suite
 #   make assurance  the Grand Finale cross-module safety composition suite
 #   make capstone   the Grand Finale end-to-end safety-chain suite
 #   make trust      the explicit Core/Nucleus binding lifecycle suite
@@ -32,9 +39,9 @@ INC     := -Icore -Inet -Iport -Itest
 CORE    := core/hv.c core/sbc.c core/lexicon.c core/hcp.c
 NET     := net/crypto.c net/session.c net/region.c net/weave.c net/beat.c net/link.c
 
-.PHONY: all algebra nucleus voice intent dialogue model-lab memory-policy assurance capstone trust control-link interaction interaction-rig net radio syntax vectors clean
+.PHONY: all algebra nucleus voice intent dialogue model-lab memory-policy memory-capture memory-extract memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale assurance capstone trust control-link interaction interaction-rig net radio syntax vectors clean
 
-all: algebra nucleus voice intent dialogue model-lab memory-policy assurance capstone trust control-link interaction interaction-rig net radio syntax
+all: algebra nucleus voice intent dialogue model-lab memory-policy memory-capture memory-extract memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale assurance capstone trust control-link interaction interaction-rig net radio syntax
 	@echo ""
 	@echo "=================================================="
 	@echo "ALL FIRMWARE SUITES PASS"
@@ -79,6 +86,41 @@ memory-policy: build
 	@echo "--- memory policy: consent, relevance, review and no persistence ---"
 	$(CC) $(CFLAGS) $(INC) core/memory_policy.c core/test_memory_policy.c -o build/test_memory_policy
 	./build/test_memory_policy
+
+memory-capture: build
+	@echo "--- memory capture: physical session, timeout and transient discard ---"
+	$(CC) $(CFLAGS) $(INC) core/memory_capture.c core/test_memory_capture.c -o build/test_memory_capture
+	./build/test_memory_capture
+
+memory-extract: build
+	@echo "--- memory extract: typed candidate, uncertainty and zero retention ---"
+	$(CC) $(CFLAGS) $(INC) core/memory_capture.c core/memory_policy.c core/memory_extract.c core/test_memory_extract.c -o build/test_memory_extract
+	./build/test_memory_extract
+
+memory-vault: build
+	@echo "--- memory vault: explicit authority, AEAD and monotonic anti-rollback ---"
+	$(CC) $(CFLAGS) $(INC) net/crypto.c core/memory_policy.c core/memory_vault.c core/test_memory_vault.c -o build/test_memory_vault
+	./build/test_memory_vault
+
+memory-consolidation: build
+	@echo "--- memory consolidation: bounded human review, conflict, recall and removal ---"
+	$(CC) $(CFLAGS) $(INC) net/crypto.c core/memory_policy.c core/memory_vault.c core/memory_consolidation.c core/test_memory_consolidation.c -o build/test_memory_consolidation
+	./build/test_memory_consolidation
+
+memory-retrieval: build
+	@echo "--- memory retrieval: typed local matching, ambiguity and zero authority ---"
+	$(CC) $(CFLAGS) $(INC) core/memory_policy.c core/memory_retrieval.c core/test_memory_retrieval.c -o build/test_memory_retrieval
+	./build/test_memory_retrieval
+
+memory-retrieval-present: build
+	@echo "--- memory retrieval presentation: bounded status, uncertainty and zero authority ---"
+	$(CC) $(CFLAGS) $(INC) core/voice.c core/memory_retrieval_present.c core/test_memory_retrieval_present.c -o build/test_memory_retrieval_present
+	./build/test_memory_retrieval_present
+
+memory-finale: build
+	@echo "--- memory Grand Finale: composed human-gated private-memory chain ---"
+	$(CC) $(CFLAGS) $(INC) net/crypto.c core/voice.c core/memory_capture.c core/memory_policy.c core/memory_extract.c core/memory_vault.c core/memory_consolidation.c core/memory_retrieval.c core/memory_retrieval_present.c core/memory_finale.c core/test_memory_finale.c -o build/test_memory_finale
+	./build/test_memory_finale
 
 assurance: build
 	@echo "--- assurance: Grand Finale composition, revocation and zero agency ---"
