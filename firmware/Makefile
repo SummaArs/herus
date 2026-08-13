@@ -1,10 +1,11 @@
 # Herus firmware — everything that can be proven on a host, proven on a host.
 #
-#   make            all seven suites
+#   make            all eight suites
 #   make algebra    the two algebra suites (hv/sbc/lexicon)
 #   make nucleus    the local, bounded semantic-intelligence suite
 #   make voice      the controlled-language and bounded-haptics suite
 #   make interaction the push-to-talk, confirmation and one-shot runtime suite
+#   make interaction-rig deterministic adapter and validation-lab scenarios
 #   make net        the protocol suite (crypto, session, weave, beat, framing)
 #   make radio      the SX1262 command sequences, against a recording mock bus
 #   make syntax     type-check the ESP32-S3 app without an ESP32 present
@@ -23,9 +24,9 @@ INC     := -Icore -Inet -Iport -Itest
 CORE    := core/hv.c core/sbc.c core/lexicon.c core/hcp.c
 NET     := net/crypto.c net/session.c net/region.c net/weave.c net/beat.c net/link.c
 
-.PHONY: all algebra nucleus voice interaction net radio syntax vectors clean
+.PHONY: all algebra nucleus voice interaction interaction-rig net radio syntax vectors clean
 
-all: algebra nucleus voice interaction net radio syntax
+all: algebra nucleus voice interaction interaction-rig net radio syntax
 	@echo ""
 	@echo "=================================================="
 	@echo "ALL FIRMWARE SUITES PASS"
@@ -55,6 +56,11 @@ interaction: build
 	@echo "--- interaction: push-to-talk, confirmation and one-shot send gate ---"
 	$(CC) $(CFLAGS) $(INC) core/voice.c core/interaction.c core/test_interaction.c -o build/test_interaction
 	./build/test_interaction
+
+interaction-rig: build
+	@echo "--- interaction rig: deterministic adapter and validation-lab scenarios ---"
+	$(CC) $(CFLAGS) $(INC) core/voice.c core/interaction.c core/interaction_rig.c core/test_interaction_rig.c -o build/test_interaction_rig
+	./build/test_interaction_rig
 
 net: build
 	@echo "--- protocol: crypto, ratchet, framing, weave, beat ---"
