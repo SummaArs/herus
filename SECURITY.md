@@ -27,6 +27,15 @@ All of the following are checked by `./prove.sh` on every run — see
 | The decrypt path is rate limited | An unauthenticated stranger cannot drain the battery by making the node do work |
 | Constant airtime across meaning tiers (P1) | Traffic analysis cannot read the tier off the air, because every meaning-carrying frame occupies the radio for the same 246.8 ms |
 | Evidence-scoped threat classification | `make threat-model` rejects incomplete/noncanonical control evidence and distinguishes host-mitigated controls from target-pending and out-of-scope vectors; see [docs/25-MODELO-AMEACAS-EXECUTAVEL.md](docs/25-MODELO-AMEACAS-EXECUTAVEL.md) |
+| Bounded multi-card collection in host | `make memory-collection` requires authorization plus physical access, encrypts/authenticates a fixed index and rejects duplicate, capacity, transaction, tag and rollback failures; see [docs/26-COLECAO-MEMORIA.md](docs/26-COLECAO-MEMORIA.md) |
+| Private collection retrieval in host | `make memory-collection-index` permits only bounded typed queries under physical access, preserves abstention/ambiguity and never opens a card automatically; see [docs/27-INDICE-PRIVADO-COLECAO.md](docs/27-INDICE-PRIVADO-COLECAO.md) |
+| Transactional crash-state recovery in host | `make memory-collection-recovery` promotes only an authenticated successor bound to the durable floor, discards pre-floor preparation and blocks contradictory state; see [docs/28-RECUPERACAO-TRANSACIONAL.md](docs/28-RECUPERACAO-TRANSACIONAL.md) |
+| Local build-input integrity in host | `provenance_audit.py` rejects drift in declared source/proof inputs, unsafe paths, secret-like metadata and unsupported trust claims; see [docs/29-PROVENIENCIA-LOCAL-BUILD.md](docs/29-PROVENIENCIA-LOCAL-BUILD.md) |
+| Composed multi-card memory authority in host | `make memory-collection-finale` connects human-authorized admission, authenticated recovery, bounded typed query and one-shot abstention; it fails if an index auto-opens, legacy retrieval fallback or model authority appears; see [docs/30-GRAND-FINALE-COLECAO.md](docs/30-GRAND-FINALE-COLECAO.md) |
+| Purpose-bound collection session in host | `make memory-physical-session` requires closed operation purpose, non-reused RAM session ID, nonzero transient nonce, canonical adapter assertion, bounded time, cancellation and consumption; collection/index reject an unbound session; see [docs/31-SESSAO-FISICA-PROPOSITO.md](docs/31-SESSAO-FISICA-PROPOSITO.md) |
+| Durable session-reservation recovery in host | `make memory-physical-session-recovery` classifies authenticated `PREPARED`/`COMMITTED` markers against an adapter-declared durable floor, advances only an already-burned ID and blocks contradictions; it has no output path that restores a live session; see [docs/32-RECUPERACAO-RESERVA-SESSAO.md](docs/32-RECUPERACAO-RESERVA-SESSAO.md) |
+| Post-reboot session quarantine in host | `make memory-physical-session-bootstrap` reinitializes the gate to `IDLE`, scrubs any active fixture and imports only the classified floor; old/piso IDs cannot validate or consume and every new session requires a new adapter assertion; see [docs/33-QUARENTENA-BOOT-SESSAO.md](docs/33-QUARENTENA-BOOT-SESSAO.md) |
+| Final host memory-chain composition | `make memory-prehardware-finale` composes bootstrap, M14 and TM-04; any mismatch blocks/scrubs the gate and a success remains `IDLE`, never an active collection capability; see [docs/34-GRAN-FINALE-PRE-HARDWARE.md](docs/34-GRAN-FINALE-PRE-HARDWARE.md) |
 
 ## What is NOT protected yet
 
@@ -53,12 +62,57 @@ consequences:
 - **Metadata beyond the frame.** The protocol hides the identifier and the
   tier. It does not hide that a transmission happened, or from roughly where.
   Direction-finding a LoRa burst is not hard.
-- **No supply-chain assurance yet.** The executable threat model makes this
-  absence explicit; there is not yet an SBOM, signed/reproducible build policy,
-  provenance verification or independent audit.
+- **No authenticated supply-chain assurance yet.** The local provenance audit
+  detects drift against an unsigned, declared input set and rejects unsafe manifest
+  shape, but TM-09 remains `PENDING_TARGET`. There is still no authenticated
+  checkout, signed provenance, pinned/isolated builder, complete SBOM, independent
+  reproducible build, artifact-to-source verification, vulnerability assessment or
+  independent audit.
 - **Threat classification is not runtime security.** The host auditor checks
   declared evidence fixtures and fails closed; it does not inspect a deployed
   device, estimate likelihood/impact, detect compromise or close platform gates.
+- **Collection deletion is not physical purge.** The multi-card collection only
+  removes an active logical reference and rewrites authenticated state. Old bytes,
+  power-loss behavior, wear, secure storage and purge semantics belong to the
+  selected backend and must be demonstrated on the chosen target.
+- **Private retrieval is not cryptographic query privacy.** The index copies up to
+  eight authenticated cards into transient RAM under an asserted physical session.
+  It has no persisted query log or public list API, but does not implement PIR,
+  ORAM, side-channel resistance, protected RAM, a real physical control or a
+  privacy property against modified firmware.
+- **Crash-state recovery is not durable storage assurance.** The portable oracle
+  classifies decoded/authenticated records and an asserted monotonic floor. It does
+  not establish that callbacks survive brownout, that flash writes are atomic, that
+  a root or counter is protected, that old bytes are purged, or that a faulting
+  target cannot present a topology the host contract blocks.
+- **Collection composition is not physical memory authority.** M14 now requires
+  host evidence that collection access was purpose-bound, time-limited and consumed,
+  but it still does not prove a human performed a gesture, that vault authorization
+  and collection share a protected root, that the adapter event is authentic, that
+  freshness/non-replay survive reboot, that the target presenter preserves
+  abstention, that RAM is protected, that access patterns are hidden, or that an
+  ASR/LLM could not bypass a faulty target adapter or modified firmware.
+- **The session gate is not an authenticator.** Its nonce, session floor and state
+  live only in portable RAM; an adapter must provide event provenance, entropy,
+  trusted monotonic time, reset/power-loss behavior, a durable floor or equivalent
+  replay strategy, protected execution and target tests before any statement about
+  button, gesture, PIN, biometrics, identity, liveness or anti-replay across reboot.
+- **Reservation recovery is not durable replay resistance.** The C11 oracle
+  classifies a snapshot whose authentication and durable floor are asserted by an
+  adapter. It can consolidate a burned reservation ID or fail closed, but cannot
+  authenticate the storage, order media writes, survive a real reboot, prove a new
+  gesture or revive a live session. Anti-replay across reboot therefore remains
+  pending until the selected backend, boot chain and fault campaign establish it.
+- **Boot quarantine is not a physical reset defense.** The bootstrap overwrites a
+  host `struct`, imports one floor and refuses to reconstruct nonce, purpose,
+  deadline or use budget. It does not observe a reset, clear real RAM, authenticate
+  a backend, protect boot code or prove that a post-boot event is new. Those remain
+  target-adapter and hardware-test requirements.
+- **The Gran Finale is not target readiness.** Its fixture drives real portable
+  collection/index code over RAM and checks M14 plus TM-04, but it neither reads a
+  physical reset nor operates a durable backend. `ready_for_target_validation` is
+  a diagnostic that the host contracts compose; it is not permission to retain,
+  open, send, fabricate, deploy or make a physical-security claim.
 
 ## Regulatory safety
 

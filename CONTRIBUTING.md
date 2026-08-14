@@ -23,7 +23,7 @@ cd herus
 Expected tail:
 
 ```
-ALL INVARIANTS HOLD — the documents reproduce and the firmware is safe to flash.
+ALL INVARIANTS HOLD — host contracts pass; controlled bench flash may begin, physical gates remain pending.
 ```
 
 Roughly 30 s on an Apple silicon Mac. `./prove.sh --quiet` prints verdict lines
@@ -32,7 +32,7 @@ the documents**.
 
 | Target | Command | What it proves |
 |---|---|---|
-| Everything | `./prove.sh` | 26 suites + 61 proof invariants + 74 system invariants |
+| Everything | `./prove.sh` | 35 suites + 79 proof invariants + 74 system invariants |
 | Algebra | `cd firmware && make algebra` | Binding, bundling, resonator, HCP, dense vs sparse |
 | Núcleo | `cd firmware && make nucleus` | Consentimento opt-in, memória limitada, confiança, expiração e apagamento local |
 | Voz e háptica | `cd firmware && make voice` | Linguagem controlada, rascunho confirmável, SOS bloqueado e vibração limitada |
@@ -47,10 +47,19 @@ the documents**.
 | Recuperação controlada | `cd firmware && make memory-retrieval` | Matching local tipado, consulta limitada, limiar, margem de ambiguidade, apresentação mínima e autoridade zero em host |
 | Interface de recuperação | `cd firmware && make memory-retrieval-present` | Status simbólico one-shot, acesso físico canônico, incerteza sem vencedor, haptics abstratos limitados e autoridade zero em host |
 | Grand Finale de memória | `cd firmware && make memory-finale` | Fixture composta de captura→extração→política→revisão→cofre→recuperação→apresentação, conflito/modelo bloqueantes e auditoria de autoridade zero em host |
+| Coleção multi-cartão | `cd firmware && make memory-collection` | Até oito cartões mínimos, autorização/gesto físicos separados, índice AEAD, prepare→commit, recuperação autenticada, capacidade, remoção/compactação lógicas e rollback fail-closed em host |
+| Índice privado de coleção | `cd firmware && make memory-collection-index` | Consulta tipada e física sobre coleção autenticada, budget transitório por sessão, match mínimo, ausência/ambiguidade sem vencedor, sem listagem ou abertura automática |
+| Recuperação transacional | `cd firmware && make memory-collection-recovery` | Matriz C11 para estados autenticados de `PREPARED`/`COMMITTED` e piso: promoção, descarte pré-piso, finalização de limpeza ou bloqueio sem recuperação ambígua |
+| Grand Finale da coleção | `cd firmware && make memory-collection-finale` | Fixture composta de captura→política→revisão→autorização→coleção→recuperação→índice→apresentação; abstenção válida, sem abertura automática, fallback unitário ou autoridade de modelo |
+| Sessão física de coleção | `cd firmware && make memory-physical-session` | Propósito fechado, ID/nonce transitórios, janela, cancelamento e consumo único ou limitado; prova host, não botão, pessoa, biometria, relógio ou anti-replay pós-reboot |
+| Recuperação de reserva de sessão | `cd firmware && make memory-physical-session-recovery` | Matriz C11 de `PREPARED`/`COMMITTED` contra piso durável declarado: promove somente ID já queimado, descarta/limpa com topologia coerente, bloqueia contradições e nunca reativa sessão |
+| Quarentena de boot de sessão | `cd firmware && make memory-physical-session-bootstrap` | Reconstrói gate em `IDLE`, importa somente piso classificado, apaga toda evidência ativa e exige nova afirmação para sessão posterior |
+| Gran Finale pré-hardware | `cd firmware && make memory-prehardware-finale` | Compõe bootstrap, coleção/index reais em fixture RAM, auditor M14 e TM-04; só emite diagnóstico com gate `IDLE`, sem autoridade ativa |
 | Modelo de ameaças | `cd firmware && make threat-model` | Classificação fail-closed de evidência host, pendências de alvo e escopo residual para rádio, trust, memória, modelo, telemetria, plataforma e supply chain |
 | Assurance Grand Finale | `cd firmware && make assurance` | Composição fail-closed de sessão, intenção, confirmação, trust, frescor, revogação e modelo |
 | Capstone Grand Finale | `cd firmware && make capstone` | Ataque à cadeia diálogo→modelo→interação→trust; nenhum bypass do handoff físico confirmado |
 | Readiness de hardware | `python3 tools/readiness_audit.py research/hardware_readiness_manifest.json --strict` | Gates pendentes, evidência obrigatória para aprovação e privacidade de logs |
+| Proveniência local | `python3 tools/provenance_audit.py research/software_provenance_manifest.json --strict` | Schema estrito, insumos locais hashados, inventário direto e gates pendentes; não é atestação assinada, SBOM completo ou SLSA |
 | Ciclo de confiança Core↔Núcleo | `cd firmware && make trust` | Associação física dupla, SAS, persistência protegida, revogação e apagamento fail-closed |
 | Enlace Core↔Núcleo | `cd firmware && make control-link` | AEAD, sequência, expiração e rejeição de replay sob um vínculo já ativo |
 | Runtime | `cd firmware && make interaction` | Push-to-talk, confirmação, prazo, perda de fonte, envio único e telemetria local |
@@ -75,7 +84,9 @@ on the machine that runs it.
    the driver, `sim/scenarios.c` for behaviour of the system.
 2. **Make it pass**, without weakening any other invariant.
 3. **Add it to the ledger** in `prove.sh` if it is a property and not just a
-   case: a `check` line whose grep can genuinely fail.
+   case: a `check` line whose grep can genuinely fail. Uma mudança em acesso da
+   coleção também deve exercitar `memory-physical-session`, coleção, índice e
+   Grand Finale, `memory-physical-session-recovery`, `memory-physical-session-bootstrap` e `memory-prehardware-finale` quando tocar propósito, consumo, janela, piso, boot, reboot, recuperação, coleção ou fallback.
 4. **Update the number, not the adjective.** If the change moves a figure in
    `README.md` or `docs/`, move it there too, in the same commit.
 5. `./prove.sh` must end in `ALL INVARIANTS HOLD` before you push. CI runs the

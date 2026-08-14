@@ -38,7 +38,7 @@ int main(void)
     expect_host(THREAT_MODEL_COMPANION_TRUST,
                 "T9 pairing, authentication, freshness and revocation are separate required trust evidence");
     expect_host(THREAT_MODEL_MEMORY_RETENTION,
-                "T9 selective capture, policy, human authority, vault and conflict controls compose for retention");
+                "T9 selective capture, policy, human authority, collection composition, physical-session binding, reservation recovery, post-reboot quarantine and conflict controls compose for retention");
     expect_host(THREAT_MODEL_MEMORY_RECOVERY,
                 "T9 access gating, ambiguity and one-shot presentation compose for recovery");
     expect_host(THREAT_MODEL_MODEL_AGENCY,
@@ -60,6 +60,36 @@ int main(void)
        (d.failures & THREAT_MODEL_FAIL_MEMORY_SENSITIVE) &&
        (d.failures & THREAT_MODEL_FAIL_MEMORY_CONFLICT) && !d.host_mitigated,
        "T9 sensitive review and conflict blocking remain mandatory even after human authority exists");
+
+    s = host_controls();
+    s.memory_recovery_topology = 0u;
+    ok(threat_model_assess(THREAT_MODEL_MEMORY_RETENTION, &s, &d) == THREAT_MODEL_E_BLOCKED &&
+       (d.failures & THREAT_MODEL_FAIL_MEMORY_RECOVERY) && !d.host_mitigated,
+       "T9 retention loses host mitigation when crash recovery lacks an explicit safe topology");
+
+    s = host_controls();
+    s.memory_collection_composed = 0u;
+    ok(threat_model_assess(THREAT_MODEL_MEMORY_RETENTION, &s, &d) == THREAT_MODEL_E_BLOCKED &&
+       (d.failures & THREAT_MODEL_FAIL_COLLECTION_FINALE) && !d.host_mitigated,
+       "T9 retention loses host mitigation when collection composition can bypass human authority, abstention or no-fallback evidence");
+
+    s = host_controls();
+    s.memory_physical_session_bound = 0u;
+    ok(threat_model_assess(THREAT_MODEL_MEMORY_RETENTION, &s, &d) == THREAT_MODEL_E_BLOCKED &&
+       (d.failures & THREAT_MODEL_FAIL_PHYSICAL_SESSION) && !d.host_mitigated,
+       "T9 retention loses host mitigation when collection access can fall back to an unbound physical assertion");
+
+    s = host_controls();
+    s.memory_physical_session_recovery_consistent = 0u;
+    ok(threat_model_assess(THREAT_MODEL_MEMORY_RETENTION, &s, &d) == THREAT_MODEL_E_BLOCKED &&
+       (d.failures & THREAT_MODEL_FAIL_SESSION_RECOVERY) && !d.host_mitigated,
+       "T9 retention loses host mitigation when a reserved session could revive after reboot without recovery evidence");
+
+    s = host_controls();
+    s.memory_physical_session_bootstrap_quarantined = 0u;
+    ok(threat_model_assess(THREAT_MODEL_MEMORY_RETENTION, &s, &d) == THREAT_MODEL_E_BLOCKED &&
+       (d.failures & THREAT_MODEL_FAIL_SESSION_RECOVERY) && !d.host_mitigated,
+       "T9 retention loses host mitigation when post-reboot bootstrap could restore transient session authority");
 
     s = host_controls();
     s.memory_ambiguity_preserved = 0u;
@@ -93,9 +123,16 @@ int main(void)
        d.failures == THREAT_MODEL_FAIL_TARGET_PENDING && !d.host_mitigated,
        "T9 portable evidence never upgrades secure boot, flash, JTAG, NVS or power-loss to host mitigation");
     ok(threat_model_assess(THREAT_MODEL_SUPPLY_CHAIN, &s, &d) == THREAT_MODEL_E_BLOCKED &&
-       d.evidence == THREAT_MODEL_OUT_OF_SCOPE &&
-       d.failures == THREAT_MODEL_FAIL_SCOPE_UNSUPPORTED,
-       "T9 unimplemented supply-chain assurance remains visible instead of silently trusted");
+       d.evidence == THREAT_MODEL_PENDING_TARGET && !d.host_mitigated &&
+       d.failures == THREAT_MODEL_FAIL_TARGET_PENDING,
+       "T9 a valid unsigned local digest remains pending until supply-chain provenance is authenticated");
+    s = host_controls();
+    s.supply_chain_local_integrity = 0u;
+    ok(threat_model_assess(THREAT_MODEL_SUPPLY_CHAIN, &s, &d) == THREAT_MODEL_E_BLOCKED &&
+       d.evidence == THREAT_MODEL_PENDING_TARGET &&
+       (d.failures & THREAT_MODEL_FAIL_SUPPLY_INTEGRITY) &&
+       (d.failures & THREAT_MODEL_FAIL_TARGET_PENDING) && !d.host_mitigated,
+       "T9 supply-chain evidence fails closed when the local input digest control is absent");
 
     s = host_controls();
     s.companion_link_fresh = 2u;

@@ -61,7 +61,7 @@ flowchart LR
 | Pessoa com dispositivo | Tenta ler RAM/flash, debug, reset, downgrade e extração física. | Não se afirma proteção antes da integração e testes de plataforma. |
 | Adaptador/relógio/RNG defeituoso | Fornece evidência de sessão, tempo ou armazenamento inconsistente. | Não se afirma que interface física obedece ao contrato sem backend alvo. |
 | ASR, LLM ou conteúdo persuasivo | Produz texto/áudio hostil, ambíguo ou enganoso. | Não se afirma verdade, alinhamento ou entendimento; apenas ausência estrutural de autoridade. |
-| Build/dependência comprometida | Altera fonte, vetor, ferramenta ou configuração. | Não se afirma SBOM, assinatura, SLSA ou auditoria de supply chain ainda inexistentes. |
+| Build/dependência comprometida | Altera fonte, vetor, ferramenta ou configuração. | Digest local só detecta divergência de insumo declarado; não se afirma checkout autenticado, SBOM completo, assinatura, SLSA ou auditoria de supply chain. |
 
 ## 3. Matriz de ameaças e rastreabilidade
 
@@ -70,12 +70,12 @@ flowchart LR
 | TM-01 | Injeção, mutação, replay e custo contra rádio/sessão. | AEAD, replay recusado, rate limit e flooding limitado. | `test_net.c`; invariante `Threat model ... complete canonical evidence`. | `MITIGATED_HOST` | Jamming, RF físico e implementação alvo permanecem fora desta classe. |
 | TM-02 | Tráfego, presença e correlação de rádio. | Airtime constante é evidência parcial. | `test_net.c`; `radio_constant_airtime`. | `OUT_OF_SCOPE` | Presença de transmissão, direção e localização aproximada não são ocultadas. |
 | TM-03 | Pareamento, envelope vencido ou pós-revogação Core↔Núcleo. | Pairing, autenticação, frescor e revogação dominantes. | `test_trust.c`, `test_core_link.c`. | `MITIGATED_HOST` | Transport, RNG, armazenamento e revogação no alvo continuam pendentes. |
-| TM-04 | Retenção sem consentimento, terceiro/sensível, rollback ou conflito. | Captura física, política, autoridade humana, cofre autenticado, geração, revisão e conflito bloqueante. | `test_memory_*` e `test_memory_finale.c`. | `MITIGATED_HOST` | NVS, raiz, power-loss, apagamento físico e banco multi-cartão não são provados. |
-| TM-05 | Enumeração, seleção indevida e falsa certeza na recuperação. | Acesso físico, ambiguidade preservada e apresentação one-shot. | `test_memory_retrieval.c`, `test_memory_retrieval_present.c`. | `MITIGATED_HOST` | Relevância humana, interface real, voz, háptica, tela e acessibilidade permanecem pendentes. |
-| TM-06 | Modelo/ASR obtendo poder sobre memória ou transmissão. | Display-only, sem autoridade de memória e sem autoridade de envio. | `test_model_lab.c`, `test_dialogue.c`, `test_memory_finale.c`, `test_threat_model.c`. | `MITIGATED_HOST` | Não há modelo local avaliado; não se afirma robustez semântica ou resistência completa a prompt injection. |
+| TM-04 | Retenção sem consentimento, terceiro/sensível, rollback, duplicata, capacidade, transação contraditória, replay de acesso ou composição que contorne confirmação humana. | Captura física, política, autoridade humana, cofre/coleção autenticados, geração, revisão, conflito, capacidade fixa, commit estrito, oráculo de promoção/descarte/finalização, sessão de propósito/validade/consumo em RAM, recuperação canônica de marcador e bootstrap em quarentena que importa apenas piso sem reativação, composição M14 sem auto-open/fallback/modelo. | `test_memory_*`, `test_memory_collection.c`, `test_memory_collection_recovery.c`, `test_memory_collection_finale.c`, `test_memory_physical_session.c`, `test_memory_physical_session_recovery.c`, `test_memory_physical_session_bootstrap.c` e `test_threat_model.c`. | `MITIGATED_HOST` | Evento humano, nonce/tempo no alvo, autenticação e persistência de marcador, reset/RAM físicos, resistência real a replay pós-reboot, NVS, raiz, equivalência de autorização entre backends, durabilidade de callback, power-loss/brownout, apagamento físico, endurance e backend multi-cartão no alvo não são provados. |
+| TM-05 | Enumeração, seleção indevida e falsa certeza na recuperação unitária ou multi-cartão. | Acesso físico, query tipada não vazia, orçamento de sonda, ambiguidade preservada, ausência de abertura automática, ausência de fallback e apresentação one-shot. | `test_memory_retrieval.c`, `test_memory_collection_index.c`, `test_memory_collection_finale.c`, `test_memory_retrieval_present.c`. | `MITIGATED_HOST` | Relevância humana, interface real, voz, háptica, tela, acessibilidade, vazamento de acesso, PIR/ORAM e recuperação em corpus maior permanecem pendentes. |
+| TM-06 | Modelo/ASR obtendo poder sobre memória ou transmissão. | Display-only, sem autoridade de memória e sem autoridade de envio, inclusive na composição multi-cartão. | `test_model_lab.c`, `test_dialogue.c`, `test_memory_finale.c`, `test_memory_collection_finale.c`, `test_threat_model.c`. | `MITIGATED_HOST` | Não há modelo local avaliado; não se afirma robustez semântica ou resistência completa a prompt injection. |
 | TM-07 | Telemetria contendo conteúdo, dado pessoal ou segredo. | Métrica numérica permitida e campos proibidos ausentes. | Manifesto de readiness, `test_interactionlog.sh`, `test_threat_model.c`. | `MITIGATED_HOST` | Operação futura deve manter schema, revisão e privacidade dos adaptadores. |
 | TM-08 | Comprometimento físico, debug, flash, NVS e power-loss. | Evidência de secure boot, flash encryption, JTAG-off, NVS e teste de queda. | Nenhuma evidência de alvo; auditor devolve pendência mesmo se flags forem injetadas. | `PENDING_TARGET` | Gate de plataforma e procedimento em placa sacrificial. |
-| TM-09 | Comprometimento de build, ferramenta ou dependência. | Ainda não implementado. | Auditor torna ausência de controle explícita. | `OUT_OF_SCOPE` | Passo posterior para SBOM, builds reproduzíveis e integridade de supply chain. |
+| TM-09 | Comprometimento de build, ferramenta ou dependência. | Manifesto local canonical, digests de insumos declarados, inventário direto, campos sensíveis ausentes e gates explícitos. | `test_provenance_audit.py`, `provenance_audit.py` e `test_threat_model.c`. | `PENDING_TARGET` | Falta autenticidade de checkout/builder, assinatura, SBOM completo, isolamento, reprodução independente, artefato alvo e auditoria. |
 
 A classificação `MITIGATED_HOST` é propositalmente estreita. Por exemplo, o protocolo possui AEAD e testes diferenciais, mas o próprio `SECURITY.md` declara que chaves de sessão ficam em RAM legível até secure boot, flash encryption e JTAG-off no alvo. O auditor não tem permissão semântica para transformar uma flag de teste em propriedade física.
 
@@ -94,12 +94,12 @@ A função recebe uma ameaça fechada e um snapshot de booleans de controle. Cad
 | Propriedade testada | Contraprova executada |
 |---|---|
 | Rádio ativo não recebe sucesso parcial. | Remover replay bloqueia TM-01 mesmo com AEAD, rate limit e flood bound presentes. |
-| Memória não recebe sucesso por confirmação isolada. | Remover revisão de sensível e conflito bloqueante falha TM-04. |
+| Memória não recebe sucesso por confirmação isolada. | Remover revisão de sensível, conflito, recuperação, composição multi-cartão, sessão vinculada, recuperação de reserva ou quarentena de bootstrap falha TM-04. |
 | Recuperação não converte incerteza em UI permissiva. | Remover ambiguidade ou one-shot falha TM-05. |
 | Modelo não herda poder por existir. | Remover no-memory/no-send falha TM-06. |
 | Telemetria não aceita categoria proibida. | Remover `telemetry_forbidden_absent` falha TM-07. |
 | Lacuna física não é “pass”. | TM-08 sempre resulta `PENDING_TARGET` em C portátil. |
-| Ausência de proteção não é implícita. | TM-02 e TM-09 retornam `OUT_OF_SCOPE`. |
+| Presença de digest local não vira autenticidade. | TM-09 retorna `PENDING_TARGET` mesmo quando o digest local é válido; ausência do controle acrescenta falha específica. |
 | Evidência malformada não é interpretada. | Booleano não canônico e ameaça desconhecida falham fechados. |
 
 O perfil de IA generativa do NIST AI 600-1 orienta a incorporar considerações de confiabilidade ao desenho, desenvolvimento, uso e avaliação de sistemas de IA generativa [3]. O HERUS traduz isso em uma fronteira concreta, não em uma alegação de alinhamento: qualquer camada futura de ASR/LLM pode produzir uma apresentação local somente se continuar estruturalmente incapaz de reter, enviar, confirmar ou agir.
@@ -113,11 +113,15 @@ cd ..
 git diff --check
 ./prove.sh --quiet
 python3 tools/readiness_audit.py research/hardware_readiness_manifest.json --strict
+python3 tools/provenance_audit.py research/software_provenance_manifest.json --strict
+cd firmware && make memory-collection-finale && make memory-physical-session && make memory-physical-session-recovery && make memory-physical-session-bootstrap && make memory-prehardware-finale
 ```
 
-O passo eleva o pipeline para **26 suítes**, **61 invariantes de prova** e mantém as **74 invariantes de sistema simulado**. Esses números são evidência de cenários exercitados em host, não estimativa de probabilidade de comprometimento nem métrica de segurança física.
+Com os passos posteriores de coleção, índice, recuperação, composição multi-cartão, sessão de propósito, quarentena e Gran Finale host, o pipeline executa **35 suítes**, **79 invariantes de prova** e mantém as **74 invariantes de sistema simulado**. Esses números são evidência de cenários exercitados em host, não estimativa de probabilidade de comprometimento nem métrica de segurança física.
 
-A próxima decisão de engenharia deve usar esta matriz para priorizar o passo de memória persistente multi-cartão e, paralelamente, não perder os gates de hardware: secure boot, flash encryption, JTAG-off, NVS/raiz, power-loss, RNG, transport, instrumentos de energia, interface física e avaliação humana. Uma ameaça marcada pendente só pode ser reclassificada com evidência correspondente, não com documentação adicional.
+O Gran Finale pré-hardware consome `THREAT_MODEL_MEMORY_RETENTION` e exige o resultado `MITIGATED_HOST` sem falhas; ele não adiciona uma flag a TM-04 nem pode elevar uma evidência incompleta. Essa direção deliberadamente evita circularidade: M14, bootstrap e TM-04 precisam ser coerentes antes que o auditor final emita apenas `ready_for_target_validation`.
+
+A próxima decisão de engenharia deve usar esta matriz para priorizar o adaptador alvo da coleção e a matriz de cortes controlados em `PREPARED`/piso/`COMMITTED`/limpeza/boot-quarantine, a equivalência real da autorização entre cofre e coleção e a UX que preserva `NO_MATCH`/`AMBIGUOUS` e o adaptador de evento/nonce/tempo/piso de sessão resistente a reset; em paralelo, deve preparar atestação assinada, inventário de release, toolchain/build controlados e comparação independente de artefato sem perder os gates de secure boot, flash encryption, JTAG-off, NVS/raiz, RNG, transport, instrumentos de energia, interface física e avaliação humana. Uma ameaça marcada pendente só pode ser reclassificada com evidência correspondente, não com documentação adicional.
 
 ## Referências
 
