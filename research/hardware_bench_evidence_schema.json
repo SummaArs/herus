@@ -1,0 +1,69 @@
+{
+  "schema": "herus-bench-evidence-v1",
+  "record_rules": {
+    "one_record_per_gate_run": true,
+    "product_content_forbidden": [
+      "audio",
+      "transcript",
+      "embedding",
+      "identity",
+      "location",
+      "key",
+      "pair_key",
+      "message_content",
+      "raw_model_prompt",
+      "raw_model_response"
+    ],
+    "required_digest": "sha256(canonical_json_without_digest)",
+    "time_basis": "monotonic_instrument_or_declared_host_clock",
+    "missing_value": "null_not_zero",
+    "no_claim_from_missing": true
+  },
+  "required_fields": {
+    "gate_id": "string",
+    "protocol_revision": "string",
+    "board_revision": "string",
+    "adapter_revision": "string",
+    "mcu_part_marking": "string",
+    "radio_part_marking": "string",
+    "frequency_profile": "string",
+    "firmware_commit": "sha1_or_sha256_string",
+    "prove_verdict": "ALL INVARIANTS HOLD",
+    "instrument_id": "string",
+    "instrument_calibration_due": "date_or_null",
+    "sampling_method": "string",
+    "measurement_unit": "string",
+    "start_timestamp_ms": "integer_or_null",
+    "duration_ms": "integer_or_null",
+    "packets_sent": "integer_or_null",
+    "packets_received": "integer_or_null",
+    "distance_m": "number_or_null",
+    "rssi_dbm": "number_or_null",
+    "snr_db": "number_or_null",
+    "energy_uj": "number_or_null",
+    "latency_ms": "number_or_null",
+    "interruption_method": "string_or_null",
+    "reset_observed": "boolean_or_null",
+    "raw_log_digest": "sha256_string_or_null",
+    "result": "pass_fail_blocked",
+    "failure_reason_code": "string_or_null",
+    "record_digest": "sha256_string"
+  },
+  "allowed_result_values": [
+    "pass",
+    "fail",
+    "blocked_by_missing_evidence"
+  ],
+  "allowed_failure_reason_examples": [
+    "BOARD_REVISION_MISMATCH",
+    "PIN_MAP_UNVERIFIED",
+    "RADIO_VARIANT_MISMATCH",
+    "INSTRUMENT_CALIBRATION_MISSING",
+    "CLOCK_BASIS_UNDECLARED",
+    "INTERRUPTION_NOT_OBSERVED",
+    "RESET_NOT_OBSERVED",
+    "RAW_LOG_CONTAINS_FORBIDDEN_FIELD",
+    "PROVE_BASELINE_FAILED",
+    "GATE_CRITERION_FAILED"
+  ]
+}
