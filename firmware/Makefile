@@ -20,6 +20,7 @@
 #   make memory-collection-recovery the crash-state recovery-oracle suite
 #   make memory-collection-finale the human-gated multi-card composition suite
 #   make memory-physical-session the purpose-bound physical-session gate suite
+#   make memory-physical-session-recovery the durable reservation recovery oracle suite
 #   make threat-model the executable evidence and residual-risk classification suite
 #   make assurance  the Grand Finale cross-module safety composition suite
 #   make capstone   the Grand Finale end-to-end safety-chain suite
@@ -45,9 +46,9 @@ INC     := -Icore -Inet -Iport -Itest
 CORE    := core/hv.c core/sbc.c core/lexicon.c core/hcp.c
 NET     := net/crypto.c net/session.c net/region.c net/weave.c net/beat.c net/link.c
 
-.PHONY: all algebra nucleus voice intent dialogue model-lab memory-policy memory-capture memory-extract memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale memory-collection memory-collection-index memory-collection-recovery memory-collection-finale memory-physical-session threat-model assurance capstone trust control-link interaction interaction-rig net radio syntax vectors clean
+.PHONY: all algebra nucleus voice intent dialogue model-lab memory-policy memory-capture memory-extract memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale memory-collection memory-collection-index memory-collection-recovery memory-collection-finale memory-physical-session memory-physical-session-recovery threat-model assurance capstone trust control-link interaction interaction-rig net radio syntax vectors clean
 
-all: algebra nucleus voice intent dialogue model-lab memory-policy memory-capture memory-extract memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale memory-collection memory-collection-index memory-collection-recovery memory-collection-finale memory-physical-session threat-model assurance capstone trust control-link interaction interaction-rig net radio syntax
+all: algebra nucleus voice intent dialogue model-lab memory-policy memory-capture memory-extract memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale memory-collection memory-collection-index memory-collection-recovery memory-collection-finale memory-physical-session memory-physical-session-recovery threat-model assurance capstone trust control-link interaction interaction-rig net radio syntax
 	@echo ""
 	@echo "=================================================="
 	@echo "ALL FIRMWARE SUITES PASS"
@@ -152,6 +153,11 @@ memory-physical-session: build
 	@echo "--- physical session: purpose-bound bounded replay gate ---"
 	$(CC) $(CFLAGS) $(INC) core/memory_physical_session.c core/test_memory_physical_session.c -o build/test_memory_physical_session
 	./build/test_memory_physical_session
+
+memory-physical-session-recovery: build
+	@echo "--- physical session recovery: durable reservation oracle ---"
+	$(CC) $(CFLAGS) $(INC) core/memory_physical_session_recovery.c core/test_memory_physical_session_recovery.c -o build/test_memory_physical_session_recovery
+	./build/test_memory_physical_session_recovery
 
 threat-model: build
 	@echo "--- threat model: evidence-scoped mitigation and residual-risk boundaries ---"

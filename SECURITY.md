@@ -33,6 +33,7 @@ All of the following are checked by `./prove.sh` on every run — see
 | Local build-input integrity in host | `provenance_audit.py` rejects drift in declared source/proof inputs, unsafe paths, secret-like metadata and unsupported trust claims; see [docs/29-PROVENIENCIA-LOCAL-BUILD.md](docs/29-PROVENIENCIA-LOCAL-BUILD.md) |
 | Composed multi-card memory authority in host | `make memory-collection-finale` connects human-authorized admission, authenticated recovery, bounded typed query and one-shot abstention; it fails if an index auto-opens, legacy retrieval fallback or model authority appears; see [docs/30-GRAND-FINALE-COLECAO.md](docs/30-GRAND-FINALE-COLECAO.md) |
 | Purpose-bound collection session in host | `make memory-physical-session` requires closed operation purpose, non-reused RAM session ID, nonzero transient nonce, canonical adapter assertion, bounded time, cancellation and consumption; collection/index reject an unbound session; see [docs/31-SESSAO-FISICA-PROPOSITO.md](docs/31-SESSAO-FISICA-PROPOSITO.md) |
+| Durable session-reservation recovery in host | `make memory-physical-session-recovery` classifies authenticated `PREPARED`/`COMMITTED` markers against an adapter-declared durable floor, advances only an already-burned ID and blocks contradictions; it has no output path that restores a live session; see [docs/32-RECUPERACAO-RESERVA-SESSAO.md](docs/32-RECUPERACAO-RESERVA-SESSAO.md) |
 
 ## What is NOT protected yet
 
@@ -94,6 +95,12 @@ consequences:
   trusted monotonic time, reset/power-loss behavior, a durable floor or equivalent
   replay strategy, protected execution and target tests before any statement about
   button, gesture, PIN, biometrics, identity, liveness or anti-replay across reboot.
+- **Reservation recovery is not durable replay resistance.** The new C11 oracle
+  classifies a snapshot whose authentication and durable floor are asserted by an
+  adapter. It can consolidate a burned reservation ID or fail closed, but cannot
+  authenticate the storage, order media writes, survive a real reboot, prove a new
+  gesture or revive a live session. Anti-replay across reboot therefore remains
+  pending until the selected backend, boot chain and fault campaign establish it.
 
 ## Regulatory safety
 

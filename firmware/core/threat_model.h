@@ -58,6 +58,7 @@ typedef struct {
     uint8_t memory_recovery_topology;
     uint8_t memory_collection_composed;
     uint8_t memory_physical_session_bound;
+    uint8_t memory_physical_session_recovery_consistent;
     uint8_t memory_retrieval_access_gated;
     uint8_t memory_ambiguity_preserved;
     uint8_t memory_presentation_one_shot;
@@ -110,7 +111,8 @@ typedef enum {
     THREAT_MODEL_FAIL_MEMORY_RECOVERY   = 1u << 27,
     THREAT_MODEL_FAIL_SUPPLY_INTEGRITY  = 1u << 28,
     THREAT_MODEL_FAIL_COLLECTION_FINALE = 1u << 29,
-    THREAT_MODEL_FAIL_PHYSICAL_SESSION  = 1u << 30
+    THREAT_MODEL_FAIL_PHYSICAL_SESSION  = 1u << 30,
+    THREAT_MODEL_FAIL_SESSION_RECOVERY  = 1u << 31
 } threat_model_failure_t;
 
 typedef struct {
