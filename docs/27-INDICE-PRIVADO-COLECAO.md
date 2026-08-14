@@ -123,7 +123,7 @@ git diff --check
 ./prove.sh --quiet
 ```
 
-O pipeline passa a ter **30 suítes**, **69 invariantes de prova** e mantém **74 invariantes do sistema simulado**. Estes números são evidência do código host e dos cenários exercitados, não de um dispositivo final.
+O pipeline passa a ter **31 suítes**, **71 invariantes de prova** e mantém **74 invariantes do sistema simulado**. Estes números são evidência do código host e dos cenários exercitados, não de um dispositivo final. O [Grand Finale da coleção](30-GRAND-FINALE-COLECAO.md) consome o resultado apenas como evidência de composição: mantém `MATCH` mínimo, `NO_MATCH`/`AMBIGUOUS` abstencionistas e trata abertura automática, fallback e modelo como falhas.
 
 ## Referências
 

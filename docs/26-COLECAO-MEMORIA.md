@@ -101,7 +101,7 @@ A biblioteca NVS do ESP-IDF é um **candidato** de adaptador, não uma garantia 
 | Blob confirmado antigo com piso novo | `E_ROLLBACK` e bloqueio. | Depende de âncora realmente durável e não redutível. |
 | Remoção | Remove referência ativa logicamente e avança geração. | Não é sanitização nem prova de bytes removidos da mídia. |
 
-A suíte `make memory-collection` usa um backend RAM exclusivamente de fixture e exerce fluxo autorizado, capacidade, cartão sensível, duplicidade, acesso inválido, remoção, compactação, promoção após piso, descarte antes do piso, finalização de limpeza, rollback, tag alterada e falha de raiz. `make memory-collection-recovery` falsifica a matriz pura de estados pós-interrupção. O pipeline total passa a ter **30 suítes**, **69 invariantes de prova** e mantém **74 invariantes do simulador**. Isso é evidência de código host para esses cenários, não medição de silício, energia, RF, UX, ASR ou modelo.
+A suíte `make memory-collection` usa um backend RAM exclusivamente de fixture e exerce fluxo autorizado, capacidade, cartão sensível, duplicidade, acesso inválido, remoção, compactação, promoção após piso, descarte antes do piso, finalização de limpeza, rollback, tag alterada e falha de raiz. `make memory-collection-recovery` falsifica a matriz pura de estados pós-interrupção e `make memory-collection-finale` compõe admissão humana, reinicialização autenticada, índice e apresentação sem auto-open, fallback ou modelo. O pipeline total passa a ter **31 suítes**, **71 invariantes de prova** e mantém **74 invariantes do simulador**. Isso é evidência de código host para esses cenários, não medição de silício, energia, RF, UX, ASR ou modelo.
 
 ## 6. Exclusão, compactação e linguagem honesta
 
@@ -136,7 +136,7 @@ git diff --check
 ./prove.sh --quiet
 ```
 
-O [índice privado da coleção](27-INDICE-PRIVADO-COLECAO.md) agora faz recuperação tipada, limitada e abstencionista sobre a coleção em RAM transitória, mas não abre cartão automaticamente nem muda a autoridade humana. O [oráculo de recuperação](28-RECUPERACAO-TRANSACIONAL.md) separa promoção, descarte pré-piso e limpeza finalizada antes que o índice possa observar a coleção. A coleção e seu índice ainda não são conectados ao auditor `memory_finale`; essa integração será uma decisão explícita de passo posterior, depois de definir como o fluxo humano seleciona coleção e como o Grand Finale deve distinguir cofre unitário legado da coleção. Não há fallback silencioso entre os caminhos.
+O [índice privado da coleção](27-INDICE-PRIVADO-COLECAO.md) faz recuperação tipada, limitada e abstencionista sobre a coleção em RAM transitória, mas não abre cartão automaticamente nem muda a autoridade humana. O [oráculo de recuperação](28-RECUPERACAO-TRANSACIONAL.md) separa promoção, descarte pré-piso e limpeza finalizada antes que o índice possa observar a coleção. O [Grand Finale da coleção](30-GRAND-FINALE-COLECAO.md) agora conecta explicitamente a autorização mínima emitida após revisão humana, a inserção, a recuperação autenticada, o índice e a apresentação. A composição trata fallback de recuperação ao cofre unitário, abertura automática e autoridade de modelo como falhas. Ela ainda não prova que esses backends compartilhem uma raiz protegida ou que a sessão seja física no alvo; não há fallback silencioso entre os caminhos.
 
 ## Referências
 

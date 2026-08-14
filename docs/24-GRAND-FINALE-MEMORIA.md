@@ -115,7 +115,7 @@ O primeiro comando prova somente a composição de fixture. O último comando pr
 
 O [modelo de ameaças executável](25-MODELO-AMEACAS-EXECUTAVEL.md) agora classifica a cadeia desta página como evidência host para retenção, recuperação e ausência de autoridade de modelo, mas mantém backend protegido, power-loss, interface física, avaliação humana e supply chain como risco residual explícito. Ele não concede permissão adicional à composição nem muda o stop/go acima.
 
-A [coleção multi-cartão](26-COLECAO-MEMORIA.md) acrescenta uma persistência lógica limitada em host, com transação e recuperação autenticada, mas ainda não substitui nem altera o caminho unitário auditado nesta fixture. A integração da seleção humana entre cofre unitário e coleção será um passo explícito; não existe fallback automático ou nova autoridade de memória.
+A [coleção multi-cartão](26-COLECAO-MEMORIA.md) acrescenta uma persistência lógica limitada em host, com transação e recuperação autenticada, sem alterar retroativamente a fixture unitária desta página. O passo explícito de integração agora está em [Grand Finale da coleção](30-GRAND-FINALE-COLECAO.md): ele compõe a autorização humana, coleção, recuperação, índice e apresentação e trata fallback automático ao caminho unitário como falha. Não existe nova autoridade de memória.
 
 ## Referências
 

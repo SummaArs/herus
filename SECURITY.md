@@ -31,6 +31,7 @@ All of the following are checked by `./prove.sh` on every run — see
 | Private collection retrieval in host | `make memory-collection-index` permits only bounded typed queries under physical access, preserves abstention/ambiguity and never opens a card automatically; see [docs/27-INDICE-PRIVADO-COLECAO.md](docs/27-INDICE-PRIVADO-COLECAO.md) |
 | Transactional crash-state recovery in host | `make memory-collection-recovery` promotes only an authenticated successor bound to the durable floor, discards pre-floor preparation and blocks contradictory state; see [docs/28-RECUPERACAO-TRANSACIONAL.md](docs/28-RECUPERACAO-TRANSACIONAL.md) |
 | Local build-input integrity in host | `provenance_audit.py` rejects drift in declared source/proof inputs, unsafe paths, secret-like metadata and unsupported trust claims; see [docs/29-PROVENIENCIA-LOCAL-BUILD.md](docs/29-PROVENIENCIA-LOCAL-BUILD.md) |
+| Composed multi-card memory authority in host | `make memory-collection-finale` connects human-authorized admission, authenticated recovery, bounded typed query and one-shot abstention; it fails if an index auto-opens, legacy retrieval fallback or model authority appears; see [docs/30-GRAND-FINALE-COLECAO.md](docs/30-GRAND-FINALE-COLECAO.md) |
 
 ## What is NOT protected yet
 
@@ -80,6 +81,12 @@ consequences:
   not establish that callbacks survive brownout, that flash writes are atomic, that
   a root or counter is protected, that old bytes are purged, or that a faulting
   target cannot present a topology the host contract blocks.
+- **Collection composition is not physical memory authority.** M14 connects only
+  host fixture evidence. It does not prove a human performed a gesture, that vault
+  authorization and collection share a protected root, that a physical session is
+  fresh/non-replayable, that the target presenter preserves abstention, that RAM is
+  protected, that access patterns are hidden, or that an ASR/LLM could not bypass a
+  faulty target adapter or modified firmware.
 
 ## Regulatory safety
 

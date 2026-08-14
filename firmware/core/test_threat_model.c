@@ -38,7 +38,7 @@ int main(void)
     expect_host(THREAT_MODEL_COMPANION_TRUST,
                 "T9 pairing, authentication, freshness and revocation are separate required trust evidence");
     expect_host(THREAT_MODEL_MEMORY_RETENTION,
-                "T9 selective capture, policy, human authority, vault and conflict controls compose for retention");
+                "T9 selective capture, policy, human authority, collection composition and conflict controls compose for retention");
     expect_host(THREAT_MODEL_MEMORY_RECOVERY,
                 "T9 access gating, ambiguity and one-shot presentation compose for recovery");
     expect_host(THREAT_MODEL_MODEL_AGENCY,
@@ -66,6 +66,12 @@ int main(void)
     ok(threat_model_assess(THREAT_MODEL_MEMORY_RETENTION, &s, &d) == THREAT_MODEL_E_BLOCKED &&
        (d.failures & THREAT_MODEL_FAIL_MEMORY_RECOVERY) && !d.host_mitigated,
        "T9 retention loses host mitigation when crash recovery lacks an explicit safe topology");
+
+    s = host_controls();
+    s.memory_collection_composed = 0u;
+    ok(threat_model_assess(THREAT_MODEL_MEMORY_RETENTION, &s, &d) == THREAT_MODEL_E_BLOCKED &&
+       (d.failures & THREAT_MODEL_FAIL_COLLECTION_FINALE) && !d.host_mitigated,
+       "T9 retention loses host mitigation when collection composition can bypass human authority, abstention or no-fallback evidence");
 
     s = host_controls();
     s.memory_ambiguity_preserved = 0u;
