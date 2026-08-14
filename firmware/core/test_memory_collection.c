@@ -153,11 +153,17 @@ static memory_vault_write_authorization_t auth_for(const memory_vault_card_t *ca
     return auth;
 }
 
-static memory_collection_access_t physical_access(uint32_t session)
+static memory_collection_access_t physical_access(memory_physical_session_t *gate,
+                                                  memory_physical_purpose_t purpose,
+                                                  uint32_t session)
 {
     memory_collection_access_t access;
+    uint8_t uses = purpose == MEMORY_PHYSICAL_PURPOSE_COLLECTION_QUERY ? 3u : 1u;
+    (void)memory_physical_session_begin(gate, purpose, session, session ^ 0xA55Au,
+                                        1u, uses, session * 100u);
+    access.gate = gate;
     access.physical_session_id = session;
-    access.physical_confirmed = 1u;
+    access.observed_at_ms = session * 100u + 1u;
     return access;
 }
 
@@ -177,6 +183,8 @@ int main(void)
     memory_vault_card_t out;
     memory_vault_write_authorization_t auth;
     memory_collection_access_t access;
+    memory_physical_session_t gate;
+    memory_physical_session_config_t gate_cfg;
     uint8_t old_committed[MEMORY_COLLECTION_BLOB_LEN];
     uint32_t old_floor;
     uint8_t i;
@@ -184,7 +192,11 @@ int main(void)
     printf("\n== T10 multi-card collection remains human-gated, bounded and transactional ==\n");
     backend_init(&f);
     cfg = config_for(&f);
-    access = physical_access(77u);
+    memory_physical_session_config_default(&gate_cfg);
+    gate_cfg.window_ms = 1000u;
+    ok(memory_physical_session_init(&gate, &gate_cfg) == MEMORY_PHYSICAL_SESSION_OK,
+       "T10 fixture physical-session gate initializes without a physical-device claim");
+    access = physical_access(&gate, MEMORY_PHYSICAL_PURPOSE_COLLECTION_INSERT, 77u);
     ok(memory_collection_init(&c, &cfg) == MEMORY_COLLECTION_OK &&
        c.state == MEMORY_COLLECTION_READY && c.generation == 0u && c.count == 0u,
        "T10 empty collection initialises only from an empty floor and empty records");
@@ -195,29 +207,32 @@ int main(void)
        c.generation == 1u && c.count == 1u && f.floor == 1u &&
        f.has_committed && !f.has_prepared,
        "T10 authorised card is prepared, floor-committed, promoted and cleaned up");
+    access = physical_access(&gate, MEMORY_PHYSICAL_PURPOSE_COLLECTION_OPEN, 78u);
     memset(&out, 0xA5, sizeof(out));
     ok(memory_collection_open(&c, 101u, &access, &out) == MEMORY_COLLECTION_OK &&
        out.card_id == 101u && out.review_receipt_id == 1001u,
        "T10 physical access opens exactly one known minimal card");
 
-    access.physical_confirmed = 0u;
+    access.gate = 0;
     card = eligible_card(102u, 1002u);
     auth = auth_for(&card);
     ok(memory_collection_insert(&c, &auth, &card, &access) == MEMORY_COLLECTION_E_ACCESS &&
        c.count == 1u && c.generation == 1u,
        "T10 noncanonical physical access cannot add a card");
-    access = physical_access(77u);
+    access = physical_access(&gate, MEMORY_PHYSICAL_PURPOSE_COLLECTION_INSERT, 80u);
     auth.human_confirmed = 0u;
     ok(memory_collection_insert(&c, &auth, &card, &access) == MEMORY_COLLECTION_E_AUTH &&
-       c.count == 1u,
-       "T10 missing human write authorization cannot be replaced by collection access");
+       c.count == 1u && memory_physical_session_cancel(&gate) == MEMORY_PHYSICAL_SESSION_OK,
+       "T10 missing human write authorization cannot be replaced by collection access or silently reused");
     auth = auth_for(&card);
+    access = physical_access(&gate, MEMORY_PHYSICAL_PURPOSE_COLLECTION_INSERT, 81u);
     card.signal.sensitivity = MEMORY_SENSITIVITY_SENSITIVE;
     ok(memory_collection_insert(&c, &auth, &card, &access) == MEMORY_COLLECTION_E_CARD &&
-       c.count == 1u,
-       "T10 sensitive card never crosses the collection boundary automatically");
+       c.count == 1u && memory_physical_session_cancel(&gate) == MEMORY_PHYSICAL_SESSION_OK,
+       "T10 sensitive card never crosses the collection boundary automatically or leaves reusable authority");
     card = eligible_card(101u, 2001u);
     auth = auth_for(&card);
+    access = physical_access(&gate, MEMORY_PHYSICAL_PURPOSE_COLLECTION_INSERT, 82u);
     ok(memory_collection_insert(&c, &auth, &card, &access) == MEMORY_COLLECTION_E_DUPLICATE &&
        c.count == 1u,
        "T10 duplicate opaque card id is rejected rather than overwritten or merged");
@@ -225,23 +240,29 @@ int main(void)
     for (i = 0u; i < MEMORY_COLLECTION_MAX_CARDS - 1u; ++i) {
         card = eligible_card(200u + (uint32_t)i, 3000u + (uint32_t)i);
         auth = auth_for(&card);
+        access = physical_access(&gate, MEMORY_PHYSICAL_PURPOSE_COLLECTION_INSERT,
+                                 83u + (uint32_t)i);
         ok(memory_collection_insert(&c, &auth, &card, &access) == MEMORY_COLLECTION_OK,
            "T10 bounded collection accepts each independently authorised card within capacity");
     }
     card = eligible_card(999u, 9999u);
     auth = auth_for(&card);
+    access = physical_access(&gate, MEMORY_PHYSICAL_PURPOSE_COLLECTION_INSERT, 90u);
     ok(c.count == MEMORY_COLLECTION_MAX_CARDS &&
        memory_collection_insert(&c, &auth, &card, &access) == MEMORY_COLLECTION_E_CAPACITY &&
        c.count == MEMORY_COLLECTION_MAX_CARDS,
        "T10 capacity exhaustion does not evict or overwrite an existing memory");
 
+    access = physical_access(&gate, MEMORY_PHYSICAL_PURPOSE_COLLECTION_REMOVE, 91u);
     ok(memory_collection_remove(&c, 203u, &access) == MEMORY_COLLECTION_OK &&
        c.count == MEMORY_COLLECTION_MAX_CARDS - 1u,
        "T10 physical removal is logical, generation-advancing and leaves no success ambiguity");
+    access = physical_access(&gate, MEMORY_PHYSICAL_PURPOSE_COLLECTION_OPEN, 92u);
     memset(&out, 0xA5, sizeof(out));
     ok(memory_collection_open(&c, 203u, &access, &out) == MEMORY_COLLECTION_E_NOT_FOUND &&
        out.card_id == 0u,
        "T10 removed identifiers cannot be recovered and failure output is scrubbed");
+    access = physical_access(&gate, MEMORY_PHYSICAL_PURPOSE_COLLECTION_COMPACT, 93u);
     ok(memory_collection_compact(&c, &access) == MEMORY_COLLECTION_OK &&
        c.count == MEMORY_COLLECTION_MAX_CARDS - 1u,
        "T10 compaction only rewrites canonical active cards under physical access");
@@ -253,6 +274,7 @@ int main(void)
     card = eligible_card(401u, 4001u);
     auth = auth_for(&card);
     f.fail_store_committed = 1;
+    access = physical_access(&gate, MEMORY_PHYSICAL_PURPOSE_COLLECTION_INSERT, 100u);
     ok(memory_collection_insert(&c, &auth, &card, &access) == MEMORY_COLLECTION_E_STORAGE &&
        c.state == MEMORY_COLLECTION_BLOCKED && f.has_prepared && f.floor == 1u,
        "T10 commit failure after prepared/floor write blocks instead of claiming persistence");
@@ -266,6 +288,7 @@ int main(void)
     card = eligible_card(402u, 4002u);
     auth = auth_for(&card);
     f.fail_commit_floor = 1;
+    access = physical_access(&gate, MEMORY_PHYSICAL_PURPOSE_COLLECTION_INSERT, 101u);
     ok(memory_collection_insert(&reopened, &auth, &card, &access) == MEMORY_COLLECTION_E_STORAGE &&
        reopened.state == MEMORY_COLLECTION_BLOCKED && f.has_prepared && f.floor == 1u,
        "T10 interruption before floor commit leaves only a discardable authenticated preparation");
@@ -276,6 +299,7 @@ int main(void)
 
     memcpy(old_committed, f.committed, sizeof(old_committed));
     old_floor = f.floor;
+    access = physical_access(&gate, MEMORY_PHYSICAL_PURPOSE_COLLECTION_INSERT, 102u);
     ok(memory_collection_insert(&c, &auth, &card, &access) == MEMORY_COLLECTION_OK &&
        f.floor == old_floor + 1u,
        "T10 second committed mutation advances an independent collection generation");
@@ -292,6 +316,7 @@ int main(void)
     card = eligible_card(451u, 4501u);
     auth = auth_for(&card);
     f.fail_erase_prepared = 1;
+    access = physical_access(&gate, MEMORY_PHYSICAL_PURPOSE_COLLECTION_INSERT, 103u);
     ok(memory_collection_insert(&c, &auth, &card, &access) == MEMORY_COLLECTION_E_STORAGE &&
        c.state == MEMORY_COLLECTION_BLOCKED && f.has_committed && f.has_prepared && f.floor == 1u,
        "T10 interruption after committed write keeps matching prepared state for cleanup only");
@@ -307,6 +332,7 @@ int main(void)
        "T10 fresh fixture initialises for authenticity scenario");
     card = eligible_card(501u, 5001u);
     auth = auth_for(&card);
+    access = physical_access(&gate, MEMORY_PHYSICAL_PURPOSE_COLLECTION_INSERT, 104u);
     ok(memory_collection_insert(&c, &auth, &card, &access) == MEMORY_COLLECTION_OK,
        "T10 authenticity fixture stores one card");
     f.committed[TEST_TAG_OFFSET] ^= 0x80u;
@@ -321,6 +347,7 @@ int main(void)
        "T10 empty collection does not pretend to test a root before a cryptographic operation");
     card = eligible_card(601u, 6001u);
     auth = auth_for(&card);
+    access = physical_access(&gate, MEMORY_PHYSICAL_PURPOSE_COLLECTION_INSERT, 105u);
     ok(memory_collection_insert(&c, &auth, &card, &access) != MEMORY_COLLECTION_OK &&
        c.state == MEMORY_COLLECTION_BLOCKED,
        "T10 root-load failure blocks mutation with no false persistence result");

@@ -32,7 +32,7 @@ the documents**.
 
 | Target | Command | What it proves |
 |---|---|---|
-| Everything | `./prove.sh` | 31 suites + 71 proof invariants + 74 system invariants |
+| Everything | `./prove.sh` | 32 suites + 73 proof invariants + 74 system invariants |
 | Algebra | `cd firmware && make algebra` | Binding, bundling, resonator, HCP, dense vs sparse |
 | Núcleo | `cd firmware && make nucleus` | Consentimento opt-in, memória limitada, confiança, expiração e apagamento local |
 | Voz e háptica | `cd firmware && make voice` | Linguagem controlada, rascunho confirmável, SOS bloqueado e vibração limitada |
@@ -51,6 +51,7 @@ the documents**.
 | Índice privado de coleção | `cd firmware && make memory-collection-index` | Consulta tipada e física sobre coleção autenticada, budget transitório por sessão, match mínimo, ausência/ambiguidade sem vencedor, sem listagem ou abertura automática |
 | Recuperação transacional | `cd firmware && make memory-collection-recovery` | Matriz C11 para estados autenticados de `PREPARED`/`COMMITTED` e piso: promoção, descarte pré-piso, finalização de limpeza ou bloqueio sem recuperação ambígua |
 | Grand Finale da coleção | `cd firmware && make memory-collection-finale` | Fixture composta de captura→política→revisão→autorização→coleção→recuperação→índice→apresentação; abstenção válida, sem abertura automática, fallback unitário ou autoridade de modelo |
+| Sessão física de coleção | `cd firmware && make memory-physical-session` | Propósito fechado, ID/nonce transitórios, janela, cancelamento e consumo único ou limitado; prova host, não botão, pessoa, biometria, relógio ou anti-replay pós-reboot |
 | Modelo de ameaças | `cd firmware && make threat-model` | Classificação fail-closed de evidência host, pendências de alvo e escopo residual para rádio, trust, memória, modelo, telemetria, plataforma e supply chain |
 | Assurance Grand Finale | `cd firmware && make assurance` | Composição fail-closed de sessão, intenção, confirmação, trust, frescor, revogação e modelo |
 | Capstone Grand Finale | `cd firmware && make capstone` | Ataque à cadeia diálogo→modelo→interação→trust; nenhum bypass do handoff físico confirmado |
@@ -80,7 +81,9 @@ on the machine that runs it.
    the driver, `sim/scenarios.c` for behaviour of the system.
 2. **Make it pass**, without weakening any other invariant.
 3. **Add it to the ledger** in `prove.sh` if it is a property and not just a
-   case: a `check` line whose grep can genuinely fail.
+   case: a `check` line whose grep can genuinely fail. Uma mudança em acesso da
+   coleção também deve exercitar `memory-physical-session`, coleção, índice e
+   Grand Finale quando tocar propósito, consumo, janela ou fallback.
 4. **Update the number, not the adjective.** If the change moves a figure in
    `README.md` or `docs/`, move it there too, in the same commit.
 5. `./prove.sh` must end in `ALL INVARIANTS HOLD` before you push. CI runs the

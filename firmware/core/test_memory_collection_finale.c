@@ -202,6 +202,20 @@ static memory_consolidation_access_t physical(uint32_t session)
     return access;
 }
 
+static memory_collection_access_t collection_access(memory_physical_session_t *gate,
+                                                   memory_physical_purpose_t purpose,
+                                                   uint32_t session)
+{
+    memory_collection_access_t access;
+    uint8_t uses = purpose == MEMORY_PHYSICAL_PURPOSE_COLLECTION_QUERY ? 2u : 1u;
+    (void)memory_physical_session_begin(gate, purpose, session, session ^ 0xC33Cu,
+                                        1u, uses, session * 100u);
+    access.gate = gate;
+    access.physical_session_id = session;
+    access.observed_at_ms = session * 100u + 1u;
+    return access;
+}
+
 static memory_retrieval_query_t idea_query(void)
 {
     memory_retrieval_query_t query;
@@ -226,6 +240,7 @@ static memory_collection_finale_snapshot_t safe_snapshot(memory_retrieval_status
     s.collection_state = MEMORY_COLLECTION_READY;
     s.collection_recovery_consistent = 1u;
     s.collection_record_authenticated = 1u;
+    s.collection_physical_session_bound = 1u;
     s.index_physical_access = 1u;
     s.index_typed_query = 1u;
     s.index_budget_respected = 1u;
@@ -254,7 +269,10 @@ int main(void)
     memory_assessment_t assessment;
     memory_consolidation_t consolidation;
     memory_consolidation_proposal_t proposal;
-    memory_consolidation_access_t access;
+    memory_consolidation_access_t review_access;
+    memory_collection_access_t collection_access_assertion;
+    memory_physical_session_t collection_gate;
+    memory_physical_session_config_t collection_gate_cfg;
     memory_vault_t vault;
     memory_vault_card_t card;
     memory_vault_write_authorization_t auth;
@@ -301,11 +319,11 @@ int main(void)
     proposal.signal = candidate.signal;
     proposal.origin = candidate.origin;
     proposal.extract_reasons = candidate.reasons;
-    access = physical(701u);
+    review_access = physical(701u);
     receipt_id = consolidation.next_review_receipt_id;
-    ok(memory_consolidation_begin(&consolidation, &proposal, access.physical_session_id, 200u) ==
+    ok(memory_consolidation_begin(&consolidation, &proposal, review_access.physical_session_id, 200u) ==
            MEMORY_CONSOLIDATION_OK &&
-       memory_consolidation_confirm_store(&consolidation, &vault, &access, 201u) ==
+       memory_consolidation_confirm_store(&consolidation, &vault, &review_access, 201u) ==
            MEMORY_CONSOLIDATION_OK,
        "M14 same-session human confirmation emits the existing minimal-card authority before collection admission");
 
@@ -318,9 +336,18 @@ int main(void)
     auth.card_id = card.card_id;
     auth.review_receipt_id = card.review_receipt_id;
     auth.human_confirmed = 1u;
-    ok(memory_collection_insert(&collection, &auth, &card, &access) == MEMORY_COLLECTION_OK &&
-       collection.state == MEMORY_COLLECTION_READY && collection.metrics.inserts == 1u,
-       "M14 collection accepts only the separately human-authorised minimal card");
+    memory_physical_session_config_default(&collection_gate_cfg);
+    collection_gate_cfg.window_ms = 1000u;
+    ok(memory_physical_session_init(&collection_gate, &collection_gate_cfg) ==
+           MEMORY_PHYSICAL_SESSION_OK,
+       "M14 collection uses a separate purpose-bound session gate without claiming a real gesture");
+    collection_access_assertion = collection_access(&collection_gate,
+                                                     MEMORY_PHYSICAL_PURPOSE_COLLECTION_INSERT,
+                                                     801u);
+    ok(memory_collection_insert(&collection, &auth, &card, &collection_access_assertion) ==
+           MEMORY_COLLECTION_OK && collection.state == MEMORY_COLLECTION_READY &&
+       collection.metrics.inserts == 1u,
+       "M14 collection accepts only the separately human-authorised minimal card under INSERT purpose");
     (void)memory_capture_cancel(&capture, 7u, 202u);
 
     ok(memory_collection_init(&reopened, &collection_cfg) == MEMORY_COLLECTION_OK &&
@@ -331,14 +358,17 @@ int main(void)
     ok(memory_collection_index_init(&index, &index_cfg) == MEMORY_COLLECTION_INDEX_OK,
        "M14 in-RAM index begins without a card cache, query or automatic open");
     query = idea_query();
+    collection_access_assertion = collection_access(&collection_gate,
+                                                     MEMORY_PHYSICAL_PURPOSE_COLLECTION_QUERY,
+                                                     802u);
     opens_before = reopened.metrics.opens;
-    ok(memory_collection_index_query(&index, &reopened, &access, &query, &result) ==
+    ok(memory_collection_index_query(&index, &reopened, &collection_access_assertion, &query, &result) ==
            MEMORY_COLLECTION_INDEX_OK && result.status == MEMORY_RETRIEVAL_MATCH &&
        result.card_id == proposal.card_id && reopened.metrics.opens == opens_before,
        "M14 typed physical query returns only a minimal match and does not open the collection card");
 
     memory_retrieval_present_init(&presenter);
-    ok(memory_retrieval_present_show(&presenter, &access, &result, &presentation) ==
+    ok(memory_retrieval_present_show(&presenter, &review_access, &result, &presentation) ==
            MEMORY_RETRIEVAL_PRESENT_OK &&
        presentation.phrase == MEMORY_RETRIEVAL_PHRASE_MATCH_AVAILABLE &&
        presentation.kind == MEMORY_KIND_IDEA && presentation.reasons != 0u,
@@ -348,14 +378,19 @@ int main(void)
        decision.chain_consistent == 1u && decision.failures == MEMORY_COLLECTION_FINALE_FAIL_NONE,
        "M14 composed evidence is diagnostic only and creates no new collection, index or presentation authority");
 
+    ok(memory_physical_session_cancel(&collection_gate) == MEMORY_PHYSICAL_SESSION_OK,
+       "M14 unfinished query capability is explicitly cancelled before a new retrieval purpose");
     query.preferred_kind = MEMORY_KIND_COMMITMENT;
-    access = physical(702u);
-    ok(memory_collection_index_query(&index, &reopened, &access, &query, &result) ==
+    review_access = physical(702u);
+    collection_access_assertion = collection_access(&collection_gate,
+                                                     MEMORY_PHYSICAL_PURPOSE_COLLECTION_QUERY,
+                                                     803u);
+    ok(memory_collection_index_query(&index, &reopened, &collection_access_assertion, &query, &result) ==
            MEMORY_COLLECTION_INDEX_OK && result.status == MEMORY_RETRIEVAL_NO_MATCH &&
        result.card_id == 0u && result.reasons == 0u,
        "M14 no-match remains a terminal abstention with no collection enumeration");
     memory_retrieval_present_init(&presenter);
-    ok(memory_retrieval_present_show(&presenter, &access, &result, &presentation) ==
+    ok(memory_retrieval_present_show(&presenter, &review_access, &result, &presentation) ==
            MEMORY_RETRIEVAL_PRESENT_OK &&
        presentation.phrase == MEMORY_RETRIEVAL_PHRASE_NO_MATCH && presentation.kind == MEMORY_KIND_NONE,
        "M14 no-match reaches only symbolic presentation, not a retry or fallback");
@@ -373,6 +408,7 @@ int main(void)
     snapshot.policy_disposition = MEMORY_DISPOSITION_REVIEW;
     snapshot.human_review_confirmed = 0u;
     snapshot.collection_state = MEMORY_COLLECTION_BLOCKED;
+    snapshot.collection_physical_session_bound = 0u;
     snapshot.index_budget_respected = 0u;
     snapshot.query_result_card_auto_opened = 1u;
     snapshot.unit_vault_fallback_used = 1u;
@@ -381,11 +417,12 @@ int main(void)
        (decision.failures & MEMORY_COLLECTION_FINALE_FAIL_POLICY) &&
        (decision.failures & MEMORY_COLLECTION_FINALE_FAIL_HUMAN_REVIEW) &&
        (decision.failures & MEMORY_COLLECTION_FINALE_FAIL_COLLECTION_STATE) &&
+       (decision.failures & MEMORY_COLLECTION_FINALE_FAIL_COLLECTION_SESSION) &&
        (decision.failures & MEMORY_COLLECTION_FINALE_FAIL_INDEX_BUDGET) &&
        (decision.failures & MEMORY_COLLECTION_FINALE_FAIL_AUTO_OPEN) &&
        (decision.failures & MEMORY_COLLECTION_FINALE_FAIL_LEGACY_FALLBACK) &&
        (decision.failures & MEMORY_COLLECTION_FINALE_FAIL_MODEL_AGENCY) && !decision.chain_consistent,
-       "M14 review, blocked collection, budget bypass, automatic open, legacy fallback and model agency all dominate success");
+       "M14 review, blocked collection/session, budget bypass, automatic open, legacy fallback and model agency all dominate success");
 
     snapshot = safe_snapshot(MEMORY_RETRIEVAL_MATCH);
     snapshot.capture_physical_validated = 2u;

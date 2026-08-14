@@ -18,7 +18,7 @@ A NIST descreve resiliência de plataforma como proteção, detecção e recuper
 
 ## 1. Ordem de transação e autoridade
 
-A coleção já exige autorização humana explícita e acesso físico canônico para inserir, remover ou compactar. O oráculo não altera essa autoridade. Ele somente escolhe a recuperação de registros que já existem após uma interrupção lógica.
+A coleção já exige autorização humana explícita e sessão transitória de propósito para inserir, remover ou compactar. O oráculo não altera essa autoridade. Ele somente escolhe a recuperação de registros que já existem após uma interrupção lógica.
 
 ```mermaid
 flowchart LR
@@ -79,12 +79,13 @@ cd firmware
 make memory-collection-recovery
 make memory-collection
 make memory-collection-index
+make memory-physical-session
 cd ..
 git diff --check
 ./prove.sh --quiet
 ```
 
-O pipeline agora executa **31 suítes**, **71 invariantes de prova** e mantém **74 invariantes do sistema simulado**. Isso prova cenários C11 e decisões de estado no host. Não mede taxa de falha, não prova power-loss físico, `brownout`, corrupção parcial de setor, atomicidade, serialização de controlador, latência, energia, capacidade de contador, eFuse, NVS, secure element, uso de flash, vida útil, purge, acessibilidade ou interação humana.
+O pipeline agora executa **32 suítes**, **73 invariantes de prova** e mantém **74 invariantes do sistema simulado**. Isso prova cenários C11 e decisões de estado no host. A sessão de propósito posterior limita quem pode iniciar mutação, mas não muda a classificação do oráculo nem demonstra power-loss físico. Não mede taxa de falha, não prova power-loss físico, `brownout`, corrupção parcial de setor, atomicidade, serialização de controlador, latência, energia, capacidade de contador, eFuse, NVS, secure element, uso de flash, vida útil, purge, acessibilidade ou interação humana.
 
 ## 5. Critério de porta de plataforma aberta
 

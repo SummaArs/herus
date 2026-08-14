@@ -9,21 +9,21 @@ Este passo evolui o cofre unitário para uma coleção de cartões tipados. O co
 | Artefato | Responsabilidade | Deliberadamente ausente |
 |---|---|---|
 | `memory_collection_store.h` | Porta opaca para registro preparado, registro confirmado e piso de geração. | Tipo de NVS, endereço de flash, setor, chave, nonce, texto ou cartão em claro. |
-| `memory_collection.h` | Estados, acesso físico já canônico, operações e métricas numéricas. | Candidato, ASR, diálogo, rádio, rede, LLM, identidade, localização e timestamp. |
+| `memory_collection.h` | Estados, acesso por sessão de propósito, operações e métricas numéricas. | Candidato, ASR, diálogo, rádio, rede, LLM, identidade, localização e timestamp. |
 | `memory_collection.c` | Serialização canônica, HKDF, AEAD, transação, recuperação e bloqueio. | Alocação dinâmica, busca, enumeração, deduplicação semântica, resolução de conflito ou sanitização física. |
 | `memory_collection_recovery.[ch]` | Oráculo puro para promover, descartar, finalizar limpeza ou bloquear estado pós-interrupção. | I/O, blob, chave, cartão, callback, decisão humana ou garantia de mídia. |
 | `test_memory_collection.c` | Backend RAM e contraprovas de autoridade, integridade, capacidade, transação e rollback. | Persistência real, endurance, power-loss físico, ataque à RAM/flash ou proteção de silício. |
 
 ## 1. Posição na cadeia humana de memória
 
-A coleção recebe somente `memory_vault_card_t` que já passam a política conservadora do cofre: sessão autorizada, escopo `SELF`, sensibilidade `ORDINARY`, origem conhecida, razões não vazias e disposição `AUTO_ELIGIBLE`. Além disso, inserir exige a autorização vinculada a `card_id` e `review_receipt_id`, e uma asserção física canônica. Acesso físico isolado **não** substitui autorização de escrita; autorização isolada **não** substitui o acesso físico da operação.
+A coleção recebe somente `memory_vault_card_t` que já passam a política conservadora do cofre: sessão autorizada, escopo `SELF`, sensibilidade `ORDINARY`, origem conhecida, razões não vazias e disposição `AUTO_ELIGIBLE`. Além disso, inserir exige a autorização vinculada a `card_id` e `review_receipt_id`, e uma sessão transitória `INSERT` validada e consumida. Acesso físico isolado **não** substitui autorização de escrita; autorização isolada **não** substitui o acesso físico da operação.
 
 | Fluxo | Pré-condição | Efeito permitido |
 |---|---|---|
-| Inserir | Cartão válido + autorização humana vinculada + acesso físico. | Acrescentar um cartão a coleção, se houver capacidade. |
-| Abrir por ID | ID opaco conhecido + acesso físico. | Devolver somente o cartão mínimo solicitado; nunca enumerar todos. |
-| Remover | ID opaco existente + acesso físico. | Retirar referência ativa logicamente e avançar geração. |
-| Compactar | Acesso físico + coleção íntegra. | Reordenar cartões existentes pelo ID opaco; não mudar campos nem significado. |
+| Inserir | Cartão válido + autorização humana vinculada + sessão `INSERT`. | Acrescentar um cartão a coleção, se houver capacidade. |
+| Abrir por ID | ID opaco conhecido + sessão `OPEN`. | Devolver somente o cartão mínimo solicitado; nunca enumerar todos. |
+| Remover | ID opaco existente + sessão `REMOVE`. | Retirar referência ativa logicamente e avançar geração. |
+| Compactar | Sessão `COMPACT` + coleção íntegra. | Reordenar cartões existentes pelo ID opaco; não mudar campos nem significado. |
 | Recuperar na inicialização | Registros autenticados e relação de geração não ambígua. | Promover a intenção já íntegra ou bloquear. |
 
 Nenhuma dessas operações cria um cartão, interpreta uma frase, decide relevância, escolhe entre conflitos, gera resumo, chama modelo ou transmite informação. A compactação não é “memória inteligente”: ela só reordena slots tipados e não pode mesclar ou deduplicar significado.
@@ -101,7 +101,7 @@ A biblioteca NVS do ESP-IDF é um **candidato** de adaptador, não uma garantia 
 | Blob confirmado antigo com piso novo | `E_ROLLBACK` e bloqueio. | Depende de âncora realmente durável e não redutível. |
 | Remoção | Remove referência ativa logicamente e avança geração. | Não é sanitização nem prova de bytes removidos da mídia. |
 
-A suíte `make memory-collection` usa um backend RAM exclusivamente de fixture e exerce fluxo autorizado, capacidade, cartão sensível, duplicidade, acesso inválido, remoção, compactação, promoção após piso, descarte antes do piso, finalização de limpeza, rollback, tag alterada e falha de raiz. `make memory-collection-recovery` falsifica a matriz pura de estados pós-interrupção e `make memory-collection-finale` compõe admissão humana, reinicialização autenticada, índice e apresentação sem auto-open, fallback ou modelo. O pipeline total passa a ter **31 suítes**, **71 invariantes de prova** e mantém **74 invariantes do simulador**. Isso é evidência de código host para esses cenários, não medição de silício, energia, RF, UX, ASR ou modelo.
+A suíte `make memory-collection` usa um backend RAM exclusivamente de fixture e exerce fluxo autorizado, capacidade, cartão sensível, duplicidade, acesso inválido, remoção, compactação, promoção após piso, descarte antes do piso, finalização de limpeza, rollback, tag alterada e falha de raiz. `make memory-collection-recovery` falsifica a matriz pura de estados pós-interrupção e `make memory-collection-finale` compõe admissão humana, reinicialização autenticada, índice e apresentação sem auto-open, fallback ou modelo. O pipeline total passa a ter **32 suítes**, **73 invariantes de prova** e mantém **74 invariantes do simulador**. Isso é evidência de código host para esses cenários, não medição de silício, energia, RF, UX, ASR ou modelo.
 
 ## 6. Exclusão, compactação e linguagem honesta
 
@@ -136,7 +136,7 @@ git diff --check
 ./prove.sh --quiet
 ```
 
-O [índice privado da coleção](27-INDICE-PRIVADO-COLECAO.md) faz recuperação tipada, limitada e abstencionista sobre a coleção em RAM transitória, mas não abre cartão automaticamente nem muda a autoridade humana. O [oráculo de recuperação](28-RECUPERACAO-TRANSACIONAL.md) separa promoção, descarte pré-piso e limpeza finalizada antes que o índice possa observar a coleção. O [Grand Finale da coleção](30-GRAND-FINALE-COLECAO.md) agora conecta explicitamente a autorização mínima emitida após revisão humana, a inserção, a recuperação autenticada, o índice e a apresentação. A composição trata fallback de recuperação ao cofre unitário, abertura automática e autoridade de modelo como falhas. Ela ainda não prova que esses backends compartilhem uma raiz protegida ou que a sessão seja física no alvo; não há fallback silencioso entre os caminhos.
+A [sessão física vinculada a propósito](31-SESSAO-FISICA-PROPOSITO.md) agora exige `INSERT`, `OPEN`, `REMOVE`, `COMPACT` ou `QUERY` transitório antes de cada operação da coleção; ela consome usos em RAM e não prova evento humano, relógio, nonce ou anti-replay após reboot. O [índice privado da coleção](27-INDICE-PRIVADO-COLECAO.md) faz recuperação tipada, limitada e abstencionista sobre a coleção em RAM transitória, mas não abre cartão automaticamente nem muda a autoridade humana. O [oráculo de recuperação](28-RECUPERACAO-TRANSACIONAL.md) separa promoção, descarte pré-piso e limpeza finalizada antes que o índice possa observar a coleção. O [Grand Finale da coleção](30-GRAND-FINALE-COLECAO.md) agora conecta explicitamente a autorização mínima emitida após revisão humana, a inserção, a recuperação autenticada, o índice e a apresentação. A composição trata fallback de recuperação ao cofre unitário, abertura automática e autoridade de modelo como falhas. Ela ainda não prova que esses backends compartilhem uma raiz protegida ou que o adaptador de sessão represente gesto, pessoa, tempo confiável ou resistência a reboot no alvo; não há fallback silencioso entre os caminhos.
 
 ## Referências
 

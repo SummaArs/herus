@@ -54,7 +54,7 @@ A consulta é exatamente a estrutura tipada de recuperação já existente:
 | `require_explicit` | Booleano canônico. | Permite exigir o lembrete explícito sem inferir intenção. |
 | `minimum_confidence_pct` | 0–100. | Estabelece um piso de qualidade de sinal já armazenada. |
 
-Uma consulta vazia é recusada, porque funcionaria como enumeração. Consultas válidas consomem um crédito, inclusive `NO_MATCH` e `AMBIGUOUS`. O padrão é **3 consultas por sessão física**; o limite configurável vai de 1 a 8. Uma nova sessão canônica reinicia apenas o contador transitório. O índice não retém o ID da sessão, o conteúdo da consulta, o ID do resultado nem propriedades de cartão em métricas de produto.
+Uma consulta vazia é recusada, porque funcionaria como enumeração. Consultas válidas primeiro validam uma sessão `QUERY` de propósito correto e depois consomem um uso durante a cópia autenticada, inclusive para `NO_MATCH` e `AMBIGUOUS`. O padrão é **3 consultas por sessão física**; o limite configurável vai de 1 a 8. Uma nova sessão canônica reinicia apenas o contador transitório. O índice não retém o ID da sessão, o conteúdo da consulta, o ID do resultado nem propriedades de cartão em métricas de produto. O gate atual é RAM host e não prova evento humano, tempo confiável ou anti-replay após reboot.
 
 A NIST descreve TREC como infraestrutura para avaliação de recuperação baseada em coleções de teste e metodologias de avaliação [1]. Esta implementação usa esse princípio de forma estreita: fixtures fechadas e repetíveis provam transições e recusas; elas não medem relevância humana, precisão pessoal, linguagem natural ou satisfação de usuário. A publicação NIST *Privacy in Information Retrieval* torna privacidade uma preocupação explícita para sistemas de recuperação [2], e o Privacy Framework orienta gestão de risco à privacidade durante inovação [3]. Aqui, isso se traduz em não criar um segundo arquivo de índice, não persistir consultas e não devolver competidores.
 
@@ -123,7 +123,7 @@ git diff --check
 ./prove.sh --quiet
 ```
 
-O pipeline passa a ter **31 suítes**, **71 invariantes de prova** e mantém **74 invariantes do sistema simulado**. Estes números são evidência do código host e dos cenários exercitados, não de um dispositivo final. O [Grand Finale da coleção](30-GRAND-FINALE-COLECAO.md) consome o resultado apenas como evidência de composição: mantém `MATCH` mínimo, `NO_MATCH`/`AMBIGUOUS` abstencionistas e trata abertura automática, fallback e modelo como falhas.
+O pipeline passa a ter **32 suítes**, **73 invariantes de prova** e mantém **74 invariantes do sistema simulado**. Estes números são evidência do código host e dos cenários exercitados, não de um dispositivo final. A [sessão física vinculada a propósito](31-SESSAO-FISICA-PROPOSITO.md) define a pré-condição `QUERY` transitória. O [Grand Finale da coleção](30-GRAND-FINALE-COLECAO.md) consome o resultado apenas como evidência de composição: mantém `MATCH` mínimo, `NO_MATCH`/`AMBIGUOUS` abstencionistas e trata abertura automática, fallback e modelo como falhas.
 
 ## Referências
 
