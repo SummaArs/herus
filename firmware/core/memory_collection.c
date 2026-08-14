@@ -1,5 +1,6 @@
 /* memory_collection.c — bounded, transactional and portable card collection. */
 #include "memory_collection.h"
+#include "memory_collection_private.h"
 #include "crypto.h"
 #include <string.h>
 
@@ -598,6 +599,26 @@ int memory_collection_open(memory_collection_t *c, uint32_t expected_card_id,
     }
     *out = current.cards[index];
     c->metrics.opens++;
+    secure_zero(&current, sizeof(current));
+    return MEMORY_COLLECTION_OK;
+}
+
+int memory_collection_copy_cards_for_index(
+    memory_collection_t *c, const memory_collection_access_t *access,
+    memory_vault_card_t out[MEMORY_COLLECTION_MAX_CARDS], uint8_t *out_count)
+{
+    collection_record_t current;
+    if (!c || !access || !out || !out_count) return MEMORY_COLLECTION_E_ARG;
+    memset(out, 0, sizeof(memory_vault_card_t) * MEMORY_COLLECTION_MAX_CARDS);
+    *out_count = 0u;
+    if (c->state != MEMORY_COLLECTION_READY) return MEMORY_COLLECTION_E_STATE;
+    if (!access_valid(access)) {
+        c->metrics.rejected_access++;
+        return MEMORY_COLLECTION_E_ACCESS;
+    }
+    if (load_current(c, &current) != MEMORY_COLLECTION_OK) return MEMORY_COLLECTION_E_STATE;
+    memcpy(out, current.cards, sizeof(current.cards));
+    *out_count = current.count;
     secure_zero(&current, sizeof(current));
     return MEMORY_COLLECTION_OK;
 }

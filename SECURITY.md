@@ -28,6 +28,7 @@ All of the following are checked by `./prove.sh` on every run — see
 | Constant airtime across meaning tiers (P1) | Traffic analysis cannot read the tier off the air, because every meaning-carrying frame occupies the radio for the same 246.8 ms |
 | Evidence-scoped threat classification | `make threat-model` rejects incomplete/noncanonical control evidence and distinguishes host-mitigated controls from target-pending and out-of-scope vectors; see [docs/25-MODELO-AMEACAS-EXECUTAVEL.md](docs/25-MODELO-AMEACAS-EXECUTAVEL.md) |
 | Bounded multi-card collection in host | `make memory-collection` requires authorization plus physical access, encrypts/authenticates a fixed index and rejects duplicate, capacity, transaction, tag and rollback failures; see [docs/26-COLECAO-MEMORIA.md](docs/26-COLECAO-MEMORIA.md) |
+| Private collection retrieval in host | `make memory-collection-index` permits only bounded typed queries under physical access, preserves abstention/ambiguity and never opens a card automatically; see [docs/27-INDICE-PRIVADO-COLECAO.md](docs/27-INDICE-PRIVADO-COLECAO.md) |
 
 ## What is NOT protected yet
 
@@ -64,6 +65,11 @@ consequences:
   removes an active logical reference and rewrites authenticated state. Old bytes,
   power-loss behavior, wear, secure storage and purge semantics belong to the
   selected backend and must be demonstrated on the chosen target.
+- **Private retrieval is not cryptographic query privacy.** The index copies up to
+  eight authenticated cards into transient RAM under an asserted physical session.
+  It has no persisted query log or public list API, but does not implement PIR,
+  ORAM, side-channel resistance, protected RAM, a real physical control or a
+  privacy property against modified firmware.
 
 ## Regulatory safety
 

@@ -135,7 +135,7 @@ git diff --check
 ./prove.sh --quiet
 ```
 
-A coleção ainda não é conectada ao auditor `memory_finale`; essa integração será uma decisão explícita de passo posterior, depois de definir como o fluxo humano seleciona coleção e como o Grand Finale deve distinguir cofre unitário legado da coleção. Não há fallback silencioso entre os dois caminhos.
+O [índice privado da coleção](27-INDICE-PRIVADO-COLECAO.md) agora faz recuperação tipada, limitada e abstencionista sobre a coleção em RAM transitória, mas não abre cartão automaticamente nem muda a autoridade humana. A coleção e seu índice ainda não são conectados ao auditor `memory_finale`; essa integração será uma decisão explícita de passo posterior, depois de definir como o fluxo humano seleciona coleção e como o Grand Finale deve distinguir cofre unitário legado da coleção. Não há fallback silencioso entre os caminhos.
 
 ## Referências
 
