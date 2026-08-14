@@ -55,14 +55,14 @@ minutes, so you can trust the documents.
    xcode-select --install 2>/dev/null; cc --version && python3 --version && pip3 install cryptography
    ```
 
-2. Prove everything. One command, thirty suites, 69 proof invariants:
+2. Prove everything. One command, thirty-one suites, 71 proof invariants:
 
    ```bash
    ./prove.sh
    ```
 
 **Done when.** `prove.sh` exits 0 and prints `ALL INVARIANTS HOLD`. That covers the
-algebra (T1–T11), the opt-in bounded Nucleus predictor, controlled voice/haptic contracts, the session-bound intent-confidence gateway, bounded dialogue, local-model acceptance policy, selective-memory relevance policy, explicit transient memory-capture session, typed non-retaining candidate extraction, the authorised encrypted memory-vault contract, bounded human memory consolidation, controlled typed memory retrieval, one-shot human retrieval presentation, the composed memory Grand Finale, the bounded transactional multi-card collection, its private abstention-safe index, its crash-state recovery oracle, its unsigned local provenance audit and the executable threat-model classifier, Grand Finale assurance and capstone chain, the explicit Core↔Nucleus trust lifecycle and authenticated control envelope, the confirmed interaction runtime, deterministic adapter/telemetry gates, the frozen hardware-readiness manifest, the preregistered study method, the protocol (crypto vs OpenSSL, ratchet, replay, forgery,
+algebra (T1–T11), the opt-in bounded Nucleus predictor, controlled voice/haptic contracts, the session-bound intent-confidence gateway, bounded dialogue, local-model acceptance policy, selective-memory relevance policy, explicit transient memory-capture session, typed non-retaining candidate extraction, the authorised encrypted memory-vault contract, bounded human memory consolidation, controlled typed memory retrieval, one-shot human retrieval presentation, the composed memory Grand Finale, the bounded transactional multi-card collection, its private abstention-safe index, its crash-state recovery oracle, its human-gated collection Grand Finale, its unsigned local provenance audit and the executable threat-model classifier, Grand Finale assurance and capstone chain, the explicit Core↔Nucleus trust lifecycle and authenticated control envelope, the confirmed interaction runtime, deterministic adapter/telemetry gates, the frozen hardware-readiness manifest, the preregistered study method, the protocol (crypto vs OpenSSL, ratchet, replay, forgery,
 flooding, Beat drift), the SX1262 command sequences against a mock bus, and every RF
 and energy figure in these documents.
 
@@ -432,6 +432,7 @@ anyone a price.
 ```
 [ ] Phase −1  three commands reproduce every number
 [ ] Phase −1  local provenance digest audit passes; signed release provenance remains pending
+[ ] Phase −1  collection Grand Finale passes; target backend/session/UI evidence remains pending
 [ ] Phase 0   volume closes at ≤ 12 mm
 [ ] Phase 0   wrist range ≥ 150 m urban at ≥ 50% PDR     <-- decides the product
 [ ] Phase 0   Tier 0.5 gain measured (keep if ≥ 2 dB)

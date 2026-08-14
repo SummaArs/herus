@@ -18,6 +18,7 @@
 #   make memory-collection the bounded transactional multi-card collection suite
 #   make memory-collection-index the private bounded multi-card retrieval suite
 #   make memory-collection-recovery the crash-state recovery-oracle suite
+#   make memory-collection-finale the human-gated multi-card composition suite
 #   make threat-model the executable evidence and residual-risk classification suite
 #   make assurance  the Grand Finale cross-module safety composition suite
 #   make capstone   the Grand Finale end-to-end safety-chain suite
@@ -43,9 +44,9 @@ INC     := -Icore -Inet -Iport -Itest
 CORE    := core/hv.c core/sbc.c core/lexicon.c core/hcp.c
 NET     := net/crypto.c net/session.c net/region.c net/weave.c net/beat.c net/link.c
 
-.PHONY: all algebra nucleus voice intent dialogue model-lab memory-policy memory-capture memory-extract memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale memory-collection memory-collection-index memory-collection-recovery threat-model assurance capstone trust control-link interaction interaction-rig net radio syntax vectors clean
+.PHONY: all algebra nucleus voice intent dialogue model-lab memory-policy memory-capture memory-extract memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale memory-collection memory-collection-index memory-collection-recovery memory-collection-finale threat-model assurance capstone trust control-link interaction interaction-rig net radio syntax vectors clean
 
-all: algebra nucleus voice intent dialogue model-lab memory-policy memory-capture memory-extract memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale memory-collection memory-collection-index memory-collection-recovery threat-model assurance capstone trust control-link interaction interaction-rig net radio syntax
+all: algebra nucleus voice intent dialogue model-lab memory-policy memory-capture memory-extract memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale memory-collection memory-collection-index memory-collection-recovery memory-collection-finale threat-model assurance capstone trust control-link interaction interaction-rig net radio syntax
 	@echo ""
 	@echo "=================================================="
 	@echo "ALL FIRMWARE SUITES PASS"
@@ -140,6 +141,11 @@ memory-collection-recovery: build
 	@echo "--- memory collection recovery: portable crash-state oracle ---"
 	$(CC) $(CFLAGS) $(INC) core/memory_collection_recovery.c core/test_memory_collection_recovery.c -o build/test_memory_collection_recovery
 	./build/test_memory_collection_recovery
+
+memory-collection-finale: build
+	@echo "--- memory collection Grand Finale: human-gated multi-card composition ---"
+	$(CC) $(CFLAGS) $(INC) net/crypto.c core/voice.c core/memory_capture.c core/memory_policy.c core/memory_extract.c core/memory_vault.c core/memory_consolidation.c core/memory_retrieval.c core/memory_retrieval_present.c core/memory_collection_recovery.c core/memory_collection.c core/memory_collection_index.c core/memory_collection_finale.c core/test_memory_collection_finale.c -o build/test_memory_collection_finale
+	./build/test_memory_collection_finale
 
 threat-model: build
 	@echo "--- threat model: evidence-scoped mitigation and residual-risk boundaries ---"
