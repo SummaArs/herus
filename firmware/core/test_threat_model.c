@@ -99,9 +99,16 @@ int main(void)
        d.failures == THREAT_MODEL_FAIL_TARGET_PENDING && !d.host_mitigated,
        "T9 portable evidence never upgrades secure boot, flash, JTAG, NVS or power-loss to host mitigation");
     ok(threat_model_assess(THREAT_MODEL_SUPPLY_CHAIN, &s, &d) == THREAT_MODEL_E_BLOCKED &&
-       d.evidence == THREAT_MODEL_OUT_OF_SCOPE &&
-       d.failures == THREAT_MODEL_FAIL_SCOPE_UNSUPPORTED,
-       "T9 unimplemented supply-chain assurance remains visible instead of silently trusted");
+       d.evidence == THREAT_MODEL_PENDING_TARGET && !d.host_mitigated &&
+       d.failures == THREAT_MODEL_FAIL_TARGET_PENDING,
+       "T9 a valid unsigned local digest remains pending until supply-chain provenance is authenticated");
+    s = host_controls();
+    s.supply_chain_local_integrity = 0u;
+    ok(threat_model_assess(THREAT_MODEL_SUPPLY_CHAIN, &s, &d) == THREAT_MODEL_E_BLOCKED &&
+       d.evidence == THREAT_MODEL_PENDING_TARGET &&
+       (d.failures & THREAT_MODEL_FAIL_SUPPLY_INTEGRITY) &&
+       (d.failures & THREAT_MODEL_FAIL_TARGET_PENDING) && !d.host_mitigated,
+       "T9 supply-chain evidence fails closed when the local input digest control is absent");
 
     s = host_controls();
     s.companion_link_fresh = 2u;

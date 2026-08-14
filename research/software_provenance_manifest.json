@@ -1,0 +1,121 @@
+{
+  "schema": "herus-software-provenance-v1",
+  "trust_state": "local_unattested",
+  "release": {
+    "source_repository": "https://github.com/SummaArs/herus",
+    "source_state": "unattested_worktree_inputs",
+    "baseline_command": "./prove.sh --quiet",
+    "artifact_scope": "source_and_host_proof_inputs_only"
+  },
+  "protected_inputs": [
+    {
+      "path": "prove.sh",
+      "kind": "file",
+      "sha256": "52a3f0d9ca85ca2e157d2188121da48e952e72674ec930e319cc4558b6b847be",
+      "role": "global proof ledger"
+    },
+    {
+      "path": ".github/workflows/prove.yml",
+      "kind": "file",
+      "sha256": "7c3352420028a78ec677582c93ac7aacf60dd0bd175322a459f0b022e9041b8b",
+      "role": "host proof workflow"
+    },
+    {
+      "path": "firmware",
+      "kind": "tree",
+      "sha256": "3804025bce8eecbb75b261064e99f513356aa5b130f7e243074da05cafadc445",
+      "role": "portable firmware and proof sources"
+    },
+    {
+      "path": "tools",
+      "kind": "tree",
+      "sha256": "7f4107a93def3eb925ee3eb1abe9df1596588c12cfd9b864b1a16fed0a58b160",
+      "role": "host proof and provenance tools"
+    },
+    {
+      "path": "research/hardware_readiness_manifest.json",
+      "kind": "file",
+      "sha256": "f17a1a94cf3ab3be1378a63ae0963ed9848a9abdfb2a1007e7189fb601eda2fb",
+      "role": "physical gate declaration"
+    }
+  ],
+  "components": [
+    {
+      "id": "c11-compiler",
+      "kind": "toolchain",
+      "source": "host environment",
+      "version": "host-selected C11 compiler",
+      "integrity": "environment_unattested",
+      "direct": true
+    },
+    {
+      "id": "make",
+      "kind": "build-tool",
+      "source": "host environment",
+      "version": "host-selected make",
+      "integrity": "environment_unattested",
+      "direct": true
+    },
+    {
+      "id": "python3-stdlib",
+      "kind": "runtime",
+      "source": "host environment",
+      "version": "host-selected Python 3 standard library",
+      "integrity": "environment_unattested",
+      "direct": true
+    },
+    {
+      "id": "actions-checkout",
+      "kind": "ci-action",
+      "source": "https://github.com/actions/checkout",
+      "version": "11d5960a326750d5838078e36cf38b85af677262",
+      "integrity": "revision_pinned",
+      "direct": true
+    },
+    {
+      "id": "actions-upload-artifact",
+      "kind": "ci-action",
+      "source": "https://github.com/actions/upload-artifact",
+      "version": "ea165f8d65b6e75b540449e92b4886f43607fa02",
+      "integrity": "revision_pinned",
+      "direct": true
+    }
+  ],
+  "assurance": {
+    "external_attestation": "pending",
+    "sbom_coverage": "declared_direct_inputs_only",
+    "reproducible_build": "not_claimed",
+    "build_isolation": "not_claimed"
+  },
+  "gates": [
+    {
+      "id": "local-source-input-digest",
+      "status": "active",
+      "question": "Do the declared host-proof inputs match the reviewed local SHA-256 references?",
+      "evidence_required": ["manifest schema", "canonical digest algorithm", "adversarial fixture suite"],
+      "claim_if_pass": "Only the listed local inputs match this unsigned manifest at audit time.",
+      "evidence_files": ["tools/provenance_audit.py", "research/software_provenance_manifest.json"]
+    },
+    {
+      "id": "signed-build-provenance",
+      "status": "pending",
+      "question": "Can a verifier authenticate a provenance statement for a released artifact and trace it to a protected builder?",
+      "evidence_required": ["signed attestation", "builder trust boundary", "artifact digest", "verification procedure"],
+      "claim_if_pass": "A separately reviewed release artifact has authenticated provenance for its declared builder boundary."
+    },
+    {
+      "id": "complete-component-inventory",
+      "status": "pending",
+      "question": "Does a machine-readable inventory cover the release artifact and its resolved direct and transitive components?",
+      "evidence_required": ["artifact inventory", "coverage method", "component identities", "review record"],
+      "claim_if_pass": "The declared release inventory has the documented coverage, not an inferred absence of vulnerabilities."
+    },
+    {
+      "id": "reproducible-target-build",
+      "status": "pending",
+      "question": "Can independent controlled environments reproduce the selected target artifact from the declared inputs?",
+      "evidence_required": ["pinned toolchain", "build recipe", "independent digest comparison", "target artifact"],
+      "claim_if_pass": "Only the tested target artifact and declared environments reproduced the recorded digest."
+    }
+  ]
+}

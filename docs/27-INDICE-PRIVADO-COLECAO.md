@@ -123,7 +123,7 @@ git diff --check
 ./prove.sh --quiet
 ```
 
-O pipeline passa a ter **29 suítes**, **67 invariantes de prova** e mantém **74 invariantes do sistema simulado**. Estes números são evidência do código host e dos cenários exercitados, não de um dispositivo final.
+O pipeline passa a ter **30 suítes**, **69 invariantes de prova** e mantém **74 invariantes do sistema simulado**. Estes números são evidência do código host e dos cenários exercitados, não de um dispositivo final.
 
 ## Referências
 

@@ -53,7 +53,7 @@ Below it: eight functions and a radio.
 
 ## 2. What is proven, and by what
 
-`./prove.sh` runs twenty-nine suites and gates 67 proof invariants. It exits non-zero if any
+`./prove.sh` runs thirty suites and gates 69 proof invariants. It exits non-zero if any
 one of them regresses, and it is the only thing standing between you and a
 plausible-looking bug in a device you will trust with an emergency.
 
@@ -84,6 +84,7 @@ plausible-looking bug in a device you will trust with an emergency.
 | **interaction** | push-to-talk, prazo, perda de fonte, confirmação, handoff de uso único e telemetria sem fala | testes determinísticos sem microfone, ASR, rádio, GPIO, chave ou relógio de sistema |
 | **validation lab** | rig de adaptadores, sequência de captura/apresentação/háptica, handoff único e rejeição de logs inseguros | testes determinísticos em host; não representa uma medição física |
 | **readiness manifest** | schema de gates, privacidade de logs e aprovação somente com arquivo de evidência | valida o plano de bancada; não cria uma medição ou aprova gate físico |
+| **local provenance** | schema estrito, inventário direto, digests SHA-256 de arquivos/árvores, campos privados ausentes e gates de confiança pendentes | testes host contra fixture; não prova autenticidade do checkout/builder, assinatura, SLSA, SBOM completo, isolamento, reprodutibilidade, CVEs, release ou supply chain física |
 | **preregistered study** | plano congelado, balanceamento, intervalos de Wilson, gates H1–H5 e rejeição de dados inseguros | testes de método com fixtures; não representa resultado de participantes ou hardware |
 | **protocol** | crypto correctness, forward secrecy, replay, forgery, rate limiting, out-of-order recovery, forward compatibility, canonical encoding, flood termination, Beat drift | 50 random cases per primitive against OpenSSL, plus adversarial cases |
 | **radio** | command ordering, frequency word, PA table coherence, sync word, BUSY discipline, duty-cycle arithmetic, and that the selftest diagnoses each plausible bring-up fault | a recording mock bus |
@@ -186,6 +187,7 @@ Stated plainly, because a firmware document that only lists features is a brochu
 | **Human retrieval presentation adapter** | `memory_retrieval_present.[ch]` prova códigos de status, sessão, one-shot e limites de haptics em host. Voz, motor, display, botão, adaptação individual, acessibilidade, compreensão, telemetria privada, energia e latência exigem interface alvo e avaliação humana. | Fase seguinte; ver [23-INTERFACE-RECUPERACAO-HUMANA.md](23-INTERFACE-RECUPERACAO-HUMANA.md) |
 | **Memory Grand Finale target integration** | `memory_finale.[ch]` prova a coerência de um snapshot e de uma fixture composta; ele não é runtime, banco ou autorização. Backend multi-cartão, raiz/NVS, power-loss, adaptadores de gesto/voz/háptica/tela, avaliação humana e modelo local continuam fora da evidência. | Fase seguinte; ver [24-GRAND-FINALE-MEMORIA.md](24-GRAND-FINALE-MEMORIA.md) |
 | **eFuse ritual** | Until flash encryption, secure boot, JTAG-off and UART-download-off are burned, session keys sit in readable RAM and "the key never leaves the chip" is true and irrelevant. | Phase 4, one-way, sacrificial board first |
+| **Authenticated release provenance** | `provenance_audit.py` detects drift against a local unsigned input record only. A signed attestation, pinned builder/toolchain, complete component coverage, independent artifact comparison and target-release verification do not yet exist. | Fase seguinte; ver [29-PROVENIENCIA-LOCAL-BUILD.md](29-PROVENIENCIA-LOCAL-BUILD.md) |
 
 ---
 

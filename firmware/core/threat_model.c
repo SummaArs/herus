@@ -24,7 +24,8 @@ static int snapshot_format_valid(const threat_model_snapshot_t *s)
         &s->model_no_send_authority, &s->telemetry_numeric_only,
         &s->telemetry_forbidden_absent, &s->target_secure_boot,
         &s->target_flash_encrypted, &s->target_jtag_disabled,
-        &s->target_nvs_protected, &s->target_power_loss_tested
+        &s->target_nvs_protected, &s->target_power_loss_tested,
+        &s->supply_chain_local_integrity
     };
     size_t i;
     for (i = 0u; i < sizeof(fields) / sizeof(fields[0]); ++i)
@@ -115,7 +116,12 @@ int threat_model_assess(threat_model_threat_t threat,
         failures = THREAT_MODEL_FAIL_TARGET_PENDING;
         break;
     case THREAT_MODEL_SUPPLY_CHAIN:
-        failures = THREAT_MODEL_FAIL_SCOPE_UNSUPPORTED;
+        require_flag(snapshot->supply_chain_local_integrity,
+                     THREAT_MODEL_FAIL_SUPPLY_INTEGRITY, &failures);
+        /* A local unsigned digest record catches only drift in a declared input
+         * set. It cannot authenticate a builder, source or artifact, so supply
+         * chain assurance remains pending even when the local check succeeds. */
+        failures |= THREAT_MODEL_FAIL_TARGET_PENDING;
         break;
     default:
         failures = THREAT_MODEL_FAIL_FORMAT;

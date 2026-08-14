@@ -30,6 +30,7 @@ All of the following are checked by `./prove.sh` on every run — see
 | Bounded multi-card collection in host | `make memory-collection` requires authorization plus physical access, encrypts/authenticates a fixed index and rejects duplicate, capacity, transaction, tag and rollback failures; see [docs/26-COLECAO-MEMORIA.md](docs/26-COLECAO-MEMORIA.md) |
 | Private collection retrieval in host | `make memory-collection-index` permits only bounded typed queries under physical access, preserves abstention/ambiguity and never opens a card automatically; see [docs/27-INDICE-PRIVADO-COLECAO.md](docs/27-INDICE-PRIVADO-COLECAO.md) |
 | Transactional crash-state recovery in host | `make memory-collection-recovery` promotes only an authenticated successor bound to the durable floor, discards pre-floor preparation and blocks contradictory state; see [docs/28-RECUPERACAO-TRANSACIONAL.md](docs/28-RECUPERACAO-TRANSACIONAL.md) |
+| Local build-input integrity in host | `provenance_audit.py` rejects drift in declared source/proof inputs, unsafe paths, secret-like metadata and unsupported trust claims; see [docs/29-PROVENIENCIA-LOCAL-BUILD.md](docs/29-PROVENIENCIA-LOCAL-BUILD.md) |
 
 ## What is NOT protected yet
 
@@ -56,9 +57,12 @@ consequences:
 - **Metadata beyond the frame.** The protocol hides the identifier and the
   tier. It does not hide that a transmission happened, or from roughly where.
   Direction-finding a LoRa burst is not hard.
-- **No supply-chain assurance yet.** The executable threat model makes this
-  absence explicit; there is not yet an SBOM, signed/reproducible build policy,
-  provenance verification or independent audit.
+- **No authenticated supply-chain assurance yet.** The local provenance audit
+  detects drift against an unsigned, declared input set and rejects unsafe manifest
+  shape, but TM-09 remains `PENDING_TARGET`. There is still no authenticated
+  checkout, signed provenance, pinned/isolated builder, complete SBOM, independent
+  reproducible build, artifact-to-source verification, vulnerability assessment or
+  independent audit.
 - **Threat classification is not runtime security.** The host auditor checks
   declared evidence fixtures and fails closed; it does not inspect a deployed
   device, estimate likelihood/impact, detect compromise or close platform gates.
