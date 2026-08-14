@@ -115,6 +115,8 @@ O primeiro comando prova somente a composição de fixture. O último comando pr
 
 O [modelo de ameaças executável](25-MODELO-AMEACAS-EXECUTAVEL.md) agora classifica a cadeia desta página como evidência host para retenção, recuperação e ausência de autoridade de modelo, mas mantém backend protegido, power-loss, interface física, avaliação humana e supply chain como risco residual explícito. Ele não concede permissão adicional à composição nem muda o stop/go acima.
 
+A [coleção multi-cartão](26-COLECAO-MEMORIA.md) acrescenta uma persistência lógica limitada em host, com transação e recuperação autenticada, mas ainda não substitui nem altera o caminho unitário auditado nesta fixture. A integração da seleção humana entre cofre unitário e coleção será um passo explícito; não existe fallback automático ou nova autoridade de memória.
+
 ## Referências
 
 [1] National Institute of Standards and Technology, *SP 800-160 Vol. 1 Rev. 1: Engineering Trustworthy Secure Systems*. [Publicação oficial](https://csrc.nist.gov/pubs/sp/800/160/v1/r1/final).

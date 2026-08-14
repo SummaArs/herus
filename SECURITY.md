@@ -27,6 +27,7 @@ All of the following are checked by `./prove.sh` on every run — see
 | The decrypt path is rate limited | An unauthenticated stranger cannot drain the battery by making the node do work |
 | Constant airtime across meaning tiers (P1) | Traffic analysis cannot read the tier off the air, because every meaning-carrying frame occupies the radio for the same 246.8 ms |
 | Evidence-scoped threat classification | `make threat-model` rejects incomplete/noncanonical control evidence and distinguishes host-mitigated controls from target-pending and out-of-scope vectors; see [docs/25-MODELO-AMEACAS-EXECUTAVEL.md](docs/25-MODELO-AMEACAS-EXECUTAVEL.md) |
+| Bounded multi-card collection in host | `make memory-collection` requires authorization plus physical access, encrypts/authenticates a fixed index and rejects duplicate, capacity, transaction, tag and rollback failures; see [docs/26-COLECAO-MEMORIA.md](docs/26-COLECAO-MEMORIA.md) |
 
 ## What is NOT protected yet
 
@@ -59,6 +60,10 @@ consequences:
 - **Threat classification is not runtime security.** The host auditor checks
   declared evidence fixtures and fails closed; it does not inspect a deployed
   device, estimate likelihood/impact, detect compromise or close platform gates.
+- **Collection deletion is not physical purge.** The multi-card collection only
+  removes an active logical reference and rewrites authenticated state. Old bytes,
+  power-loss behavior, wear, secure storage and purge semantics belong to the
+  selected backend and must be demonstrated on the chosen target.
 
 ## Regulatory safety
 
