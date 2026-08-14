@@ -47,13 +47,13 @@ cd ..
 ./prove.sh --quiet
 ```
 
-O ledger esperado é de **35 suítes**, **79 invariantes de prova** e **74 invariantes de sistema simulado**. Esses números mostram contratos exercitados em host e cenários de simulação existentes; não medem confiabilidade física, taxa de erro de fala, energia, latência, qualidade de LLM ou probabilidade de ataque.
+Com as provas de fogo F1–F4, o ledger esperado é de **39 suítes**, **87 invariantes de prova** e **74 invariantes de sistema simulado**. Esses números mostram contratos exercitados em host e cenários de simulação existentes; não medem confiabilidade física, taxa de erro de fala, energia, latência, qualidade de LLM ou probabilidade de ataque.
 
 ## O que o sucesso permite afirmar
 
 | Afirmação limitada | Base verificável |
 |---|---|
-| A cadeia host pode compor bootstrap, M14 e TM-04 sem reativar uma sessão. | G1 exige gate `IDLE` e campos ativos zerados antes de emitir sucesso. |
+| A cadeia host pode compor bootstrap, M14 e TM-04 sem reativar uma sessão. | G1 exige gate `IDLE` e campos ativos zerados antes de emitir sucesso; F1 recusa piso terminal sem sucessor representável; F2–F4 acrescentam estresse de coleção/evidência e detecção de controles removidos. |
 | Uma consulta de coleção não passa sem sessão nova. | G1 chama índice real depois de bootstrap ocioso e recebe `E_ACCESS`. |
 | O ID recuperado não pode ser reutilizado. | G1 tenta iniciar exatamente no piso e o gate recusa. |
 | Nova sessão ainda não abre cartão automaticamente. | G1 alcança índice com sucessor válido e compara que métricas de `open` não aumentam. |

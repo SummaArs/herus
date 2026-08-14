@@ -20,7 +20,7 @@ A entrada é `memory_physical_session_recovery_snapshot_t`. O contrato recebe so
 | Registro ausente | Não pode carregar nenhum campo material diferente de zero. | `BLOCKED` e `E_INVALID`. |
 | Registro presente | Precisa ser autenticado, ter ID não nulo, propósito fechado e orçamento canônico. | `BLOCKED` e `E_INVALID`. |
 | Propósito e usos | `QUERY` permite 1–8 usos; `INSERT`, `OPEN`, `REMOVE` e `COMPACT` permitem exatamente 1. | `BLOCKED` e `E_INVALID`. |
-| Relação de IDs | `PREPARED` só pode ser o sucessor imediato de sua base; `COMMITTED` precisa coincidir com o piso quando está sozinho. | `BLOCKED` e `E_INVALID`. |
+| Relação de IDs | `PREPARED` só pode ser o sucessor imediato de sua base; `COMMITTED` precisa coincidir com o piso quando está sozinho; ambos devem deixar sucessor representável, portanto `UINT32_MAX` é terminal e inválido. | `BLOCKED` e `E_INVALID`. |
 | Saída | Em sucesso, emite só uma ação de recuperação; não emite capacidade ativa. | Nenhuma autorização nasce do oráculo. |
 
 O campo `prepared_matches_committed` só é aceito como `1` quando os campos materiais de `PREPARED` e `COMMITTED` são idênticos. Um ID igual, por si só, é insuficiente. Assim, uma limpeza interrompida pode ser terminada, mas uma contradição não é reinterpretada como sucesso.
@@ -48,7 +48,7 @@ A suíte T15 é compilada em C11 estrito com `make memory-physical-session-recov
 | Primeira reserva preparada antes de o piso avançar | `DISCARD_PREPARED`; não há reativação. |
 | Sucessor preparado e piso já avançado | `PROMOTE_PREPARED` somente como ID queimado. |
 | `PREPARED` e `COMMITTED` com mesmo ID, mas sem igualdade autenticada completa | `BLOCKED`. |
-| Primeiro ID pulado, sucessor não imediato ou piso incompatível | `BLOCKED`. |
+| Primeiro ID pulado, sucessor não imediato, piso incompatível ou ID terminal `UINT32_MAX` | `BLOCKED`. |
 | Registro não autenticado, propósito `NONE`, uso `QUERY` zero, uso excessivo ou mutação com mais de um uso | `BLOCKED`. |
 | Booleano não canônico ou campo material em registro ausente | `BLOCKED`. |
 | Entrada ou saída nula | `E_ARG`; nenhuma ação permissiva é emitida. |
@@ -57,7 +57,7 @@ A suíte T15 é compilada em C11 estrito com `make memory-physical-session-recov
 ./prove.sh --quiet
 ```
 
-Após o Gran Finale pré-hardware, o ledger esperado é de **35 suítes**, **79 invariantes de prova** e **74 invariantes do simulador**. Os dois novos checks verificam que só um sucessor autenticado e imediatamente ancorado no piso pode ser promovido e que toda contradição bloqueia sem reviver autoridade. Esses resultados são de host e simulação; não são métricas de botão, energia, latência, qualidade de fala, LLM ou bancada.
+Após as campanhas F1–F4 de prova de fogo, o ledger esperado é de **39 suítes**, **87 invariantes de prova** e **74 invariantes do simulador**. Os dois novos checks verificam que só um sucessor autenticado e imediatamente ancorado no piso pode ser promovido e que toda contradição bloqueia sem reviver autoridade. As [campanhas F1–F4](35-PROVA-DE-FOGO-HOST.md) acrescentam geração determinística, mutação de topologias, recuperação de coleção, escopo de evidência e detecção de controles removidos; ela encontrou e corrigiu o piso terminal, documentado na issue [#31](https://github.com/SummaArs/herus/issues/31). Esses resultados são de host e simulação; não são métricas de botão, energia, latência, qualidade de fala, LLM ou bancada.
 
 ## Adaptador futuro, plataforma aberta e fronteira de confiança
 

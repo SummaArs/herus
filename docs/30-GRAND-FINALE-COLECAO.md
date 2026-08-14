@@ -107,7 +107,7 @@ git diff --check
 ./prove.sh --quiet
 ```
 
-Com os passos posteriores, o pipeline executa **35 suítes**, **79 invariantes de prova** e mantém **74 invariantes do sistema simulado**. Um resultado positivo prova os cenários C11 descritos e a recusa das contraprovas exercitadas. Não prova durabilidade física, autonomia, utilidade pessoal, memória humana, relevância, escala, latência, energia, segurança de rádio, ASR, LLM, UI, acessibilidade, privacidade de padrão de acesso ou qualquer propriedade de hardware.
+Com os passos posteriores e as provas de fogo F1–F4, o pipeline executa **39 suítes**, **87 invariantes de prova** e mantém **74 invariantes do sistema simulado**. Um resultado positivo prova os cenários C11 descritos e a recusa das contraprovas exercitadas. F1–F4 acrescentam recuperação/bootstrap hostis, coleção adversarial, classificação de evidência e mutação detectável; ela não adiciona autoridade à coleção M14. Não prova durabilidade física, autonomia, utilidade pessoal, memória humana, relevância, escala, latência, energia, segurança de rádio, ASR, LLM, UI, acessibilidade, privacidade de padrão de acesso ou qualquer propriedade de hardware.
 
 ## Referências
 

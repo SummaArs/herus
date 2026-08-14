@@ -1,6 +1,7 @@
 /* test_memory_physical_session_recovery.c — durable reservation recovery invariants. */
 #include "memory_physical_session_recovery.h"
 
+#include <limits.h>
 #include <stdio.h>
 #include <string.h>
 
@@ -139,6 +140,15 @@ int main(void)
     s = committed(5u, MEMORY_PHYSICAL_PURPOSE_NONE, 1u);
     ok(blocks(&s),
        "T15 unknown or none purpose never survives reboot as a reservation");
+
+    s = committed(UINT_MAX, MEMORY_PHYSICAL_PURPOSE_COLLECTION_QUERY, 2u);
+    ok(blocks(&s),
+       "T15 terminal UINT32_MAX committed floor blocks because no fresh successor session is representable");
+
+    s = prepared(UINT_MAX - 1u, UINT_MAX, MEMORY_PHYSICAL_PURPOSE_COLLECTION_QUERY, 2u,
+                 UINT_MAX);
+    ok(blocks(&s),
+       "T15 terminal UINT32_MAX prepared floor blocks before promotion can exhaust future sessions");
 
     memset(&s, 0, sizeof(s));
     s.committed_present = 2u;

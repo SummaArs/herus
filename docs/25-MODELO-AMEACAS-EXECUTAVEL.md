@@ -114,12 +114,12 @@ git diff --check
 ./prove.sh --quiet
 python3 tools/readiness_audit.py research/hardware_readiness_manifest.json --strict
 python3 tools/provenance_audit.py research/software_provenance_manifest.json --strict
-cd firmware && make memory-collection-finale && make memory-physical-session && make memory-physical-session-recovery && make memory-physical-session-bootstrap && make memory-prehardware-finale
+cd firmware && make memory-collection-finale && make memory-physical-session && make memory-physical-session-recovery && make memory-physical-session-recovery-stress && make memory-physical-session-bootstrap && make memory-prehardware-finale
 ```
 
-Com os passos posteriores de coleção, índice, recuperação, composição multi-cartão, sessão de propósito, quarentena e Gran Finale host, o pipeline executa **35 suítes**, **79 invariantes de prova** e mantém as **74 invariantes de sistema simulado**. Esses números são evidência de cenários exercitados em host, não estimativa de probabilidade de comprometimento nem métrica de segurança física.
+Com os passos posteriores de coleção, índice, recuperação, composição multi-cartão, sessão de propósito, quarentena, Gran Finale host e provas de fogo F1–F4, o pipeline executa **39 suítes**, **87 invariantes de prova** e mantém as **74 invariantes de sistema simulado**. Esses números são evidência de cenários exercitados em host, não estimativa de probabilidade de comprometimento nem métrica de segurança física.
 
-O Gran Finale pré-hardware consome `THREAT_MODEL_MEMORY_RETENTION` e exige o resultado `MITIGATED_HOST` sem falhas; ele não adiciona uma flag a TM-04 nem pode elevar uma evidência incompleta. Essa direção deliberadamente evita circularidade: M14, bootstrap e TM-04 precisam ser coerentes antes que o auditor final emita apenas `ready_for_target_validation`.
+O Gran Finale pré-hardware consome `THREAT_MODEL_MEMORY_RETENTION` e exige o resultado `MITIGATED_HOST` sem falhas; ele não adiciona uma flag a TM-04 nem pode elevar uma evidência incompleta. F1–F4 reforçam recuperação, coleção, formato de evidência e detectabilidade de controles abaixo do classificador, mas não criam nova evidência TM-04. Essa direção deliberadamente evita circularidade: M14, bootstrap e TM-04 precisam ser coerentes antes que o auditor final emita apenas `ready_for_target_validation`.
 
 A próxima decisão de engenharia deve usar esta matriz para priorizar o adaptador alvo da coleção e a matriz de cortes controlados em `PREPARED`/piso/`COMMITTED`/limpeza/boot-quarantine, a equivalência real da autorização entre cofre e coleção e a UX que preserva `NO_MATCH`/`AMBIGUOUS` e o adaptador de evento/nonce/tempo/piso de sessão resistente a reset; em paralelo, deve preparar atestação assinada, inventário de release, toolchain/build controlados e comparação independente de artefato sem perder os gates de secure boot, flash encryption, JTAG-off, NVS/raiz, RNG, transport, instrumentos de energia, interface física e avaliação humana. Uma ameaça marcada pendente só pode ser reclassificada com evidência correspondente, não com documentação adicional.
 
