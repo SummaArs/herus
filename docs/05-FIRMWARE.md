@@ -53,7 +53,7 @@ Below it: eight functions and a radio.
 
 ## 2. What is proven, and by what
 
-`./prove.sh` runs twenty-eight suites and gates 65 proof invariants. It exits non-zero if any
+`./prove.sh` runs twenty-nine suites and gates 67 proof invariants. It exits non-zero if any
 one of them regresses, and it is the only thing standing between you and a
 plausible-looking bug in a device you will trust with an emergency.
 
@@ -75,6 +75,7 @@ plausible-looking bug in a device you will trust with an emergency.
 | **memory Grand Finale** | auditor puro e fixture composta captura→extração→política→revisão→cofre→recuperação→apresentação, com conflito/modelo bloqueantes | testes host com backend RAM; não prova banco multi-cartão, NVS/eFuse, power-loss, ASR, UI, pessoa, energia, latência, rede ou modelo local |
 | **memory collection** | até 8 cartões mínimos, índice/slots AEAD, piso de geração, prepare→commit→cleanup, recuperação autenticada, remoção e compactação lógicas | backend RAM host; não prova NVS, atomicidade de flash, power-loss, purge físico, endurance, raiz protegida, tamanho alvo ou escolha de MCU/secure element |
 | **memory collection index** | consulta tipada e física sobre registro autenticado, matriz transitória zerada, limiar/margem, abstenção e orçamento por sessão | backend RAM host; não prova índice persistente, escala de corpus, PIR/ORAM, embeddings, linguagem natural, relevância pessoal, latência, energia, UI ou plataforma alvo |
+| **memory collection recovery** | oráculo puro para `EMPTY`, committed estável, promoção, descarte pré-piso, finalização de limpeza e bloqueio de topologia contraditória | testes host sobre snapshots/fixture RAM; não prova durabilidade de callback, atomicidade de mídia, brownout/power-loss, setor parcial, eFuse, secure element, raiz, endurance, purge, latência, energia ou plataforma alvo |
 | **threat model** | classificação pura de controles host completos, pendências de alvo e escopo não implementado para rádio, trust, memória, recuperação, modelo e telemetria | testes sintéticos de evidência; não é monitor de produção, pontuação de risco, pentest, auditoria independente, segurança física ou garantia de supply chain |
 | **assurance** | composição fail-closed de PTT, intenção, confirmação, trust, frescor, revogação e fronteira de modelo | testes determinísticos sem criar HCP, pacote, link ou rádio |
 | **capstone** | cadeia diálogo→modelo→interação→trust, precedência de revogação e handoff único | testes de módulos portáveis; não representa BLE, ASR, LLM ou energia física |
@@ -179,6 +180,7 @@ Stated plainly, because a firmware document that only lists features is a brochu
 | **Confirmatory study** | `studyplan.py` and `interactionstudy.py` freeze and analyze the A4 protocol only. The fixture test validates the analyzer; it is not participant or hardware evidence. | Advance 4 research track; see [10-INVESTIGACAO-PREREGISTRADA.md](10-INVESTIGACAO-PREREGISTRADA.md) |
 | **Ratchet state persistence** | A reboot loses the session; re-pair. | Phase 4 |
 | **Memory-vault target backend** | `memory_vault.[ch]` prova formato cifrado, chave por geração e bloqueio em falha com uma porta RAM. Raiz protegida, NVS cifrada, piso monotônico durável, recuperação após power-loss e erase físico ainda não foram integrados nem medidos. | Phase 4; ver [20-COFRE-MEMORIA.md](20-COFRE-MEMORIA.md) |
+| **Collection crash recovery target port** | `memory_collection_recovery.[ch]` prova decisão C11 entre `PREPARED`, `COMMITTED` e piso; o adaptador ainda deve demonstrar que cada retorno de sucesso é durável sob cortes controlados e que raiz/piso resistem ao modelo de ameaça escolhido. | Fase seguinte; ver [28-RECUPERACAO-TRANSACIONAL.md](28-RECUPERACAO-TRANSACIONAL.md) |
 | **Human-consolidation hardware adapter** | `memory_consolidation.[ch]` prova o protocolo de revisão em host. Botão/gesto, visualização de proposta, igualdade de sessão física, fonte de tempo, política de prazo e remoção de mídia precisam de implementação e evidência no alvo. | Phase 4; ver [21-CONSOLIDACAO-HUMANA.md](21-CONSOLIDACAO-HUMANA.md) |
 | **Controlled-retrieval integration** | `memory_retrieval.[ch]` prova ranking tipado puro em host. Aquisição autorizada de cartões, fonte física de acesso, linguagem natural, avaliação de relevância, índice persistente e qualquer adaptador de modelo ainda não existem. | Fase seguinte; ver [22-RECUPERACAO-SEMANTICA.md](22-RECUPERACAO-SEMANTICA.md) |
 | **Human retrieval presentation adapter** | `memory_retrieval_present.[ch]` prova códigos de status, sessão, one-shot e limites de haptics em host. Voz, motor, display, botão, adaptação individual, acessibilidade, compreensão, telemetria privada, energia e latência exigem interface alvo e avaliação humana. | Fase seguinte; ver [23-INTERFACE-RECUPERACAO-HUMANA.md](23-INTERFACE-RECUPERACAO-HUMANA.md) |

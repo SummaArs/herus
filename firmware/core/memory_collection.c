@@ -1,6 +1,7 @@
 /* memory_collection.c — bounded, transactional and portable card collection. */
 #include "memory_collection.h"
 #include "memory_collection_private.h"
+#include "memory_collection_recovery.h"
 #include "crypto.h"
 #include <string.h>
 
@@ -419,25 +420,22 @@ static int records_equal(const collection_record_t *a, const collection_record_t
 }
 
 static int recover_prepared(memory_collection_t *c, const collection_record_t *prepared,
-                            const collection_record_t *committed, uint8_t committed_present,
-                            uint32_t floor)
+                            memory_collection_recovery_action_t action)
 {
     collection_record_t promote;
     uint8_t blob[MEMORY_COLLECTION_BLOB_LEN];
     int rc;
-    if (prepared->txn == MEMORY_COLLECTION_TXN_NONE ||
-        prepared->generation == 0u || prepared->generation != floor)
+    if (!c || !prepared || prepared->txn == MEMORY_COLLECTION_TXN_NONE ||
+        (action != MEMORY_COLLECTION_RECOVERY_PROMOTE_PREPARED &&
+         action != MEMORY_COLLECTION_RECOVERY_FINALIZE_PREPARED))
         return MEMORY_COLLECTION_E_RECOVERY;
-    if (committed_present) {
-        if (committed->generation == prepared->generation) {
-            if (prepared->base_generation + 1u != prepared->generation ||
-                !records_equal(prepared, committed)) return MEMORY_COLLECTION_E_RECOVERY;
-        } else if (prepared->base_generation != committed->generation ||
-                   prepared->generation != committed->generation + 1u) {
-            return MEMORY_COLLECTION_E_RECOVERY;
-        }
-    } else if (prepared->base_generation != 0u) {
-        return MEMORY_COLLECTION_E_RECOVERY;
+    if (action == MEMORY_COLLECTION_RECOVERY_FINALIZE_PREPARED) {
+        if (c->cfg.storage.erase_prepared(c->cfg.storage.ctx) != 0)
+            return MEMORY_COLLECTION_E_STORAGE;
+        c->generation = prepared->generation;
+        c->count = prepared->count;
+        c->metrics.finalized_prepared++;
+        return MEMORY_COLLECTION_OK;
     }
     promote = *prepared;
     promote.txn = MEMORY_COLLECTION_TXN_NONE;
@@ -470,6 +468,8 @@ int memory_collection_init(memory_collection_t *c,
     int committed_rc;
     int prepared_rc;
     int rc;
+    memory_collection_recovery_snapshot_t recovery_snapshot;
+    memory_collection_recovery_action_t recovery_action;
     if (!c || !cfg) return MEMORY_COLLECTION_E_ARG;
     memset(c, 0, sizeof(*c));
     if (!config_valid(cfg)) return MEMORY_COLLECTION_E_CONFIG;
@@ -507,36 +507,66 @@ int memory_collection_init(memory_collection_t *c,
     }
     secure_zero(committed_blob, sizeof(committed_blob));
     secure_zero(prepared_blob, sizeof(prepared_blob));
-    if (prepared_rc == MEMORY_COLLECTION_STORE_ABSENT &&
-        committed_rc == MEMORY_COLLECTION_STORE_ABSENT) {
-        if (floor != 0u) {
-            block(c, 0, 1, 0);
-            return MEMORY_COLLECTION_E_ROLLBACK;
-        }
-        c->state = MEMORY_COLLECTION_READY;
-        return MEMORY_COLLECTION_OK;
-    }
-    if (prepared_rc == 0) {
-        rc = recover_prepared(c, &prepared, &committed,
-                              committed_rc == 0 ? 1u : 0u, floor);
+    memset(&recovery_snapshot, 0, sizeof(recovery_snapshot));
+    recovery_snapshot.committed_present = committed_rc == 0 ? 1u : 0u;
+    recovery_snapshot.prepared_present = prepared_rc == 0 ? 1u : 0u;
+    recovery_snapshot.committed_authenticated = committed_rc == 0 ? 1u : 0u;
+    recovery_snapshot.prepared_authenticated = prepared_rc == 0 ? 1u : 0u;
+    recovery_snapshot.committed_generation = committed.generation;
+    recovery_snapshot.prepared_generation = prepared.generation;
+    recovery_snapshot.prepared_base_generation = prepared.base_generation;
+    recovery_snapshot.durable_generation_floor = floor;
+    if (committed_rc == 0 && prepared_rc == 0 &&
+        committed.generation == prepared.generation &&
+        records_equal(&prepared, &committed))
+        recovery_snapshot.prepared_matches_committed = 1u;
+    rc = memory_collection_recovery_assess(&recovery_snapshot, &recovery_action);
+    if (rc != MEMORY_COLLECTION_RECOVERY_OK) {
+        int only_committed_floor_mismatch = prepared_rc == MEMORY_COLLECTION_STORE_ABSENT &&
+            committed_rc == 0 && committed.generation != floor;
         secure_zero(&prepared, sizeof(prepared));
         secure_zero(&committed, sizeof(committed));
-        if (rc != MEMORY_COLLECTION_OK) {
-            block(c, rc == MEMORY_COLLECTION_E_STORAGE, rc == MEMORY_COLLECTION_E_RECOVERY, 0);
-            return rc;
-        }
+        block(c, 0, 1, 0);
+        return only_committed_floor_mismatch ? MEMORY_COLLECTION_E_ROLLBACK :
+            MEMORY_COLLECTION_E_RECOVERY;
+    }
+    if (recovery_action == MEMORY_COLLECTION_RECOVERY_EMPTY) {
         c->state = MEMORY_COLLECTION_READY;
+        secure_zero(&prepared, sizeof(prepared));
+        secure_zero(&committed, sizeof(committed));
         return MEMORY_COLLECTION_OK;
     }
-    if (committed.generation != floor) {
+    if (recovery_action == MEMORY_COLLECTION_RECOVERY_USE_COMMITTED) {
+        c->generation = committed.generation;
+        c->count = committed.count;
+        c->state = MEMORY_COLLECTION_READY;
+        secure_zero(&prepared, sizeof(prepared));
         secure_zero(&committed, sizeof(committed));
-        block(c, 0, 1, 0);
-        return MEMORY_COLLECTION_E_ROLLBACK;
+        return MEMORY_COLLECTION_OK;
     }
-    c->generation = committed.generation;
-    c->count = committed.count;
-    c->state = MEMORY_COLLECTION_READY;
+    if (recovery_action == MEMORY_COLLECTION_RECOVERY_DISCARD_PREPARED) {
+        if (c->cfg.storage.erase_prepared(c->cfg.storage.ctx) != 0) {
+            secure_zero(&prepared, sizeof(prepared));
+            secure_zero(&committed, sizeof(committed));
+            block(c, 1, 0, 0);
+            return MEMORY_COLLECTION_E_STORAGE;
+        }
+        c->generation = committed_rc == 0 ? committed.generation : 0u;
+        c->count = committed_rc == 0 ? committed.count : 0u;
+        c->metrics.discarded_prepared++;
+        c->state = MEMORY_COLLECTION_READY;
+        secure_zero(&prepared, sizeof(prepared));
+        secure_zero(&committed, sizeof(committed));
+        return MEMORY_COLLECTION_OK;
+    }
+    rc = recover_prepared(c, &prepared, recovery_action);
+    secure_zero(&prepared, sizeof(prepared));
     secure_zero(&committed, sizeof(committed));
+    if (rc != MEMORY_COLLECTION_OK) {
+        block(c, rc == MEMORY_COLLECTION_E_STORAGE, rc == MEMORY_COLLECTION_E_RECOVERY, 0);
+        return rc;
+    }
+    c->state = MEMORY_COLLECTION_READY;
     return MEMORY_COLLECTION_OK;
 }
 

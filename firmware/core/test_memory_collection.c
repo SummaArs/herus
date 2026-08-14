@@ -263,18 +263,43 @@ int main(void)
        f.has_committed && !f.has_prepared,
        "T10 authenticated unambiguous prepared state is promoted deterministically on reopen");
 
-    memcpy(old_committed, f.committed, sizeof(old_committed));
-    old_floor = f.floor;
     card = eligible_card(402u, 4002u);
     auth = auth_for(&card);
-    ok(memory_collection_insert(&reopened, &auth, &card, &access) == MEMORY_COLLECTION_OK &&
+    f.fail_commit_floor = 1;
+    ok(memory_collection_insert(&reopened, &auth, &card, &access) == MEMORY_COLLECTION_E_STORAGE &&
+       reopened.state == MEMORY_COLLECTION_BLOCKED && f.has_prepared && f.floor == 1u,
+       "T10 interruption before floor commit leaves only a discardable authenticated preparation");
+    f.fail_commit_floor = 0;
+    ok(memory_collection_init(&c, &cfg) == MEMORY_COLLECTION_OK && c.generation == 1u &&
+       c.count == 1u && !f.has_prepared && c.metrics.discarded_prepared == 1u,
+       "T10 old floor discards unfinished successor and preserves prior committed collection");
+
+    memcpy(old_committed, f.committed, sizeof(old_committed));
+    old_floor = f.floor;
+    ok(memory_collection_insert(&c, &auth, &card, &access) == MEMORY_COLLECTION_OK &&
        f.floor == old_floor + 1u,
        "T10 second committed mutation advances an independent collection generation");
     memcpy(f.committed, old_committed, sizeof(old_committed));
     f.floor = old_floor + 1u;
-    ok(memory_collection_init(&c, &cfg) == MEMORY_COLLECTION_E_ROLLBACK &&
-       c.state == MEMORY_COLLECTION_BLOCKED,
+    ok(memory_collection_init(&reopened, &cfg) == MEMORY_COLLECTION_E_ROLLBACK &&
+       reopened.state == MEMORY_COLLECTION_BLOCKED,
        "T10 restored older committed collection is rejected against independent floor");
+
+    backend_init(&f);
+    cfg = config_for(&f);
+    ok(memory_collection_init(&c, &cfg) == MEMORY_COLLECTION_OK,
+       "T10 fresh fixture initialises for post-commit cleanup interruption");
+    card = eligible_card(451u, 4501u);
+    auth = auth_for(&card);
+    f.fail_erase_prepared = 1;
+    ok(memory_collection_insert(&c, &auth, &card, &access) == MEMORY_COLLECTION_E_STORAGE &&
+       c.state == MEMORY_COLLECTION_BLOCKED && f.has_committed && f.has_prepared && f.floor == 1u,
+       "T10 interruption after committed write keeps matching prepared state for cleanup only");
+    f.fail_erase_prepared = 0;
+    ok(memory_collection_init(&reopened, &cfg) == MEMORY_COLLECTION_OK &&
+       reopened.generation == 1u && reopened.count == 1u && !f.has_prepared &&
+       reopened.metrics.finalized_prepared == 1u,
+       "T10 matching committed/prepared state finalizes cleanup without replaying mutation");
 
     backend_init(&f);
     cfg = config_for(&f);

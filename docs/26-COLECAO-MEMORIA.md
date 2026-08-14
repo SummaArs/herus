@@ -11,6 +11,7 @@ Este passo evolui o cofre unitário para uma coleção de cartões tipados. O co
 | `memory_collection_store.h` | Porta opaca para registro preparado, registro confirmado e piso de geração. | Tipo de NVS, endereço de flash, setor, chave, nonce, texto ou cartão em claro. |
 | `memory_collection.h` | Estados, acesso físico já canônico, operações e métricas numéricas. | Candidato, ASR, diálogo, rádio, rede, LLM, identidade, localização e timestamp. |
 | `memory_collection.c` | Serialização canônica, HKDF, AEAD, transação, recuperação e bloqueio. | Alocação dinâmica, busca, enumeração, deduplicação semântica, resolução de conflito ou sanitização física. |
+| `memory_collection_recovery.[ch]` | Oráculo puro para promover, descartar, finalizar limpeza ou bloquear estado pós-interrupção. | I/O, blob, chave, cartão, callback, decisão humana ou garantia de mídia. |
 | `test_memory_collection.c` | Backend RAM e contraprovas de autoridade, integridade, capacidade, transação e rollback. | Persistência real, endurance, power-loss físico, ataque à RAM/flash ou proteção de silício. |
 
 ## 1. Posição na cadeia humana de memória
@@ -64,7 +65,7 @@ A atualização é deliberadamente ordenada para que uma falha não seja convert
 | 3. Confirmar | Serializar/cifrar a mesma coleção em estado `COMMITTED`. | Coleção bloqueada; uma reabertura pode promover somente a intenção autenticada não ambígua. |
 | 4. Limpar | Remover o registro preparado. | Coleção bloqueada; reabertura confirma coerência entre preparado e confirmado antes de limpeza. |
 
-Na inicialização, três casos são válidos: ambos os registros ausentes com piso zero; somente um registro confirmado cuja geração coincide com o piso; ou um registro preparado autenticado, de geração igual ao piso e coerente com o confirmado/estado-base. Qualquer contador regressivo, registro alterado, contagem inválida, duplicata, slot não canônico, transação contraditória, callback com falha ou relação de gerações não demonstrável bloqueia a coleção.
+Na inicialização, o [oráculo de recuperação transacional](28-RECUPERACAO-TRANSACIONAL.md) aceita somente: ambos os registros ausentes com piso zero; `COMMITTED` cuja geração coincide com o piso; `PREPARED` imediato autenticado cuja geração coincide com o piso, para promoção; `PREPARED` ainda ligado ao piso antigo, para descarte; ou cópia `PREPARED` autenticadamente igual ao `COMMITTED`, para finalizar apenas a limpeza. Qualquer contador regressivo, registro alterado, contagem inválida, duplicata, slot não canônico, transação contraditória, callback com falha ou relação de gerações não demonstrável bloqueia a coleção.
 
 ```mermaid
 stateDiagram-v2
@@ -100,7 +101,7 @@ A biblioteca NVS do ESP-IDF é um **candidato** de adaptador, não uma garantia 
 | Blob confirmado antigo com piso novo | `E_ROLLBACK` e bloqueio. | Depende de âncora realmente durável e não redutível. |
 | Remoção | Remove referência ativa logicamente e avança geração. | Não é sanitização nem prova de bytes removidos da mídia. |
 
-A suíte `make memory-collection` usa um backend RAM exclusivamente de fixture e exerce fluxo autorizado, capacidade, cartão sensível, duplicidade, acesso inválido, remoção, compactação, falha após piso, recuperação, rollback, tag alterada e falha de raiz. O pipeline total passa a ter **27 suítes**, **63 invariantes de prova** e mantém **74 invariantes do simulador**. Isso é evidência de código host para esses cenários, não medição de silício, energia, RF, UX, ASR ou modelo.
+A suíte `make memory-collection` usa um backend RAM exclusivamente de fixture e exerce fluxo autorizado, capacidade, cartão sensível, duplicidade, acesso inválido, remoção, compactação, promoção após piso, descarte antes do piso, finalização de limpeza, rollback, tag alterada e falha de raiz. `make memory-collection-recovery` falsifica a matriz pura de estados pós-interrupção. O pipeline total passa a ter **29 suítes**, **67 invariantes de prova** e mantém **74 invariantes do simulador**. Isso é evidência de código host para esses cenários, não medição de silício, energia, RF, UX, ASR ou modelo.
 
 ## 6. Exclusão, compactação e linguagem honesta
 
@@ -135,7 +136,7 @@ git diff --check
 ./prove.sh --quiet
 ```
 
-O [índice privado da coleção](27-INDICE-PRIVADO-COLECAO.md) agora faz recuperação tipada, limitada e abstencionista sobre a coleção em RAM transitória, mas não abre cartão automaticamente nem muda a autoridade humana. A coleção e seu índice ainda não são conectados ao auditor `memory_finale`; essa integração será uma decisão explícita de passo posterior, depois de definir como o fluxo humano seleciona coleção e como o Grand Finale deve distinguir cofre unitário legado da coleção. Não há fallback silencioso entre os caminhos.
+O [índice privado da coleção](27-INDICE-PRIVADO-COLECAO.md) agora faz recuperação tipada, limitada e abstencionista sobre a coleção em RAM transitória, mas não abre cartão automaticamente nem muda a autoridade humana. O [oráculo de recuperação](28-RECUPERACAO-TRANSACIONAL.md) separa promoção, descarte pré-piso e limpeza finalizada antes que o índice possa observar a coleção. A coleção e seu índice ainda não são conectados ao auditor `memory_finale`; essa integração será uma decisão explícita de passo posterior, depois de definir como o fluxo humano seleciona coleção e como o Grand Finale deve distinguir cofre unitário legado da coleção. Não há fallback silencioso entre os caminhos.
 
 ## Referências
 

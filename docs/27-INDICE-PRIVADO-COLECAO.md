@@ -15,7 +15,7 @@ Este passo conecta recuperação a uma coleção de vários cartões sem transfo
 
 ## 1. Cadeia de autoridade
 
-A consulta não cria nem abre uma memória. Ela fica entre a coleção e a abertura exata de um cartão.
+A consulta não cria nem abre uma memória. Ela fica entre a coleção e a abertura exata de um cartão. Antes de qualquer cópia para o índice, a [recuperação transacional](28-RECUPERACAO-TRANSACIONAL.md) precisa aceitar a coleção: preparação pré-piso é descartada, preparação ancorada é promovida, limpeza interrompida é finalizada e topologia contraditória bloqueia.
 
 ```mermaid
 flowchart LR
@@ -123,7 +123,7 @@ git diff --check
 ./prove.sh --quiet
 ```
 
-O pipeline passa a ter **28 suítes**, **65 invariantes de prova** e mantém **74 invariantes do sistema simulado**. Estes números são evidência do código host e dos cenários exercitados, não de um dispositivo final.
+O pipeline passa a ter **29 suítes**, **67 invariantes de prova** e mantém **74 invariantes do sistema simulado**. Estes números são evidência do código host e dos cenários exercitados, não de um dispositivo final.
 
 ## Referências
 

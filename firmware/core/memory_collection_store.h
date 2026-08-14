@@ -15,14 +15,22 @@
 #define MEMORY_COLLECTION_BLOB_LEN 272u
 
 /* `load_*` callbacks return this exact positive code only when the named record is
- * absent. Zero is success; every other nonzero result is a backend failure. */
+ * absent. Zero is success; every other nonzero result is a backend failure.
+ *
+ * Recovery assumes each named record observed after reset is either absent, a full
+ * prior/new blob that authenticates, or a value that authentication rejects. A
+ * successful store/erase callback must not report success before its adapter's
+ * declared durability boundary; a failed callback may have left either prior or
+ * new state, which the recovery oracle classifies on the next initialization. */
 #define MEMORY_COLLECTION_STORE_ABSENT 1
 
 typedef struct {
     void *ctx;
 
     /* The prepared record contains a fully authenticated candidate transaction.
-     * The committed record contains a fully authenticated active collection. */
+     * The committed record contains a fully authenticated active collection. The
+     * caller orders PREPARED -> floor -> COMMITTED -> erase(PREPARED); no callback
+     * is assumed atomic across those distinct durable records. */
     int (*store_prepared)(void *ctx,
                           const uint8_t blob[MEMORY_COLLECTION_BLOB_LEN]);
     int (*load_prepared)(void *ctx,
