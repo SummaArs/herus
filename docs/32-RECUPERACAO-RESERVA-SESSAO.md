@@ -6,7 +6,7 @@
 
 O gate do Passo 7 limita uma sessão de coleção por propósito, ID, prazo, nonce e orçamento de usos durante uma vida de RAM. Seu piso de ID, porém, desaparece em uma reinicialização. O Passo 8 introduz `memory_physical_session_recovery.[ch]`: um oráculo puro que permite a um adaptador futuro classificar o estado de uma **reserva de ID** autenticada contra um piso durável que o próprio adaptador declara ter recuperado.
 
-> O resultado da recuperação é apenas uma decisão sobre marcadores de replay. Ele nunca contém uma sessão ativa, nonce, prazo, callback, token, autorização de coleção, evento humano ou identidade. Toda operação posterior continua exigindo uma **nova** confirmação física e uma nova sessão do gate do Passo 7.
+> O resultado da recuperação é apenas uma decisão sobre marcadores de replay. Ele nunca contém uma sessão ativa, nonce, prazo, callback, token, autorização de coleção, evento humano ou identidade. Toda operação posterior continua exigindo uma **nova** confirmação física e uma nova sessão do gate do Passo 7. O Passo 9 torna essa continuidade executável ao reconstruir o gate em `IDLE` e importar somente o piso em [Quarentena de boot da sessão](33-QUARENTENA-BOOT-SESSAO.md).
 
 A resistência a replay é uma referência de desenho legítima: a NIST requer mecanismos resistentes a replay em seus contextos de autenticação remota de maior garantia [1]. Essa publicação também delimita seu próprio escopo: autenticação digital em rede, não autenticação de pessoa para acesso físico. Por isso o HERUS não a invoca para alegar AAL, intenção humana, biometria, presença ou conformidade. A NIST também enquadra resiliência de firmware e dados em proteção contra alteração não autorizada, detecção e recuperação segura [2]. Aqui a consequência deliberadamente modesta é falhar fechada quando a topologia não leva a um estado coerente; não é uma alegação de resiliência da plataforma.
 
@@ -37,7 +37,7 @@ O campo `prepared_matches_committed` só é aceito como `1` quando os campos mat
 | `COMMITTED` e `PREPARED` idênticos | IDs iguais ao piso e igualdade autenticada completa | `FINALIZE_PREPARED` | Apenas a limpeza de uma escrita já confirmada é concluída. |
 | Qualquer ausência de autenticação, salto, piso divergente, ID igual sem igualdade completa ou formato inválido | Qualquer | `BLOCKED` | O adaptador deve permanecer sem decisão permissiva e solicitar nova confirmação em caminho posterior. |
 
-`PROMOTE_PREPARED` não “promove uma autorização”. Ele instrui somente a consolidação de um ID que já deve ser considerado queimado, reduzindo a chance de esse mesmo ID voltar a ser aceito como novo após reboot. A ação não chama `memory_physical_session_begin()`, não fabrica nonce, não repõe usos e não altera o estado transitório do gate.
+`PROMOTE_PREPARED` não “promove uma autorização”. Ele instrui somente a consolidação de um ID que já deve ser considerado queimado, reduzindo a chance de esse mesmo ID voltar a ser aceito como novo após reboot. A ação não chama `memory_physical_session_begin()`, não fabrica nonce, não repõe usos e não altera o estado transitório do gate. A ponte seguinte de bootstrap só pode importar esse piso em gate `IDLE`; ela não transforma a ação em capacidade.
 
 ## Contraprovas host reproduzíveis
 
@@ -57,7 +57,7 @@ A suíte T15 é compilada em C11 estrito com `make memory-physical-session-recov
 ./prove.sh --quiet
 ```
 
-Após este passo, o ledger esperado é de **33 suítes**, **75 invariantes de prova** e **74 invariantes do simulador**. Os dois novos checks verificam que só um sucessor autenticado e imediatamente ancorado no piso pode ser promovido e que toda contradição bloqueia sem reviver autoridade. Esses resultados são de host e simulação; não são métricas de botão, energia, latência, qualidade de fala, LLM ou bancada.
+Após o Passo 9, o ledger esperado é de **34 suítes**, **77 invariantes de prova** e **74 invariantes do simulador**. Os dois novos checks verificam que só um sucessor autenticado e imediatamente ancorado no piso pode ser promovido e que toda contradição bloqueia sem reviver autoridade. Esses resultados são de host e simulação; não são métricas de botão, energia, latência, qualidade de fala, LLM ou bancada.
 
 ## Adaptador futuro, plataforma aberta e fronteira de confiança
 

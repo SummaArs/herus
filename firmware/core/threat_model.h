@@ -59,6 +59,7 @@ typedef struct {
     uint8_t memory_collection_composed;
     uint8_t memory_physical_session_bound;
     uint8_t memory_physical_session_recovery_consistent;
+    uint8_t memory_physical_session_bootstrap_quarantined;
     uint8_t memory_retrieval_access_gated;
     uint8_t memory_ambiguity_preserved;
     uint8_t memory_presentation_one_shot;
