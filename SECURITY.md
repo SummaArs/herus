@@ -35,6 +35,7 @@ All of the following are checked by `./prove.sh` on every run — see
 | Purpose-bound collection session in host | `make memory-physical-session` requires closed operation purpose, non-reused RAM session ID, nonzero transient nonce, canonical adapter assertion, bounded time, cancellation and consumption; collection/index reject an unbound session; see [docs/31-SESSAO-FISICA-PROPOSITO.md](docs/31-SESSAO-FISICA-PROPOSITO.md) |
 | Durable session-reservation recovery in host | `make memory-physical-session-recovery` classifies authenticated `PREPARED`/`COMMITTED` markers against an adapter-declared durable floor, advances only an already-burned ID and blocks contradictions; it has no output path that restores a live session; see [docs/32-RECUPERACAO-RESERVA-SESSAO.md](docs/32-RECUPERACAO-RESERVA-SESSAO.md) |
 | Post-reboot session quarantine in host | `make memory-physical-session-bootstrap` reinitializes the gate to `IDLE`, scrubs any active fixture and imports only the classified floor; old/piso IDs cannot validate or consume and every new session requires a new adapter assertion; see [docs/33-QUARENTENA-BOOT-SESSAO.md](docs/33-QUARENTENA-BOOT-SESSAO.md) |
+| Final host memory-chain composition | `make memory-prehardware-finale` composes bootstrap, M14 and TM-04; any mismatch blocks/scrubs the gate and a success remains `IDLE`, never an active collection capability; see [docs/34-GRAN-FINALE-PRE-HARDWARE.md](docs/34-GRAN-FINALE-PRE-HARDWARE.md) |
 
 ## What is NOT protected yet
 
@@ -107,6 +108,11 @@ consequences:
   deadline or use budget. It does not observe a reset, clear real RAM, authenticate
   a backend, protect boot code or prove that a post-boot event is new. Those remain
   target-adapter and hardware-test requirements.
+- **The Gran Finale is not target readiness.** Its fixture drives real portable
+  collection/index code over RAM and checks M14 plus TM-04, but it neither reads a
+  physical reset nor operates a durable backend. `ready_for_target_validation` is
+  a diagnostic that the host contracts compose; it is not permission to retain,
+  open, send, fabricate, deploy or make a physical-security claim.
 
 ## Regulatory safety
 

@@ -32,7 +32,7 @@ the documents**.
 
 | Target | Command | What it proves |
 |---|---|---|
-| Everything | `./prove.sh` | 34 suites + 77 proof invariants + 74 system invariants |
+| Everything | `./prove.sh` | 35 suites + 79 proof invariants + 74 system invariants |
 | Algebra | `cd firmware && make algebra` | Binding, bundling, resonator, HCP, dense vs sparse |
 | Núcleo | `cd firmware && make nucleus` | Consentimento opt-in, memória limitada, confiança, expiração e apagamento local |
 | Voz e háptica | `cd firmware && make voice` | Linguagem controlada, rascunho confirmável, SOS bloqueado e vibração limitada |
@@ -54,6 +54,7 @@ the documents**.
 | Sessão física de coleção | `cd firmware && make memory-physical-session` | Propósito fechado, ID/nonce transitórios, janela, cancelamento e consumo único ou limitado; prova host, não botão, pessoa, biometria, relógio ou anti-replay pós-reboot |
 | Recuperação de reserva de sessão | `cd firmware && make memory-physical-session-recovery` | Matriz C11 de `PREPARED`/`COMMITTED` contra piso durável declarado: promove somente ID já queimado, descarta/limpa com topologia coerente, bloqueia contradições e nunca reativa sessão |
 | Quarentena de boot de sessão | `cd firmware && make memory-physical-session-bootstrap` | Reconstrói gate em `IDLE`, importa somente piso classificado, apaga toda evidência ativa e exige nova afirmação para sessão posterior |
+| Gran Finale pré-hardware | `cd firmware && make memory-prehardware-finale` | Compõe bootstrap, coleção/index reais em fixture RAM, auditor M14 e TM-04; só emite diagnóstico com gate `IDLE`, sem autoridade ativa |
 | Modelo de ameaças | `cd firmware && make threat-model` | Classificação fail-closed de evidência host, pendências de alvo e escopo residual para rádio, trust, memória, modelo, telemetria, plataforma e supply chain |
 | Assurance Grand Finale | `cd firmware && make assurance` | Composição fail-closed de sessão, intenção, confirmação, trust, frescor, revogação e modelo |
 | Capstone Grand Finale | `cd firmware && make capstone` | Ataque à cadeia diálogo→modelo→interação→trust; nenhum bypass do handoff físico confirmado |
@@ -85,7 +86,7 @@ on the machine that runs it.
 3. **Add it to the ledger** in `prove.sh` if it is a property and not just a
    case: a `check` line whose grep can genuinely fail. Uma mudança em acesso da
    coleção também deve exercitar `memory-physical-session`, coleção, índice e
-   Grand Finale, `memory-physical-session-recovery` e `memory-physical-session-bootstrap` quando tocar propósito, consumo, janela, piso, boot, reboot ou fallback.
+   Grand Finale, `memory-physical-session-recovery`, `memory-physical-session-bootstrap` e `memory-prehardware-finale` quando tocar propósito, consumo, janela, piso, boot, reboot, recuperação, coleção ou fallback.
 4. **Update the number, not the adjective.** If the change moves a figure in
    `README.md` or `docs/`, move it there too, in the same commit.
 5. `./prove.sh` must end in `ALL INVARIANTS HOLD` before you push. CI runs the

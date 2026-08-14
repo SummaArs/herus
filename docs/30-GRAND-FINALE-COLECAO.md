@@ -78,7 +78,7 @@ A fixture usa RAM somente para tornar os contratos exercitáveis em host. Ela co
 | Modelo no caminho | `FAIL_MODEL_AGENCY`; modelo não escolhe, grava, recupera ou apresenta. |
 | Sessão de coleção ausente/não canônica, apresentação inválida ou enum de status desconhecido | Falha fechada; estado parcial não herda sucesso. |
 
-A prova T9 do modelo de ameaças remove isoladamente `memory_collection_composed` ou `memory_physical_session_bound` e mostra que TM-04 deixa de ser classificada como `MITIGATED_HOST`, mesmo com os demais controles presentes. Isso impede que a integração seja apenas uma página de arquitetura. O NIST AI RMF e seu perfil de IA generativa tratam a definição de papéis, responsabilidades e supervisão humano-IA como parte da gestão de risco; o HERUS traduz isso em ausência estrutural de autoridade de modelo, não em alegação de alinhamento ou qualidade de LLM [4].
+A prova T9 do modelo de ameaças remove isoladamente `memory_collection_composed` ou `memory_physical_session_bound` e mostra que TM-04 deixa de ser classificada como `MITIGATED_HOST`, mesmo com os demais controles presentes. Isso impede que a integração seja apenas uma página de arquitetura. Os Passos 8 e 9 acrescentam recuperação de reserva e quarentena de boot; o [Gran Finale pré-hardware](34-GRAN-FINALE-PRE-HARDWARE.md) consome o veredito M14 junto a essa quarentena e TM-04, sem adicionar circularmente uma evidência a TM-04. O NIST AI RMF e seu perfil de IA generativa tratam a definição de papéis, responsabilidades e supervisão humano-IA como parte da gestão de risco; o HERUS traduz isso em ausência estrutural de autoridade de modelo, não em alegação de alinhamento ou qualidade de LLM [4].
 
 ## 4. Fronteiras que continuam pendentes
 
@@ -99,13 +99,15 @@ A composição M14 é mais profunda porque conecta os módulos reais e força su
 cd firmware
 make memory-collection-finale
 make memory-physical-session
+make memory-physical-session-bootstrap
+make memory-prehardware-finale
 make threat-model
 cd ..
 git diff --check
 ./prove.sh --quiet
 ```
 
-O pipeline passa a executar **32 suítes**, **73 invariantes de prova** e mantém **74 invariantes do sistema simulado**. Um resultado positivo prova os cenários C11 descritos e a recusa das contraprovas exercitadas. Não prova durabilidade física, autonomia, utilidade pessoal, memória humana, relevância, escala, latência, energia, segurança de rádio, ASR, LLM, UI, acessibilidade, privacidade de padrão de acesso ou qualquer propriedade de hardware.
+Com os passos posteriores, o pipeline executa **35 suítes**, **79 invariantes de prova** e mantém **74 invariantes do sistema simulado**. Um resultado positivo prova os cenários C11 descritos e a recusa das contraprovas exercitadas. Não prova durabilidade física, autonomia, utilidade pessoal, memória humana, relevância, escala, latência, energia, segurança de rádio, ASR, LLM, UI, acessibilidade, privacidade de padrão de acesso ou qualquer propriedade de hardware.
 
 ## Referências
 

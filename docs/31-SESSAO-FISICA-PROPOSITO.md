@@ -60,9 +60,9 @@ A prova global é executada com:
 ./prove.sh --quiet
 ```
 
-Após o Passo 9, o ledger esperado é de **34 suítes**, **77 invariantes de prova** e **74 invariantes do simulador**. Esses números descrevem testes host e simulação existentes; não medem confiabilidade de botão, WER, precisão de modelo, energia, latência, segurança de componente ou comportamento de bancada.
+Após o Gran Finale pré-hardware, o ledger esperado é de **35 suítes**, **79 invariantes de prova** e **74 invariantes do simulador**. Esses números descrevem testes host e simulação existentes; não medem confiabilidade de botão, WER, precisão de modelo, energia, latência, segurança de componente ou comportamento de bancada.
 
-A matriz, as contraprovas e as fronteiras do oráculo estão em [Recuperação durável de reserva de sessão](32-RECUPERACAO-RESERVA-SESSAO.md). A ponte de quarentena está em [Quarentena de boot da sessão](33-QUARENTENA-BOOT-SESSAO.md). A continuidade é deliberadamente unidirecional: recuperação de marcador pode elevar um piso; o bootstrap importa somente esse piso em gate `IDLE`; nenhum dos dois recria a autoridade transitória apagada no reboot.
+A matriz, as contraprovas e as fronteiras do oráculo estão em [Recuperação durável de reserva de sessão](32-RECUPERACAO-RESERVA-SESSAO.md). A ponte de quarentena está em [Quarentena de boot da sessão](33-QUARENTENA-BOOT-SESSAO.md), e a composição final está no [Gran Finale pré-hardware](34-GRAN-FINALE-PRE-HARDWARE.md). A continuidade é deliberadamente unidirecional: recuperação de marcador pode elevar um piso; o bootstrap importa somente esse piso em gate `IDLE`; o auditor final exige essa quarentena antes da cadeia de coleção; nenhum deles recria a autoridade transitória apagada no reboot.
 
 ## Porta de plataforma aberta e gates pendentes
 

@@ -62,7 +62,9 @@ cd ..
 ./prove.sh --quiet
 ```
 
-Depois deste passo, o ledger esperado é de **34 suítes**, **77 invariantes de prova** e **74 invariantes de sistema simulado**. Eles testam contratos C11, não reboot físico, duração de escrita, energia, latência, qualidade de hardware, fala, LLM ou comportamento de pessoas.
+Com o Gran Finale posterior, o ledger esperado é de **35 suítes**, **79 invariantes de prova** e **74 invariantes de sistema simulado**. Eles testam contratos C11, não reboot físico, duração de escrita, energia, latência, qualidade de hardware, fala, LLM ou comportamento de pessoas.
+
+O [Gran Finale pré-hardware](34-GRAN-FINALE-PRE-HARDWARE.md) usa este bootstrap junto à auditoria M14 e TM-04. Essa composição preserva a direção única: primeiro gate limpo e piso, depois apenas uma nova sessão de adaptador; ela não carrega a autoridade transitória anterior.
 
 ## Porta de adaptador e evidência futura
 
