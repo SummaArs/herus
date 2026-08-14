@@ -11,7 +11,7 @@
     {
       "path": "prove.sh",
       "kind": "file",
-      "sha256": "1f75e83dbc03a7e83a39bc8569671f4e01fd6f06772732e5638791723d5a5204",
+      "sha256": "8d20da75097a643cc065830b0f8dcb0c4f29176e6560bf39a92cf779f3398afa",
       "role": "global proof ledger"
     },
     {
@@ -23,7 +23,7 @@
     {
       "path": "firmware",
       "kind": "tree",
-      "sha256": "3b0dfbcf5d8806d70ebd0cd767e45e05245ce8178ecc7c856f14ab3181baef91",
+      "sha256": "0c059fb2c28058a67a7bfe98fa07365861ce34e10f7b9f9ae736a7bd508a8b82",
       "role": "portable firmware and proof sources"
     },
     {
@@ -35,7 +35,7 @@
     {
       "path": "research/hardware_readiness_manifest.json",
       "kind": "file",
-      "sha256": "52f9b52d7c886f38114988007557f62b608e79db3f5f3c7b196bd6f3bf09aa92",
+      "sha256": "7e54df940083bb4dc30b0ab1f8538cee7b144dbfe37559e473a5b74ef51d4b14",
       "role": "physical gate declaration"
     }
   ],

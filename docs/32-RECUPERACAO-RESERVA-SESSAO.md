@@ -6,7 +6,7 @@
 
 O gate do Passo 7 limita uma sessão de coleção por propósito, ID, prazo, nonce e orçamento de usos durante uma vida de RAM. Seu piso de ID, porém, desaparece em uma reinicialização. O Passo 8 introduz `memory_physical_session_recovery.[ch]`: um oráculo puro que permite a um adaptador futuro classificar o estado de uma **reserva de ID** autenticada contra um piso durável que o próprio adaptador declara ter recuperado.
 
-> O resultado da recuperação é apenas uma decisão sobre marcadores de replay. Ele nunca contém uma sessão ativa, nonce, prazo, callback, token, autorização de coleção, evento humano ou identidade. Toda operação posterior continua exigindo uma **nova** confirmação física e uma nova sessão do gate do Passo 7. O Passo 9 torna essa continuidade executável ao reconstruir o gate em `IDLE` e importar somente o piso em [Quarentena de boot da sessão](33-QUARENTENA-BOOT-SESSAO.md).
+> O resultado da recuperação é apenas uma decisão sobre marcadores de replay. Ele nunca contém uma sessão ativa, nonce, prazo, callback, token, autorização de coleção, evento humano ou identidade. Toda operação posterior continua exigindo uma **nova** confirmação física e uma nova sessão do gate do Passo 7. O Passo 9 torna essa continuidade executável ao reconstruir o gate em `IDLE` e importar somente o piso em [Quarentena de boot da sessão](33-QUARENTENA-BOOT-SESSAO.md). O [Gran Finale pré-hardware](34-GRAN-FINALE-PRE-HARDWARE.md) então exige essa quarentena antes de diagnosticar a cadeia M14/TM-04; nenhum passo converte o marcador em sessão.
 
 A resistência a replay é uma referência de desenho legítima: a NIST requer mecanismos resistentes a replay em seus contextos de autenticação remota de maior garantia [1]. Essa publicação também delimita seu próprio escopo: autenticação digital em rede, não autenticação de pessoa para acesso físico. Por isso o HERUS não a invoca para alegar AAL, intenção humana, biometria, presença ou conformidade. A NIST também enquadra resiliência de firmware e dados em proteção contra alteração não autorizada, detecção e recuperação segura [2]. Aqui a consequência deliberadamente modesta é falhar fechada quando a topologia não leva a um estado coerente; não é uma alegação de resiliência da plataforma.
 
@@ -57,7 +57,7 @@ A suíte T15 é compilada em C11 estrito com `make memory-physical-session-recov
 ./prove.sh --quiet
 ```
 
-Após o Passo 9, o ledger esperado é de **34 suítes**, **77 invariantes de prova** e **74 invariantes do simulador**. Os dois novos checks verificam que só um sucessor autenticado e imediatamente ancorado no piso pode ser promovido e que toda contradição bloqueia sem reviver autoridade. Esses resultados são de host e simulação; não são métricas de botão, energia, latência, qualidade de fala, LLM ou bancada.
+Após o Gran Finale pré-hardware, o ledger esperado é de **35 suítes**, **79 invariantes de prova** e **74 invariantes do simulador**. Os dois novos checks verificam que só um sucessor autenticado e imediatamente ancorado no piso pode ser promovido e que toda contradição bloqueia sem reviver autoridade. Esses resultados são de host e simulação; não são métricas de botão, energia, latência, qualidade de fala, LLM ou bancada.
 
 ## Adaptador futuro, plataforma aberta e fronteira de confiança
 

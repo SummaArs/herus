@@ -110,8 +110,8 @@
       "domain": "security",
       "status": "pending",
       "question": "Does the selected adapter demonstrate purpose binding, event provenance, monotonic-time/reset policy, boot quarantine, cancellation and replay resistance for collection sessions under controlled interruption?",
-      "evidence_required": ["adapter_revision", "event_source_description", "clock_reset_policy", "session_interruption_matrix_digest", "boot_quarantine_matrix_digest", "replay_test_digest"],
-      "claim_if_pass": "Only the declared adapter revision and tested reset/interruption method satisfy the recorded collection-session and boot-quarantine contract."
+      "evidence_required": ["adapter_revision", "event_source_description", "clock_reset_policy", "session_interruption_matrix_digest", "boot_quarantine_matrix_digest", "final_chain_matrix_digest", "replay_test_digest"],
+      "claim_if_pass": "Only the declared adapter revision and tested reset/interruption method satisfy the recorded collection-session, boot-quarantine and final-chain contract."
     },
     {
       "id": "local-model-profile",
