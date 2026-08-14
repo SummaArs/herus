@@ -53,7 +53,7 @@ Below it: eight functions and a radio.
 
 ## 2. What is proven, and by what
 
-`./prove.sh` runs twenty-seven suites and gates 63 proof invariants. It exits non-zero if any
+`./prove.sh` runs twenty-eight suites and gates 65 proof invariants. It exits non-zero if any
 one of them regresses, and it is the only thing standing between you and a
 plausible-looking bug in a device you will trust with an emergency.
 
@@ -74,6 +74,7 @@ plausible-looking bug in a device you will trust with an emergency.
 | **memory retrieval presentation** | status simbólico one-shot para match/no-match/ambiguidade, sessão física canônica, limpeza transitória e haptics abstratos limitados | testes determinísticos sem fala, motor, display, botão, acessibilidade, usuário, energia, latência, cofre, rede, rádio ou modelo |
 | **memory Grand Finale** | auditor puro e fixture composta captura→extração→política→revisão→cofre→recuperação→apresentação, com conflito/modelo bloqueantes | testes host com backend RAM; não prova banco multi-cartão, NVS/eFuse, power-loss, ASR, UI, pessoa, energia, latência, rede ou modelo local |
 | **memory collection** | até 8 cartões mínimos, índice/slots AEAD, piso de geração, prepare→commit→cleanup, recuperação autenticada, remoção e compactação lógicas | backend RAM host; não prova NVS, atomicidade de flash, power-loss, purge físico, endurance, raiz protegida, tamanho alvo ou escolha de MCU/secure element |
+| **memory collection index** | consulta tipada e física sobre registro autenticado, matriz transitória zerada, limiar/margem, abstenção e orçamento por sessão | backend RAM host; não prova índice persistente, escala de corpus, PIR/ORAM, embeddings, linguagem natural, relevância pessoal, latência, energia, UI ou plataforma alvo |
 | **threat model** | classificação pura de controles host completos, pendências de alvo e escopo não implementado para rádio, trust, memória, recuperação, modelo e telemetria | testes sintéticos de evidência; não é monitor de produção, pontuação de risco, pentest, auditoria independente, segurança física ou garantia de supply chain |
 | **assurance** | composição fail-closed de PTT, intenção, confirmação, trust, frescor, revogação e fronteira de modelo | testes determinísticos sem criar HCP, pacote, link ou rádio |
 | **capstone** | cadeia diálogo→modelo→interação→trust, precedência de revogação e handoff único | testes de módulos portáveis; não representa BLE, ASR, LLM ou energia física |

@@ -45,7 +45,7 @@ Uma futura LLM local poderá ajudar o Núcleo a organizar e explicar essa memór
 
 ## Estado atual
 
-O HERUS está em **release candidate pré-hardware**. A arquitetura, os contratos de privacidade, a confirmação física, a inteligência local limitada, o vínculo entre vestível e Núcleo, as barreiras de modelo, o cofre cifrado de cartão mínimo, a consolidação humana limitada, a recuperação tipada controlada, sua apresentação simbólica de status, a composição Grand Finale da cadeia de memória, uma coleção multi-cartão transacional limitada e um modelo de ameaças executável para controles host, lacunas de alvo e escopo residual foram implementados e verificados em host.
+O HERUS está em **release candidate pré-hardware**. A arquitetura, os contratos de privacidade, a confirmação física, a inteligência local limitada, o vínculo entre vestível e Núcleo, as barreiras de modelo, o cofre cifrado de cartão mínimo, a consolidação humana limitada, a recuperação tipada controlada, sua apresentação simbólica de status, a composição Grand Finale da cadeia de memória, uma coleção multi-cartão transacional limitada, seu índice privado abstencionista e um modelo de ameaças executável para controles host, lacunas de alvo e escopo residual foram implementados e verificados em host.
 
 Ainda não há resultados de campo. Alcance, consumo, ergonomia, reconhecimento de fala, comportamento háptico, integração BLE, armazenamento protegido e desempenho de uma LLM local precisam ser medidos no hardware real antes de se tornarem alegações de produto.
 
@@ -67,6 +67,7 @@ A próxima etapa física é a Fase 0: dois devkits, bancada curta, medição RF,
 | [Grand Finale de memória](docs/24-GRAND-FINALE-MEMORIA.md) | Prova composta da cadeia de captura ao status humano, com conflito/modelo bloqueantes e gates explícitos para hardware e avaliação. |
 | [Modelo de ameaças executável](docs/25-MODELO-AMEACAS-EXECUTAVEL.md) | Evidência rastreável para riscos de rádio, trust, memória, telemetria e modelo; lacunas físicas e supply chain continuam explícitas. |
 | [Coleção de memória](docs/26-COLECAO-MEMORIA.md) | Até oito cartões mínimos autorizados em uma transação cifrada; recuperação, exclusão e compactação lógicas sem alegação de mídia física. |
+| [Índice privado da coleção](docs/27-INDICE-PRIVADO-COLECAO.md) | Consulta tipada, física e limitada que retorna apenas match inequívoco, ausência ou ambiguidade; sem listagem, abertura automática, texto ou modelo. |
 | [Especificação do sistema](docs/00-HERUS-MASTER.md) | Arquitetura geral, protocolo, segurança, energia e limites conhecidos. |
 | [Guia de construção](docs/03-BUILD-GUIDE.md) | Próximos passos de hardware e critérios para interromper ou prosseguir. |
 | [Segurança](SECURITY.md) | O que a criptografia protege hoje e o que ainda depende de integração física. |

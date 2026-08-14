@@ -32,7 +32,7 @@ the documents**.
 
 | Target | Command | What it proves |
 |---|---|---|
-| Everything | `./prove.sh` | 27 suites + 63 proof invariants + 74 system invariants |
+| Everything | `./prove.sh` | 28 suites + 65 proof invariants + 74 system invariants |
 | Algebra | `cd firmware && make algebra` | Binding, bundling, resonator, HCP, dense vs sparse |
 | Núcleo | `cd firmware && make nucleus` | Consentimento opt-in, memória limitada, confiança, expiração e apagamento local |
 | Voz e háptica | `cd firmware && make voice` | Linguagem controlada, rascunho confirmável, SOS bloqueado e vibração limitada |
@@ -48,6 +48,7 @@ the documents**.
 | Interface de recuperação | `cd firmware && make memory-retrieval-present` | Status simbólico one-shot, acesso físico canônico, incerteza sem vencedor, haptics abstratos limitados e autoridade zero em host |
 | Grand Finale de memória | `cd firmware && make memory-finale` | Fixture composta de captura→extração→política→revisão→cofre→recuperação→apresentação, conflito/modelo bloqueantes e auditoria de autoridade zero em host |
 | Coleção multi-cartão | `cd firmware && make memory-collection` | Até oito cartões mínimos, autorização/gesto físicos separados, índice AEAD, prepare→commit, recuperação autenticada, capacidade, remoção/compactação lógicas e rollback fail-closed em host |
+| Índice privado de coleção | `cd firmware && make memory-collection-index` | Consulta tipada e física sobre coleção autenticada, budget transitório por sessão, match mínimo, ausência/ambiguidade sem vencedor, sem listagem ou abertura automática |
 | Modelo de ameaças | `cd firmware && make threat-model` | Classificação fail-closed de evidência host, pendências de alvo e escopo residual para rádio, trust, memória, modelo, telemetria, plataforma e supply chain |
 | Assurance Grand Finale | `cd firmware && make assurance` | Composição fail-closed de sessão, intenção, confirmação, trust, frescor, revogação e modelo |
 | Capstone Grand Finale | `cd firmware && make capstone` | Ataque à cadeia diálogo→modelo→interação→trust; nenhum bypass do handoff físico confirmado |
