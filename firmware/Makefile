@@ -20,6 +20,8 @@
 #   make memory-collection-recovery the crash-state recovery-oracle suite
 #   make memory-collection-recovery-stress the deterministic hostile collection-recovery campaign
 #   make memory-collection-finale the human-gated multi-card composition suite
+#   make bench-evidence-validate the privacy-preserving physical-evidence schema suite
+#   make bench-interruption-sim the host-only interruption-plan simulator
 #   make memory-physical-session the purpose-bound physical-session gate suite
 #   make memory-physical-session-recovery the durable reservation recovery oracle suite
 #   make memory-physical-session-recovery-stress the deterministic hostile recovery/bootstrap campaign
@@ -52,7 +54,7 @@ INC     := -Icore -Inet -Iport -Itest
 CORE    := core/hv.c core/sbc.c core/lexicon.c core/hcp.c
 NET     := net/crypto.c net/session.c net/region.c net/weave.c net/beat.c net/link.c
 
-.PHONY: all algebra nucleus voice intent dialogue model-lab memory-policy memory-capture memory-extract memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale memory-collection memory-collection-index memory-collection-recovery memory-collection-recovery-stress memory-collection-finale memory-physical-session memory-physical-session-recovery memory-physical-session-recovery-stress memory-physical-session-bootstrap memory-prehardware-finale threat-model threat-model-stress proof-fire-mutations assurance capstone trust control-link interaction interaction-rig net radio syntax vectors clean
+.PHONY: all algebra nucleus voice intent dialogue model-lab memory-policy memory-capture memory-extract memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale memory-collection memory-collection-index memory-collection-recovery memory-collection-recovery-stress memory-collection-finale bench-evidence-validate bench-interruption-sim memory-physical-session memory-physical-session-recovery memory-physical-session-recovery-stress memory-physical-session-bootstrap memory-prehardware-finale threat-model threat-model-stress proof-fire-mutations assurance capstone trust control-link interaction interaction-rig net radio syntax vectors clean
 
 all: algebra nucleus voice intent dialogue model-lab memory-policy memory-capture memory-extract memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale memory-collection memory-collection-index memory-collection-recovery memory-collection-recovery-stress memory-collection-finale memory-physical-session memory-physical-session-recovery memory-physical-session-recovery-stress memory-physical-session-bootstrap memory-prehardware-finale threat-model threat-model-stress proof-fire-mutations assurance capstone trust control-link interaction interaction-rig net radio syntax
 	@echo ""
@@ -159,6 +161,15 @@ memory-collection-finale: build
 	@echo "--- memory collection Grand Finale: human-gated multi-card composition ---"
 	$(CC) $(CFLAGS) $(INC) net/crypto.c core/voice.c core/memory_capture.c core/memory_policy.c core/memory_extract.c core/memory_vault.c core/memory_consolidation.c core/memory_retrieval.c core/memory_retrieval_present.c core/memory_physical_session.c core/memory_collection_recovery.c core/memory_collection.c core/memory_collection_index.c core/memory_collection_finale.c core/test_memory_collection_finale.c -o build/test_memory_collection_finale
 	./build/test_memory_collection_finale
+
+bench-evidence-validate: build
+	@echo "--- bench evidence: private numeric schema and digest validation ---"
+	python3 ../tools/test_bench_evidence_validate.py
+
+bench-interruption-sim: build
+	@echo "--- bench interruption simulator: host-only oracle composition ---"
+	$(CC) $(CFLAGS) $(INC) core/memory_collection_recovery.c core/memory_physical_session.c core/memory_physical_session_recovery.c core/memory_physical_session_bootstrap.c core/test_memory_bench_interruption_sim.c -o build/test_memory_bench_interruption_sim
+	./build/test_memory_bench_interruption_sim
 
 memory-physical-session: build
 	@echo "--- physical session: purpose-bound bounded replay gate ---"

@@ -23,13 +23,13 @@
     {
       "path": "firmware",
       "kind": "tree",
-      "sha256": "31b394e6571c4d8f337062bbcce68b6aa0d07c937b30d18b00b55e97dc891e5a",
+      "sha256": "2067a09d8bcd6492f02f96adc38723d4687d5a9562852904f0bffebae9b914f0",
       "role": "portable firmware and proof sources"
     },
     {
       "path": "tools",
       "kind": "tree",
-      "sha256": "0bb120a6759b4898eeffa612de92379a9c8a79ac10fdad3087a344b739207030",
+      "sha256": "33ac6cde47c05b50b15c6f5da8c74eaaf0dc22f5a2a174420ea0fb8a255385aa",
       "role": "host proof and provenance tools"
     },
     {
@@ -37,6 +37,12 @@
       "kind": "file",
       "sha256": "528761170590e28dd360bbaa4fe50457f9afa169c0f30ba2b6bfa0e7f8864c7a",
       "role": "physical gate declaration"
+    },
+    {
+      "path": "research/hardware_bench_evidence_schema.json",
+      "kind": "file",
+      "sha256": "2f0eddeb4d77d29074bc79263a78b724d43d49868580560fe213719a4e2901bd",
+      "role": "private numeric bench evidence schema"
     }
   ],
   "components": [
