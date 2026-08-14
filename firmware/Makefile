@@ -18,12 +18,16 @@
 #   make memory-collection the bounded transactional multi-card collection suite
 #   make memory-collection-index the private bounded multi-card retrieval suite
 #   make memory-collection-recovery the crash-state recovery-oracle suite
+#   make memory-collection-recovery-stress the deterministic hostile collection-recovery campaign
 #   make memory-collection-finale the human-gated multi-card composition suite
 #   make memory-physical-session the purpose-bound physical-session gate suite
 #   make memory-physical-session-recovery the durable reservation recovery oracle suite
+#   make memory-physical-session-recovery-stress the deterministic hostile recovery/bootstrap campaign
 #   make memory-physical-session-bootstrap the post-reboot session quarantine suite
 #   make memory-prehardware-finale the final host-only post-reboot memory-chain suite
 #   make threat-model the executable evidence and residual-risk classification suite
+#   make threat-model-stress the deterministic hostile evidence-classifier campaign
+#   make proof-fire-mutations the deterministic selected-control mutation campaign
 #   make assurance  the Grand Finale cross-module safety composition suite
 #   make capstone   the Grand Finale end-to-end safety-chain suite
 #   make trust      the explicit Core/Nucleus binding lifecycle suite
@@ -48,9 +52,9 @@ INC     := -Icore -Inet -Iport -Itest
 CORE    := core/hv.c core/sbc.c core/lexicon.c core/hcp.c
 NET     := net/crypto.c net/session.c net/region.c net/weave.c net/beat.c net/link.c
 
-.PHONY: all algebra nucleus voice intent dialogue model-lab memory-policy memory-capture memory-extract memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale memory-collection memory-collection-index memory-collection-recovery memory-collection-finale memory-physical-session memory-physical-session-recovery memory-physical-session-bootstrap memory-prehardware-finale threat-model assurance capstone trust control-link interaction interaction-rig net radio syntax vectors clean
+.PHONY: all algebra nucleus voice intent dialogue model-lab memory-policy memory-capture memory-extract memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale memory-collection memory-collection-index memory-collection-recovery memory-collection-recovery-stress memory-collection-finale memory-physical-session memory-physical-session-recovery memory-physical-session-recovery-stress memory-physical-session-bootstrap memory-prehardware-finale threat-model threat-model-stress proof-fire-mutations assurance capstone trust control-link interaction interaction-rig net radio syntax vectors clean
 
-all: algebra nucleus voice intent dialogue model-lab memory-policy memory-capture memory-extract memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale memory-collection memory-collection-index memory-collection-recovery memory-collection-finale memory-physical-session memory-physical-session-recovery memory-physical-session-bootstrap memory-prehardware-finale threat-model assurance capstone trust control-link interaction interaction-rig net radio syntax
+all: algebra nucleus voice intent dialogue model-lab memory-policy memory-capture memory-extract memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale memory-collection memory-collection-index memory-collection-recovery memory-collection-recovery-stress memory-collection-finale memory-physical-session memory-physical-session-recovery memory-physical-session-recovery-stress memory-physical-session-bootstrap memory-prehardware-finale threat-model threat-model-stress proof-fire-mutations assurance capstone trust control-link interaction interaction-rig net radio syntax
 	@echo ""
 	@echo "=================================================="
 	@echo "ALL FIRMWARE SUITES PASS"
@@ -146,6 +150,11 @@ memory-collection-recovery: build
 	$(CC) $(CFLAGS) $(INC) core/memory_collection_recovery.c core/test_memory_collection_recovery.c -o build/test_memory_collection_recovery
 	./build/test_memory_collection_recovery
 
+memory-collection-recovery-stress: build
+	@echo "--- collection recovery stress: deterministic hostile crash-state campaign ---"
+	$(CC) $(CFLAGS) $(INC) core/memory_collection_recovery.c core/test_memory_collection_recovery_stress.c -o build/test_memory_collection_recovery_stress
+	./build/test_memory_collection_recovery_stress
+
 memory-collection-finale: build
 	@echo "--- memory collection Grand Finale: human-gated multi-card composition ---"
 	$(CC) $(CFLAGS) $(INC) net/crypto.c core/voice.c core/memory_capture.c core/memory_policy.c core/memory_extract.c core/memory_vault.c core/memory_consolidation.c core/memory_retrieval.c core/memory_retrieval_present.c core/memory_physical_session.c core/memory_collection_recovery.c core/memory_collection.c core/memory_collection_index.c core/memory_collection_finale.c core/test_memory_collection_finale.c -o build/test_memory_collection_finale
@@ -161,6 +170,11 @@ memory-physical-session-recovery: build
 	$(CC) $(CFLAGS) $(INC) core/memory_physical_session_recovery.c core/test_memory_physical_session_recovery.c -o build/test_memory_physical_session_recovery
 	./build/test_memory_physical_session_recovery
 
+memory-physical-session-recovery-stress: build
+	@echo "--- recovery stress: deterministic hostile reservation and bootstrap campaign ---"
+	$(CC) $(CFLAGS) $(INC) core/memory_physical_session.c core/memory_physical_session_recovery.c core/memory_physical_session_bootstrap.c core/test_memory_physical_session_recovery_stress.c -o build/test_memory_physical_session_recovery_stress
+	./build/test_memory_physical_session_recovery_stress
+
 memory-physical-session-bootstrap: build
 	@echo "--- physical session bootstrap: post-reboot floor-only quarantine ---"
 	$(CC) $(CFLAGS) $(INC) core/memory_physical_session.c core/memory_physical_session_recovery.c core/memory_physical_session_bootstrap.c core/test_memory_physical_session_bootstrap.c -o build/test_memory_physical_session_bootstrap
@@ -175,6 +189,15 @@ threat-model: build
 	@echo "--- threat model: evidence-scoped mitigation and residual-risk boundaries ---"
 	$(CC) $(CFLAGS) $(INC) core/threat_model.c core/test_threat_model.c -o build/test_threat_model
 	./build/test_threat_model
+
+threat-model-stress: build
+	@echo "--- threat-model stress: deterministic hostile evidence campaign ---"
+	$(CC) $(CFLAGS) $(INC) core/threat_model.c core/test_threat_model_stress.c -o build/test_threat_model_stress
+	./build/test_threat_model_stress
+
+proof-fire-mutations: build
+	@echo "--- proof-fire mutations: selected critical controls must be detected when removed ---"
+	python3 ../tools/test_proof_fire_mutations.py
 
 assurance: build
 	@echo "--- assurance: Grand Finale composition, revocation and zero agency ---"

@@ -55,12 +55,14 @@ static int snapshot_is_canonical(const memory_physical_session_recovery_snapshot
     if (s->committed_present != 0u &&
         (s->committed_authenticated != 1u ||
          s->committed_reservation_id == 0u ||
+         s->committed_reservation_id == UINT32_MAX ||
          !valid_uses(s->committed_purpose, s->committed_uses))) {
         return 0;
     }
     if (s->prepared_present != 0u &&
         (s->prepared_authenticated != 1u ||
          s->prepared_reservation_id == 0u ||
+         s->prepared_reservation_id == UINT32_MAX ||
          s->prepared_base_reservation_id >= s->prepared_reservation_id ||
          !valid_uses(s->prepared_purpose, s->prepared_uses))) {
         return 0;

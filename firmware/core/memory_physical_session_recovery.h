@@ -25,7 +25,8 @@ typedef enum {
 
 /* A reservation records only a session floor and the operation shape it burned.
  * It is never an active capability: recovery returns a floor that rejects old
- * IDs and requires a new adapter event. `prepared_matches_committed` may be 1
+ * IDs and requires a new adapter event. Reservation IDs therefore must leave a
+ * representable successor; UINT32_MAX is terminal and fails closed. `prepared_matches_committed` may be 1
  * only after the caller authenticated both records and established complete
  * equality of reservation ID, purpose and allowed uses. */
 typedef struct {
