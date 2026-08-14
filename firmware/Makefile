@@ -1,6 +1,6 @@
 # Herus firmware — everything that can be proven on a host, proven on a host.
 #
-#   make            all eighteen suites
+#   make            all host-verifiable suites
 #   make algebra    the two algebra suites (hv/sbc/lexicon)
 #   make nucleus    the local, bounded semantic-intelligence suite
 #   make voice      the controlled-language and bounded-haptics suite
@@ -17,6 +17,7 @@
 #   make memory-finale the selective-memory Grand Finale composition suite
 #   make memory-collection the bounded transactional multi-card collection suite
 #   make memory-collection-index the private bounded multi-card retrieval suite
+#   make memory-collection-recovery the crash-state recovery-oracle suite
 #   make threat-model the executable evidence and residual-risk classification suite
 #   make assurance  the Grand Finale cross-module safety composition suite
 #   make capstone   the Grand Finale end-to-end safety-chain suite
@@ -42,9 +43,9 @@ INC     := -Icore -Inet -Iport -Itest
 CORE    := core/hv.c core/sbc.c core/lexicon.c core/hcp.c
 NET     := net/crypto.c net/session.c net/region.c net/weave.c net/beat.c net/link.c
 
-.PHONY: all algebra nucleus voice intent dialogue model-lab memory-policy memory-capture memory-extract memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale memory-collection memory-collection-index threat-model assurance capstone trust control-link interaction interaction-rig net radio syntax vectors clean
+.PHONY: all algebra nucleus voice intent dialogue model-lab memory-policy memory-capture memory-extract memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale memory-collection memory-collection-index memory-collection-recovery threat-model assurance capstone trust control-link interaction interaction-rig net radio syntax vectors clean
 
-all: algebra nucleus voice intent dialogue model-lab memory-policy memory-capture memory-extract memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale memory-collection memory-collection-index threat-model assurance capstone trust control-link interaction interaction-rig net radio syntax
+all: algebra nucleus voice intent dialogue model-lab memory-policy memory-capture memory-extract memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale memory-collection memory-collection-index memory-collection-recovery threat-model assurance capstone trust control-link interaction interaction-rig net radio syntax
 	@echo ""
 	@echo "=================================================="
 	@echo "ALL FIRMWARE SUITES PASS"
@@ -127,13 +128,18 @@ memory-finale: build
 
 memory-collection: build
 	@echo "--- memory collection: bounded transactional multi-card persistence contract ---"
-	$(CC) $(CFLAGS) $(INC) net/crypto.c core/memory_policy.c core/memory_collection.c core/test_memory_collection.c -o build/test_memory_collection
+	$(CC) $(CFLAGS) $(INC) net/crypto.c core/memory_policy.c core/memory_collection_recovery.c core/memory_collection.c core/test_memory_collection.c -o build/test_memory_collection
 	./build/test_memory_collection
 
 memory-collection-index: build
 	@echo "--- memory collection index: bounded private typed retrieval ---"
-	$(CC) $(CFLAGS) $(INC) net/crypto.c core/memory_policy.c core/memory_retrieval.c core/memory_collection.c core/memory_collection_index.c core/test_memory_collection_index.c -o build/test_memory_collection_index
+	$(CC) $(CFLAGS) $(INC) net/crypto.c core/memory_policy.c core/memory_retrieval.c core/memory_collection_recovery.c core/memory_collection.c core/memory_collection_index.c core/test_memory_collection_index.c -o build/test_memory_collection_index
 	./build/test_memory_collection_index
+
+memory-collection-recovery: build
+	@echo "--- memory collection recovery: portable crash-state oracle ---"
+	$(CC) $(CFLAGS) $(INC) core/memory_collection_recovery.c core/test_memory_collection_recovery.c -o build/test_memory_collection_recovery
+	./build/test_memory_collection_recovery
 
 threat-model: build
 	@echo "--- threat model: evidence-scoped mitigation and residual-risk boundaries ---"

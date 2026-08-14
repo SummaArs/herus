@@ -29,6 +29,7 @@ All of the following are checked by `./prove.sh` on every run — see
 | Evidence-scoped threat classification | `make threat-model` rejects incomplete/noncanonical control evidence and distinguishes host-mitigated controls from target-pending and out-of-scope vectors; see [docs/25-MODELO-AMEACAS-EXECUTAVEL.md](docs/25-MODELO-AMEACAS-EXECUTAVEL.md) |
 | Bounded multi-card collection in host | `make memory-collection` requires authorization plus physical access, encrypts/authenticates a fixed index and rejects duplicate, capacity, transaction, tag and rollback failures; see [docs/26-COLECAO-MEMORIA.md](docs/26-COLECAO-MEMORIA.md) |
 | Private collection retrieval in host | `make memory-collection-index` permits only bounded typed queries under physical access, preserves abstention/ambiguity and never opens a card automatically; see [docs/27-INDICE-PRIVADO-COLECAO.md](docs/27-INDICE-PRIVADO-COLECAO.md) |
+| Transactional crash-state recovery in host | `make memory-collection-recovery` promotes only an authenticated successor bound to the durable floor, discards pre-floor preparation and blocks contradictory state; see [docs/28-RECUPERACAO-TRANSACIONAL.md](docs/28-RECUPERACAO-TRANSACIONAL.md) |
 
 ## What is NOT protected yet
 
@@ -70,6 +71,11 @@ consequences:
   It has no persisted query log or public list API, but does not implement PIR,
   ORAM, side-channel resistance, protected RAM, a real physical control or a
   privacy property against modified firmware.
+- **Crash-state recovery is not durable storage assurance.** The portable oracle
+  classifies decoded/authenticated records and an asserted monotonic floor. It does
+  not establish that callbacks survive brownout, that flash writes are atomic, that
+  a root or counter is protected, that old bytes are purged, or that a faulting
+  target cannot present a topology the host contract blocks.
 
 ## Regulatory safety
 

@@ -98,6 +98,14 @@
       "claim_if_pass": "The tested target port supports the documented trust lifecycle for its revision."
     },
     {
+      "id": "collection-crash-recovery",
+      "domain": "security",
+      "status": "pending",
+      "question": "Does the selected collection backend recover every PREPARED/floor/COMMITTED/cleanup interruption to the state permitted by the portable recovery matrix?",
+      "evidence_required": ["backend_revision", "interruption_method", "transition_matrix_digest", "root_and_floor_review_digest"],
+      "claim_if_pass": "Only the declared backend revision and interruption method satisfy the recorded collection-recovery matrix."
+    },
+    {
       "id": "local-model-profile",
       "domain": "model",
       "status": "pending",

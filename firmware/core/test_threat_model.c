@@ -62,6 +62,12 @@ int main(void)
        "T9 sensitive review and conflict blocking remain mandatory even after human authority exists");
 
     s = host_controls();
+    s.memory_recovery_topology = 0u;
+    ok(threat_model_assess(THREAT_MODEL_MEMORY_RETENTION, &s, &d) == THREAT_MODEL_E_BLOCKED &&
+       (d.failures & THREAT_MODEL_FAIL_MEMORY_RECOVERY) && !d.host_mitigated,
+       "T9 retention loses host mitigation when crash recovery lacks an explicit safe topology");
+
+    s = host_controls();
     s.memory_ambiguity_preserved = 0u;
     s.memory_presentation_one_shot = 0u;
     ok(threat_model_assess(THREAT_MODEL_MEMORY_RECOVERY, &s, &d) == THREAT_MODEL_E_BLOCKED &&

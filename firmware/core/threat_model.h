@@ -54,6 +54,7 @@ typedef struct {
     uint8_t memory_generation_monotonic;
     uint8_t memory_sensitive_reviewed;
     uint8_t memory_conflict_blocks;
+    uint8_t memory_recovery_topology;
     uint8_t memory_retrieval_access_gated;
     uint8_t memory_ambiguity_preserved;
     uint8_t memory_presentation_one_shot;
@@ -100,7 +101,8 @@ typedef enum {
     THREAT_MODEL_FAIL_TELEMETRY_NUMERIC = 1u << 23,
     THREAT_MODEL_FAIL_TELEMETRY_PRIVACY = 1u << 24,
     THREAT_MODEL_FAIL_TARGET_PENDING    = 1u << 25,
-    THREAT_MODEL_FAIL_SCOPE_UNSUPPORTED = 1u << 26
+    THREAT_MODEL_FAIL_SCOPE_UNSUPPORTED = 1u << 26,
+    THREAT_MODEL_FAIL_MEMORY_RECOVERY  = 1u << 27
 } threat_model_failure_t;
 
 typedef struct {

@@ -47,6 +47,8 @@ typedef struct {
     uint32_t compactions;
     uint32_t opens;
     uint32_t recoveries;
+    uint32_t finalized_prepared;
+    uint32_t discarded_prepared;
     uint32_t rejected_access;
     uint32_t rejected_card;
     uint32_t duplicate_rejections;
@@ -82,11 +84,12 @@ enum {
     MEMORY_COLLECTION_E_RECOVERY     = -14
 };
 
-/* Initializes against the independent generation floor. A prepared record is
- * accepted only when it is fully authenticated, strictly newer than committed and
- * equal to the durable floor; then it is promoted deterministically. Any missing
- * record other than the first empty collection, malformed record, contradiction or
- * backend failure leaves the collection BLOCKED. */
+/* Initializes against the independent generation floor. The pure recovery oracle
+ * accepts only authenticated, topology-consistent records. A prepared record bound
+ * to the new floor is promoted; an old-floor prepared record is discarded; a
+ * duplicate prepared copy of committed state is finalized. Any missing record other
+ * than the first empty collection, malformed record, contradiction or backend
+ * failure leaves the collection BLOCKED. */
 int memory_collection_init(memory_collection_t *c,
                            const memory_collection_config_t *cfg);
 
