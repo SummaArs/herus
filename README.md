@@ -45,7 +45,7 @@ Uma futura LLM local poderá ajudar o Núcleo a organizar e explicar essa memór
 
 ## Estado atual
 
-O HERUS está em **release candidate pré-hardware**. A arquitetura, os contratos de privacidade, a confirmação física, a inteligência local limitada, o vínculo entre vestível e Núcleo, as barreiras de modelo, o cofre cifrado de cartão mínimo, a consolidação humana limitada, a recuperação tipada controlada, sua apresentação simbólica de status e a composição Grand Finale da cadeia de memória foram implementadas e verificadas em host.
+O HERUS está em **release candidate pré-hardware**. A arquitetura, os contratos de privacidade, a confirmação física, a inteligência local limitada, o vínculo entre vestível e Núcleo, as barreiras de modelo, o cofre cifrado de cartão mínimo, a consolidação humana limitada, a recuperação tipada controlada, sua apresentação simbólica de status, a composição Grand Finale da cadeia de memória e um modelo de ameaças executável para controles host, lacunas de alvo e escopo residual foram implementados e verificados em host.
 
 Ainda não há resultados de campo. Alcance, consumo, ergonomia, reconhecimento de fala, comportamento háptico, integração BLE, armazenamento protegido e desempenho de uma LLM local precisam ser medidos no hardware real antes de se tornarem alegações de produto.
 
@@ -65,6 +65,7 @@ A próxima etapa física é a Fase 0: dois devkits, bancada curta, medição RF,
 | [Recuperação controlada](docs/22-RECUPERACAO-SEMANTICA.md) | Matching local de cartões tipados com limiar, razões e ambiguidade explícita; sem busca livre, escrita ou autoridade de modelo. |
 | [Interface de recuperação](docs/23-INTERFACE-RECUPERACAO-HUMANA.md) | Status simbólico one-shot para correspondência, ausência e ambiguidade; sem conteúdo livre, desempate, escrita, envio ou ação. |
 | [Grand Finale de memória](docs/24-GRAND-FINALE-MEMORIA.md) | Prova composta da cadeia de captura ao status humano, com conflito/modelo bloqueantes e gates explícitos para hardware e avaliação. |
+| [Modelo de ameaças executável](docs/25-MODELO-AMEACAS-EXECUTAVEL.md) | Evidência rastreável para riscos de rádio, trust, memória, telemetria e modelo; lacunas físicas e supply chain continuam explícitas. |
 | [Especificação do sistema](docs/00-HERUS-MASTER.md) | Arquitetura geral, protocolo, segurança, energia e limites conhecidos. |
 | [Guia de construção](docs/03-BUILD-GUIDE.md) | Próximos passos de hardware e critérios para interromper ou prosseguir. |
 | [Segurança](SECURITY.md) | O que a criptografia protege hoje e o que ainda depende de integração física. |

@@ -111,6 +111,10 @@ python3 tools/readiness_audit.py research/hardware_readiness_manifest.json --str
 
 O primeiro comando prova somente a composição de fixture. O último comando preserva os gates físicos gerais já congelados; ele não marca nenhum dos gates de memória acima como concluído.
 
+## 7. Continuidade: ameaças rastreáveis
+
+O [modelo de ameaças executável](25-MODELO-AMEACAS-EXECUTAVEL.md) agora classifica a cadeia desta página como evidência host para retenção, recuperação e ausência de autoridade de modelo, mas mantém backend protegido, power-loss, interface física, avaliação humana e supply chain como risco residual explícito. Ele não concede permissão adicional à composição nem muda o stop/go acima.
+
 ## Referências
 
 [1] National Institute of Standards and Technology, *SP 800-160 Vol. 1 Rev. 1: Engineering Trustworthy Secure Systems*. [Publicação oficial](https://csrc.nist.gov/pubs/sp/800/160/v1/r1/final).

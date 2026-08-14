@@ -32,7 +32,7 @@ the documents**.
 
 | Target | Command | What it proves |
 |---|---|---|
-| Everything | `./prove.sh` | 25 suites + 59 proof invariants + 74 system invariants |
+| Everything | `./prove.sh` | 26 suites + 61 proof invariants + 74 system invariants |
 | Algebra | `cd firmware && make algebra` | Binding, bundling, resonator, HCP, dense vs sparse |
 | Núcleo | `cd firmware && make nucleus` | Consentimento opt-in, memória limitada, confiança, expiração e apagamento local |
 | Voz e háptica | `cd firmware && make voice` | Linguagem controlada, rascunho confirmável, SOS bloqueado e vibração limitada |
@@ -47,6 +47,7 @@ the documents**.
 | Recuperação controlada | `cd firmware && make memory-retrieval` | Matching local tipado, consulta limitada, limiar, margem de ambiguidade, apresentação mínima e autoridade zero em host |
 | Interface de recuperação | `cd firmware && make memory-retrieval-present` | Status simbólico one-shot, acesso físico canônico, incerteza sem vencedor, haptics abstratos limitados e autoridade zero em host |
 | Grand Finale de memória | `cd firmware && make memory-finale` | Fixture composta de captura→extração→política→revisão→cofre→recuperação→apresentação, conflito/modelo bloqueantes e auditoria de autoridade zero em host |
+| Modelo de ameaças | `cd firmware && make threat-model` | Classificação fail-closed de evidência host, pendências de alvo e escopo residual para rádio, trust, memória, modelo, telemetria, plataforma e supply chain |
 | Assurance Grand Finale | `cd firmware && make assurance` | Composição fail-closed de sessão, intenção, confirmação, trust, frescor, revogação e modelo |
 | Capstone Grand Finale | `cd firmware && make capstone` | Ataque à cadeia diálogo→modelo→interação→trust; nenhum bypass do handoff físico confirmado |
 | Readiness de hardware | `python3 tools/readiness_audit.py research/hardware_readiness_manifest.json --strict` | Gates pendentes, evidência obrigatória para aprovação e privacidade de logs |

@@ -55,14 +55,14 @@ minutes, so you can trust the documents.
    xcode-select --install 2>/dev/null; cc --version && python3 --version && pip3 install cryptography
    ```
 
-2. Prove everything. One command, twenty-five suites, 59 proof invariants:
+2. Prove everything. One command, twenty-six suites, 61 proof invariants:
 
    ```bash
    ./prove.sh
    ```
 
 **Done when.** `prove.sh` exits 0 and prints `ALL INVARIANTS HOLD`. That covers the
-algebra (T1–T11), the opt-in bounded Nucleus predictor, controlled voice/haptic contracts, the session-bound intent-confidence gateway, bounded dialogue, local-model acceptance policy, selective-memory relevance policy, explicit transient memory-capture session, typed non-retaining candidate extraction, the authorised encrypted memory-vault contract, bounded human memory consolidation, controlled typed memory retrieval, one-shot human retrieval presentation and the composed memory Grand Finale, Grand Finale assurance and capstone chain, the explicit Core↔Nucleus trust lifecycle and authenticated control envelope, the confirmed interaction runtime, deterministic adapter/telemetry gates, the frozen hardware-readiness manifest, the preregistered study method, the protocol (crypto vs OpenSSL, ratchet, replay, forgery,
+algebra (T1–T11), the opt-in bounded Nucleus predictor, controlled voice/haptic contracts, the session-bound intent-confidence gateway, bounded dialogue, local-model acceptance policy, selective-memory relevance policy, explicit transient memory-capture session, typed non-retaining candidate extraction, the authorised encrypted memory-vault contract, bounded human memory consolidation, controlled typed memory retrieval, one-shot human retrieval presentation, the composed memory Grand Finale and the executable threat-model classifier, Grand Finale assurance and capstone chain, the explicit Core↔Nucleus trust lifecycle and authenticated control envelope, the confirmed interaction runtime, deterministic adapter/telemetry gates, the frozen hardware-readiness manifest, the preregistered study method, the protocol (crypto vs OpenSSL, ratchet, replay, forgery,
 flooding, Beat drift), the SX1262 command sequences against a mock bus, and every RF
 and energy figure in these documents.
 
@@ -352,7 +352,7 @@ suite proves the contract and failure policy only; it does not satisfy either
 memory-vault checklist item until the target backend and adversarial hardware
 procedure are evidenced. The portable consolidation suite likewise proves a bounded
 review state machine only; it does not evidence a physical control, trusted clock,
-calendar retention policy or physical-media sanitization. The portable retrieval suite proves only bounded typed matching in RAM; it does not evidence natural-language search, personal relevance, a model, NVS access or a physical recovery interaction. The portable presentation suite proves only symbolic status and bounded haptic plans; it does not evidence voice intelligibility, haptic perception, display legibility, WCAG conformance, physical controls, accessibility, user understanding, energy or latency. The memory Grand Finale additionally proves a host fixture composition and cross-layer refusal policy; it does not evidence a multi-card persistent store, protected root/NVS, power-loss recovery, ASR, physical interaction, user comprehension or any hardware metric.
+calendar retention policy or physical-media sanitization. The portable retrieval suite proves only bounded typed matching in RAM; it does not evidence natural-language search, personal relevance, a model, NVS access or a physical recovery interaction. The portable presentation suite proves only symbolic status and bounded haptic plans; it does not evidence voice intelligibility, haptic perception, display legibility, WCAG conformance, physical controls, accessibility, user understanding, energy or latency. The memory Grand Finale additionally proves a host fixture composition and cross-layer refusal policy; it does not evidence a multi-card persistent store, protected root/NVS, power-loss recovery, ASR, physical interaction, user comprehension or any hardware metric. The executable threat model then classifies this host evidence and keeps platform/supply-chain gaps visible; it is not a runtime monitor, penetration test, hardware assurance or risk-probability estimate.
 
 **Done when.** An assembled board runs the Phase 1–3 firmware and matches the
 Phase 0 range baseline within 3 dB.
