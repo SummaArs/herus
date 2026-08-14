@@ -9,7 +9,7 @@
 #   ./prove.sh            full run
 #   ./prove.sh --quiet    verdict lines only
 #
-# Thirty-three suites, each independently falsifiable:
+# Thirty-four suites, each independently falsifiable:
 #   1  algebra      quasi-orthogonality, bundling, resonator, learning, HCP
 #   2  nucleus      bounded, opt-in local semantic intelligence
 #   3  voice        controlled local language and bounded haptic feedback
@@ -30,19 +30,20 @@
 #  18  memory-collection-finale human-gated multi-card composition and abstention
 #  19  memory-physical-session purpose-bound, expiring and consumed collection access
 #  20  memory-physical-session-recovery durable reservation oracle; no session revival
-#  21  threat-model executable host-evidence, target-pending and out-of-scope classifier
-#  22  assurance    fail-closed cross-module composition and revocation precedence
-#  23  capstone     dialogue, model, intent, trust and one-time-handoff attack chain
-#  24  trust        explicit pairing, SAS, protected persistence and revocation
-#  25  control-link authenticated Core/Nucleus control-envelope, expiry and replay protection
-#  26  interaction  push-to-talk, confirmation, one-shot send and telemetry
-#  27  validation   deterministic adapters and telemetry log gates
-#  28  readiness    frozen hardware-evidence manifest and privacy/schema gate
-#  29  provenance   unsigned local inputs, declared components and fail-closed gates
-#  30  study        preregistered plan, statistical gates and unsafe-send rejection
-#  31  protocol     crypto vs OpenSSL, ratchet, framing, Weave, Beat, canonicality
-#  32  radio        SX1262 command sequences against a recording mock bus
-#  33  physical     RF, energy and the frame ledger, from tools/budget.py
+#  21  memory-physical-session-bootstrap floor-only post-reboot session quarantine
+#  22  threat-model executable host-evidence, target-pending and out-of-scope classifier
+#  23  assurance    fail-closed cross-module composition and revocation precedence
+#  24  capstone     dialogue, model, intent, trust and one-time-handoff attack chain
+#  25  trust        explicit pairing, SAS, protected persistence and revocation
+#  26  control-link authenticated Core/Nucleus control-envelope, expiry and replay protection
+#  27  interaction  push-to-talk, confirmation, one-shot send and telemetry
+#  28  validation   deterministic adapters and telemetry log gates
+#  29  readiness    frozen hardware-evidence manifest and privacy/schema gate
+#  30  provenance   unsigned local inputs, declared components and fail-closed gates
+#  31  study        preregistered plan, statistical gates and unsafe-send rejection
+#  32  protocol     crypto vs OpenSSL, ratchet, framing, Weave, Beat, canonicality
+#  33  radio        SX1262 command sequences against a recording mock bus
+#  34  physical     RF, energy and the frame ledger, from tools/budget.py
 #
 # The Nucleus suite is intentionally separate: privacy and non-autonomy are
 # properties that must fail a build when regressed, not promises in a document.
@@ -57,167 +58,172 @@ banner() { say ""; say "=================================================="; say
 FAIL=0
 mkdir -p firmware/build
 
-banner "1/33 algebra (hv + sbc + lexicon + hcp)"
+banner "1/34 algebra (hv + sbc + lexicon + hcp)"
 ( cd firmware && make algebra ) > /tmp/herus_a.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_a.log
 grep -q "FAIL" /tmp/herus_a.log && FAIL=1 || true
 
-banner "2/33 nucleus (bounded local semantic intelligence)"
+banner "2/34 nucleus (bounded local semantic intelligence)"
 ( cd firmware && make nucleus ) > /tmp/herus_n.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_n.log
 grep -q "FAIL" /tmp/herus_n.log && FAIL=1 || true
 
-banner "3/33 voice (controlled language, confirmation, bounded haptics)"
+banner "3/34 voice (controlled language, confirmation, bounded haptics)"
 ( cd firmware && make voice ) > /tmp/herus_v.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_v.log
 grep -q "FAIL" /tmp/herus_v.log && FAIL=1 || true
 
-banner "4/33 intent gateway (session, confidence, ambiguity and bounded context)"
+banner "4/34 intent gateway (session, confidence, ambiguity and bounded context)"
 ( cd firmware && make intent ) > /tmp/herus_t.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_t.log
 grep -q "FAIL" /tmp/herus_t.log && FAIL=1 || true
 
-banner "5/33 dialogue (bounded local conversation and zero send authority)"
+banner "5/34 dialogue (bounded local conversation and zero send authority)"
 ( cd firmware && make dialogue ) > /tmp/herus_d.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_d.log
 grep -q "FAIL" /tmp/herus_d.log && FAIL=1 || true
 
-banner "6/33 model acceptance lab (target evidence, budgets and reply shield)"
+banner "6/34 model acceptance lab (target evidence, budgets and reply shield)"
 ( cd firmware && make model-lab ) > /tmp/herus_m.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_m.log
 grep -q "FAIL" /tmp/herus_m.log && FAIL=1 || true
 
-banner "7/33 memory policy (consent, relevance, review and no persistence)"
+banner "7/34 memory policy (consent, relevance, review and no persistence)"
 ( cd firmware && make memory-policy ) > /tmp/herus_y.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_y.log
 grep -q "FAIL" /tmp/herus_y.log && FAIL=1 || true
 
-banner "8/33 memory capture (physical session, expiry and transient discard)"
+banner "8/34 memory capture (physical session, expiry and transient discard)"
 ( cd firmware && make memory-capture ) > /tmp/herus_z.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_z.log
 grep -q "FAIL" /tmp/herus_z.log && FAIL=1 || true
 
-banner "9/33 memory extract (typed candidate, uncertainty and zero retention)"
+banner "9/34 memory extract (typed candidate, uncertainty and zero retention)"
 ( cd firmware && make memory-extract ) > /tmp/herus_e.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_e.log
 grep -q "FAIL" /tmp/herus_e.log && FAIL=1 || true
 
-banner "10/33 memory vault (explicit authority, AEAD and durable anti-rollback)"
+banner "10/34 memory vault (explicit authority, AEAD and durable anti-rollback)"
 ( cd firmware && make memory-vault ) > /tmp/herus_w.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_w.log
 grep -q "FAIL" /tmp/herus_w.log && FAIL=1 || true
 
-banner "11/33 memory consolidation (bounded human review, conflict, recall and removal)"
+banner "11/34 memory consolidation (bounded human review, conflict, recall and removal)"
 ( cd firmware && make memory-consolidation ) > /tmp/herus_o.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_o.log
 grep -q "FAIL" /tmp/herus_o.log && FAIL=1 || true
 
-banner "12/33 memory retrieval (typed local matching, ambiguity and zero authority)"
+banner "12/34 memory retrieval (typed local matching, ambiguity and zero authority)"
 ( cd firmware && make memory-retrieval ) > /tmp/herus_u.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_u.log
 grep -q "FAIL" /tmp/herus_u.log && FAIL=1 || true
 
-banner "13/33 memory retrieval presentation (one-shot status, uncertainty and zero authority)"
+banner "13/34 memory retrieval presentation (one-shot status, uncertainty and zero authority)"
 ( cd firmware && make memory-retrieval-present ) > /tmp/herus_p.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_p.log
 grep -q "FAIL" /tmp/herus_p.log && FAIL=1 || true
 
-banner "14/33 memory Grand Finale (composed private-memory chain and zero model authority)"
+banner "14/34 memory Grand Finale (composed private-memory chain and zero model authority)"
 ( cd firmware && make memory-finale ) > /tmp/herus_f.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_f.log
 grep -q "FAIL" /tmp/herus_f.log && FAIL=1 || true
 
-banner "15/33 memory collection (bounded transactional multi-card persistence)"
+banner "15/34 memory collection (bounded transactional multi-card persistence)"
 ( cd firmware && make memory-collection ) > /tmp/herus_mc.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_mc.log
 grep -q "FAIL" /tmp/herus_mc.log && FAIL=1 || true
 
-banner "16/33 memory collection index (bounded private typed retrieval)"
+banner "16/34 memory collection index (bounded private typed retrieval)"
 ( cd firmware && make memory-collection-index ) > /tmp/herus_mci.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_mci.log
 grep -q "FAIL" /tmp/herus_mci.log && FAIL=1 || true
 
-banner "17/33 memory collection recovery (portable crash-state oracle)"
+banner "17/34 memory collection recovery (portable crash-state oracle)"
 ( cd firmware && make memory-collection-recovery ) > /tmp/herus_mcr.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_mcr.log
 grep -q "FAIL" /tmp/herus_mcr.log && FAIL=1 || true
 
-banner "18/33 memory collection Grand Finale (human authority, abstention and no fallback)"
+banner "18/34 memory collection Grand Finale (human authority, abstention and no fallback)"
 ( cd firmware && make memory-collection-finale ) > /tmp/herus_mcf.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_mcf.log
 grep -q "FAIL" /tmp/herus_mcf.log && FAIL=1 || true
 
-banner "19/33 physical session (purpose-bound, expiring and consumed collection access)"
+banner "19/34 physical session (purpose-bound, expiring and consumed collection access)"
 ( cd firmware && make memory-physical-session ) > /tmp/herus_mps.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_mps.log
 grep -q "FAIL" /tmp/herus_mps.log && FAIL=1 || true
 
-banner "20/33 physical session recovery (durable reservation floor; no authority revival)"
+banner "20/34 physical session recovery (durable reservation floor; no authority revival)"
 ( cd firmware && make memory-physical-session-recovery ) > /tmp/herus_mpsr.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_mpsr.log
 grep -q "FAIL" /tmp/herus_mpsr.log && FAIL=1 || true
 
-banner "21/33 threat model (host evidence, target gaps and scope boundaries)"
+banner "21/34 physical session bootstrap (post-reboot floor-only quarantine)"
+( cd firmware && make memory-physical-session-bootstrap ) > /tmp/herus_mpsb.log 2>&1 || FAIL=1
+[ "$QUIET" = 0 ] && cat /tmp/herus_mpsb.log
+grep -q "FAIL" /tmp/herus_mpsb.log && FAIL=1 || true
+
+banner "22/34 threat model (host evidence, target gaps and scope boundaries)"
 ( cd firmware && make threat-model ) > /tmp/herus_tm.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_tm.log
 grep -q "FAIL" /tmp/herus_tm.log && FAIL=1 || true
 
-banner "22/33 assurance (fail-closed composition and revocation precedence)"
+banner "23/34 assurance (fail-closed composition and revocation precedence)"
 ( cd firmware && make assurance ) > /tmp/herus_q.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_q.log
 grep -q "FAIL" /tmp/herus_q.log && FAIL=1 || true
 
-banner "23/33 capstone (dialogue, model, interaction and trust chain)"
+banner "24/34 capstone (dialogue, model, interaction and trust chain)"
 ( cd firmware && make capstone ) > /tmp/herus_x.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_x.log
 grep -q "FAIL" /tmp/herus_x.log && FAIL=1 || true
 
-banner "24/33 trust lifecycle (explicit pairing, SAS and revocation)"
+banner "25/34 trust lifecycle (explicit pairing, SAS and revocation)"
 ( cd firmware && make trust ) > /tmp/herus_k.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_k.log
 grep -q "FAIL" /tmp/herus_k.log && FAIL=1 || true
 
-banner "25/33 Core/Nucleus control link (AEAD, expiry and replay protection)"
+banner "26/34 Core/Nucleus control link (AEAD, expiry and replay protection)"
 ( cd firmware && make control-link ) > /tmp/herus_l.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_l.log
 grep -q "FAIL" /tmp/herus_l.log && FAIL=1 || true
 
-banner "26/33 interaction (push-to-talk, confirmation and one-shot send)"
+banner "27/34 interaction (push-to-talk, confirmation and one-shot send)"
 ( cd firmware && make interaction ) > /tmp/herus_i.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_i.log
 grep -q "FAIL" /tmp/herus_i.log && FAIL=1 || true
 
-banner "27/33 validation lab (deterministic adapters and telemetry gates)"
+banner "28/34 validation lab (deterministic adapters and telemetry gates)"
 ( cd firmware && make interaction-rig && cd .. && ./tools/test_interactionlog.sh ) > /tmp/herus_g.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_g.log
 grep -q "FAIL" /tmp/herus_g.log && FAIL=1 || true
 
-banner "28/33 readiness manifest (frozen evidence and privacy gates)"
+banner "29/34 readiness manifest (frozen evidence and privacy gates)"
 ( python3 tools/readiness_audit.py research/hardware_readiness_manifest.json --strict && python3 tools/test_readiness_audit.py ) > /tmp/herus_h.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_h.log
 grep -q "FAIL" /tmp/herus_h.log && FAIL=1 || true
 
-banner "29/33 local provenance manifest (unsigned inputs and pending supply-chain gates)"
+banner "30/34 local provenance manifest (unsigned inputs and pending supply-chain gates)"
 ( python3 tools/provenance_audit.py research/software_provenance_manifest.json --strict && python3 tools/test_provenance_audit.py ) > /tmp/herus_pv.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_pv.log
 grep -q "FAIL" /tmp/herus_pv.log && FAIL=1 || true
 
-banner "30/33 preregistered study (frozen plan, gates and unsafe-send rejection)"
+banner "31/34 preregistered study (frozen plan, gates and unsafe-send rejection)"
 python3 tools/test_interactionstudy.py > /tmp/herus_s.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_s.log
 grep -q "FAIL" /tmp/herus_s.log && FAIL=1 || true
 
-banner "31/33 protocol (crypto, ratchet, framing, Weave, Beat)"
+banner "32/34 protocol (crypto, ratchet, framing, Weave, Beat)"
 ( cd firmware && make net ) > /tmp/herus_b.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_b.log
 grep -q "FAIL" /tmp/herus_b.log && FAIL=1 || true
 
-banner "32/33 radio driver (SX1262 command sequences, no hardware)"
+banner "33/34 radio driver (SX1262 command sequences, no hardware)"
 ( cd firmware && make radio && make syntax ) > /tmp/herus_r.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_r.log
 grep -q "FAIL" /tmp/herus_r.log && FAIL=1 || true
 
-banner "33/33 physical layer, energy and frame ledger"
+banner "34/34 physical layer, energy and frame ledger"
 python3 tools/budget.py > /tmp/herus_c.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_c.log
 
@@ -312,6 +318,10 @@ check "Collection Finale requires purpose-bound session evidence and rejects leg
 # --- durable session reservation recovery ---------------------------------
 check "Reservation recovery promotes only an authenticated immediate successor already anchored in durable floor" "T15 immediate authenticated successor bound to floor is promoted as a consumed reservation" /tmp/herus_mpsr.log
 check "Reservation recovery never revives pre-reboot session authority and contradictions block" "PHYSICAL SESSION RECOVERY INVARIANTS HOLD" /tmp/herus_mpsr.log
+
+# --- post-reboot session bootstrap ----------------------------------------
+check "Bootstrap imports only the recovered floor and scrubs prior active session evidence" "T16 committed floor replaces an active pre-reboot session with idle quarantine" /tmp/herus_mpsb.log
+check "Bootstrap blocks invalid recovery/configuration instead of reviving authority" "PHYSICAL SESSION BOOTSTRAP INVARIANTS HOLD" /tmp/herus_mpsb.log
 
 # --- executable threat model --------------------------------------------
 check "Threat model classifies host controls only with complete canonical evidence" "THREAT MODEL INVARIANTS HOLD" /tmp/herus_tm.log

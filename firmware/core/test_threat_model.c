@@ -38,7 +38,7 @@ int main(void)
     expect_host(THREAT_MODEL_COMPANION_TRUST,
                 "T9 pairing, authentication, freshness and revocation are separate required trust evidence");
     expect_host(THREAT_MODEL_MEMORY_RETENTION,
-                "T9 selective capture, policy, human authority, collection composition, physical-session binding, post-reboot reservation recovery and conflict controls compose for retention");
+                "T9 selective capture, policy, human authority, collection composition, physical-session binding, reservation recovery, post-reboot quarantine and conflict controls compose for retention");
     expect_host(THREAT_MODEL_MEMORY_RECOVERY,
                 "T9 access gating, ambiguity and one-shot presentation compose for recovery");
     expect_host(THREAT_MODEL_MODEL_AGENCY,
@@ -84,6 +84,12 @@ int main(void)
     ok(threat_model_assess(THREAT_MODEL_MEMORY_RETENTION, &s, &d) == THREAT_MODEL_E_BLOCKED &&
        (d.failures & THREAT_MODEL_FAIL_SESSION_RECOVERY) && !d.host_mitigated,
        "T9 retention loses host mitigation when a reserved session could revive after reboot without recovery evidence");
+
+    s = host_controls();
+    s.memory_physical_session_bootstrap_quarantined = 0u;
+    ok(threat_model_assess(THREAT_MODEL_MEMORY_RETENTION, &s, &d) == THREAT_MODEL_E_BLOCKED &&
+       (d.failures & THREAT_MODEL_FAIL_SESSION_RECOVERY) && !d.host_mitigated,
+       "T9 retention loses host mitigation when post-reboot bootstrap could restore transient session authority");
 
     s = host_controls();
     s.memory_ambiguity_preserved = 0u;

@@ -22,7 +22,7 @@ A tabela apresenta a superfície deliberadamente mínima. Nenhuma função receb
 | `memory_physical_session_cancel()` | Revoga apenas uma sessão ativa e limpa sua evidência transitória. | Não cria fallback, retry automático ou sessão substituta. |
 | Métricas | Mantêm apenas contadores agregados de início, consumo, cancelamento, expiração e recusas. | Não mantêm sessão, nonce, propósito, pessoa, cartão ou resultado de consulta. |
 
-Os propósitos são fechados: `COLLECTION_INSERT`, `COLLECTION_OPEN`, `COLLECTION_REMOVE`, `COLLECTION_COMPACT` e `COLLECTION_QUERY`. Apenas `QUERY` pode usar mais de uma operação, entre 1 e 8; o padrão é 3. Mutação e abertura são estritamente de uso único. O piso de ID do gate é propositalmente **somente RAM**: ele recusa repetição dentro da vida do processo, mas reinicialização o apaga. O Passo 8 acrescenta um oráculo separado para um adaptador futuro classificar marcadores autenticados contra um piso durável declarado; ele pode consolidar um ID já queimado ou bloquear contradições, mas **não** repõe esta sessão, nonce, prazo ou orçamento e não elimina a necessidade de nova confirmação. Portanto ainda não há alegação de anti-replay entre boots sem evidência do adaptador alvo.
+Os propósitos são fechados: `COLLECTION_INSERT`, `COLLECTION_OPEN`, `COLLECTION_REMOVE`, `COLLECTION_COMPACT` e `COLLECTION_QUERY`. Apenas `QUERY` pode usar mais de uma operação, entre 1 e 8; o padrão é 3. Mutação e abertura são estritamente de uso único. O piso de ID do gate é propositalmente **somente RAM**: ele recusa repetição dentro da vida do processo, mas reinicialização o apaga. O Passo 8 acrescenta um oráculo separado para um adaptador futuro classificar marcadores autenticados contra um piso durável declarado; ele pode consolidar um ID já queimado ou bloquear contradições, mas **não** repõe esta sessão, nonce, prazo ou orçamento e não elimina a necessidade de nova confirmação. O Passo 9 compõe esse resultado com uma quarentena de boot: ele recria o gate em `IDLE`, zera toda evidência ativa e importa exclusivamente o piso coerente. Portanto ainda não há alegação de anti-replay entre boots sem evidência do adaptador alvo.
 
 ## Integração com a memória complementar
 
@@ -30,7 +30,7 @@ A coleção agora recebe `memory_collection_access_t`, formado apenas por refer�
 
 A consulta privada tem duas barreiras deliberadamente distintas. O índice primeiro chama `validate(QUERY)` antes de incrementar seu próprio orçamento de sondagens; em seguida, a costura privada da coleção consome um uso `QUERY` somente quando copia os cartões autenticados para RAM. Assim, uma finalidade errada, uma sessão expirada, um ID divergente ou um replay não gastam orçamento do índice, não copiam cartões e não abrem cartão automaticamente. A decisão de matching continua retornando somente `MATCH`, `NO_MATCH` ou `AMBIGUOUS`; a coleção não enumera e o índice não cria uma rota de abertura.
 
-O Grand Finale da coleção exige agora `collection_physical_session_bound == 1`. A ausência dessa evidência bloqueia a composição e TM-04 perde `MITIGATED_HOST` se `memory_physical_session_bound` ou a evidência de recuperação de reserva `memory_physical_session_recovery_consistent` deixar de ser canônica. Essa ligação é um requisito de prova; o auditor M14 permanece puramente diagnóstico e não cria autorização nova.
+O Grand Finale da coleção exige agora `collection_physical_session_bound == 1`. A ausência dessa evidência bloqueia a composição e TM-04 perde `MITIGATED_HOST` se `memory_physical_session_bound` ou a evidência de recuperação de reserva `memory_physical_session_recovery_consistent` ou `memory_physical_session_bootstrap_quarantined` deixar de ser canônica. Essa ligação é um requisito de prova; o auditor M14 permanece puramente diagnóstico e não cria autorização nova.
 
 | Caminho | Regra após o Passo 7 | Resultado se a sessão falhar |
 |---|---|---|
@@ -60,9 +60,9 @@ A prova global é executada com:
 ./prove.sh --quiet
 ```
 
-Após o Passo 8, o ledger esperado é de **33 suítes**, **75 invariantes de prova** e **74 invariantes do simulador**. Esses números descrevem testes host e simulação existentes; não medem confiabilidade de botão, WER, precisão de modelo, energia, latência, segurança de componente ou comportamento de bancada.
+Após o Passo 9, o ledger esperado é de **34 suítes**, **77 invariantes de prova** e **74 invariantes do simulador**. Esses números descrevem testes host e simulação existentes; não medem confiabilidade de botão, WER, precisão de modelo, energia, latência, segurança de componente ou comportamento de bancada.
 
-A matriz, as contraprovas e as fronteiras do oráculo estão em [Recuperação durável de reserva de sessão](32-RECUPERACAO-RESERVA-SESSAO.md). A continuidade é deliberadamente unidirecional: recuperação de marcador pode elevar um piso; nunca recria a autoridade transitória que o gate apagou no reboot.
+A matriz, as contraprovas e as fronteiras do oráculo estão em [Recuperação durável de reserva de sessão](32-RECUPERACAO-RESERVA-SESSAO.md). A ponte de quarentena está em [Quarentena de boot da sessão](33-QUARENTENA-BOOT-SESSAO.md). A continuidade é deliberadamente unidirecional: recuperação de marcador pode elevar um piso; o bootstrap importa somente esse piso em gate `IDLE`; nenhum dos dois recria a autoridade transitória apagada no reboot.
 
 ## Porta de plataforma aberta e gates pendentes
 
