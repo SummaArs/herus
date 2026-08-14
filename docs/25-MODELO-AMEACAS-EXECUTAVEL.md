@@ -61,7 +61,7 @@ flowchart LR
 | Pessoa com dispositivo | Tenta ler RAM/flash, debug, reset, downgrade e extração física. | Não se afirma proteção antes da integração e testes de plataforma. |
 | Adaptador/relógio/RNG defeituoso | Fornece evidência de sessão, tempo ou armazenamento inconsistente. | Não se afirma que interface física obedece ao contrato sem backend alvo. |
 | ASR, LLM ou conteúdo persuasivo | Produz texto/áudio hostil, ambíguo ou enganoso. | Não se afirma verdade, alinhamento ou entendimento; apenas ausência estrutural de autoridade. |
-| Build/dependência comprometida | Altera fonte, vetor, ferramenta ou configuração. | Não se afirma SBOM, assinatura, SLSA ou auditoria de supply chain ainda inexistentes. |
+| Build/dependência comprometida | Altera fonte, vetor, ferramenta ou configuração. | Digest local só detecta divergência de insumo declarado; não se afirma checkout autenticado, SBOM completo, assinatura, SLSA ou auditoria de supply chain. |
 
 ## 3. Matriz de ameaças e rastreabilidade
 
@@ -75,7 +75,7 @@ flowchart LR
 | TM-06 | Modelo/ASR obtendo poder sobre memória ou transmissão. | Display-only, sem autoridade de memória e sem autoridade de envio. | `test_model_lab.c`, `test_dialogue.c`, `test_memory_finale.c`, `test_threat_model.c`. | `MITIGATED_HOST` | Não há modelo local avaliado; não se afirma robustez semântica ou resistência completa a prompt injection. |
 | TM-07 | Telemetria contendo conteúdo, dado pessoal ou segredo. | Métrica numérica permitida e campos proibidos ausentes. | Manifesto de readiness, `test_interactionlog.sh`, `test_threat_model.c`. | `MITIGATED_HOST` | Operação futura deve manter schema, revisão e privacidade dos adaptadores. |
 | TM-08 | Comprometimento físico, debug, flash, NVS e power-loss. | Evidência de secure boot, flash encryption, JTAG-off, NVS e teste de queda. | Nenhuma evidência de alvo; auditor devolve pendência mesmo se flags forem injetadas. | `PENDING_TARGET` | Gate de plataforma e procedimento em placa sacrificial. |
-| TM-09 | Comprometimento de build, ferramenta ou dependência. | Ainda não implementado. | Auditor torna ausência de controle explícita. | `OUT_OF_SCOPE` | Passo posterior para SBOM, builds reproduzíveis e integridade de supply chain. |
+| TM-09 | Comprometimento de build, ferramenta ou dependência. | Manifesto local canonical, digests de insumos declarados, inventário direto, campos sensíveis ausentes e gates explícitos. | `test_provenance_audit.py`, `provenance_audit.py` e `test_threat_model.c`. | `PENDING_TARGET` | Falta autenticidade de checkout/builder, assinatura, SBOM completo, isolamento, reprodução independente, artefato alvo e auditoria. |
 
 A classificação `MITIGATED_HOST` é propositalmente estreita. Por exemplo, o protocolo possui AEAD e testes diferenciais, mas o próprio `SECURITY.md` declara que chaves de sessão ficam em RAM legível até secure boot, flash encryption e JTAG-off no alvo. O auditor não tem permissão semântica para transformar uma flag de teste em propriedade física.
 
@@ -99,7 +99,7 @@ A função recebe uma ameaça fechada e um snapshot de booleans de controle. Cad
 | Modelo não herda poder por existir. | Remover no-memory/no-send falha TM-06. |
 | Telemetria não aceita categoria proibida. | Remover `telemetry_forbidden_absent` falha TM-07. |
 | Lacuna física não é “pass”. | TM-08 sempre resulta `PENDING_TARGET` em C portátil. |
-| Ausência de proteção não é implícita. | TM-02 e TM-09 retornam `OUT_OF_SCOPE`. |
+| Presença de digest local não vira autenticidade. | TM-09 retorna `PENDING_TARGET` mesmo quando o digest local é válido; ausência do controle acrescenta falha específica. |
 | Evidência malformada não é interpretada. | Booleano não canônico e ameaça desconhecida falham fechados. |
 
 O perfil de IA generativa do NIST AI 600-1 orienta a incorporar considerações de confiabilidade ao desenho, desenvolvimento, uso e avaliação de sistemas de IA generativa [3]. O HERUS traduz isso em uma fronteira concreta, não em uma alegação de alinhamento: qualquer camada futura de ASR/LLM pode produzir uma apresentação local somente se continuar estruturalmente incapaz de reter, enviar, confirmar ou agir.
@@ -113,11 +113,12 @@ cd ..
 git diff --check
 ./prove.sh --quiet
 python3 tools/readiness_audit.py research/hardware_readiness_manifest.json --strict
+python3 tools/provenance_audit.py research/software_provenance_manifest.json --strict
 ```
 
-Com os passos posteriores de coleção, índice e recuperação, o pipeline executa **29 suítes**, **67 invariantes de prova** e mantém as **74 invariantes de sistema simulado**. Esses números são evidência de cenários exercitados em host, não estimativa de probabilidade de comprometimento nem métrica de segurança física.
+Com os passos posteriores de coleção, índice, recuperação e proveniência local, o pipeline executa **30 suítes**, **69 invariantes de prova** e mantém as **74 invariantes de sistema simulado**. Esses números são evidência de cenários exercitados em host, não estimativa de probabilidade de comprometimento nem métrica de segurança física.
 
-A próxima decisão de engenharia deve usar esta matriz para priorizar o adaptador alvo da coleção e a matriz de cortes controlados em `PREPARED`/piso/`COMMITTED`/limpeza; em paralelo, não pode perder os gates de secure boot, flash encryption, JTAG-off, NVS/raiz, RNG, transport, instrumentos de energia, interface física e avaliação humana. Uma ameaça marcada pendente só pode ser reclassificada com evidência correspondente, não com documentação adicional.
+A próxima decisão de engenharia deve usar esta matriz para priorizar o adaptador alvo da coleção e a matriz de cortes controlados em `PREPARED`/piso/`COMMITTED`/limpeza; em paralelo, deve preparar atestação assinada, inventário de release, toolchain/build controlados e comparação independente de artefato sem perder os gates de secure boot, flash encryption, JTAG-off, NVS/raiz, RNG, transport, instrumentos de energia, interface física e avaliação humana. Uma ameaça marcada pendente só pode ser reclassificada com evidência correspondente, não com documentação adicional.
 
 ## Referências
 

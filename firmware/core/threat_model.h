@@ -32,9 +32,10 @@ typedef enum {
     THREAT_MODEL_OUT_OF_SCOPE
 } threat_model_evidence_t;
 
-/* All flags are canonical booleans: exactly 1 proves the named host contract for
- * this audit. The physical-platform fields are intentionally never enough to emit
- * MITIGATED_HOST from portable C; they represent target gates still awaiting evidence. */
+/* All flags are canonical booleans. Exactly 1 provides only the named evidence
+ * to this audit; it never creates a probability, signature or trust boundary. The
+ * physical-platform fields and local supply-chain integrity flag are intentionally
+ * never enough to emit MITIGATED_HOST from portable C. */
 typedef struct {
     uint8_t radio_aead;
     uint8_t radio_replay_refused;
@@ -71,6 +72,8 @@ typedef struct {
     uint8_t target_jtag_disabled;
     uint8_t target_nvs_protected;
     uint8_t target_power_loss_tested;
+
+    uint8_t supply_chain_local_integrity;
 } threat_model_snapshot_t;
 
 typedef enum {
@@ -102,7 +105,8 @@ typedef enum {
     THREAT_MODEL_FAIL_TELEMETRY_PRIVACY = 1u << 24,
     THREAT_MODEL_FAIL_TARGET_PENDING    = 1u << 25,
     THREAT_MODEL_FAIL_SCOPE_UNSUPPORTED = 1u << 26,
-    THREAT_MODEL_FAIL_MEMORY_RECOVERY  = 1u << 27
+    THREAT_MODEL_FAIL_MEMORY_RECOVERY   = 1u << 27,
+    THREAT_MODEL_FAIL_SUPPLY_INTEGRITY  = 1u << 28
 } threat_model_failure_t;
 
 typedef struct {

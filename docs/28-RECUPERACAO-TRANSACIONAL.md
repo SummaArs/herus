@@ -84,7 +84,7 @@ git diff --check
 ./prove.sh --quiet
 ```
 
-O pipeline agora executa **29 suítes**, **67 invariantes de prova** e mantém **74 invariantes do sistema simulado**. Isso prova cenários C11 e decisões de estado no host. Não mede taxa de falha, não prova power-loss físico, `brownout`, corrupção parcial de setor, atomicidade, serialização de controlador, latência, energia, capacidade de contador, eFuse, NVS, secure element, uso de flash, vida útil, purge, acessibilidade ou interação humana.
+O pipeline agora executa **30 suítes**, **69 invariantes de prova** e mantém **74 invariantes do sistema simulado**. Isso prova cenários C11 e decisões de estado no host. Não mede taxa de falha, não prova power-loss físico, `brownout`, corrupção parcial de setor, atomicidade, serialização de controlador, latência, energia, capacidade de contador, eFuse, NVS, secure element, uso de flash, vida útil, purge, acessibilidade ou interação humana.
 
 ## 5. Critério de porta de plataforma aberta
 
