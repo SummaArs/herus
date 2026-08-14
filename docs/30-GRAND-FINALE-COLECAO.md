@@ -6,7 +6,7 @@
 
 Este passo fecha a integração que `docs/24-GRAND-FINALE-MEMORIA.md` havia deixado deliberadamente pendente: a passagem explícita da autorização humana de memória para a coleção multi-cartão e para seu índice privado. Ele introduz `memory_collection_finale.[ch]` e `test_memory_collection_finale.c`, um auditor C11 puro e uma fixture host que percorre módulos reais de captura, extração, política, consolidação, cofre de autorização, coleção, recuperação, índice e apresentação.
 
-A motivação é engenharia de sistemas, não uma nova função de produto. O NIST SP 800-160 recomenda que requisitos, arquitetura, integração, verificação e validação participem da engenharia de sistemas confiáveis ao longo do ciclo [1]. O princípio de menor privilégio do NIST restringe permissões ao mínimo necessário para cada usuário ou processo [2]. Por isso, o novo auditor recebe somente evidências agregadas e enums fechados: ele não recebe cartão, ID opaco, consulta, sessão, coleção, índice, cofre, chave, texto, áudio, transcrição, embedding, identidade, localização, saída de modelo ou callback.
+A motivação é engenharia de sistemas, não uma nova função de produto. O Passo 7 posterior acrescenta `collection_physical_session_bound` como evidência exigida: a fixture usa sessão `INSERT` separada para admissão e sessão `QUERY` separada para recuperação; o auditor não emite, renova ou prova esse evento. O NIST SP 800-160 recomenda que requisitos, arquitetura, integração, verificação e validação participem da engenharia de sistemas confiáveis ao longo do ciclo [1]. O princípio de menor privilégio do NIST restringe permissões ao mínimo necessário para cada usuário ou processo [2]. Por isso, o novo auditor recebe somente evidências agregadas e enums fechados: ele não recebe cartão, ID opaco, consulta, sessão, coleção, índice, cofre, chave, texto, áudio, transcrição, embedding, identidade, localização, saída de modelo ou callback.
 
 | Artefato | Responsabilidade | Limite deliberado |
 |---|---|---|
@@ -46,8 +46,8 @@ O diagrama não indica que o cofre unitário seja usado como fallback de recuper
 | Fronteira | Evidência que M14 exige | Falha se estiver ausente ou contraditória |
 |---|---|---|
 | Entrada humana | Captura física canônica, extração tipada, `AUTO_ELIGIBLE`, revisão e autorização de escrita vinculada. | Captura, extração, política, revisão ou autorização. |
-| Admissão de coleção | Inserção autorizada, estado `READY`, recuperação consistente e registro autenticado. | Inserção, estado, recuperação ou autenticidade. |
-| Consulta privada | Acesso físico, query tipada, orçamento respeitado e status fechado. | Acesso, query, orçamento ou status. |
+| Admissão de coleção | Inserção autorizada, sessão `INSERT` vinculada, estado `READY`, recuperação consistente e registro autenticado. | Inserção, sessão, estado, recuperação ou autenticidade. |
+| Consulta privada | Sessão `QUERY` vinculada, query tipada, orçamento respeitado e status fechado. | Sessão/acesso, query, orçamento ou status. |
 | Sem escolha automática | Nenhuma abertura do cartão pelo resultado do índice e nenhum fallback de recuperação unitária. | `FAIL_AUTO_OPEN` ou `FAIL_LEGACY_FALLBACK`. |
 | Saída para pessoa | Acesso físico, one-shot e contrato canônico de apresentação. | Falha de acesso, repetição ou contrato. |
 | Modelo | Ausência canônica de modelo em todo o caminho. | `FAIL_MODEL_AGENCY`. |
@@ -62,7 +62,7 @@ O diagrama não indica que o cofre unitário seja usado como fallback de recuper
 | `NO_MATCH` | Não expõe ID, razões ou propriedade de cartão; chega somente a status simbólico. | Repetir busca sem sessão nova, ampliar consulta silenciosamente, cair no cofre unitário ou inferir ausência de memória pessoal. |
 | `AMBIGUOUS` | É consistente como incerteza e não recebe winner. | Desempatar automaticamente, apresentar contender, abrir card ou tratar a incerteza como falha permissiva. |
 
-Essa retenção mínima também é coerente com o objetivo do NIST Privacy Framework de identificar e gerir riscos de privacidade relacionados ao processamento de dados [3]. O snapshot M14 não adiciona logs de áudio, transcrição, embedding, identidade, localização, chave, cartão, query, resultado de índice ou sessão física.
+Essa retenção mínima também é coerente com o objetivo do NIST Privacy Framework de identificar e gerir riscos de privacidade relacionados ao processamento de dados [3]. O snapshot M14 não adiciona logs de áudio, transcrição, embedding, identidade, localização, chave, cartão, query, resultado de índice ou evidência transitória de sessão física.
 
 ## 3. Cenário exercitado e contraprovas
 
@@ -76,9 +76,9 @@ A fixture usa RAM somente para tornar os contratos exercitáveis em host. Ela co
 | Resultado que abre cartão automaticamente | `FAIL_AUTO_OPEN`; índice não recebe autoridade de abertura. |
 | Fallback de recuperação para cofre unitário | `FAIL_LEGACY_FALLBACK`; não há caminho implícito paralelo. |
 | Modelo no caminho | `FAIL_MODEL_AGENCY`; modelo não escolhe, grava, recupera ou apresenta. |
-| Acesso físico não canônico, apresentação inválida ou enum de status desconhecido | Falha fechada; estado parcial não herda sucesso. |
+| Sessão de coleção ausente/não canônica, apresentação inválida ou enum de status desconhecido | Falha fechada; estado parcial não herda sucesso. |
 
-A prova T9 do modelo de ameaças remove isoladamente `memory_collection_composed` e mostra que TM-04 deixa de ser classificada como `MITIGATED_HOST`, mesmo com os demais controles presentes. Isso impede que a integração seja apenas uma página de arquitetura. O NIST AI RMF e seu perfil de IA generativa tratam a definição de papéis, responsabilidades e supervisão humano-IA como parte da gestão de risco; o HERUS traduz isso em ausência estrutural de autoridade de modelo, não em alegação de alinhamento ou qualidade de LLM [4].
+A prova T9 do modelo de ameaças remove isoladamente `memory_collection_composed` ou `memory_physical_session_bound` e mostra que TM-04 deixa de ser classificada como `MITIGATED_HOST`, mesmo com os demais controles presentes. Isso impede que a integração seja apenas uma página de arquitetura. O NIST AI RMF e seu perfil de IA generativa tratam a definição de papéis, responsabilidades e supervisão humano-IA como parte da gestão de risco; o HERUS traduz isso em ausência estrutural de autoridade de modelo, não em alegação de alinhamento ou qualidade de LLM [4].
 
 ## 4. Fronteiras que continuam pendentes
 
@@ -87,7 +87,7 @@ A composição M14 é mais profunda porque conecta os módulos reais e força su
 | Lacuna | Evidência futura mínima | Afirmar agora seria incorreto porque |
 |---|---|---|
 | Backend persistente | Semântica de sucesso, raiz, piso, corte controlado, rollback e recuperação no armazenamento selecionado. | A fixture RAM não demonstra NVS, flash, FRAM, secure element, wear, atomicidade ou power-loss. |
-| Sessão física | Esquema, adaptador, eventos de falha, repetição, proteção contra replay de gesto e avaliação. | ID não nulo e booleano canônico não provam botão, toque, biometria ou pessoa. |
+| Sessão física | Adaptador com origem de evento, nonce, tempo monotônico, piso/estratégia pós-reboot, falhas/cancelamento e avaliação. | Propósito/consumo C11 em RAM não provam botão, toque, biometria, pessoa, entropia ou replay pós-reboot. |
 | Apresentação humana | Driver, UX acessível, protocolo pré-registrado e resultados observados. | Status simbólico não prova voz, vibração, tela, compreensão ou acessibilidade. |
 | Privacidade de consulta | Modelo de adversário, memória protegida, análise de padrão de acesso e mecanismo adequado. | Limite por sessão e RAM transitória não são PIR, ORAM ou resistência a side-channel. |
 | Inteligência local | Pesos identificados, perfil no alvo, avaliação, limites de recurso e fronteira de ataque. | M14 apenas impede autoridade; não mede entendimento, relevância, ASR ou LLM. |
@@ -98,13 +98,14 @@ A composição M14 é mais profunda porque conecta os módulos reais e força su
 ```bash
 cd firmware
 make memory-collection-finale
+make memory-physical-session
 make threat-model
 cd ..
 git diff --check
 ./prove.sh --quiet
 ```
 
-O pipeline passa a executar **31 suítes**, **71 invariantes de prova** e mantém **74 invariantes do sistema simulado**. Um resultado positivo prova os cenários C11 descritos e a recusa das contraprovas exercitadas. Não prova durabilidade física, autonomia, utilidade pessoal, memória humana, relevância, escala, latência, energia, segurança de rádio, ASR, LLM, UI, acessibilidade, privacidade de padrão de acesso ou qualquer propriedade de hardware.
+O pipeline passa a executar **32 suítes**, **73 invariantes de prova** e mantém **74 invariantes do sistema simulado**. Um resultado positivo prova os cenários C11 descritos e a recusa das contraprovas exercitadas. Não prova durabilidade física, autonomia, utilidade pessoal, memória humana, relevância, escala, latência, energia, segurança de rádio, ASR, LLM, UI, acessibilidade, privacidade de padrão de acesso ou qualquer propriedade de hardware.
 
 ## Referências
 

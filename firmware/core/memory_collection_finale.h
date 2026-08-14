@@ -28,6 +28,7 @@ typedef struct {
     memory_collection_state_t collection_state;
     uint8_t collection_recovery_consistent;
     uint8_t collection_record_authenticated;
+    uint8_t collection_physical_session_bound;
 
     uint8_t index_physical_access;
     uint8_t index_typed_query;
@@ -53,6 +54,7 @@ typedef enum {
     MEMORY_COLLECTION_FINALE_FAIL_COLLECTION_STATE       = 1u << 6,
     MEMORY_COLLECTION_FINALE_FAIL_COLLECTION_RECOVERY    = 1u << 7,
     MEMORY_COLLECTION_FINALE_FAIL_COLLECTION_AUTH        = 1u << 8,
+    MEMORY_COLLECTION_FINALE_FAIL_COLLECTION_SESSION     = 1u << 19,
     MEMORY_COLLECTION_FINALE_FAIL_INDEX_ACCESS           = 1u << 9,
     MEMORY_COLLECTION_FINALE_FAIL_INDEX_QUERY            = 1u << 10,
     MEMORY_COLLECTION_FINALE_FAIL_INDEX_BUDGET           = 1u << 11,

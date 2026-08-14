@@ -121,11 +121,17 @@ static memory_vault_write_authorization_t auth_for(const memory_vault_card_t *ca
     return auth;
 }
 
-static memory_collection_access_t access_for(uint32_t session)
+static memory_collection_access_t access_for(memory_physical_session_t *gate,
+                                           memory_physical_purpose_t purpose,
+                                           uint32_t session)
 {
     memory_collection_access_t access;
+    uint8_t uses = purpose == MEMORY_PHYSICAL_PURPOSE_COLLECTION_QUERY ? 3u : 1u;
+    (void)memory_physical_session_begin(gate, purpose, session, session ^ 0x55AAu, 1u,
+                                        uses, session * 100u);
+    access.gate = gate;
     access.physical_session_id = session;
-    access.physical_confirmed = 1u;
+    access.observed_at_ms = session * 100u + 1u;
     return access;
 }
 
@@ -153,6 +159,8 @@ int main(void)
     memory_collection_index_t index;
     memory_collection_index_t bad_index;
     memory_collection_access_t access;
+    memory_physical_session_t gate;
+    memory_physical_session_config_t gate_cfg;
     memory_vault_card_t card;
     memory_vault_write_authorization_t auth;
     memory_retrieval_query_t query;
@@ -164,68 +172,80 @@ int main(void)
     collection_cfg = config_for(&store);
     memory_collection_index_config_default(&index_cfg);
     index_cfg.max_queries_per_session = 2u;
-    access = access_for(501u);
+    memory_physical_session_config_default(&gate_cfg);
+    gate_cfg.window_ms = 1000u;
+    ok(memory_physical_session_init(&gate, &gate_cfg) == MEMORY_PHYSICAL_SESSION_OK,
+       "T11 fixture session gate initializes without claiming a real control");
+    memset(&access, 0, sizeof(access));
     ok(memory_collection_init(&collection, &collection_cfg) == MEMORY_COLLECTION_OK &&
        memory_collection_index_init(&index, &index_cfg) == MEMORY_COLLECTION_INDEX_OK,
        "T11 collection and portable in-RAM index initialise without a query or card cache");
 
     card = card_for(101u, 1001u, MEMORY_KIND_IDEA);
     auth = auth_for(&card);
+    access = access_for(&gate, MEMORY_PHYSICAL_PURPOSE_COLLECTION_INSERT, 500u);
     ok(memory_collection_insert(&collection, &auth, &card, &access) == MEMORY_COLLECTION_OK,
        "T11 authorised first minimal card enters the encrypted collection");
     query = kind_query(MEMORY_KIND_IDEA);
+    access = access_for(&gate, MEMORY_PHYSICAL_PURPOSE_COLLECTION_QUERY, 501u);
     opens_before = collection.metrics.opens;
     memset(&result, 0xA5, sizeof(result));
     ok(memory_collection_index_query(&index, &collection, &access, &query, &result) ==
            MEMORY_COLLECTION_INDEX_OK && result.status == MEMORY_RETRIEVAL_MATCH &&
        result.card_id == 101u && result.kind == MEMORY_KIND_IDEA &&
-       collection.metrics.opens == opens_before,
+       collection.metrics.opens == opens_before &&
+       memory_physical_session_cancel(&gate) == MEMORY_PHYSICAL_SESSION_OK,
        "T11 index returns a minimal opaque match without automatically opening a card");
 
     card = card_for(102u, 1002u, MEMORY_KIND_DECISION);
     auth = auth_for(&card);
+    access = access_for(&gate, MEMORY_PHYSICAL_PURPOSE_COLLECTION_INSERT, 502u);
     ok(memory_collection_insert(&collection, &auth, &card, &access) == MEMORY_COLLECTION_OK,
        "T11 independently authorised second card enters without changing first card");
     query = kind_query(MEMORY_KIND_DECISION);
-    access = access_for(502u);
+    access = access_for(&gate, MEMORY_PHYSICAL_PURPOSE_COLLECTION_QUERY, 503u);
     ok(memory_collection_index_query(&index, &collection, &access, &query, &result) ==
            MEMORY_COLLECTION_INDEX_OK && result.status == MEMORY_RETRIEVAL_MATCH &&
-       result.card_id == 102u,
+       result.card_id == 102u && memory_physical_session_cancel(&gate) == MEMORY_PHYSICAL_SESSION_OK,
        "T11 typed kind filter selects only the matching opaque identifier");
 
     card = card_for(103u, 1003u, MEMORY_KIND_IDEA);
     auth = auth_for(&card);
+    access = access_for(&gate, MEMORY_PHYSICAL_PURPOSE_COLLECTION_INSERT, 504u);
     ok(memory_collection_insert(&collection, &auth, &card, &access) == MEMORY_COLLECTION_OK,
        "T11 third independently authorised card creates a genuine same-type contender");
     query = kind_query(MEMORY_KIND_IDEA);
-    access = access_for(503u);
+    access = access_for(&gate, MEMORY_PHYSICAL_PURPOSE_COLLECTION_QUERY, 505u);
     ok(memory_collection_index_query(&index, &collection, &access, &query, &result) ==
            MEMORY_COLLECTION_INDEX_OK && result.status == MEMORY_RETRIEVAL_AMBIGUOUS &&
-       result.card_id == 0u && result.kind == MEMORY_KIND_NONE &&
-       result.origin == MEMORY_EXTRACT_ORIGIN_NONE && result.reasons == 0u,
+           result.card_id == 0u && result.kind == MEMORY_KIND_NONE &&
+       result.origin == MEMORY_EXTRACT_ORIGIN_NONE && result.reasons == 0u &&
+       memory_physical_session_cancel(&gate) == MEMORY_PHYSICAL_SESSION_OK,
        "T11 close contenders remain ambiguous and never expose a winner");
 
     query = kind_query(MEMORY_KIND_COMMITMENT);
-    access = access_for(504u);
+    access = access_for(&gate, MEMORY_PHYSICAL_PURPOSE_COLLECTION_QUERY, 506u);
     ok(memory_collection_index_query(&index, &collection, &access, &query, &result) ==
            MEMORY_COLLECTION_INDEX_OK && result.status == MEMORY_RETRIEVAL_NO_MATCH &&
-       result.card_id == 0u && result.reasons == 0u,
+       result.card_id == 0u && result.reasons == 0u &&
+       memory_physical_session_cancel(&gate) == MEMORY_PHYSICAL_SESSION_OK,
        "T11 unmatched typed request abstains without enumerating collection contents");
 
     query = kind_query(MEMORY_KIND_DECISION);
-    access = access_for(505u);
+    access = access_for(&gate, MEMORY_PHYSICAL_PURPOSE_COLLECTION_QUERY, 507u);
     ok(memory_collection_index_query(&index, &collection, &access, &query, &result) ==
            MEMORY_COLLECTION_INDEX_OK && memory_collection_index_query(&index, &collection,
            &access, &query, &result) == MEMORY_COLLECTION_INDEX_OK &&
-       memory_collection_index_query(&index, &collection, &access, &query, &result) ==
-           MEMORY_COLLECTION_INDEX_E_BUDGET && result.card_id == 0u,
+           memory_collection_index_query(&index, &collection, &access, &query, &result) ==
+           MEMORY_COLLECTION_INDEX_E_BUDGET && result.card_id == 0u &&
+       memory_physical_session_cancel(&gate) == MEMORY_PHYSICAL_SESSION_OK,
        "T11 each physical session has a bounded probe budget and a rejected probe clears output");
 
-    access.physical_confirmed = 2u;
+    access.gate = 0;
     ok(memory_collection_index_query(&index, &collection, &access, &query, &result) ==
            MEMORY_COLLECTION_INDEX_E_ACCESS && result.card_id == 0u,
        "T11 noncanonical physical access cannot read the private index");
-    access = access_for(506u);
+    access = access_for(&gate, MEMORY_PHYSICAL_PURPOSE_COLLECTION_QUERY, 508u);
     memset(&query, 0, sizeof(query));
     ok(memory_collection_index_query(&index, &collection, &access, &query, &result) ==
            MEMORY_COLLECTION_INDEX_E_QUERY && result.card_id == 0u,

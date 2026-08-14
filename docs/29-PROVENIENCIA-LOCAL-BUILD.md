@@ -80,7 +80,7 @@ python3 tools/test_provenance_audit.py
 ./prove.sh --quiet
 ```
 
-O pipeline passa a executar **31 suítes**, **71 invariantes de prova** e mantém **74 invariantes de sistema simulado**. O resultado positivo afirma apenas que o inventário local atual é canônico, os insumos declarados batem com seus digests e os ataques de fixture são recusados. Não afirma que o checkout é autêntico, que o manifest não foi adulterado, que dependências estão completas, que a CI está isolada, que há assinaturas, que o release é reprodutível, que o firmware alvo deriva desta árvore, ou que hardware e supply chain física são confiáveis.
+O pipeline passa a executar **32 suítes**, **73 invariantes de prova** e mantém **74 invariantes de sistema simulado**. O resultado positivo afirma apenas que o inventário local atual é canônico, os insumos declarados — inclusive o gate de sessão de coleção — batem com seus digests e os ataques de fixture são recusados. Não afirma que o checkout é autêntico, que o manifest não foi adulterado, que dependências estão completas, que a CI está isolada, que há assinaturas, que o release é reprodutível, que o firmware alvo deriva desta árvore, ou que hardware e supply chain física são confiáveis.
 
 ## Referências
 

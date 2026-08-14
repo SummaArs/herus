@@ -46,6 +46,8 @@ int memory_collection_finale_audit(const memory_collection_finale_snapshot_t *sn
         failures |= MEMORY_COLLECTION_FINALE_FAIL_COLLECTION_RECOVERY;
     if (!exactly_one(snapshot->collection_record_authenticated))
         failures |= MEMORY_COLLECTION_FINALE_FAIL_COLLECTION_AUTH;
+    if (!exactly_one(snapshot->collection_physical_session_bound))
+        failures |= MEMORY_COLLECTION_FINALE_FAIL_COLLECTION_SESSION;
 
     if (!exactly_one(snapshot->index_physical_access))
         failures |= MEMORY_COLLECTION_FINALE_FAIL_INDEX_ACCESS;

@@ -10,8 +10,8 @@
 
 #include <stdint.h>
 #include "memory_vault.h"
-#include "memory_consolidation.h"
 #include "memory_collection_store.h"
+#include "memory_physical_session.h"
 
 #define MEMORY_COLLECTION_VERSION 1u
 #define MEMORY_COLLECTION_MAX_CARDS 8u
@@ -29,10 +29,15 @@ typedef enum {
     MEMORY_COLLECTION_TXN_COMPACT
 } memory_collection_txn_t;
 
-/* The public mutable-access assertion is deliberately the existing canonical
- * physical confirmation type. It carries no biometric, identity, timestamp, text
- * or authority inferred from a model/candidate. */
-typedef memory_consolidation_access_t memory_collection_access_t;
+/* A collection access names only a transient gate, opaque session ID and observed
+ * monotonic time. The gate retains the adapter nonce and checks purpose/freshness
+ * before an operation can proceed. This is not proof of a button, gesture,
+ * biometric, identity, secure element or clock; those remain platform evidence. */
+typedef struct {
+    memory_physical_session_t *gate;
+    uint32_t physical_session_id;
+    uint32_t observed_at_ms;
+} memory_collection_access_t;
 
 typedef struct {
     uint32_t collection_id; /* non-secret local context, must be nonzero */
@@ -94,26 +99,28 @@ int memory_collection_init(memory_collection_t *c,
                            const memory_collection_config_t *cfg);
 
 /* Insert a card after the same explicit, card/receipt-bound human authorization
- * used by the vault. The collection revalidates the card and authorization; no
- * candidate, ASR, dialogue, radio or model output may call this path implicitly. */
+ * used by the vault and one consumed INSERT-purpose session. The collection
+ * revalidates the card and authorization; no candidate, ASR, dialogue, radio or
+ * model output may call this path implicitly. */
 int memory_collection_insert(memory_collection_t *c,
                              const memory_vault_write_authorization_t *auth,
                              const memory_vault_card_t *card,
                              const memory_collection_access_t *access);
 
-/* Open exactly one known opaque card identifier under canonical physical access.
- * It never enumerates the collection; `out` is zeroed on every failure. */
+/* Open exactly one known opaque card identifier under one consumed OPEN-purpose
+ * session. It never enumerates the collection; `out` is zeroed on every failure. */
 int memory_collection_open(memory_collection_t *c, uint32_t expected_card_id,
                            const memory_collection_access_t *access,
                            memory_vault_card_t *out);
 
-/* Logical removal only. It needs physical access and advances the collection
- * generation. It does not claim physical-media sanitization or erase of old bytes. */
+/* Logical removal only. It consumes one REMOVE-purpose session and advances the
+ * collection generation. It does not claim physical-media sanitization or erase of old bytes. */
 int memory_collection_remove(memory_collection_t *c, uint32_t card_id,
                              const memory_collection_access_t *access);
 
-/* Canonically reorders the existing active cards by opaque card id. It cannot add,
- * remove, merge, summarize, deduplicate semantically or alter any card field. */
+/* Canonically reorders the existing active cards by opaque card id under one
+ * COMPACT-purpose session. It cannot add, remove, merge, summarize, deduplicate
+ * semantically or alter any card field. */
 int memory_collection_compact(memory_collection_t *c,
                               const memory_collection_access_t *access);
 

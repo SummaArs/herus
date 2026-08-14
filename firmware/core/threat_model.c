@@ -18,7 +18,8 @@ static int snapshot_format_valid(const threat_model_snapshot_t *s)
         &s->memory_human_authority, &s->memory_vault_authenticated,
         &s->memory_generation_monotonic, &s->memory_sensitive_reviewed,
         &s->memory_conflict_blocks, &s->memory_recovery_topology,
-        &s->memory_collection_composed, &s->memory_retrieval_access_gated,
+        &s->memory_collection_composed, &s->memory_physical_session_bound,
+        &s->memory_retrieval_access_gated,
         &s->memory_ambiguity_preserved, &s->memory_presentation_one_shot,
         &s->model_display_only, &s->model_no_memory_authority,
         &s->model_no_send_authority, &s->telemetry_numeric_only,
@@ -99,6 +100,8 @@ int threat_model_assess(threat_model_threat_t threat,
         require_flag(snapshot->memory_recovery_topology, THREAT_MODEL_FAIL_MEMORY_RECOVERY, &failures);
         require_flag(snapshot->memory_collection_composed,
                      THREAT_MODEL_FAIL_COLLECTION_FINALE, &failures);
+        require_flag(snapshot->memory_physical_session_bound,
+                     THREAT_MODEL_FAIL_PHYSICAL_SESSION, &failures);
         break;
     case THREAT_MODEL_MEMORY_RECOVERY:
         require_flag(snapshot->memory_retrieval_access_gated, THREAT_MODEL_FAIL_RETRIEVAL_ACCESS, &failures);

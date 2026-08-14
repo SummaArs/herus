@@ -54,8 +54,16 @@ static int nonzero(const uint8_t *buf, size_t len)
 
 static int access_valid(const memory_collection_access_t *access)
 {
-    return access && access->physical_session_id != 0u &&
-           access->physical_confirmed == 1u;
+    return access && access->gate && access->physical_session_id != 0u;
+}
+
+static int access_consume(const memory_collection_access_t *access,
+                          memory_physical_purpose_t purpose)
+{
+    return memory_physical_session_consume(access->gate, purpose,
+                                           access->physical_session_id,
+                                           access->observed_at_ms) ==
+           MEMORY_PHYSICAL_SESSION_OK;
 }
 
 static int config_valid(const memory_collection_config_t *cfg)
@@ -587,6 +595,10 @@ int memory_collection_insert(memory_collection_t *c,
         c->metrics.rejected_card++;
         return MEMORY_COLLECTION_E_CARD;
     }
+    if (!access_consume(access, MEMORY_PHYSICAL_PURPOSE_COLLECTION_INSERT)) {
+        c->metrics.rejected_access++;
+        return MEMORY_COLLECTION_E_ACCESS;
+    }
     if (load_current(c, &current) != MEMORY_COLLECTION_OK) return MEMORY_COLLECTION_E_STATE;
     if (find_card(&current, card->card_id) >= 0) {
         c->metrics.duplicate_rejections++;
@@ -621,6 +633,10 @@ int memory_collection_open(memory_collection_t *c, uint32_t expected_card_id,
         c->metrics.rejected_access++;
         return MEMORY_COLLECTION_E_ACCESS;
     }
+    if (!access_consume(access, MEMORY_PHYSICAL_PURPOSE_COLLECTION_OPEN)) {
+        c->metrics.rejected_access++;
+        return MEMORY_COLLECTION_E_ACCESS;
+    }
     if (load_current(c, &current) != MEMORY_COLLECTION_OK) return MEMORY_COLLECTION_E_STATE;
     index = find_card(&current, expected_card_id);
     if (index < 0) {
@@ -646,6 +662,10 @@ int memory_collection_copy_cards_for_index(
         c->metrics.rejected_access++;
         return MEMORY_COLLECTION_E_ACCESS;
     }
+    if (!access_consume(access, MEMORY_PHYSICAL_PURPOSE_COLLECTION_QUERY)) {
+        c->metrics.rejected_access++;
+        return MEMORY_COLLECTION_E_ACCESS;
+    }
     if (load_current(c, &current) != MEMORY_COLLECTION_OK) return MEMORY_COLLECTION_E_STATE;
     memcpy(out, current.cards, sizeof(current.cards));
     *out_count = current.count;
@@ -662,6 +682,10 @@ int memory_collection_remove(memory_collection_t *c, uint32_t card_id,
     if (!c || !access || card_id == 0u) return MEMORY_COLLECTION_E_ARG;
     if (c->state != MEMORY_COLLECTION_READY) return MEMORY_COLLECTION_E_STATE;
     if (!access_valid(access)) {
+        c->metrics.rejected_access++;
+        return MEMORY_COLLECTION_E_ACCESS;
+    }
+    if (!access_consume(access, MEMORY_PHYSICAL_PURPOSE_COLLECTION_REMOVE)) {
         c->metrics.rejected_access++;
         return MEMORY_COLLECTION_E_ACCESS;
     }
@@ -694,6 +718,10 @@ int memory_collection_compact(memory_collection_t *c,
     if (!c || !access) return MEMORY_COLLECTION_E_ARG;
     if (c->state != MEMORY_COLLECTION_READY) return MEMORY_COLLECTION_E_STATE;
     if (!access_valid(access)) {
+        c->metrics.rejected_access++;
+        return MEMORY_COLLECTION_E_ACCESS;
+    }
+    if (!access_consume(access, MEMORY_PHYSICAL_PURPOSE_COLLECTION_COMPACT)) {
         c->metrics.rejected_access++;
         return MEMORY_COLLECTION_E_ACCESS;
     }
