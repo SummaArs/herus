@@ -57,6 +57,7 @@ A próxima etapa física é a Fase 0: dois devkits, bancada curta, medição RF,
 |---|---|
 | [Visão do produto](docs/04-PRODUCT.md) | Propósito, proposta de valor e direção de produto. |
 | [Núcleo](docs/06-NUCLEO.md) | Papel do dispositivo circular de bolso, privacidade e caminho de inteligência local. |
+| [Proposta tipada e invariantes](docs/41-PROPOSTA-TIPADA-E-INVARIANTES.md) | Fronteira fail-closed entre modelo local, candidato de memória e autoridade humana. |
 | [Memória seletiva](docs/17-MEMORIA-SELETIVA.md) | Política inicial para lembrar ideias, decisões e contexto útil sem gravar a vida inteira. |
 | [Captura consentida](docs/18-SESSAO-CAPTURA-MEMORIA.md) | Sessão física, limitada e transitória que antecede qualquer memória pessoal. |
 | [Extração de candidatos](docs/19-EXTRACAO-CANDIDATOS.md) | Interpretação local e conservadora que cria sinais tipados sem guardar a fala. |
@@ -89,6 +90,8 @@ A versão consolidada pode ser verificada localmente com:
 ```
 
 O comando executa as verificações portáveis e o simulador. Um resultado positivo confirma contratos de software e autoriza somente o início controlado da bancada; ele **não** constitui evidência de alcance, energia, UX ou desempenho físico.
+
+A fronteira entre uma proposta de modelo e um candidato de memória pode ser exercitada com `make -C firmware memory-proposal`. O alvo valida apenas o contrato C11 host-only; persistência, HCP e comunicação continuam exigindo os gates humanos existentes.
 
 A história detalhada de experimentação, provas e decisões de implementação é preservada no ramo [`internal/engineering-archive`](https://github.com/SummaArs/herus/tree/internal/engineering-archive). Ela existe para rastreabilidade de engenharia, sem ocupar a apresentação principal do produto.
 
