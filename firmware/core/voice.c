@@ -220,6 +220,8 @@ void voice_haptic_plan(voice_event_t event, haptic_plan_t *out)
     switch (event) {
     case VOICE_EVENT_DRAFT:
         add_pulse(out, 70, 90); add_pulse(out, 70, 0); break;
+    case VOICE_EVENT_CONFIRMED:
+        add_pulse(out, 160, 60); add_pulse(out, 80, 0); break;
     case VOICE_EVENT_CRITICAL_DRAFT:
         add_pulse(out, 140, 80); add_pulse(out, 70, 80); add_pulse(out, 140, 0); break;
     case VOICE_EVENT_CANCEL:
