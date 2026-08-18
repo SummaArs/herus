@@ -23,13 +23,13 @@
     {
       "path": "firmware",
       "kind": "tree",
-      "sha256": "8bfb27e26dac387087bc03977ab5ee47e39418cbc0a6009aef087ec47f549a43",
+      "sha256": "1da1050792cff0038eb623ea2a8c66ad261504b38581b30d1e2dde180e2ecccc",
       "role": "portable firmware and proof sources"
     },
     {
       "path": "tools",
       "kind": "tree",
-      "sha256": "33ac6cde47c05b50b15c6f5da8c74eaaf0dc22f5a2a174420ea0fb8a255385aa",
+      "sha256": "1c78d65698cf23d6199fafa0b006b94954853c400721ecf6bd42b30f506667ec",
       "role": "host proof and provenance tools"
     },
     {
