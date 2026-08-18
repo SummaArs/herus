@@ -40,6 +40,10 @@ O Núcleo é também a base para a próxima evolução do HERUS: um **complement
 
 Uma futura LLM local poderá ajudar o Núcleo a organizar e explicar essa memória. Ela será uma camada de raciocínio e recuperação, não uma fonte de autonomia: qualquer uso de comunicação, armazenamento sensível ou ação externa continuará sob controle da pessoa.
 
+O HERUS também passa a ser uma plataforma de comunicação multimodo. LoRa permanece disponível para estados essenciais em campo, estrada e lugares remotos; BLE, ESP-NOW e Wi-Fi local podem ser usados em ambiente urbano ou junto ao Paper-Core para maior volume e menor latência. A escolha é feita por um planejador tipado, sem transmissão automática, e trocar de transporte nunca aumenta a autorização.
+
+A telemetria pessoal segue uma fronteira própria. O relógio poderá medir movimento e métricas de bem-estar como um wearable esportivo, mas cada amostra precisa de qualidade, origem, janela e consentimento. Coleta, retenção e compartilhamento são autorizações diferentes; o HERUS não se apresenta como dispositivo médico e não cria valores quando o sensor está indisponível.
+
 ## Para quem é
 
 | Cenário | Valor do HERUS |
@@ -90,6 +94,7 @@ A próxima etapa física é a Fase 0: dois devkits, bancada curta, medição RF,
 | [Especificação do sistema](docs/00-HERUS-MASTER.md) | Arquitetura geral, protocolo, segurança, energia e limites conhecidos. |
 | [Guia de construção](docs/03-BUILD-GUIDE.md) | Próximos passos de hardware e critérios para interromper ou prosseguir. |
 | [HERUS indispensável e inteligência própria](docs/47-HERUS-INDISPENSAVEL-E-INTELIGENCIA-PROPRIA.md) | Revisão de produto, mercado, Watch, Paper-Core, conhecimento local e tecnologia sem LLM hospedada. |
+| [Comunicação multimodo e métricas pessoais](docs/48-HERUS-COMUNICACAO-MULTIMODO-E-METRICAS-PESSOAIS.md) | LoRa remoto, ESP-NOW/BLE/Wi-Fi local, seleção soberana de transporte e telemetria pessoal não médica. |
 | [Segurança](SECURITY.md) | O que a criptografia protege hoje e o que ainda depende de integração física. |
 | [Aprendizados do Atlas_Node](docs/44-ATLAS-NODE-APRENDIZADOS.md) | Comparação auditável com um sistema ESP32/BLE/rádio e adaptação de transporte limitada. |
 
@@ -100,11 +105,13 @@ A versão consolidada pode ser verificada localmente com:
 ```bash
 ./prove.sh --quiet
 make -C firmware watch-memory-frontend
+make -C firmware transport-selector
+make -C firmware personal-telemetry
 ```
 
 O comando executa as verificações portáveis e o simulador. A análise Atlas_Node inclui ainda a suíte explícita `make -C firmware delivery-plan`. Um resultado positivo confirma contratos de software e autoriza somente o início controlado da bancada; ele **não** constitui evidência de alcance, energia, UX ou desempenho físico.
 
-A fronteira entre uma proposta de modelo e um candidato de memória pode ser exercitada com `make -C firmware memory-proposal`. O sizing grosseiro da demonstração de LLM em ESP32-S3 pode ser reproduzido separadamente com `make -C firmware llm-budget-check`. Esses alvos validam somente contratos e comparações C11/Python host-only; persistência, HCP, comunicação, inferência, qualidade, autonomia e desempenho continuam exigindo os gates humanos e físicos existentes.
+A fronteira entre uma proposta de modelo e um candidato de memória pode ser exercitada com `make -C firmware memory-proposal`. A política multimodo pode ser exercitada com `make -C firmware transport-selector`, e a telemetria pessoal consentida com `make -C firmware personal-telemetry`. O sizing grosseiro da demonstração de LLM em ESP32-S3 pode ser reproduzido separadamente com `make -C firmware llm-budget-check`. Esses alvos validam somente contratos e comparações C11/Python host-only; persistência, HCP, comunicação, inferência, qualidade, autonomia e desempenho continuam exigindo os gates humanos e físicos existentes.
 
 A história detalhada de experimentação, provas e decisões de implementação é preservada no ramo [`internal/engineering-archive`](https://github.com/SummaArs/herus/tree/internal/engineering-archive). Ela existe para rastreabilidade de engenharia, sem ocupar a apresentação principal do produto.
 
