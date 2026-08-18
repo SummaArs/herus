@@ -1,7 +1,7 @@
 # Aprendizados do Atlas_Node para o HERUS
 
-**Status:** análise comparativa e incremento host-only; não é certificação do Atlas_Node nem prova física do HERUS.  
-**Fonte principal:** [`DiyYari/Atlas_Node`](https://github.com/DiyYari/Atlas_Node), branch `main`, commit analisado `51e593f`, observado em 17 de agosto de 2026.  
+**Status:** análise comparativa e incremento host-only; não é certificação do Atlas_Node nem prova física do HERUS.
+**Fonte principal:** [`DiyYari/Atlas_Node`](https://github.com/DiyYari/Atlas_Node), branch `main`, commit analisado `51e593f`, observado em 17 de agosto de 2026.
 **Resultado aplicado:** planner C11 de entrega limitada após autorização explícita.
 
 ## 1. Escopo da análise
