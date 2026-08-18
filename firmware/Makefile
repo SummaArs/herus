@@ -10,6 +10,7 @@
 #   make memory-policy the selective-memory relevance and retention-policy suite
 #   make memory-capture the explicit, bounded and transient capture-session suite
 #   make memory-extract the typed, conservative and non-retaining extraction suite
+#   make watch-memory-frontend the Watch voice/relevance/physical-confirmation gate suite
 #   make memory-vault the authorised, encrypted and anti-rollback memory vault suite
 #   make memory-consolidation the bounded human review, recall and removal suite
 #   make memory-retrieval the typed, local and ambiguity-safe presentation suite
@@ -54,7 +55,7 @@ INC     := -Icore -Inet -Iport -Itest
 CORE    := core/hv.c core/sbc.c core/lexicon.c core/hcp.c
 NET     := net/crypto.c net/session.c net/region.c net/weave.c net/beat.c net/link.c
 
-.PHONY: all algebra nucleus voice intent dialogue model-lab memory-policy memory-capture memory-extract memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale memory-collection memory-collection-index memory-collection-recovery memory-collection-recovery-stress memory-collection-finale bench-evidence-validate bench-interruption-sim memory-physical-session memory-physical-session-recovery memory-physical-session-recovery-stress memory-physical-session-bootstrap memory-prehardware-finale threat-model threat-model-stress proof-fire-mutations assurance capstone trust control-link interaction interaction-rig net radio syntax vectors clean
+.PHONY: all algebra nucleus voice intent dialogue model-lab memory-policy memory-capture memory-extract watch-memory-frontend memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale memory-collection memory-collection-index memory-collection-recovery memory-collection-recovery-stress memory-collection-finale bench-evidence-validate bench-interruption-sim memory-physical-session memory-physical-session-recovery memory-physical-session-recovery-stress memory-physical-session-bootstrap memory-prehardware-finale threat-model threat-model-stress proof-fire-mutations assurance capstone trust control-link interaction interaction-rig net radio syntax vectors clean
 
 all: algebra nucleus voice intent dialogue model-lab memory-policy memory-capture memory-extract memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale memory-collection memory-collection-index memory-collection-recovery memory-collection-recovery-stress memory-collection-finale memory-physical-session memory-physical-session-recovery memory-physical-session-recovery-stress memory-physical-session-bootstrap memory-prehardware-finale threat-model threat-model-stress proof-fire-mutations assurance capstone trust control-link interaction interaction-rig net radio syntax
 	@echo ""
@@ -111,6 +112,11 @@ memory-extract: build
 	@echo "--- memory extract: typed candidate, uncertainty and zero retention ---"
 	$(CC) $(CFLAGS) $(INC) core/memory_capture.c core/memory_policy.c core/memory_extract.c core/test_memory_extract.c -o build/test_memory_extract
 	./build/test_memory_extract
+
+watch-memory-frontend: build
+	@echo "--- Watch memory front-end: voice filter, candidate expiry and physical confirmation ---"
+	$(CC) $(CFLAGS) $(INC) core/watch_memory_frontend.c core/test_watch_memory_frontend.c -o build/test_watch_memory_frontend
+	./build/test_watch_memory_frontend
 
 memory-vault: build
 	@echo "--- memory vault: explicit authority, AEAD and monotonic anti-rollback ---"

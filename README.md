@@ -1,8 +1,8 @@
 # HERUS
 
-**Comunicação essencial, privada e offline — com significado antes de mensagem.**
+**Memória pessoal soberana, conversa local e comunicação essencial — com significado antes de mensagem.**
 
-O HERUS é um sistema pessoal de comunicação para momentos em que telefone, rede móvel e interfaces densas não são a ferramenta certa. Em vez de tentar transmitir áudio ou longas mensagens, ele permite que uma pessoa expresse, confirme e envie **significados essenciais** de forma curta, privada e local.
+O HERUS é um sistema pessoal de memória, conversa e comunicação para o cotidiano e para momentos em que telefone, rede móvel e interfaces densas não são a ferramenta certa. No relógio, ele ajuda a pessoa a perguntar, guardar e reencontrar o essencial. No Paper-Core, concentra escrita, estudo, conhecimento local e memória. Em vez de depender de uma LLM hospedada ou transmitir áudio e longas mensagens, ele trabalha com **significados essenciais**, cartões de contexto e autoridade física.
 
 O produto foi pensado para trilhas, áreas rurais, deslocamentos, equipes de apoio, eventos externos e qualquer situação em que coordenação clara importa mais que uma conversa longa.
 
@@ -41,7 +41,8 @@ Uma futura LLM local poderá ajudar o Núcleo a organizar e explicar essa memór
 | **Equipes de apoio** | Estados e intenções rápidos, sem a fricção de rádio de voz contínuo. |
 | **Família e grupos pequenos** | Confirmação de chegada, espera, encontro, mudança de plano ou ajuda. |
 | **Rotinas com baixa atenção visual** | Interação por gesto, fala curta e háptica em vez de telas e menus. |
-| **Memória pessoal futura** | Recuperação privada de ideias e decisões que a pessoa autorizou lembrar. |
+| **Memória pessoal diária** | Recuperação privada de ideias, decisões e compromissos que a pessoa autorizou lembrar. |
+| **Relógio e Paper-Core** | Conversa local no pulso, estudo e escrita em uma estação pessoal soberana. |
 
 ## Estado atual
 
@@ -78,6 +79,7 @@ A próxima etapa física é a Fase 0: dois devkits, bancada curta, medição RF,
 | [Prova de fogo host](docs/35-PROVA-DE-FOGO-HOST.md) | Campanha F1 determinística: snapshots hostis atravessam recuperação e bootstrap; corrigiu o piso terminal `UINT32_MAX` antes de atingir hardware. |
 | [Especificação do sistema](docs/00-HERUS-MASTER.md) | Arquitetura geral, protocolo, segurança, energia e limites conhecidos. |
 | [Guia de construção](docs/03-BUILD-GUIDE.md) | Próximos passos de hardware e critérios para interromper ou prosseguir. |
+| [HERUS indispensável e inteligência própria](docs/47-HERUS-INDISPENSAVEL-E-INTELIGENCIA-PROPRIA.md) | Revisão de produto, mercado, Watch, Paper-Core, conhecimento local e tecnologia sem LLM hospedada. |
 | [Segurança](SECURITY.md) | O que a criptografia protege hoje e o que ainda depende de integração física. |
 
 ## Estado de engenharia
@@ -86,6 +88,7 @@ A versão consolidada pode ser verificada localmente com:
 
 ```bash
 ./prove.sh --quiet
+make -C firmware watch-memory-frontend
 ```
 
 O comando executa as verificações portáveis e o simulador. Um resultado positivo confirma contratos de software e autoriza somente o início controlado da bancada; ele **não** constitui evidência de alcance, energia, UX ou desempenho físico.
