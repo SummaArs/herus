@@ -1,7 +1,7 @@
 # Proposta tipada e invariantes para a inteligência local do HERUS
 
-**Status:** implementado em host; adaptação de hardware ainda pendente.  
-**Revisão:** proposal-01  
+**Status:** implementado em host; adaptação de hardware ainda pendente.
+**Revisão:** proposal-01
 **Data:** 17 de agosto de 2026
 
 ## 1. Origem e decisão

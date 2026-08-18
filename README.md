@@ -89,6 +89,7 @@ A próxima etapa física é a Fase 0: dois devkits, bancada curta, medição RF,
 | [Especificação do sistema](docs/00-HERUS-MASTER.md) | Arquitetura geral, protocolo, segurança, energia e limites conhecidos. |
 | [Guia de construção](docs/03-BUILD-GUIDE.md) | Próximos passos de hardware e critérios para interromper ou prosseguir. |
 | [Segurança](SECURITY.md) | O que a criptografia protege hoje e o que ainda depende de integração física. |
+| [Aprendizados do Atlas_Node](docs/44-ATLAS-NODE-APRENDIZADOS.md) | Comparação auditável com um sistema ESP32/BLE/rádio e adaptação de transporte limitada. |
 
 ## Estado de engenharia
 
@@ -98,7 +99,7 @@ A versão consolidada pode ser verificada localmente com:
 ./prove.sh --quiet
 ```
 
-O comando executa as verificações portáveis e o simulador. Um resultado positivo confirma contratos de software e autoriza somente o início controlado da bancada; ele **não** constitui evidência de alcance, energia, UX ou desempenho físico.
+O comando executa as verificações portáveis e o simulador. A análise Atlas_Node inclui ainda a suíte explícita `make -C firmware delivery-plan`. Um resultado positivo confirma contratos de software e autoriza somente o início controlado da bancada; ele **não** constitui evidência de alcance, energia, UX ou desempenho físico.
 
 A fronteira entre uma proposta de modelo e um candidato de memória pode ser exercitada com `make -C firmware memory-proposal`. O sizing grosseiro da demonstração de LLM em ESP32-S3 pode ser reproduzido separadamente com `make -C firmware llm-budget-check`. Esses alvos validam somente contratos e comparações C11/Python host-only; persistência, HCP, comunicação, inferência, qualidade, autonomia e desempenho continuam exigindo os gates humanos e físicos existentes.
 
