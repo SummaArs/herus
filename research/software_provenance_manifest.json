@@ -23,7 +23,7 @@
     {
       "path": "firmware",
       "kind": "tree",
-      "sha256": "fe48c353feef9237ad2ef27070aaa5a2048c5e450240966b2980ec8502d30c5f",
+      "sha256": "2dd472b419a78a0ac1ba60607cfa5f03e220538dfe1999a14aa8539074a372fa",
       "role": "portable firmware and proof sources"
     },
     {

@@ -1,7 +1,7 @@
 # LLM local em ESP32 e o HERUS
 
-**Status:** análise técnica host-only; não é resultado de hardware do HERUS.  
-**Revisão:** llm-01  
+**Status:** análise técnica host-only; não é resultado de hardware do HERUS.
+**Revisão:** llm-01
 **Data:** 17 de agosto de 2026
 
 ## 1. Veredito curto
