@@ -23,6 +23,8 @@
 #   make memory-collection-finale the human-gated multi-card composition suite
 #   make bench-evidence-validate the privacy-preserving physical-evidence schema suite
 #   make bench-interruption-sim the host-only interruption-plan simulator
+#   make memory-proposal the typed local-model proposal compiler suite
+#   make llm-budget-check the coarse local-model memory budget comparison
 #   make memory-physical-session the purpose-bound physical-session gate suite
 #   make memory-physical-session-recovery the durable reservation recovery oracle suite
 #   make memory-physical-session-recovery-stress the deterministic hostile recovery/bootstrap campaign
@@ -35,6 +37,7 @@
 #   make capstone   the Grand Finale end-to-end safety-chain suite
 #   make trust      the explicit Core/Nucleus binding lifecycle suite
 #   make control-link the authenticated Core/Nucleus control-envelope suite
+#   make delivery-plan the bounded post-authorisation transport planner suite
 #   make interaction the push-to-talk, confirmation and one-shot runtime suite
 #   make interaction-rig deterministic adapter and validation-lab scenarios
 #   make net        the protocol suite (crypto, session, weave, beat, framing)
@@ -55,7 +58,7 @@ INC     := -Icore -Inet -Iport -Itest
 CORE    := core/hv.c core/sbc.c core/lexicon.c core/hcp.c
 NET     := net/crypto.c net/session.c net/region.c net/weave.c net/beat.c net/link.c
 
-.PHONY: all algebra nucleus voice intent dialogue model-lab memory-policy memory-capture memory-extract watch-memory-frontend memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale memory-collection memory-collection-index memory-collection-recovery memory-collection-recovery-stress memory-collection-finale bench-evidence-validate bench-interruption-sim memory-physical-session memory-physical-session-recovery memory-physical-session-recovery-stress memory-physical-session-bootstrap memory-prehardware-finale threat-model threat-model-stress proof-fire-mutations assurance capstone trust control-link interaction interaction-rig net radio syntax vectors clean
+.PHONY: all algebra nucleus voice intent dialogue model-lab memory-policy memory-capture memory-extract watch-memory-frontend memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale memory-collection memory-collection-index memory-collection-recovery memory-collection-recovery-stress memory-collection-finale bench-evidence-validate bench-interruption-sim memory-proposal llm-budget-check memory-physical-session memory-physical-session-recovery memory-physical-session-recovery-stress memory-physical-session-bootstrap memory-prehardware-finale threat-model threat-model-stress proof-fire-mutations assurance capstone trust control-link delivery-plan interaction interaction-rig net radio syntax vectors clean
 
 all: algebra nucleus voice intent dialogue model-lab memory-policy memory-capture memory-extract memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale memory-collection memory-collection-index memory-collection-recovery memory-collection-recovery-stress memory-collection-finale memory-physical-session memory-physical-session-recovery memory-physical-session-recovery-stress memory-physical-session-bootstrap memory-prehardware-finale threat-model threat-model-stress proof-fire-mutations assurance capstone trust control-link interaction interaction-rig net radio syntax
 	@echo ""
@@ -177,6 +180,17 @@ bench-interruption-sim: build
 	$(CC) $(CFLAGS) $(INC) core/memory_collection_recovery.c core/memory_physical_session.c core/memory_physical_session_recovery.c core/memory_physical_session_bootstrap.c core/test_memory_bench_interruption_sim.c -o build/test_memory_bench_interruption_sim
 	./build/test_memory_bench_interruption_sim
 
+memory-proposal: build
+	@echo "--- memory proposal: typed local-model compiler and fail-closed gate ---"
+	$(CC) $(CFLAGS) $(INC) core/memory_capture.c core/memory_policy.c core/memory_extract.c core/memory_proposal.c core/test_memory_proposal.c -o build/test_memory_proposal
+	./build/test_memory_proposal
+
+llm-budget-check:
+	@echo "--- local model sizing: coarse host-only memory comparison ---"
+	python3 ../tools/test_llm_budget_check.py
+	python3 ../tools/llm_budget_check.py --board lilygo-t3-s3-v1.3 --params 28900000 --bits 4 --artifact-bytes 14912332
+	python3 ../tools/llm_budget_check.py --board esp32-s3-n16r8-article --params 28900000 --bits 4 --artifact-bytes 14912332
+
 memory-physical-session: build
 	@echo "--- physical session: purpose-bound bounded replay gate ---"
 	$(CC) $(CFLAGS) $(INC) core/memory_physical_session.c core/test_memory_physical_session.c -o build/test_memory_physical_session
@@ -235,6 +249,11 @@ control-link: build
 	@echo "--- Core/Nucleus control link: AEAD, expiry and replay protection ---"
 	$(CC) $(CFLAGS) $(INC) net/crypto.c net/core_link.c net/test_core_link.c -o build/test_core_link
 	./build/test_core_link
+
+delivery-plan: build
+	@echo "--- delivery plan: bounded transport retry after explicit authorisation ---"
+	$(CC) $(CFLAGS) $(INC) core/delivery_plan.c core/test_delivery_plan.c -o build/test_delivery_plan
+	./build/test_delivery_plan
 
 interaction: build
 	@echo "--- interaction: push-to-talk, confirmation and one-shot send gate ---"
