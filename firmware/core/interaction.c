@@ -221,7 +221,7 @@ int interaction_confirm(interaction_t *it, int accepted, uint32_t now_ms)
     }
     it->state = INTERACTION_READY_SEND;
     it->metrics.confirms++;
-    haptic(it, VOICE_EVENT_DRAFT);
+    haptic(it, VOICE_EVENT_CONFIRMED);
     return INTERACTION_OK;
 }
 
