@@ -1,7 +1,7 @@
 # HERUS — Produto desejável e estratégia de adoção
 
-**Status:** proposta de produto para validação; não é previsão de vendas nem aprovação de hardware.  
-**Revisão:** product-01  
+**Status:** proposta de produto para validação; não é previsão de vendas nem aprovação de hardware.
+**Revisão:** product-01
 **Data:** 17 de agosto de 2026
 
 > **Tese:** o HERUS deve ser um objeto pessoal discreto que ajuda a pessoa a **guardar o essencial, encontrar o que guardou e se conectar quando a rede falha**, sem depender de conta, nuvem ou atenção constante.

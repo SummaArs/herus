@@ -1,8 +1,8 @@
 # HERUS — Guia de montagem física, BOM e bring-up
 
-**Status:** guia de preparação; nenhuma medição física foi realizada por este documento.  
-**Revisão:** assembly-01  
-**Data de preços consultados:** 14 de agosto de 2026  
+**Status:** guia de preparação; nenhuma medição física foi realizada por este documento.
+**Revisão:** assembly-01
+**Data de preços consultados:** 14 de agosto de 2026
 **Baseline de software:** `./prove.sh --quiet` deve retornar `ALL INVARIANTS HOLD` antes de qualquer campanha física.
 
 > **Regra central:** o que está descrito aqui é um plano de construção e teste. Não é evidência de alcance, PDR/WER, autonomia, consumo, qualidade de modelo, segurança física ou adequação de produto. Todo resultado não medido permanece `pending` ou `blocked_by_missing_evidence`.
