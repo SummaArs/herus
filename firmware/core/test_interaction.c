@@ -50,8 +50,11 @@ static void test_only_confirmed_draft_sends(void)
     ok(interaction_take_send(&it, &out) == INTERACTION_E_STATE,
        "I1 a valid draft still cannot be transmitted before physical confirmation");
 
-    ok(interaction_confirm(&it, 1, 650) == INTERACTION_OK && it.state == INTERACTION_READY_SEND,
-       "I1 only an explicit positive confirmation opens the one-time send gate");
+    ok(interaction_confirm(&it, 1, 650) == INTERACTION_OK && it.state == INTERACTION_READY_SEND &&
+       interaction_actions(&it)->play_haptic && interaction_actions(&it)->haptic.n == 2 &&
+       interaction_actions(&it)->haptic.pulse[0].on_ms == 160 &&
+       interaction_actions(&it)->haptic.pulse[1].on_ms == 80,
+       "I1 physical confirmation opens the one-time send gate and gives a distinct confirmed haptic");
     ok(interaction_take_send(&it, &out) == INTERACTION_OK && it.state == INTERACTION_IDLE &&
        out.intent == it.cfg.lexicon.intent_arrive && out.nslot == 1 &&
        out.slot[0].filler == it.cfg.lexicon.minute_filler_base + 25 &&
