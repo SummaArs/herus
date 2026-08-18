@@ -38,6 +38,8 @@
 #   make trust      the explicit Core/Nucleus binding lifecycle suite
 #   make control-link the authenticated Core/Nucleus control-envelope suite
 #   make delivery-plan the bounded post-authorisation transport planner suite
+#   make transport-selector the host-only multimode route-selection suite
+#   make personal-telemetry the host-only consented personal-metric gate suite
 #   make interaction the push-to-talk, confirmation and one-shot runtime suite
 #   make interaction-rig deterministic adapter and validation-lab scenarios
 #   make net        the protocol suite (crypto, session, weave, beat, framing)
@@ -58,7 +60,7 @@ INC     := -Icore -Inet -Iport -Itest
 CORE    := core/hv.c core/sbc.c core/lexicon.c core/hcp.c
 NET     := net/crypto.c net/session.c net/region.c net/weave.c net/beat.c net/link.c
 
-.PHONY: all algebra nucleus voice intent dialogue model-lab memory-policy memory-capture memory-extract watch-memory-frontend memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale memory-collection memory-collection-index memory-collection-recovery memory-collection-recovery-stress memory-collection-finale bench-evidence-validate bench-interruption-sim memory-proposal llm-budget-check memory-physical-session memory-physical-session-recovery memory-physical-session-recovery-stress memory-physical-session-bootstrap memory-prehardware-finale threat-model threat-model-stress proof-fire-mutations assurance capstone trust control-link delivery-plan interaction interaction-rig net radio syntax vectors clean
+.PHONY: all algebra nucleus voice intent dialogue model-lab memory-policy memory-capture memory-extract watch-memory-frontend memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale memory-collection memory-collection-index memory-collection-recovery memory-collection-recovery-stress memory-collection-finale bench-evidence-validate bench-interruption-sim memory-proposal llm-budget-check memory-physical-session memory-physical-session-recovery memory-physical-session-recovery-stress memory-physical-session-bootstrap memory-prehardware-finale threat-model threat-model-stress proof-fire-mutations assurance capstone trust control-link delivery-plan transport-selector personal-telemetry interaction interaction-rig net radio syntax vectors clean
 
 all: algebra nucleus voice intent dialogue model-lab memory-policy memory-capture memory-extract memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale memory-collection memory-collection-index memory-collection-recovery memory-collection-recovery-stress memory-collection-finale memory-physical-session memory-physical-session-recovery memory-physical-session-recovery-stress memory-physical-session-bootstrap memory-prehardware-finale threat-model threat-model-stress proof-fire-mutations assurance capstone trust control-link interaction interaction-rig net radio syntax
 	@echo ""
@@ -190,6 +192,16 @@ llm-budget-check:
 	python3 ../tools/test_llm_budget_check.py
 	python3 ../tools/llm_budget_check.py --board lilygo-t3-s3-v1.3 --params 28900000 --bits 4 --artifact-bytes 14912332
 	python3 ../tools/llm_budget_check.py --board esp32-s3-n16r8-article --params 28900000 --bits 4 --artifact-bytes 14912332
+
+transport-selector: build
+	@echo "--- transport selector: LoRa, urban and local route policy ---"
+	$(CC) $(CFLAGS) $(INC) core/transport_selector.c core/test_transport_selector.c -o build/test_transport_selector
+	./build/test_transport_selector
+
+personal-telemetry: build
+	@echo "--- personal telemetry: derived metrics, consent and transient retention ---"
+	$(CC) $(CFLAGS) $(INC) core/personal_telemetry.c core/test_personal_telemetry.c -o build/test_personal_telemetry
+	./build/test_personal_telemetry
 
 memory-physical-session: build
 	@echo "--- physical session: purpose-bound bounded replay gate ---"
