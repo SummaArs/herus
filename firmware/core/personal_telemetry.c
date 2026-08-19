@@ -89,10 +89,14 @@ static int value_in_range(const personal_telemetry_sample_t *s)
 static int window_valid(const personal_telemetry_sample_t *s)
 {
     uint32_t span;
-    if (!s || s->window_end_ms < s->window_start_ms) return 0;
+    if (!s) return 0;
+    /* Timestamps are uint32_t monotonic ticks. A valid window is bounded well
+     * below INT32_MAX, so subtraction is the unambiguous modular comparison:
+     * this also handles the ordinary 49-day tick wrap without weakening the
+     * future-window guard. */
     span = s->window_end_ms - s->window_start_ms;
-    return span > 0u && span <= PERSONAL_TELEMETRY_MAX_WINDOW_MS &&
-           s->window_end_ms <= s->now_ms;
+    if (span == 0u || span > PERSONAL_TELEMETRY_MAX_WINDOW_MS) return 0;
+    return (int32_t)(s->now_ms - s->window_end_ms) >= 0;
 }
 
 static int expired(uint32_t now_ms, uint32_t deadline_ms)

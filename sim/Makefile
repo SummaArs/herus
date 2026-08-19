@@ -1,6 +1,8 @@
 # Herus simulated bench.
 #
 #   make          build and run every scenario
+#   make virtual  run only the deterministic pre-hardware virtual lab
+#   make virtual-mutation  kill deliberately unsafe contract mutants
 #   make build/herus-sim
 #   ./build/herus-sim relay --verbose 1
 #
@@ -21,19 +23,26 @@ FW      := ../firmware
 INC     := -I$(FW)/core -I$(FW)/net -I$(FW)/port
 
 CORE    := $(FW)/core/hv.c $(FW)/core/sbc.c $(FW)/core/lexicon.c $(FW)/core/hcp.c $(FW)/core/text.c
+VCORE   := $(FW)/core/transport_selector.c $(FW)/core/personal_telemetry.c
 NET     := $(FW)/net/crypto.c $(FW)/net/session.c $(FW)/net/region.c \
            $(FW)/net/weave.c $(FW)/net/beat.c $(FW)/net/link.c
-SIM     := world.c channel.c render.c node.c scenarios.c stress.c compose.c study.c learn.c main.c
+SIM     := world.c channel.c render.c node.c scenarios.c stress.c compose.c study.c learn.c virtual_lab.c main.c
 
-.PHONY: all run clean
+.PHONY: all run virtual virtual-mutation clean
 
 all: run
 
 run: build/herus-sim
 	./build/herus-sim
 
-build/herus-sim: $(SIM) sim.h $(CORE) $(NET) | build
-	$(CC) $(CFLAGS) -DHV_LUT_POPCOUNT $(INC) $(SIM) $(CORE) $(NET) \
+virtual: build/herus-sim
+	./build/herus-sim virtual
+
+virtual-mutation:
+	cd .. && python3 tools/virtual_mutation.py
+
+build/herus-sim: $(SIM) sim.h $(CORE) $(VCORE) $(NET) | build
+	$(CC) $(CFLAGS) -DHV_LUT_POPCOUNT $(INC) $(SIM) $(CORE) $(VCORE) $(NET) \
 	    -o $@ $(LDLIBS)
 
 build:

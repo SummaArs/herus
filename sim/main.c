@@ -41,6 +41,7 @@ static const entry_t TABLE[] = {
     { "compose",   scenario_compose,    "MIND: how many button presses is a sentence" },
     { "study",     scenario_study,      "MIND: recall with honest refusal, for a concurseiro" },
     { "learn",     scenario_learn,      "MIND: the residue loop — it learns what it failed at" },
+    { "virtual",   scenario_virtual,    "PRE-HARDWARE: Watch, Paper-Core, sensors, battery and LoRa" },
 };
 #define NTABLE ((int)(sizeof TABLE / sizeof *TABLE))
 

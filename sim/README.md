@@ -8,6 +8,7 @@ make                       # build and run every scenario
 ./build/herus-sim relay --verbose 1
 ./build/herus-sim range --band 1 --clutter 12
 ./build/herus-sim crowd --nodes 24 --per-hour 60
+./build/herus-sim virtual
 ./build/herus-sim -h
 ```
 
@@ -26,6 +27,7 @@ number is.
 | **Real** | Every byte on air. `hcp` framing, the symmetric ratchet, ChaCha20-Poly1305, ephemeral addresses, Weave dedup and ttl, Beat slot maths, the Semtech airtime formula, the regional legality check. The bench compiles `../firmware/core` and `../firmware/net` **unmodified** — there is no second copy and no simulator-only variant. If a message is delivered here, the shipping firmware sealed it and opened it. |
 | **Modelled** | Two-ray propagation with urban clutter, SX1262 sensitivity, LoRa co-channel capture, ±20 ppm crystal drift, and current draw. These are where a simulator lies, and they are listed so you know where to look. |
 | **Bookkeeping** | The scoreboard tracks who sent what to whom so it can score delivery and latency. None of that is on air. A relay sees 34 opaque bytes, and scenario 2 asserts it. |
+| **Virtual composition** | Scenario `virtual` feeds scripted Watch, Paper-Core, sensor-quality, consent and battery facts into the real C11 contracts. Its battery units and sensor samples are deliberately not physical measurements. |
 
 ### The self-test comes first
 
@@ -60,6 +62,15 @@ the budget describe the same device.
 | `babel`     | one frame, three languages, no translation step |
 | `drift`     | what the crystal costs after a long silence |
 | `cognition` | recovering a role from a bundled hypervector |
+| `virtual` | pre-hardware Watch, Paper-Core, multimode transport, telemetry and LoRa composition |
+
+### The pre-hardware virtual lab
+
+`./build/herus-sim virtual` is the first composition scenario for the everyday HERUS. It checks that a remote Watch state chooses LoRa, an urban Paper-Core card chooses ESP-NOW, local control can fall back to BLE, a sensor sample stays transient until physical confirmation, low quality and expiry abstain, sharing telemetry needs a separate consent, a virtual battery refuses an unaffordable route, and the remote message is opened by the real firmware/net path.
+
+The scenario then runs 117,504 transport combinations, 3,780 telemetry combinations and 16 combined radio worlds with distance, shadowing, channels, CAD, retries, relay, replay, forgery and jamming. The current virtual scenario reports 37 invariants. `make virtual-mutation` recompiles seven deliberately unsafe contract mutants; all seven must be killed by the scenario.
+
+The scenario is a pre-hardware evidence layer, not a replacement for the antenna, sensors, battery, enclosure or body. It reports no WER, range, current, health accuracy or ergonomics.
 
 ### The link budget, once no part is treated as given
 
