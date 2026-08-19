@@ -95,6 +95,7 @@ A próxima etapa física é a Fase 0: dois devkits, bancada curta, medição RF,
 | [Guia de construção](docs/03-BUILD-GUIDE.md) | Próximos passos de hardware e critérios para interromper ou prosseguir. |
 | [HERUS indispensável e inteligência própria](docs/47-HERUS-INDISPENSAVEL-E-INTELIGENCIA-PROPRIA.md) | Revisão de produto, mercado, Watch, Paper-Core, conhecimento local e tecnologia sem LLM hospedada. |
 | [Comunicação multimodo e métricas pessoais](docs/48-HERUS-COMUNICACAO-MULTIMODO-E-METRICAS-PESSOAIS.md) | LoRa remoto, ESP-NOW/BLE/Wi-Fi local, seleção soberana de transporte e telemetria pessoal não médica. |
+| [Ambiente virtual pré-hardware](docs/49-AMBIENTE-VIRTUAL-PRE-HARDWARE.md) | Bancada determinística que compõe Watch, Paper-Core, sensores, bateria, transportes e LoRa antes da bancada física. |
 | [Segurança](SECURITY.md) | O que a criptografia protege hoje e o que ainda depende de integração física. |
 | [Aprendizados do Atlas_Node](docs/44-ATLAS-NODE-APRENDIZADOS.md) | Comparação auditável com um sistema ESP32/BLE/rádio e adaptação de transporte limitada. |
 
@@ -107,9 +108,10 @@ A versão consolidada pode ser verificada localmente com:
 make -C firmware watch-memory-frontend
 make -C firmware transport-selector
 make -C firmware personal-telemetry
+make -C sim virtual
 ```
 
-O comando executa as verificações portáveis e o simulador. A análise Atlas_Node inclui ainda a suíte explícita `make -C firmware delivery-plan`. Um resultado positivo confirma contratos de software e autoriza somente o início controlado da bancada; ele **não** constitui evidência de alcance, energia, UX ou desempenho físico.
+O comando executa as verificações portáveis e o simulador; `make -C sim virtual` também pode executar apenas a bancada pré-hardware de Watch, Paper-Core, transportes, telemetria, bateria abstrata e um enlace LoRa real dentro do modelo. A análise Atlas_Node inclui ainda a suíte explícita `make -C firmware delivery-plan`. Um resultado positivo confirma contratos de software e autoriza somente o início controlado da bancada; ele **não** constitui evidência de alcance, energia, UX ou desempenho físico.
 
 A fronteira entre uma proposta de modelo e um candidato de memória pode ser exercitada com `make -C firmware memory-proposal`. A política multimodo pode ser exercitada com `make -C firmware transport-selector`, e a telemetria pessoal consentida com `make -C firmware personal-telemetry`. O sizing grosseiro da demonstração de LLM em ESP32-S3 pode ser reproduzido separadamente com `make -C firmware llm-budget-check`. Esses alvos validam somente contratos e comparações C11/Python host-only; persistência, HCP, comunicação, inferência, qualidade, autonomia e desempenho continuam exigindo os gates humanos e físicos existentes.
 
