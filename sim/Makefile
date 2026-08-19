@@ -2,6 +2,7 @@
 #
 #   make          build and run every scenario
 #   make virtual  run only the deterministic pre-hardware virtual lab
+#   make virtual-mutation  kill deliberately unsafe contract mutants
 #   make build/herus-sim
 #   ./build/herus-sim relay --verbose 1
 #
@@ -27,7 +28,7 @@ NET     := $(FW)/net/crypto.c $(FW)/net/session.c $(FW)/net/region.c \
            $(FW)/net/weave.c $(FW)/net/beat.c $(FW)/net/link.c
 SIM     := world.c channel.c render.c node.c scenarios.c stress.c compose.c study.c learn.c virtual_lab.c main.c
 
-.PHONY: all run virtual clean
+.PHONY: all run virtual virtual-mutation clean
 
 all: run
 
@@ -36,6 +37,9 @@ run: build/herus-sim
 
 virtual: build/herus-sim
 	./build/herus-sim virtual
+
+virtual-mutation:
+	cd .. && python3 tools/virtual_mutation.py
 
 build/herus-sim: $(SIM) sim.h $(CORE) $(VCORE) $(NET) | build
 	$(CC) $(CFLAGS) -DHV_LUT_POPCOUNT $(INC) $(SIM) $(CORE) $(VCORE) $(NET) \

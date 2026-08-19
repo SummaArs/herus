@@ -2,7 +2,7 @@
 
 **Status:** bancada virtual determinística integrada ao simulador existente.
 
-**Resultado desta etapa:** o cenário `virtual` combina a rede LoRa já simulada com os contratos reais de seleção multimodo e telemetria pessoal. Ele passa em host e cria uma base para campanhas sistemáticas antes de ligar o primeiro devkit.
+**Resultado desta etapa:** o cenário `virtual` combina a rede LoRa já simulada com os contratos reais de seleção multimodo e telemetria pessoal. Ele passa em host, executa uma campanha combinada de rádio e é acompanhado por um gate de mutação que exige que controles removidos sejam detectados antes de ligar o primeiro devkit.
 
 > **Definição de honestidade:** uma passagem virtual prova que o código e o modelo obedeceram às regras declaradas sob as entradas simuladas. Ela não prova que a antena, o sensor, a bateria ou o ambiente físico obedecerão ao modelo.
 
@@ -31,17 +31,19 @@ A escolha foi deliberada: existe um único relógio de eventos para o rádio rea
 
 ## 3. Cenário `virtual`
 
-O cenário pode ser executado com:
+Os comandos podem ser executados com:
 
 ```bash
 cd sim
 make virtual
-./build/herus-sim virtual
+make virtual-mutation
 ```
+
+O primeiro executa a bancada; o segundo recompila sete versões deliberadamente inseguras e falha se qualquer uma sobreviver.
 
 Ele também participa da execução padrão de `make` e de `../prove.sh`, porque foi registrado na tabela principal do executável. O código retorna falha se qualquer invariável falhar; não há um relatório que possa declarar sucesso sem testar uma condição.
 
-A execução atual verifica 32 invariantes neste cenário:
+A execução atual verifica 37 invariantes neste cenário e ainda executa uma campanha de mutação independente:
 
 | Grupo | Verificações |
 |---|---|
@@ -50,6 +52,8 @@ A execução atual verifica 32 invariantes neste cenário:
 | **Adversários** | Baixa qualidade, expiração, revogação física e recusa de transmissão quando a bateria virtual não comporta o custo declarado |
 | **LoRa real dentro do modelo** | Mensagem remota entregue por `firmware/net`, peer autenticado abrindo o frame e zero falsa entrega |
 | **Energia abstrata** | Caminho normal abaixo da capacidade roteirizada e rejeição explícita de overspend |
+| **Campanha combinada** | Dezesseis mundos determinísticos combinam sombra, distância, canais, CAD, retries, relay, replay, forgery e jamming; nenhum produz falsa entrega |
+| **Mutação** | Sete mutantes removem autoridade, privacidade, qualidade, sessão, confirmação ou wraparound; todos precisam ser mortos pelo cenário |
 
 A mensagem mais importante do cenário é negativa: uma rota pode ser recomendada, mas a camada de energia pode recusá-la; uma amostra pode ser relevante, mas expirar antes da confirmação; uma telemetria pode ser retida localmente, mas continuar impedida de ser compartilhada sem outro consentimento.
 

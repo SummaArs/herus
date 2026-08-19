@@ -9,7 +9,7 @@
 #   ./prove.sh            full run
 #   ./prove.sh --quiet    verdict lines only
 #
-# Thirty-nine suites, each independently falsifiable:
+# Forty suites, each independently falsifiable:
 #   1  algebra      quasi-orthogonality, bundling, resonator, learning, HCP
 #   2  nucleus      bounded, opt-in local semantic intelligence
 #   3  voice        controlled local language and bounded haptic feedback
@@ -49,6 +49,7 @@
 #  37  protocol     crypto vs OpenSSL, ratchet, framing, Weave, Beat, canonicality
 #  38  radio        SX1262 command sequences against a recording mock bus
 #  39  physical     RF, energy and the frame ledger, from tools/budget.py
+#  40  virtual-mutation deliberate removal of critical controls must be detected
 #
 # The Nucleus suite is intentionally separate: privacy and non-autonomy are
 # properties that must fail a build when regressed, not promises in a document.
@@ -453,6 +454,18 @@ if ( cd sim && make -s build/herus-sim ) 2>/tmp/herus_sim_build.log; then
     fi
 else
     echo "  FAIL  the bench does not build — see /tmp/herus_sim_build.log"; FAIL=1
+fi
+
+# ------------------------------------------------------------ mutation gate
+# This recompiles fixed unsafe mutants against the same virtual scenario. A
+# surviving mutant means the campaign is too weak or a control is decorative.
+echo ""
+echo "--- adversarial mutation gate: critical controls must be killable ---"
+if python3 tools/virtual_mutation.py > /tmp/herus_virtual_mutation.log 2>&1; then
+    grep "MUTATION GATE" /tmp/herus_virtual_mutation.log
+else
+    echo "  FAIL  an unsafe mutant survived — see /tmp/herus_virtual_mutation.log"
+    FAIL=1
 fi
 
 echo ""

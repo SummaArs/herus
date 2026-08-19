@@ -68,6 +68,8 @@ the budget describe the same device.
 
 `./build/herus-sim virtual` is the first composition scenario for the everyday HERUS. It checks that a remote Watch state chooses LoRa, an urban Paper-Core card chooses ESP-NOW, local control can fall back to BLE, a sensor sample stays transient until physical confirmation, low quality and expiry abstain, sharing telemetry needs a separate consent, a virtual battery refuses an unaffordable route, and the remote message is opened by the real firmware/net path.
 
+The scenario then runs 117,504 transport combinations, 3,780 telemetry combinations and 16 combined radio worlds with distance, shadowing, channels, CAD, retries, relay, replay, forgery and jamming. The current virtual scenario reports 37 invariants. `make virtual-mutation` recompiles seven deliberately unsafe contract mutants; all seven must be killed by the scenario.
+
 The scenario is a pre-hardware evidence layer, not a replacement for the antenna, sensors, battery, enclosure or body. It reports no WER, range, current, health accuracy or ergonomics.
 
 ### The link budget, once no part is treated as given
