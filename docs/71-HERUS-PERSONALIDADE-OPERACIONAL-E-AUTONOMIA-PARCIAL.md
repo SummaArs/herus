@@ -65,6 +65,6 @@ Uma confirmação deve ser **purpose-bound**, limitada ao escopo apresentado, co
 
 ## 7. Resultado executável do passo 1
 
-A política `autonomy_policy` agora classifica envelopes em `A0`–`A4`, exige consentimento para iniciativa contextual, reduz autonomia diante de incerteza, impede escalada de escopo e permite somente uma confirmação purpose-bound por proposta. A suíte passa **16/16**. O pipeline global passa com **63 suítes**, **111 invariantes de sistema simulado**, mutação histórica **7/7** e red-team específico da autonomia **6/6** mutantes mortos.
+A política `autonomy_policy` agora classifica envelopes em `A0`–`A4`, exige consentimento para iniciativa contextual, reduz autonomia diante de incerteza, impede escalada de escopo e permite somente uma confirmação purpose-bound por proposta. A suíte passa **16/16**. O pipeline global passa com **64 suítes**, **111 invariantes de sistema simulado**, mutação histórica **7/7**, red-team específico da autonomia **6/6** e red-team de magia/memória **5/5** mutantes mortos.
 
 Isso prova os contratos determinísticos no host, não que o HERUS será automaticamente agradável ou indispensável. Essas propriedades dependerão de testes humanos, háptica física, latência, energia, entrada natural e uso prolongado. O contrato garante apenas que a busca por uma experiência surpreendente não destrua a soberania do usuário.

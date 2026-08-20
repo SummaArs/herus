@@ -9,7 +9,7 @@
 #   ./prove.sh            full run
 #   ./prove.sh --quiet    verdict lines only
 #
-# Sixty-three suites, each independently falsifiable:
+# Sixty-four suites, each independently falsifiable:
 #   1  algebra      quasi-orthogonality, bundling, resonator, learning, HCP
 #   2  nucleus      bounded, opt-in local semantic intelligence
 #   3  voice        controlled local language and bounded haptic feedback
@@ -73,6 +73,7 @@
 #  61  read-only dialogue presentation of explainable local magic
 #  62  explicit A0-A4 initiative, scope and confirmation policy
 #  63  deterministic GAN-style sabotage campaign for autonomy controls
+#  64  deterministic GAN-style sabotage campaign for magic and memory
 #
 # The Nucleus suite is intentionally separate: privacy and non-autonomy are
 # properties that must fail a build when regressed, not promises in a document.
@@ -354,9 +355,12 @@ banner "61/62 read-only magic dialogue bridge"
 banner "62/63 autonomy policy"
 ( cd firmware && make autonomy-policy ) > /tmp/herus_autonomy_policy.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_autonomy_policy.log
-banner "63/63 autonomy redteam"
+banner "63/64 autonomy redteam"
 ( cd firmware && make autonomy-redteam ) > /tmp/herus_autonomy_redteam.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_autonomy_redteam.log
+banner "64/64 magic/memory redteam"
+( cd firmware && make magic-redteam ) > /tmp/herus_magic_redteam.log 2>&1 || FAIL=1
+[ "$QUIET" = 0 ] && cat /tmp/herus_magic_redteam.log
  echo ""
 
 echo "--------------------------------------------------"
@@ -400,6 +404,7 @@ check "Magic trigger bounds attention, TTL and repeated proposals" "MAGIC TRIGGE
 check "Magic dialogue bridge stays read-only and abstinent" "MAGIC DIALOGUE BRIDGE: 8 pass, 0 fail" /tmp/herus_magic_dialogue_bridge.log
 check "Autonomy policy bounds initiative, scope and one-shot confirmation" "AUTONOMY POLICY: 16 pass, 0 fail" /tmp/herus_autonomy_policy.log
 check "Autonomy redteam kills critical policy mutants" "AUTONOMY REDTEAM: 6/6 critical autonomy mutants killed" /tmp/herus_autonomy_redteam.log
+check "Magic redteam kills critical magic and memory mutants" "MAGIC REDTEAM: 5/5 critical magic/memory mutants killed" /tmp/herus_magic_redteam.log
 
 # --- physical layer -------------------------------------------------------
 check "P1 constant AIRTIME across meaning tiers" "INVARIANT HOLDS" /tmp/herus_c.log
