@@ -198,6 +198,7 @@ mse_status_t mse_query(const mse_index_t *index,
         return MSE_OK;
     }
     out->status = MSE_QUERY_MATCH;
+    out->fact = index->evidence[selected].fact;
     out->selected_card_id = index->evidence[selected].card_id;
     out->selected_review_receipt_id = index->evidence[selected].review_receipt_id;
     out->selected_generation = index->evidence[selected].observed_generation;

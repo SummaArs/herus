@@ -9,7 +9,7 @@
 #   ./prove.sh            full run
 #   ./prove.sh --quiet    verdict lines only
 #
-# Fifty-seven suites, each independently falsifiable:
+# Fifty-eight suites, each independently falsifiable:
 #   1  algebra      quasi-orthogonality, bundling, resonator, learning, HCP
 #   2  nucleus      bounded, opt-in local semantic intelligence
 #   3  voice        controlled local language and bounded haptic feedback
@@ -67,6 +67,7 @@
 #  55  Core knowledge feed digest, rollback, namespace and local confirmation
 #  56  Core feed durable two-slot anti-rollback journal
 #  57  local semantic evidence, temporal supersession and conflict abstention
+#  58  offline memory-to-reasoner composition, conflict and abstention
 #
 # The Nucleus suite is intentionally separate: privacy and non-autonomy are
 # properties that must fail a build when regressed, not promises in a document.
@@ -330,9 +331,12 @@ banner "55/56 Core knowledge feed (digest, rollback and local confirmation)"
 banner "56/57 Core feed durable anti-rollback cursor"
 ( cd firmware && make knowledge-feed-cursor ) > /tmp/herus_knowledge_feed_cursor.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_knowledge_feed_cursor.log
-banner "57/57 local semantic evidence (temporal and conflict abstention)"
+banner "57/58 local semantic evidence (temporal and conflict abstention)"
 ( cd firmware && make memory-semantic-evidence ) > /tmp/herus_memory_semantic_evidence.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_memory_semantic_evidence.log
+banner "58/58 offline memory-to-reasoner composition"
+( cd firmware && make memory-reasoning-bridge ) > /tmp/herus_memory_reasoning_bridge.log 2>&1 || FAIL=1
+[ "$QUIET" = 0 ] && cat /tmp/herus_memory_reasoning_bridge.log
  echo ""
 
 echo "--------------------------------------------------"
@@ -370,6 +374,7 @@ check "HAP-SEM preflight blocks unsafe or unmeasured pre-energization" "HAPTIC P
 check "Core feed verifies digest, rollback, namespace, bounds and physical confirmation" "KNOWLEDGE FEED: 16 pass, 0 fail" /tmp/herus_knowledge_feed.log
 check "Core feed cursor recovers authenticated monotonic state and blocks rollback" "KNOWLEDGE FEED CURSOR: 11 pass, 0 fail" /tmp/herus_knowledge_feed_cursor.log
 check "Memory evidence preserves temporal provenance, conflicts and bounded abstention" "MEMORY SEMANTIC EVIDENCE: 16 pass, 0 fail" /tmp/herus_memory_semantic_evidence.log
+check "Memory-to-reasoner bridge composes offline and blocks ambiguous or partial evidence" "MEMORY REASONING BRIDGE: 14 pass, 0 fail" /tmp/herus_memory_reasoning_bridge.log
 
 # --- physical layer -------------------------------------------------------
 check "P1 constant AIRTIME across meaning tiers" "INVARIANT HOLDS" /tmp/herus_c.log

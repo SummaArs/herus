@@ -67,6 +67,7 @@ typedef struct {
     mse_query_status_t status;
     uint16_t active_matches;
     uint16_t conflict_matches;
+    sr_fact_t fact;
     uint32_t selected_card_id;
     uint32_t selected_review_receipt_id;
     uint32_t selected_generation;
