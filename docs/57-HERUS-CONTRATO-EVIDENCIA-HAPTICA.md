@@ -53,6 +53,10 @@ A ausência de conteúdo não significa ausência de evidência: o raw log priva
 
 `pass` significa que o baseline passou, o fixture estava isolado, o profile e o atuador foram identificados, a calibração foi registrada, o I²C não teve erro, a saída foi medida, o corte foi disponível e os campos obrigatórios têm unidades válidas. `fail` significa que a pergunta foi executada e uma condição foi reprovada. `blocked_by_missing_evidence` significa que a execução não permite concluir; não deve ser convertido em falha física nem em aprovação.
 
+O port ESP32-S3 correspondente deve usar o modelo novo de bus/device do ESP-IDF, com `i2c_new_master_bus()`, `i2c_master_bus_add_device()`, `i2c_master_transmit_receive()` e `i2c_master_probe()`. A documentação oficial descreve o endereço do dispositivo como 7-bit, recomenda não exceder 400 kHz no SCL e observa que pull-ups externos e a capacitância do fio influenciam a frequência real [4]. Para o primeiro fixture, o HERUS congela 100 kHz e deixa o pull-up interno desabilitado; a existência e o valor dos resistores externos continuam evidência de bancada, não uma suposição do firmware. A migração do ESP-IDF 5.2 recomenda o novo driver, embora o legado ainda exista nessa versão [5].
+
+No board map atual, `BOARD_HAS_HAPTIC_I2C=0`, `PIN_HAPTIC_ENABLE=-1` e `PIN_HAPTIC_ENABLE_VALID=0`. Assim, o target retorna `HT_E_UNWIRED` por padrão. O comando explícito `haptic-probe` só inicializa o bus e consulta presença elétrica quando uma revisão verificada habilitar os macros; ele desliga o ENABLE e encerra o bus depois da consulta. Não há caminho console para reproduzir waveform nesta etapa.
+
 O contrato não permite “passar” apenas porque o DRV2605L respondeu no endereço I²C. Resposta elétrica, waveform, calibração, segurança e integridade semântica são evidências diferentes. A reprodução de um efeito de biblioteca também não prova que aquele efeito é distinguível ou que possui o significado atribuído pelo HAP-SEM.
 
 ## Referências
@@ -62,3 +66,7 @@ O contrato não permite “passar” apenas porque o DRV2605L respondeu no ender
 [2]: https://www.ti.com/lit/an/sloa189/sloa189.pdf "Texas Instruments — Haptic Driver and Actuator Considerations"
 
 [3]: https://www.mdpi.com/2076-3417/14/1/43 "Yeganeh et al. — Discrimination Accuracy of Sequential Versus Simultaneous Vibrotactile Stimulation on the Forearm"
+
+[4]: https://docs.espressif.com/projects/esp-idf/en/stable/esp32/api-reference/peripherals/i2c.html "Espressif — ESP-IDF I2C API Reference"
+
+[5]: https://docs.espressif.com/projects/esp-idf/en/v5.2/esp32/migration-guides/release-5.x/5.2/peripherals.html "Espressif — ESP-IDF 5.2 peripheral migration guide"

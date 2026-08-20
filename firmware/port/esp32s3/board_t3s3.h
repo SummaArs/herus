@@ -58,8 +58,23 @@
 #define BOARD_TX_DBM      22       /* must be 14, 17, 20 or 22 — datasheet rows */
 
 /* ---------------- other peripherals ---------------- */
-#define PIN_I2C_SDA      18        /* OLED + (later) the ATECC608A */
-#define PIN_I2C_SCL      17
+#define PIN_I2C_SDA      18        /* shared bus; verify board revision first */
+#define PIN_I2C_SCL      17        /* shared bus; verify board revision first */
+#ifndef BOARD_HAS_HAPTIC_I2C
+#define BOARD_HAS_HAPTIC_I2C 0     /* remain disabled until schematic + fixture gate */
+#endif
+#ifndef PIN_HAPTIC_ENABLE
+#define PIN_HAPTIC_ENABLE -1       /* no verified DRV2605L ENABLE pin yet */
+#endif
+#ifndef PIN_HAPTIC_ENABLE_VALID
+#define PIN_HAPTIC_ENABLE_VALID 0
+#endif
+#ifndef HAPTIC_I2C_HZ
+#define HAPTIC_I2C_HZ 100000
+#endif
+#ifndef HA_I2C_TIMEOUT_MS
+#define HA_I2C_TIMEOUT_MS 100
+#endif
 #define PIN_OLED_RST     21
 #define PIN_LED          37
 #define PIN_BUTTON        0        /* BOOT button: push-to-talk on the devkit */
