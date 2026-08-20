@@ -289,7 +289,7 @@ check() {
 }
 
 # --- symbolic generative intelligence -------------------------------------
-check "Symbolic reasoner generates only proved typed conclusions" "SYMBOLIC REASONER: 17 pass, 0 fail" /tmp/herus_symbolic.log
+check "Symbolic reasoner generates only proved typed conclusions" "SYMBOLIC REASONER: 20 pass, 0 fail" /tmp/herus_symbolic.log
 check "Symbolic planner reports no-plan, cost and confirmation boundaries" "SYMBOLIC PLANNER: 8 pass, 0 fail" /tmp/herus_symbolic.log
 check "Symbolic dialogue preserves personal authority and abstention" "SYMBOLIC DIALOGUE: 14 pass, 0 fail" /tmp/herus_symbolic.log
 

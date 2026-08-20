@@ -165,6 +165,34 @@ int main(void)
                     reasoner.saturation_truncated == 1u,
           "a bounded search budget produces an explicit limit, not a false result");
 
+    {
+        sr_reasoner_t full;
+        sr_rule_t capacity;
+        int capacity_facts_ok = 1;
+        sr_init(&full);
+        for (uint16_t subject = 1u; subject <= SR_MAX_FACTS; subject++) {
+            if (sr_add_fact(&full,
+                            (sr_fact_t){ subject, P_STAGE0, S_BOB, 0u }) != SR_OK)
+                capacity_facts_ok = 0;
+        }
+        check(&score, capacity_facts_ok && sr_fact_count(&full) == SR_MAX_FACTS,
+              "capacity fixture accepts the full bounded fact set");
+        memset(&capacity, 0, sizeof(capacity));
+        capacity.id = 88u;
+        capacity.premise_count = 1u;
+        capacity.premise[0] = pattern_terms(SR_VAR(0u), SR_CONST(P_STAGE0),
+                                             SR_CONST(S_BOB), 0u);
+        capacity.conclusion = pattern_terms(SR_VAR(0u), SR_CONST(P_STAGE1),
+                                             SR_CONST(S_BOB), 0u);
+        capacity.cost = 1u;
+        check(&score, sr_add_rule(&full, &capacity) == SR_OK,
+              "capacity fixture installs a valid generative rule");
+        check(&score, sr_saturate(&full, 64u) == SR_E_FULL &&
+                        full.saturation_truncated == 1u &&
+                        sr_fact_count(&full) == SR_MAX_FACTS,
+              "full knowledge base reports capacity truncation instead of false fixed point");
+    }
+
     printf("SYMBOLIC REASONER: %d pass, %d fail\n", score.pass, score.fail);
     return score.fail ? 1 : 0;
 }

@@ -225,10 +225,15 @@ static int derive_rule(const sr_reasoner_t *source, sr_reasoner_t *target,
                 target->saturation_truncated = 1u;
                 return SR_E_LIMIT;
             }
-            if (derive_rule(source, target, rule, premise_index + 1u, &next,
-                            parents, (uint8_t)(parent_count + 1u), next_depth,
-                            next_cost, max_steps) == SR_E_LIMIT)
-                return SR_E_LIMIT;
+            {
+                int recurse_result = derive_rule(
+                    source, target, rule, premise_index + 1u, &next,
+                    parents, (uint8_t)(parent_count + 1u), next_depth,
+                    next_cost, max_steps);
+                if (recurse_result == SR_E_LIMIT ||
+                    recurse_result == SR_E_FULL)
+                    return recurse_result;
+            }
         }
     }
     return SR_OK;
@@ -245,9 +250,16 @@ int sr_saturate(sr_reasoner_t *r, uint32_t max_steps)
             sr_binding_t binding;
             uint8_t parents[SR_MAX_PARENTS] = { 0u };
             memset(&binding, 0, sizeof(binding));
-            if (derive_rule(r, r, &r->rules[i], 0u, &binding, parents,
-                            0u, 0u, r->rules[i].cost, max_steps) == SR_E_LIMIT)
-                return SR_E_LIMIT;
+            {
+                int derive_result = derive_rule(r, r, &r->rules[i], 0u,
+                                                &binding, parents, 0u, 0u,
+                                                r->rules[i].cost, max_steps);
+                if (derive_result == SR_E_LIMIT) return SR_E_LIMIT;
+                if (derive_result == SR_E_FULL) {
+                    r->saturation_truncated = 1u;
+                    return SR_E_FULL;
+                }
+            }
             if (r->fact_count >= SR_MAX_FACTS && r->derivation_steps >= max_steps)
                 return SR_E_LIMIT;
         }
