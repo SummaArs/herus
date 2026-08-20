@@ -81,6 +81,23 @@ void mse_init(mse_index_t *index,
     index->policy_user = policy_user;
 }
 
+mse_status_t mse_validate(const mse_index_t *index)
+{
+    if (!index || index->evidence_count > MSE_MAX_EVIDENCE)
+        return MSE_E_FORMAT;
+    for (uint16_t i = 0u; i < index->evidence_count; i++) {
+        const mse_evidence_t *item = &index->evidence[i];
+        if (item->status < MSE_EVIDENCE_ACTIVE ||
+            item->status > MSE_EVIDENCE_EXPIRED ||
+            !valid_fact(&item->fact) || item->card_id == 0u ||
+            item->review_receipt_id == 0u || item->observed_generation == 0u ||
+            (item->valid_until_generation != 0u &&
+             item->valid_until_generation < item->observed_generation))
+            return MSE_E_FORMAT;
+    }
+    return MSE_OK;
+}
+
 mse_status_t mse_add(mse_index_t *index,
                      const memory_vault_card_t *card,
                      const sr_fact_t *fact,
@@ -88,7 +105,9 @@ mse_status_t mse_add(mse_index_t *index,
                      uint32_t valid_until_generation)
 {
     int inserted;
-    if (!index || !valid_card(card) || !valid_fact(fact) ||
+    if (!index) return MSE_E_ARG;
+    if (mse_validate(index) != MSE_OK) return MSE_E_FORMAT;
+    if (!valid_card(card) || !valid_fact(fact) ||
         observed_generation == 0u ||
         (valid_until_generation != 0u &&
          valid_until_generation < observed_generation)) {
@@ -164,6 +183,7 @@ mse_status_t mse_query(const mse_index_t *index,
     if (out) memset(out, 0, sizeof(*out));
     if (!index || !valid_pattern(pattern) || current_generation == 0u || !out)
         return MSE_E_ARG;
+    if (mse_validate(index) != MSE_OK) return MSE_E_FORMAT;
     if (pattern->subject.kind == SR_TERM_VARIABLE &&
         pattern->predicate.kind == SR_TERM_VARIABLE &&
         pattern->object.kind == SR_TERM_VARIABLE)

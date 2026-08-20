@@ -134,6 +134,26 @@ int main(void)
               "full bounded evidence refuses the next card without partial insertion");
     }
 
-    printf("MEMORY SEMANTIC EVIDENCE: %d pass, %d fail\n", score.pass, score.fail);
+    {
+        mse_index_t corrupted;
+        mse_query_result_t corrupted_result;
+        mse_init(&corrupted, NULL, NULL);
+        check(&score, mse_add(&corrupted, &card_a,
+                              &(sr_fact_t){subject, open_predicate, object_a, 0u},
+                              30u, 0u) == MSE_OK,
+              "a valid index is prepared before corruption tests");
+        corrupted.evidence_count = (uint16_t)(MSE_MAX_EVIDENCE + 1u);
+        corrupted_result.selected_card_id = 0xdeadbeefu;
+        check(&score, mse_validate(&corrupted) == MSE_E_FORMAT &&
+                        mse_query(&corrupted, &query, 30u, &corrupted_result) ==
+                            MSE_E_FORMAT && corrupted_result.selected_card_id == 0u,
+              "an oversized index is rejected and query output is cleared");
+        check(&score, mse_add(&corrupted, &card_a,
+                              &(sr_fact_t){subject, open_predicate, object_b, 0u},
+                              31u, 0u) == MSE_E_FORMAT,
+              "a corrupted index cannot receive new authority-bearing evidence");
+    }
+
+    printf("MEMORY SEMANTIC EVIDENCE: %d pass, %d fail\\n", score.pass, score.fail);
     return score.fail ? 1 : 0;
 }

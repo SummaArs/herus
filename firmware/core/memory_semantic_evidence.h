@@ -37,7 +37,8 @@ typedef enum {
     MSE_E_CARD = -2,
     MSE_E_FACT = -3,
     MSE_E_ROLLBACK = -4,
-    MSE_E_FULL = -5
+    MSE_E_FULL = -5,
+    MSE_E_FORMAT = -6
 } mse_status_t;
 
 typedef int (*mse_functional_predicate_fn)(sr_symbol_t predicate, void *user);
@@ -76,6 +77,9 @@ typedef struct {
 void mse_init(mse_index_t *index,
               mse_functional_predicate_fn is_functional,
               void *policy_user);
+
+/* Validates the bounded in-RAM representation without modifying it. */
+mse_status_t mse_validate(const mse_index_t *index);
 
 /* Adds evidence only from an already-authorised card. Functional-predicate
  * conflicts are marked, never resolved. Newer exact evidence supersedes older
