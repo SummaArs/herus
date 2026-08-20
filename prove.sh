@@ -9,7 +9,7 @@
 #   ./prove.sh            full run
 #   ./prove.sh --quiet    verdict lines only
 #
-# Fifty-five suites, each independently falsifiable:
+# Fifty-six suites, each independently falsifiable:
 #   1  algebra      quasi-orthogonality, bundling, resonator, learning, HCP
 #   2  nucleus      bounded, opt-in local semantic intelligence
 #   3  voice        controlled local language and bounded haptic feedback
@@ -65,6 +65,7 @@
 #  53  HAP-SEM no-hardware runner and evidence-origin blocking
 #  54  HAP-SEM pre-energization checklist and safety blocking
 #  55  Core knowledge feed digest, rollback, namespace and local confirmation
+#  56  Core feed durable two-slot anti-rollback journal
 #
 # The Nucleus suite is intentionally separate: privacy and non-autonomy are
 # properties that must fail a build when regressed, not promises in a document.
@@ -322,9 +323,12 @@ banner "53/54 HAP-SEM no-hardware runner and evidence-origin blocking"
 banner "54/55 HAP-SEM pre-energization checklist and safety blocking"
 ( cd firmware && make haptic-preflight ) > /tmp/herus_haptic_preflight.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_haptic_preflight.log
-banner "55/55 Core knowledge feed (digest, rollback and local confirmation)"
+banner "55/56 Core knowledge feed (digest, rollback and local confirmation)"
 ( cd firmware && make knowledge-feed ) > /tmp/herus_knowledge_feed.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_knowledge_feed.log
+banner "56/56 Core feed durable anti-rollback cursor"
+( cd firmware && make knowledge-feed-cursor ) > /tmp/herus_knowledge_feed_cursor.log 2>&1 || FAIL=1
+[ "$QUIET" = 0 ] && cat /tmp/herus_knowledge_feed_cursor.log
  echo ""
 
 echo "--------------------------------------------------"
@@ -359,7 +363,8 @@ check "HAP-SEM evidence validator preserves privacy, digest and blocking gates" 
 check "ESP32-S3 target keeps unverified hardware disabled and syntax-checks the I2C path" "HAPTIC TARGET: 4 pass, 0 fail" /tmp/herus_haptic_target.log
 check "HAP-SEM runner blocks absent hardware and binds evidence origin" "HAPTIC BENCH EVIDENCE VALIDATOR: 9 pass, 0 fail" /tmp/herus_haptic_runner.log
 check "HAP-SEM preflight blocks unsafe or unmeasured pre-energization" "HAPTIC PREFLIGHT: 5 pass, 0 fail" /tmp/herus_haptic_preflight.log
-check "Core feed verifies digest, rollback, namespace, bounds and physical confirmation" "KNOWLEDGE FEED: 14 pass, 0 fail" /tmp/herus_knowledge_feed.log
+check "Core feed verifies digest, rollback, namespace, bounds and physical confirmation" "KNOWLEDGE FEED: 16 pass, 0 fail" /tmp/herus_knowledge_feed.log
+check "Core feed cursor recovers authenticated monotonic state and blocks rollback" "KNOWLEDGE FEED CURSOR: 11 pass, 0 fail" /tmp/herus_knowledge_feed_cursor.log
 
 # --- physical layer -------------------------------------------------------
 check "P1 constant AIRTIME across meaning tiers" "INVARIANT HOLDS" /tmp/herus_c.log

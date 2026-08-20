@@ -11,12 +11,18 @@
     "target_firmware_contract",
     "content_digest",
     "provenance_digest",
+    "auth_tag",
     "authn_status",
     "records",
     "limits"
   ],
   "source_kind": ["CORE_LOCAL", "FACTORY_MEDIA", "USER_EXPORT"],
   "authn_status": ["UNVERIFIED", "VERIFIED_LINK", "VERIFIED_SIGNATURE", "REJECTED"],
+  "authentication": {
+    "link_tag": "HMAC-SHA256 truncated to 128 bits over payload_digest",
+    "key_location": "paired secure-link or protected element adapter; never packet, log or cognitive memory",
+    "public_provenance": "not provided by HMAC; remains a separate verifier responsibility"
+  },
   "processing_status": [
     "RECEIVED",
     "REJECTED_SCHEMA",
@@ -57,6 +63,14 @@
     "core_may": ["charge", "relay", "transport", "present_proposal", "provide_provenance"],
     "core_may_not": ["execute", "send_radio", "confirm_memory", "overwrite_personal", "change_trust_anchor", "change_registry_version", "bypass_abstention"],
     "wrist_must_decide": ["compatibility", "digest", "namespace", "semantic_validity", "conflict", "personal_confirmation", "expiry", "incorporation"]
+  },
+  "cursor_persistence": {
+    "format": "versioned canonical bytes without C padding",
+    "slots": 2,
+    "record_fields": ["format_version", "registry_version", "sequence", "payload_digest", "hmac_tag", "zero_reserved_bytes"],
+    "commit": "write alternate slot, read back, authenticate, then promote RAM",
+    "corruption": "block recovery; never silently fall back to stale slot",
+    "rollback": "reject sequence <= current floor"
   },
   "offline_policy": {
     "local_reasoner_required": true,

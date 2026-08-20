@@ -67,6 +67,32 @@ kf_core_status_t kf_core_status(uint8_t core_link_present)
     return core_link_present == 1u ? KF_CORE_AVAILABLE : KF_CORE_UNAVAILABLE;
 }
 
+void kf_hmac_tag(const uint8_t key[32],
+                 const uint8_t payload_digest[KF_DIGEST_LEN],
+                 uint8_t out[KF_AUTH_TAG_LEN])
+{
+    uint8_t full[SHA256_LEN];
+    if (!key || !payload_digest || !out) return;
+    hmac_sha256(key, 32u, payload_digest, KF_DIGEST_LEN, full);
+    memcpy(out, full, KF_AUTH_TAG_LEN);
+    secure_zero(full, sizeof(full));
+}
+
+int kf_hmac_verify(const kf_packet_t *packet,
+                   const uint8_t payload_digest[KF_DIGEST_LEN],
+                   void *key)
+{
+    uint8_t expected[KF_AUTH_TAG_LEN];
+    int ok;
+    if (!packet || !payload_digest || !key ||
+        packet->authn_status != KF_AUTH_VERIFIED_SIGNATURE)
+        return 0;
+    kf_hmac_tag((const uint8_t *)key, payload_digest, expected);
+    ok = ct_eq(packet->auth_tag, expected, KF_AUTH_TAG_LEN);
+    secure_zero(expected, sizeof(expected));
+    return ok;
+}
+
 void kf_digest(const kf_packet_t *packet, uint8_t out[KF_DIGEST_LEN])
 {
     sha256_ctx ctx;

@@ -18,6 +18,12 @@ static int trusted_link(const kf_packet_t *packet,
     return packet && packet->authn_status == KF_AUTH_VERIFIED_LINK;
 }
 
+static int hmac_link(const kf_packet_t *packet,
+                     const uint8_t digest[KF_DIGEST_LEN], void *user)
+{
+    return kf_hmac_verify(packet, digest, user);
+}
+
 static kf_packet_t factory_packet(void)
 {
     kf_packet_t packet;
@@ -60,6 +66,24 @@ int main(void)
     check(&score, kf_validate(&packet, 7u, &cursor, trusted_link, NULL) ==
                     KF_ACCEPTED,
           "a complete Core packet passes digest, version, namespace and auth gates");
+
+    {
+        uint8_t auth_key[32] = { 0u };
+        kf_packet_t signed_packet = packet;
+        kf_cursor_t signed_cursor = { 0u, 0u };
+        signed_packet.authn_status = KF_AUTH_VERIFIED_SIGNATURE;
+        for (unsigned i = 0u; i < sizeof(auth_key); i++)
+            auth_key[i] = (uint8_t)(0xa0u + i);
+        kf_hmac_tag(auth_key, signed_packet.payload_digest,
+                    signed_packet.auth_tag);
+        check(&score, kf_validate(&signed_packet, 7u, &signed_cursor,
+                                  hmac_link, auth_key) == KF_ACCEPTED,
+              "a paired Core HMAC tag authenticates the canonical payload digest");
+        signed_packet.auth_tag[0] ^= 1u;
+        check(&score, kf_validate(&signed_packet, 7u, &signed_cursor,
+                                  hmac_link, auth_key) == KF_REJECTED_AUTHORITY,
+              "a tampered HMAC tag is rejected before any proposal or insertion");
+    }
 
     tampered = packet;
     tampered.facts[0].object ^= 1u;

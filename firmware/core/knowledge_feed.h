@@ -15,6 +15,7 @@
 
 #define KF_SCHEMA_VERSION       1u
 #define KF_DIGEST_LEN           32u
+#define KF_AUTH_TAG_LEN         16u
 #define KF_MAX_FEED_BYTES       8192u
 #define KF_MAX_RECORDS          16u
 #define KF_MAX_FACTS            16u
@@ -60,6 +61,7 @@ typedef struct {
     uint32_t ttl_seconds;
     uint8_t producer_digest[KF_DIGEST_LEN];
     uint8_t payload_digest[KF_DIGEST_LEN];
+    uint8_t auth_tag[KF_AUTH_TAG_LEN];
     uint8_t authn_status;
     uint16_t fact_count;
     uint16_t rule_count;
@@ -97,6 +99,15 @@ void kf_digest(const kf_packet_t *packet,
 
 /* Transport absence is a typed external status, never a reasoner failure. */
 kf_core_status_t kf_core_status(uint8_t core_link_present);
+
+/* HMAC authenticates the already-canonical payload digest. The key is borrowed
+ * synchronously and never copied into the packet or any product log. */
+void kf_hmac_tag(const uint8_t key[32],
+                 const uint8_t payload_digest[KF_DIGEST_LEN],
+                 uint8_t out[KF_AUTH_TAG_LEN]);
+int kf_hmac_verify(const kf_packet_t *packet,
+                   const uint8_t payload_digest[KF_DIGEST_LEN],
+                   void *key);
 
 /* Validate without mutating the packet or any dialogue state. */
 kf_status_t kf_validate(const kf_packet_t *packet,
