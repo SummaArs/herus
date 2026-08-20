@@ -26,7 +26,7 @@ A importação de todas as evidências ativas é deliberada: um fato lembrado po
 
 ## 3. Resultados demonstrados
 
-A suíte `memory_reasoning_bridge` passa **14/14**. Ela demonstra uma derivação local sustentada por memória revisada, ausência do Core, preservação do reasoner base, rejeição de enumeração, rejeição de scratch aliasado, ambiguidade sem escolha, conflito sem importação, expiração, e falha fechada para saturação parcial.
+A suíte `memory_reasoning_bridge` passa **16/16**. Ela demonstra uma derivação local sustentada por memória revisada, composição de três premissas conjuntivas, ausência do Core, preservação do reasoner base, rejeição de enumeração, rejeição de scratch aliasado, ambiguidade sem escolha, conflito sem importação, expiração, e falha fechada para saturação parcial.
 
 O pipeline global passa com **58 suítes**, **111 invariantes de sistema simulado** e mutação adversarial **7/7**.
 

@@ -42,6 +42,29 @@ static sr_rule_t local_rule(sr_symbol_t premise_predicate,
     return rule;
 }
 
+static sr_rule_t conjunctive_rule(sr_symbol_t predicate,
+                                  sr_symbol_t object_a,
+                                  sr_symbol_t object_b,
+                                  sr_symbol_t object_c,
+                                  sr_symbol_t conclusion_predicate,
+                                  sr_symbol_t conclusion_object)
+{
+    sr_rule_t rule;
+    memset(&rule, 0, sizeof(rule));
+    rule.id = 8u;
+    rule.premise_count = 3u;
+    rule.premise[0] = (sr_pattern_t){ SR_VAR(0u), SR_CONST(predicate),
+                                      SR_CONST(object_a), 0u };
+    rule.premise[1] = (sr_pattern_t){ SR_VAR(0u), SR_CONST(predicate),
+                                      SR_CONST(object_b), 0u };
+    rule.premise[2] = (sr_pattern_t){ SR_VAR(0u), SR_CONST(predicate),
+                                      SR_CONST(object_c), 0u };
+    rule.conclusion = (sr_pattern_t){ SR_VAR(0u), SR_CONST(conclusion_predicate),
+                                      SR_CONST(conclusion_object), 0u };
+    rule.cost = 3u;
+    return rule;
+}
+
 int main(void)
 {
     score_t score = { 0, 0 };
@@ -50,6 +73,8 @@ int main(void)
     const sr_symbol_t book = SR_SYMBOL_LEGACY(11u);
     const sr_symbol_t ready = SR_SYMBOL_LEGACY(12u);
     const sr_symbol_t today = SR_SYMBOL_LEGACY(13u);
+    const sr_symbol_t pen = SR_SYMBOL_LEGACY(14u);
+    const sr_symbol_t desk = SR_SYMBOL_LEGACY(15u);
     const sr_symbol_t open = SR_SYMBOL_LEGACY(21u);
     sr_reasoner_t base;
     sr_reasoner_t scratch;
@@ -59,10 +84,12 @@ int main(void)
     sr_answer_t answer;
     sr_pattern_t query;
     sr_rule_t rule = local_rule(has, book, ready, today);
+    sr_rule_t conjunctive = conjunctive_rule(has, book, pen, desk, ready, today);
     memory_vault_card_t reviewed = card(77u, 707u);
 
     sr_init(&base);
-    check(&score, sr_add_rule(&base, &rule) == SR_OK,
+    check(&score, sr_add_rule(&base, &rule) == SR_OK &&
+                    sr_add_rule(&base, &conjunctive) == SR_OK,
           "local rule is accepted before memory composition");
     mse_init(&memory, NULL, NULL);
     check(&score, mse_add(&memory, &reviewed,
@@ -80,6 +107,23 @@ int main(void)
     check(&score, meta.memory_status == MSE_QUERY_NO_MATCH &&
                     meta.reasoner_status == SR_OK && scratch.meta[0].origin == 0u,
           "composition reports the local query path and preserves input/derived metadata");
+
+    {
+        mse_index_t conjunctive_memory;
+        mse_init(&conjunctive_memory, NULL, NULL);
+        check(&score, mse_add(&conjunctive_memory, &reviewed,
+                              &(sr_fact_t){subject, has, book, 0u}, 4u, 0u) == MSE_OK &&
+                        mse_add(&conjunctive_memory, &reviewed,
+                                &(sr_fact_t){subject, has, pen, 0u}, 4u, 0u) == MSE_OK &&
+                        mse_add(&conjunctive_memory, &reviewed,
+                                &(sr_fact_t){subject, has, desk, 0u}, 4u, 0u) == MSE_OK,
+              "three reviewed premises enter the bounded offline memory index");
+        check(&score, mrb_query(&base, &conjunctive_memory, 4u, &query, 32u,
+                                &scratch, &answer, &meta) == MRB_OK &&
+                        answer.kind == SR_ANSWER_DERIVED &&
+                        meta.memory_imported == 3u,
+              "three conjunctive memory premises derive one local conclusion");
+    }
 
     query = (sr_pattern_t){SR_VAR(0u), SR_VAR(1u), SR_VAR(2u), 0u};
     answer.fact.subject = 0xdeadbeefu;
