@@ -42,6 +42,8 @@
 #   make personal-telemetry the host-only consented personal-metric gate suite
 #   make symbolic-reasoner the bounded generative symbolic reasoning suite
 #   make resonator the bounded VSA factorization and cleanup suite
+#   make semantic-compiler the controlled-language semantic compiler suite
+#   make semantic-benchmark the fixed-corpus semantic equivalence benchmark
 #   make interaction the push-to-talk, confirmation and one-shot runtime suite
 #   make interaction-rig deterministic adapter and validation-lab scenarios
 #   make net        the protocol suite (crypto, session, weave, beat, framing)
@@ -62,7 +64,7 @@ INC     := -Icore -Inet -Iport -Itest
 CORE    := core/hv.c core/sbc.c core/lexicon.c core/hcp.c
 NET     := net/crypto.c net/session.c net/region.c net/weave.c net/beat.c net/link.c
 
-.PHONY: all algebra nucleus voice intent dialogue model-lab memory-policy memory-capture memory-extract watch-memory-frontend memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale memory-collection memory-collection-index memory-collection-recovery memory-collection-recovery-stress memory-collection-finale bench-evidence-validate bench-interruption-sim memory-proposal llm-budget-check memory-physical-session memory-physical-session-recovery memory-physical-session-recovery-stress memory-physical-session-bootstrap memory-prehardware-finale threat-model threat-model-stress proof-fire-mutations assurance capstone trust control-link delivery-plan transport-selector personal-telemetry symbolic-reasoner resonator interaction interaction-rig net radio syntax vectors clean
+.PHONY: all algebra nucleus voice intent dialogue model-lab memory-policy memory-capture memory-extract watch-memory-frontend memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale memory-collection memory-collection-index memory-collection-recovery memory-collection-recovery-stress memory-collection-finale bench-evidence-validate bench-interruption-sim memory-proposal llm-budget-check memory-physical-session memory-physical-session-recovery memory-physical-session-recovery-stress memory-physical-session-bootstrap memory-prehardware-finale threat-model threat-model-stress proof-fire-mutations assurance capstone trust control-link delivery-plan transport-selector personal-telemetry symbolic-reasoner resonator semantic-compiler semantic-benchmark interaction interaction-rig net radio syntax vectors clean
 
 all: algebra nucleus voice intent dialogue model-lab memory-policy memory-capture memory-extract memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale memory-collection memory-collection-index memory-collection-recovery memory-collection-recovery-stress memory-collection-finale memory-physical-session memory-physical-session-recovery memory-physical-session-recovery-stress memory-physical-session-bootstrap memory-prehardware-finale threat-model threat-model-stress proof-fire-mutations assurance capstone trust control-link interaction interaction-rig net radio syntax
 	@echo ""
@@ -213,6 +215,16 @@ symbolic-reasoner: build
 	./build/test_symbolic_planner
 	$(CC) $(CFLAGS) -DHV_LUT_POPCOUNT $(INC) core/hv.c core/resonator.c core/resonator_bridge.c core/symbolic_reasoner.c core/symbolic_dialogue.c core/test_symbolic_dialogue.c -o build/test_symbolic_dialogue
 	./build/test_symbolic_dialogue
+
+semantic-compiler: build
+	@echo "--- semantic compiler: bounded controlled-language to typed IR ---"
+	$(CC) $(CFLAGS) -DHV_LUT_POPCOUNT $(INC) core/hv.c core/resonator.c core/resonator_bridge.c core/symbolic_reasoner.c core/symbolic_planner.c core/symbolic_dialogue.c core/semantic_compiler.c core/test_semantic_compiler.c -o build/test_semantic_compiler
+	./build/test_semantic_compiler
+
+semantic-benchmark: build
+	@echo "--- semantic benchmark: exact IR, abstention and authority gates ---"
+	$(CC) $(CFLAGS) -DHV_LUT_POPCOUNT $(INC) core/hv.c core/resonator.c core/resonator_bridge.c core/symbolic_reasoner.c core/symbolic_planner.c core/symbolic_dialogue.c core/semantic_compiler.c core/test_semantic_compiler_benchmark.c -o build/test_semantic_compiler_benchmark
+	./build/test_semantic_compiler_benchmark
 
 resonator: build
 	@echo "--- resonator: bounded VSA factorization and cleanup ---"

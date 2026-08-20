@@ -9,7 +9,7 @@
 #   ./prove.sh            full run
 #   ./prove.sh --quiet    verdict lines only
 #
-# Forty-two suites, each independently falsifiable:
+# Forty-four suites, each independently falsifiable:
 #   1  algebra      quasi-orthogonality, bundling, resonator, learning, HCP
 #   2  nucleus      bounded, opt-in local semantic intelligence
 #   3  voice        controlled local language and bounded haptic feedback
@@ -52,6 +52,8 @@
 #  40  virtual-mutation deliberate removal of critical controls must be detected
 #  41  symbolic-generative local composition, planning, dialogue and abstention
 #  42  resonator VSA factorization, bridge gates and generalization stress
+#  43  semantic compiler controlled Portuguese to typed IR and safe integration
+#  44  semantic benchmark exact IR, abstention and authority invariants
 #
 # The Nucleus suite is intentionally separate: privacy and non-autonomy are
 # properties that must fail a build when regressed, not promises in a document.
@@ -268,6 +270,14 @@ banner "42/42 resonator VSA factorization and relational bridge"
 ( cd firmware && make resonator ) > /tmp/herus_resonator.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_resonator.log
 
+banner "43/44 semantic compiler (controlled Portuguese to typed IR)"
+( cd firmware && make semantic-compiler ) > /tmp/herus_semantic.log 2>&1 || FAIL=1
+[ "$QUIET" = 0 ] && cat /tmp/herus_semantic.log
+
+banner "44/44 semantic benchmark (exact IR, abstention and authority)"
+( cd firmware && make semantic-benchmark ) > /tmp/herus_semantic_benchmark.log 2>&1 || FAIL=1
+[ "$QUIET" = 0 ] && cat /tmp/herus_semantic_benchmark.log
+
 echo ""
 echo "--------------------------------------------------"
 echo "INVARIANT CHECKS"
@@ -287,6 +297,10 @@ check "Symbolic dialogue preserves personal authority and abstention" "SYMBOLIC 
 check "Resonator factors bounded VSA products without false certainty" "RESONATOR: 9 pass, 0 fail" /tmp/herus_resonator.log
 check "VSA bridge requires explicit acceptance before reasoner insertion" "RESONATOR BRIDGE: 6 pass, 0 fail" /tmp/herus_resonator.log
 check "Resonator stress exposes bounded generalization and abstention" "RESONATOR STRESS: 37 pass, 0 fail" /tmp/herus_resonator.log
+
+# --- controlled semantic compiler ------------------------------------------
+check "Semantic compiler emits exact typed IR and rejects unsupported language" "SEMANTIC COMPILER: 36 pass, 0 fail" /tmp/herus_semantic.log
+check "Semantic benchmark holds exact match, abstention and zero authority violations" "SEMANTIC BENCHMARK: valid 16/16, invalid 8/8, sensitive 5/5, exact 30/30, abstention 14/14, authority violations 0" /tmp/herus_semantic_benchmark.log
 
 # --- physical layer -------------------------------------------------------
 check "P1 constant AIRTIME across meaning tiers" "INVARIANT HOLDS" /tmp/herus_c.log
