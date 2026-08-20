@@ -18,6 +18,8 @@ int sd_add_rule(sd_dialogue_t *dialogue, const sr_rule_t *rule)
         return SD_OK;
     case SR_E_FORMAT:
         return SD_E_FORMAT;
+    case SR_E_FULL:
+        return SD_E_LIMIT;
     default:
         return SD_E_ARG;
     }
@@ -32,6 +34,7 @@ int sd_add_personal_fact(sd_dialogue_t *dialogue, sr_fact_t fact,
     result = sr_add_fact(&dialogue->reasoner, fact);
     if (result == SR_OK || result == SR_NO_CHANGE) return SD_OK;
     if (result == SR_E_FORMAT) return SD_E_FORMAT;
+    if (result == SR_E_FULL) return SD_E_LIMIT;
     return SD_E_ARG;
 }
 

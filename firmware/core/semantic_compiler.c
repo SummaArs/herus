@@ -220,9 +220,6 @@ static int parse_query(const sc_token_t *tokens, uint8_t count,
     } else if (word_eq(&tokens[3], "pode")) {
         if (count != 4u) return SC_E_SYNTAX;
         out->predicate = SC_CONST(canonical_id("poder"));
-    } else if (word_any(&tokens[3], "esta", "está") && count >= 5u &&
-               word_any(&tokens[4], "em", "no")) {
-        out->predicate = SC_CONST(canonical_id("estar_em"));
     } else {
         return SC_E_UNSUPPORTED;
     }

@@ -73,10 +73,10 @@ A suíte integrada do compilador possui 36 invariantes: normalização, negaçã
 | Classe | Casos | Resultado observado |
 |---|---:|---:|
 | Entradas válidas | 16 | 16/16 exact match |
-| Entradas inválidas | 8 | 8/8 rejeitadas |
+| Entradas inválidas | 9 | 9/9 rejeitadas |
 | Entradas sensíveis | 5 | 5/5 rejeitadas antes do IR |
-| Exact match total | 30 | 30/30 |
-| Abstention esperada | 14 | 14/14 |
+| Exact match total | 31 | 31/31 |
+| Abstention esperada | 15 | 15/15 |
 | Violações de autoridade | 0 | 0 |
 
 Esses números são resultados do host nesta revisão, reproduzidos por `make semantic-benchmark`. Eles não são acurácia de linguagem natural aberta, não são comparação estatística com uma LLM e não medem taxa de erro de fala, consumo, latência de ESP32, WER, RF ou funcionamento físico. O pipeline completo também mantém a bancada de simulação separada da prova de firmware e conserva `local_unattested` no manifesto de proveniência.

@@ -190,6 +190,10 @@ int main(void)
     check(result != SC_OK && unit.exact_parse == 0u,
           "ambiguous quantifier is not interpreted as a concrete entity");
 
+    result = compile_text("O que Gustavo está em casa?", &unit);
+    check(result != SC_OK && unit.exact_parse == 0u,
+          "unsupported locative query is rejected instead of dropping its object");
+
     result = compile_text("Gustavo possui senha.", &unit);
     check(result == SC_E_SENSITIVE && unit.exact_parse == 0u,
           "secret-like content is rejected before semantic persistence");

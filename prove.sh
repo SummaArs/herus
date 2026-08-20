@@ -291,7 +291,7 @@ check() {
 # --- symbolic generative intelligence -------------------------------------
 check "Symbolic reasoner generates only proved typed conclusions" "SYMBOLIC REASONER: 20 pass, 0 fail" /tmp/herus_symbolic.log
 check "Symbolic planner reports no-plan, cost and confirmation boundaries" "SYMBOLIC PLANNER: 9 pass, 0 fail" /tmp/herus_symbolic.log
-check "Symbolic dialogue preserves personal authority and abstention" "SYMBOLIC DIALOGUE: 15 pass, 0 fail" /tmp/herus_symbolic.log
+check "Symbolic dialogue preserves personal authority and abstention" "SYMBOLIC DIALOGUE: 16 pass, 0 fail" /tmp/herus_symbolic.log
 
 # --- VSA resonator ----------------------------------------------------------
 check "Resonator factors bounded VSA products without false certainty" "RESONATOR: 9 pass, 0 fail" /tmp/herus_resonator.log
@@ -299,8 +299,8 @@ check "VSA bridge requires explicit acceptance before reasoner insertion" "RESON
 check "Resonator stress exposes bounded generalization and abstention" "RESONATOR STRESS: 37 pass, 0 fail" /tmp/herus_resonator.log
 
 # --- controlled semantic compiler ------------------------------------------
-check "Semantic compiler emits exact typed IR and rejects unsupported language" "SEMANTIC COMPILER: 36 pass, 0 fail" /tmp/herus_semantic.log
-check "Semantic benchmark holds exact match, abstention and zero authority violations" "SEMANTIC BENCHMARK: valid 16/16, invalid 8/8, sensitive 5/5, exact 30/30, abstention 14/14, authority violations 0" /tmp/herus_semantic_benchmark.log
+check "Semantic compiler emits exact typed IR and rejects unsupported language" "SEMANTIC COMPILER: 37 pass, 0 fail" /tmp/herus_semantic.log
+check "Semantic benchmark holds exact match, abstention and zero authority violations" "SEMANTIC BENCHMARK: valid 16/16, invalid 9/9, sensitive 5/5, exact 31/31, abstention 15/15, authority violations 0" /tmp/herus_semantic_benchmark.log
 
 # --- physical layer -------------------------------------------------------
 check "P1 constant AIRTIME across meaning tiers" "INVARIANT HOLDS" /tmp/herus_c.log

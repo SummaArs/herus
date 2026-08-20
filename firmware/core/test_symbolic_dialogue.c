@@ -129,7 +129,11 @@ int main(void)
         sd_dialogue_t full;
         sr_rule_t capacity;
         sr_pattern_t capacity_query;
+        sd_dialogue_t rules_full;
         int capacity_facts_ok = 1;
+        int capacity_rules_ok = 1;
+        int extra_fact_result;
+        int extra_rule_result;
         sd_init(&full);
         for (uint16_t subject = 1u; subject <= SR_MAX_FACTS; subject++) {
             if (sd_add_personal_fact(&full,
@@ -152,6 +156,20 @@ int main(void)
                                &reply) == SD_E_LIMIT &&
                         reply.answer.kind == SR_ANSWER_LIMIT,
               "dialogue exposes a full-memory derivation as an explicit limit");
+        extra_fact_result = sd_add_personal_fact(
+            &full, (sr_fact_t){999u, OWNS, PLACE, 0u}, 1u);
+        sd_init(&rules_full);
+        for (uint16_t rule_id = 0u; rule_id < SR_MAX_RULES; rule_id++) {
+            capacity.id = (uint8_t)rule_id;
+            if (sd_add_rule(&rules_full, &capacity) != SD_OK)
+                capacity_rules_ok = 0;
+        }
+        capacity.id = 200u;
+        extra_rule_result = sd_add_rule(&rules_full, &capacity);
+        check(&score, extra_fact_result == SD_E_LIMIT && capacity_rules_ok &&
+                        sr_rule_count(&rules_full.reasoner) == SR_MAX_RULES &&
+                        extra_rule_result == SD_E_LIMIT,
+              "dialogue maps full fact and rule insertion to explicit limits");
     }
 
     printf("SYMBOLIC DIALOGUE: %d pass, %d fail\n", score.pass, score.fail);

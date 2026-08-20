@@ -43,6 +43,7 @@ int main(void)
         "Guarde isso automaticamente.",
         "Registre sem confirmação.",
         "Gustavo talvez possui caderno.",
+        "O que Gustavo está em casa?",
         "Gustavo possui caderno agora.",
         "Se alguem possui caderno, entao alguem pode estudar agora.",
         "O que todos possuem?",
