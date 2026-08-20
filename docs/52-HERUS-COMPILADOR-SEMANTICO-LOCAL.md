@@ -14,7 +14,7 @@ A entrada é observada de forma transitória. O `sc_unit_t` não contém buffer 
 
 ## Gramática controlada da primeira versão
 
-A versão atual adota um vocabulário pequeno e sintaxe exata. Pontuação final é opcional e a comparação de palavras-chave ignora maiúsculas ASCII; palavras portuguesas com acento reconhecidas pela gramática possuem aliases sem acento. Entidades não são normalizadas linguisticamente: são convertidas diretamente para IDs simbólicos estáveis, o que mantém o escopo deliberadamente limitado.
+A versão atual adota um vocabulário pequeno e sintaxe exata. Pontuação final é opcional e a comparação de palavras-chave ignora maiúsculas ASCII; palavras portuguesas com acento reconhecidas pela gramática possuem aliases sem acento. Entidades recebem normalização ASCII de caixa antes de serem convertidas para IDs simbólicos estáveis; acentos UTF-8 ainda são tratados como bytes distintos, sem redução linguística. Isso mantém o escopo deliberadamente limitado.
 
 | Unidade | Forma aceita | Saída |
 |---|---|---|

@@ -54,7 +54,7 @@ uint16_t sc_symbol_id(const char *text, size_t length)
     uint32_t hash = SC_HASH_OFFSET;
     if (!text || length == 0u) return 0u;
     for (size_t i = 0u; i < length; i++) {
-        hash ^= (uint8_t)text[i];
+        hash ^= ascii_lower((unsigned char)text[i]);
         hash *= SC_HASH_PRIME;
     }
     return fold_id(hash);

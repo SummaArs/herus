@@ -222,6 +222,9 @@ int main(void)
     check(sc_symbol_id("caderno", 7u) == sc_symbol_id("caderno", 7u) &&
                     sc_symbol_id("caderno", 7u) != sc_symbol_id("livro", 5u),
           "symbol ids are deterministic and separated for the fixture vocabulary");
+    check(sc_symbol_id("Gustavo", 7u) == sc_symbol_id("GUSTAVO", 7u) &&
+                    sc_symbol_id("caderno", 7u) == sc_symbol_id("CADERNO", 7u),
+          "ASCII case variants resolve to the same canonical entity ids");
 
     run_bridge_cases();
 

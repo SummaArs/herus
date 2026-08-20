@@ -299,7 +299,7 @@ check "VSA bridge requires explicit acceptance before reasoner insertion" "RESON
 check "Resonator stress exposes bounded generalization and abstention" "RESONATOR STRESS: 37 pass, 0 fail" /tmp/herus_resonator.log
 
 # --- controlled semantic compiler ------------------------------------------
-check "Semantic compiler emits exact typed IR and rejects unsupported language" "SEMANTIC COMPILER: 37 pass, 0 fail" /tmp/herus_semantic.log
+check "Semantic compiler emits exact typed IR and rejects unsupported language" "SEMANTIC COMPILER: 38 pass, 0 fail" /tmp/herus_semantic.log
 check "Semantic benchmark holds exact match, abstention and zero authority violations" "SEMANTIC BENCHMARK: valid 16/16, invalid 9/9, sensitive 5/5, exact 31/31, abstention 15/15, authority violations 0" /tmp/herus_semantic_benchmark.log
 
 # --- physical layer -------------------------------------------------------
