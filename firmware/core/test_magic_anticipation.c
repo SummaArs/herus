@@ -35,6 +35,7 @@ static magic_context_t context(sr_pattern_t cue,
     out.privacy_class = privacy;
     out.request_kind = request;
     out.attention_window = attention;
+    out.proactive_consent = request == MAGIC_REQUEST_CONTEXTUAL ? 1u : 0u;
     return out;
 }
 
@@ -92,6 +93,11 @@ int main(void)
     check(&score, magic_propose(&base, &memory, 1u, &contextual, &policy,
                                 &scratch, &proposal) == MAGIC_SILENT,
           "contextual anticipation stays silent outside the attention window");
+    contextual.attention_window = 1u;
+    contextual.proactive_consent = 0u;
+    check(&score, magic_propose(&base, &memory, 1u, &contextual, &policy,
+                                &scratch, &proposal) == MAGIC_SILENT,
+          "revoked proactive consent suppresses contextual anticipation");
     contextual.privacy_class = MAGIC_PRIVACY_PERSONAL;
     check(&score, magic_propose(&base, &memory, 1u, &contextual, &policy,
                                 &scratch, &proposal) == MAGIC_SENSITIVE_BLOCK,

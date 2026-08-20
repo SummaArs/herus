@@ -19,7 +19,8 @@ static int context_valid(const magic_context_t *context)
            context->privacy_class <= MAGIC_PRIVACY_THIRD_PARTY &&
            context->request_kind >= MAGIC_REQUEST_EXPLICIT &&
            context->request_kind <= MAGIC_REQUEST_CONTEXTUAL &&
-           canonical_bool(context->attention_window);
+           canonical_bool(context->attention_window) &&
+           canonical_bool(context->proactive_consent);
 }
 
 magic_status_t magic_propose(const sr_reasoner_t *base,
@@ -48,7 +49,7 @@ magic_status_t magic_propose(const sr_reasoner_t *base,
         return out->status;
     }
     if (context->request_kind == MAGIC_REQUEST_CONTEXTUAL &&
-        context->attention_window != 1u) {
+        (context->attention_window != 1u || context->proactive_consent != 1u)) {
         out->status = MAGIC_SILENT;
         return out->status;
     }

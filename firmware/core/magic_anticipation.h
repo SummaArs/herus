@@ -39,6 +39,7 @@ typedef struct {
     magic_privacy_class_t privacy_class;
     magic_request_kind_t request_kind;
     uint8_t attention_window; /* exactly 1 permits a contextual proposal */
+    uint8_t proactive_consent; /* exactly 1 permits contextual anticipation */
 } magic_context_t;
 
 typedef struct {

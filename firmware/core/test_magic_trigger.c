@@ -48,6 +48,7 @@ int main(void)
     context.privacy_class = MAGIC_PRIVACY_ORDINARY;
     context.request_kind = MAGIC_REQUEST_CONTEXTUAL;
     context.attention_window = 1u;
+    context.proactive_consent = 1u;
 
     check(&score, magic_trigger_begin(&trigger, &context, 10u, 3u, 2u) ==
                     MAGIC_TRIGGER_OK && trigger.active == 1u &&
@@ -77,6 +78,10 @@ int main(void)
                     MAGIC_TRIGGER_SILENT && trigger.active == 0u,
           "no attention window opens no proactive context");
     context.attention_window = 1u;
+    context.proactive_consent = 0u;
+    check(&score, magic_trigger_offer(&trigger, &base, &memory, 20u, &policy,
+                                      &scratch, &proposal) == MAGIC_TRIGGER_SILENT,
+          "revoked proactive consent keeps the trigger silent");
     check(&score, magic_trigger_begin(&trigger, &context, 20u, 0u, 1u) ==
                     MAGIC_TRIGGER_E_ARG,
           "zero TTL is rejected");

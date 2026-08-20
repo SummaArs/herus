@@ -387,8 +387,8 @@ check "Core feed verifies digest, rollback, namespace, bounds and physical confi
 check "Core feed cursor recovers authenticated monotonic state and blocks rollback" "KNOWLEDGE FEED CURSOR: 11 pass, 0 fail" /tmp/herus_knowledge_feed_cursor.log
 check "Memory evidence preserves temporal provenance, conflicts and bounded abstention" "MEMORY SEMANTIC EVIDENCE: 19 pass, 0 fail" /tmp/herus_memory_semantic_evidence.log
 check "Memory-to-reasoner bridge composes offline and blocks ambiguous or partial evidence" "MEMORY REASONING BRIDGE: 16 pass, 0 fail" /tmp/herus_memory_reasoning_bridge.log
-check "Magic anticipation explains useful recall and blocks unsafe surprise" "MAGIC ANTICIPATION: 16 pass, 0 fail" /tmp/herus_magic_anticipation.log
-check "Magic trigger bounds attention, TTL and repeated proposals" "MAGIC TRIGGER: 11 pass, 0 fail" /tmp/herus_magic_trigger.log
+check "Magic anticipation explains useful recall and blocks unsafe surprise" "MAGIC ANTICIPATION: 17 pass, 0 fail" /tmp/herus_magic_anticipation.log
+check "Magic trigger bounds attention, TTL and repeated proposals" "MAGIC TRIGGER: 12 pass, 0 fail" /tmp/herus_magic_trigger.log
 check "Magic dialogue bridge stays read-only and abstinent" "MAGIC DIALOGUE BRIDGE: 8 pass, 0 fail" /tmp/herus_magic_dialogue_bridge.log
 
 # --- physical layer -------------------------------------------------------
