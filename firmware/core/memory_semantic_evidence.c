@@ -161,9 +161,9 @@ mse_status_t mse_query(const mse_index_t *index,
     uint16_t active = 0u;
     uint16_t conflicted = 0u;
     uint16_t selected = 0u;
+    if (out) memset(out, 0, sizeof(*out));
     if (!index || !valid_pattern(pattern) || current_generation == 0u || !out)
         return MSE_E_ARG;
-    memset(out, 0, sizeof(*out));
     if (pattern->subject.kind == SR_TERM_VARIABLE &&
         pattern->predicate.kind == SR_TERM_VARIABLE &&
         pattern->object.kind == SR_TERM_VARIABLE)

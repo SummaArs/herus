@@ -102,8 +102,37 @@ int main(void)
           "expired evidence is not returned as current knowledge");
 
     query = (sr_pattern_t){SR_VAR(0u), SR_VAR(1u), SR_VAR(2u), 0u};
-    check(&score, mse_query(&index, &query, 6u, &result) == MSE_E_ARG,
-          "all-variable query cannot enumerate the private evidence index");
+    result.selected_card_id = 0xdeadbeefu;
+    check(&score, mse_query(&index, &query, 6u, &result) == MSE_E_ARG &&
+                    result.selected_card_id == 0u,
+          "all-variable query cannot enumerate the private evidence index and clears stale output");
+
+    {
+        memory_vault_card_t invalid_card = card(0u, 901u);
+        memory_vault_card_t valid_card = card(200u, 902u);
+        sr_fact_t invalid_fact = { 0u, open_predicate, object_a, 0u };
+        mse_index_t bounded;
+        mse_init(&bounded, NULL, NULL);
+        check(&score, mse_add(&bounded, &invalid_card, &invalid_fact, 1u, 0u) ==
+                        MSE_E_ARG && bounded.evidence_count == 0u,
+              "zero card, receipt and symbol inputs are rejected without mutation");
+        check(&score, mse_add(&bounded, &valid_card,
+                              &(sr_fact_t){subject, open_predicate, object_a, 0u},
+                              8u, 7u) == MSE_E_ARG && bounded.evidence_count == 0u,
+              "validity windows that move backward are rejected before insertion");
+        for (uint32_t i = 0u; i < MSE_MAX_EVIDENCE; i++) {
+            sr_fact_t item = {subject, open_predicate, (sr_symbol_t)(0x03070001u + i), 0u};
+            memory_vault_card_t item_card = card(300u + i, 400u + i);
+            if (mse_add(&bounded, &item_card, &item, 20u + i, 0u) != MSE_OK)
+                score.fail++;
+        }
+        check(&score, bounded.evidence_count == MSE_MAX_EVIDENCE &&
+                        mse_add(&bounded, &valid_card,
+                                &(sr_fact_t){subject, open_predicate, 0x0307ffffu, 0u},
+                                99u, 0u) == MSE_E_FULL &&
+                        bounded.evidence_count == MSE_MAX_EVIDENCE,
+              "full bounded evidence refuses the next card without partial insertion");
+    }
 
     printf("MEMORY SEMANTIC EVIDENCE: %d pass, %d fail\n", score.pass, score.fail);
     return score.fail ? 1 : 0;

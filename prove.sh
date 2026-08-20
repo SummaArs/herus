@@ -369,7 +369,7 @@ check "HAP-SEM runner blocks absent hardware and binds evidence origin" "HAPTIC 
 check "HAP-SEM preflight blocks unsafe or unmeasured pre-energization" "HAPTIC PREFLIGHT: 5 pass, 0 fail" /tmp/herus_haptic_preflight.log
 check "Core feed verifies digest, rollback, namespace, bounds and physical confirmation" "KNOWLEDGE FEED: 16 pass, 0 fail" /tmp/herus_knowledge_feed.log
 check "Core feed cursor recovers authenticated monotonic state and blocks rollback" "KNOWLEDGE FEED CURSOR: 11 pass, 0 fail" /tmp/herus_knowledge_feed_cursor.log
-check "Memory evidence preserves temporal provenance, conflicts and bounded abstention" "MEMORY SEMANTIC EVIDENCE: 13 pass, 0 fail" /tmp/herus_memory_semantic_evidence.log
+check "Memory evidence preserves temporal provenance, conflicts and bounded abstention" "MEMORY SEMANTIC EVIDENCE: 16 pass, 0 fail" /tmp/herus_memory_semantic_evidence.log
 
 # --- physical layer -------------------------------------------------------
 check "P1 constant AIRTIME across meaning tiers" "INVARIANT HOLDS" /tmp/herus_c.log
