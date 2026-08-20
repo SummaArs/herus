@@ -46,6 +46,7 @@
 #   make semantic-benchmark the fixed-corpus semantic equivalence benchmark
 #   make knowledge-feed the authenticated, bounded and confirmation-gated Core feed
 #   make knowledge-feed-cursor the durable anti-rollback journal suite
+#   make memory-semantic-evidence the local temporal/conflict evidence index
 #   make interaction the push-to-talk, confirmation and one-shot runtime suite
 #   make interaction-rig deterministic adapter and validation-lab scenarios
 #   make net        the protocol suite (crypto, session, weave, beat, framing)
@@ -66,7 +67,7 @@ INC     := -Icore -Inet -Iport -Itest
 CORE    := core/hv.c core/sbc.c core/lexicon.c core/hcp.c
 NET     := net/crypto.c net/session.c net/region.c net/weave.c net/beat.c net/link.c
 
-.PHONY: all algebra nucleus voice intent dialogue model-lab memory-policy memory-capture memory-extract watch-memory-frontend memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale memory-collection memory-collection-index memory-collection-recovery memory-collection-recovery-stress memory-collection-finale bench-evidence-validate bench-interruption-sim memory-proposal llm-budget-check memory-physical-session memory-physical-session-recovery memory-physical-session-recovery-stress memory-physical-session-bootstrap memory-prehardware-finale threat-model threat-model-stress proof-fire-mutations assurance capstone trust control-link delivery-plan transport-selector personal-telemetry symbolic-reasoner resonator semantic-compiler semantic-benchmark knowledge-feed knowledge-feed-cursor interaction interaction-rig net radio syntax vectors haptic-language haptic-language-matrix haptic-semantic-bridge haptic-adapter haptic-evidence haptic-target haptic-runner haptic-preflight clean
+.PHONY: all algebra nucleus voice intent dialogue model-lab memory-policy memory-capture memory-extract watch-memory-frontend memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale memory-collection memory-collection-index memory-collection-recovery memory-collection-recovery-stress memory-collection-finale bench-evidence-validate bench-interruption-sim memory-proposal llm-budget-check memory-physical-session memory-physical-session-recovery memory-physical-session-recovery-stress memory-physical-session-bootstrap memory-prehardware-finale threat-model threat-model-stress proof-fire-mutations assurance capstone trust control-link delivery-plan transport-selector personal-telemetry symbolic-reasoner resonator semantic-compiler semantic-benchmark knowledge-feed knowledge-feed-cursor memory-semantic-evidence interaction interaction-rig net radio syntax vectors haptic-language haptic-language-matrix haptic-semantic-bridge haptic-adapter haptic-evidence haptic-target haptic-runner haptic-preflight clean
 
 all: algebra nucleus voice intent dialogue model-lab memory-policy memory-capture memory-extract memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale memory-collection memory-collection-index memory-collection-recovery memory-collection-recovery-stress memory-collection-finale memory-physical-session memory-physical-session-recovery memory-physical-session-recovery-stress memory-physical-session-bootstrap memory-prehardware-finale threat-model threat-model-stress proof-fire-mutations assurance capstone trust control-link interaction interaction-rig net radio syntax haptic-language haptic-language-matrix haptic-semantic-bridge haptic-adapter haptic-evidence haptic-target haptic-runner haptic-preflight
 	@echo ""
@@ -237,6 +238,11 @@ knowledge-feed-cursor: build
 	@echo "--- knowledge feed cursor: durable two-slot anti-rollback journal ---"
 	$(CC) $(CFLAGS) $(INC) net/crypto.c core/knowledge_feed_cursor.c core/test_knowledge_feed_cursor.c -o build/test_knowledge_feed_cursor
 	./build/test_knowledge_feed_cursor
+
+memory-semantic-evidence: build
+	@echo "--- memory semantic evidence: bounded temporal facts and conflict abstention ---"
+	$(CC) $(CFLAGS) $(INC) core/memory_semantic_evidence.c core/test_memory_semantic_evidence.c -o build/test_memory_semantic_evidence
+	./build/test_memory_semantic_evidence
 
 symbol-registry-model:
 	@echo "--- symbol registry model: versioned collision-aware host contract ---"
