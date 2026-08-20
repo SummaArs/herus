@@ -83,6 +83,73 @@ static void run_registry_cases(void)
           "registry compiler preserves abstention on a later unconfirmed identity");
 }
 
+static void run_composition_cases(void)
+{
+    sd_dialogue_t dialogue;
+    sd_dialogue_t missing;
+    sc_bridge_result_t bridge;
+    sc_unit_t first;
+    sc_unit_t second;
+    sc_unit_t rule;
+    sc_unit_t query;
+    int result;
+
+    printf("== compositional compiler: multi-premise reasoning ==\n");
+    result = compile_text("Se alguem possui caderno e alguem esta em casa, entao alguem pode estudar.",
+                          &rule);
+    check(result == SC_OK && rule.kind == SC_UNIT_RULE &&
+                    rule.meaning.rule.premise_count == 2u &&
+                    rule.meaning.rule.cost == 2u,
+          "compiler exposes a two-premise conjunction with bounded proof cost");
+    check(rule.meaning.rule.premise[0].predicate.value ==
+                        sc_symbol_id("possui", 6u) &&
+                    rule.meaning.rule.premise[1].predicate.value ==
+                        sc_symbol_id("estar_em", 8u) &&
+                    rule.meaning.rule.conclusion.predicate.value ==
+                        sc_symbol_id("poder", 5u),
+          "conjunctive premises preserve canonical predicates and shared variable");
+
+    result = compile_text("Se alguem possui caderno e e alguem esta em casa, entao alguem pode estudar.",
+                          &rule);
+    check(result == SC_E_SYNTAX && rule.exact_parse == 0u,
+          "empty conjunctive segment abstains instead of dropping a condition");
+
+    result = compile_text("Se alguem possui caderno e alguem esta em casa e alguem pode estudar e alguem possui livro e alguem esta no trabalho, entao alguem pode estudar.",
+                          &rule);
+    check(result == SC_E_LIMIT && rule.exact_parse == 0u,
+          "more than four premises is an explicit compiler limit");
+    check(compile_text("Se alguem possui caderno e alguem esta em casa, entao alguem pode estudar.",
+                       &rule) == SC_OK,
+          "composition fixture is restored after the limit case");
+
+    sd_init(&dialogue);
+    check(compile_text("Gustavo possui caderno.", &first) == SC_OK &&
+                    compile_text("Gustavo esta em casa.", &second) == SC_OK &&
+                    sc_apply_dialogue(&dialogue, &first, 1u, 16u, &bridge) ==
+                        SC_BRIDGE_OK &&
+                    sc_apply_dialogue(&dialogue, &second, 1u, 16u, &bridge) ==
+                        SC_BRIDGE_OK,
+          "two confirmed personal facts enter the composition fixture");
+    check(sc_apply_dialogue(&dialogue, &rule, 1u, 16u, &bridge) == SC_BRIDGE_OK &&
+                    bridge.state_changed == 1u,
+          "multi-premise rule enters the reasoner only after confirmation");
+    check(compile_text("O que Gustavo pode?", &query) == SC_OK &&
+                    sc_apply_dialogue(&dialogue, &query, 0u, 16u, &bridge) ==
+                        SC_BRIDGE_OK &&
+                    bridge.reply.answer.kind == SR_ANSWER_DERIVED &&
+                    bridge.reply.answer.evidence_count == 2u,
+          "dialogue derives a novel answer from both conjunctive premises");
+
+    sd_init(&missing);
+    check(sc_apply_dialogue(&missing, &first, 1u, 16u, &bridge) == SC_BRIDGE_OK &&
+                    sc_apply_dialogue(&missing, &rule, 1u, 16u, &bridge) ==
+                        SC_BRIDGE_OK &&
+                    sc_apply_dialogue(&missing, &query, 0u, 16u, &bridge) !=
+                        SC_BRIDGE_OK &&
+                    bridge.abstained == 1u,
+          "missing one conjunct produces abstention rather than a partial conclusion");
+}
+
 static void run_bridge_cases(void)
 {
     sd_dialogue_t dialogue;
@@ -298,8 +365,9 @@ int main(void)
                     sc_symbol_id("caderno", 7u) == sc_symbol_id("CADERNO", 7u),
           "ASCII case variants resolve to the same canonical entity ids");
 
-    run_bridge_cases();
     run_registry_cases();
+    run_composition_cases();
+    run_bridge_cases();
     printf("SEMANTIC COMPILER: %d pass, %d fail\n", pass_count, fail_count);
 
     return fail_count ? 1 : 0;

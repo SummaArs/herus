@@ -126,6 +126,49 @@ int main(void)
           "contradiction is surfaced rather than collapsed into confidence");
 
     {
+        sd_dialogue_t abductive;
+        sr_abduction_t proposal;
+        sr_pattern_t goal = (sr_pattern_t){ SR_CONST(PERSON), SR_CONST(NEEDS),
+                                           SR_CONST(READY), 0u };
+        sr_rule_t alternative;
+        sr_rule_t second_alternative;
+        sd_init(&abductive);
+        check(&score, sd_add_rule(&abductive, &rule) == SD_OK &&
+                        sd_abduce(&abductive, &goal, 16u, &proposal) == SD_OK &&
+                        proposal.status == SR_ABDUCTION_FOUND &&
+                        proposal.missing_fact.subject == PERSON &&
+                        proposal.missing_fact.predicate == OWNS &&
+                        proposal.missing_fact.object == PLACE &&
+                        sr_fact_count(&abductive.reasoner) == 0u,
+              "dialogue exposes a missing personal fact as a read-only hypothesis");
+        check(&score, sd_abduce(&abductive, &goal, 0u, &proposal) == SD_E_LIMIT,
+              "dialogue abduction preserves an explicit derivation budget limit");
+        memset(&alternative, 0, sizeof(alternative));
+        alternative.id = 7u;
+        alternative.premise_count = 1u;
+        alternative.premise[0] = (sr_pattern_t){ SR_CONST(PERSON),
+                                                SR_CONST(OWNS),
+                                                SR_CONST(99u), 0u };
+        alternative.conclusion = (sr_pattern_t){ SR_CONST(PERSON),
+                                                SR_CONST(NEEDS),
+                                                SR_CONST(READY), 0u };
+        alternative.cost = 1u;
+        second_alternative = alternative;
+        second_alternative.id = 8u;
+        second_alternative.premise[0].object = SR_CONST(100u);
+        sd_init(&abductive);
+        check(&score, sd_add_rule(&abductive, &alternative) == SD_OK &&
+                        sd_add_rule(&abductive, &second_alternative) == SD_OK &&
+                        sd_abduce(&abductive, &goal, 16u, &proposal) ==
+                            SD_E_ABSTAIN &&
+                        proposal.status == SR_ABDUCTION_AMBIGUOUS,
+              "dialogue refuses to choose among multiple missing explanations");
+        goal.subject = SR_VAR(1u);
+        check(&score, sd_abduce(&abductive, &goal, 16u, &proposal) == SD_E_ARG,
+              "dialogue abduction rejects a non-ground goal instead of binding an entity");
+    }
+
+    {
         sd_dialogue_t full;
         sr_rule_t capacity;
         sr_pattern_t capacity_query;

@@ -333,9 +333,9 @@ check() {
 }
 
 # --- symbolic generative intelligence -------------------------------------
-check "Symbolic reasoner generates only proved typed conclusions" "SYMBOLIC REASONER: 20 pass, 0 fail" /tmp/herus_symbolic.log
+check "Symbolic reasoner proves, abstains and proposes bounded abductions" "SYMBOLIC REASONER: 26 pass, 0 fail" /tmp/herus_symbolic.log
 check "Symbolic planner reports no-plan, cost and confirmation boundaries" "SYMBOLIC PLANNER: 9 pass, 0 fail" /tmp/herus_symbolic.log
-check "Symbolic dialogue preserves personal authority and abstention" "SYMBOLIC DIALOGUE: 16 pass, 0 fail" /tmp/herus_symbolic.log
+check "Symbolic dialogue preserves authority, abduction and abstention" "SYMBOLIC DIALOGUE: 20 pass, 0 fail" /tmp/herus_symbolic.log
 
 # --- VSA resonator ----------------------------------------------------------
 check "Resonator factors bounded VSA products without false certainty" "RESONATOR: 9 pass, 0 fail" /tmp/herus_resonator.log
@@ -343,7 +343,7 @@ check "VSA bridge requires explicit acceptance before reasoner insertion" "RESON
 check "Resonator stress exposes bounded generalization and abstention" "RESONATOR STRESS: 37 pass, 0 fail" /tmp/herus_resonator.log
 
 # --- controlled semantic compiler ------------------------------------------
-check "Semantic compiler emits exact typed IR and rejects unsupported language" "SEMANTIC COMPILER: 45 pass, 0 fail" /tmp/herus_semantic.log
+check "Semantic compiler emits exact typed IR, composes bounded conjunctions and rejects unsupported language" "SEMANTIC COMPILER: 54 pass, 0 fail" /tmp/herus_semantic.log
 check "Semantic benchmark holds exact match, abstention and zero authority violations" "SEMANTIC BENCHMARK: valid 16/16, invalid 10/10, sensitive 5/5, exact 32/32, abstention 16/16, authority violations 0" /tmp/herus_semantic_benchmark.log
 check "Collision-aware symbol registry separates namespaces, versions and full-state limits" "SYMBOL REGISTRY MODEL: 13 pass, 0 fail" /tmp/herus_symbol_registry.log
 check "Collision-aware symbol registry C11 preserves the same contract" "SYMBOL REGISTRY C: 15 pass, 0 fail" /tmp/herus_symbol_registry_c.log

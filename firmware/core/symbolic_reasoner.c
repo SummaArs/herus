@@ -338,6 +338,147 @@ int sr_query(const sr_reasoner_t *r, const sr_pattern_t *query,
     return SR_OK;
 }
 
+static int instantiate_ground_pattern(const sr_pattern_t *pattern,
+                                       const sr_binding_t *binding,
+                                       sr_fact_t *out)
+{
+    const sr_term_t *terms[3];
+    uint16_t *values[3];
+    if (!pattern || !binding || !out || !valid_pattern(pattern)) return 0;
+    terms[0] = &pattern->subject;
+    terms[1] = &pattern->predicate;
+    terms[2] = &pattern->object;
+    values[0] = &out->subject;
+    values[1] = &out->predicate;
+    values[2] = &out->object;
+    for (unsigned i = 0u; i < 3u; i++) {
+        if (terms[i]->kind == SR_TERM_CONSTANT) {
+            *values[i] = terms[i]->value;
+        } else if (terms[i]->value < SR_MAX_VARIABLES &&
+                   binding->used[terms[i]->value]) {
+            *values[i] = binding->value[terms[i]->value];
+        } else {
+            return 0;
+        }
+    }
+    out->negated = pattern->negated;
+    return valid_fact(*out);
+}
+
+typedef struct {
+    const sr_reasoner_t *reasoner;
+    const sr_rule_t *rule;
+    uint8_t missing_premise;
+    uint32_t max_candidates;
+    sr_abduction_t *out;
+    uint8_t found;
+    uint8_t stop;
+} sr_abduction_walk_t;
+
+static void walk_abduction_support(sr_abduction_walk_t *walk,
+                                   uint8_t premise_index,
+                                   const sr_binding_t *binding,
+                                   uint8_t supporting_count)
+{
+    if (!walk || !binding || walk->stop) return;
+    if (premise_index == walk->rule->premise_count) {
+        sr_fact_t candidate;
+        if (!instantiate_ground_pattern(&walk->rule->premise[
+                                            walk->missing_premise],
+                                        binding, &candidate)) return;
+        if (find_fact(walk->reasoner, candidate) >= 0) return;
+        if (walk->out->candidates_examined >= walk->max_candidates) {
+            walk->out->status = SR_ABDUCTION_LIMIT;
+            walk->stop = 1u;
+            return;
+        }
+        walk->out->candidates_examined++;
+        if (walk->out->status == SR_ABDUCTION_NONE) {
+            walk->found = 1u;
+            walk->out->status = SR_ABDUCTION_FOUND;
+            walk->out->missing_fact = candidate;
+            walk->out->rule_id = walk->rule->id;
+            walk->out->missing_premise = walk->missing_premise;
+            walk->out->supporting_count = supporting_count;
+            walk->out->derivation_cost = walk->rule->cost;
+        } else if (walk->out->status == SR_ABDUCTION_FOUND &&
+                   !fact_equal(walk->out->missing_fact, candidate)) {
+            walk->out->status = SR_ABDUCTION_AMBIGUOUS;
+            memset(&walk->out->missing_fact, 0, sizeof(walk->out->missing_fact));
+            walk->stop = 1u;
+        }
+        return;
+    }
+    if (premise_index == walk->missing_premise) {
+        walk_abduction_support(walk, (uint8_t)(premise_index + 1u),
+                               binding, supporting_count);
+        return;
+    }
+    for (unsigned i = 0u; i < walk->reasoner->fact_count; i++) {
+        sr_binding_t next = *binding;
+        if (match_pattern(&walk->rule->premise[premise_index],
+                          walk->reasoner->facts[i], &next)) {
+            walk_abduction_support(walk, (uint8_t)(premise_index + 1u),
+                                   &next, (uint8_t)(supporting_count + 1u));
+            if (walk->stop) return;
+        }
+    }
+}
+
+sr_abduction_status_t sr_abduce(const sr_reasoner_t *r,
+                                const sr_pattern_t *ground_goal,
+                                uint32_t max_candidates,
+                                sr_abduction_t *out)
+{
+    sr_fact_t goal;
+    sr_pattern_t opposite;
+    if (!r || !ground_goal || !out) return SR_ABDUCTION_E_ARG;
+    memset(out, 0, sizeof(*out));
+    out->status = SR_ABDUCTION_NONE;
+    if (max_candidates == 0u || !valid_pattern(ground_goal)) {
+        out->status = max_candidates == 0u ? SR_ABDUCTION_LIMIT
+                                           : SR_ABDUCTION_E_ARG;
+        return out->status;
+    }
+    if (ground_goal->subject.kind != SR_TERM_CONSTANT ||
+        ground_goal->predicate.kind != SR_TERM_CONSTANT ||
+        ground_goal->object.kind != SR_TERM_CONSTANT) {
+        out->status = SR_ABDUCTION_E_ARG;
+        return out->status;
+    }
+    goal.subject = ground_goal->subject.value;
+    goal.predicate = ground_goal->predicate.value;
+    goal.object = ground_goal->object.value;
+    goal.negated = ground_goal->negated;
+    opposite = *ground_goal;
+    opposite.negated = (uint8_t)!opposite.negated;
+    if (find_fact(r, goal) >= 0) return out->status;
+    goal.negated = opposite.negated;
+    if (find_fact(r, goal) >= 0) return out->status;
+    goal.negated = ground_goal->negated;
+
+    for (unsigned rule_index = 0u; rule_index < r->rule_count; rule_index++) {
+        const sr_rule_t *rule = &r->rules[rule_index];
+        sr_binding_t binding;
+        memset(&binding, 0, sizeof(binding));
+        if (!match_pattern(&rule->conclusion, goal, &binding)) continue;
+        for (uint8_t missing = 0u; missing < rule->premise_count; missing++) {
+            sr_abduction_walk_t walk;
+            memset(&walk, 0, sizeof(walk));
+            walk.reasoner = r;
+            walk.rule = rule;
+            walk.missing_premise = missing;
+            walk.max_candidates = max_candidates;
+            walk.out = out;
+            walk_abduction_support(&walk, 0u, &binding, 0u);
+            if (out->status == SR_ABDUCTION_AMBIGUOUS ||
+                out->status == SR_ABDUCTION_LIMIT)
+                return out->status;
+        }
+    }
+    return out->status;
+}
+
 unsigned sr_fact_count(const sr_reasoner_t *r)
 {
     return r ? r->fact_count : 0u;

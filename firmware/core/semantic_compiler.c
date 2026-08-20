@@ -257,7 +257,8 @@ static int parse_rule(const sc_token_t *tokens, uint8_t count,
                       const sc_registry_resolver_t *resolver, sr_rule_t *out)
 {
     uint8_t split = 0u;
-    sr_pattern_t premise;
+    uint8_t premise_count = 0u;
+    uint8_t segment_start = 1u;
     sr_pattern_t conclusion;
     if (!tokens || !out || count < 7u || !word_eq(&tokens[0], "se"))
         return SC_E_SYNTAX;
@@ -268,19 +269,38 @@ static int parse_rule(const sc_token_t *tokens, uint8_t count,
         }
     }
     if (split < 4u || split + 3u >= count) return SC_E_SYNTAX;
-    {
-        int relation_result = parse_relation(tokens, 1u, split, resolver, &premise);
+
+    while (segment_start < split) {
+        uint8_t segment_end = split;
+        sr_pattern_t premise;
+        int relation_result;
+        for (uint8_t i = segment_start; i < split; i++) {
+            if (word_eq(&tokens[i], "e")) {
+                segment_end = i;
+                break;
+            }
+        }
+        if (segment_end <= segment_start) return SC_E_SYNTAX;
+        if (premise_count >= SR_MAX_PREMISES) return SC_E_LIMIT;
+        relation_result = parse_relation(tokens, segment_start, segment_end,
+                                         resolver, &premise);
         if (relation_result != SC_OK) return relation_result;
-        relation_result = parse_relation(tokens, (uint8_t)(split + 1u), count,
-                                         resolver, &conclusion);
+        if (premise_count == 0u) memset(out, 0, sizeof(*out));
+        out->premise[premise_count++] = premise;
+        if (segment_end == split) break;
+        segment_start = (uint8_t)(segment_end + 1u);
+    }
+
+    if (premise_count == 0u) return SC_E_SYNTAX;
+    {
+        int relation_result = parse_relation(tokens, (uint8_t)(split + 1u),
+                                              count, resolver, &conclusion);
         if (relation_result != SC_OK) return relation_result;
     }
-    memset(out, 0, sizeof(*out));
     out->id = (uint8_t)(canonical_id("regra") & 0xffu);
-    out->premise_count = 1u;
-    out->premise[0] = premise;
+    out->premise_count = premise_count;
     out->conclusion = conclusion;
-    out->cost = 1u;
+    out->cost = premise_count;
     return SC_OK;
 }
 

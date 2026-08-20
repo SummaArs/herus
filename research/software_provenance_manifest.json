@@ -11,7 +11,7 @@
     {
       "path": "prove.sh",
       "kind": "file",
-      "sha256": "d146c58f5bf5ae622a5af182fe35bcc323ed10f5b2e8d8ea5cd026d76f87c3f6",
+      "sha256": "e59639365ace71348f09f053267986aa2412f54018eebcc5814ab5fa40071bf6",
       "role": "global proof ledger"
     },
     {
@@ -23,13 +23,13 @@
     {
       "path": "firmware",
       "kind": "tree",
-      "sha256": "4623ce8994369b721be6aca0c4d0a847403283af916d491d6d2effa15ff9d614",
+      "sha256": "c58338dfbcb274bf31653d50ae47baa33b3cf17fbf329b6e3b0636437e246323",
       "role": "portable firmware and proof sources"
     },
     {
       "path": "tools",
       "kind": "tree",
-      "sha256": "742736b2006c900cf8359bcbabc8c547b4712ccec04c64274f7d30e5fff7eb11",
+      "sha256": "45167846d28e80e1fd6e582b43b4206828666dacb0dc96f598fb03079ff02be2",
       "role": "host proof and provenance tools"
     },
     {
@@ -61,6 +61,18 @@
       "kind": "file",
       "sha256": "e25352630bf867a78714f8a7f685b0e96228c5a309c030d3b95729f2789757e8",
       "role": "identity-bound bench materials manifest"
+    },
+    {
+      "path": "research/intelligence_benchmark_spec.json",
+      "kind": "file",
+      "sha256": "68188c639ceaf95cbf4b87d6eb9b1f97c0568278805b371b0f32e0f91ccc4dd7",
+      "role": "bounded intelligence benchmark contract"
+    },
+    {
+      "path": "research/intelligence_state_of_art_sources.md",
+      "kind": "file",
+      "sha256": "ec67c0589fa76bcc233c26418353df31532d70fe0c436f62afc82414835ea639",
+      "role": "research provenance for intelligence comparators"
     }
   ],
   "components": [

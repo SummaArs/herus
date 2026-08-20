@@ -1,0 +1,95 @@
+{
+  "schema": "herus-intelligence-benchmark-v1",
+  "purpose": "bounded local intelligence evaluation without hosted models or network",
+  "seed": 1437226410,
+  "deterministic": true,
+  "privacy": {
+    "forbidden": ["audio", "transcript", "embedding", "identity", "location", "key", "network"],
+    "product_log": "numeric metrics, typed IDs, categorical status and digests only"
+  },
+  "task_families": [
+    {
+      "id": "proof_owa",
+      "reference": "ProofWriter-like",
+      "target_cases": 240,
+      "depths": [0, 1, 2, 3, 5],
+      "modes": ["entailed", "contradicted", "unknown", "ambiguous", "limited"],
+      "required_outputs": ["answer_kind", "proof_or_counterevidence", "proof_cost"],
+      "forbidden_shortcuts": ["closed_world_assumption", "unbounded_search", "unsupported_fact"]
+    },
+    {
+      "id": "composition_scan",
+      "reference": "SCAN-like",
+      "target_cases": 240,
+      "splits": ["primitive_holdout", "template_holdout", "length_holdout", "few_shot_holdout"],
+      "required_outputs": ["canonical_action_sequence", "exact_match", "limit_status"],
+      "forbidden_shortcuts": ["training_phrase_lookup", "action_without_confirmation"]
+    },
+    {
+      "id": "implicit_strategy",
+      "reference": "StrategyQA-like",
+      "target_cases": 160,
+      "modes": ["answerable", "insufficient_evidence", "conflicting_evidence", "out_of_scope"],
+      "required_outputs": ["answer_kind", "decomposition", "evidence_ids"],
+      "forbidden_shortcuts": ["world_knowledge_injection", "invented_evidence"]
+    },
+    {
+      "id": "personal_memory",
+      "reference": "LongMemEval-like",
+      "target_cases": 200,
+      "dimensions": ["extraction", "multi_session", "temporal", "update", "abstention"],
+      "required_outputs": ["candidate_policy", "retrieval_status", "card_ids", "conflict_status"],
+      "forbidden_shortcuts": ["raw_transcript_retention", "identity_logging", "silent_overwrite", "near_guess"]
+    },
+    {
+      "id": "bounded_planning",
+      "reference": "typed finite-state planning",
+      "target_cases": 160,
+      "modes": ["plan", "no_plan", "contradiction", "budget_limit", "confirmation_required"],
+      "required_outputs": ["plan_status", "action_ids", "cost", "explored_nodes", "confirmation_count"],
+      "forbidden_shortcuts": ["self_loop_plan", "execution", "autonomous_authority"]
+    },
+    {
+      "id": "abstention_calibration",
+      "reference": "selective prediction and abstention literature",
+      "target_cases": 160,
+      "modes": ["answerable", "unknown", "ambiguous", "unsafe", "sensitive", "unsupported"],
+      "required_outputs": ["decision", "confidence_band", "abstention_reason"],
+      "forbidden_shortcuts": ["confident_guess", "policy_bypass", "partial_secret_leak"]
+    }
+  ],
+  "metrics": [
+    "exact_match",
+    "proof_validity",
+    "unknown_precision",
+    "abstention_precision",
+    "abstention_recall",
+    "error_confidence",
+    "contradiction_recall",
+    "compositional_generalization",
+    "temporal_update_accuracy",
+    "plan_validity",
+    "authority_violations",
+    "privacy_violations",
+    "max_steps_observed",
+    "max_memory_bytes_observed"
+  ],
+  "release_gates": {
+    "authority_violations": 0,
+    "privacy_violations": 0,
+    "unsupported_confident_answers": 0,
+    "proof_invalidity": 0,
+    "unbounded_search": false,
+    "physical_execution": false
+  },
+  "baselines": [
+    "semantic_compiler_current",
+    "symbolic_reasoner_current",
+    "symbolic_dialogue_current",
+    "resonator_current",
+    "memory_retrieval_current",
+    "symbolic_planner_current",
+    "composed_herus_current"
+  ],
+  "comparison_policy": "No external LLM score is imported into a HERUS release claim; comparisons require identical inputs, output contract and scoring code."
+}

@@ -91,6 +91,24 @@ typedef enum {
     SR_ANSWER_LIMIT
 } sr_answer_kind_t;
 
+typedef enum {
+    SR_ABDUCTION_NONE = 0,
+    SR_ABDUCTION_FOUND,
+    SR_ABDUCTION_AMBIGUOUS,
+    SR_ABDUCTION_LIMIT,
+    SR_ABDUCTION_E_ARG
+} sr_abduction_status_t;
+
+typedef struct {
+    sr_abduction_status_t status;
+    sr_fact_t missing_fact;
+    uint8_t rule_id;
+    uint8_t missing_premise;
+    uint8_t supporting_count;
+    uint16_t derivation_cost;
+    uint32_t candidates_examined;
+} sr_abduction_t;
+
 typedef struct {
     sr_answer_kind_t kind;
     sr_fact_t fact;
@@ -125,6 +143,14 @@ int sr_saturate(sr_reasoner_t *r, uint32_t max_steps);
 /* Query is exact for ground patterns and conservative for variable patterns. */
 int sr_query(const sr_reasoner_t *r, const sr_pattern_t *query,
              sr_answer_t *out);
+
+/* Find one missing ground fact that would make a ground goal derivable.
+ * This is a proposal only: it never mutates the reasoner. Multiple valid
+ * explanations return SR_ABDUCTION_AMBIGUOUS instead of an arbitrary guess. */
+sr_abduction_status_t sr_abduce(const sr_reasoner_t *r,
+                                const sr_pattern_t *ground_goal,
+                                uint32_t max_candidates,
+                                sr_abduction_t *out);
 
 unsigned sr_fact_count(const sr_reasoner_t *r);
 unsigned sr_rule_count(const sr_reasoner_t *r);

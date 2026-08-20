@@ -145,6 +145,55 @@ int main(void)
                     answer.kind == SR_ANSWER_CONTRADICTED,
           "contradictory evidence blocks a confident answer");
 
+    {
+        sr_reasoner_t abductive;
+        sr_abduction_t proposal;
+        sr_pattern_t goal = pattern(S_ALICE, P_GRAND, S_CARA, 0u);
+        unsigned facts_before;
+        sr_init(&abductive);
+        sr_add_fact(&abductive, direct);
+        sr_add_rule(&abductive, &parent);
+        facts_before = sr_fact_count(&abductive);
+        check(&score, sr_abduce(&abductive, &goal, 8u, &proposal) ==
+                        SR_ABDUCTION_FOUND &&
+                        proposal.missing_fact.subject == S_BOB &&
+                        proposal.missing_fact.predicate == P_PARENT &&
+                        proposal.missing_fact.object == S_CARA &&
+                        proposal.rule_id == parent.id &&
+                        proposal.missing_premise == 1u &&
+                        proposal.supporting_count == 1u,
+              "abduction proposes the single missing fact with rule and support metadata");
+        check(&score, sr_fact_count(&abductive) == facts_before &&
+                        sr_rule_count(&abductive) == 1u,
+              "abduction is a read-only hypothesis and never mutates local knowledge");
+        check(&score, sr_abduce(&abductive, &goal, 0u, &proposal) ==
+                        SR_ABDUCTION_LIMIT,
+              "abduction exposes a zero-candidate budget instead of searching unboundedly");
+        goal = pattern_terms(SR_VAR(0u), SR_CONST(P_GRAND),
+                             SR_CONST(S_CARA), 0u);
+        check(&score, sr_abduce(&abductive, &goal, 8u, &proposal) ==
+                        SR_ABDUCTION_E_ARG,
+              "abduction requires a ground goal and does not guess an entity binding");
+    }
+
+    {
+        sr_reasoner_t ambiguous;
+        sr_abduction_t proposal;
+        sr_rule_t alt0 = stage_rule(12u, P_STAGE0, P_STAGE1);
+        sr_rule_t alt1 = stage_rule(13u, P_STAGE2, P_STAGE1);
+        sr_pattern_t goal = pattern(S_ALICE, P_STAGE1, S_BOB, 0u);
+        sr_init(&ambiguous);
+        sr_add_rule(&ambiguous, &alt0);
+        sr_add_rule(&ambiguous, &alt1);
+        check(&score, sr_abduce(&ambiguous, &goal, 8u, &proposal) ==
+                        SR_ABDUCTION_AMBIGUOUS &&
+                        proposal.missing_fact.subject == 0u,
+              "multiple valid missing facts produce explicit abduction ambiguity");
+        check(&score, sr_abduce(&ambiguous, &goal, 1u, &proposal) ==
+                        SR_ABDUCTION_LIMIT,
+              "abduction candidate budget stops before selecting an arbitrary explanation");
+    }
+
     memset(&invalid, 0, sizeof(invalid));
     invalid.id = 99u;
     invalid.premise_count = 1u;
