@@ -62,6 +62,11 @@ static void hash_rule(sha256_ctx *ctx, const sr_rule_t *rule)
     hash_u16(ctx, rule->cost);
 }
 
+kf_core_status_t kf_core_status(uint8_t core_link_present)
+{
+    return core_link_present == 1u ? KF_CORE_AVAILABLE : KF_CORE_UNAVAILABLE;
+}
+
 void kf_digest(const kf_packet_t *packet, uint8_t out[KF_DIGEST_LEN])
 {
     sha256_ctx ctx;

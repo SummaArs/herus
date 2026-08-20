@@ -16,7 +16,7 @@ O planner, o diálogo e a abdução recebem esses mesmos tipos através da API c
 | Planner bounded, custo, ciclo, no-plan e confirmação | 10/10 |
 | Diálogo, autoridade, consulta e abdução read-only | 21/21 |
 | Compilador semântico e integração | 54/54 |
-| Pacote Core feed | 10/10 |
+| Pacote Core feed | 14/14 |
 
 ## 2. Feed executável
 
@@ -34,10 +34,11 @@ A função de aplicação é transacional. Sem confirmação local, o retorno é
 | Feed válido sem confirmação | `KF_PROPOSED`, sem mutação |
 | Feed válido com confirmação física | `KF_ACCEPTED`, commit integral |
 | Core sem conhecimento novo | reasoner local continua consultável |
+| Core ausente no transporte | `KF_CORE_UNAVAILABLE`, sem erro cognitivo local |
 
 ## 3. O que foi realmente provado
 
-O pipeline `./prove.sh --quiet` terminou com **todas as invariantes host passando**, incluindo **111 invariantes de sistema simulado**, a campanha de mutação global **7/7**, a campanha F4 de controles críticos e a nova suíte de feed. O resultado significa que os contratos executados na árvore local resistem aos casos enumerados.
+O pipeline `./prove.sh --quiet` terminou com **todas as invariantes host passando**, incluindo **111 invariantes de sistema simulado**, a campanha de mutação global **7/7**, a campanha F4 de controles críticos e a suíte de feed **14/14**. O resultado significa que os contratos executados na árvore local resistem aos casos enumerados.
 
 > Esse resultado não prova assinatura de produção, armazenamento seguro de trust anchors, resistência física, alcance de rádio, consumo de energia, desempenho de voz, qualidade conversacional ou operação no ESP32-S3.
 

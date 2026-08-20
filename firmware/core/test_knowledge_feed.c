@@ -123,6 +123,49 @@ int main(void)
                     SD_OK && reply.answer.kind == SR_ANSWER_DIRECT,
           "absence of a new Core feed does not disable the local reasoner");
 
+    {
+        kf_packet_t personal_packet = packet;
+        kf_cursor_t personal_cursor = { 0u, 0u };
+        kf_policy_t personal_policy = { 7u, 0u, 1u, 0u };
+        sd_dialogue_t personal_dialogue;
+        personal_packet.namespace_id = SRREG_NAMESPACE_PERSONAL;
+        personal_packet.sequence = 1u;
+        personal_packet.facts[0] = (sr_fact_t){
+            srreg_handle_make(SRREG_NAMESPACE_PERSONAL, 7u, 11u),
+            srreg_handle_make(SRREG_NAMESPACE_PERSONAL, 7u, 12u),
+            srreg_handle_make(SRREG_NAMESPACE_PERSONAL, 7u, 13u),
+            0u
+        };
+        kf_digest(&personal_packet, personal_packet.payload_digest);
+        sd_init(&personal_dialogue);
+        check(&score, kf_apply(&personal_packet, &personal_dialogue,
+                               &personal_policy, &personal_cursor,
+                               trusted_link, NULL, &applied) == KF_PROPOSED &&
+                        sr_fact_count(&personal_dialogue.reasoner) == 0u,
+              "Core cannot create personal memory without local confirmation");
+        personal_policy.local_confirmation = 1u;
+        check(&score, kf_apply(&personal_packet, &personal_dialogue,
+                               &personal_policy, &personal_cursor,
+                               trusted_link, NULL, &applied) == KF_ACCEPTED &&
+                        sr_fact_count(&personal_dialogue.reasoner) == 1u,
+              "personal feed knowledge is promoted only after explicit local confirmation");
+    }
+
+    {
+        kf_packet_t unauthenticated = packet;
+        kf_cursor_t unsigned_cursor = { 0u, 0u };
+        unauthenticated.authn_status = KF_AUTH_UNVERIFIED;
+        check(&score, kf_validate(&unauthenticated, 7u, &unsigned_cursor,
+                                  trusted_link, NULL) == KF_REJECTED_AUTHORITY,
+              "an unsigned Core packet cannot enter even the proposal verifier");
+    }
+
+    check(&score, kf_core_status(0u) == KF_CORE_UNAVAILABLE &&
+                    kf_core_status(1u) == KF_CORE_AVAILABLE &&
+                    sd_ask(&dialogue, &query, SD_MAX_DERIVATION_STEPS, &reply) ==
+                        SD_OK && reply.answer.kind == SR_ANSWER_DIRECT,
+          "Core absence is typed as unavailable while local intelligence remains usable");
+
     printf("KNOWLEDGE FEED: %d pass, %d fail\n", score.pass, score.fail);
     return score.fail ? 1 : 0;
 }

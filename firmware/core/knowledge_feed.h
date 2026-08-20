@@ -36,6 +36,11 @@ typedef enum {
 } kf_auth_status_t;
 
 typedef enum {
+    KF_CORE_AVAILABLE = 0u,
+    KF_CORE_UNAVAILABLE = 1u
+} kf_core_status_t;
+
+typedef enum {
     KF_ACCEPTED = 0,
     KF_PROPOSED = 1,
     KF_REJECTED_VERSION = -1,
@@ -89,6 +94,9 @@ typedef int (*kf_auth_verify_fn)(const kf_packet_t *packet,
 /* Compute the canonical digest over all semantic packet fields except digest. */
 void kf_digest(const kf_packet_t *packet,
                uint8_t out[KF_DIGEST_LEN]);
+
+/* Transport absence is a typed external status, never a reasoner failure. */
+kf_core_status_t kf_core_status(uint8_t core_link_present);
 
 /* Validate without mutating the packet or any dialogue state. */
 kf_status_t kf_validate(const kf_packet_t *packet,
