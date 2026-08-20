@@ -235,6 +235,11 @@ symbol-registry-c: build
 	$(CC) $(CFLAGS) $(INC) core/symbol_registry.c core/test_symbol_registry.c -o build/test_symbol_registry
 	./build/test_symbol_registry
 
+haptic-language: build
+	@echo "--- haptic language: DRV2605L-independent semantic frame encoder ---"
+	$(CC) $(CFLAGS) $(INC) core/haptic_language.c core/test_haptic_language.c -o build/test_haptic_language
+	./build/test_haptic_language
+
 resonator: build
 	@echo "--- resonator: bounded VSA factorization and cleanup ---"
 	$(CC) $(CFLAGS) -DHV_LUT_POPCOUNT $(INC) core/hv.c core/resonator.c core/test_resonator.c -o build/test_resonator
