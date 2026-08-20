@@ -218,12 +218,12 @@ symbolic-reasoner: build
 
 semantic-compiler: build
 	@echo "--- semantic compiler: bounded controlled-language to typed IR ---"
-	$(CC) $(CFLAGS) -DHV_LUT_POPCOUNT $(INC) core/hv.c core/resonator.c core/resonator_bridge.c core/symbolic_reasoner.c core/symbolic_planner.c core/symbolic_dialogue.c core/semantic_compiler.c core/test_semantic_compiler.c -o build/test_semantic_compiler
+	$(CC) $(CFLAGS) -DHV_LUT_POPCOUNT $(INC) core/hv.c core/resonator.c core/resonator_bridge.c core/symbolic_reasoner.c core/symbolic_planner.c core/symbolic_dialogue.c core/symbol_registry.c core/semantic_compiler.c core/test_semantic_compiler.c -o build/test_semantic_compiler
 	./build/test_semantic_compiler
 
 semantic-benchmark: build
 	@echo "--- semantic benchmark: exact IR, abstention and authority gates ---"
-	$(CC) $(CFLAGS) -DHV_LUT_POPCOUNT $(INC) core/hv.c core/resonator.c core/resonator_bridge.c core/symbolic_reasoner.c core/symbolic_planner.c core/symbolic_dialogue.c core/semantic_compiler.c core/test_semantic_compiler_benchmark.c -o build/test_semantic_compiler_benchmark
+	$(CC) $(CFLAGS) -DHV_LUT_POPCOUNT $(INC) core/hv.c core/resonator.c core/resonator_bridge.c core/symbolic_reasoner.c core/symbolic_planner.c core/symbolic_dialogue.c core/symbol_registry.c core/semantic_compiler.c core/test_semantic_compiler_benchmark.c -o build/test_semantic_compiler_benchmark
 	./build/test_semantic_compiler_benchmark
 
 symbol-registry-model:

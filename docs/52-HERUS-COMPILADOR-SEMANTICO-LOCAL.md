@@ -68,7 +68,7 @@ O compilador não tenta “corrigir” esses ataques. A propriedade medida é ma
 
 ## Evidência host-only
 
-A suíte integrada do compilador possui 39 invariantes: normalização, negação, consulta, regra, objetivos, não retenção, dados sensíveis, prompt injection, aridade estrita, NUL, colisão intra-frase, orçamento, confirmação, derivação, planner e ausência de efeitos laterais. O benchmark fixo apresenta a seguinte matriz:
+A suíte integrada do compilador possui 45 invariantes: normalização, negação, consulta, regra, objetivos, não retenção, dados sensíveis, prompt injection, aridade estrita, NUL, colisão intra-frase, orçamento, confirmação, derivação, planner, ausência de efeitos laterais, resolução versionada, autoridade pessoal, namespaces disjuntos e overflow fail-closed. O benchmark fixo apresenta a seguinte matriz:
 
 | Classe | Casos | Resultado observado |
 |---|---:|---:|

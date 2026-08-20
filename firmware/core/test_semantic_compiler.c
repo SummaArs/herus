@@ -16,6 +16,73 @@ static int compile_text(const char *text, sc_unit_t *unit)
     return sc_compile(text, strlen(text), unit);
 }
 
+typedef struct {
+    srreg_factory_t factory;
+    srreg_personal_t personal;
+    uint8_t authorize_personal;
+} registry_fixture_t;
+
+static int resolve_fixture(void *user, const char *text, size_t length,
+                           srreg_handle_t *out)
+{
+    registry_fixture_t *fixture = (registry_fixture_t *)user;
+    int result;
+    if (!fixture) return SRREG_INVALID;
+    result = srreg_factory_resolve(&fixture->factory, text, length, out);
+    if (result == SRREG_OK) return result;
+    return srreg_personal_resolve(&fixture->personal, text, length,
+                                  fixture->authorize_personal, out);
+}
+
+static void run_registry_cases(void)
+{
+    static const char *factory_keys[] = {
+        "possui", "caderno", "Gustavo", "poder", "estudar", "eu",
+        "chegar", "casa", "passagem", "estar_em"
+    };
+    registry_fixture_t fixture;
+    sc_registry_resolver_t resolver;
+    sc_unit_t unit;
+    int result;
+
+    memset(&fixture, 0, sizeof(fixture));
+    fixture.factory.version = 7u;
+    fixture.factory.keys = factory_keys;
+    fixture.factory.count = (uint16_t)(sizeof(factory_keys) / sizeof(factory_keys[0]));
+    check(srreg_personal_init(&fixture.personal, 7u, 2u) == SRREG_OK,
+          "registry compiler fixture initializes exact factory/personal namespaces");
+    resolver.resolve = resolve_fixture;
+    resolver.user = &fixture;
+    resolver.active_version = 7u;
+
+    fixture.authorize_personal = 0u;
+    result = sc_compile_with_registry("novo possui caderno.", 20u,
+                                      &resolver, &unit);
+    check(result == SC_E_AUTH && srreg_personal_count(&fixture.personal) == 0u,
+          "registry compiler refuses unconfirmed personal identity");
+
+    fixture.authorize_personal = 1u;
+    result = sc_compile_with_registry("gh possui ne.", 13u, &resolver, &unit);
+    check(result == SC_OK && unit.kind == SC_UNIT_FACT && unit.exact_parse == 1u,
+          "registry compiler accepts confirmed personal fact through typed handles");
+    check(unit.meaning.fact.subject != unit.meaning.fact.object &&
+                    (unit.meaning.fact.subject & 0x8000u) != 0u &&
+                    (unit.meaning.fact.object & 0x8000u) != 0u &&
+                    unit.meaning.fact.predicate < 0x8000u,
+          "registry compiler keeps personal and factory legacy namespaces disjoint");
+
+    result = sc_compile_with_registry("terceiro possui caderno.", 24u,
+                                      &resolver, &unit);
+    check(result == SC_E_LIMIT && srreg_personal_count(&fixture.personal) == 2u,
+          "registry compiler reports personal registry full without aliasing");
+
+    fixture.authorize_personal = 0u;
+    result = sc_compile_with_registry("novo possui caderno.", 20u,
+                                      &resolver, &unit);
+    check(result == SC_E_AUTH && unit.exact_parse == 0u,
+          "registry compiler preserves abstention on a later unconfirmed identity");
+}
+
 static void run_bridge_cases(void)
 {
     sd_dialogue_t dialogue;
@@ -232,7 +299,8 @@ int main(void)
           "ASCII case variants resolve to the same canonical entity ids");
 
     run_bridge_cases();
-
+    run_registry_cases();
     printf("SEMANTIC COMPILER: %d pass, %d fail\n", pass_count, fail_count);
+
     return fail_count ? 1 : 0;
 }

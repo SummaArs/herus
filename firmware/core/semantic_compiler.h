@@ -12,6 +12,7 @@
 #include "symbolic_reasoner.h"
 #include "symbolic_dialogue.h"
 #include "symbolic_planner.h"
+#include "symbol_registry.h"
 #include <stdint.h>
 #include <stddef.h>
 
@@ -43,7 +44,10 @@ typedef enum {
     SC_E_SYNTAX = -5,
     SC_E_UNSUPPORTED = -6,
     SC_E_LIMIT = -7,
-    SC_E_SENSITIVE = -8
+    SC_E_SENSITIVE = -8,
+    SC_E_AUTH = -9,
+    SC_E_COLLISION = -10,
+    SC_E_VERSION = -11
 } sc_status_t;
 
 typedef struct {
@@ -92,10 +96,24 @@ int sc_plan_goal(const sc_unit_t *unit, const sp_problem_t *catalog,
                  uint16_t max_nodes, uint8_t max_depth,
                  sc_bridge_result_t *out);
 
-/* Stable role-independent symbol id; the lexeme is never retained in output. */
+/* Stable role-independent legacy symbol id; the lexeme is never retained in output. */
 uint16_t sc_symbol_id(const char *text, size_t length);
 
-/* Compile a bounded controlled Portuguese utterance into typed IR. */
+typedef int (*sc_symbol_resolve_fn)(void *user, const char *text,
+                                    size_t length, srreg_handle_t *out);
+
+typedef struct {
+    sc_symbol_resolve_fn resolve;
+    void *user;
+    uint8_t active_version;
+} sc_registry_resolver_t;
+
+/* Compile using an explicit versioned registry and safe legacy projection. */
+int sc_compile_with_registry(const char *input, size_t length,
+                             const sc_registry_resolver_t *resolver,
+                             sc_unit_t *out);
+
+/* Compile a bounded controlled Portuguese utterance into legacy typed IR. */
 int sc_compile(const char *input, size_t length, sc_unit_t *out);
 
 #endif /* HERUS_SEMANTIC_COMPILER_H */

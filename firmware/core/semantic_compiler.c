@@ -135,18 +135,46 @@ static int token_is_sensitive(const sc_token_t *token)
            word_any(token, "senha", "chave");
 }
 
-static int parse_term(const sc_token_t *token, sr_term_t *out)
+static int resolve_text(const sc_registry_resolver_t *resolver,
+                         const char *text, size_t length, sr_term_t *out)
+{
+    srreg_handle_t handle = 0u;
+    uint16_t legacy = 0u;
+    int result;
+    if (!text || !out || length == 0u) return SC_E_ARG;
+    if (!resolver) {
+        *out = SC_CONST(sc_symbol_id(text, length));
+        return out->value == 0u ? SC_E_TOKEN : SC_OK;
+    }
+    if (!resolver->resolve || resolver->active_version == 0u)
+        return SC_E_ARG;
+    result = resolver->resolve(resolver->user, text, length, &handle);
+    if (result == SRREG_AUTH) return SC_E_AUTH;
+    if (result == SRREG_COLLISION) return SC_E_COLLISION;
+    if (result == SRREG_VERSION_MISMATCH) return SC_E_VERSION;
+    if (result == SRREG_FULL) return SC_E_LIMIT;
+    if (result != SRREG_OK) return SC_E_UNSUPPORTED;
+    result = srreg_project_legacy(handle, resolver->active_version, &legacy);
+    if (result == SRREG_VERSION_MISMATCH) return SC_E_VERSION;
+    if (result == SRREG_FULL) return SC_E_LIMIT;
+    if (result != SRREG_OK) return SC_E_TOKEN;
+    *out = SC_CONST(legacy);
+    return SC_OK;
+}
+
+static int parse_term(const sc_token_t *token, sr_term_t *out,
+                      const sc_registry_resolver_t *resolver)
 {
     if (!token || !out) return SC_E_ARG;
     if (word_any(token, "alguem", "alguém")) {
         *out = SC_VAR(1u);
         return SC_OK;
     }
-    *out = SC_CONST(sc_symbol_id(token->start, token->length));
-    return out->value == 0u ? SC_E_TOKEN : SC_OK;
+    return resolve_text(resolver, token->start, token->length, out);
 }
 
 static int parse_relation(const sc_token_t *tokens, uint8_t start, uint8_t count,
+                          const sc_registry_resolver_t *resolver,
                           sr_pattern_t *out)
 {
     uint8_t verb = start + 1u;
@@ -154,6 +182,7 @@ static int parse_relation(const sc_token_t *tokens, uint8_t start, uint8_t count
     uint8_t negated = 0u;
     sr_term_t subject_term;
     sr_term_t object_term;
+    sr_term_t predicate_term;
     if (!tokens || !out || count < (uint8_t)(start + 3u)) return SC_E_SYNTAX;
     if (word_any(&tokens[verb], "nao", "não")) {
         negated = 1u;
@@ -161,39 +190,58 @@ static int parse_relation(const sc_token_t *tokens, uint8_t start, uint8_t count
         object++;
     }
     if (object >= count) return SC_E_SYNTAX;
-    if (parse_term(&tokens[start], &subject_term) != SC_OK ||
-        parse_term(&tokens[object], &object_term) != SC_OK)
-        return SC_E_TOKEN;
+    {
+        int term_result = parse_term(&tokens[start], &subject_term, resolver);
+        if (term_result != SC_OK) return term_result;
+        term_result = parse_term(&tokens[object], &object_term, resolver);
+        if (term_result != SC_OK) return term_result;
+    }
     memset(out, 0, sizeof(*out));
     out->subject = subject_term;
     out->object = object_term;
     out->negated = negated;
     if (word_any(&tokens[verb], "possui", "tem")) {
         if (count != (uint8_t)(object + 1u)) return SC_E_SYNTAX;
-        out->predicate = SC_CONST(canonical_id("possui"));
+        {
+            int resolve_result = resolve_text(resolver, "possui", 6u, &predicate_term);
+            if (resolve_result != SC_OK) return resolve_result;
+        }
+        out->predicate = predicate_term;
     } else if (word_any(&tokens[verb], "esta", "está")) {
         object = (uint8_t)(verb + 2u);
         if ((uint8_t)(verb + 1u) >= count || object >= count ||
             !word_any(&tokens[verb + 1u], "em", "no")) return SC_E_SYNTAX;
-        out->predicate = SC_CONST(canonical_id("estar_em"));
-        if (parse_term(&tokens[object], &object_term) != SC_OK ||
-            count != (uint8_t)(object + 1u)) return SC_E_SYNTAX;
+        {
+            int resolve_result = resolve_text(resolver, "estar_em", 8u, &predicate_term);
+            if (resolve_result != SC_OK) return resolve_result;
+        }
+        out->predicate = predicate_term;
+        {
+            int term_result = parse_term(&tokens[object], &object_term, resolver);
+            if (term_result != SC_OK) return term_result;
+            if (count != (uint8_t)(object + 1u)) return SC_E_SYNTAX;
+        }
         out->object = object_term;
     } else if (word_eq(&tokens[verb], "pode")) {
         if (count != (uint8_t)(object + 1u)) return SC_E_SYNTAX;
-        out->predicate = SC_CONST(canonical_id("poder"));
+        {
+            int resolve_result = resolve_text(resolver, "poder", 5u, &predicate_term);
+            if (resolve_result != SC_OK) return resolve_result;
+        }
+        out->predicate = predicate_term;
     } else {
         return SC_E_UNSUPPORTED;
     }
     return SC_OK;
 }
 
-static int parse_fact(const sc_token_t *tokens, uint8_t count, sr_fact_t *out)
+static int parse_fact(const sc_token_t *tokens, uint8_t count,
+                      const sc_registry_resolver_t *resolver, sr_fact_t *out)
 {
     sr_pattern_t pattern;
     int result;
     if (!tokens || !out) return SC_E_ARG;
-    result = parse_relation(tokens, 0u, count, &pattern);
+    result = parse_relation(tokens, 0u, count, resolver, &pattern);
     if (result != SC_OK) return result;
     if (pattern.subject.kind != SC_TERM_CONSTANT ||
         pattern.object.kind != SC_TERM_CONSTANT)
@@ -205,7 +253,8 @@ static int parse_fact(const sc_token_t *tokens, uint8_t count, sr_fact_t *out)
     return SC_OK;
 }
 
-static int parse_rule(const sc_token_t *tokens, uint8_t count, sr_rule_t *out)
+static int parse_rule(const sc_token_t *tokens, uint8_t count,
+                      const sc_registry_resolver_t *resolver, sr_rule_t *out)
 {
     uint8_t split = 0u;
     sr_pattern_t premise;
@@ -219,9 +268,13 @@ static int parse_rule(const sc_token_t *tokens, uint8_t count, sr_rule_t *out)
         }
     }
     if (split < 4u || split + 3u >= count) return SC_E_SYNTAX;
-    if (parse_relation(tokens, 1u, split, &premise) != SC_OK ||
-        parse_relation(tokens, (uint8_t)(split + 1u), count, &conclusion) != SC_OK)
-        return SC_E_SYNTAX;
+    {
+        int relation_result = parse_relation(tokens, 1u, split, resolver, &premise);
+        if (relation_result != SC_OK) return relation_result;
+        relation_result = parse_relation(tokens, (uint8_t)(split + 1u), count,
+                                         resolver, &conclusion);
+        if (relation_result != SC_OK) return relation_result;
+    }
     memset(out, 0, sizeof(*out));
     out->id = (uint8_t)(canonical_id("regra") & 0xffu);
     out->premise_count = 1u;
@@ -232,49 +285,81 @@ static int parse_rule(const sc_token_t *tokens, uint8_t count, sr_rule_t *out)
 }
 
 static int parse_query(const sc_token_t *tokens, uint8_t count,
+                       const sc_registry_resolver_t *resolver,
                        sr_pattern_t *out)
 {
     sr_term_t subject;
     if (!tokens || !out || count < 4u || !word_eq(&tokens[0], "o") ||
         !word_eq(&tokens[1], "que")) return SC_E_SYNTAX;
-    if (parse_term(&tokens[2], &subject) != SC_OK ||
-        subject.kind != SC_TERM_CONSTANT) return SC_E_SYNTAX;
+    {
+        int term_result = parse_term(&tokens[2], &subject, resolver);
+        if (term_result != SC_OK) return term_result;
+        if (subject.kind != SC_TERM_CONSTANT) return SC_E_SYNTAX;
+    }
     memset(out, 0, sizeof(*out));
     out->subject = subject;
     out->object = SC_VAR(2u);
     if (word_any(&tokens[3], "possui", "tem")) {
         if (count != 4u) return SC_E_SYNTAX;
-        out->predicate = SC_CONST(canonical_id("possui"));
+        {
+            int resolve_result = resolve_text(resolver, "possui", 6u, &out->predicate);
+            if (resolve_result != SC_OK) return resolve_result;
+        }
     } else if (word_eq(&tokens[3], "pode")) {
         if (count != 4u) return SC_E_SYNTAX;
-        out->predicate = SC_CONST(canonical_id("poder"));
+        {
+            int resolve_result = resolve_text(resolver, "poder", 5u, &out->predicate);
+            if (resolve_result != SC_OK) return resolve_result;
+        }
     } else {
         return SC_E_UNSUPPORTED;
     }
     return SC_OK;
 }
 
-static int parse_goal(const sc_token_t *tokens, uint8_t count, sr_fact_t *out)
+static int parse_goal(const sc_token_t *tokens, uint8_t count,
+                      const sc_registry_resolver_t *resolver, sr_fact_t *out)
 {
     uint8_t object;
     if (!tokens || !out || count < 2u ||
         !word_any(&tokens[0], "planeje", "planejar")) return SC_E_SYNTAX;
     memset(out, 0, sizeof(*out));
-    out->subject = canonical_id("eu");
+    {
+        sr_term_t subject;
+        int resolve_result = resolve_text(resolver, "eu", 2u, &subject);
+        if (resolve_result != SC_OK) return resolve_result;
+        out->subject = subject.value;
+    }
     if (word_eq(&tokens[1], "chegar")) {
         if (count != 4u || !word_any(&tokens[2], "em", "no"))
             return SC_E_SYNTAX;
         object = 3u;
-        out->predicate = canonical_id("chegar");
+        {
+            sr_term_t predicate;
+            int resolve_result = resolve_text(resolver, "chegar", 6u, &predicate);
+            if (resolve_result != SC_OK) return resolve_result;
+            out->predicate = predicate.value;
+        }
     } else if (word_eq(&tokens[1], "estudar")) {
         if (count != 2u) return SC_E_SYNTAX;
         object = 1u;
-        out->predicate = canonical_id("estudar");
+        {
+            sr_term_t predicate;
+            int resolve_result = resolve_text(resolver, "estudar", 7u, &predicate);
+            if (resolve_result != SC_OK) return resolve_result;
+            out->predicate = predicate.value;
+        }
     } else {
         return SC_E_UNSUPPORTED;
     }
     if (object >= count) return SC_E_SYNTAX;
-    out->object = sc_symbol_id(tokens[object].start, tokens[object].length);
+    {
+        sr_term_t goal_object;
+        int resolve_result = resolve_text(resolver, tokens[object].start,
+                                          tokens[object].length, &goal_object);
+        if (resolve_result != SC_OK) return resolve_result;
+        out->object = goal_object.value;
+    }
     out->negated = 0u;
     return SC_OK;
 }
@@ -287,7 +372,9 @@ static int is_reject(const sc_token_t *tokens, uint8_t count)
             word_eq(&tokens[1], "memorizar"));
 }
 
-int sc_compile(const char *input, size_t length, sc_unit_t *out)
+static int compile_internal(const char *input, size_t length,
+                             const sc_registry_resolver_t *resolver,
+                             sc_unit_t *out)
 {
     sc_token_t tokens[SC_MAX_TOKENS];
     uint8_t count = 0u;
@@ -314,7 +401,7 @@ int sc_compile(const char *input, size_t length, sc_unit_t *out)
             return out->status = SC_E_SENSITIVE;
         }
     }
-    if (find_token_collision(tokens, count, &out->error_token) == 1) {
+    if (!resolver && find_token_collision(tokens, count, &out->error_token) == 1) {
         out->error_code = SC_ERR_COLLISION;
         return out->status = SC_E_TOKEN;
     }
@@ -326,25 +413,38 @@ int sc_compile(const char *input, size_t length, sc_unit_t *out)
     }
     if (question || (count >= 2u && word_eq(&tokens[0], "o") &&
                      word_eq(&tokens[1], "que"))) {
-        result = parse_query(tokens, count, &out->meaning.query);
+        result = parse_query(tokens, count, resolver, &out->meaning.query);
         out->kind = SC_UNIT_QUERY;
         out->requires_confirmation = 0u;
     } else if (word_eq(&tokens[0], "se")) {
-        result = parse_rule(tokens, count, &out->meaning.rule);
+        result = parse_rule(tokens, count, resolver, &out->meaning.rule);
         out->kind = SC_UNIT_RULE;
         out->requires_confirmation = 1u;
     } else if (word_any(&tokens[0], "planeje", "planejar")) {
-        result = parse_goal(tokens, count, &out->meaning.goal);
+        result = parse_goal(tokens, count, resolver, &out->meaning.goal);
         out->kind = SC_UNIT_GOAL;
         out->requires_confirmation = 1u;
     } else {
-        result = parse_fact(tokens, count, &out->meaning.fact);
+        result = parse_fact(tokens, count, resolver, &out->meaning.fact);
         out->kind = SC_UNIT_FACT;
         out->requires_confirmation = 1u;
     }
     out->status = result;
     out->exact_parse = result == SC_OK ? 1u : 0u;
     return result;
+}
+
+int sc_compile_with_registry(const char *input, size_t length,
+                             const sc_registry_resolver_t *resolver,
+                             sc_unit_t *out)
+{
+    if (!resolver || !resolver->resolve) return SC_E_ARG;
+    return compile_internal(input, length, resolver, out);
+}
+
+int sc_compile(const char *input, size_t length, sc_unit_t *out)
+{
+    return compile_internal(input, length, NULL, out);
 }
 
 static void bridge_reset(sc_bridge_result_t *out)
