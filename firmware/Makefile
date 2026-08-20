@@ -44,6 +44,7 @@
 #   make resonator the bounded VSA factorization and cleanup suite
 #   make semantic-compiler the controlled-language semantic compiler suite
 #   make semantic-benchmark the fixed-corpus semantic equivalence benchmark
+#   make knowledge-feed the authenticated, bounded and confirmation-gated Core feed
 #   make interaction the push-to-talk, confirmation and one-shot runtime suite
 #   make interaction-rig deterministic adapter and validation-lab scenarios
 #   make net        the protocol suite (crypto, session, weave, beat, framing)
@@ -64,7 +65,7 @@ INC     := -Icore -Inet -Iport -Itest
 CORE    := core/hv.c core/sbc.c core/lexicon.c core/hcp.c
 NET     := net/crypto.c net/session.c net/region.c net/weave.c net/beat.c net/link.c
 
-.PHONY: all algebra nucleus voice intent dialogue model-lab memory-policy memory-capture memory-extract watch-memory-frontend memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale memory-collection memory-collection-index memory-collection-recovery memory-collection-recovery-stress memory-collection-finale bench-evidence-validate bench-interruption-sim memory-proposal llm-budget-check memory-physical-session memory-physical-session-recovery memory-physical-session-recovery-stress memory-physical-session-bootstrap memory-prehardware-finale threat-model threat-model-stress proof-fire-mutations assurance capstone trust control-link delivery-plan transport-selector personal-telemetry symbolic-reasoner resonator semantic-compiler semantic-benchmark interaction interaction-rig net radio syntax vectors haptic-language haptic-language-matrix haptic-semantic-bridge haptic-adapter haptic-evidence haptic-target haptic-runner haptic-preflight clean
+.PHONY: all algebra nucleus voice intent dialogue model-lab memory-policy memory-capture memory-extract watch-memory-frontend memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale memory-collection memory-collection-index memory-collection-recovery memory-collection-recovery-stress memory-collection-finale bench-evidence-validate bench-interruption-sim memory-proposal llm-budget-check memory-physical-session memory-physical-session-recovery memory-physical-session-recovery-stress memory-physical-session-bootstrap memory-prehardware-finale threat-model threat-model-stress proof-fire-mutations assurance capstone trust control-link delivery-plan transport-selector personal-telemetry symbolic-reasoner resonator semantic-compiler semantic-benchmark knowledge-feed interaction interaction-rig net radio syntax vectors haptic-language haptic-language-matrix haptic-semantic-bridge haptic-adapter haptic-evidence haptic-target haptic-runner haptic-preflight clean
 
 all: algebra nucleus voice intent dialogue model-lab memory-policy memory-capture memory-extract memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale memory-collection memory-collection-index memory-collection-recovery memory-collection-recovery-stress memory-collection-finale memory-physical-session memory-physical-session-recovery memory-physical-session-recovery-stress memory-physical-session-bootstrap memory-prehardware-finale threat-model threat-model-stress proof-fire-mutations assurance capstone trust control-link interaction interaction-rig net radio syntax haptic-language haptic-language-matrix haptic-semantic-bridge haptic-adapter haptic-evidence haptic-target haptic-runner haptic-preflight
 	@echo ""
@@ -209,11 +210,11 @@ personal-telemetry: build
 
 symbolic-reasoner: build
 	@echo "--- symbolic reasoner: bounded generative inference, proof and abstention ---"
-	$(CC) $(CFLAGS) $(INC) core/symbolic_reasoner.c core/test_symbolic_reasoner.c -o build/test_symbolic_reasoner
+	$(CC) $(CFLAGS) $(INC) core/symbol_registry.c core/symbolic_reasoner.c core/test_symbolic_reasoner.c -o build/test_symbolic_reasoner
 	./build/test_symbolic_reasoner
-	$(CC) $(CFLAGS) $(INC) core/symbolic_reasoner.c core/symbolic_planner.c core/test_symbolic_planner.c -o build/test_symbolic_planner
+	$(CC) $(CFLAGS) $(INC) core/symbol_registry.c core/symbolic_reasoner.c core/symbolic_planner.c core/test_symbolic_planner.c -o build/test_symbolic_planner
 	./build/test_symbolic_planner
-	$(CC) $(CFLAGS) -DHV_LUT_POPCOUNT $(INC) core/hv.c core/resonator.c core/resonator_bridge.c core/symbolic_reasoner.c core/symbolic_dialogue.c core/test_symbolic_dialogue.c -o build/test_symbolic_dialogue
+	$(CC) $(CFLAGS) -DHV_LUT_POPCOUNT $(INC) core/hv.c core/resonator.c core/resonator_bridge.c core/symbol_registry.c core/symbolic_reasoner.c core/symbolic_dialogue.c core/test_symbolic_dialogue.c -o build/test_symbolic_dialogue
 	./build/test_symbolic_dialogue
 
 semantic-compiler: build
@@ -225,6 +226,11 @@ semantic-benchmark: build
 	@echo "--- semantic benchmark: exact IR, abstention and authority gates ---"
 	$(CC) $(CFLAGS) -DHV_LUT_POPCOUNT $(INC) core/hv.c core/resonator.c core/resonator_bridge.c core/symbolic_reasoner.c core/symbolic_planner.c core/symbolic_dialogue.c core/symbol_registry.c core/semantic_compiler.c core/test_semantic_compiler_benchmark.c -o build/test_semantic_compiler_benchmark
 	./build/test_semantic_compiler_benchmark
+
+knowledge-feed: build
+	@echo "--- knowledge feed: Core proposal, digest, rollback and local authority gates ---"
+	$(CC) $(CFLAGS) -DHV_LUT_POPCOUNT $(INC) net/crypto.c core/hv.c core/resonator.c core/resonator_bridge.c core/symbol_registry.c core/symbolic_reasoner.c core/symbolic_dialogue.c core/knowledge_feed.c core/test_knowledge_feed.c -o build/test_knowledge_feed
+	./build/test_knowledge_feed
 
 symbol-registry-model:
 	@echo "--- symbol registry model: versioned collision-aware host contract ---"

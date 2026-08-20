@@ -10,6 +10,7 @@
 #ifndef HERUS_SYMBOLIC_REASONER_H
 #define HERUS_SYMBOLIC_REASONER_H
 
+#include "symbol_registry.h"
 #include <stdint.h>
 #include <stddef.h>
 
@@ -24,8 +25,11 @@
 #define SR_TERM_CONSTANT    0u
 #define SR_TERM_VARIABLE    1u
 
-#define SR_VAR(id) ((sr_term_t){ (uint16_t)(id), SR_TERM_VARIABLE })
-#define SR_CONST(id) ((sr_term_t){ (uint16_t)(id), SR_TERM_CONSTANT })
+typedef srreg_handle_t sr_symbol_t;
+
+#define SR_SYMBOL_LEGACY(id) ((sr_symbol_t)(uint16_t)(id))
+#define SR_VAR(id) ((sr_term_t){ (sr_symbol_t)(id), SR_TERM_VARIABLE })
+#define SR_CONST(id) ((sr_term_t){ (sr_symbol_t)(id), SR_TERM_CONSTANT })
 
 /* Rule and fact status are intentionally small and stable for firmware ABI use. */
 enum {
@@ -41,14 +45,14 @@ enum {
 };
 
 typedef struct {
-    uint16_t value;
+    sr_symbol_t value;
     uint8_t kind;
 } sr_term_t;
 
 typedef struct {
-    uint16_t subject;
-    uint16_t predicate;
-    uint16_t object;
+    sr_symbol_t subject;
+    sr_symbol_t predicate;
+    sr_symbol_t object;
     uint8_t negated;
 } sr_fact_t;
 

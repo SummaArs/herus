@@ -5,7 +5,7 @@
 
 typedef struct {
     uint8_t used[SR_MAX_VARIABLES];
-    uint16_t value[SR_MAX_VARIABLES];
+    sr_symbol_t value[SR_MAX_VARIABLES];
 } sr_binding_t;
 
 static int canonical_bool(uint8_t value)
@@ -52,7 +52,7 @@ static int find_fact(const sr_reasoner_t *r, sr_fact_t fact)
     return -1;
 }
 
-static int bind_term(sr_term_t pattern, uint16_t value, sr_binding_t *binding)
+static int bind_term(sr_term_t pattern, sr_symbol_t value, sr_binding_t *binding)
 {
     if (pattern.kind == SR_TERM_CONSTANT) return pattern.value == value;
     if (!binding || pattern.value >= SR_MAX_VARIABLES) return 0;
@@ -74,7 +74,7 @@ static int match_pattern(const sr_pattern_t *pattern, sr_fact_t fact,
            bind_term(pattern->object, fact.object, binding);
 }
 
-static uint16_t instantiate_term(sr_term_t term, const sr_binding_t *binding)
+static sr_symbol_t instantiate_term(sr_term_t term, const sr_binding_t *binding)
 {
     if (term.kind == SR_TERM_CONSTANT) return term.value;
     return binding->value[term.value];
@@ -343,7 +343,7 @@ static int instantiate_ground_pattern(const sr_pattern_t *pattern,
                                        sr_fact_t *out)
 {
     const sr_term_t *terms[3];
-    uint16_t *values[3];
+    sr_symbol_t *values[3];
     if (!pattern || !binding || !out || !valid_pattern(pattern)) return 0;
     terms[0] = &pattern->subject;
     terms[1] = &pattern->predicate;

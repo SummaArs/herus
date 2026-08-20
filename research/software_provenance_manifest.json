@@ -11,7 +11,7 @@
     {
       "path": "prove.sh",
       "kind": "file",
-      "sha256": "e59639365ace71348f09f053267986aa2412f54018eebcc5814ab5fa40071bf6",
+      "sha256": "395ab2d0a5e4776ce2a65ae1df3037d6c029a0064227b90bdf904ea3778525a1",
       "role": "global proof ledger"
     },
     {
@@ -23,7 +23,7 @@
     {
       "path": "firmware",
       "kind": "tree",
-      "sha256": "c58338dfbcb274bf31653d50ae47baa33b3cf17fbf329b6e3b0636437e246323",
+      "sha256": "9e0023c8cd3ad6ed30b92cce6a6a2a024f93a2fff637702378f6a6e345c86f9a",
       "role": "portable firmware and proof sources"
     },
     {

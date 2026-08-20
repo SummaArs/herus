@@ -1,0 +1,75 @@
+{
+  "schema": "herus-knowledge-feed-v1",
+  "purpose": "typed, bounded, non-authoritative knowledge proposals for the on-wrist HERUS",
+  "wire_identity": "not the cognitive identity ABI; internal symbols use versioned 32-bit registry handles",
+  "required_envelope": [
+    "feed_id",
+    "sequence",
+    "source_kind",
+    "source_id",
+    "target_registry_version",
+    "target_firmware_contract",
+    "content_digest",
+    "provenance_digest",
+    "authn_status",
+    "records",
+    "limits"
+  ],
+  "source_kind": ["CORE_LOCAL", "FACTORY_MEDIA", "USER_EXPORT"],
+  "authn_status": ["UNVERIFIED", "VERIFIED_LINK", "VERIFIED_SIGNATURE", "REJECTED"],
+  "processing_status": [
+    "RECEIVED",
+    "REJECTED_SCHEMA",
+    "REJECTED_VERSION",
+    "REJECTED_NAMESPACE",
+    "REJECTED_DIGEST",
+    "REJECTED_AUTHN",
+    "REJECTED_LIMIT",
+    "VERIFIED_PROPOSAL",
+    "PRESENTED_FOR_CONFIRMATION",
+    "ACCEPTED_FACTORY",
+    "ACCEPTED_PERSONAL",
+    "EXPIRED"
+  ],
+  "record_types": ["FACT_PROPOSAL", "RULE_PROPOSAL", "VOCABULARY_PROPOSAL", "EVIDENCE_NOTE"],
+  "record_contract": {
+    "required": ["record_id", "record_type", "namespace", "registry_version", "handles", "evidence_digest", "authority_class"],
+    "namespace": ["FACTORY", "PERSONAL"],
+    "authority_class": ["DISPLAY_ONLY", "FACTORY_ACCEPTABLE", "PERSONAL_CONFIRMATION_REQUIRED"],
+    "handles": {
+      "representation": "uint32",
+      "meaning": "versioned collision-aware registry handles",
+      "legacy_projection": "never authoritative; only compatibility serialization"
+    },
+    "forbidden": ["raw_text", "audio", "transcript", "embedding", "identity", "location", "key", "executor", "radio_command"]
+  },
+  "limits": {
+    "max_feed_bytes": 8192,
+    "max_records": 16,
+    "max_new_factory_symbols": 32,
+    "max_new_personal_symbols": 8,
+    "max_rules": 8,
+    "max_premises_per_rule": 4,
+    "max_derivation_cost": 64,
+    "max_ttl": 86400
+  },
+  "authority_policy": {
+    "core_may": ["charge", "relay", "transport", "present_proposal", "provide_provenance"],
+    "core_may_not": ["execute", "send_radio", "confirm_memory", "overwrite_personal", "change_trust_anchor", "change_registry_version", "bypass_abstention"],
+    "wrist_must_decide": ["compatibility", "digest", "namespace", "semantic_validity", "conflict", "personal_confirmation", "expiry", "incorporation"]
+  },
+  "offline_policy": {
+    "local_reasoner_required": true,
+    "local_memory_required": true,
+    "local_query_required": true,
+    "core_unavailable_result": "CORE_UNAVAILABLE",
+    "cognitive_fallback": "continue_local_without_feed"
+  },
+  "acceptance_states": {
+    "unverified_or_untrusted": "presentation_only_or_reject",
+    "verified_factory": "may_be_accepted_only_by_local_policy",
+    "verified_personal": "requires_explicit_physical_confirmation",
+    "ambiguous_or_conflicting": "abstain",
+    "expired": "reject_and_do_not_reactivate"
+  }
+}

@@ -11,6 +11,9 @@
 #define P_STAGE0 20u
 #define P_STAGE1 21u
 #define P_STAGE2 22u
+#define TEST_HANDLE(ns, version, slot) \
+    ((((sr_symbol_t)(ns)) << 24) | (((sr_symbol_t)(version)) << 16) | \
+     ((sr_symbol_t)(slot)))
 
 typedef struct { int pass; int fail; } test_score_t;
 
@@ -20,8 +23,8 @@ static void check(test_score_t *score, int condition, const char *label)
     if (condition) score->pass++; else score->fail++;
 }
 
-static sr_pattern_t pattern(uint16_t subject, uint16_t predicate,
-                            uint16_t object, uint8_t negated)
+static sr_pattern_t pattern(sr_symbol_t subject, sr_symbol_t predicate,
+                            sr_symbol_t object, uint8_t negated)
 {
     sr_pattern_t p;
     p.subject = SR_CONST(subject);
@@ -213,6 +216,30 @@ int main(void)
     check(&score, sr_saturate(&reasoner, 1u) == SR_E_LIMIT &&
                     reasoner.saturation_truncated == 1u,
           "a bounded search budget produces an explicit limit, not a false result");
+
+    {
+        sr_reasoner_t handles;
+        sr_answer_t handle_answer;
+        sr_symbol_t high_subject = TEST_HANDLE(SRREG_NAMESPACE_PERSONAL,
+                                                  7u, 0x1234u);
+        sr_symbol_t high_predicate = TEST_HANDLE(SRREG_NAMESPACE_FACTORY,
+                                                    7u, 0x1234u);
+        sr_symbol_t high_object = TEST_HANDLE(SRREG_NAMESPACE_PERSONAL,
+                                                  7u, 0x1235u);
+        sr_fact_t high_fact = { high_subject, high_predicate, high_object, 0u };
+        sr_pattern_t high_query = pattern(high_subject, high_predicate,
+                                          high_object, 0u);
+        sr_init(&handles);
+        check(&score, high_subject > UINT16_MAX && high_predicate > UINT16_MAX &&
+                        high_subject != high_predicate && high_object != high_subject &&
+                        sr_add_fact(&handles, high_fact) == SR_OK &&
+                        sr_query(&handles, &high_query, &handle_answer) == SR_OK &&
+                        handle_answer.kind == SR_ANSWER_DIRECT &&
+                        handle_answer.fact.subject == high_subject &&
+                        handle_answer.fact.predicate == high_predicate &&
+                        handle_answer.fact.object == high_object,
+              "reasoner preserves collision-aware 32-bit handles without legacy truncation");
+    }
 
     {
         sr_reasoner_t full;

@@ -66,10 +66,15 @@ static void run_registry_cases(void)
     check(result == SC_OK && unit.kind == SC_UNIT_FACT && unit.exact_parse == 1u,
           "registry compiler accepts confirmed personal fact through typed handles");
     check(unit.meaning.fact.subject != unit.meaning.fact.object &&
-                    (unit.meaning.fact.subject & 0x8000u) != 0u &&
-                    (unit.meaning.fact.object & 0x8000u) != 0u &&
-                    unit.meaning.fact.predicate < 0x8000u,
-          "registry compiler keeps personal and factory legacy namespaces disjoint");
+                    srreg_handle_namespace(unit.meaning.fact.subject) ==
+                        SRREG_NAMESPACE_PERSONAL &&
+                    srreg_handle_namespace(unit.meaning.fact.object) ==
+                        SRREG_NAMESPACE_PERSONAL &&
+                    srreg_handle_namespace(unit.meaning.fact.predicate) ==
+                        SRREG_NAMESPACE_FACTORY &&
+                    srreg_handle_version(unit.meaning.fact.subject) == 7u &&
+                    srreg_handle_version(unit.meaning.fact.predicate) == 7u,
+          "registry compiler keeps full personal and factory namespaces disjoint");
 
     result = sc_compile_with_registry("terceiro possui caderno.", 24u,
                                       &resolver, &unit);

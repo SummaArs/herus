@@ -139,7 +139,6 @@ static int resolve_text(const sc_registry_resolver_t *resolver,
                          const char *text, size_t length, sr_term_t *out)
 {
     srreg_handle_t handle = 0u;
-    uint16_t legacy = 0u;
     int result;
     if (!text || !out || length == 0u) return SC_E_ARG;
     if (!resolver) {
@@ -154,11 +153,9 @@ static int resolve_text(const sc_registry_resolver_t *resolver,
     if (result == SRREG_VERSION_MISMATCH) return SC_E_VERSION;
     if (result == SRREG_FULL) return SC_E_LIMIT;
     if (result != SRREG_OK) return SC_E_UNSUPPORTED;
-    result = srreg_project_legacy(handle, resolver->active_version, &legacy);
-    if (result == SRREG_VERSION_MISMATCH) return SC_E_VERSION;
-    if (result == SRREG_FULL) return SC_E_LIMIT;
-    if (result != SRREG_OK) return SC_E_TOKEN;
-    *out = SC_CONST(legacy);
+    if (handle == 0u || srreg_handle_version(handle) != resolver->active_version)
+        return SC_E_VERSION;
+    *out = SR_CONST(handle);
     return SC_OK;
 }
 

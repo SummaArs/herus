@@ -18,13 +18,14 @@ static void check(score_t *score, int condition, const char *label)
     if (condition) score->pass++; else score->fail++;
 }
 
-static sr_fact_t fact(uint16_t object)
+static sr_fact_t fact(sr_symbol_t object)
 {
-    return (sr_fact_t){ O_SELF, P_STATE, object, 0u };
+    return (sr_fact_t){ SR_SYMBOL_LEGACY(O_SELF), SR_SYMBOL_LEGACY(P_STATE),
+                         object, 0u };
 }
 
-static sp_action_t action(uint8_t id, uint16_t need, uint16_t add,
-                          uint16_t remove, uint16_t cost,
+static sp_action_t action(uint8_t id, sr_symbol_t need, sr_symbol_t add,
+                          sr_symbol_t remove, uint16_t cost,
                           uint8_t confirmation)
 {
     sp_action_t a;
@@ -81,6 +82,31 @@ int main(void)
     check(&score, sp_plan(&problem, 1u, 8u, &result) == SP_E_LIMIT &&
                     result.explored_nodes == 1u,
           "node budget prevents unbounded combinatorial search");
+
+    {
+        sr_symbol_t high_state = srreg_handle_make(SRREG_NAMESPACE_PERSONAL,
+                                                    7u, 0x2234u);
+        sr_symbol_t high_goal = srreg_handle_make(SRREG_NAMESPACE_FACTORY,
+                                                   7u, 0x2235u);
+        sp_problem_t handles;
+        memset(&handles, 0, sizeof(handles));
+        handles.initial_count = 1u;
+        handles.initial[0] = (sr_fact_t){ high_state, high_state, high_state, 0u };
+        handles.goal = (sr_fact_t){ high_goal, high_goal, high_goal, 0u };
+        handles.action_count = 1u;
+        handles.action[0] = (sp_action_t){
+            .id = 31u,
+            .precondition_count = 1u,
+            .add_count = 1u,
+            .cost = 1u,
+            .precondition = {{ high_state, high_state, high_state, 0u }},
+            .add = {{ high_goal, high_goal, high_goal, 0u }}
+        };
+        check(&score, high_state > UINT16_MAX && high_goal > UINT16_MAX &&
+                        sp_plan(&handles, 8u, 2u, &result) == SP_OK &&
+                        result.plan_length == 1u && result.action_id[0] == 31u,
+              "planner carries collision-aware 32-bit handles across a causal transition");
+    }
 
     memset(&problem, 0, sizeof(problem));
     problem.initial_count = 2u;

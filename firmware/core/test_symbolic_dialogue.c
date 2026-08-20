@@ -118,6 +118,32 @@ int main(void)
                                        (sr_fact_t){ PERSON, OWNS, PLACE, 1u },
                                        1u) == SD_OK,
           "contradictory personal evidence can be recorded for review");
+
+    {
+        sd_dialogue_t handles;
+        sd_reply_t handle_reply;
+        sr_symbol_t high_person = srreg_handle_make(SRREG_NAMESPACE_PERSONAL,
+                                                     7u, 0x3234u);
+        sr_symbol_t high_predicate = srreg_handle_make(SRREG_NAMESPACE_FACTORY,
+                                                        7u, 0x3235u);
+        sr_symbol_t high_object = srreg_handle_make(SRREG_NAMESPACE_PERSONAL,
+                                                     7u, 0x3236u);
+        sr_fact_t high_fact = { high_person, high_predicate, high_object, 0u };
+        sr_pattern_t high_query = { SR_CONST(high_person),
+                                     SR_CONST(high_predicate),
+                                     SR_CONST(high_object), 0u };
+        sd_init(&handles);
+        check(&score, high_person > UINT16_MAX && high_predicate > UINT16_MAX &&
+                        sd_add_personal_fact(&handles, high_fact, 1u) == SD_OK &&
+                        sd_ask(&handles, &high_query, SD_MAX_DERIVATION_STEPS,
+                               &handle_reply) == SD_OK &&
+                        handle_reply.answer.kind == SR_ANSWER_DIRECT &&
+                        handle_reply.answer.fact.subject == high_person &&
+                        handle_reply.answer.fact.predicate == high_predicate &&
+                        handle_reply.answer.fact.object == high_object,
+              "dialogue preserves collision-aware 32-bit identity through confirmation and query");
+    }
+
     query = (sr_pattern_t){ SR_CONST(PERSON), SR_CONST(OWNS),
                             SR_CONST(PLACE), 0u };
     check(&score, sd_ask(&dialogue, &query, SD_MAX_DERIVATION_STEPS, &reply) ==
