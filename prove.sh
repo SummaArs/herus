@@ -9,7 +9,7 @@
 #   ./prove.sh            full run
 #   ./prove.sh --quiet    verdict lines only
 #
-# Fifty-three suites, each independently falsifiable:
+# Fifty-four suites, each independently falsifiable:
 #   1  algebra      quasi-orthogonality, bundling, resonator, learning, HCP
 #   2  nucleus      bounded, opt-in local semantic intelligence
 #   3  voice        controlled local language and bounded haptic feedback
@@ -63,6 +63,7 @@
 #  51  HAP-SEM private numeric bench-evidence schema and validator
 #  52  ESP32-S3 DRV2605L target port, disabled gate and compile override
 #  53  HAP-SEM no-hardware runner and evidence-origin blocking
+#  54  HAP-SEM pre-energization checklist and safety blocking
 #
 # The Nucleus suite is intentionally separate: privacy and non-autonomy are
 # properties that must fail a build when regressed, not promises in a document.
@@ -314,9 +315,12 @@ banner "51/52 HAP-SEM private numeric evidence validator"
 banner "52/53 ESP32-S3 DRV2605L target port (disabled gate and compile override)"
 ( cd firmware && make haptic-target ) > /tmp/herus_haptic_target.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_haptic_target.log
-banner "53/53 HAP-SEM no-hardware runner and evidence-origin blocking"
+banner "53/54 HAP-SEM no-hardware runner and evidence-origin blocking"
 ( cd firmware && make haptic-runner ) > /tmp/herus_haptic_runner.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_haptic_runner.log
+banner "54/54 HAP-SEM pre-energization checklist and safety blocking"
+( cd firmware && make haptic-preflight ) > /tmp/herus_haptic_preflight.log 2>&1 || FAIL=1
+[ "$QUIET" = 0 ] && cat /tmp/herus_haptic_preflight.log
  echo ""
 
 echo "--------------------------------------------------"
@@ -350,6 +354,7 @@ check "HAP-SEM adapter preserves ordering, abort and fail-closed state" "HAPTIC 
 check "HAP-SEM evidence validator preserves privacy, digest and blocking gates" "HAPTIC BENCH EVIDENCE VALIDATOR: 9 pass, 0 fail" /tmp/herus_haptic_evidence.log
 check "ESP32-S3 target keeps unverified hardware disabled and syntax-checks the I2C path" "HAPTIC TARGET: 4 pass, 0 fail" /tmp/herus_haptic_target.log
 check "HAP-SEM runner blocks absent hardware and binds evidence origin" "HAPTIC BENCH EVIDENCE VALIDATOR: 9 pass, 0 fail" /tmp/herus_haptic_runner.log
+check "HAP-SEM preflight blocks unsafe or unmeasured pre-energization" "HAPTIC PREFLIGHT: 5 pass, 0 fail" /tmp/herus_haptic_preflight.log
 
 # --- physical layer -------------------------------------------------------
 check "P1 constant AIRTIME across meaning tiers" "INVARIANT HOLDS" /tmp/herus_c.log

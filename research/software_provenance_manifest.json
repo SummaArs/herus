@@ -11,7 +11,7 @@
     {
       "path": "prove.sh",
       "kind": "file",
-      "sha256": "51e0ecb8a2fc6ede25b2da7d6558de35cd370d59cbff4471be74634ce219c81d",
+      "sha256": "d146c58f5bf5ae622a5af182fe35bcc323ed10f5b2e8d8ea5cd026d76f87c3f6",
       "role": "global proof ledger"
     },
     {
@@ -23,13 +23,13 @@
     {
       "path": "firmware",
       "kind": "tree",
-      "sha256": "0ebdca748aecc8cc3013a915aca59d7e19ffb1a06ea2077d1499efbbf869f7aa",
+      "sha256": "4623ce8994369b721be6aca0c4d0a847403283af916d491d6d2effa15ff9d614",
       "role": "portable firmware and proof sources"
     },
     {
       "path": "tools",
       "kind": "tree",
-      "sha256": "8875d19a2aadcc2dc84c11cb910ffc478104a26f6446416c7a110ae3ed5cac0b",
+      "sha256": "742736b2006c900cf8359bcbabc8c547b4712ccec04c64274f7d30e5fff7eb11",
       "role": "host proof and provenance tools"
     },
     {
@@ -49,6 +49,18 @@
       "kind": "file",
       "sha256": "2e7820b767c657c5d0b4a50239bca82e21209025536353e9e75113782d562d09",
       "role": "private numeric HAP-SEM bench evidence schema"
+    },
+    {
+      "path": "research/haptic_preflight_schema.json",
+      "kind": "file",
+      "sha256": "66a4075cf03095d1b7b532a1a0444d00c2674625076746fc6a08dd76accb198f",
+      "role": "pre-energization safety checklist schema"
+    },
+    {
+      "path": "research/haptic_bench_materials.json",
+      "kind": "file",
+      "sha256": "e25352630bf867a78714f8a7f685b0e96228c5a309c030d3b95729f2789757e8",
+      "role": "identity-bound bench materials manifest"
     }
   ],
   "components": [

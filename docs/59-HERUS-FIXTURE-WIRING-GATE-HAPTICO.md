@@ -51,7 +51,13 @@ Em seguida, o operador executa `haptic-probe`. O target sobe ENABLE, aguarda o s
 
 Nenhum `haptic-probe` deve transmitir rádio, abrir sessão, escrever memória, executar planner, alterar perfil pessoal ou tocar waveform. Durante toda a sequência, o atuador fica desconectado ou montado em fixture isolado. Se houver aquecimento inesperado, corrente anormal, endereço diferente, SDA/SCL preso, ENABLE incerto ou falha de corte, a fonte é desligada e o resultado é bloqueado.
 
-## 5. Critérios de promoção
+## 5. Checklist machine-readable de pré-energização
+
+Antes da promoção para `probe_electrical`, o operador deve preencher `research/haptic_preflight_schema.json`. O validador `tools/haptic_preflight.py` exige identidade da placa e da variante de rádio, esquema e pin map conferidos, continuidade com alimentação desligada, ausência de curto, pull-ups verificados, ENABLE medido baixo, limite de corrente configurado, fonte única, corte físico testado, rádio desabilitado e fixture isolado. Sem hardware, o template gera somente `blocked_by_missing_evidence` com `HARDWARE_NOT_ATTACHED`.
+
+O checklist é separado da evidência de waveform. Um registro `ready_for_probe` significa que os pré-requisitos de energização foram observados por um operador; não significa que o DRV2605L respondeu, que o atuador vibrou ou que qualquer token HAP-SEM foi percebido.
+
+## 6. Critérios de promoção
 
 | Gate | Só pode ser `pass` se | Caso contrário |
 |---|---|---|
@@ -66,7 +72,7 @@ Nenhum `haptic-probe` deve transmitir rádio, abrir sessão, escrever memória, 
 
 `pass` no probe significa apenas presença elétrica no envelope declarado. Não significa DRV2605L correto, atuador correto, waveform correta ou semântica percebida. Para o gate HAP-SEM, a promoção deve ocorrer em estágios: `probe_electrical`, `driver_config`, `actuator_calibration`, `fixture_playback`, `waveform_measurement` e, muito depois, `human_perception`.
 
-## 6. Checklist de parada
+## 7. Checklist de parada
 
 Antes de qualquer ligação, o operador deve conseguir responder “sim” a todas as perguntas de segurança: a fonte pode ser desligada sem software; o ENABLE pode ser mantido baixo sem depender de boot; o atuador está fixado; o fio OUT± não está em contato com lógica; o osciloscópio não está ligado de modo comum ao par diferencial; não há bateria conectada em paralelo; não há transmissão de rádio durante o probe; e toda pessoa está fora do caminho mecânico do atuador.
 

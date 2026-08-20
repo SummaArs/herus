@@ -1,0 +1,62 @@
+{
+  "schema": "herus-haptic-preflight-v1",
+  "required_fields": {
+    "schema": "herus-haptic-preflight-v1",
+    "execution_origin": "string",
+    "board_identity_confirmed": "boolean",
+    "radio_variant_confirmed": "boolean",
+    "schematic_confirmed": "boolean",
+    "pin_map_confirmed": "boolean",
+    "continuity_power_off": "boolean",
+    "short_check_passed": "boolean",
+    "pullups_verified": "boolean",
+    "enable_low_measured": "boolean",
+    "source_current_limit_set": "boolean",
+    "single_power_source": "boolean",
+    "safety_stop_tested": "boolean",
+    "radio_disabled": "boolean",
+    "fixture_only": "boolean",
+    "result": "string",
+    "failure_reason_code": "string_or_null",
+    "record_digest": "sha256_string"
+  },
+  "allowed_values": {
+    "execution_origin": ["physical_operator", "blocked_no_hardware"],
+    "result": ["ready_for_probe", "blocked_by_missing_evidence"]
+  },
+  "all_true_for_ready": [
+    "board_identity_confirmed",
+    "radio_variant_confirmed",
+    "schematic_confirmed",
+    "pin_map_confirmed",
+    "continuity_power_off",
+    "short_check_passed",
+    "pullups_verified",
+    "enable_low_measured",
+    "source_current_limit_set",
+    "single_power_source",
+    "safety_stop_tested",
+    "radio_disabled",
+    "fixture_only"
+  ],
+  "failure_reason_examples": [
+    "HARDWARE_NOT_ATTACHED",
+    "BOARD_IDENTITY_UNVERIFIED",
+    "RADIO_VARIANT_UNVERIFIED",
+    "SCHEMATIC_UNVERIFIED",
+    "PIN_MAP_UNVERIFIED",
+    "CONTINUITY_NOT_MEASURED",
+    "SHORT_CHECK_FAILED",
+    "PULLUPS_UNVERIFIED",
+    "ENABLE_NOT_LOW",
+    "CURRENT_LIMIT_UNSET",
+    "MULTIPLE_POWER_SOURCE",
+    "SAFETY_STOP_UNAVAILABLE",
+    "RADIO_NOT_DISABLED",
+    "FIXTURE_NOT_ISOLATED"
+  ],
+  "privacy": {
+    "forbidden_fields": ["audio", "transcript", "identity", "location", "key", "free_text", "participant_id"],
+    "public_record": "technical booleans, categorical failure code and digest only"
+  }
+}
