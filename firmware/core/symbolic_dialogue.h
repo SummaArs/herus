@@ -10,6 +10,7 @@
 #define HERUS_SYMBOLIC_DIALOGUE_H
 
 #include "symbolic_reasoner.h"
+#include "resonator_bridge.h"
 
 #define SD_MAX_DERIVATION_STEPS 64u
 
@@ -18,7 +19,8 @@ enum {
     SD_E_ARG = -1,
     SD_E_AUTH = -2,
     SD_E_LIMIT = -3,
-    SD_E_FORMAT = -4
+    SD_E_FORMAT = -4,
+    SD_E_ABSTAIN = -5
 };
 
 typedef struct {
@@ -44,5 +46,14 @@ int sd_add_personal_fact(sd_dialogue_t *dialogue, sr_fact_t fact,
 
 int sd_ask(sd_dialogue_t *dialogue, const sr_pattern_t *query,
            uint32_t derivation_budget, sd_reply_t *out);
+
+/* VSA is an evidence producer only. The proposal remains transient until the
+ * caller presents and physically accepts it. */
+int sd_propose_vsa_relation(sd_dialogue_t *dialogue, const hv_t *product,
+                            const rv_problem_t *problem, uint8_t negated,
+                            rb_proposal_t *out);
+int sd_accept_vsa_proposal(sd_dialogue_t *dialogue,
+                           const rb_proposal_t *proposal,
+                           uint8_t explicit_confirmation);
 
 #endif /* HERUS_SYMBOLIC_DIALOGUE_H */

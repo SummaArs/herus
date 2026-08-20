@@ -9,7 +9,7 @@
 #   ./prove.sh            full run
 #   ./prove.sh --quiet    verdict lines only
 #
-# Forty-one suites, each independently falsifiable:
+# Forty-two suites, each independently falsifiable:
 #   1  algebra      quasi-orthogonality, bundling, resonator, learning, HCP
 #   2  nucleus      bounded, opt-in local semantic intelligence
 #   3  voice        controlled local language and bounded haptic feedback
@@ -51,6 +51,7 @@
 #  39  physical     RF, energy and the frame ledger, from tools/budget.py
 #  40  virtual-mutation deliberate removal of critical controls must be detected
 #  41  symbolic-generative local composition, planning, dialogue and abstention
+#  42  resonator VSA factorization, bridge gates and generalization stress
 #
 # The Nucleus suite is intentionally separate: privacy and non-autonomy are
 # properties that must fail a build when regressed, not promises in a document.
@@ -259,9 +260,13 @@ banner "39/39 physical layer, energy and frame ledger"
 python3 tools/budget.py > /tmp/herus_c.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_c.log
 
-banner "41/41 symbolic generative intelligence (reason, plan, dialogue)"
+banner "41/42 symbolic generative intelligence (reason, plan, dialogue)"
 ( cd firmware && make symbolic-reasoner ) > /tmp/herus_symbolic.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_symbolic.log
+
+banner "42/42 resonator VSA factorization and relational bridge"
+( cd firmware && make resonator ) > /tmp/herus_resonator.log 2>&1 || FAIL=1
+[ "$QUIET" = 0 ] && cat /tmp/herus_resonator.log
 
 echo ""
 echo "--------------------------------------------------"
@@ -276,7 +281,12 @@ check() {
 # --- symbolic generative intelligence -------------------------------------
 check "Symbolic reasoner generates only proved typed conclusions" "SYMBOLIC REASONER: 17 pass, 0 fail" /tmp/herus_symbolic.log
 check "Symbolic planner reports no-plan, cost and confirmation boundaries" "SYMBOLIC PLANNER: 8 pass, 0 fail" /tmp/herus_symbolic.log
-check "Symbolic dialogue preserves personal authority and abstention" "SYMBOLIC DIALOGUE: 10 pass, 0 fail" /tmp/herus_symbolic.log
+check "Symbolic dialogue preserves personal authority and abstention" "SYMBOLIC DIALOGUE: 14 pass, 0 fail" /tmp/herus_symbolic.log
+
+# --- VSA resonator ----------------------------------------------------------
+check "Resonator factors bounded VSA products without false certainty" "RESONATOR: 9 pass, 0 fail" /tmp/herus_resonator.log
+check "VSA bridge requires explicit acceptance before reasoner insertion" "RESONATOR BRIDGE: 6 pass, 0 fail" /tmp/herus_resonator.log
+check "Resonator stress exposes bounded generalization and abstention" "RESONATOR STRESS: 37 pass, 0 fail" /tmp/herus_resonator.log
 
 # --- physical layer -------------------------------------------------------
 check "P1 constant AIRTIME across meaning tiers" "INVARIANT HOLDS" /tmp/herus_c.log

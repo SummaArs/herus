@@ -35,6 +35,33 @@ int sd_add_personal_fact(sd_dialogue_t *dialogue, sr_fact_t fact,
     return SD_E_ARG;
 }
 
+int sd_propose_vsa_relation(sd_dialogue_t *dialogue, const hv_t *product,
+                            const rv_problem_t *problem, uint8_t negated,
+                            rb_proposal_t *out)
+{
+    rb_status_t result;
+    if (!dialogue || !product || !problem || !out || dialogue->active != 1u)
+        return SD_E_ARG;
+    result = rb_propose_relation(product, problem, negated,
+                                 RB_DEFAULT_MIN_MARGIN_Q8,
+                                 RB_DEFAULT_MAX_RESIDUAL, out);
+    if (result == RB_PROPOSED) return SD_OK;
+    if (result == RB_E_LIMIT) return SD_E_LIMIT;
+    return SD_E_ABSTAIN;
+}
+
+int sd_accept_vsa_proposal(sd_dialogue_t *dialogue,
+                           const rb_proposal_t *proposal,
+                           uint8_t explicit_confirmation)
+{
+    if (!dialogue || !proposal || dialogue->active != 1u)
+        return SD_E_ARG;
+    if (explicit_confirmation != 1u) return SD_E_AUTH;
+    if (proposal->status != RB_PROPOSED ||
+        proposal->explicitly_accepted != 0u) return SD_E_FORMAT;
+    return sd_add_personal_fact(dialogue, proposal->fact, 1u);
+}
+
 int sd_ask(sd_dialogue_t *dialogue, const sr_pattern_t *query,
            uint32_t derivation_budget, sd_reply_t *out)
 {

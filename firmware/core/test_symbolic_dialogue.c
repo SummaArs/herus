@@ -34,6 +34,7 @@ int main(void)
 {
     sd_dialogue_t dialogue;
     sd_dialogue_t limited;
+    sd_dialogue_t vsa_dialogue;
     sd_reply_t reply;
     sr_pattern_t query;
     sr_rule_t rule = ownership_rule();
@@ -73,6 +74,45 @@ int main(void)
     check(&score, sd_ask(&limited, &query, 1u, &reply) == SD_E_LIMIT &&
                     reply.answer.kind == SR_ANSWER_LIMIT,
           "dialogue exposes a derivation budget limit");
+
+    sd_init(&vsa_dialogue);
+    {
+        hv_t code[8];
+        uint16_t ids[8];
+        hv_t factors[3];
+        hv_t product;
+        rv_codebook_t book;
+        rv_problem_t problem;
+        rb_proposal_t proposal;
+        int offsets[3] = { 0, 7, -13 };
+        for (unsigned i = 0u; i < 8u; i++) {
+            ids[i] = (uint16_t)(900u + i);
+            hv_gen(&code[i], 0x4449414Cull, ids[i]);
+        }
+        book.vectors = code; book.symbol_id = ids; book.count = 8u;
+        memset(&problem, 0, sizeof(problem));
+        problem.factor_count = 3u; problem.codebook = &book;
+        problem.max_iterations = RV_MAX_ITERS;
+        problem.max_exact_nodes = RV_MAX_EXACT_NODES;
+        for (unsigned i = 0u; i < 3u; i++) problem.offsets[i] = offsets[i];
+        factors[0] = code[1]; factors[1] = code[4]; factors[2] = code[6];
+        rv_compose(&product, factors, offsets, 3u);
+        check(&score, sd_propose_vsa_relation(&vsa_dialogue, &product,
+                                              &problem, 0u, &proposal) == SD_OK,
+              "dialogue accepts a VSA relation only as a transient proposal");
+        check(&score, sd_accept_vsa_proposal(&vsa_dialogue, &proposal, 0u) ==
+                        SD_E_AUTH && sr_fact_count(&vsa_dialogue.reasoner) == 0u,
+              "VSA proposal without physical confirmation is not persisted");
+        check(&score, sd_accept_vsa_proposal(&vsa_dialogue, &proposal, 1u) ==
+                        SD_OK && sr_fact_count(&vsa_dialogue.reasoner) == 1u,
+              "physical confirmation promotes the VSA relation to a fact");
+        query = (sr_pattern_t){ SR_CONST(901u), SR_CONST(904u),
+                                SR_CONST(906u), 0u };
+        check(&score, sd_ask(&vsa_dialogue, &query, SD_MAX_DERIVATION_STEPS,
+                             &reply) == SD_OK &&
+                        reply.answer.kind == SR_ANSWER_DIRECT,
+              "the accepted VSA fact is queryable as direct local evidence");
+    }
 
     check(&score, sd_add_personal_fact(&dialogue,
                                        (sr_fact_t){ PERSON, OWNS, PLACE, 1u },
