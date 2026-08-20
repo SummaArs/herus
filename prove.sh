@@ -402,8 +402,8 @@ check "Memory-to-reasoner bridge composes offline and blocks ambiguous or partia
 check "Magic anticipation explains useful recall and blocks unsafe surprise" "MAGIC ANTICIPATION: 17 pass, 0 fail" /tmp/herus_magic_anticipation.log
 check "Magic trigger bounds attention, TTL and repeated proposals" "MAGIC TRIGGER: 12 pass, 0 fail" /tmp/herus_magic_trigger.log
 check "Magic dialogue bridge stays read-only and abstinent" "MAGIC DIALOGUE BRIDGE: 8 pass, 0 fail" /tmp/herus_magic_dialogue_bridge.log
-check "Autonomy policy bounds initiative, scope and one-shot confirmation" "AUTONOMY POLICY: 16 pass, 0 fail" /tmp/herus_autonomy_policy.log
-check "Autonomy redteam kills critical policy mutants" "AUTONOMY REDTEAM: 6/6 critical autonomy mutants killed" /tmp/herus_autonomy_redteam.log
+check "Autonomy policy bounds initiative, scope and one-shot confirmation" "AUTONOMY POLICY: 17 pass, 0 fail" /tmp/herus_autonomy_policy.log
+check "Autonomy redteam kills critical policy mutants" "AUTONOMY REDTEAM: 7/7 critical autonomy mutants killed" /tmp/herus_autonomy_redteam.log
 check "Magic redteam kills critical magic and memory mutants" "MAGIC REDTEAM: 5/5 critical magic/memory mutants killed" /tmp/herus_magic_redteam.log
 
 # --- physical layer -------------------------------------------------------

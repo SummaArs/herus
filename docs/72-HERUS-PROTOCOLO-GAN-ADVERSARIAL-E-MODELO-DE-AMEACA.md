@@ -90,11 +90,11 @@ O resultado deve informar separadamente: testes positivos, ataques rejeitados, m
 
 ## 10. Primeiro resultado executável
 
-A primeira campanha foi aplicada à política de autonomia A0–A4. Foram construídos seis mutantes reais: barreira de contexto sensível, consentimento proativo, confirmação única, escopo silencioso, bits canônicos e vínculo confirmação–proposta. A campanha matou **6/6 mutantes**.
+A primeira campanha foi aplicada à política de autonomia A0–A4. Foram construídos sete mutantes reais: barreira de contexto sensível, consentimento proativo, confirmação única, escopo silencioso, bits canônicos, vínculo confirmação–proposta e vínculo entre confirmação e escopo. A campanha matou **7/7 mutantes**.
 
 A segunda campanha atacou magia e memória com cinco mutantes reais: bloqueio de contexto sensível, consentimento proativo, orçamento de propostas, validação estrutural na consulta e dominância de conflito. A campanha matou **5/5 mutantes**.
 
-A primeira execução global foi deliberadamente considerada uma falha: a suíte nova passou 16 casos, enquanto o ledger ainda esperava 15. O sistema parou com `SOMETHING REGRESSED` e não houve publicação dessa execução. Depois da correção explícita da expectativa e da reconciliação de proveniência, a execução global passou com **64 suítes**, **111 invariantes de sistema simulado**, mutação histórica **7/7**, red-team de autonomia **6/6** e red-team de magia/memória **5/5**.
+A primeira execução global foi deliberadamente considerada uma falha: a suíte nova passou 16 casos, enquanto o ledger ainda esperava 15. O sistema parou com `SOMETHING REGRESSED` e não houve publicação dessa execução. Depois da correção explícita da expectativa e da reconciliação de proveniência, a execução global passou com **64 suítes**, **111 invariantes de sistema simulado**, mutação histórica **7/7**, red-team de autonomia **7/7** e red-team de magia/memória **5/5**.
 
 Isso demonstra que o harness encontra regressões de integração e sabotagens C. Não demonstra ainda ataques combinados de reboot, flash, Core e transporte; eles permanecem no próximo estágio.
 

@@ -48,6 +48,7 @@ typedef struct {
     uint8_t third_party_context;
     uint32_t proposal_id;
     uint32_t confirmation_id;
+    herus_action_scope_t confirmed_scope;
 } herus_autonomy_envelope_t;
 
 /* Validates the envelope without granting authority or modifying it. */

@@ -23,8 +23,10 @@ herus_policy_status_t herus_policy_validate(
     if (envelope->level == HERUS_A4_CONFIRMED &&
         envelope->scope == HERUS_SCOPE_NONE)
         return HERUS_POLICY_SCOPE;
-    if (envelope->confirmation_consumed && !envelope->explicit_confirmation)
-        return HERUS_POLICY_REJECTED;
+    if (envelope->confirmation_consumed &&
+        (!envelope->explicit_confirmation || envelope->confirmed_scope == HERUS_SCOPE_NONE ||
+         envelope->confirmed_scope != envelope->scope))
+        return HERUS_POLICY_REVOKED;
     if (envelope->sensitive_context || envelope->third_party_context) {
         if (envelope->proactive || envelope->level >= HERUS_A2_CONTEXTUAL)
             return HERUS_POLICY_REJECTED;
@@ -50,7 +52,7 @@ herus_policy_status_t herus_policy_classify(
         envelope->scope == HERUS_SCOPE_PREPARE) {
         if (envelope->level < HERUS_A4_CONFIRMED ||
             envelope->explicit_confirmation != 1u ||
-            envelope->confirmation_consumed == 1u)
+            envelope->confirmation_consumed != 1u)
             return HERUS_POLICY_NEEDS_CONFIRMATION;
     }
     if (envelope->level == HERUS_A4_CONFIRMED &&
@@ -76,5 +78,6 @@ herus_policy_status_t herus_policy_consume_confirmation(
         return HERUS_POLICY_REVOKED;
     envelope->level = HERUS_A4_CONFIRMED;
     envelope->confirmation_consumed = 1u;
+    envelope->confirmed_scope = envelope->scope;
     return HERUS_POLICY_OK;
 }

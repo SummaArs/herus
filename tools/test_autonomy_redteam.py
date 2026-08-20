@@ -90,6 +90,11 @@ def main() -> int:
             "    if (envelope->proposal_id == 0u || envelope->proposal_id != proposal_id ||\n        envelope->confirmation_id != confirmation_id ||\n",
             "    if (envelope->proposal_id == 0u ||\n        /* REDTEAM: confirmation binding removed. */\n",
         ),
+        Mutation(
+            "confirmed-scope-binding",
+            "        (!envelope->explicit_confirmation || envelope->confirmed_scope == HERUS_SCOPE_NONE ||\n         envelope->confirmed_scope != envelope->scope))\n        return HERUS_POLICY_REVOKED;\n",
+            "        (!envelope->explicit_confirmation)) /* REDTEAM: scope binding removed. */\n        return HERUS_POLICY_REVOKED;\n",
+        ),
     )
     print("\n== HERUS deterministic autonomy red-team campaign ==")
     passed = True
@@ -100,7 +105,7 @@ def main() -> int:
     if not passed:
         print("AUTONOMY REDTEAM FAILED — at least one critical mutant survived")
         return 1
-    print("AUTONOMY REDTEAM: 6/6 critical autonomy mutants killed")
+    print("AUTONOMY REDTEAM: 7/7 critical autonomy mutants killed")
     return 0
 
 

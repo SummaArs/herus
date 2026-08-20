@@ -59,8 +59,14 @@ int main(void)
                     HERUS_POLICY_REVOKED && e.confirmation_consumed == 0u,
           "a mismatched confirmation cannot consume an untouched proposal");
     check(&score, herus_policy_consume_confirmation(&e, 100u, 200u) ==
-                    HERUS_POLICY_OK && e.confirmation_consumed == 1u,
+                    HERUS_POLICY_OK && e.confirmation_consumed == 1u &&
+                    e.confirmed_scope == HERUS_SCOPE_PREPARE &&
+                    herus_policy_classify(&e) == HERUS_POLICY_OK,
           "matching confirmation promotes exactly one bounded proposal");
+    e.scope = HERUS_SCOPE_TRANSMIT;
+    check(&score, herus_policy_classify(&e) == HERUS_POLICY_REVOKED,
+          "changing scope after confirmation revokes the old authority");
+    e.scope = HERUS_SCOPE_PREPARE;
     check(&score, herus_policy_consume_confirmation(&e, 100u, 200u) ==
                     HERUS_POLICY_REVOKED,
           "the same confirmation cannot be reused");
