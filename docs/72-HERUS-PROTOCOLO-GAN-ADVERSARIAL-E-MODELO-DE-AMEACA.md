@@ -96,7 +96,9 @@ A segunda campanha atacou magia e memória com cinco mutantes reais: bloqueio de
 
 A primeira execução global foi deliberadamente considerada uma falha: a suíte nova passou 16 casos, enquanto o ledger ainda esperava 15. O sistema parou com `SOMETHING REGRESSED` e não houve publicação dessa execução. Depois da correção explícita da expectativa e da reconciliação de proveniência, a execução global passou com **64 suítes**, **111 invariantes de sistema simulado**, mutação histórica **7/7**, red-team de autonomia **7/7** e red-team de magia/memória **5/5**.
 
-Isso demonstra que o harness encontra regressões de integração e sabotagens C. Não demonstra ainda ataques combinados de reboot, flash, Core e transporte; eles permanecem no próximo estágio.
+Na fase seguinte, foram compostos cinco ataques de integração: ausência do Core com memória conflitante, reboot com slot mais novo adulterado, consentimento revogado com proposta pendente, feed válido sem confirmação e exaustão de memória. A matriz passou **24/24** sem fallback remoto, reviver autoridade ou sobrescrever evidência. O red-team do Core matou **7/7 mutantes**: digest, namespace/source, rollback do feed, ausência convertida em disponibilidade, HMAC do cursor, rollback do cursor e readback autenticado.
+
+A próxima regressão deve confirmar **66 suítes**, **111 invariantes de sistema simulado**, red-team de autonomia **7/7**, magia/memória **5/5** e Core **7/7**. Esses números continuam sendo host-only; não demonstram resistência de flash, brownout, transporte, rádio ou hardware físico.
 
 ## 11. Limite ético e operacional
 

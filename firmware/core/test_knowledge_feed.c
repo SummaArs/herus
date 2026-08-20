@@ -107,6 +107,15 @@ int main(void)
                     KF_REJECTED_NAMESPACE,
           "a factory-handle payload cannot be relabelled as personal knowledge");
 
+    {
+        kf_packet_t invalid_source = packet;
+        invalid_source.source_kind = 0u;
+        kf_digest(&invalid_source, invalid_source.payload_digest);
+        check(&score, kf_validate(&invalid_source, 7u, &cursor, trusted_link, NULL) ==
+                        KF_REJECTED_NAMESPACE,
+              "an otherwise valid packet with an unknown source kind is rejected");
+    }
+
     too_many = packet;
     too_many.rule_count = KF_MAX_RULES + 1u;
     check(&score, kf_validate(&too_many, 7u, &cursor, trusted_link, NULL) ==

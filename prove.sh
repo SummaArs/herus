@@ -9,7 +9,7 @@
 #   ./prove.sh            full run
 #   ./prove.sh --quiet    verdict lines only
 #
-# Sixty-four suites, each independently falsifiable:
+# Sixty-six suites, each independently falsifiable:
 #   1  algebra      quasi-orthogonality, bundling, resonator, learning, HCP
 #   2  nucleus      bounded, opt-in local semantic intelligence
 #   3  voice        controlled local language and bounded haptic feedback
@@ -74,6 +74,8 @@
 #  62  explicit A0-A4 initiative, scope and confirmation policy
 #  63  deterministic GAN-style sabotage campaign for autonomy controls
 #  64  deterministic GAN-style sabotage campaign for magic and memory
+#  65  combined Core absence, reboot, consent and bounded-memory failures
+#  66  deterministic GAN-style sabotage campaign for Core feed and cursor
 #
 # The Nucleus suite is intentionally separate: privacy and non-autonomy are
 # properties that must fail a build when regressed, not promises in a document.
@@ -346,21 +348,27 @@ banner "58/59 offline memory-to-reasoner composition"
 banner "59/60 explainable magic anticipation"
 ( cd firmware && make magic-anticipation ) > /tmp/herus_magic_anticipation.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_magic_anticipation.log
-banner "60/61 bounded magic attention window"
+banner "60/66 bounded magic attention window"
 ( cd firmware && make magic-trigger ) > /tmp/herus_magic_trigger.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_magic_trigger.log
-banner "61/62 read-only magic dialogue bridge"
+banner "61/66 read-only magic dialogue bridge"
 ( cd firmware && make magic-dialogue-bridge ) > /tmp/herus_magic_dialogue_bridge.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_magic_dialogue_bridge.log
-banner "62/63 autonomy policy"
+banner "62/66 autonomy policy"
 ( cd firmware && make autonomy-policy ) > /tmp/herus_autonomy_policy.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_autonomy_policy.log
-banner "63/64 autonomy redteam"
+banner "63/66 autonomy redteam"
 ( cd firmware && make autonomy-redteam ) > /tmp/herus_autonomy_redteam.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_autonomy_redteam.log
-banner "64/64 magic/memory redteam"
+banner "64/66 magic/memory redteam"
 ( cd firmware && make magic-redteam ) > /tmp/herus_magic_redteam.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_magic_redteam.log
+banner "65/66 combined failure matrix"
+( cd firmware && make core-resilience-matrix ) > /tmp/herus_core_resilience.log 2>&1 || FAIL=1
+[ "$QUIET" = 0 ] && cat /tmp/herus_core_resilience.log
+banner "66/66 Core feed redteam"
+( cd firmware && make core-redteam ) > /tmp/herus_core_redteam.log 2>&1 || FAIL=1
+[ "$QUIET" = 0 ] && cat /tmp/herus_core_redteam.log
  echo ""
 
 echo "--------------------------------------------------"
@@ -395,7 +403,7 @@ check "HAP-SEM evidence validator preserves privacy, digest and blocking gates" 
 check "ESP32-S3 target keeps unverified hardware disabled and syntax-checks the I2C path" "HAPTIC TARGET: 4 pass, 0 fail" /tmp/herus_haptic_target.log
 check "HAP-SEM runner blocks absent hardware and binds evidence origin" "HAPTIC BENCH EVIDENCE VALIDATOR: 9 pass, 0 fail" /tmp/herus_haptic_runner.log
 check "HAP-SEM preflight blocks unsafe or unmeasured pre-energization" "HAPTIC PREFLIGHT: 5 pass, 0 fail" /tmp/herus_haptic_preflight.log
-check "Core feed verifies digest, rollback, namespace, bounds and physical confirmation" "KNOWLEDGE FEED: 16 pass, 0 fail" /tmp/herus_knowledge_feed.log
+check "Core feed verifies digest, rollback, namespace, bounds and physical confirmation" "KNOWLEDGE FEED: 17 pass, 0 fail" /tmp/herus_knowledge_feed.log
 check "Core feed cursor recovers authenticated monotonic state and blocks rollback" "KNOWLEDGE FEED CURSOR: 11 pass, 0 fail" /tmp/herus_knowledge_feed_cursor.log
 check "Memory evidence preserves temporal provenance, conflicts and bounded abstention" "MEMORY SEMANTIC EVIDENCE: 19 pass, 0 fail" /tmp/herus_memory_semantic_evidence.log
 check "Memory-to-reasoner bridge composes offline and blocks ambiguous or partial evidence" "MEMORY REASONING BRIDGE: 16 pass, 0 fail" /tmp/herus_memory_reasoning_bridge.log
@@ -405,6 +413,8 @@ check "Magic dialogue bridge stays read-only and abstinent" "MAGIC DIALOGUE BRID
 check "Autonomy policy bounds initiative, scope and one-shot confirmation" "AUTONOMY POLICY: 17 pass, 0 fail" /tmp/herus_autonomy_policy.log
 check "Autonomy redteam kills critical policy mutants" "AUTONOMY REDTEAM: 7/7 critical autonomy mutants killed" /tmp/herus_autonomy_redteam.log
 check "Magic redteam kills critical magic and memory mutants" "MAGIC REDTEAM: 5/5 critical magic/memory mutants killed" /tmp/herus_magic_redteam.log
+check "Combined failures preserve local abstention, reboot quarantine and bounded memory" "COMBINED FAILURES: Core absence, reboot corruption, consent revocation, authority and exhaustion all fail closed" /tmp/herus_core_resilience.log
+check "Core redteam kills feed and cursor mutants" "CORE REDTEAM: 7/7 critical Core mutants killed" /tmp/herus_core_redteam.log
 
 # --- physical layer -------------------------------------------------------
 check "P1 constant AIRTIME across meaning tiers" "INVARIANT HOLDS" /tmp/herus_c.log

@@ -284,6 +284,14 @@ magic-redteam:
 	@echo "--- magic/memory redteam: deterministic critical-control sabotage ---"
 	python3 ../tools/test_magic_redteam.py
 
+core-resilience-matrix:
+	@echo "--- combined failures: Core absence, reboot, consent and bounded-memory composition ---"
+	python3 ../tools/test_combined_failures.py
+
+core-redteam:
+	@echo "--- Core redteam: deterministic feed and cursor control sabotage ---"
+	python3 ../tools/test_core_redteam.py
+
 symbol-registry-model:
 	@echo "--- symbol registry model: versioned collision-aware host contract ---"
 	python3 ../tools/test_symbol_registry_model.py
