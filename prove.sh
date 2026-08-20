@@ -270,25 +270,29 @@ banner "42/42 resonator VSA factorization and relational bridge"
 ( cd firmware && make resonator ) > /tmp/herus_resonator.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_resonator.log
 
-banner "43/47 semantic compiler (controlled Portuguese to typed IR)"
+banner "43/48 semantic compiler (controlled Portuguese to typed IR)"
 ( cd firmware && make semantic-compiler ) > /tmp/herus_semantic.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_semantic.log
 
-banner "44/47 semantic benchmark (exact IR, abstention and authority)"
+banner "44/48 semantic benchmark (exact IR, abstention and authority)"
 ( cd firmware && make semantic-benchmark ) > /tmp/herus_semantic_benchmark.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_semantic_benchmark.log
 
-banner "45/47 collision-aware symbol registry model (host-only)"
+banner "45/48 collision-aware symbol registry model (host-only)"
 python3 tools/test_symbol_registry_model.py > /tmp/herus_symbol_registry.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_symbol_registry.log
 
-banner "46/47 collision-aware symbol registry C11"
+banner "46/48 collision-aware symbol registry C11"
 ( cd firmware && make symbol-registry-c ) > /tmp/herus_symbol_registry_c.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_symbol_registry_c.log
 
-banner "47/47 HAP-SEM haptic language encoder (host-only/C11)"
+banner "47/48 HAP-SEM haptic language encoder (host-only/C11)"
 ( cd firmware && make haptic-language ) > /tmp/herus_haptic_language.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_haptic_language.log
+
+banner "48/48 HAP-SEM semantic bridge (authority and abstention)"
+( cd firmware && make haptic-semantic-bridge ) > /tmp/herus_haptic_bridge.log 2>&1 || FAIL=1
+[ "$QUIET" = 0 ] && cat /tmp/herus_haptic_bridge.log
 
  echo ""
 echo "--------------------------------------------------"
@@ -316,6 +320,7 @@ check "Semantic benchmark holds exact match, abstention and zero authority viola
 check "Collision-aware symbol registry separates namespaces, versions and full-state limits" "SYMBOL REGISTRY MODEL: 13 pass, 0 fail" /tmp/herus_symbol_registry.log
 check "Collision-aware symbol registry C11 preserves the same contract" "SYMBOL REGISTRY C: 15 pass, 0 fail" /tmp/herus_symbol_registry_c.log
 check "HAP-SEM encodes bounded semantic frames and rejects unsafe profiles" "HAPTIC LANGUAGE: 12 pass, 0 fail" /tmp/herus_haptic_language.log
+check "HAP-SEM bridge preserves presentation, authority and abstention" "HAPTIC SEMANTIC BRIDGE: 9 pass, 0 fail" /tmp/herus_haptic_bridge.log
 
 # --- physical layer -------------------------------------------------------
 check "P1 constant AIRTIME across meaning tiers" "INVARIANT HOLDS" /tmp/herus_c.log

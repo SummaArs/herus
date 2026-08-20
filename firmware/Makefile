@@ -240,6 +240,11 @@ haptic-language: build
 	$(CC) $(CFLAGS) $(INC) core/haptic_language.c core/test_haptic_language.c -o build/test_haptic_language
 	./build/test_haptic_language
 
+haptic-semantic-bridge: build
+	@echo "--- haptic semantic bridge: presentation, authority and abstention ---"
+	$(CC) $(CFLAGS) $(INC) core/haptic_language.c core/haptic_semantic_bridge.c core/test_haptic_semantic_bridge.c -o build/test_haptic_semantic_bridge
+	./build/test_haptic_semantic_bridge
+
 resonator: build
 	@echo "--- resonator: bounded VSA factorization and cleanup ---"
 	$(CC) $(CFLAGS) -DHV_LUT_POPCOUNT $(INC) core/hv.c core/resonator.c core/test_resonator.c -o build/test_resonator
