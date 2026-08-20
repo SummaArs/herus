@@ -55,6 +55,9 @@ int main(void)
     e.explicit_confirmation = 1u;
     check(&score, herus_policy_classify(&e) == HERUS_POLICY_NEEDS_CONFIRMATION,
           "A4 still requires an unconsumed matching confirmation");
+    check(&score, herus_policy_consume_confirmation(&e, 101u, 201u) ==
+                    HERUS_POLICY_REVOKED && e.confirmation_consumed == 0u,
+          "a mismatched confirmation cannot consume an untouched proposal");
     check(&score, herus_policy_consume_confirmation(&e, 100u, 200u) ==
                     HERUS_POLICY_OK && e.confirmation_consumed == 1u,
           "matching confirmation promotes exactly one bounded proposal");
@@ -70,6 +73,8 @@ int main(void)
     e.attention_window = 1u;
     e.proactive_consent = 1u;
     e.sensitive_context = 1u;
+    check(&score, herus_policy_validate(&e) == HERUS_POLICY_REJECTED,
+          "sensitive context is rejected by the primary validator");
     check(&score, herus_policy_classify(&e) == HERUS_POLICY_REJECTED,
           "sensitive contextual initiative is rejected");
     e.sensitive_context = 0u;
