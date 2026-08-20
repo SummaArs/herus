@@ -9,7 +9,7 @@
 #   ./prove.sh            full run
 #   ./prove.sh --quiet    verdict lines only
 #
-# Fifty-nine suites, each independently falsifiable:
+# Sixty suites, each independently falsifiable:
 #   1  algebra      quasi-orthogonality, bundling, resonator, learning, HCP
 #   2  nucleus      bounded, opt-in local semantic intelligence
 #   3  voice        controlled local language and bounded haptic feedback
@@ -69,6 +69,7 @@
 #  57  local semantic evidence, temporal supersession and conflict abstention
 #  58  offline memory-to-reasoner composition, conflict and abstention
 #  59  explainable magic anticipation, privacy gates and safe abstention
+#  60  bounded magic attention window, TTL and proposal budget
 #
 # The Nucleus suite is intentionally separate: privacy and non-autonomy are
 # properties that must fail a build when regressed, not promises in a document.
@@ -338,9 +339,12 @@ banner "57/58 local semantic evidence (temporal and conflict abstention)"
 banner "58/59 offline memory-to-reasoner composition"
 ( cd firmware && make memory-reasoning-bridge ) > /tmp/herus_memory_reasoning_bridge.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_memory_reasoning_bridge.log
-banner "59/59 explainable magic anticipation"
+banner "59/60 explainable magic anticipation"
 ( cd firmware && make magic-anticipation ) > /tmp/herus_magic_anticipation.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_magic_anticipation.log
+banner "60/60 bounded magic attention window"
+( cd firmware && make magic-trigger ) > /tmp/herus_magic_trigger.log 2>&1 || FAIL=1
+[ "$QUIET" = 0 ] && cat /tmp/herus_magic_trigger.log
  echo ""
 
 echo "--------------------------------------------------"
@@ -380,6 +384,7 @@ check "Core feed cursor recovers authenticated monotonic state and blocks rollba
 check "Memory evidence preserves temporal provenance, conflicts and bounded abstention" "MEMORY SEMANTIC EVIDENCE: 19 pass, 0 fail" /tmp/herus_memory_semantic_evidence.log
 check "Memory-to-reasoner bridge composes offline and blocks ambiguous or partial evidence" "MEMORY REASONING BRIDGE: 16 pass, 0 fail" /tmp/herus_memory_reasoning_bridge.log
 check "Magic anticipation explains useful recall and blocks unsafe surprise" "MAGIC ANTICIPATION: 16 pass, 0 fail" /tmp/herus_magic_anticipation.log
+check "Magic trigger bounds attention, TTL and repeated proposals" "MAGIC TRIGGER: 11 pass, 0 fail" /tmp/herus_magic_trigger.log
 
 # --- physical layer -------------------------------------------------------
 check "P1 constant AIRTIME across meaning tiers" "INVARIANT HOLDS" /tmp/herus_c.log

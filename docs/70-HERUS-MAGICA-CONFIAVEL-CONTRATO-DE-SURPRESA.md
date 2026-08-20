@@ -47,7 +47,7 @@ Não deve afirmar que a experiência será naturalmente mágica, que a antecipa�
 
 A camada `magic_anticipation` agora funciona como mediador bounded entre evidência semântica, consulta local e proposta de diálogo. Ela retorna uma proposta tipada de antecipação, não uma ação. O diálogo ou o adaptador háptico poderá apresentar a proposta; somente uma confirmação física canônica poderá promover qualquer operação que altere o mundo ou a memória pessoal.
 
-A suíte passa **16/16**. O pipeline global passa com **59 suítes**, **111 invariantes de sistema simulado** e mutação adversarial **7/7**. Os casos cobrem lembrança, conexão, silêncio fora da janela, bloqueio de contexto pessoal proativo, bloqueio de conteúdo sensível e de terceiros, lacuna conhecida, expiração, contradição, ambiguidade e limite de raciocínio.
+A suíte de antecipação passa **16/16** e a suíte do gatilho temporal passa **11/11**. O pipeline global passa com **60 suítes**, **111 invariantes de sistema simulado** e mutação adversarial **7/7**. Os casos cobrem lembrança, conexão, silêncio fora da janela, bloqueio de contexto pessoal proativo, bloqueio de conteúdo sensível e de terceiros, lacuna conhecida, expiração, contradição, ambiguidade, limite de raciocínio, TTL por geração, overflow e orçamento de apresentações.
 
 Esses resultados provam apenas o contrato determinístico no host. Não medem se a pessoa realmente achará a experiência mágica, nem validam voz aberta, sensores, energia, latência ou háptica física.
 
