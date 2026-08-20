@@ -9,7 +9,7 @@
 #   ./prove.sh            full run
 #   ./prove.sh --quiet    verdict lines only
 #
-# Forty-nine suites, each independently falsifiable:
+# Fifty-one suites, each independently falsifiable:
 #   1  algebra      quasi-orthogonality, bundling, resonator, learning, HCP
 #   2  nucleus      bounded, opt-in local semantic intelligence
 #   3  voice        controlled local language and bounded haptic feedback
@@ -59,6 +59,8 @@
 #  47  HAP-SEM bounded semantic frame encoder
 #  48  HAP-SEM semantic bridge, authority and abstention
 #  49  HAP-SEM exhaustive tuple, corruption and profile-mismatch matrix
+#  50  HAP-SEM/DRV2605L adapter bus ordering, safety and fail-closed state
+#  51  HAP-SEM private numeric bench-evidence schema and validator
 #
 # The Nucleus suite is intentionally separate: privacy and non-autonomy are
 # properties that must fail a build when regressed, not promises in a document.
@@ -298,9 +300,15 @@ banner "47/48 HAP-SEM haptic language encoder (host-only/C11)"
 banner "48/48 HAP-SEM semantic bridge (authority and abstention)"
 ( cd firmware && make haptic-semantic-bridge ) > /tmp/herus_haptic_bridge.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_haptic_bridge.log
-banner "49/49 HAP-SEM exhaustive matrix (tuples, corruption and profiles)"
+banner "49/51 HAP-SEM exhaustive matrix (tuples, corruption and profiles)"
 ( cd firmware && make haptic-language-matrix ) > /tmp/herus_haptic_matrix.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_haptic_matrix.log
+banner "50/51 HAP-SEM DRV2605L adapter (bus ordering and fail-closed state)"
+( cd firmware && make haptic-adapter ) > /tmp/herus_haptic_adapter.log 2>&1 || FAIL=1
+[ "$QUIET" = 0 ] && cat /tmp/herus_haptic_adapter.log
+banner "51/51 HAP-SEM private numeric evidence validator"
+( cd firmware && make haptic-evidence ) > /tmp/herus_haptic_evidence.log 2>&1 || FAIL=1
+[ "$QUIET" = 0 ] && cat /tmp/herus_haptic_evidence.log
  echo ""
 
 echo "--------------------------------------------------"
@@ -330,6 +338,8 @@ check "Collision-aware symbol registry C11 preserves the same contract" "SYMBOL 
 check "HAP-SEM encodes bounded semantic frames and rejects unsafe profiles" "HAPTIC LANGUAGE: 17 pass, 0 fail" /tmp/herus_haptic_language.log
 check "HAP-SEM bridge preserves presentation, authority and abstention" "HAPTIC SEMANTIC BRIDGE: 9 pass, 0 fail" /tmp/herus_haptic_bridge.log
 check "HAP-SEM matrix covers both profiles, all tuples and directed failures" "HAPTIC LANGUAGE MATRIX: frames 1440/1440, round-trips 1440/1440, field corruptions 14400, profile mismatches 1440, failures 0" /tmp/herus_haptic_matrix.log
+check "HAP-SEM adapter preserves ordering, abort and fail-closed state" "HAPTIC ADAPTER: 17 pass, 0 fail" /tmp/herus_haptic_adapter.log
+check "HAP-SEM evidence validator preserves privacy, digest and blocking gates" "HAPTIC BENCH EVIDENCE VALIDATOR: 7 pass, 0 fail" /tmp/herus_haptic_evidence.log
 
 # --- physical layer -------------------------------------------------------
 check "P1 constant AIRTIME across meaning tiers" "INVARIANT HOLDS" /tmp/herus_c.log

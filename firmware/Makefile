@@ -64,9 +64,9 @@ INC     := -Icore -Inet -Iport -Itest
 CORE    := core/hv.c core/sbc.c core/lexicon.c core/hcp.c
 NET     := net/crypto.c net/session.c net/region.c net/weave.c net/beat.c net/link.c
 
-.PHONY: all algebra nucleus voice intent dialogue model-lab memory-policy memory-capture memory-extract watch-memory-frontend memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale memory-collection memory-collection-index memory-collection-recovery memory-collection-recovery-stress memory-collection-finale bench-evidence-validate bench-interruption-sim memory-proposal llm-budget-check memory-physical-session memory-physical-session-recovery memory-physical-session-recovery-stress memory-physical-session-bootstrap memory-prehardware-finale threat-model threat-model-stress proof-fire-mutations assurance capstone trust control-link delivery-plan transport-selector personal-telemetry symbolic-reasoner resonator semantic-compiler semantic-benchmark interaction interaction-rig net radio syntax vectors haptic-language haptic-language-matrix haptic-semantic-bridge clean
+.PHONY: all algebra nucleus voice intent dialogue model-lab memory-policy memory-capture memory-extract watch-memory-frontend memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale memory-collection memory-collection-index memory-collection-recovery memory-collection-recovery-stress memory-collection-finale bench-evidence-validate bench-interruption-sim memory-proposal llm-budget-check memory-physical-session memory-physical-session-recovery memory-physical-session-recovery-stress memory-physical-session-bootstrap memory-prehardware-finale threat-model threat-model-stress proof-fire-mutations assurance capstone trust control-link delivery-plan transport-selector personal-telemetry symbolic-reasoner resonator semantic-compiler semantic-benchmark interaction interaction-rig net radio syntax vectors haptic-language haptic-language-matrix haptic-semantic-bridge haptic-adapter haptic-evidence clean
 
-all: algebra nucleus voice intent dialogue model-lab memory-policy memory-capture memory-extract memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale memory-collection memory-collection-index memory-collection-recovery memory-collection-recovery-stress memory-collection-finale memory-physical-session memory-physical-session-recovery memory-physical-session-recovery-stress memory-physical-session-bootstrap memory-prehardware-finale threat-model threat-model-stress proof-fire-mutations assurance capstone trust control-link interaction interaction-rig net radio syntax haptic-language haptic-language-matrix haptic-semantic-bridge
+all: algebra nucleus voice intent dialogue model-lab memory-policy memory-capture memory-extract memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale memory-collection memory-collection-index memory-collection-recovery memory-collection-recovery-stress memory-collection-finale memory-physical-session memory-physical-session-recovery memory-physical-session-recovery-stress memory-physical-session-bootstrap memory-prehardware-finale threat-model threat-model-stress proof-fire-mutations assurance capstone trust control-link interaction interaction-rig net radio syntax haptic-language haptic-language-matrix haptic-semantic-bridge haptic-adapter haptic-evidence
 	@echo ""
 	@echo "=================================================="
 	@echo "ALL FIRMWARE SUITES PASS"
@@ -249,6 +249,15 @@ haptic-semantic-bridge: build
 	@echo "--- haptic semantic bridge: presentation, authority and abstention ---"
 	$(CC) $(CFLAGS) $(INC) core/haptic_language.c core/haptic_semantic_bridge.c core/test_haptic_semantic_bridge.c -o build/test_haptic_semantic_bridge
 	./build/test_haptic_semantic_bridge
+
+haptic-adapter: build
+	@echo "--- haptic adapter: DRV2605L bus ordering, safety and fail-closed state ---"
+	$(CC) $(CFLAGS) $(INC) core/haptic_language.c core/haptic_adapter.c core/test_haptic_adapter.c -o build/test_haptic_adapter
+	./build/test_haptic_adapter
+
+haptic-evidence: build
+	@echo "--- haptic evidence: private numeric schema and fail-closed validator ---"
+	python3 ../tools/test_haptic_bench_evidence_validate.py
 
 resonator: build
 	@echo "--- resonator: bounded VSA factorization and cleanup ---"
