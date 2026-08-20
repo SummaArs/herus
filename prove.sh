@@ -9,7 +9,7 @@
 #   ./prove.sh            full run
 #   ./prove.sh --quiet    verdict lines only
 #
-# Fifty-two suites, each independently falsifiable:
+# Fifty-three suites, each independently falsifiable:
 #   1  algebra      quasi-orthogonality, bundling, resonator, learning, HCP
 #   2  nucleus      bounded, opt-in local semantic intelligence
 #   3  voice        controlled local language and bounded haptic feedback
@@ -62,6 +62,7 @@
 #  50  HAP-SEM/DRV2605L adapter bus ordering, safety and fail-closed state
 #  51  HAP-SEM private numeric bench-evidence schema and validator
 #  52  ESP32-S3 DRV2605L target port, disabled gate and compile override
+#  53  HAP-SEM no-hardware runner and evidence-origin blocking
 #
 # The Nucleus suite is intentionally separate: privacy and non-autonomy are
 # properties that must fail a build when regressed, not promises in a document.
@@ -310,9 +311,12 @@ banner "50/51 HAP-SEM DRV2605L adapter (bus ordering and fail-closed state)"
 banner "51/52 HAP-SEM private numeric evidence validator"
 ( cd firmware && make haptic-evidence ) > /tmp/herus_haptic_evidence.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_haptic_evidence.log
-banner "52/52 ESP32-S3 DRV2605L target port (disabled gate and compile override)"
+banner "52/53 ESP32-S3 DRV2605L target port (disabled gate and compile override)"
 ( cd firmware && make haptic-target ) > /tmp/herus_haptic_target.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_haptic_target.log
+banner "53/53 HAP-SEM no-hardware runner and evidence-origin blocking"
+( cd firmware && make haptic-runner ) > /tmp/herus_haptic_runner.log 2>&1 || FAIL=1
+[ "$QUIET" = 0 ] && cat /tmp/herus_haptic_runner.log
  echo ""
 
 echo "--------------------------------------------------"
@@ -343,8 +347,9 @@ check "HAP-SEM encodes bounded semantic frames and rejects unsafe profiles" "HAP
 check "HAP-SEM bridge preserves presentation, authority and abstention" "HAPTIC SEMANTIC BRIDGE: 9 pass, 0 fail" /tmp/herus_haptic_bridge.log
 check "HAP-SEM matrix covers both profiles, all tuples and directed failures" "HAPTIC LANGUAGE MATRIX: frames 1440/1440, round-trips 1440/1440, field corruptions 14400, profile mismatches 1440, failures 0" /tmp/herus_haptic_matrix.log
 check "HAP-SEM adapter preserves ordering, abort and fail-closed state" "HAPTIC ADAPTER: 17 pass, 0 fail" /tmp/herus_haptic_adapter.log
-check "HAP-SEM evidence validator preserves privacy, digest and blocking gates" "HAPTIC BENCH EVIDENCE VALIDATOR: 7 pass, 0 fail" /tmp/herus_haptic_evidence.log
+check "HAP-SEM evidence validator preserves privacy, digest and blocking gates" "HAPTIC BENCH EVIDENCE VALIDATOR: 9 pass, 0 fail" /tmp/herus_haptic_evidence.log
 check "ESP32-S3 target keeps unverified hardware disabled and syntax-checks the I2C path" "HAPTIC TARGET: 4 pass, 0 fail" /tmp/herus_haptic_target.log
+check "HAP-SEM runner blocks absent hardware and binds evidence origin" "HAPTIC BENCH EVIDENCE VALIDATOR: 9 pass, 0 fail" /tmp/herus_haptic_runner.log
 
 # --- physical layer -------------------------------------------------------
 check "P1 constant AIRTIME across meaning tiers" "INVARIANT HOLDS" /tmp/herus_c.log

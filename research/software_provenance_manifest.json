@@ -11,7 +11,7 @@
     {
       "path": "prove.sh",
       "kind": "file",
-      "sha256": "42510b53421ad7481f9bf6c5a680cda0c1fd788d2b50076c2ebcbb663f629a42",
+      "sha256": "51e0ecb8a2fc6ede25b2da7d6558de35cd370d59cbff4471be74634ce219c81d",
       "role": "global proof ledger"
     },
     {
@@ -23,13 +23,13 @@
     {
       "path": "firmware",
       "kind": "tree",
-      "sha256": "d500e646cf0e5f82b5f6f81f04787b19149291107867c8c1593bb4c2d97939ce",
+      "sha256": "0ebdca748aecc8cc3013a915aca59d7e19ffb1a06ea2077d1499efbbf869f7aa",
       "role": "portable firmware and proof sources"
     },
     {
       "path": "tools",
       "kind": "tree",
-      "sha256": "e84dd8ab8fba0fa4157e7fd95b2b9180e2b0de2b8ca574b3d1d68cdf5124ab12",
+      "sha256": "8875d19a2aadcc2dc84c11cb910ffc478104a26f6446416c7a110ae3ed5cac0b",
       "role": "host proof and provenance tools"
     },
     {
@@ -47,7 +47,7 @@
     {
       "path": "research/haptic_bench_evidence_schema.json",
       "kind": "file",
-      "sha256": "843632c58b85accbfbd01158e2053741ea184126be59571975e78bf717606432",
+      "sha256": "2e7820b767c657c5d0b4a50239bca82e21209025536353e9e75113782d562d09",
       "role": "private numeric HAP-SEM bench evidence schema"
     }
   ],

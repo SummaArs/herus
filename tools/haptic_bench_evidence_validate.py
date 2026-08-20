@@ -104,6 +104,14 @@ def validate_record(record: Any, schema: dict[str, Any]) -> list[str]:
     for name, allowed in schema.get("allowed_values", {}).items():
         if name in record and record[name] not in allowed:
             errors.append(f"{name} has an unsupported value")
+    origin = record.get("execution_origin")
+    result = record.get("result")
+    if origin == "physical_operator" and result == "blocked_by_missing_evidence":
+        errors.append("physical_operator cannot be marked blocked_no_hardware")
+    if origin == "blocked_no_hardware" and result != "blocked_by_missing_evidence":
+        errors.append("blocked_no_hardware requires blocked_by_missing_evidence")
+    if origin == "host_stub" and result == "pass":
+        errors.append("host_stub cannot produce a physical pass")
     if record.get("fixture_only") is True and record.get("gate_id") == "haptic-wrist-human":
         errors.append("haptic-wrist-human cannot claim fixture_only")
     if record.get("result") == "pass":

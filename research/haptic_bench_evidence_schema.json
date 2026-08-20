@@ -26,6 +26,7 @@
   },
   "required_fields": {
     "gate_id": "string",
+    "execution_origin": "string",
     "protocol_revision": "string",
     "board_revision": "string",
     "adapter_revision": "string",
@@ -61,7 +62,8 @@
     "record_digest": "sha256_string"
   },
   "allowed_values": {
-    "actuator_type": ["ERM", "LRA"],
+    "execution_origin": ["physical_operator", "host_stub", "blocked_no_hardware"],
+    "actuator_type": ["ERM", "LRA", "UNVERIFIED"],
     "result": ["pass", "fail", "blocked_by_missing_evidence"]
   },
   "required_relations": [
@@ -71,6 +73,9 @@
     "raw_log_digest must be present for pass or fail",
     "failure_reason_code must be present for fail or blocked_by_missing_evidence",
     "failure_reason_code must be absent for pass",
+    "pass requires execution_origin physical_operator",
+    "blocked_no_hardware requires result blocked_by_missing_evidence",
+    "host_stub cannot produce a physical pass",
     "actuator_type and haptic_profile_version must match the declared profile",
     "no field may contain a semantic event payload, text, audio, identity or location"
   ],
@@ -87,6 +92,7 @@
     "FIXTURE_NOT_ISOLATED",
     "RAW_LOG_CONTAINS_FORBIDDEN_FIELD",
     "PROVE_BASELINE_FAILED",
+    "HARDWARE_NOT_ATTACHED",
     "GATE_CRITERION_FAILED"
   ]
 }

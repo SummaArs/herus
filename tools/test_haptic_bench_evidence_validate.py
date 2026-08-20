@@ -17,6 +17,7 @@ SCHEMA = json.loads((ROOT / "research" / "haptic_bench_evidence_schema.json").re
 def fixture() -> dict:
     record = {
         "gate_id": "haptic-bring-up",
+        "execution_origin": "physical_operator",
         "protocol_revision": "haptic-bench-v1",
         "board_revision": "lilygo-t3-s3-v1.3-unverified",
         "adapter_revision": "drv2605l-adapter-v1",
@@ -93,7 +94,18 @@ def main() -> int:
     blocked["record_digest"] = digest_without_record_digest(blocked)
     check("blocked record requires an explicit reason", any("failure_reason_code" in e for e in validate_record(blocked, SCHEMA)), failures)
 
-    print(f"HAPTIC BENCH EVIDENCE VALIDATOR: {7 - len(failures)} pass, {len(failures)} fail")
+    stub = copy.deepcopy(valid)
+    stub["execution_origin"] = "host_stub"
+    stub["record_digest"] = digest_without_record_digest(stub)
+    check("host stub cannot claim a physical pass", any("host_stub" in e for e in validate_record(stub, SCHEMA)), failures)
+
+    no_hardware = copy.deepcopy(valid)
+    no_hardware["execution_origin"] = "blocked_no_hardware"
+    no_hardware["result"] = "pass"
+    no_hardware["record_digest"] = digest_without_record_digest(no_hardware)
+    check("blocked hardware origin cannot claim pass", any("blocked_no_hardware" in e for e in validate_record(no_hardware, SCHEMA)), failures)
+
+    print(f"HAPTIC BENCH EVIDENCE VALIDATOR: {9 - len(failures)} pass, {len(failures)} fail")
     return 1 if failures else 0
 
 
