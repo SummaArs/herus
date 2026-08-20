@@ -226,6 +226,10 @@ semantic-benchmark: build
 	$(CC) $(CFLAGS) -DHV_LUT_POPCOUNT $(INC) core/hv.c core/resonator.c core/resonator_bridge.c core/symbolic_reasoner.c core/symbolic_planner.c core/symbolic_dialogue.c core/semantic_compiler.c core/test_semantic_compiler_benchmark.c -o build/test_semantic_compiler_benchmark
 	./build/test_semantic_compiler_benchmark
 
+symbol-registry-model:
+	@echo "--- symbol registry model: versioned collision-aware host contract ---"
+	python3 ../tools/test_symbol_registry_model.py
+
 resonator: build
 	@echo "--- resonator: bounded VSA factorization and cleanup ---"
 	$(CC) $(CFLAGS) -DHV_LUT_POPCOUNT $(INC) core/hv.c core/resonator.c core/test_resonator.c -o build/test_resonator
