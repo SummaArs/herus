@@ -32,7 +32,7 @@ Na consulta, um conflito retorna `MSE_QUERY_CONTRADICTED`, sem vencedor. Quando 
 
 A nova suíte passa **19/19**. Ela cobre entrada de cartão revisado, provenance, duplicata idempotente, rejeição de rollback, supersessão preservada, conflitos funcionais, contradição, alternativas ambíguas, expiração, entradas inválidas, janela temporal impossível, zeroing de saída, saturação de capacidade sem inserção parcial e corrupção estrutural do índice.
 
-O pipeline global passa com **57 suítes**, **111 invariantes de sistema simulado** e mutação adversarial **7/7**. Esses resultados demonstram os contratos host executados; não medem qualidade de memória humana, acurácia semântica em linguagem aberta, energia, latência no ESP32-S3 ou comportamento físico.
+O pipeline global passa com **58 suítes**, **111 invariantes de sistema simulado** e mutação adversarial **7/7**. Esses resultados demonstram os contratos host executados; não medem qualidade de memória humana, acurácia semântica em linguagem aberta, energia, latência no ESP32-S3 ou comportamento físico.
 
 ## 5. Limites deliberados
 
