@@ -230,6 +230,11 @@ symbol-registry-model:
 	@echo "--- symbol registry model: versioned collision-aware host contract ---"
 	python3 ../tools/test_symbol_registry_model.py
 
+symbol-registry-c: build
+	@echo "--- symbol registry C: portable versioned collision-aware handles ---"
+	$(CC) $(CFLAGS) $(INC) core/symbol_registry.c core/test_symbol_registry.c -o build/test_symbol_registry
+	./build/test_symbol_registry
+
 resonator: build
 	@echo "--- resonator: bounded VSA factorization and cleanup ---"
 	$(CC) $(CFLAGS) -DHV_LUT_POPCOUNT $(INC) core/hv.c core/resonator.c core/test_resonator.c -o build/test_resonator

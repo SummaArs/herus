@@ -31,7 +31,7 @@ A identidade será um **handle opaco versionado**, com dois namespaces:
 | `FACTORY` | Vocabulário imutável de relações, ações, lugares e entidades de fábrica | MPHF estático + verificação de membership | Código/asset versionado |
 | `PERSONAL` | Entidades introduzidas pela pessoa ou por um dispositivo autorizado | Interning exato, limitado e collision-aware | Apenas registro autorizado; nunca log bruto |
 
-O handle não deve carregar a semântica textual. Uma proposta inicial host-only é um identificador de 32 bits com campos de versão, namespace e slot; a largura final deve ser escolhida depois de medir migração, memória e ABI. O campo numérico é um endereço interno, não uma prova criptográfica nem uma autorização.
+O handle não deve carregar a semântica textual. A proposta host-only usa um identificador de 32 bits com campos de versão, namespace e slot. Para interoperar provisoriamente com o ABI legado, uma projeção separa `FACTORY` nos 15 bits baixos e `PERSONAL` com o bit alto; handles fora da versão ativa ou acima de 32767 slots por namespace são rejeitados, nunca truncados. O campo numérico é um endereço interno, não uma prova criptográfica nem uma autorização.
 
 ### Namespace `FACTORY`
 
@@ -65,10 +65,11 @@ Se o sistema não puder manter uma associação privada autorizada entre a pesso
 | `ID-08` | Resolução sem confirmação não cria identidade pessoal durável | `AUTH`/proposta transitória |
 | `ID-09` | Um handle não concede autoridade, transmissão ou execução | nenhuma mutação automática |
 | `ID-10` | A versão do léxico é observável para auditoria, mas não expõe a chave pessoal | metadado mínimo |
+| `ID-11` | Projeção para ABI legado separa namespaces e rejeita versão/capacidade incompatíveis | `VERSION_MISMATCH`/`FULL` |
 
 ## Critério de decisão para a próxima fase
 
-A arquitetura só será implementada se um modelo host-only demonstrar `ID-01` a `ID-10` sob colisões conhecidas, overflow, versões incompatíveis, reboot/migração, repetição, entradas sensíveis e tentativas de inserir texto bruto. Se a MPHF não puder ser integrada sem verificação de membership, ela será rejeitada para evitar falsos positivos.
+A arquitetura só será implementada se um modelo host-only demonstrar `ID-01` a `ID-11` sob colisões conhecidas, overflow, versões incompatíveis, reboot/migração, repetição, entradas sensíveis e tentativas de inserir texto bruto. Se a MPHF não puder ser integrada sem verificação de membership, ela será rejeitada para evitar falsos positivos.
 
 O próximo passo é construir esse modelo mínimo fora do firmware e medir o custo de tabela, número de entradas, largura de handle e migração. Nenhum ABI atual deve ser alterado antes desse resultado.
 
