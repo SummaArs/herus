@@ -98,7 +98,7 @@ A primeira execução global foi deliberadamente considerada uma falha: a suíte
 
 Na fase seguinte, foram compostos cinco ataques de integração: ausência do Core com memória conflitante, reboot com slot mais novo adulterado, consentimento revogado com proposta pendente, feed válido sem confirmação e exaustão de memória. A matriz passou **24/24** sem fallback remoto, reviver autoridade ou sobrescrever evidência. O red-team do Core matou **7/7 mutantes**: digest, namespace/source, rollback do feed, ausência convertida em disponibilidade, HMAC do cursor, rollback do cursor e readback autenticado.
 
-A próxima regressão deve confirmar **66 suítes**, **111 invariantes de sistema simulado**, red-team de autonomia **7/7**, magia/memória **5/5** e Core **7/7**. Esses números continuam sendo host-only; não demonstram resistência de flash, brownout, transporte, rádio ou hardware físico.
+A regressão global posterior confirmou **66 suítes**, **111 invariantes de sistema simulado**, red-team de autonomia **7/7**, magia/memória **5/5**, Core **7/7** e matriz combinada **24/24**. O veredito foi `ALL INVARIANTS HOLD — host contracts pass; controlled bench flash may begin, physical gates remain pending.` Esses números continuam sendo host-only; não demonstram resistência de flash, brownout, transporte, rádio ou hardware físico.
 
 ## 11. Limite ético e operacional
 
