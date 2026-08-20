@@ -4,6 +4,7 @@
 #define SC_HASH_OFFSET 2166136261u
 #define SC_HASH_PRIME  16777619u
 #define SC_ERR_SENSITIVE 100u
+#define SC_ERR_COLLISION 101u
 
 typedef struct {
     const char *start;
@@ -63,6 +64,33 @@ uint16_t sc_symbol_id(const char *text, size_t length)
 static uint16_t canonical_id(const char *word)
 {
     return sc_symbol_id(word, strlen(word));
+}
+
+static int token_same_lexeme(const sc_token_t *a, const sc_token_t *b)
+{
+    if (!a || !b || a->length != b->length) return 0;
+    for (uint8_t i = 0u; i < a->length; i++) {
+        if (ascii_lower((unsigned char)a->start[i]) !=
+            ascii_lower((unsigned char)b->start[i])) return 0;
+    }
+    return 1;
+}
+
+static int find_token_collision(const sc_token_t *tokens, uint8_t count,
+                                uint8_t *error_token)
+{
+    if (!tokens || !error_token) return SC_E_ARG;
+    for (uint8_t i = 0u; i < count; i++) {
+        uint16_t first = sc_symbol_id(tokens[i].start, tokens[i].length);
+        for (uint8_t j = (uint8_t)(i + 1u); j < count; j++) {
+            uint16_t second = sc_symbol_id(tokens[j].start, tokens[j].length);
+            if (first == second && !token_same_lexeme(&tokens[i], &tokens[j])) {
+                *error_token = j;
+                return 1;
+            }
+        }
+    }
+    return 0;
 }
 
 static int tokenize(const char *input, size_t length,
@@ -285,6 +313,10 @@ int sc_compile(const char *input, size_t length, sc_unit_t *out)
             out->error_code = SC_ERR_SENSITIVE;
             return out->status = SC_E_SENSITIVE;
         }
+    }
+    if (find_token_collision(tokens, count, &out->error_token) == 1) {
+        out->error_code = SC_ERR_COLLISION;
+        return out->status = SC_E_TOKEN;
     }
     if (is_reject(tokens, count)) {
         out->kind = SC_UNIT_REJECT;

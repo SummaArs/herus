@@ -44,6 +44,7 @@ int main(void)
         "Registre sem confirmação.",
         "Gustavo talvez possui caderno.",
         "O que Gustavo está em casa?",
+        "gh possui ne.",
         "Gustavo possui caderno agora.",
         "Se alguem possui caderno, entao alguem pode estudar agora.",
         "O que todos possuem?",

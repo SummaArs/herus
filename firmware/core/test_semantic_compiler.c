@@ -198,6 +198,11 @@ int main(void)
     check(result == SC_E_SENSITIVE && unit.exact_parse == 0u,
           "secret-like content is rejected before semantic persistence");
 
+    result = compile_text("gh possui ne.", &unit);
+    check(result == SC_E_TOKEN && unit.exact_parse == 0u &&
+                    unit.error_code == 101u,
+          "intra-utterance symbol collision abstains before producing IR");
+
     result = compile_text("Se alguem possui caderno, entao alguem pode estudar agora.",
                           &unit);
     check(result != SC_OK && unit.exact_parse == 0u,

@@ -14,7 +14,7 @@ A entrada é observada de forma transitória. O `sc_unit_t` não contém buffer 
 
 ## Gramática controlada da primeira versão
 
-A versão atual adota um vocabulário pequeno e sintaxe exata. Pontuação final é opcional e a comparação de palavras-chave ignora maiúsculas ASCII; palavras portuguesas com acento reconhecidas pela gramática possuem aliases sem acento. Entidades recebem normalização ASCII de caixa antes de serem convertidas para IDs simbólicos estáveis; acentos UTF-8 ainda são tratados como bytes distintos, sem redução linguística. Isso mantém o escopo deliberadamente limitado.
+A versão atual adota um vocabulário pequeno e sintaxe exata. Pontuação final é opcional e a comparação de palavras-chave ignora maiúsculas ASCII; palavras portuguesas com acento reconhecidas pela gramática possuem aliases sem acento. Entidades recebem normalização ASCII de caixa antes de serem convertidas para IDs simbólicos estáveis; colisões entre lexemas diferentes na mesma frase geram abstention explícita; acentos UTF-8 ainda são tratados como bytes distintos, sem redução linguística. Isso mantém o escopo deliberadamente limitado.
 
 | Unidade | Forma aceita | Saída |
 |---|---|---|
@@ -68,15 +68,15 @@ O compilador não tenta “corrigir” esses ataques. A propriedade medida é ma
 
 ## Evidência host-only
 
-A suíte integrada do compilador possui 36 invariantes: normalização, negação, consulta, regra, objetivos, não retenção, dados sensíveis, prompt injection, aridade estrita, NUL, orçamento, confirmação, derivação, planner e ausência de efeitos laterais. O benchmark fixo apresenta a seguinte matriz:
+A suíte integrada do compilador possui 39 invariantes: normalização, negação, consulta, regra, objetivos, não retenção, dados sensíveis, prompt injection, aridade estrita, NUL, colisão intra-frase, orçamento, confirmação, derivação, planner e ausência de efeitos laterais. O benchmark fixo apresenta a seguinte matriz:
 
 | Classe | Casos | Resultado observado |
 |---|---:|---:|
 | Entradas válidas | 16 | 16/16 exact match |
-| Entradas inválidas | 9 | 9/9 rejeitadas |
+| Entradas inválidas | 10 | 10/10 rejeitadas |
 | Entradas sensíveis | 5 | 5/5 rejeitadas antes do IR |
-| Exact match total | 31 | 31/31 |
-| Abstention esperada | 15 | 15/15 |
+| Exact match total | 32 | 32/32 |
+| Abstention esperada | 16 | 16/16 |
 | Violações de autoridade | 0 | 0 |
 
 Esses números são resultados do host nesta revisão, reproduzidos por `make semantic-benchmark`. Eles não são acurácia de linguagem natural aberta, não são comparação estatística com uma LLM e não medem taxa de erro de fala, consumo, latência de ESP32, WER, RF ou funcionamento físico. O pipeline completo também mantém a bancada de simulação separada da prova de firmware e conserva `local_unattested` no manifesto de proveniência.
