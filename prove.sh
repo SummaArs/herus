@@ -9,7 +9,7 @@
 #   ./prove.sh            full run
 #   ./prove.sh --quiet    verdict lines only
 #
-# Sixty-one suites, each independently falsifiable:
+# Sixty-two suites, each independently falsifiable:
 #   1  algebra      quasi-orthogonality, bundling, resonator, learning, HCP
 #   2  nucleus      bounded, opt-in local semantic intelligence
 #   3  voice        controlled local language and bounded haptic feedback
@@ -71,6 +71,7 @@
 #  59  explainable magic anticipation, privacy gates and safe abstention
 #  60  bounded magic attention window, TTL and proposal budget
 #  61  read-only dialogue presentation of explainable local magic
+#  62  explicit A0-A4 initiative, scope and confirmation policy
 #
 # The Nucleus suite is intentionally separate: privacy and non-autonomy are
 # properties that must fail a build when regressed, not promises in a document.
@@ -346,9 +347,12 @@ banner "59/60 explainable magic anticipation"
 banner "60/61 bounded magic attention window"
 ( cd firmware && make magic-trigger ) > /tmp/herus_magic_trigger.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_magic_trigger.log
-banner "61/61 read-only magic dialogue bridge"
+banner "61/62 read-only magic dialogue bridge"
 ( cd firmware && make magic-dialogue-bridge ) > /tmp/herus_magic_dialogue_bridge.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_magic_dialogue_bridge.log
+banner "62/62 autonomy policy"
+( cd firmware && make autonomy-policy ) > /tmp/herus_autonomy_policy.log 2>&1 || FAIL=1
+[ "$QUIET" = 0 ] && cat /tmp/herus_autonomy_policy.log
  echo ""
 
 echo "--------------------------------------------------"
@@ -390,6 +394,7 @@ check "Memory-to-reasoner bridge composes offline and blocks ambiguous or partia
 check "Magic anticipation explains useful recall and blocks unsafe surprise" "MAGIC ANTICIPATION: 17 pass, 0 fail" /tmp/herus_magic_anticipation.log
 check "Magic trigger bounds attention, TTL and repeated proposals" "MAGIC TRIGGER: 12 pass, 0 fail" /tmp/herus_magic_trigger.log
 check "Magic dialogue bridge stays read-only and abstinent" "MAGIC DIALOGUE BRIDGE: 8 pass, 0 fail" /tmp/herus_magic_dialogue_bridge.log
+check "Autonomy policy bounds initiative, scope and one-shot confirmation" "AUTONOMY POLICY: 14 pass, 0 fail" /tmp/herus_autonomy_policy.log
 
 # --- physical layer -------------------------------------------------------
 check "P1 constant AIRTIME across meaning tiers" "INVARIANT HOLDS" /tmp/herus_c.log

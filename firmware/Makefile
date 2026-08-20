@@ -51,6 +51,7 @@
 #   make magic-anticipation the explainable surprise and privacy-gate suite
 #   make magic-trigger the bounded attention-window and proposal-budget suite
 #   make magic-dialogue-bridge the read-only dialogue presentation suite
+#   make autonomy-policy the explicit A0–A4 initiative and confirmation policy suite
 #   make interaction the push-to-talk, confirmation and one-shot runtime suite
 #   make interaction-rig deterministic adapter and validation-lab scenarios
 #   make net        the protocol suite (crypto, session, weave, beat, framing)
@@ -71,7 +72,7 @@ INC     := -Icore -Inet -Iport -Itest
 CORE    := core/hv.c core/sbc.c core/lexicon.c core/hcp.c
 NET     := net/crypto.c net/session.c net/region.c net/weave.c net/beat.c net/link.c
 
-.PHONY: all algebra nucleus voice intent dialogue model-lab memory-policy memory-capture memory-extract watch-memory-frontend memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale memory-collection memory-collection-index memory-collection-recovery memory-collection-recovery-stress memory-collection-finale bench-evidence-validate bench-interruption-sim memory-proposal llm-budget-check memory-physical-session memory-physical-session-recovery memory-physical-session-recovery-stress memory-physical-session-bootstrap memory-prehardware-finale threat-model threat-model-stress proof-fire-mutations assurance capstone trust control-link delivery-plan transport-selector personal-telemetry symbolic-reasoner resonator semantic-compiler semantic-benchmark knowledge-feed knowledge-feed-cursor memory-semantic-evidence memory-reasoning-bridge magic-anticipation magic-trigger magic-dialogue-bridge interaction interaction-rig net radio syntax vectors haptic-language haptic-language-matrix haptic-semantic-bridge haptic-adapter haptic-evidence haptic-target haptic-runner haptic-preflight clean
+.PHONY: all algebra nucleus voice intent dialogue model-lab memory-policy memory-capture memory-extract watch-memory-frontend memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale memory-collection memory-collection-index memory-collection-recovery memory-collection-recovery-stress memory-collection-finale bench-evidence-validate bench-interruption-sim memory-proposal llm-budget-check memory-physical-session memory-physical-session-recovery memory-physical-session-recovery-stress memory-physical-session-bootstrap memory-prehardware-finale threat-model threat-model-stress proof-fire-mutations assurance capstone trust control-link delivery-plan transport-selector personal-telemetry symbolic-reasoner resonator semantic-compiler semantic-benchmark knowledge-feed knowledge-feed-cursor memory-semantic-evidence memory-reasoning-bridge magic-anticipation magic-trigger magic-dialogue-bridge autonomy-policy interaction interaction-rig net radio syntax vectors haptic-language haptic-language-matrix haptic-semantic-bridge haptic-adapter haptic-evidence haptic-target haptic-runner haptic-preflight clean
 
 all: algebra nucleus voice intent dialogue model-lab memory-policy memory-capture memory-extract memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale memory-collection memory-collection-index memory-collection-recovery memory-collection-recovery-stress memory-collection-finale memory-physical-session memory-physical-session-recovery memory-physical-session-recovery-stress memory-physical-session-bootstrap memory-prehardware-finale threat-model threat-model-stress proof-fire-mutations assurance capstone trust control-link interaction interaction-rig net radio syntax haptic-language haptic-language-matrix haptic-semantic-bridge haptic-adapter haptic-evidence haptic-target haptic-runner haptic-preflight
 	@echo ""
@@ -267,6 +268,11 @@ magic-dialogue-bridge: build
 	@echo "--- magic dialogue bridge: read-only local presentation ---"
 	$(CC) $(CFLAGS) $(INC) core/hv.c core/resonator.c core/resonator_bridge.c core/memory_semantic_evidence.c core/memory_reasoning_bridge.c core/symbolic_reasoner.c core/magic_anticipation.c core/magic_dialogue_bridge.c core/symbolic_dialogue.c core/test_magic_dialogue_bridge.c -o build/test_magic_dialogue_bridge
 	./build/test_magic_dialogue_bridge
+
+autonomy-policy: build
+	@echo "--- autonomy policy: A0-A4 initiative and confirmation envelope ---"
+	$(CC) $(CFLAGS) $(INC) core/autonomy_policy.c core/test_autonomy_policy.c -o build/test_autonomy_policy
+	./build/test_autonomy_policy
 
 symbol-registry-model:
 	@echo "--- symbol registry model: versioned collision-aware host contract ---"
