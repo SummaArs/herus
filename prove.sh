@@ -9,7 +9,7 @@
 #   ./prove.sh            full run
 #   ./prove.sh --quiet    verdict lines only
 #
-# Sixty suites, each independently falsifiable:
+# Sixty-one suites, each independently falsifiable:
 #   1  algebra      quasi-orthogonality, bundling, resonator, learning, HCP
 #   2  nucleus      bounded, opt-in local semantic intelligence
 #   3  voice        controlled local language and bounded haptic feedback
@@ -70,6 +70,7 @@
 #  58  offline memory-to-reasoner composition, conflict and abstention
 #  59  explainable magic anticipation, privacy gates and safe abstention
 #  60  bounded magic attention window, TTL and proposal budget
+#  61  read-only dialogue presentation of explainable local magic
 #
 # The Nucleus suite is intentionally separate: privacy and non-autonomy are
 # properties that must fail a build when regressed, not promises in a document.
@@ -342,9 +343,12 @@ banner "58/59 offline memory-to-reasoner composition"
 banner "59/60 explainable magic anticipation"
 ( cd firmware && make magic-anticipation ) > /tmp/herus_magic_anticipation.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_magic_anticipation.log
-banner "60/60 bounded magic attention window"
+banner "60/61 bounded magic attention window"
 ( cd firmware && make magic-trigger ) > /tmp/herus_magic_trigger.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_magic_trigger.log
+banner "61/61 read-only magic dialogue bridge"
+( cd firmware && make magic-dialogue-bridge ) > /tmp/herus_magic_dialogue_bridge.log 2>&1 || FAIL=1
+[ "$QUIET" = 0 ] && cat /tmp/herus_magic_dialogue_bridge.log
  echo ""
 
 echo "--------------------------------------------------"
@@ -385,6 +389,7 @@ check "Memory evidence preserves temporal provenance, conflicts and bounded abst
 check "Memory-to-reasoner bridge composes offline and blocks ambiguous or partial evidence" "MEMORY REASONING BRIDGE: 16 pass, 0 fail" /tmp/herus_memory_reasoning_bridge.log
 check "Magic anticipation explains useful recall and blocks unsafe surprise" "MAGIC ANTICIPATION: 16 pass, 0 fail" /tmp/herus_magic_anticipation.log
 check "Magic trigger bounds attention, TTL and repeated proposals" "MAGIC TRIGGER: 11 pass, 0 fail" /tmp/herus_magic_trigger.log
+check "Magic dialogue bridge stays read-only and abstinent" "MAGIC DIALOGUE BRIDGE: 8 pass, 0 fail" /tmp/herus_magic_dialogue_bridge.log
 
 # --- physical layer -------------------------------------------------------
 check "P1 constant AIRTIME across meaning tiers" "INVARIANT HOLDS" /tmp/herus_c.log
