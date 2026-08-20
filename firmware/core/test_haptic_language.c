@@ -45,6 +45,7 @@ int main(void)
     score_t score = { 0, 0 };
     hl_profile_t lra = profile_fixture(HL_ACTUATOR_LRA);
     hl_profile_t erm = profile_fixture(HL_ACTUATOR_ERM);
+    hl_profile_t colliding_profile = profile_fixture(HL_ACTUATOR_LRA);
     hl_event_t event = event_fixture();
     hl_event_t decoded;
     hl_encoded_t encoded;
@@ -63,6 +64,14 @@ int main(void)
           "encode/decode round-trip preserves semantic fields");
     check(&score, encoded.checksum == hl_checksum(&event),
           "checksum is deterministic and independent of actuator profile");
+    check(&score, hl_decode_with_profile(&encoded, &lra, &decoded) == HL_OK,
+          "profile-bound decode accepts the matching LRA profile");
+    check(&score, hl_decode_with_profile(&encoded, &erm, &decoded) == HL_E_PROFILE,
+          "profile-bound decode rejects an ERM/LRA mismatch");
+    corrupted = encoded;
+    corrupted.effect_id[2] ^= 0x01u;
+    check(&score, hl_decode_with_profile(&corrupted, &lra, &decoded) == HL_E_PROFILE,
+          "profile-bound decode rejects a physical waveform mismatch");
 
     corrupted = encoded;
     corrupted.checksum ^= 0x01u;
@@ -93,6 +102,13 @@ int main(void)
     event.version = 2u;
     check(&score, hl_encode(&event, &erm, &encoded) == HL_E_FORMAT,
           "unknown semantic language version is rejected");
+
+    colliding_profile.effect_code[1] = colliding_profile.effect_code[0];
+    check(&score, hl_profile_validate(&colliding_profile) == HL_E_PROFILE,
+          "profile rejects two semantic codes sharing one waveform");
+    event = event_fixture();
+    check(&score, hl_encode(&event, &colliding_profile, &encoded) == HL_E_PROFILE,
+          "encoder rejects perceptual aliasing before playback");
 
     printf("HAPTIC LANGUAGE: %d pass, %d fail\n", score.pass, score.fail);
     return score.fail ? 1 : 0;

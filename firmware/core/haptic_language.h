@@ -107,6 +107,8 @@ uint8_t hl_checksum(const hl_event_t *event);
 int hl_encode(const hl_event_t *event, const hl_profile_t *profile,
               hl_encoded_t *out);
 int hl_decode(const hl_encoded_t *encoded, hl_event_t *out);
+int hl_decode_with_profile(const hl_encoded_t *encoded,
+                           const hl_profile_t *profile, hl_event_t *out);
 int hl_symbol_to_effect(const hl_profile_t *profile, hl_symbol_kind_t kind,
                         uint8_t code, uint8_t *effect_id);
 

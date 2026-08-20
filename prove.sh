@@ -9,7 +9,7 @@
 #   ./prove.sh            full run
 #   ./prove.sh --quiet    verdict lines only
 #
-# Forty-four suites, each independently falsifiable:
+# Forty-nine suites, each independently falsifiable:
 #   1  algebra      quasi-orthogonality, bundling, resonator, learning, HCP
 #   2  nucleus      bounded, opt-in local semantic intelligence
 #   3  voice        controlled local language and bounded haptic feedback
@@ -54,6 +54,11 @@
 #  42  resonator VSA factorization, bridge gates and generalization stress
 #  43  semantic compiler controlled Portuguese to typed IR and safe integration
 #  44  semantic benchmark exact IR, abstention and authority invariants
+#  45  collision-aware symbol registry model
+#  46  collision-aware symbol registry C11 contract
+#  47  HAP-SEM bounded semantic frame encoder
+#  48  HAP-SEM semantic bridge, authority and abstention
+#  49  HAP-SEM exhaustive tuple, corruption and profile-mismatch matrix
 #
 # The Nucleus suite is intentionally separate: privacy and non-autonomy are
 # properties that must fail a build when regressed, not promises in a document.
@@ -293,8 +298,11 @@ banner "47/48 HAP-SEM haptic language encoder (host-only/C11)"
 banner "48/48 HAP-SEM semantic bridge (authority and abstention)"
 ( cd firmware && make haptic-semantic-bridge ) > /tmp/herus_haptic_bridge.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_haptic_bridge.log
-
+banner "49/49 HAP-SEM exhaustive matrix (tuples, corruption and profiles)"
+( cd firmware && make haptic-language-matrix ) > /tmp/herus_haptic_matrix.log 2>&1 || FAIL=1
+[ "$QUIET" = 0 ] && cat /tmp/herus_haptic_matrix.log
  echo ""
+
 echo "--------------------------------------------------"
 echo "INVARIANT CHECKS"
 echo "--------------------------------------------------"
@@ -319,8 +327,9 @@ check "Semantic compiler emits exact typed IR and rejects unsupported language" 
 check "Semantic benchmark holds exact match, abstention and zero authority violations" "SEMANTIC BENCHMARK: valid 16/16, invalid 10/10, sensitive 5/5, exact 32/32, abstention 16/16, authority violations 0" /tmp/herus_semantic_benchmark.log
 check "Collision-aware symbol registry separates namespaces, versions and full-state limits" "SYMBOL REGISTRY MODEL: 13 pass, 0 fail" /tmp/herus_symbol_registry.log
 check "Collision-aware symbol registry C11 preserves the same contract" "SYMBOL REGISTRY C: 15 pass, 0 fail" /tmp/herus_symbol_registry_c.log
-check "HAP-SEM encodes bounded semantic frames and rejects unsafe profiles" "HAPTIC LANGUAGE: 12 pass, 0 fail" /tmp/herus_haptic_language.log
+check "HAP-SEM encodes bounded semantic frames and rejects unsafe profiles" "HAPTIC LANGUAGE: 17 pass, 0 fail" /tmp/herus_haptic_language.log
 check "HAP-SEM bridge preserves presentation, authority and abstention" "HAPTIC SEMANTIC BRIDGE: 9 pass, 0 fail" /tmp/herus_haptic_bridge.log
+check "HAP-SEM matrix covers both profiles, all tuples and directed failures" "HAPTIC LANGUAGE MATRIX: frames 1440/1440, round-trips 1440/1440, field corruptions 14400, profile mismatches 1440, failures 0" /tmp/herus_haptic_matrix.log
 
 # --- physical layer -------------------------------------------------------
 check "P1 constant AIRTIME across meaning tiers" "INVARIANT HOLDS" /tmp/herus_c.log

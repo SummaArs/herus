@@ -23,8 +23,20 @@ int hl_profile_validate(const hl_profile_t *profile)
         profile->effect_mark == 0u || profile->effect_end == 0u)
         return HL_E_PROFILE;
     for (uint8_t i = 0u; i < HL_CODEBOOK_SIZE; i++) {
-        if (profile->effect_code[i] == 0u) return HL_E_PROFILE;
+        if (profile->effect_code[i] == 0u ||
+            profile->effect_code[i] == profile->effect_sync ||
+            profile->effect_code[i] == profile->effect_mark ||
+            profile->effect_code[i] == profile->effect_end)
+            return HL_E_PROFILE;
+        for (uint8_t j = 0u; j < i; j++) {
+            if (profile->effect_code[i] == profile->effect_code[j])
+                return HL_E_PROFILE;
+        }
     }
+    if (profile->effect_sync == profile->effect_mark ||
+        profile->effect_sync == profile->effect_end ||
+        profile->effect_mark == profile->effect_end)
+        return HL_E_PROFILE;
     return HL_OK;
 }
 
@@ -153,5 +165,26 @@ int hl_decode(const hl_encoded_t *encoded, hl_event_t *out)
     out->fragment_total = 1u;
     if (!valid_event(out)) return HL_E_FORMAT;
     if (encoded->checksum != hl_checksum(out)) return HL_E_CHECKSUM;
+    return HL_OK;
+}
+
+int hl_decode_with_profile(const hl_encoded_t *encoded,
+                           const hl_profile_t *profile, hl_event_t *out)
+{
+    uint8_t expected;
+    uint8_t i;
+    int result;
+    if (!encoded || !profile || !out) return HL_E_ARG;
+    result = hl_profile_validate(profile);
+    if (result != HL_OK) return result;
+    if (encoded->actuator != profile->actuator) return HL_E_PROFILE;
+    result = hl_decode(encoded, out);
+    if (result != HL_OK) return result;
+    for (i = 0u; i < encoded->slot_count; i++) {
+        result = hl_symbol_to_effect(profile, encoded->kind[i],
+                                     encoded->code[i], &expected);
+        if (result != HL_OK || encoded->effect_id[i] != expected)
+            return HL_E_PROFILE;
+    }
     return HL_OK;
 }

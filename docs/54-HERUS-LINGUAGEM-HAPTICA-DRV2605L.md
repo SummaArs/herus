@@ -130,7 +130,7 @@ Um padrão `ACK` significa apenas que a camada correspondente registrou uma conf
 | `HAP-01` | Todo frame possui versão e `SYNC` | rejeitar |
 | `HAP-02` | Todo frame termina em `END` ou expira como incompleto | `UNKNOWN` |
 | `HAP-03` | Uma mensagem não excede oito slots por emissão | fragmentar ou rejeitar |
-| `HAP-04` | Perfil de atuador incompatível não é aceito como equivalente | `PROFILE_MISMATCH` |
+| `HAP-04` | Perfil de atuador incompatível, efeito físico divergente ou codebook com alias não é aceito como equivalente | `PROFILE_MISMATCH` |
 | `HAP-05` | Token desconhecido não vira sucesso por fallback | `UNKNOWN` |
 | `HAP-06` | Urgência não concede autoridade | nenhuma mutação |
 | `HAP-07` | `ACK` só representa confirmação comprovada | rejeitar falso ACK |
@@ -140,9 +140,17 @@ Um padrão `ACK` significa apenas que a camada correspondente registrou uma conf
 | `HAP-11` | O mesmo frame semântico pode ser traduzido por perfis físicos diferentes | exigir mesma semântica, não mesma waveform |
 | `HAP-12` | Nenhum evento háptico sozinho inicia transmissão ou execução | confirmação física separada |
 
+## Evidência host-only da fase 5
+
+A suíte `haptic-language-matrix` foi adicionada ao pipeline como `49/49`. Em C11 estrito (`-std=c11 -Wall -Wextra -Werror -pedantic`), ela percorre as **720 combinações semânticas permitidas por perfil** (`5 × 6 × 6 × 4`), totalizando 1.440 frames entre ERM e LRA. Os 1.440 frames tiveram round-trip profile-bound exato; 1.440 tentativas de decodificação com o perfil incompatível falharam como `HL_E_PROFILE`; 14.400 mutações dirigidas falharam — quatro campos semânticos e seis `effect_id` físicos por frame; e payload/fragmentação fora do orçamento retornaram `HL_E_FRAGMENT` sem truncamento. A suíte unitária complementar passou `17/17`, e a ponte semântica permaneceu `9/9`.
+
+Esse resultado prova apenas **invariantes determinísticos do contrato de software em host**. Ele não mede se um ser humano percebe os padrões, nem se dois padrões têm baixa confusão em pele, roupa, posição, pressão ou movimento. Também não prova que os IDs escolhidos produzam os waveforms desejados no DRV2605L: cada profile continua sendo uma tabela declarativa que precisará de calibração e bancada.
+
 ## O que ainda não foi provado
 
-Não há alegação de que oito tokens sejam distinguíveis em qualquer pessoa, roupa, posição ou atuador. Também não há WER háptico, taxa de confusão, limiar de intensidade, latência, consumo ou segurança física medidos. A próxima fase deve implementar um encoder/simulador determinístico e gerar a matriz de todos os frames permitidos, incluindo fragmentação, corrupção, perfil incompatível e expiração.
+Não há alegação de que os tokens sejam universalmente distinguíveis. Ainda não existem WER háptico, matriz de confusão humana, limiar de intensidade, taxa de abandono, latência fim a fim, consumo, aquecimento, conforto, segurança física, desempenho do I2C ou comportamento real do DRV2605L medidos. A política contextual de expiração de `U0` também ainda não é uma API temporal no encoder; o frame apenas preserva a urgência e falha fechado quando o evento excede o orçamento de fragmentação. Nenhum frame háptico inicia transmissão, persistência ou execução, mas isso continua exigindo confirmação física separada no produto.
+
+O próximo gate correto é um estudo humano preregistrado com perfis e atuadores reais: medir identificação e confusão por participante e condição, comparar ERM/LRA, testar repetição e expiração, registrar apenas dados agregados e interromper o estudo se conforto, segurança ou privacidade não forem satisfatórios. Até esse estudo e a bancada elétrica, “linguagem universal” permanece uma hipótese de engenharia, não um resultado.
 
 ## Referências
 
