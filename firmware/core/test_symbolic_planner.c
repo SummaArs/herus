@@ -91,6 +91,38 @@ int main(void)
                     result.status == SP_E_CONTRADICTION,
           "contradictory initial state blocks plan generation");
 
+    {
+        sp_problem_t full;
+        sp_action_t capacity_action;
+        int capacity_facts_ok = 1;
+        memset(&full, 0, sizeof(full));
+        for (uint16_t i = 0u; i < SP_MAX_STATE_FACTS; i++) {
+            full.initial[i] = (sr_fact_t){(uint16_t)(i + 1u), P_STATE,
+                                         O_SELF, 0u};
+        }
+        full.initial_count = SP_MAX_STATE_FACTS;
+        memset(&capacity_action, 0, sizeof(capacity_action));
+        capacity_action.id = 21u;
+        capacity_action.precondition_count = 1u;
+        capacity_action.precondition[0] = full.initial[0];
+        capacity_action.add_count = 1u;
+        capacity_action.add[0] = (sr_fact_t){1u, P_STATE, 99u, 0u};
+        capacity_action.cost = 1u;
+        full.action_count = 1u;
+        full.action[0] = capacity_action;
+        full.goal = capacity_action.add[0];
+        for (unsigned i = 0u; i < full.initial_count; i++) {
+            for (unsigned j = i + 1u; j < full.initial_count; j++) {
+                if (full.initial[i].subject == full.initial[j].subject)
+                    capacity_facts_ok = 0;
+            }
+        }
+        check(&score, capacity_facts_ok &&
+                        sp_plan(&full, 16u, 4u, &result) == SP_E_LIMIT &&
+                        result.status == SP_E_LIMIT,
+              "full planning state reports capacity limit instead of no plan");
+    }
+
     printf("SYMBOLIC PLANNER: %d pass, %d fail\n", score.pass, score.fail);
     return score.fail ? 1 : 0;
 }

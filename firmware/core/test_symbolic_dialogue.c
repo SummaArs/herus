@@ -125,6 +125,35 @@ int main(void)
                     reply.answer.kind == SR_ANSWER_CONTRADICTED,
           "contradiction is surfaced rather than collapsed into confidence");
 
+    {
+        sd_dialogue_t full;
+        sr_rule_t capacity;
+        sr_pattern_t capacity_query;
+        int capacity_facts_ok = 1;
+        sd_init(&full);
+        for (uint16_t subject = 1u; subject <= SR_MAX_FACTS; subject++) {
+            if (sd_add_personal_fact(&full,
+                                     (sr_fact_t){subject, OWNS, PLACE, 0u}, 1u) != SD_OK)
+                capacity_facts_ok = 0;
+        }
+        memset(&capacity, 0, sizeof(capacity));
+        capacity.id = 91u;
+        capacity.premise_count = 1u;
+        capacity.premise[0] = (sr_pattern_t){SR_VAR(0u), SR_CONST(OWNS),
+                                             SR_CONST(PLACE), 0u};
+        capacity.conclusion = (sr_pattern_t){SR_VAR(0u), SR_CONST(NEEDS),
+                                             SR_CONST(READY), 0u};
+        capacity.cost = 1u;
+        capacity_query = (sr_pattern_t){SR_CONST(1u), SR_CONST(NEEDS),
+                                        SR_CONST(READY), 0u};
+        check(&score, capacity_facts_ok && sr_fact_count(&full.reasoner) == SR_MAX_FACTS &&
+                        sd_add_rule(&full, &capacity) == SD_OK &&
+                        sd_ask(&full, &capacity_query, SD_MAX_DERIVATION_STEPS,
+                               &reply) == SD_E_LIMIT &&
+                        reply.answer.kind == SR_ANSWER_LIMIT,
+              "dialogue exposes a full-memory derivation as an explicit limit");
+    }
+
     printf("SYMBOLIC DIALOGUE: %d pass, %d fail\n", score.pass, score.fail);
     return score.fail ? 1 : 0;
 }

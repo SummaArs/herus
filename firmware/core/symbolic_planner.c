@@ -15,6 +15,7 @@ typedef struct {
     sp_state_t ancestor[SP_MAX_PLAN_LENGTH + 1u];
     sp_plan_result_t *out;
     uint8_t depth_limited;
+    uint8_t state_limited;
 } sp_search_t;
 
 static int fact_equal(sr_fact_t a, sr_fact_t b)
@@ -153,8 +154,14 @@ static int search(sp_search_t *searcher, const sp_state_t *state,
         const sp_action_t *action = &searcher->problem->action[i];
         sp_state_t next;
         int seen = 0;
+        int apply_result;
         if (!action_applicable(state, action)) continue;
-        if (apply_action(state, action, &next) != SP_OK) continue;
+        apply_result = apply_action(state, action, &next);
+        if (apply_result == SP_E_LIMIT) {
+            searcher->state_limited = 1u;
+            continue;
+        }
+        if (apply_result != SP_OK) continue;
         for (unsigned ancestor = 0u; ancestor <= depth; ancestor++) {
             if (state_equal(&next, &searcher->ancestor[ancestor])) {
                 seen = 1;
@@ -207,7 +214,8 @@ int sp_plan(const sp_problem_t *problem, uint16_t max_nodes,
     result = search(&searcher, &initial, 0u, 0u, 0u);
     out->explored_nodes = searcher.explored;
     if (result == SP_OK) return SP_OK;
-    if (searcher.explored >= max_nodes || searcher.depth_limited) {
+    if (searcher.explored >= max_nodes || searcher.depth_limited ||
+        searcher.state_limited) {
         out->status = SP_E_LIMIT;
         return SP_E_LIMIT;
     }

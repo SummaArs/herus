@@ -72,7 +72,7 @@ int sd_ask(sd_dialogue_t *dialogue, const sr_pattern_t *query,
     dialogue->turn++;
     out->turn = dialogue->turn;
     result = sr_saturate(&dialogue->reasoner, derivation_budget);
-    if (result == SR_E_LIMIT) {
+    if (result == SR_E_LIMIT || result == SR_E_FULL) {
         out->status = SD_E_LIMIT;
         out->answer.kind = SR_ANSWER_LIMIT;
         return SD_E_LIMIT;

@@ -39,9 +39,9 @@ O `symbolic_dialogue` fornece a fronteira de produto. Regras de fábrica são in
 | Suíte | Resultado |
 |---|---:|
 | Reasoner | 20 invariantes |
-| Planner | 8 invariantes |
-| Dialogue | 14 invariantes |
-| Total desta evolução | **42 invariantes** |
+| Planner | 9 invariantes |
+| Dialogue | 15 invariantes |
+| Total desta evolução | **44 invariantes** |
 
 Os testes cobrem duplicação, composição de duas regras, geração de conclusão nova, prova, ausência de evidência, consulta ambígua, contradição, variável não ligada, orçamento de saturação, planejamento causal, ciclo, objetivo inalcançável, limite de nós, confirmação física e limite de derivação no diálogo.
 
