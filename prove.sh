@@ -663,6 +663,13 @@ if ( cd sim && make -s build/herus-sim ) 2>/tmp/herus_sim_build.log; then
         check "Semantic-life simulator scrubs reboot state and enforces the recovered floor" "reboot scrubs active semantic evidence and imports only a floor" /tmp/herus_sim.log
         check "Physical-fault simulator keeps adapter loss fail-closed" "clock loss rejects the event without advancing semantic time" /tmp/herus_sim.log
         check "Physical-fault simulator prevents false contact authority under energy loss" "energy loss during contact does not falsely acknowledge the offer" /tmp/herus_sim.log
+        check "AGSC preserves provenance without authority amplification" "confirmed memory preserves external provenance without amplifying authority" /tmp/herus_sim.log
+        check "AGSC requires physical confirmation for local action" "no physical confirmation means no local action grant" /tmp/herus_sim.log
+        check "AGSC blocks stale and pre-reboot authority" "pre-reboot offer cannot regain authority after epoch change" /tmp/herus_sim.log
+        check "AGSC rejects Core execution scope" "Core execution is not reachable through the local action scope" /tmp/herus_sim.log
+        check "AGSC benchmark separates authorized recall from false memory" "AGSC reduces false memory against permissive baselines" /tmp/herus_sim.log
+        check "AGSC benchmark preserves conflict and stale abstention" "AGSC preserves conflict abstention against permissive baselines" /tmp/herus_sim.log
+        check "AGSC benchmark blocks reboot revival and unauthorized action" "AGSC satisfies the complete non-amplification case vector" /tmp/herus_sim.log
     else
         echo "  FAIL  the bench disagrees with the design — see /tmp/herus_sim.log"; FAIL=1
     fi
@@ -686,6 +693,13 @@ if python3 tools/test_semantic_life_redteam.py > /tmp/herus_semantic_life_redtea
     grep "SEMANTIC-LIFE REDTEAM" /tmp/herus_semantic_life_redteam.log
 else
     echo "  FAIL  a semantic-life mutant survived — see /tmp/herus_semantic_life_redteam.log"
+    FAIL=1
+fi
+
+if python3 tools/test_authority_transition_redteam.py > /tmp/herus_authority_redteam.log 2>&1; then
+    grep "AUTHORITY REDTEAM" /tmp/herus_authority_redteam.log
+else
+    echo "  FAIL  an authority-transition mutant survived — see /tmp/herus_authority_redteam.log"
     FAIL=1
 fi
 

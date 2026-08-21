@@ -27,9 +27,9 @@ VCORE   := $(FW)/core/transport_selector.c $(FW)/core/personal_telemetry.c \
            $(FW)/core/ambient_presence.c $(FW)/core/memory_semantic_evidence.c
 NET     := $(FW)/net/crypto.c $(FW)/net/session.c $(FW)/net/region.c \
            $(FW)/net/weave.c $(FW)/net/beat.c $(FW)/net/link.c
-SIM     := world.c channel.c render.c node.c scenarios.c stress.c compose.c study.c learn.c virtual_lab.c personal_scenario.c personal_sim.c semantic_scenario.c semantic_life.c physical_fault_scenario.c main.c
+SIM     := world.c channel.c render.c node.c scenarios.c stress.c compose.c study.c learn.c virtual_lab.c personal_scenario.c personal_sim.c semantic_scenario.c semantic_life.c physical_fault_scenario.c authority_transition.c authority_scenario.c authority_benchmark.c main.c
 
-.PHONY: all run personal semantic-life physical-faults virtual virtual-mutation clean
+.PHONY: all run personal semantic-life physical-faults authority authority-benchmark authority-redteam virtual virtual-mutation clean
 
 all: run
 
@@ -44,6 +44,15 @@ semantic-life: build/herus-sim
 
 physical-faults: build/herus-sim
 	./build/herus-sim physical-faults
+
+authority: build/herus-sim
+	./build/herus-sim authority
+
+authority-benchmark: build/herus-sim
+	./build/herus-sim authority-benchmark
+
+authority-redteam:
+	cd .. && python3 tools/test_authority_transition_redteam.py
 
 virtual: build/herus-sim
 	./build/herus-sim virtual

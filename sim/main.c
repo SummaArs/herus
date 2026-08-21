@@ -45,6 +45,8 @@ static const entry_t TABLE[] = {
     { "personal",  scenario_personal,   "PRE-HARDWARE: personal semantic life, attention, energy and contact" },
     { "semantic-life", scenario_semantic_life, "PRE-HARDWARE: continuous preferences, goals, memory, reboot and abstention" },
     { "physical-faults", scenario_physical_faults, "PRE-HARDWARE: adapter loss, interruption, contact and energy failure" },
+    { "authority", scenario_authority, "AGSC: provenance, memory, abstention and non-amplifying action authority" },
+    { "authority-benchmark", scenario_authority_benchmark, "AGSC: baselines for false memory, conflict, stale facts, reboot and action" },
 };
 #define NTABLE ((int)(sizeof TABLE / sizeof *TABLE))
 
