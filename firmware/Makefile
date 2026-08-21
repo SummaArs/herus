@@ -29,6 +29,8 @@
 #   make memory-physical-session-recovery the durable reservation recovery oracle suite
 #   make memory-physical-session-recovery-stress the deterministic hostile recovery/bootstrap campaign
 #   make memory-physical-session-bootstrap the post-reboot session quarantine suite
+#   make memory-reboot-boundary floor-only recovery and semantic-index quarantine
+#   make memory-reboot-redteam deterministic stale-context recovery sabotage
 #   make memory-prehardware-finale the final host-only post-reboot memory-chain suite
 #   make threat-model the executable evidence and residual-risk classification suite
 #   make threat-model-stress the deterministic hostile evidence-classifier campaign
@@ -78,9 +80,9 @@ INC     := -Icore -Inet -Iport -Itest
 CORE    := core/hv.c core/sbc.c core/lexicon.c core/hcp.c
 NET     := net/crypto.c net/session.c net/region.c net/weave.c net/beat.c net/link.c
 
-.PHONY: all algebra nucleus voice intent dialogue model-lab memory-policy memory-capture memory-extract watch-memory-frontend memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale memory-collection memory-collection-index memory-collection-recovery memory-collection-recovery-stress memory-collection-finale bench-evidence-validate bench-interruption-sim memory-proposal llm-budget-check memory-physical-session memory-physical-session-recovery memory-physical-session-recovery-stress memory-physical-session-bootstrap memory-prehardware-finale threat-model threat-model-stress proof-fire-mutations assurance capstone trust control-link delivery-plan transport-selector personal-telemetry symbolic-reasoner resonator semantic-compiler semantic-benchmark knowledge-feed knowledge-feed-cursor memory-semantic-evidence memory-reasoning-bridge magic-anticipation degradation-matrix degradation-redteam magic-trigger magic-dialogue-bridge autonomy-policy autonomy-redteam magic-redteam interaction interaction-rig net radio syntax vectors haptic-language haptic-language-matrix haptic-semantic-bridge haptic-adapter haptic-evidence haptic-target haptic-runner haptic-preflight cross-failure-matrix cross-failure-redteam clean
+.PHONY: all algebra nucleus voice intent dialogue model-lab memory-policy memory-capture memory-extract watch-memory-frontend memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale memory-collection memory-collection-index memory-collection-recovery memory-collection-recovery-stress memory-collection-finale bench-evidence-validate bench-interruption-sim memory-proposal llm-budget-check memory-physical-session memory-physical-session-recovery memory-physical-session-recovery-stress memory-physical-session-bootstrap memory-reboot-boundary memory-reboot-redteam memory-prehardware-finale threat-model threat-model-stress proof-fire-mutations assurance capstone trust control-link delivery-plan transport-selector personal-telemetry symbolic-reasoner resonator semantic-compiler semantic-benchmark knowledge-feed knowledge-feed-cursor memory-semantic-evidence memory-reasoning-bridge magic-anticipation degradation-matrix degradation-redteam magic-trigger magic-dialogue-bridge autonomy-policy autonomy-redteam magic-redteam interaction interaction-rig net radio syntax vectors haptic-language haptic-language-matrix haptic-semantic-bridge haptic-adapter haptic-evidence haptic-target haptic-runner haptic-preflight cross-failure-matrix cross-failure-redteam clean
 
-all: algebra nucleus voice intent dialogue model-lab memory-policy memory-capture memory-extract memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale memory-collection memory-collection-index memory-collection-recovery memory-collection-recovery-stress memory-collection-finale memory-physical-session memory-physical-session-recovery memory-physical-session-recovery-stress memory-physical-session-bootstrap memory-prehardware-finale threat-model threat-model-stress proof-fire-mutations assurance capstone trust control-link interaction interaction-rig net radio syntax haptic-language haptic-language-matrix haptic-semantic-bridge haptic-adapter haptic-evidence haptic-target haptic-runner haptic-preflight
+all: algebra nucleus voice intent dialogue model-lab memory-policy memory-capture memory-extract memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale memory-collection memory-collection-index memory-collection-recovery memory-collection-recovery-stress memory-collection-finale memory-physical-session memory-physical-session-recovery memory-physical-session-recovery-stress memory-physical-session-bootstrap memory-reboot-boundary memory-reboot-redteam memory-prehardware-finale threat-model threat-model-stress proof-fire-mutations assurance capstone trust control-link interaction interaction-rig net radio syntax haptic-language haptic-language-matrix haptic-semantic-bridge haptic-adapter haptic-evidence haptic-target haptic-runner haptic-preflight
 	@echo ""
 	@echo "=================================================="
 	@echo "ALL FIRMWARE SUITES PASS"
@@ -401,6 +403,15 @@ memory-physical-session-bootstrap: build
 	@echo "--- physical session bootstrap: post-reboot floor-only quarantine ---"
 	$(CC) $(CFLAGS) $(INC) core/memory_physical_session.c core/memory_physical_session_recovery.c core/memory_physical_session_bootstrap.c core/test_memory_physical_session_bootstrap.c -o build/test_memory_physical_session_bootstrap
 	./build/test_memory_physical_session_bootstrap
+
+memory-reboot-boundary: build
+	@echo "--- memory reboot boundary: floor-only recovery and semantic-index quarantine ---"
+	$(CC) $(CFLAGS) $(INC) core/memory_semantic_evidence.c core/memory_physical_session.c core/memory_physical_session_recovery.c core/memory_physical_session_bootstrap.c core/memory_reboot_boundary.c core/test_memory_reboot_boundary.c -o build/test_memory_reboot_boundary
+	./build/test_memory_reboot_boundary
+
+memory-reboot-redteam:
+	@echo "--- memory reboot redteam: stale-context and partial-recovery sabotage ---"
+	python3 ../tools/test_memory_reboot_redteam.py
 
 memory-prehardware-finale: build
 	@echo "--- pre-hardware Grand Finale: post-reboot memory-chain composition ---"
