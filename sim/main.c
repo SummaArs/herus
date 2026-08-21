@@ -48,6 +48,7 @@ static const entry_t TABLE[] = {
     { "authority", scenario_authority, "AGSC: provenance, memory, abstention and non-amplifying action authority" },
     { "authority-benchmark", scenario_authority_benchmark, "AGSC: baselines for false memory, conflict, stale facts, reboot and action" },
     { "adaptive-change", scenario_adaptive_change, "AGSC-D: supersession, revocation, expiry, drift and epoch continuity" },
+    { "poisoning", scenario_poisoning, "AGSC security: L1 direct, L2 compositional and L3 dormant poisoning" },
 };
 #define NTABLE ((int)(sizeof TABLE / sizeof *TABLE))
 

@@ -11,7 +11,7 @@
     {
       "path": "prove.sh",
       "kind": "file",
-      "sha256": "d09995877688482f1e5338ba3fd596d54a18af4ba097c0b02d5005b10aa511c1",
+      "sha256": "1e438cf5126046bdb86d810ef4b04c7d0560ce7b0c302cc99636802e41869a96",
       "role": "global proof ledger"
     },
     {
@@ -29,13 +29,13 @@
     {
       "path": "tools",
       "kind": "tree",
-      "sha256": "91dafadea727c1486b83f834ed364dcdea6aa08f4fdf7eed562a3d0e18384bdb",
+      "sha256": "e0e50a919f79b3e5557f6eb5120b75c1577e01af76b2089be91efd893373f999",
       "role": "host proof and provenance tools"
     },
     {
       "path": "sim",
       "kind": "tree",
-      "sha256": "fbde964f20b80d1572767a1ea96d1b6b011d3e961fe7af2a374f0428fb480927",
+      "sha256": "73095e2096a4afeb88ffcd15c5fdcdb4d8e23d12104dae7c5e0b4c178fa84541",
       "role": "deterministic host substitute for physical world"
     },
     {

@@ -674,6 +674,11 @@ if ( cd sim && make -s build/herus-sim ) 2>/tmp/herus_sim_build.log; then
         check "AGSC-D preserves historical lineage without current leakage" "superseded history remains auditable but cannot answer as current" /tmp/herus_sim.log
         check "AGSC-D revocation reaches derived memory" "physical revocation reaches the active fact and its derived memory" /tmp/herus_sim.log
         check "AGSC-D blocks confidence and epoch replay" "a pre-reboot observation cannot be replayed into the new epoch" /tmp/herus_sim.log
+        check "Poisoning L1 blocks external self-promotion" "L1 external record cannot self-promote without physical confirmation" /tmp/herus_sim.log
+        check "Poisoning L2 intersects authority" "L2 composition intersects authority instead of adding authority" /tmp/herus_sim.log
+        check "Poisoning L2 requires fresh local action" "a composed offer cannot execute without a fresh local action stage" /tmp/herus_sim.log
+        check "Poisoning L3 rejects dormant replay" "L3 dormant bundle cannot cross a session epoch" /tmp/herus_sim.log
+        check "Poisoning replay cannot manufacture action" "replay cannot manufacture action through the convenience path" /tmp/herus_sim.log
     else
         echo "  FAIL  the bench disagrees with the design — see /tmp/herus_sim.log"; FAIL=1
     fi
@@ -711,6 +716,13 @@ if python3 tools/test_adaptive_change_redteam.py > /tmp/herus_adaptive_change_re
     grep "ADAPTIVE-CHANGE REDTEAM" /tmp/herus_adaptive_change_redteam.log
 else
     echo "  FAIL  an adaptive-change mutant survived — see /tmp/herus_adaptive_change_redteam.log"
+    FAIL=1
+fi
+
+if python3 tools/test_poisoning_redteam.py > /tmp/herus_poisoning_redteam.log 2>&1; then
+    grep "POISONING REDTEAM" /tmp/herus_poisoning_redteam.log
+else
+    echo "  FAIL  a poisoning mutant survived — see /tmp/herus_poisoning_redteam.log"
     FAIL=1
 fi
 
