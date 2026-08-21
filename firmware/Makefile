@@ -55,6 +55,8 @@
 #   make autonomy-redteam the deterministic sabotage campaign for autonomy controls
 #   make magic-redteam the deterministic sabotage campaign for magic and memory
 #   make interaction the push-to-talk, confirmation and one-shot runtime suite
+#   make cross-failure-matrix source loss, revocation and assurance composition
+#   make cross-failure-redteam deterministic cross-module authority sabotage
 #   make interaction-rig deterministic adapter and validation-lab scenarios
 #   make net        the protocol suite (crypto, session, weave, beat, framing)
 #   make radio      the SX1262 command sequences, against a recording mock bus
@@ -74,7 +76,7 @@ INC     := -Icore -Inet -Iport -Itest
 CORE    := core/hv.c core/sbc.c core/lexicon.c core/hcp.c
 NET     := net/crypto.c net/session.c net/region.c net/weave.c net/beat.c net/link.c
 
-.PHONY: all algebra nucleus voice intent dialogue model-lab memory-policy memory-capture memory-extract watch-memory-frontend memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale memory-collection memory-collection-index memory-collection-recovery memory-collection-recovery-stress memory-collection-finale bench-evidence-validate bench-interruption-sim memory-proposal llm-budget-check memory-physical-session memory-physical-session-recovery memory-physical-session-recovery-stress memory-physical-session-bootstrap memory-prehardware-finale threat-model threat-model-stress proof-fire-mutations assurance capstone trust control-link delivery-plan transport-selector personal-telemetry symbolic-reasoner resonator semantic-compiler semantic-benchmark knowledge-feed knowledge-feed-cursor memory-semantic-evidence memory-reasoning-bridge magic-anticipation magic-trigger magic-dialogue-bridge autonomy-policy autonomy-redteam magic-redteam interaction interaction-rig net radio syntax vectors haptic-language haptic-language-matrix haptic-semantic-bridge haptic-adapter haptic-evidence haptic-target haptic-runner haptic-preflight clean
+.PHONY: all algebra nucleus voice intent dialogue model-lab memory-policy memory-capture memory-extract watch-memory-frontend memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale memory-collection memory-collection-index memory-collection-recovery memory-collection-recovery-stress memory-collection-finale bench-evidence-validate bench-interruption-sim memory-proposal llm-budget-check memory-physical-session memory-physical-session-recovery memory-physical-session-recovery-stress memory-physical-session-bootstrap memory-prehardware-finale threat-model threat-model-stress proof-fire-mutations assurance capstone trust control-link delivery-plan transport-selector personal-telemetry symbolic-reasoner resonator semantic-compiler semantic-benchmark knowledge-feed knowledge-feed-cursor memory-semantic-evidence memory-reasoning-bridge magic-anticipation magic-trigger magic-dialogue-bridge autonomy-policy autonomy-redteam magic-redteam interaction interaction-rig net radio syntax vectors haptic-language haptic-language-matrix haptic-semantic-bridge haptic-adapter haptic-evidence haptic-target haptic-runner haptic-preflight cross-failure-matrix cross-failure-redteam clean
 
 all: algebra nucleus voice intent dialogue model-lab memory-policy memory-capture memory-extract memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale memory-collection memory-collection-index memory-collection-recovery memory-collection-recovery-stress memory-collection-finale memory-physical-session memory-physical-session-recovery memory-physical-session-recovery-stress memory-physical-session-bootstrap memory-prehardware-finale threat-model threat-model-stress proof-fire-mutations assurance capstone trust control-link interaction interaction-rig net radio syntax haptic-language haptic-language-matrix haptic-semantic-bridge haptic-adapter haptic-evidence haptic-target haptic-runner haptic-preflight
 	@echo ""
@@ -437,6 +439,15 @@ interaction: build
 	@echo "--- interaction: push-to-talk, confirmation and one-shot send gate ---"
 	$(CC) $(CFLAGS) $(INC) net/crypto.c net/core_link.c core/voice.c core/intent_gate.c core/assurance.c core/interaction.c core/test_interaction.c -o build/test_interaction
 	./build/test_interaction
+
+cross-failure-matrix: build
+	@echo "--- cross failure matrix: source loss, revocation, assurance and one-shot handoff ---"
+	$(CC) $(CFLAGS) $(INC) net/crypto.c net/core_link.c core/voice.c core/intent_gate.c core/assurance.c core/interaction.c core/test_cross_failure_matrix.c -o build/test_cross_failure_matrix
+	./build/test_cross_failure_matrix
+
+cross-failure-redteam:
+	@echo "--- cross failure redteam: authority and source-loss sabotage ---"
+	python3 ../tools/test_cross_failure_redteam.py
 
 interaction-rig: build
 	@echo "--- interaction rig: deterministic adapter and validation-lab scenarios ---"
