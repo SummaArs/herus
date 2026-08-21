@@ -42,7 +42,13 @@
       "path": "research/hardware_readiness_manifest.json",
       "kind": "file",
       "sha256": "baff73826cf824758ed5f01419344be1aa64378470d19a0a41b184614833667c",
-      "role": "physical gate declaration"
+      "role": "hardware gate and privacy manifest"
+    },
+    {
+      "path": "research/bench_bringup_protocol.json",
+      "kind": "file",
+      "sha256": "8ba27007a2195853da35b7bc5c566425b6c7a997d101a2120c2a13bcb1f962db",
+      "role": "pre-hardware isolated bring-up protocol"
     },
     {
       "path": "research/hardware_bench_evidence_schema.json",
