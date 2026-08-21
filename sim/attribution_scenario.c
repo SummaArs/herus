@@ -394,3 +394,76 @@ void scenario_attribution_composition(sim_score *s, int argc, char **argv)
     sim_ok(s, status == AG_E_PRINCIPAL,
            "The issuer cannot export a share to itself");
 }
+
+
+void scenario_attribution_transitive(sim_score *s, int argc, char **argv)
+{
+    ag_index_t core;
+    ag_index_t contact;
+    ag_index_t fresh;
+    ag_offer_t offer;
+    ag_share_t share;
+    ag_revocation_t revocation;
+    int status;
+    (void)argc;
+    (void)argv;
+
+    ag_init_principal(&core, 23u, AG_PRINCIPAL_CORE);
+    sim_ok(s, ag_add_root(&core, 900u, 9000u,
+                          AT_SOURCE_CORE_KNOWLEDGE, AG_ROLE_POLICY,
+                          AT_AUTH_MEMORY, AT_SCOPE_LOCAL_DIALOGUE,
+                          23u, 30u, 0u) == AG_OK &&
+              ag_set_purpose(&core, 900u, 0xD00Du) == AG_OK &&
+              ag_export_share(&core, 900u, 9010u, AG_PRINCIPAL_CONTACT,
+                              1u, 31u, &share) == AG_OK,
+           "Transitive fixture creates one explicit Core share");
+    ag_init_principal(&contact, 24u, AG_PRINCIPAL_CONTACT);
+    sim_ok(s, ag_import_share(&contact, &share, 1u, 32u) == AG_OK,
+           "Transitive fixture imports the addressed share");
+    sim_ok(s, ag_derive(&contact, 902u, 9020u, share.node_id,
+                        AG_EDGE_DERIVED, AG_ROLE_POLICY,
+                        AT_AUTH_MEMORY, AT_SCOPE_LOCAL_DIALOGUE,
+                        24u, 33u, 0u) == AG_OK,
+           "Recipient may derive bounded contextual knowledge");
+    sim_ok(s, ag_admit(&contact, 902u, AG_ROLE_POLICY, 0xD00Du, 0xD00Du,
+                       24u, 33u, &offer) == AG_OK &&
+              offer.issuer_principal_id == AG_PRINCIPAL_CORE &&
+              offer.owner_principal_id == AG_PRINCIPAL_CONTACT,
+           "Derived share retains issuer and recipient provenance");
+    sim_ok(s, ag_export_share(&contact, 902u, 9030u, AG_PRINCIPAL_LOCAL,
+                              1u, 34u, &share) == AG_E_SHARE,
+           "A derived share cannot be delegated transitively");
+    sim_ok(s, ag_compose(&contact, share.node_id, 902u, 904u, 9040u,
+                         AG_ROLE_POLICY, 0xD00Du, 24u, 34u, 0u) == AG_E_SHARE,
+           "Imported authority cannot enter a new composition chain");
+
+    sim_ok(s, ag_export_revocation(&core, 9010u, AG_PRINCIPAL_CONTACT,
+                                   1u, 35u, &revocation) == AG_E_REVOKED,
+           "Issuer cannot export a revocation before revoking the share");
+    sim_ok(s, ag_revoke_share(&core, 9010u, 1u, 36u) == AG_OK &&
+              ag_export_revocation(&core, 9010u, AG_PRINCIPAL_CONTACT,
+                                   1u, 37u, &revocation) == AG_OK,
+           "Issuer exports a revocation for the exact share recipient");
+    sim_ok(s, ag_apply_revocation(&contact, &revocation, 1u, 38u) == AG_OK,
+           "Recipient applies the issuer revocation to the imported root");
+    sim_ok(s, ag_apply_revocation(&contact, &revocation, 0u, 39u) == AG_E_AUTH,
+           "Revocation application still requires fresh physical confirmation");
+    sim_ok(s, ag_admit(&contact, 902u, AG_ROLE_POLICY, 0xD00Du, 0xD00Du,
+                       24u, 37u, &offer) == AG_E_REVOKED,
+           "Issuer revocation reaches a transitive derived node");
+    sim_ok(s, ag_apply_revocation(&contact, &revocation, 1u, 40u) == AG_NO_CHANGE,
+           "Repeated revocation is idempotent and does not reopen authority");
+
+    ag_init_principal(&fresh, 25u, AG_PRINCIPAL_CONTACT);
+    sim_ok(s, ag_apply_revocation(&fresh, &revocation, 1u, 41u) == AG_OK &&
+              ag_import_share(&fresh, &share, 1u, 42u) == AG_E_REVOKED,
+           "A revoked share cannot be reintroduced into a fresh principal");
+    status = ag_export_share(&core, 900u, 9010u, AG_PRINCIPAL_CONTACT,
+                             1u, 43u, &share);
+    sim_ok(s, status == AG_E_REPLAY,
+           "An issuer cannot reuse a revoked share identifier");
+    status = ag_export_revocation(&core, 9010u, AG_PRINCIPAL_LOCAL,
+                                  1u, 44u, &revocation);
+    sim_ok(s, status == AG_E_PRINCIPAL,
+           "Revocation cannot be redirected to a different principal");
+}

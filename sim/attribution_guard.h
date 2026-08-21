@@ -75,6 +75,8 @@ typedef struct {
     uint32_t source_mask;
     uint32_t owner_principal_id;
     uint32_t issuer_principal_id;
+    uint32_t source_share_id;
+    uint32_t secondary_share_id;
     uint32_t purpose_token;
     at_source_t source;
     ag_role_t role;
@@ -126,6 +128,15 @@ typedef struct {
 } ag_share_t;
 
 typedef struct {
+    uint32_t share_id;
+    uint32_t issuer_principal_id;
+    uint32_t recipient_principal_id;
+    uint32_t issuer_epoch;
+    uint32_t revocation_generation;
+    uint8_t physically_confirmed;
+} ag_revocation_t;
+
+typedef struct {
     uint32_t epoch;
     uint32_t principal_id;
     uint32_t generation_floor;
@@ -138,6 +149,12 @@ typedef struct {
     ag_node_t nodes[AG_MAX_NODES];
     uint32_t imported_share_ids[AG_MAX_SHARES];
     uint16_t imported_share_count;
+    uint32_t exported_share_ids[AG_MAX_SHARES];
+    uint32_t exported_share_node_ids[AG_MAX_SHARES];
+    uint32_t exported_share_recipient_ids[AG_MAX_SHARES];
+    uint16_t exported_share_count;
+    uint32_t revoked_share_ids[AG_MAX_SHARES];
+    uint16_t revoked_share_count;
 } ag_index_t;
 
 void ag_init(ag_index_t *index, uint32_t epoch);
@@ -172,13 +189,24 @@ int ag_grant_local_action(const ag_index_t *index, const ag_offer_t *offer,
                          uint8_t physical_confirmation, uint32_t generation,
                          at_capsule_t *out_action);
 
-int ag_export_share(const ag_index_t *index, uint32_t node_id,
+int ag_export_share(ag_index_t *index, uint32_t node_id,
                      uint32_t share_id, uint32_t recipient_principal_id,
                      uint8_t physical_confirmation, uint32_t generation,
                      ag_share_t *out_share);
 
 int ag_import_share(ag_index_t *index, const ag_share_t *share,
                     uint8_t physical_confirmation, uint32_t generation);
+
+int ag_revoke_share(ag_index_t *index, uint32_t share_id,
+                    uint8_t physical_confirmation, uint32_t generation);
+
+int ag_export_revocation(const ag_index_t *index, uint32_t share_id,
+                         uint32_t recipient_principal_id,
+                         uint8_t physical_confirmation, uint32_t generation,
+                         ag_revocation_t *out_revocation);
+
+int ag_apply_revocation(ag_index_t *index, const ag_revocation_t *revocation,
+                        uint8_t physical_confirmation, uint32_t generation);
 
 int ag_revoke(ag_index_t *index, uint32_t node_id,
               uint8_t physical_confirmation, uint32_t generation);

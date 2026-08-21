@@ -156,6 +156,8 @@ int ag_add_root(ag_index_t *index, uint32_t node_id, uint32_t provenance_id,
     node->source_mask = source_mask_for(source);
     node->owner_principal_id = index->principal_id;
     node->issuer_principal_id = index->principal_id;
+    node->source_share_id = 0u;
+    node->secondary_share_id = 0u;
     node->purpose_token = 0u;
     node->source = source;
     node->role = role;
@@ -218,6 +220,8 @@ int ag_derive(ag_index_t *index, uint32_t node_id, uint32_t provenance_id,
     node->source_mask = parent->source_mask;
     node->owner_principal_id = parent->owner_principal_id;
     node->issuer_principal_id = parent->issuer_principal_id;
+    node->source_share_id = parent->source_share_id;
+    node->secondary_share_id = parent->secondary_share_id;
     node->purpose_token = parent->purpose_token;
     node->source = parent->source;
     node->role = role;
@@ -274,6 +278,8 @@ int ag_compose(ag_index_t *index, uint32_t left_id, uint32_t right_id,
     if (left->owner_principal_id != index->principal_id ||
         right->owner_principal_id != index->principal_id)
         return AG_E_PRINCIPAL;
+    if (left->source_share_id != 0u || right->source_share_id != 0u)
+        return AG_E_SHARE;
     if (left->status == AG_NODE_REVOKED || right->status == AG_NODE_REVOKED)
         return AG_E_REVOKED;
     if (left->status == AG_NODE_QUARANTINED || right->status == AG_NODE_QUARANTINED)
@@ -313,6 +319,8 @@ int ag_compose(ag_index_t *index, uint32_t left_id, uint32_t right_id,
     node->source_mask = source_mask;
     node->owner_principal_id = index->principal_id;
     node->issuer_principal_id = index->principal_id;
+    node->source_share_id = left->source_share_id | right->source_share_id;
+    node->secondary_share_id = left->secondary_share_id | right->secondary_share_id;
     node->purpose_token = purpose_token;
     node->source = source_for_mask(source_mask);
     node->role = role;
@@ -417,6 +425,24 @@ int ag_grant_local_action(const ag_index_t *index, const ag_offer_t *offer,
     return status == AT_OK ? AG_OK : AG_E_AUTH;
 }
 
+static int share_id_is_revoked(const ag_index_t *index, uint32_t share_id)
+{
+    uint16_t i;
+    if (!index || share_id == 0u) return 0;
+    for (i = 0u; i < index->revoked_share_count; i++)
+        if (index->revoked_share_ids[i] == share_id) return 1;
+    return 0;
+}
+
+static int share_id_is_exported(const ag_index_t *index, uint32_t share_id)
+{
+    uint16_t i;
+    if (!index || share_id == 0u) return 0;
+    for (i = 0u; i < index->exported_share_count; i++)
+        if (index->exported_share_ids[i] == share_id) return 1;
+    return 0;
+}
+
 static int imported_share_seen(const ag_index_t *index, uint32_t share_id)
 {
     uint16_t i;
@@ -426,7 +452,7 @@ static int imported_share_seen(const ag_index_t *index, uint32_t share_id)
     return 0;
 }
 
-int ag_export_share(const ag_index_t *index, uint32_t node_id,
+int ag_export_share(ag_index_t *index, uint32_t node_id,
                    uint32_t share_id, uint32_t recipient_principal_id,
                    uint8_t physical_confirmation, uint32_t generation,
                    ag_share_t *out_share)
@@ -438,6 +464,11 @@ int ag_export_share(const ag_index_t *index, uint32_t node_id,
         return AG_E_SHARE;
     if (recipient_principal_id == index->principal_id)
         return AG_E_PRINCIPAL;
+    if (share_id_is_exported(index, share_id) ||
+        share_id_is_revoked(index, share_id))
+        return AG_E_REPLAY;
+    if (index->exported_share_count >= AG_MAX_SHARES)
+        return AG_E_FULL;
     position = find_node(index, node_id);
     if (position < 0) return AG_E_PARENT;
     node = &index->nodes[position];
@@ -445,6 +476,8 @@ int ag_export_share(const ag_index_t *index, uint32_t node_id,
         return node->epoch != index->epoch ? AG_E_EPOCH : AG_E_EXPIRED;
     if (node->role == AG_ROLE_ACTION || node->role == AG_ROLE_OFFER ||
         (node->authority & AT_AUTH_ACTION) != 0u)
+        return AG_E_SHARE;
+    if (node->source_share_id != 0u || node->secondary_share_id != 0u)
         return AG_E_SHARE;
     /* share_id lives in the envelope namespace, not the node namespace. */
     memset(out_share, 0, sizeof(*out_share));
@@ -464,6 +497,11 @@ int ag_export_share(const ag_index_t *index, uint32_t node_id,
     out_share->valid_until_generation = node->valid_until_generation;
     out_share->issuer_epoch = index->epoch;
     out_share->physically_confirmed = 1u;
+    index->exported_share_ids[index->exported_share_count] = share_id;
+    index->exported_share_node_ids[index->exported_share_count] = node->node_id;
+    index->exported_share_recipient_ids[index->exported_share_count] =
+        recipient_principal_id;
+    index->exported_share_count++;
     return AG_OK;
 }
 
@@ -483,6 +521,7 @@ int ag_import_share(ag_index_t *index, const ag_share_t *share,
     if (imported_share_seen(index, share->share_id) ||
         exact_duplicate(index, share->node_id, share->provenance_id))
         return AG_E_REPLAY;
+    if (share_id_is_revoked(index, share->share_id)) return AG_E_REVOKED;
     if (!valid_source(share->source) ||
         source_mask_for(share->source) != share->source_mask ||
         !valid_record_shape(share->node_id, share->provenance_id,
@@ -508,6 +547,8 @@ int ag_import_share(ag_index_t *index, const ag_share_t *share,
     node->source_mask = share->source_mask;
     node->owner_principal_id = index->principal_id;
     node->issuer_principal_id = share->issuer_principal_id;
+    node->source_share_id = share->share_id;
+    node->secondary_share_id = 0u;
     node->purpose_token = share->purpose_token;
     node->source = share->source;
     node->role = share->role;
@@ -521,6 +562,101 @@ int ag_import_share(ag_index_t *index, const ag_share_t *share,
     index->imported_share_ids[index->imported_share_count++] = share->share_id;
     index->additions++;
     return AG_OK;
+}
+
+static int exported_share_slot(const ag_index_t *index, uint32_t share_id)
+{
+    uint16_t i;
+    if (!index || share_id == 0u) return -1;
+    for (i = 0u; i < index->exported_share_count; i++)
+        if (index->exported_share_ids[i] == share_id) return (int)i;
+    return -1;
+}
+
+static int imported_share_position(const ag_index_t *index, uint32_t share_id)
+{
+    uint16_t i;
+    if (!index || share_id == 0u) return -1;
+    for (i = 0u; i < index->node_count; i++)
+        if (index->nodes[i].source_share_id == share_id) return (int)i;
+    return -1;
+}
+
+static int record_revoked_share(ag_index_t *index, uint32_t share_id)
+{
+    if (!index || share_id == 0u) return AG_E_SHARE;
+    if (share_id_is_revoked(index, share_id)) return AG_NO_CHANGE;
+    if (index->revoked_share_count >= AG_MAX_SHARES) return AG_E_FULL;
+    index->revoked_share_ids[index->revoked_share_count++] = share_id;
+    return AG_OK;
+}
+
+int ag_revoke_share(ag_index_t *index, uint32_t share_id,
+                    uint8_t physical_confirmation, uint32_t generation)
+{
+    int slot;
+    int status;
+    if (!index || share_id == 0u || physical_confirmation != 1u)
+        return AG_E_AUTH;
+    slot = exported_share_slot(index, share_id);
+    if (slot < 0) return AG_E_PARENT;
+    status = ag_revoke(index, index->exported_share_node_ids[slot],
+                       physical_confirmation, generation);
+    if (status != AG_OK && status != AG_NO_CHANGE) return status;
+    if (record_revoked_share(index, share_id) == AG_E_FULL)
+        return AG_E_FULL;
+    return status;
+}
+
+int ag_export_revocation(const ag_index_t *index, uint32_t share_id,
+                         uint32_t recipient_principal_id,
+                         uint8_t physical_confirmation, uint32_t generation,
+                         ag_revocation_t *out_revocation)
+{
+    int slot;
+    if (!index || !out_revocation || share_id == 0u ||
+        recipient_principal_id == 0u || physical_confirmation != 1u)
+        return AG_E_SHARE;
+    slot = exported_share_slot(index, share_id);
+    if (slot < 0) return AG_E_PARENT;
+    if (index->exported_share_recipient_ids[slot] != recipient_principal_id)
+        return AG_E_PRINCIPAL;
+    if (!share_id_is_revoked(index, share_id)) return AG_E_REVOKED;
+    memset(out_revocation, 0, sizeof(*out_revocation));
+    out_revocation->share_id = share_id;
+    out_revocation->issuer_principal_id = index->principal_id;
+    out_revocation->recipient_principal_id = recipient_principal_id;
+    out_revocation->issuer_epoch = index->epoch;
+    out_revocation->revocation_generation = generation;
+    out_revocation->physically_confirmed = 1u;
+    return AG_OK;
+}
+
+int ag_apply_revocation(ag_index_t *index, const ag_revocation_t *revocation,
+                        uint8_t physical_confirmation, uint32_t generation)
+{
+    int position;
+    int status;
+    if (!index || !revocation || physical_confirmation != 1u)
+        return AG_E_AUTH;
+    if (revocation->share_id == 0u ||
+        revocation->recipient_principal_id != index->principal_id ||
+        revocation->issuer_principal_id == index->principal_id ||
+        revocation->issuer_principal_id == 0u)
+        return AG_E_PRINCIPAL;
+    if (revocation->physically_confirmed != 1u ||
+        revocation->issuer_epoch == 0u ||
+        revocation->revocation_generation == 0u)
+        return AG_E_SHARE;
+    position = imported_share_position(index, revocation->share_id);
+    if (position < 0) {
+        if (share_id_is_revoked(index, revocation->share_id)) return AG_NO_CHANGE;
+        return record_revoked_share(index, revocation->share_id);
+    }
+    if (share_id_is_revoked(index, revocation->share_id)) return AG_NO_CHANGE;
+    status = ag_revoke(index, index->nodes[position].node_id, 1u, generation);
+    if (status != AG_OK && status != AG_NO_CHANGE) return status;
+    return record_revoked_share(index, revocation->share_id);
 }
 
 int ag_revoke(ag_index_t *index, uint32_t node_id,

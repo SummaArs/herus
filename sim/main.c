@@ -52,6 +52,7 @@ static const entry_t TABLE[] = {
     { "attribution", scenario_attribution, "AGSC attribution: typed lineage, role conservation and implicit-authority barriers" },
     { "attribution-benchmark", scenario_attribution_benchmark, "AGSC attribution: deterministic comparison against permissive memory baselines" },
     { "attribution-composition", scenario_attribution_composition, "AGSC attribution: counterfactual composition and principal-isolated sharing" },
+    { "attribution-transitive", scenario_attribution_transitive, "AGSC attribution: non-delegable shares and cross-principal revocation" },
 };
 #define NTABLE ((int)(sizeof TABLE / sizeof *TABLE))
 

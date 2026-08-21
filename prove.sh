@@ -696,6 +696,11 @@ if ( cd sim && make -s build/herus-sim ) 2>/tmp/herus_sim_build.log; then
         check "Attribution sharing preserves issuer" "Imported memory preserves recipient ownership and issuer provenance" /tmp/herus_sim.log
         check "Attribution sharing blocks recipient confusion" "A share addressed to another principal is rejected" /tmp/herus_sim.log
         check "Attribution sharing blocks replay" "The same share envelope cannot be replayed" /tmp/herus_sim.log
+        check "Attribution transitive sharing is non-delegable" "A derived share cannot be delegated transitively" /tmp/herus_sim.log
+        check "Attribution transitive revocation reaches descendants" "Issuer revocation reaches a transitive derived node" /tmp/herus_sim.log
+        check "Attribution transitive revocation is idempotent" "Repeated revocation is idempotent and does not reopen authority" /tmp/herus_sim.log
+        check "Attribution transitive reintroduction is blocked" "A revoked share cannot be reintroduced into a fresh principal" /tmp/herus_sim.log
+        check "Attribution transitive IDs cannot be reused" "An issuer cannot reuse a revoked share identifier" /tmp/herus_sim.log
     else
         echo "  FAIL  the bench disagrees with the design — see /tmp/herus_sim.log"; FAIL=1
     fi
@@ -754,6 +759,13 @@ if python3 tools/test_composition_redteam.py > /tmp/herus_composition_redteam.lo
     grep "COMPOSITION REDTEAM" /tmp/herus_composition_redteam.log
 else
     echo "  FAIL  a composition mutant survived — see /tmp/herus_composition_redteam.log"
+    FAIL=1
+fi
+
+if python3 tools/test_transitive_redteam.py > /tmp/herus_transitive_redteam.log 2>&1; then
+    grep "TRANSITIVE REDTEAM" /tmp/herus_transitive_redteam.log
+else
+    echo "  FAIL  a transitive-sharing mutant survived — see /tmp/herus_transitive_redteam.log"
     FAIL=1
 fi
 
