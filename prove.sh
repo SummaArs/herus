@@ -334,6 +334,18 @@ banner "42f/78 generative core budget (host-side object guardrails only)"
 
 grep -q "FAIL" /tmp/herus_generative_core_budget.log && FAIL=1 || true
 
+banner "42g/78 generative haptic bridge (operational liveliness round-trip)"
+( cd firmware && make -s generative-haptic ) > /tmp/herus_generative_haptic.log 2>&1 || FAIL=1
+[ "$QUIET" = 0 ] && cat /tmp/herus_generative_haptic.log
+
+grep -q "FAIL" /tmp/herus_generative_haptic.log && FAIL=1 || true
+
+banner "42h/78 generative haptic redteam (non-actionability must be killable)"
+( cd firmware && make -s generative-haptic-redteam ) > /tmp/herus_generative_haptic_redteam.log 2>&1 || FAIL=1
+[ "$QUIET" = 0 ] && cat /tmp/herus_generative_haptic_redteam.log
+
+grep -q "FAIL" /tmp/herus_generative_haptic_redteam.log && FAIL=1 || true
+
 banner "43/78 semantic compiler (controlled Portuguese to typed IR)"
 ( cd firmware && make semantic-compiler ) > /tmp/herus_semantic.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_semantic.log
@@ -472,6 +484,8 @@ check "Generative core redteam kills policy, grounding, language and confirmatio
 check "Personal adapter learns only consented local style signals" "PERSONAL ADAPTER: 12 pass, 0 fail" /tmp/herus_personal_adapter.log
 check "Personal adapter redteam kills consent, origin, revocation, tie and reboot mutants" "PERSONAL ADAPTER REDTEAM: 5/5 critical mutants killed" /tmp/herus_personal_adapter_redteam.log
 check "Generative object sizes remain under host-side guardrails" "GENERATIVE CORE BUDGET: PASS host-side object limits" /tmp/herus_generative_core_budget.log
+check "Generative haptic bridge preserves liveliness, round-trip and non-actionability" "GEN HAPTIC: 8 pass, 0 fail" /tmp/herus_generative_haptic.log
+check "Generative haptic redteam kills action, policy, abstention and plan mutants" "GENERATIVE HAPTIC REDTEAM: 4/4 critical mutants killed" /tmp/herus_generative_haptic_redteam.log
 
 # --- controlled semantic compiler ------------------------------------------
 check "Semantic compiler emits exact typed IR, composes bounded conjunctions and rejects unsupported language" "SEMANTIC COMPILER: 54 pass, 0 fail" /tmp/herus_semantic.log
