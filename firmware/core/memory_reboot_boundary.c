@@ -35,6 +35,7 @@ int memory_reboot_boundary_bootstrap(
     memory_reboot_boundary_result_t *out)
 {
     memory_physical_session_bootstrap_result_t bootstrap;
+    uint32_t prior_semantic_floor;
     int rc;
 
     if (out) memset(out, 0, sizeof(*out));
@@ -45,11 +46,16 @@ int memory_reboot_boundary_bootstrap(
 
     /* Volatile evidence is never allowed to cross the reboot boundary, including
      * when recovery later fails. Preserve only the caller's static predicate hook. */
+    prior_semantic_floor = index->generation_floor;
     scrub_index(index);
     magic_trigger_close(trigger);
     rc = memory_physical_session_bootstrap(gate, session_cfg, snapshot, &bootstrap);
     if (rc != MEMORY_PHYSICAL_SESSION_BOOTSTRAP_OK ||
         bootstrap.active_evidence_scrubbed != 1u) {
+        scrub_failure(gate, index, trigger, out);
+        return MEMORY_REBOOT_BOUNDARY_E_RECOVERY;
+    }
+    if (prior_semantic_floor > bootstrap.recovered_session_floor) {
         scrub_failure(gate, index, trigger, out);
         return MEMORY_REBOOT_BOUNDARY_E_RECOVERY;
     }

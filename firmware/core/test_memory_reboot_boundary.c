@@ -49,6 +49,7 @@ int main(void)
     memory_physical_session_recovery_snapshot_t snapshot;
     memory_reboot_boundary_result_t result;
     mse_index_t index;
+    mse_index_t divergent;
     memory_vault_card_t semantic_card;
     sr_fact_t semantic_fact = {0x73000001u, SR_SYMBOL_LEGACY(30u),
                                SR_SYMBOL_LEGACY(31u), 0u};
@@ -161,6 +162,27 @@ int main(void)
                     result.active_session_scrubbed == 0u &&
                     result.semantic_index_scrubbed == 0u,
           "a missing semantic index is rejected instead of yielding a partial recovery");
+
+    mse_init(&divergent, NULL, NULL);
+    check(&score, mse_set_generation_floor(&divergent, 12u) == MSE_OK &&
+                    divergent.generation_floor == 12u,
+          "a divergent semantic floor is prepared as an explicit hostile state");
+    memory_physical_session_init(&gate, &cfg);
+    check(&score, magic_trigger_begin(&trigger, &context, 20u, 2u, 1u) ==
+                        MAGIC_TRIGGER_OK && trigger.active == 1u,
+          "divergent-floor fixture contains a transient contextual window");
+    snapshot = committed_snapshot(8u);
+    memset(&result, 0xa5, sizeof(result));
+    check(&score, memory_reboot_boundary_bootstrap(&gate, &divergent, &trigger,
+                                                    &cfg, &snapshot, &result) ==
+                        MEMORY_REBOOT_BOUNDARY_E_RECOVERY &&
+                    gate.state == MEMORY_PHYSICAL_SESSION_BLOCKED &&
+                    divergent.evidence_count == 0u &&
+                    trigger.active == 0u &&
+                    result.recovered_session_floor == 0u &&
+                    result.semantic_generation_floor == 0u &&
+                    result.contextual_window_scrubbed == 0u,
+          "a semantic floor above the recovered session floor blocks instead of silently downgrading");
 
     printf("MEMORY REBOOT BOUNDARY: %d pass, %d fail\n", score.pass, score.fail);
     return score.fail ? 1 : 0;

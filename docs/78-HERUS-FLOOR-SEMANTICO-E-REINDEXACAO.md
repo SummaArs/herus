@@ -14,8 +14,8 @@ A evolução desta etapa adiciona um `generation_floor` ao índice semântico. A
 | Controle | Resultado |
 |---|---:|
 | Índice semântico existente | **19/19** |
-| Matriz de reboot, floor e contexto semântico | **14/14** |
-| Redteam de reboot, floor e contexto | **10/10 mutantes mortos** |
+| Matriz de reboot, floor, contexto e divergência | **17/17** |
+| Redteam de reboot, floor, contexto e divergência | **11/11 mutantes mortos** |
 | Regressão global | **74 suítes** |
 | Invariantes simuladas | **111/111** |
 | Proveniência | **válida; entradas locais permanecem não atestadas externamente** |
@@ -26,11 +26,11 @@ O floor semântico só pode ser definido em um índice vazio. Essa regra evita i
 
 A ponte `memory_reboot_boundary_bootstrap` executa a seguinte ordem: limpa a evidência semântica volátil, fecha a janela contextual mágica, recupera o floor de sessão por meio do bootstrap já existente, instala o mesmo floor no índice semântico quando ele é não nulo e bloqueia a fronteira se qualquer etapa falhar. O resultado informa o floor semântico importado e confirma o fechamento contextual, mas não retorna card, fato, sessão, nonce, propósito, uso ou autoridade.
 
-Uma nova evidência com geração nove pode suceder um floor oito; uma evidência de geração oito não pode. Isso transforma o reboot em uma fronteira de consistência, não em uma simples reinicialização de structs.
+Uma nova evidência com geração nove pode suceder um floor oito; uma evidência de geração oito não pode. Se o índice chega ao reboot com floor semântico doze e a recuperação de sessão oferece apenas o floor oito, a fronteira bloqueia e limpa em vez de rebaixar silenciosamente. Isso transforma o reboot em uma fronteira de consistência, não em uma simples reinicialização de structs.
 
 ## Ataques adversariais
 
-A campanha removeu a limpeza semântica, o fechamento contextual, a limpeza de argumentos inválidos, a validação de índice nulo, as declarações de scrubbed, a importação do floor, a rejeição de geração stale, a monotonicidade e a regra de índice vazio. Cada remoção fez a suíte falhar.
+A campanha removeu a limpeza semântica, o fechamento contextual, a limpeza de argumentos inválidos, a validação de índice nulo, as declarações de scrubbed, a importação do floor, a rejeição de geração stale, a monotonicidade, a regra de índice vazio e o bloqueio de divergência entre floors. Cada remoção fez a suíte falhar.
 
 | Mutante | Controle removido | Resultado esperado pelo oráculo |
 |---|---|---|
@@ -44,6 +44,7 @@ A campanha removeu a limpeza semântica, o fechamento contextual, a limpeza de a
 | `semantic-floor-empty-only` | Pré-condição de índice vazio | Floor é aplicado sobre evidência ativa |
 | `reboot-contextual-scrub` | Janela mágica permanece ativa | Contexto residual pode sobreviver ao reboot |
 | `reboot-contextual-scrub-result` | Flag de fechamento contextual | Resultado alega scrub incompleto |
+| `reboot-divergent-floor-gate` | Compatibilidade entre floors | Floor semântico é rebaixado silenciosamente |
 
 Durante a campanha, um mutante de limpeza sobreviveu inicialmente porque o bootstrap interno já fazia uma limpeza redundante no caminho específico exercitado. Isso foi tratado como uma lacuna de cobertura, não como mutante morto. O teste foi dividido em caminhos independentes para snapshot ausente e índice ausente. O ataque só passou a ser considerado morto depois que cada limpeza necessária tinha um oráculo observável.
 

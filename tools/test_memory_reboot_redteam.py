@@ -125,6 +125,12 @@ def main() -> int:
             "firmware/core/memory_reboot_boundary.c",
             "    out->contextual_window_scrubbed = 1u;\n",
             "    /* REDTEAM: contextual scrub claim removed. */\n",
+        ),
+        Mutation(
+            "reboot-divergent-floor-gate",
+            "firmware/core/memory_reboot_boundary.c",
+            "    if (prior_semantic_floor > bootstrap.recovered_session_floor) {\n        scrub_failure(gate, index, trigger, out);\n        return MEMORY_REBOOT_BOUNDARY_E_RECOVERY;\n    }\n",
+            "    /* REDTEAM: divergent semantic floor is silently downgraded. */\n",
         )
     )
 
@@ -137,7 +143,7 @@ def main() -> int:
     if not passed:
         print("MEMORY REBOOT REDTEAM FAILED — a stale-context or semantic-floor mutant survived")
         return 1
-    print("MEMORY REBOOT REDTEAM: 10/10 critical reboot-boundary mutants killed")
+    print("MEMORY REBOOT REDTEAM: 11/11 critical reboot-boundary mutants killed")
     return 0
 
 
