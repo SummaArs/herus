@@ -29,7 +29,7 @@
     {
       "path": "tools",
       "kind": "tree",
-      "sha256": "0c03786df085f3ad53ed1e73c8a11528d1f6d3e7b104c82cab4ba68ea8214dc7",
+      "sha256": "db74bf3f6bb90074d2a40f2f7871945048cfbc05e83c7d980082939920f9a139",
       "role": "host proof and provenance tools"
     },
     {
