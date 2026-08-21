@@ -304,6 +304,30 @@ banner "42/78 resonator VSA factorization and relational bridge"
 ( cd firmware && make resonator ) > /tmp/herus_resonator.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_resonator.log
 
+banner "42b/78 generative core (bounded hybrid composition and presentation)"
+( cd firmware && make -s generative-core ) > /tmp/herus_generative_core.log 2>&1 || FAIL=1
+[ "$QUIET" = 0 ] && cat /tmp/herus_generative_core.log
+
+grep -q "FAIL" /tmp/herus_generative_core.log && FAIL=1 || true
+
+banner "42c/78 generative core redteam (critical controls must be killable)"
+( cd firmware && make -s generative-core-redteam ) > /tmp/herus_generative_core_redteam.log 2>&1 || FAIL=1
+[ "$QUIET" = 0 ] && cat /tmp/herus_generative_core_redteam.log
+
+grep -q "FAIL" /tmp/herus_generative_core_redteam.log && FAIL=1 || true
+
+banner "42d/78 personal adapter (consented local preference learning)"
+( cd firmware && make -s personal-adapter ) > /tmp/herus_personal_adapter.log 2>&1 || FAIL=1
+[ "$QUIET" = 0 ] && cat /tmp/herus_personal_adapter.log
+
+grep -q "FAIL" /tmp/herus_personal_adapter.log && FAIL=1 || true
+
+banner "42e/78 personal adapter redteam (critical learning controls must be killable)"
+( cd firmware && make -s personal-adapter-redteam ) > /tmp/herus_personal_adapter_redteam.log 2>&1 || FAIL=1
+[ "$QUIET" = 0 ] && cat /tmp/herus_personal_adapter_redteam.log
+
+grep -q "FAIL" /tmp/herus_personal_adapter_redteam.log && FAIL=1 || true
+
 banner "43/78 semantic compiler (controlled Portuguese to typed IR)"
 ( cd firmware && make semantic-compiler ) > /tmp/herus_semantic.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_semantic.log
@@ -437,6 +461,10 @@ check "Symbolic dialogue preserves authority, abduction and abstention" "SYMBOLI
 check "Resonator factors bounded VSA products without false certainty" "RESONATOR: 9 pass, 0 fail" /tmp/herus_resonator.log
 check "VSA bridge requires explicit acceptance before reasoner insertion" "RESONATOR BRIDGE: 6 pass, 0 fail" /tmp/herus_resonator.log
 check "Resonator stress exposes bounded generalization and abstention" "RESONATOR STRESS: 37 pass, 0 fail" /tmp/herus_resonator.log
+check "Generative core composes direct, derived, grounded and adapted answers without authority" "GEN CORE: 24 pass, 0 fail" /tmp/herus_generative_core.log
+check "Generative core redteam kills policy, grounding, language and confirmation mutants" "GENERATIVE CORE REDTEAM: 6/6 critical mutants killed" /tmp/herus_generative_core_redteam.log
+check "Personal adapter learns only consented local style signals" "PERSONAL ADAPTER: 12 pass, 0 fail" /tmp/herus_personal_adapter.log
+check "Personal adapter redteam kills consent, origin, revocation, tie and reboot mutants" "PERSONAL ADAPTER REDTEAM: 5/5 critical mutants killed" /tmp/herus_personal_adapter_redteam.log
 
 # --- controlled semantic compiler ------------------------------------------
 check "Semantic compiler emits exact typed IR, composes bounded conjunctions and rejects unsupported language" "SEMANTIC COMPILER: 54 pass, 0 fail" /tmp/herus_semantic.log

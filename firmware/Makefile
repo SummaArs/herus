@@ -46,6 +46,7 @@
 #   make transport-selector the host-only multimode route-selection suite
 #   make personal-telemetry the host-only consented personal-metric gate suite
 #   make symbolic-reasoner the bounded generative symbolic reasoning suite
+#   make generative-core the bounded hybrid composition and presentation suite
 #   make resonator the bounded VSA factorization and cleanup suite
 #   make semantic-compiler the controlled-language semantic compiler suite
 #   make semantic-benchmark the fixed-corpus semantic equivalence benchmark
@@ -83,9 +84,9 @@ INC     := -Icore -Inet -Iport -Itest
 CORE    := core/hv.c core/sbc.c core/lexicon.c core/hcp.c
 NET     := net/crypto.c net/session.c net/region.c net/weave.c net/beat.c net/link.c
 
-.PHONY: all algebra nucleus voice intent intent-router dialogue model-lab memory-policy memory-capture memory-extract watch-memory-frontend memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale memory-collection memory-collection-index memory-collection-recovery memory-collection-recovery-stress memory-collection-finale bench-evidence-validate bench-interruption-sim memory-proposal llm-budget-check memory-physical-session memory-physical-session-recovery memory-physical-session-recovery-stress memory-physical-session-bootstrap memory-reboot-boundary memory-reboot-redteam memory-post-reboot-reindex memory-post-reboot-reindex-redteam memory-prehardware-finale threat-model threat-model-stress proof-fire-mutations assurance capstone trust control-link delivery-plan transport-selector personal-telemetry symbolic-reasoner resonator semantic-compiler semantic-benchmark knowledge-feed knowledge-feed-cursor memory-semantic-evidence memory-reasoning-bridge magic-anticipation degradation-matrix degradation-redteam magic-trigger magic-dialogue-bridge autonomy-policy autonomy-redteam magic-redteam interaction interaction-rig net radio syntax vectors haptic-language haptic-language-matrix haptic-semantic-bridge haptic-adapter haptic-evidence haptic-target haptic-runner haptic-preflight cross-failure-matrix cross-failure-redteam clean
+.PHONY: all algebra nucleus voice intent intent-router dialogue model-lab memory-policy memory-capture memory-extract watch-memory-frontend memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale memory-collection memory-collection-index memory-collection-recovery memory-collection-recovery-stress memory-collection-finale bench-evidence-validate bench-interruption-sim memory-proposal llm-budget-check memory-physical-session memory-physical-session-recovery memory-physical-session-recovery-stress memory-physical-session-bootstrap memory-reboot-boundary memory-reboot-redteam memory-post-reboot-reindex memory-post-reboot-reindex-redteam memory-prehardware-finale threat-model threat-model-stress proof-fire-mutations assurance capstone trust control-link delivery-plan transport-selector personal-telemetry symbolic-reasoner generative-core generative-core-redteam personal-adapter personal-adapter-redteam resonator semantic-compiler semantic-benchmark knowledge-feed knowledge-feed-cursor memory-semantic-evidence memory-reasoning-bridge magic-anticipation degradation-matrix degradation-redteam magic-trigger magic-dialogue-bridge autonomy-policy autonomy-redteam magic-redteam interaction interaction-rig net radio syntax vectors haptic-language haptic-language-matrix haptic-semantic-bridge haptic-adapter haptic-evidence haptic-target haptic-runner haptic-preflight cross-failure-matrix cross-failure-redteam clean
 
-all: algebra nucleus voice intent intent-router dialogue model-lab memory-policy memory-capture memory-extract memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale memory-collection memory-collection-index memory-collection-recovery memory-collection-recovery-stress memory-collection-finale memory-physical-session memory-physical-session-recovery memory-physical-session-recovery-stress memory-physical-session-bootstrap memory-reboot-boundary memory-reboot-redteam memory-post-reboot-reindex memory-post-reboot-reindex-redteam memory-prehardware-finale threat-model threat-model-stress proof-fire-mutations assurance capstone trust control-link interaction interaction-rig net radio syntax haptic-language haptic-language-matrix haptic-semantic-bridge haptic-adapter haptic-evidence haptic-target haptic-runner haptic-preflight
+all: algebra nucleus voice intent intent-router dialogue model-lab memory-policy memory-capture memory-extract memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale memory-collection memory-collection-index memory-collection-recovery memory-collection-recovery-stress memory-collection-finale memory-physical-session memory-physical-session-recovery memory-physical-session-recovery-stress memory-physical-session-bootstrap memory-reboot-boundary memory-reboot-redteam memory-post-reboot-reindex memory-post-reboot-reindex-redteam memory-prehardware-finale threat-model threat-model-stress proof-fire-mutations assurance capstone trust control-link interaction interaction-rig net radio syntax vectors haptic-language haptic-language-matrix haptic-semantic-bridge haptic-adapter haptic-evidence haptic-target haptic-runner haptic-preflight personal-adapter generative-core
 	@echo ""
 	@echo "=================================================="
 	@echo "ALL FIRMWARE SUITES PASS"
@@ -239,6 +240,24 @@ symbolic-reasoner: build
 	./build/test_symbolic_planner
 	$(CC) $(CFLAGS) -DHV_LUT_POPCOUNT $(INC) core/hv.c core/resonator.c core/resonator_bridge.c core/symbol_registry.c core/symbolic_reasoner.c core/symbolic_dialogue.c core/test_symbolic_dialogue.c -o build/test_symbolic_dialogue
 	./build/test_symbolic_dialogue
+
+generative-core: build
+	@echo "--- generative core: bounded hybrid composition, counterfactuals and plans ---"
+	$(CC) $(CFLAGS) -Werror $(INC) core/symbol_registry.c core/symbolic_reasoner.c core/symbolic_planner.c core/memory_semantic_evidence.c core/memory_reasoning_bridge.c core/personal_adapter.c core/generative_core.c core/test_generative_core.c -o build/test_generative_core
+	./build/test_generative_core
+
+generative-core-redteam:
+	@echo "--- generative core redteam: deterministic critical-control sabotage ---"
+	python3 ../tools/test_generative_core_redteam.py
+
+personal-adapter: build
+	@echo "--- personal adapter: consented local preference learning ---"
+	$(CC) $(CFLAGS) -Werror $(INC) core/personal_adapter.c core/test_personal_adapter.c -o build/test_personal_adapter
+	./build/test_personal_adapter
+
+personal-adapter-redteam:
+	@echo "--- personal adapter redteam: deterministic learning-control sabotage ---"
+	python3 ../tools/test_personal_adapter_redteam.py
 
 semantic-compiler: build
 	@echo "--- semantic compiler: bounded controlled-language to typed IR ---"

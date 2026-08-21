@@ -11,7 +11,7 @@
     {
       "path": "prove.sh",
       "kind": "file",
-      "sha256": "d8fb968b3859c536a9cceb2a48fcfa757e44670b8bb84a79a9be23582aeb4adf",
+      "sha256": "6b985719dc7ec9abd5940af83884c9ce92eab9eae6363a7e2cd00946de5f6d61",
       "role": "global proof ledger"
     },
     {
@@ -23,13 +23,13 @@
     {
       "path": "firmware",
       "kind": "tree",
-      "sha256": "ac24f8190e39712cf8905aea5eee204779f4238738c524357127dfb72f1ba683",
+      "sha256": "09d8d0f264eb5eead9f89e45c905f5e51cc47a552b8358dac403047027526fb2",
       "role": "portable firmware and proof sources"
     },
     {
       "path": "tools",
       "kind": "tree",
-      "sha256": "0e708553aaa9c57e822fb1b71e6ccd00044e61eff1068912a918ccfc49e5b7a7",
+      "sha256": "b639e08a8ba2d082442c7556c02fb0d071ed05abdd55cd9d9285cb7576208b88",
       "role": "host proof and provenance tools"
     },
     {
@@ -85,6 +85,18 @@
       "kind": "file",
       "sha256": "ec67c0589fa76bcc233c26418353df31532d70fe0c436f62afc82414835ea639",
       "role": "research provenance for intelligence comparators"
+    },
+    {
+      "path": "research/generative_intelligence_contract_v1.json",
+      "kind": "file",
+      "sha256": "a27dc8bbf77e99c1dc6dd8e8b95c2bc2a9dba208d7e805d542fca1a8686aaf1c",
+      "role": "falsifiable generative intelligence contract"
+    },
+    {
+      "path": "research/generative_intelligence_literature.md",
+      "kind": "file",
+      "sha256": "27d0f2de6c6f3991557d6a1bd47880e5be84e12e6ec38d32636977113050c20a",
+      "role": "academic evidence for composition, groundedness and abstention"
     }
   ],
   "components": [
