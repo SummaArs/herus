@@ -9,7 +9,7 @@
 #   ./prove.sh            full run
 #   ./prove.sh --quiet    verdict lines only
 #
-# Seventy-six suites, each independently falsifiable:
+# Seventy-eight suites, each independently falsifiable:
 #   1  algebra      quasi-orthogonality, bundling, resonator, learning, HCP
 #   2  nucleus      bounded, opt-in local semantic intelligence
 #   3  voice        controlled local language and bounded haptic feedback
@@ -86,6 +86,8 @@
 #  74  deterministic GAN-style sabotage campaign for reboot boundary
 #  75  post-reboot reindex, supersession, expiry, conflict and abstention
 #  76  deterministic GAN-style sabotage campaign for post-reboot reindex
+#  77  ambient presence, quiet bounded offers and contact-aware acknowledgement
+#  78  deterministic GAN-style sabotage campaign for ambient presence
 #
 # The Nucleus suite is intentionally separate: privacy and non-autonomy are
 # properties that must fail a build when regressed, not promises in a document.
@@ -100,315 +102,321 @@ banner() { say ""; say "=================================================="; say
 FAIL=0
 mkdir -p firmware/build
 
-banner "1/76 algebra (hv + sbc + lexicon + hcp)"
+banner "1/78 algebra (hv + sbc + lexicon + hcp)"
 ( cd firmware && make algebra ) > /tmp/herus_a.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_a.log
 grep -q "FAIL" /tmp/herus_a.log && FAIL=1 || true
 
-banner "2/76 nucleus (bounded local semantic intelligence)"
+banner "2/78 nucleus (bounded local semantic intelligence)"
 ( cd firmware && make nucleus ) > /tmp/herus_n.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_n.log
 grep -q "FAIL" /tmp/herus_n.log && FAIL=1 || true
 
-banner "3/76 voice (controlled language, confirmation, bounded haptics)"
+banner "3/78 voice (controlled language, confirmation, bounded haptics)"
 ( cd firmware && make voice ) > /tmp/herus_v.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_v.log
 grep -q "FAIL" /tmp/herus_v.log && FAIL=1 || true
 
-banner "4/76 intent gateway (session, confidence, ambiguity and bounded context)"
+banner "4/78 intent gateway (session, confidence, ambiguity and bounded context)"
 ( cd firmware && make intent ) > /tmp/herus_t.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_t.log
 grep -q "FAIL" /tmp/herus_t.log && FAIL=1 || true
 
-banner "5/76 dialogue (bounded local conversation and zero send authority)"
+banner "5/78 dialogue (bounded local conversation and zero send authority)"
 ( cd firmware && make dialogue ) > /tmp/herus_d.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_d.log
 grep -q "FAIL" /tmp/herus_d.log && FAIL=1 || true
 
-banner "6/76 model acceptance lab (target evidence, budgets and reply shield)"
+banner "6/78 model acceptance lab (target evidence, budgets and reply shield)"
 ( cd firmware && make model-lab ) > /tmp/herus_m.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_m.log
 grep -q "FAIL" /tmp/herus_m.log && FAIL=1 || true
 
-banner "7/76 memory policy (consent, relevance, review and no persistence)"
+banner "7/78 memory policy (consent, relevance, review and no persistence)"
 ( cd firmware && make memory-policy ) > /tmp/herus_y.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_y.log
 grep -q "FAIL" /tmp/herus_y.log && FAIL=1 || true
 
-banner "8/76 memory capture (physical session, expiry and transient discard)"
+banner "8/78 memory capture (physical session, expiry and transient discard)"
 ( cd firmware && make memory-capture ) > /tmp/herus_z.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_z.log
 grep -q "FAIL" /tmp/herus_z.log && FAIL=1 || true
 
-banner "9/76 memory extract (typed candidate, uncertainty and zero retention)"
+banner "9/78 memory extract (typed candidate, uncertainty and zero retention)"
 ( cd firmware && make memory-extract ) > /tmp/herus_e.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_e.log
 grep -q "FAIL" /tmp/herus_e.log && FAIL=1 || true
 
-banner "10/76 memory vault (explicit authority, AEAD and durable anti-rollback)"
+banner "10/78 memory vault (explicit authority, AEAD and durable anti-rollback)"
 ( cd firmware && make memory-vault ) > /tmp/herus_w.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_w.log
 grep -q "FAIL" /tmp/herus_w.log && FAIL=1 || true
 
-banner "11/76 memory consolidation (bounded human review, conflict, recall and removal)"
+banner "11/78 memory consolidation (bounded human review, conflict, recall and removal)"
 ( cd firmware && make memory-consolidation ) > /tmp/herus_o.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_o.log
 grep -q "FAIL" /tmp/herus_o.log && FAIL=1 || true
 
-banner "12/76 memory retrieval (typed local matching, ambiguity and zero authority)"
+banner "12/78 memory retrieval (typed local matching, ambiguity and zero authority)"
 ( cd firmware && make memory-retrieval ) > /tmp/herus_u.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_u.log
 grep -q "FAIL" /tmp/herus_u.log && FAIL=1 || true
 
-banner "13/76 memory retrieval presentation (one-shot status, uncertainty and zero authority)"
+banner "13/78 memory retrieval presentation (one-shot status, uncertainty and zero authority)"
 ( cd firmware && make memory-retrieval-present ) > /tmp/herus_p.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_p.log
 grep -q "FAIL" /tmp/herus_p.log && FAIL=1 || true
 
-banner "14/76 memory Grand Finale (composed private-memory chain and zero model authority)"
+banner "14/78 memory Grand Finale (composed private-memory chain and zero model authority)"
 ( cd firmware && make memory-finale ) > /tmp/herus_f.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_f.log
 grep -q "FAIL" /tmp/herus_f.log && FAIL=1 || true
 
-banner "15/76 memory collection (bounded transactional multi-card persistence)"
+banner "15/78 memory collection (bounded transactional multi-card persistence)"
 ( cd firmware && make memory-collection ) > /tmp/herus_mc.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_mc.log
 grep -q "FAIL" /tmp/herus_mc.log && FAIL=1 || true
 
-banner "16/76 memory collection index (bounded private typed retrieval)"
+banner "16/78 memory collection index (bounded private typed retrieval)"
 ( cd firmware && make memory-collection-index ) > /tmp/herus_mci.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_mci.log
 grep -q "FAIL" /tmp/herus_mci.log && FAIL=1 || true
 
-banner "17/76 memory collection recovery (portable crash-state oracle)"
+banner "17/78 memory collection recovery (portable crash-state oracle)"
 ( cd firmware && make memory-collection-recovery ) > /tmp/herus_mcr.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_mcr.log
 grep -q "FAIL" /tmp/herus_mcr.log && FAIL=1 || true
 
-banner "18/76 memory collection Grand Finale (human authority, abstention and no fallback)"
+banner "18/78 memory collection Grand Finale (human authority, abstention and no fallback)"
 ( cd firmware && make memory-collection-finale ) > /tmp/herus_mcf.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_mcf.log
 grep -q "FAIL" /tmp/herus_mcf.log && FAIL=1 || true
 
-banner "19/76 physical session (purpose-bound, expiring and consumed collection access)"
+banner "19/78 physical session (purpose-bound, expiring and consumed collection access)"
 ( cd firmware && make memory-physical-session ) > /tmp/herus_mps.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_mps.log
 grep -q "FAIL" /tmp/herus_mps.log && FAIL=1 || true
 
-banner "20/76 physical session recovery (durable reservation floor; no authority revival)"
+banner "20/78 physical session recovery (durable reservation floor; no authority revival)"
 ( cd firmware && make memory-physical-session-recovery ) > /tmp/herus_mpsr.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_mpsr.log
 grep -q "FAIL" /tmp/herus_mpsr.log && FAIL=1 || true
 
-banner "21/76 physical session recovery stress (deterministic hostile bootstrap campaign)"
+banner "21/78 physical session recovery stress (deterministic hostile bootstrap campaign)"
 ( cd firmware && make memory-physical-session-recovery-stress ) > /tmp/herus_mpsrs.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_mpsrs.log
 grep -q "FAIL" /tmp/herus_mpsrs.log && FAIL=1 || true
 
-banner "22/76 collection recovery stress (deterministic hostile crash-state campaign)"
+banner "22/78 collection recovery stress (deterministic hostile crash-state campaign)"
 ( cd firmware && make memory-collection-recovery-stress ) > /tmp/herus_mcrs.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_mcrs.log
 grep -q "FAIL" /tmp/herus_mcrs.log && FAIL=1 || true
 
-banner "23/76 threat-model stress (deterministic hostile evidence campaign)"
+banner "23/78 threat-model stress (deterministic hostile evidence campaign)"
 ( cd firmware && make threat-model-stress ) > /tmp/herus_tms.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_tms.log
 grep -q "FAIL" /tmp/herus_tms.log && FAIL=1 || true
 
-banner "24/76 proof-fire mutations (selected controls detected when removed)"
+banner "24/78 proof-fire mutations (selected controls detected when removed)"
 ( cd firmware && make proof-fire-mutations ) > /tmp/herus_f4.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_f4.log
 grep -q "FAIL" /tmp/herus_f4.log && FAIL=1 || true
 
-banner "25/76 physical session bootstrap (post-reboot floor-only quarantine)"
+banner "25/78 physical session bootstrap (post-reboot floor-only quarantine)"
 ( cd firmware && make memory-physical-session-bootstrap ) > /tmp/herus_mpsb.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_mpsb.log
 grep -q "FAIL" /tmp/herus_mpsb.log && FAIL=1 || true
 
-banner "26/76 pre-hardware Grand Finale (post-reboot memory-chain composition)"
+banner "26/78 pre-hardware Grand Finale (post-reboot memory-chain composition)"
 ( cd firmware && make memory-prehardware-finale ) > /tmp/herus_mpf.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_mpf.log
 grep -q "FAIL" /tmp/herus_mpf.log && FAIL=1 || true
 
-banner "27/76 threat model (host evidence, target gaps and scope boundaries)"
+banner "27/78 threat model (host evidence, target gaps and scope boundaries)"
 ( cd firmware && make threat-model ) > /tmp/herus_tm.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_tm.log
 grep -q "FAIL" /tmp/herus_tm.log && FAIL=1 || true
 
-banner "28/76 assurance (fail-closed composition and revocation precedence)"
+banner "28/78 assurance (fail-closed composition and revocation precedence)"
 ( cd firmware && make assurance ) > /tmp/herus_q.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_q.log
 grep -q "FAIL" /tmp/herus_q.log && FAIL=1 || true
 
-banner "29/76 capstone (dialogue, model, interaction and trust chain)"
+banner "29/78 capstone (dialogue, model, interaction and trust chain)"
 ( cd firmware && make capstone ) > /tmp/herus_x.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_x.log
 grep -q "FAIL" /tmp/herus_x.log && FAIL=1 || true
 
-banner "30/76 trust lifecycle (explicit pairing, SAS and revocation)"
+banner "30/78 trust lifecycle (explicit pairing, SAS and revocation)"
 ( cd firmware && make trust ) > /tmp/herus_k.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_k.log
 grep -q "FAIL" /tmp/herus_k.log && FAIL=1 || true
 
-banner "31/76 Core/Nucleus control link (AEAD, expiry and replay protection)"
+banner "31/78 Core/Nucleus control link (AEAD, expiry and replay protection)"
 ( cd firmware && make control-link ) > /tmp/herus_l.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_l.log
 grep -q "FAIL" /tmp/herus_l.log && FAIL=1 || true
 
-banner "32/76 interaction (push-to-talk, confirmation and one-shot send)"
+banner "32/78 interaction (push-to-talk, confirmation and one-shot send)"
 ( cd firmware && make interaction ) > /tmp/herus_i.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_i.log
 grep -q "FAIL" /tmp/herus_i.log && FAIL=1 || true
 
-banner "33/76 validation lab (deterministic adapters and telemetry gates)"
+banner "33/78 validation lab (deterministic adapters and telemetry gates)"
 ( cd firmware && make interaction-rig && cd .. && ./tools/test_interactionlog.sh ) > /tmp/herus_g.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_g.log
 grep -q "FAIL" /tmp/herus_g.log && FAIL=1 || true
 
-banner "34/76 readiness manifest (frozen evidence and privacy gates)"
+banner "34/78 readiness manifest (frozen evidence and privacy gates)"
 ( python3 tools/readiness_audit.py research/hardware_readiness_manifest.json --strict && python3 tools/test_readiness_audit.py ) > /tmp/herus_h.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_h.log
 grep -q "FAIL" /tmp/herus_h.log && FAIL=1 || true
 
-banner "35/76 local provenance manifest (unsigned inputs and pending supply-chain gates)"
+banner "35/78 local provenance manifest (unsigned inputs and pending supply-chain gates)"
 ( python3 tools/provenance_audit.py research/software_provenance_manifest.json --strict && python3 tools/test_provenance_audit.py ) > /tmp/herus_pv.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_pv.log
 grep -q "FAIL" /tmp/herus_pv.log && FAIL=1 || true
 
-banner "36/76 preregistered study (frozen plan, gates and unsafe-send rejection)"
+banner "36/78 preregistered study (frozen plan, gates and unsafe-send rejection)"
 python3 tools/test_interactionstudy.py > /tmp/herus_s.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_s.log
 grep -q "FAIL" /tmp/herus_s.log && FAIL=1 || true
 
-banner "37/76 protocol (crypto, ratchet, framing, Weave, Beat)"
+banner "37/78 protocol (crypto, ratchet, framing, Weave, Beat)"
 ( cd firmware && make net ) > /tmp/herus_b.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_b.log
 grep -q "FAIL" /tmp/herus_b.log && FAIL=1 || true
 
-banner "38/76 radio driver (SX1262 command sequences, no hardware)"
+banner "38/78 radio driver (SX1262 command sequences, no hardware)"
 ( cd firmware && make radio && make syntax ) > /tmp/herus_r.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_r.log
 grep -q "FAIL" /tmp/herus_r.log && FAIL=1 || true
 
-banner "39/76 physical layer, energy and frame ledger"
+banner "39/78 physical layer, energy and frame ledger"
 python3 tools/budget.py > /tmp/herus_c.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_c.log
 
-banner "41/76 symbolic generative intelligence (reason, plan, dialogue)"
+banner "41/78 symbolic generative intelligence (reason, plan, dialogue)"
 ( cd firmware && make symbolic-reasoner ) > /tmp/herus_symbolic.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_symbolic.log
 
-banner "42/76 resonator VSA factorization and relational bridge"
+banner "42/78 resonator VSA factorization and relational bridge"
 ( cd firmware && make resonator ) > /tmp/herus_resonator.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_resonator.log
 
-banner "43/76 semantic compiler (controlled Portuguese to typed IR)"
+banner "43/78 semantic compiler (controlled Portuguese to typed IR)"
 ( cd firmware && make semantic-compiler ) > /tmp/herus_semantic.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_semantic.log
 
-banner "44/76 semantic benchmark (exact IR, abstention and authority)"
+banner "44/78 semantic benchmark (exact IR, abstention and authority)"
 ( cd firmware && make semantic-benchmark ) > /tmp/herus_semantic_benchmark.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_semantic_benchmark.log
 
-banner "45/76 collision-aware symbol registry model (host-only)"
+banner "45/78 collision-aware symbol registry model (host-only)"
 python3 tools/test_symbol_registry_model.py > /tmp/herus_symbol_registry.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_symbol_registry.log
 
-banner "46/76 collision-aware symbol registry C11"
+banner "46/78 collision-aware symbol registry C11"
 ( cd firmware && make symbol-registry-c ) > /tmp/herus_symbol_registry_c.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_symbol_registry_c.log
 
-banner "47/76 HAP-SEM haptic language encoder (host-only/C11)"
+banner "47/78 HAP-SEM haptic language encoder (host-only/C11)"
 ( cd firmware && make haptic-language ) > /tmp/herus_haptic_language.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_haptic_language.log
 
-banner "48/76 HAP-SEM semantic bridge (authority and abstention)"
+banner "48/78 HAP-SEM semantic bridge (authority and abstention)"
 ( cd firmware && make haptic-semantic-bridge ) > /tmp/herus_haptic_bridge.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_haptic_bridge.log
-banner "49/76 HAP-SEM exhaustive matrix (tuples, corruption and profiles)"
+banner "49/78 HAP-SEM exhaustive matrix (tuples, corruption and profiles)"
 ( cd firmware && make haptic-language-matrix ) > /tmp/herus_haptic_matrix.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_haptic_matrix.log
-banner "50/76 HAP-SEM DRV2605L adapter (bus ordering and fail-closed state)"
+banner "50/78 HAP-SEM DRV2605L adapter (bus ordering and fail-closed state)"
 ( cd firmware && make haptic-adapter ) > /tmp/herus_haptic_adapter.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_haptic_adapter.log
-banner "51/76 HAP-SEM private numeric evidence validator"
+banner "51/78 HAP-SEM private numeric evidence validator"
 ( cd firmware && make haptic-evidence ) > /tmp/herus_haptic_evidence.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_haptic_evidence.log
-banner "52/76 ESP32-S3 DRV2605L target port (disabled gate and compile override)"
+banner "52/78 ESP32-S3 DRV2605L target port (disabled gate and compile override)"
 ( cd firmware && make haptic-target ) > /tmp/herus_haptic_target.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_haptic_target.log
-banner "53/76 HAP-SEM no-hardware runner and evidence-origin blocking"
+banner "53/78 HAP-SEM no-hardware runner and evidence-origin blocking"
 ( cd firmware && make haptic-runner ) > /tmp/herus_haptic_runner.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_haptic_runner.log
-banner "54/76 HAP-SEM pre-energization checklist and safety blocking"
+banner "54/78 HAP-SEM pre-energization checklist and safety blocking"
 ( cd firmware && make haptic-preflight ) > /tmp/herus_haptic_preflight.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_haptic_preflight.log
-banner "55/76 Core knowledge feed (digest, rollback and local confirmation)"
+banner "55/78 Core knowledge feed (digest, rollback and local confirmation)"
 ( cd firmware && make knowledge-feed ) > /tmp/herus_knowledge_feed.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_knowledge_feed.log
-banner "56/76 Core feed durable anti-rollback cursor"
+banner "56/78 Core feed durable anti-rollback cursor"
 ( cd firmware && make knowledge-feed-cursor ) > /tmp/herus_knowledge_feed_cursor.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_knowledge_feed_cursor.log
-banner "57/76 local semantic evidence (temporal and conflict abstention)"
+banner "57/78 local semantic evidence (temporal and conflict abstention)"
 ( cd firmware && make memory-semantic-evidence ) > /tmp/herus_memory_semantic_evidence.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_memory_semantic_evidence.log
-banner "58/76 offline memory-to-reasoner composition"
+banner "58/78 offline memory-to-reasoner composition"
 ( cd firmware && make memory-reasoning-bridge ) > /tmp/herus_memory_reasoning_bridge.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_memory_reasoning_bridge.log
-banner "59/76 explainable magic anticipation"
+banner "59/78 explainable magic anticipation"
 ( cd firmware && make magic-anticipation ) > /tmp/herus_magic_anticipation.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_magic_anticipation.log
-banner "60/76 bounded magic attention window"
+banner "60/78 bounded magic attention window"
 ( cd firmware && make magic-trigger ) > /tmp/herus_magic_trigger.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_magic_trigger.log
-banner "61/76 read-only magic dialogue bridge"
+banner "61/78 read-only magic dialogue bridge"
 ( cd firmware && make magic-dialogue-bridge ) > /tmp/herus_magic_dialogue_bridge.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_magic_dialogue_bridge.log
-banner "62/76 autonomy policy"
+banner "62/78 autonomy policy"
 ( cd firmware && make autonomy-policy ) > /tmp/herus_autonomy_policy.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_autonomy_policy.log
-banner "63/76 autonomy redteam"
+banner "63/78 autonomy redteam"
 ( cd firmware && make autonomy-redteam ) > /tmp/herus_autonomy_redteam.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_autonomy_redteam.log
-banner "64/76 magic/memory redteam"
+banner "64/78 magic/memory redteam"
 ( cd firmware && make magic-redteam ) > /tmp/herus_magic_redteam.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_magic_redteam.log
-banner "65/76 combined failure matrix"
+banner "65/78 combined failure matrix"
 ( cd firmware && make core-resilience-matrix ) > /tmp/herus_core_resilience.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_core_resilience.log
-banner "66/76 Core feed redteam"
+banner "66/78 Core feed redteam"
 ( cd firmware && make core-redteam ) > /tmp/herus_core_redteam.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_core_redteam.log
-banner "67/76 Core cursor power-fail"
+banner "67/78 Core cursor power-fail"
 ( cd firmware && make knowledge-feed-cursor-powerfail ) > /tmp/herus_cursor_powerfail.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_cursor_powerfail.log
-banner "68/76 transport redteam"
+banner "68/78 transport redteam"
 ( cd firmware && make transport-redteam ) > /tmp/herus_transport_redteam.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_transport_redteam.log
-banner "69/76 cross failure matrix"
+banner "69/78 cross failure matrix"
 ( cd firmware && make cross-failure-matrix ) > /tmp/herus_cross_failure_matrix.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_cross_failure_matrix.log
-banner "70/76 cross failure redteam"
+banner "70/78 cross failure redteam"
 ( cd firmware && make cross-failure-redteam ) > /tmp/herus_cross_failure_redteam.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_cross_failure_redteam.log
-banner "71/76 semantic degradation matrix"
+banner "71/78 semantic degradation matrix"
 ( cd firmware && make degradation-matrix ) > /tmp/herus_degradation_matrix.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_degradation_matrix.log
-banner "72/76 semantic degradation redteam"
+banner "72/78 semantic degradation redteam"
 ( cd firmware && make degradation-redteam ) > /tmp/herus_degradation_redteam.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_degradation_redteam.log
-banner "73/76 memory reboot boundary"
+banner "73/78 memory reboot boundary"
 ( cd firmware && make memory-reboot-boundary ) > /tmp/herus_memory_reboot_boundary.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_memory_reboot_boundary.log
-banner "74/76 memory reboot redteam"
+banner "74/78 memory reboot redteam"
 ( cd firmware && make memory-reboot-redteam ) > /tmp/herus_memory_reboot_redteam.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_memory_reboot_redteam.log
-banner "75/76 post-reboot reindex"
+banner "75/78 post-reboot reindex"
 ( cd firmware && make memory-post-reboot-reindex ) > /tmp/herus_memory_post_reboot_reindex.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_memory_post_reboot_reindex.log
-banner "76/76 post-reboot reindex redteam"
+banner "76/78 post-reboot reindex redteam"
 ( cd firmware && make memory-post-reboot-reindex-redteam ) > /tmp/herus_memory_post_reboot_reindex_redteam.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_memory_post_reboot_reindex_redteam.log
+banner "77/78 ambient presence"
+( cd firmware && make ambient-presence ) > /tmp/herus_ambient_presence.log 2>&1 || FAIL=1
+[ "$QUIET" = 0 ] && cat /tmp/herus_ambient_presence.log
+banner "78/78 ambient presence redteam"
+( cd firmware && make ambient-presence-redteam ) > /tmp/herus_ambient_presence_redteam.log 2>&1 || FAIL=1
+[ "$QUIET" = 0 ] && cat /tmp/herus_ambient_presence_redteam.log
  echo ""
 
 echo "--------------------------------------------------"
@@ -465,6 +473,8 @@ check "Memory reboot boundary imports floor only and scrubs semantic evidence" "
 check "Memory reboot redteam kills stale-context and partial-recovery mutants" "MEMORY REBOOT REDTEAM: 11/11 critical reboot-boundary mutants killed" /tmp/herus_memory_reboot_redteam.log
 check "Post-reboot reindex preserves supersession, expiry, conflict and abstention" "MEMORY POST-REBOOT REINDEX: 11 pass, 0 fail" /tmp/herus_memory_post_reboot_reindex.log
 check "Post-reboot reindex redteam kills stale and silent-update mutants" "POST-REBOOT REINDEX REDTEAM: 5/5 critical reindex mutants killed" /tmp/herus_memory_post_reboot_reindex_redteam.log
+check "Ambient presence preserves quiet, bounded offers, expiry and contact semantics" "AMBIENT PRESENCE: properties hold" /tmp/herus_ambient_presence.log
+check "Ambient presence redteam kills intrusion and authority mutants" "AMBIENT PRESENCE REDTEAM: 6/6 critical invisibility mutants killed" /tmp/herus_ambient_presence_redteam.log
 
 # --- physical layer -------------------------------------------------------
 check "P1 constant AIRTIME across meaning tiers" "INVARIANT HOLDS" /tmp/herus_c.log

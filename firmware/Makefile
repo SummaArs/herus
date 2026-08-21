@@ -293,6 +293,15 @@ magic-dialogue-bridge: build
 	$(CC) $(CFLAGS) $(INC) core/hv.c core/resonator.c core/resonator_bridge.c core/memory_semantic_evidence.c core/memory_reasoning_bridge.c core/symbolic_reasoner.c core/magic_anticipation.c core/magic_dialogue_bridge.c core/symbolic_dialogue.c core/test_magic_dialogue_bridge.c -o build/test_magic_dialogue_bridge
 	./build/test_magic_dialogue_bridge
 
+ambient-presence: build
+	@echo "--- ambient presence: quiet, bounded and contact-aware local offer ---"
+	$(CC) $(CFLAGS) $(INC) core/ambient_presence.c core/test_ambient_presence.c -o build/test_ambient_presence
+	./build/test_ambient_presence
+
+ambient-presence-redteam:
+	@echo "--- ambient presence redteam: deterministic invisibility sabotage ---"
+	python3 ../tools/test_ambient_presence_redteam.py
+
 autonomy-policy: build
 	@echo "--- autonomy policy: A0-A4 initiative and confirmation envelope ---"
 	$(CC) $(CFLAGS) $(INC) core/autonomy_policy.c core/test_autonomy_policy.c -o build/test_autonomy_policy
