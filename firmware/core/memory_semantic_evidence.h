@@ -38,7 +38,8 @@ typedef enum {
     MSE_E_FACT = -3,
     MSE_E_ROLLBACK = -4,
     MSE_E_FULL = -5,
-    MSE_E_FORMAT = -6
+    MSE_E_FORMAT = -6,
+    MSE_E_FLOOR = -7
 } mse_status_t;
 
 typedef int (*mse_functional_predicate_fn)(sr_symbol_t predicate, void *user);
@@ -54,6 +55,7 @@ typedef struct {
 
 typedef struct {
     uint16_t evidence_count;
+    uint32_t generation_floor; /* durable semantic floor; zero means cold start */
     uint32_t additions;
     uint32_t superseded;
     uint32_t conflicts;
@@ -77,6 +79,10 @@ typedef struct {
 void mse_init(mse_index_t *index,
               mse_functional_predicate_fn is_functional,
               void *policy_user);
+
+/* Sets a nondecreasing semantic generation floor only on an empty index. It is an
+ * anti-replay boundary for reindexing after reboot; it is not a wall-clock claim. */
+mse_status_t mse_set_generation_floor(mse_index_t *index, uint32_t generation_floor);
 
 /* Validates the bounded in-RAM representation without modifying it. */
 mse_status_t mse_validate(const mse_index_t *index);

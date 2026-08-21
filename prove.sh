@@ -453,8 +453,8 @@ check "Cross failure matrix preserves source-loss scrubbing and assurance denial
 check "Cross failure redteam kills authority and source-loss mutants" "CROSS FAILURE REDTEAM: 3/3 critical cross-module mutants killed" /tmp/herus_cross_failure_redteam.log
 check "Semantic degradation matrix preserves capacity, conflict, ambiguity and silence" "DEGRADATION MATRIX: 6 pass, 0 fail" /tmp/herus_degradation_matrix.log
 check "Semantic degradation redteam kills capacity and contextual mutants" "DEGRADATION REDTEAM: 5/5 critical capacity/context mutants killed" /tmp/herus_degradation_redteam.log
-check "Memory reboot boundary imports floor only and scrubs semantic evidence" "MEMORY REBOOT BOUNDARY: 8 pass, 0 fail" /tmp/herus_memory_reboot_boundary.log
-check "Memory reboot redteam kills stale-context and partial-recovery mutants" "MEMORY REBOOT REDTEAM: 4/4 critical reboot-boundary mutants killed" /tmp/herus_memory_reboot_redteam.log
+check "Memory reboot boundary imports floor only and scrubs semantic evidence" "MEMORY REBOOT BOUNDARY: 12 pass, 0 fail" /tmp/herus_memory_reboot_boundary.log
+check "Memory reboot redteam kills stale-context and partial-recovery mutants" "MEMORY REBOOT REDTEAM: 8/8 critical reboot-boundary mutants killed" /tmp/herus_memory_reboot_redteam.log
 
 # --- physical layer -------------------------------------------------------
 check "P1 constant AIRTIME across meaning tiers" "INVARIANT HOLDS" /tmp/herus_c.log

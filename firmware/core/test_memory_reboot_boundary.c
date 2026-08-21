@@ -47,10 +47,19 @@ int main(void)
     memory_physical_session_recovery_snapshot_t snapshot;
     memory_reboot_boundary_result_t result;
     mse_index_t index;
+    memory_vault_card_t semantic_card;
+    sr_fact_t semantic_fact = {0x73000001u, SR_SYMBOL_LEGACY(30u),
+                               SR_SYMBOL_LEGACY(31u), 0u};
 
+    memset(&semantic_card, 0, sizeof(semantic_card));
+    semantic_card.card_id = 701u;
+    semantic_card.review_receipt_id = 1701u;
     memory_physical_session_config_default(&cfg);
     snapshot = committed_snapshot(8u);
     stale_index(&index);
+    check(&score, mse_set_generation_floor(&index, 8u) == MSE_E_FLOOR &&
+                    index.generation_floor == 0u && index.evidence_count == 1u,
+          "semantic floor cannot be installed over nonempty volatile evidence");
     memory_physical_session_init(&gate, &cfg);
     check(&score, memory_physical_session_begin(
                         &gate, MEMORY_PHYSICAL_PURPOSE_COLLECTION_QUERY,
@@ -62,6 +71,7 @@ int main(void)
                                                     &snapshot, &result) ==
                         MEMORY_REBOOT_BOUNDARY_OK &&
                     result.recovered_session_floor == 8u &&
+                    result.semantic_generation_floor == 8u &&
                     result.active_session_scrubbed == 1u &&
                     result.semantic_index_scrubbed == 1u &&
                     gate.state == MEMORY_PHYSICAL_SESSION_IDLE &&
@@ -71,6 +81,15 @@ int main(void)
                     gate.active_purpose == MEMORY_PHYSICAL_PURPOSE_NONE &&
                     index.evidence_count == 0u,
           "successful reboot imports only the durable floor and scrubs session plus semantic evidence");
+    check(&score, mse_set_generation_floor(&index, 7u) == MSE_E_ROLLBACK &&
+                    index.generation_floor == 8u,
+          "semantic generation floor cannot decrease after reboot");
+    check(&score, mse_add(&index, &semantic_card, &semantic_fact, 8u, 0u) ==
+                        MSE_E_ROLLBACK && index.evidence_count == 0u,
+          "semantic reindex at the recovered floor is rejected as stale evidence");
+    check(&score, mse_add(&index, &semantic_card, &semantic_fact, 9u, 0u) ==
+                        MSE_OK && index.evidence_count == 1u,
+          "semantic reindex strictly above the recovered floor is the only accepted successor");
 
     check(&score, memory_physical_session_begin(
                         &gate, MEMORY_PHYSICAL_PURPOSE_COLLECTION_QUERY,

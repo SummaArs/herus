@@ -81,6 +81,17 @@ void mse_init(mse_index_t *index,
     index->policy_user = policy_user;
 }
 
+mse_status_t mse_set_generation_floor(mse_index_t *index, uint32_t generation_floor)
+{
+    if (!index || generation_floor == 0u) return MSE_E_ARG;
+    if (mse_validate(index) != MSE_OK) return MSE_E_FORMAT;
+    if (generation_floor < index->generation_floor) return MSE_E_ROLLBACK;
+    if (generation_floor == index->generation_floor) return MSE_NO_CHANGE;
+    if (index->evidence_count != 0u) return MSE_E_FLOOR;
+    index->generation_floor = generation_floor;
+    return MSE_OK;
+}
+
 mse_status_t mse_validate(const mse_index_t *index)
 {
     if (!index || index->evidence_count > MSE_MAX_EVIDENCE)
@@ -107,6 +118,11 @@ mse_status_t mse_add(mse_index_t *index,
     int inserted;
     if (!index) return MSE_E_ARG;
     if (mse_validate(index) != MSE_OK) return MSE_E_FORMAT;
+    if (observed_generation == 0u ||
+        observed_generation <= index->generation_floor) {
+        index->rejected++;
+        return MSE_E_ROLLBACK;
+    }
     if (!valid_card(card) || !valid_fact(fact) ||
         observed_generation == 0u ||
         (valid_until_generation != 0u &&

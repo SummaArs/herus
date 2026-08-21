@@ -49,8 +49,14 @@ int memory_reboot_boundary_bootstrap(
         scrub_failure(gate, index, out);
         return MEMORY_REBOOT_BOUNDARY_E_RECOVERY;
     }
+    if (bootstrap.recovered_session_floor != 0u &&
+        mse_set_generation_floor(index, bootstrap.recovered_session_floor) < MSE_OK) {
+        scrub_failure(gate, index, out);
+        return MEMORY_REBOOT_BOUNDARY_E_RECOVERY;
+    }
 
     out->recovered_session_floor = bootstrap.recovered_session_floor;
+    out->semantic_generation_floor = bootstrap.recovered_session_floor;
     out->recovery_action = bootstrap.recovery_action;
     out->active_session_scrubbed = bootstrap.active_evidence_scrubbed;
     out->semantic_index_scrubbed = 1u;

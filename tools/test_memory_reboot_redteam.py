@@ -80,12 +80,37 @@ def main() -> int:
             "    if (!gate || !index || !session_cfg || !snapshot || !out) {\n",
             "    if (!gate || !session_cfg || !snapshot || !out) {\n",
         ),
-        Mutation(
+                Mutation(
             "reboot-scrub-result-claim",
             "firmware/core/memory_reboot_boundary.c",
             "    out->semantic_index_scrubbed = 1u;\n",
             "    /* REDTEAM: result no longer proves semantic scrub. */\n",
         ),
+        Mutation(
+            "reboot-semantic-floor-import",
+            "firmware/core/memory_reboot_boundary.c",
+            "    if (bootstrap.recovered_session_floor != 0u &&\n        mse_set_generation_floor(index, bootstrap.recovered_session_floor) < MSE_OK) {\n        scrub_failure(gate, index, out);\n        return MEMORY_REBOOT_BOUNDARY_E_RECOVERY;\n    }\n",
+            "    /* REDTEAM: semantic generation floor import removed. */\n",
+        ),
+        Mutation(
+            "semantic-floor-stale-rejection",
+            "firmware/core/memory_semantic_evidence.c",
+            "    if (observed_generation == 0u ||\n        observed_generation <= index->generation_floor) {\n        index->rejected++;\n        return MSE_E_ROLLBACK;\n    }\n",
+            "    /* REDTEAM: stale semantic evidence accepted. */\n",
+        ),
+        Mutation(
+            "semantic-floor-monotonicity",
+            "firmware/core/memory_semantic_evidence.c",
+            "    if (generation_floor < index->generation_floor) return MSE_E_ROLLBACK;\n",
+            "    /* REDTEAM: semantic floor may decrease. */\n",
+        ),
+        Mutation(
+            "semantic-floor-empty-only",
+            "firmware/core/memory_semantic_evidence.c",
+            "    if (index->evidence_count != 0u) return MSE_E_FLOOR;\n",
+            "    /* REDTEAM: floor may be installed over active evidence. */\n",
+        )
+,
     )
 
     print("\n== HERUS memory reboot boundary red-team campaign ==")
@@ -95,9 +120,9 @@ def main() -> int:
         for mutation in mutations:
             passed = run_mutation(directory, mutation) and passed
     if not passed:
-        print("MEMORY REBOOT REDTEAM FAILED — a stale-context mutant survived")
+        print("MEMORY REBOOT REDTEAM FAILED — a stale-context or semantic-floor mutant survived")
         return 1
-    print("MEMORY REBOOT REDTEAM: 4/4 critical reboot-boundary mutants killed")
+    print("MEMORY REBOOT REDTEAM: 8/8 critical reboot-boundary mutants killed")
     return 0
 
 

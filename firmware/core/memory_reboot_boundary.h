@@ -14,6 +14,7 @@
 
 typedef struct {
     uint32_t recovered_session_floor;
+    uint32_t semantic_generation_floor;
     memory_physical_session_recovery_action_t recovery_action;
     uint8_t active_session_scrubbed;
     uint8_t semantic_index_scrubbed;
