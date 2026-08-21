@@ -9,7 +9,24 @@ static const uint32_t SCOPE_ALLOWED = AT_SCOPE_LOCAL_HAPTIC |
 static int valid_source(at_source_t source)
 {
     return source == AT_SOURCE_LOCAL_OBSERVATION ||
-           source == AT_SOURCE_CORE_KNOWLEDGE;
+           source == AT_SOURCE_CORE_KNOWLEDGE ||
+           source == AT_SOURCE_COMPOSITE;
+}
+
+static uint32_t source_mask_for(at_source_t source)
+{
+    if (source == AT_SOURCE_LOCAL_OBSERVATION) return AT_SOURCE_LOCAL_OBSERVATION;
+    if (source == AT_SOURCE_CORE_KNOWLEDGE) return AT_SOURCE_CORE_KNOWLEDGE;
+    return AT_SOURCE_LOCAL_OBSERVATION | AT_SOURCE_CORE_KNOWLEDGE;
+}
+
+static at_source_t source_for_mask(uint32_t mask)
+{
+    if (mask == AT_SOURCE_LOCAL_OBSERVATION) return AT_SOURCE_LOCAL_OBSERVATION;
+    if (mask == AT_SOURCE_CORE_KNOWLEDGE) return AT_SOURCE_CORE_KNOWLEDGE;
+    if (mask == (AT_SOURCE_LOCAL_OBSERVATION | AT_SOURCE_CORE_KNOWLEDGE))
+        return AT_SOURCE_COMPOSITE;
+    return 0;
 }
 
 static int valid_root_role(at_source_t source, ag_role_t role)
@@ -100,9 +117,16 @@ static int exact_duplicate(const ag_index_t *index, uint32_t node_id,
 
 void ag_init(ag_index_t *index, uint32_t epoch)
 {
+    ag_init_principal(index, epoch, AG_PRINCIPAL_LOCAL);
+}
+
+void ag_init_principal(ag_index_t *index, uint32_t epoch,
+                       uint32_t principal_id)
+{
     if (index) {
         memset(index, 0, sizeof(*index));
         index->epoch = epoch == 0u ? 1u : epoch;
+        index->principal_id = principal_id == 0u ? AG_PRINCIPAL_LOCAL : principal_id;
     }
 }
 
@@ -126,7 +150,13 @@ int ag_add_root(ag_index_t *index, uint32_t node_id, uint32_t provenance_id,
     memset(node, 0, sizeof(*node));
     node->node_id = node_id;
     node->provenance_id = provenance_id;
+    node->parent_id = 0u;
+    node->secondary_parent_id = 0u;
     node->source_root_id = node_id;
+    node->source_mask = source_mask_for(source);
+    node->owner_principal_id = index->principal_id;
+    node->issuer_principal_id = index->principal_id;
+    node->purpose_token = 0u;
     node->source = source;
     node->role = role;
     node->edge = AG_EDGE_ROOT;
@@ -183,7 +213,12 @@ int ag_derive(ag_index_t *index, uint32_t node_id, uint32_t provenance_id,
     node->node_id = node_id;
     node->provenance_id = provenance_id;
     node->parent_id = parent->node_id;
+    node->secondary_parent_id = 0u;
     node->source_root_id = parent->source_root_id;
+    node->source_mask = parent->source_mask;
+    node->owner_principal_id = parent->owner_principal_id;
+    node->issuer_principal_id = parent->issuer_principal_id;
+    node->purpose_token = parent->purpose_token;
     node->source = parent->source;
     node->role = role;
     node->edge = edge;
@@ -191,6 +226,102 @@ int ag_derive(ag_index_t *index, uint32_t node_id, uint32_t provenance_id,
     node->scope = scope;
     node->generation = generation;
     node->valid_until_generation = inherited_expiry;
+    node->epoch = epoch;
+    node->status = AG_NODE_ACTIVE;
+    index->derivations++;
+    return AG_OK;
+}
+
+int ag_set_purpose(ag_index_t *index, uint32_t node_id,
+                    uint32_t purpose_token)
+{
+    int position;
+    if (!index || node_id == 0u || purpose_token == 0u)
+        return AG_E_PURPOSE;
+    position = find_node(index, node_id);
+    if (position < 0) return AG_E_PARENT;
+    if (index->nodes[position].owner_principal_id != index->principal_id)
+        return AG_E_PRINCIPAL;
+    if (index->nodes[position].status != AG_NODE_ACTIVE)
+        return AG_E_REVOKED;
+    index->nodes[position].purpose_token = purpose_token;
+    return AG_OK;
+}
+
+int ag_compose(ag_index_t *index, uint32_t left_id, uint32_t right_id,
+                uint32_t node_id, uint32_t provenance_id, ag_role_t role,
+                uint32_t purpose_token, uint32_t epoch, uint32_t generation,
+                uint32_t valid_until_generation)
+{
+    int left_position;
+    int right_position;
+    ag_node_t *left;
+    ag_node_t *right;
+    ag_node_t *node;
+    uint32_t authority;
+    uint32_t scope;
+    uint32_t inherited_expiry;
+    uint32_t source_mask;
+
+    if (!index || left_id == 0u || right_id == 0u || left_id == right_id ||
+        purpose_token == 0u)
+        return AG_E_ARG;
+    left_position = find_node(index, left_id);
+    right_position = find_node(index, right_id);
+    if (left_position < 0 || right_position < 0) return AG_E_PARENT;
+    left = &index->nodes[left_position];
+    right = &index->nodes[right_position];
+    if (left->owner_principal_id != index->principal_id ||
+        right->owner_principal_id != index->principal_id)
+        return AG_E_PRINCIPAL;
+    if (left->status == AG_NODE_REVOKED || right->status == AG_NODE_REVOKED)
+        return AG_E_REVOKED;
+    if (left->status == AG_NODE_QUARANTINED || right->status == AG_NODE_QUARANTINED)
+        return AG_E_EPOCH;
+    if (!node_usable(left, epoch, generation) ||
+        !node_usable(right, epoch, generation))
+        return left->epoch != epoch || right->epoch != epoch ? AG_E_EPOCH : AG_E_EXPIRED;
+    if (role != AG_ROLE_POLICY && role != AG_ROLE_KNOWLEDGE)
+        return AG_E_ROLE;
+    if (role == AG_ROLE_KNOWLEDGE &&
+        (left->role == AG_ROLE_POLICY || right->role == AG_ROLE_POLICY))
+        return AG_E_ROLE;
+    authority = left->authority & right->authority;
+    scope = left->scope & right->scope;
+    if (authority == 0u) return AG_E_AUTH;
+    if (scope == 0u) return AG_E_SCOPE;
+    inherited_expiry = min_valid(left->valid_until_generation,
+                                 right->valid_until_generation);
+    if (valid_until_generation != 0u &&
+        (inherited_expiry == 0u || valid_until_generation > inherited_expiry))
+        return AG_E_EXPIRED;
+    if (inherited_expiry != 0u && generation > inherited_expiry)
+        return AG_E_EXPIRED;
+    if (epoch != index->epoch || generation <= index->generation_floor)
+        return epoch == index->epoch ? AG_E_REPLAY : AG_E_EPOCH;
+    if (exact_duplicate(index, node_id, provenance_id)) return AG_E_FORMAT;
+    if (index->node_count >= AG_MAX_NODES) return AG_E_FULL;
+    source_mask = left->source_mask | right->source_mask;
+    node = &index->nodes[index->node_count++];
+    memset(node, 0, sizeof(*node));
+    node->node_id = node_id;
+    node->provenance_id = provenance_id;
+    node->parent_id = left->node_id;
+    node->secondary_parent_id = right->node_id;
+    node->source_root_id = left->source_root_id == right->source_root_id ?
+                           left->source_root_id : 0u;
+    node->source_mask = source_mask;
+    node->owner_principal_id = index->principal_id;
+    node->issuer_principal_id = index->principal_id;
+    node->purpose_token = purpose_token;
+    node->source = source_for_mask(source_mask);
+    node->role = role;
+    node->edge = AG_EDGE_SUPPORTS;
+    node->authority = authority;
+    node->scope = scope;
+    node->generation = generation;
+    node->valid_until_generation = min_valid(inherited_expiry,
+                                             valid_until_generation);
     node->epoch = epoch;
     node->status = AG_NODE_ACTIVE;
     index->derivations++;
@@ -215,6 +346,8 @@ int ag_admit(const ag_index_t *index, uint32_t node_id,
     if (node->status == AG_NODE_EXPIRED) return AG_E_EXPIRED;
     if (node->status == AG_NODE_QUARANTINED) return AG_E_EPOCH;
     if (node->status != AG_NODE_ACTIVE) return AG_E_REPLAY;
+    if (node->owner_principal_id != index->principal_id)
+        return AG_E_PRINCIPAL;
     if (node->epoch != current_epoch) return AG_E_EPOCH;
     if (!valid_time(generation, node->generation,
                     node->valid_until_generation)) return AG_E_EXPIRED;
@@ -226,8 +359,12 @@ int ag_admit(const ag_index_t *index, uint32_t node_id,
     out_offer->node_id = node->node_id;
     out_offer->provenance_id = node->provenance_id;
     out_offer->source_root_id = node->source_root_id;
+    out_offer->source_mask = node->source_mask;
+    out_offer->owner_principal_id = node->owner_principal_id;
+    out_offer->issuer_principal_id = node->issuer_principal_id;
     out_offer->source = node->source;
     out_offer->role = node->role;
+    out_offer->purpose_token = node->purpose_token;
     out_offer->authority = node->authority;
     out_offer->scope = node->scope;
     out_offer->generation = generation;
@@ -248,7 +385,12 @@ int ag_grant_local_action(const ag_index_t *index, const ag_offer_t *offer,
     if (!index || !offer || !out_action) return AG_E_ARG;
     if (offer->epoch != current_epoch || offer->epoch != index->epoch)
         return AG_E_EPOCH;
+    if (index->principal_id != AG_PRINCIPAL_LOCAL ||
+        offer->owner_principal_id != AG_PRINCIPAL_LOCAL)
+        return AG_E_PRINCIPAL;
     if (offer->source != AT_SOURCE_LOCAL_OBSERVATION ||
+        offer->source_mask != AT_SOURCE_LOCAL_OBSERVATION ||
+        offer->issuer_principal_id != AG_PRINCIPAL_LOCAL ||
         offer->role != AG_ROLE_PREFERENCE)
         return AG_E_ACTION;
     if (local_scope == 0u || (local_scope & ~offer->scope) != 0u ||
@@ -273,6 +415,112 @@ int ag_grant_local_action(const ag_index_t *index, const ag_offer_t *offer,
                                    physical_confirmation, generation,
                                    out_action);
     return status == AT_OK ? AG_OK : AG_E_AUTH;
+}
+
+static int imported_share_seen(const ag_index_t *index, uint32_t share_id)
+{
+    uint16_t i;
+    if (!index || share_id == 0u) return 0;
+    for (i = 0u; i < index->imported_share_count; i++)
+        if (index->imported_share_ids[i] == share_id) return 1;
+    return 0;
+}
+
+int ag_export_share(const ag_index_t *index, uint32_t node_id,
+                   uint32_t share_id, uint32_t recipient_principal_id,
+                   uint8_t physical_confirmation, uint32_t generation,
+                   ag_share_t *out_share)
+{
+    int position;
+    const ag_node_t *node;
+    if (!index || !out_share || share_id == 0u ||
+        recipient_principal_id == 0u || physical_confirmation != 1u)
+        return AG_E_SHARE;
+    if (recipient_principal_id == index->principal_id)
+        return AG_E_PRINCIPAL;
+    position = find_node(index, node_id);
+    if (position < 0) return AG_E_PARENT;
+    node = &index->nodes[position];
+    if (!node_usable(node, index->epoch, generation))
+        return node->epoch != index->epoch ? AG_E_EPOCH : AG_E_EXPIRED;
+    if (node->role == AG_ROLE_ACTION || node->role == AG_ROLE_OFFER ||
+        (node->authority & AT_AUTH_ACTION) != 0u)
+        return AG_E_SHARE;
+    /* share_id lives in the envelope namespace, not the node namespace. */
+    memset(out_share, 0, sizeof(*out_share));
+    out_share->share_id = share_id;
+    out_share->node_id = node->node_id;
+    out_share->provenance_id = node->provenance_id;
+    out_share->source_root_id = node->source_root_id;
+    out_share->source_mask = node->source_mask;
+    out_share->issuer_principal_id = index->principal_id;
+    out_share->recipient_principal_id = recipient_principal_id;
+    out_share->source = node->source;
+    out_share->role = node->role;
+    out_share->purpose_token = node->purpose_token;
+    out_share->authority = node->authority;
+    out_share->scope = node->scope;
+    out_share->generation = generation;
+    out_share->valid_until_generation = node->valid_until_generation;
+    out_share->issuer_epoch = index->epoch;
+    out_share->physically_confirmed = 1u;
+    return AG_OK;
+}
+
+int ag_import_share(ag_index_t *index, const ag_share_t *share,
+                    uint8_t physical_confirmation, uint32_t generation)
+{
+    ag_node_t *node;
+    if (!index || !share || physical_confirmation != 1u)
+        return AG_E_SHARE;
+    if (share->share_id == 0u || share->node_id == 0u ||
+        share->provenance_id == 0u || share->issuer_principal_id == 0u ||
+        share->recipient_principal_id != index->principal_id ||
+        share->issuer_principal_id == index->principal_id)
+        return AG_E_PRINCIPAL;
+    if (share->physically_confirmed != 1u || share->issuer_epoch == 0u)
+        return AG_E_SHARE;
+    if (imported_share_seen(index, share->share_id) ||
+        exact_duplicate(index, share->node_id, share->provenance_id))
+        return AG_E_REPLAY;
+    if (!valid_source(share->source) ||
+        source_mask_for(share->source) != share->source_mask ||
+        !valid_record_shape(share->node_id, share->provenance_id,
+                            share->authority, share->scope, index->epoch,
+                            generation, share->valid_until_generation))
+        return AG_E_FORMAT;
+    if (share->role == AG_ROLE_ACTION || share->role == AG_ROLE_OFFER ||
+        (share->authority & AT_AUTH_ACTION) != 0u)
+        return AG_E_AUTH;
+    if (share->valid_until_generation != 0u &&
+        generation > share->valid_until_generation)
+        return AG_E_EXPIRED;
+    if (index->node_count >= AG_MAX_NODES ||
+        index->imported_share_count >= AG_MAX_SHARES)
+        return AG_E_FULL;
+    node = &index->nodes[index->node_count++];
+    memset(node, 0, sizeof(*node));
+    node->node_id = share->node_id;
+    node->provenance_id = share->provenance_id;
+    node->parent_id = 0u;
+    node->secondary_parent_id = 0u;
+    node->source_root_id = share->source_root_id;
+    node->source_mask = share->source_mask;
+    node->owner_principal_id = index->principal_id;
+    node->issuer_principal_id = share->issuer_principal_id;
+    node->purpose_token = share->purpose_token;
+    node->source = share->source;
+    node->role = share->role;
+    node->edge = AG_EDGE_SUPPORTS;
+    node->authority = share->authority;
+    node->scope = share->scope;
+    node->generation = generation;
+    node->valid_until_generation = share->valid_until_generation;
+    node->epoch = index->epoch;
+    node->status = AG_NODE_ACTIVE;
+    index->imported_share_ids[index->imported_share_count++] = share->share_id;
+    index->additions++;
+    return AG_OK;
 }
 
 int ag_revoke(ag_index_t *index, uint32_t node_id,

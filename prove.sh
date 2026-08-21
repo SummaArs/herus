@@ -690,6 +690,12 @@ if ( cd sim && make -s build/herus-sim ) 2>/tmp/herus_sim_build.log; then
         check "Attribution benchmark blocks reintroduction" "Attribution guard blocks revoked reintroduction" /tmp/herus_sim.log
         check "Attribution benchmark blocks implicit action" "Attribution guard blocks implicit action authority" /tmp/herus_sim.log
         check "Attribution benchmark complete vector" "Attribution guard satisfies the complete non-laundering vector" /tmp/herus_sim.log
+        check "Attribution composition intersects authority" "Composite offer preserves both roots and intersects authority" /tmp/herus_sim.log
+        check "Attribution composition blocks local action" "Composite policy cannot become local action authority" /tmp/herus_sim.log
+        check "Attribution composition preserves causal support" "Removing one causal support blocks recomposition" /tmp/herus_sim.log
+        check "Attribution sharing preserves issuer" "Imported memory preserves recipient ownership and issuer provenance" /tmp/herus_sim.log
+        check "Attribution sharing blocks recipient confusion" "A share addressed to another principal is rejected" /tmp/herus_sim.log
+        check "Attribution sharing blocks replay" "The same share envelope cannot be replayed" /tmp/herus_sim.log
     else
         echo "  FAIL  the bench disagrees with the design — see /tmp/herus_sim.log"; FAIL=1
     fi
@@ -741,6 +747,13 @@ if python3 tools/test_attribution_redteam.py > /tmp/herus_attribution_redteam.lo
     grep "ATTRIBUTION REDTEAM" /tmp/herus_attribution_redteam.log
 else
     echo "  FAIL  an attribution mutant survived — see /tmp/herus_attribution_redteam.log"
+    FAIL=1
+fi
+
+if python3 tools/test_composition_redteam.py > /tmp/herus_composition_redteam.log 2>&1; then
+    grep "COMPOSITION REDTEAM" /tmp/herus_composition_redteam.log
+else
+    echo "  FAIL  a composition mutant survived — see /tmp/herus_composition_redteam.log"
     FAIL=1
 fi
 

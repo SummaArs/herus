@@ -305,6 +305,7 @@ void scenario_adaptive_change(sim_score *s, int argc, char **argv);
 void scenario_poisoning(sim_score *s, int argc, char **argv);
 void scenario_attribution(sim_score *s, int argc, char **argv);
 void scenario_attribution_benchmark(sim_score *s, int argc, char **argv);
+void scenario_attribution_composition(sim_score *s, int argc, char **argv);
 
 int  opt_int   (int argc, char **argv, const char *k, int def);
 double opt_dbl (int argc, char **argv, const char *k, double def);

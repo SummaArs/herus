@@ -29,7 +29,7 @@ NET     := $(FW)/net/crypto.c $(FW)/net/session.c $(FW)/net/region.c \
            $(FW)/net/weave.c $(FW)/net/beat.c $(FW)/net/link.c
 SIM     := world.c channel.c render.c node.c scenarios.c stress.c compose.c study.c learn.c virtual_lab.c personal_scenario.c personal_sim.c semantic_scenario.c semantic_life.c physical_fault_scenario.c authority_transition.c authority_scenario.c authority_benchmark.c adaptive_change.c adaptive_change_scenario.c poisoning_guard.c poisoning_scenario.c attribution_guard.c attribution_scenario.c main.c
 
-.PHONY: all run personal semantic-life physical-faults authority authority-benchmark adaptive-change poisoning attribution authority-redteam adaptive-change-redteam poisoning-redteam attribution-redteam virtual virtual-mutation clean
+.PHONY: all run personal semantic-life physical-faults authority authority-benchmark adaptive-change poisoning attribution attribution-composition authority-redteam adaptive-change-redteam poisoning-redteam attribution-redteam composition-redteam virtual virtual-mutation clean
 
 all: run
 
@@ -58,7 +58,13 @@ poisoning: build/herus-sim
 			./build/herus-sim poisoning
 
 attribution: build/herus-sim
-			./build/herus-sim attribution
+				./build/herus-sim attribution
+
+attribution-composition: build/herus-sim
+		./build/herus-sim attribution-composition
+
+
+
 
 
 
@@ -73,6 +79,9 @@ poisoning-redteam:
 
 attribution-redteam:
 	cd .. && python3 tools/test_attribution_redteam.py
+
+composition-redteam:
+	cd .. && python3 tools/test_composition_redteam.py
 
 virtual: build/herus-sim
 	./build/herus-sim virtual

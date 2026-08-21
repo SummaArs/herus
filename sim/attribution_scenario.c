@@ -286,3 +286,111 @@ void scenario_attribution_benchmark(sim_score *score, int argc, char **argv)
                    guarded.implicit_action == 0,
            "Attribution guard satisfies the complete non-laundering vector");
 }
+
+
+void scenario_attribution_composition(sim_score *s, int argc, char **argv)
+{
+    ag_index_t local;
+    ag_index_t core;
+    ag_index_t contact;
+    ag_index_t forged;
+    ag_index_t wrong_recipient;
+    ag_index_t unconfirmed;
+    ag_offer_t offer;
+    ag_share_t share;
+    at_capsule_t action;
+    int status;
+    (void)argc;
+    (void)argv;
+
+    ag_init_principal(&local, 17u, AG_PRINCIPAL_LOCAL);
+    sim_ok(s, ag_add_root(&local, 800u, 8000u,
+                          AT_SOURCE_LOCAL_OBSERVATION, AG_ROLE_PREFERENCE,
+                          AT_AUTH_OBSERVATION | AT_AUTH_MEMORY,
+                          AT_SCOPE_LOCAL_DIALOGUE | AT_SCOPE_LOCAL_HAPTIC,
+                          17u, 20u, 0u) == AG_OK &&
+              ag_set_purpose(&local, 800u, 0xC0DEu) == AG_OK,
+           "Composition accepts a local preference with explicit purpose");
+    sim_ok(s, ag_add_root(&local, 801u, 8001u,
+                          AT_SOURCE_CORE_KNOWLEDGE, AG_ROLE_POLICY,
+                          AT_AUTH_MEMORY, AT_SCOPE_LOCAL_DIALOGUE,
+                          17u, 20u, 0u) == AG_OK &&
+              ag_set_purpose(&local, 801u, 0xC0DEu) == AG_OK,
+           "Composition accepts Core policy as a separate supporting source");
+    sim_ok(s, ag_compose(&local, 800u, 801u, 802u, 8002u,
+                         AG_ROLE_POLICY, 0xC0DEu, 17u, 21u, 0u) == AG_OK,
+           "Composition creates a typed composite node");
+    sim_ok(s, ag_admit(&local, 802u, AG_ROLE_POLICY, 0xC0DEu, 0xC0DEu,
+                       17u, 21u, &offer) == AG_OK &&
+              offer.source == AT_SOURCE_COMPOSITE &&
+              offer.source_mask == (AT_SOURCE_LOCAL_OBSERVATION |
+                                    AT_SOURCE_CORE_KNOWLEDGE) &&
+              offer.authority == AT_AUTH_MEMORY &&
+              offer.scope == AT_SCOPE_LOCAL_DIALOGUE &&
+              offer.source_root_id == 0u &&
+              offer.owner_principal_id == AG_PRINCIPAL_LOCAL &&
+              local.nodes[2].secondary_parent_id == 801u,
+           "Composite offer preserves both roots and intersects authority");
+    sim_ok(s, ag_grant_local_action(&local, &offer, 17u,
+                                    AT_SCOPE_LOCAL_DIALOGUE, 1u, 21u,
+                                    &action) == AG_E_ACTION,
+           "Composite policy cannot become local action authority");
+    sim_ok(s, ag_compose(&local, 800u, 801u, 803u, 8003u,
+                         AG_ROLE_PREFERENCE, 0xC0DEu, 17u, 21u, 0u) == AG_E_ROLE,
+           "Composition cannot relabel policy context as preference");
+
+    sim_ok(s, ag_revoke(&local, 800u, 1u, 22u) == AG_OK &&
+              ag_compose(&local, 800u, 801u, 804u, 8004u,
+                         AG_ROLE_POLICY, 0xC0DEu, 17u, 22u, 0u) == AG_E_REVOKED,
+           "Removing one causal support blocks recomposition");
+    sim_ok(s, ag_admit(&local, 802u, AG_ROLE_POLICY, 0xC0DEu, 0xC0DEu,
+                       17u, 22u, &offer) == AG_E_REVOKED,
+           "Revoking one support invalidates the existing composite");
+
+    ag_init_principal(&core, 18u, AG_PRINCIPAL_CORE);
+    sim_ok(s, ag_add_root(&core, 810u, 8100u,
+                          AT_SOURCE_CORE_KNOWLEDGE, AG_ROLE_POLICY,
+                          AT_AUTH_MEMORY, AT_SCOPE_LOCAL_DIALOGUE,
+                          18u, 30u, 0u) == AG_OK &&
+              ag_set_purpose(&core, 810u, 0xBEEFu) == AG_OK,
+           "Core creates a shareable policy with purpose");
+    sim_ok(s, ag_export_share(&core, 810u, 8110u, AG_PRINCIPAL_CONTACT,
+                              1u, 31u, &share) == AG_OK &&
+              share.issuer_principal_id == AG_PRINCIPAL_CORE &&
+              share.recipient_principal_id == AG_PRINCIPAL_CONTACT &&
+              share.purpose_token == 0xBEEFu &&
+              share.physically_confirmed == 1u,
+           "Export records issuer, recipient, purpose and confirmation");
+    ag_init_principal(&contact, 19u, AG_PRINCIPAL_CONTACT);
+    sim_ok(s, ag_import_share(&contact, &share, 1u, 32u) == AG_OK,
+           "Recipient imports only an explicitly addressed share");
+    sim_ok(s, ag_admit(&contact, 810u, AG_ROLE_POLICY, 0xBEEFu, 0xBEEFu,
+                       19u, 32u, &offer) == AG_OK &&
+              offer.owner_principal_id == AG_PRINCIPAL_CONTACT &&
+              offer.issuer_principal_id == AG_PRINCIPAL_CORE &&
+              offer.source == AT_SOURCE_CORE_KNOWLEDGE,
+           "Imported memory preserves recipient ownership and issuer provenance");
+    sim_ok(s, ag_grant_local_action(&contact, &offer, 19u,
+                                    AT_SCOPE_LOCAL_DIALOGUE, 1u, 32u,
+                                    &action) == AG_E_PRINCIPAL,
+           "A contact principal cannot turn Core share into local action");
+    sim_ok(s, ag_import_share(&contact, &share, 1u, 33u) == AG_E_REPLAY,
+           "The same share envelope cannot be replayed");
+    share.recipient_principal_id = AG_PRINCIPAL_LOCAL;
+    ag_init_principal(&wrong_recipient, 21u, AG_PRINCIPAL_CONTACT);
+    sim_ok(s, ag_import_share(&wrong_recipient, &share, 1u, 33u) == AG_E_PRINCIPAL,
+           "A share addressed to another principal is rejected");
+    share.recipient_principal_id = AG_PRINCIPAL_CONTACT;
+    share.source = AT_SOURCE_LOCAL_OBSERVATION;
+    ag_init_principal(&forged, 20u, AG_PRINCIPAL_CONTACT);
+    sim_ok(s, ag_import_share(&forged, &share, 1u, 33u) == AG_E_FORMAT,
+           "A forged source label cannot cross the share boundary");
+    share.source = AT_SOURCE_CORE_KNOWLEDGE;
+    ag_init_principal(&unconfirmed, 22u, AG_PRINCIPAL_CONTACT);
+    sim_ok(s, ag_import_share(&unconfirmed, &share, 0u, 33u) == AG_E_SHARE,
+           "Share import still requires fresh local confirmation");
+    status = ag_export_share(&core, 810u, 8111u, AG_PRINCIPAL_CORE,
+                             1u, 31u, &share);
+    sim_ok(s, status == AG_E_PRINCIPAL,
+           "The issuer cannot export a share to itself");
+}

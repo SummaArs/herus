@@ -13,7 +13,8 @@
 
 typedef enum {
     AT_SOURCE_LOCAL_OBSERVATION = 1u,
-    AT_SOURCE_CORE_KNOWLEDGE = 2u
+    AT_SOURCE_CORE_KNOWLEDGE = 2u,
+    AT_SOURCE_COMPOSITE = 3u
 } at_source_t;
 
 typedef enum {
