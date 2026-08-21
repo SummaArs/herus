@@ -12,6 +12,14 @@
 #include <stdint.h>
 #include "ambient_presence.h"
 
+enum {
+    PPS_MISSING_CLOCK = 1u << 0,
+    PPS_MISSING_SEMANTIC = 1u << 1,
+    PPS_MISSING_HAPTIC = 1u << 2,
+    PPS_MISSING_CONTACT = 1u << 3,
+    PPS_MISSING_POWER = 1u << 4
+};
+
 typedef enum {
     PPS_SILENT = 0u,
     PPS_HOLD = 1u,
@@ -20,7 +28,8 @@ typedef enum {
     PPS_EXPIRED = 4u,
     PPS_POWERED_OFF = 5u,
     PPS_NO_ENERGY = 6u,
-    PPS_REJECTED = 7u
+    PPS_ADAPTER_LOST = 7u,
+    PPS_REJECTED = 8u
 } pps_status_t;
 
 typedef struct {
@@ -28,6 +37,7 @@ typedef struct {
     uint8_t power_on;
     uint8_t haptic_available;
     uint8_t physical_contact;
+    uint8_t missing_adapters;
     uint8_t has_observation;
     ap_observation_t observation;
 } pps_event_t;
@@ -35,6 +45,7 @@ typedef struct {
 typedef struct {
     uint32_t observation_cost_uj;
     uint32_t haptic_cost_uj;
+    uint32_t contact_cost_uj;
     uint32_t battery_uj;
 } pps_config_t;
 

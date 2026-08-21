@@ -11,6 +11,13 @@ static void trace_reset(pps_trace_t *trace)
     if (trace) memset(trace, 0, sizeof(*trace));
 }
 
+static int missing_bits_valid(uint8_t missing)
+{
+    return (missing & (uint8_t)~(PPS_MISSING_CLOCK | PPS_MISSING_SEMANTIC |
+                                  PPS_MISSING_HAPTIC | PPS_MISSING_CONTACT |
+                                  PPS_MISSING_POWER)) == 0u;
+}
+
 static void trace_from_presence(const pps_device_t *device, pps_trace_t *trace)
 {
     if (!device || !trace) return;
@@ -32,6 +39,7 @@ void pps_config_default(pps_config_t *out)
     if (!out) return;
     out->observation_cost_uj = 10u;
     out->haptic_cost_uj = 20u;
+    out->contact_cost_uj = 15u;
     out->battery_uj = 1000u;
 }
 
@@ -78,8 +86,21 @@ int pps_step(pps_device_t *device, const pps_event_t *event,
         !canonical_bool(event->haptic_available) ||
         !canonical_bool(event->physical_contact) ||
         !canonical_bool(event->has_observation) ||
+        !missing_bits_valid(event->missing_adapters) ||
         event->generation == 0u)
         return PPS_E_FORMAT;
+    if ((event->missing_adapters & PPS_MISSING_CLOCK) != 0u) {
+        trace->status = PPS_ADAPTER_LOST;
+        trace->reason = event->missing_adapters;
+        device->rejected_events++;
+        return PPS_E_TIME;
+    }
+    if ((event->missing_adapters & PPS_MISSING_POWER) != 0u) {
+        pps_power_cycle(device);
+        trace->status = PPS_ADAPTER_LOST;
+        trace->reason = event->missing_adapters;
+        return PPS_OK;
+    }
     if (device->last_generation != 0u &&
         event->generation < device->last_generation) {
         trace->status = PPS_REJECTED;
@@ -89,7 +110,8 @@ int pps_step(pps_device_t *device, const pps_event_t *event,
     }
 
     device->last_generation = event->generation;
-    device->haptic_available = event->haptic_available;
+    device->haptic_available = ((event->missing_adapters & PPS_MISSING_HAPTIC) == 0u) &&
+                                event->haptic_available;
     if (event->power_on == 0u) {
         if (device->powered != 0u) pps_power_cycle(device);
         trace->status = PPS_POWERED_OFF;
@@ -118,7 +140,13 @@ int pps_step(pps_device_t *device, const pps_event_t *event,
     }
 
     if (event->physical_contact != 0u &&
+        (event->missing_adapters & PPS_MISSING_CONTACT) == 0u &&
         device->presence.status == AP_OFFER) {
+        if (!spend(device, device->cfg.contact_cost_uj, trace)) {
+            trace->status = PPS_NO_ENERGY;
+            trace->reason = AP_REASON_BUDGET;
+            return PPS_OK;
+        }
         result = ap_acknowledge(&device->presence, 1u);
         if (result == AP_OK) {
             device->acknowledgements++;
@@ -128,7 +156,8 @@ int pps_step(pps_device_t *device, const pps_event_t *event,
         }
     }
 
-    if (event->has_observation != 0u) {
+    if (event->has_observation != 0u &&
+        (event->missing_adapters & PPS_MISSING_SEMANTIC) == 0u) {
         result = ap_observe(&device->presence, &event->observation);
         if (result == AP_E_FORMAT || result == AP_E_ARG) {
             trace->status = PPS_REJECTED;

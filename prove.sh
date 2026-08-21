@@ -661,6 +661,8 @@ if ( cd sim && make -s build/herus-sim ) 2>/tmp/herus_sim_build.log; then
         check "Personal host simulator rejects regressing time and late presentation" "a regressing monotonic clock is rejected rather than rewriting history" /tmp/herus_sim.log
         check "Semantic-life simulator preserves selective memory and conflict abstention" "the model exposes preference ambiguity instead of choosing silently" /tmp/herus_sim.log
         check "Semantic-life simulator scrubs reboot state and enforces the recovered floor" "reboot scrubs active semantic evidence and imports only a floor" /tmp/herus_sim.log
+        check "Physical-fault simulator keeps adapter loss fail-closed" "clock loss rejects the event without advancing semantic time" /tmp/herus_sim.log
+        check "Physical-fault simulator prevents false contact authority under energy loss" "energy loss during contact does not falsely acknowledge the offer" /tmp/herus_sim.log
     else
         echo "  FAIL  the bench disagrees with the design — see /tmp/herus_sim.log"; FAIL=1
     fi

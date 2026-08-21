@@ -44,6 +44,7 @@ static const entry_t TABLE[] = {
     { "virtual",   scenario_virtual,    "PRE-HARDWARE: Watch, Paper-Core, sensors, battery and LoRa" },
     { "personal",  scenario_personal,   "PRE-HARDWARE: personal semantic life, attention, energy and contact" },
     { "semantic-life", scenario_semantic_life, "PRE-HARDWARE: continuous preferences, goals, memory, reboot and abstention" },
+    { "physical-faults", scenario_physical_faults, "PRE-HARDWARE: adapter loss, interruption, contact and energy failure" },
 };
 #define NTABLE ((int)(sizeof TABLE / sizeof *TABLE))
 

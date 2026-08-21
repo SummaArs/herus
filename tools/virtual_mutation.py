@@ -22,7 +22,7 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 SIM_SOURCES = [
     "world.c", "channel.c", "render.c", "node.c", "scenarios.c",
     "stress.c", "compose.c", "study.c", "learn.c", "virtual_lab.c",
-    "personal_scenario.c", "personal_sim.c", "semantic_scenario.c", "semantic_life.c", "main.c",
+    "personal_scenario.c", "personal_sim.c", "semantic_scenario.c", "semantic_life.c", "physical_fault_scenario.c", "main.c",
 ]
 CORE_SOURCES = [
     "hv.c", "sbc.c", "lexicon.c", "hcp.c", "text.c",
