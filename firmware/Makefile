@@ -5,6 +5,7 @@
 #   make nucleus    the local, bounded semantic-intelligence suite
 #   make voice      the controlled-language and bounded-haptics suite
 #   make intent     the session/confidence/ambiguity gateway suite
+#   make intent-router the bounded text-intent, evidence and abstention suite
 #   make dialogue   the bounded local conversational-intelligence suite
 #   make model-lab  the measured local-model acceptance and reply-shield suite
 #   make memory-policy the selective-memory relevance and retention-policy suite
@@ -82,9 +83,9 @@ INC     := -Icore -Inet -Iport -Itest
 CORE    := core/hv.c core/sbc.c core/lexicon.c core/hcp.c
 NET     := net/crypto.c net/session.c net/region.c net/weave.c net/beat.c net/link.c
 
-.PHONY: all algebra nucleus voice intent dialogue model-lab memory-policy memory-capture memory-extract watch-memory-frontend memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale memory-collection memory-collection-index memory-collection-recovery memory-collection-recovery-stress memory-collection-finale bench-evidence-validate bench-interruption-sim memory-proposal llm-budget-check memory-physical-session memory-physical-session-recovery memory-physical-session-recovery-stress memory-physical-session-bootstrap memory-reboot-boundary memory-reboot-redteam memory-post-reboot-reindex memory-post-reboot-reindex-redteam memory-prehardware-finale threat-model threat-model-stress proof-fire-mutations assurance capstone trust control-link delivery-plan transport-selector personal-telemetry symbolic-reasoner resonator semantic-compiler semantic-benchmark knowledge-feed knowledge-feed-cursor memory-semantic-evidence memory-reasoning-bridge magic-anticipation degradation-matrix degradation-redteam magic-trigger magic-dialogue-bridge autonomy-policy autonomy-redteam magic-redteam interaction interaction-rig net radio syntax vectors haptic-language haptic-language-matrix haptic-semantic-bridge haptic-adapter haptic-evidence haptic-target haptic-runner haptic-preflight cross-failure-matrix cross-failure-redteam clean
+.PHONY: all algebra nucleus voice intent intent-router dialogue model-lab memory-policy memory-capture memory-extract watch-memory-frontend memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale memory-collection memory-collection-index memory-collection-recovery memory-collection-recovery-stress memory-collection-finale bench-evidence-validate bench-interruption-sim memory-proposal llm-budget-check memory-physical-session memory-physical-session-recovery memory-physical-session-recovery-stress memory-physical-session-bootstrap memory-reboot-boundary memory-reboot-redteam memory-post-reboot-reindex memory-post-reboot-reindex-redteam memory-prehardware-finale threat-model threat-model-stress proof-fire-mutations assurance capstone trust control-link delivery-plan transport-selector personal-telemetry symbolic-reasoner resonator semantic-compiler semantic-benchmark knowledge-feed knowledge-feed-cursor memory-semantic-evidence memory-reasoning-bridge magic-anticipation degradation-matrix degradation-redteam magic-trigger magic-dialogue-bridge autonomy-policy autonomy-redteam magic-redteam interaction interaction-rig net radio syntax vectors haptic-language haptic-language-matrix haptic-semantic-bridge haptic-adapter haptic-evidence haptic-target haptic-runner haptic-preflight cross-failure-matrix cross-failure-redteam clean
 
-all: algebra nucleus voice intent dialogue model-lab memory-policy memory-capture memory-extract memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale memory-collection memory-collection-index memory-collection-recovery memory-collection-recovery-stress memory-collection-finale memory-physical-session memory-physical-session-recovery memory-physical-session-recovery-stress memory-physical-session-bootstrap memory-reboot-boundary memory-reboot-redteam memory-post-reboot-reindex memory-post-reboot-reindex-redteam memory-prehardware-finale threat-model threat-model-stress proof-fire-mutations assurance capstone trust control-link interaction interaction-rig net radio syntax haptic-language haptic-language-matrix haptic-semantic-bridge haptic-adapter haptic-evidence haptic-target haptic-runner haptic-preflight
+all: algebra nucleus voice intent intent-router dialogue model-lab memory-policy memory-capture memory-extract memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale memory-collection memory-collection-index memory-collection-recovery memory-collection-recovery-stress memory-collection-finale memory-physical-session memory-physical-session-recovery memory-physical-session-recovery-stress memory-physical-session-bootstrap memory-reboot-boundary memory-reboot-redteam memory-post-reboot-reindex memory-post-reboot-reindex-redteam memory-prehardware-finale threat-model threat-model-stress proof-fire-mutations assurance capstone trust control-link interaction interaction-rig net radio syntax haptic-language haptic-language-matrix haptic-semantic-bridge haptic-adapter haptic-evidence haptic-target haptic-runner haptic-preflight
 	@echo ""
 	@echo "=================================================="
 	@echo "ALL FIRMWARE SUITES PASS"
@@ -114,6 +115,11 @@ intent: build
 	@echo "--- intent gateway: session, confidence, ambiguity and bounded context ---"
 	$(CC) $(CFLAGS) $(INC) core/intent_gate.c core/test_intent_gate.c -o build/test_intent_gate
 	./build/test_intent_gate
+
+intent-router: build
+	@echo "--- intent router: bounded text intent, evidence, abstention and confirmation ---"
+	$(CC) $(CFLAGS) -Werror $(INC) core/intent_router.c core/test_intent_router.c -o build/test_intent_router
+	./build/test_intent_router
 
 dialogue: build
 	@echo "--- dialogue: bounded local conversation and model authority boundary ---"

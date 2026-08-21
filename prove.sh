@@ -793,6 +793,30 @@ else
     FAIL=1
 fi
 
+if ( cd firmware && make -s intent-router ) > /tmp/herus_intent_router_c11.log 2>&1; then
+    grep "INTENT ROUTER C11" /tmp/herus_intent_router_c11.log
+else
+    echo "  FAIL  intent router C11 failed — see /tmp/herus_intent_router_c11.log"
+    tail -5 /tmp/herus_intent_router_c11.log
+    FAIL=1
+fi
+
+if python3 tools/test_intent_router_cross.py > /tmp/herus_intent_router_cross.log 2>&1; then
+    grep "INTENT ROUTER CROSS" /tmp/herus_intent_router_cross.log
+else
+    echo "  FAIL  intent router cross-language failed — see /tmp/herus_intent_router_cross.log"
+    tail -5 /tmp/herus_intent_router_cross.log
+    FAIL=1
+fi
+
+if python3 tools/test_intent_router_c11_redteam.py > /tmp/herus_intent_router_c11_redteam.log 2>&1; then
+    grep "INTENT ROUTER C11 REDTEAM" /tmp/herus_intent_router_c11_redteam.log
+else
+    echo "  FAIL  intent router C11 redteam failed — see /tmp/herus_intent_router_c11_redteam.log"
+    tail -5 /tmp/herus_intent_router_c11_redteam.log
+    FAIL=1
+fi
+
 echo ""
 if [ "$FAIL" = 0 ]; then
     echo "ALL INVARIANTS HOLD — host contracts pass; controlled bench flash may begin, physical gates remain pending."
