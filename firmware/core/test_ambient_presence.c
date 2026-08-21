@@ -92,14 +92,15 @@ static void test_one_offer_and_contact(void)
               offer.requires_physical_contact == 1u,
           "o candidato produz no máximo uma microoferta local");
     CHECK(ap_offer(&presence, 10u, &offer) == AP_NO_OFFER &&
-              presence.status == AP_QUIET &&
+              presence.status == AP_OFFER &&
               (presence.reason & AP_REASON_BUDGET) != 0u,
-          "a mesma oportunidade não é repetida");
+          "a mesma oportunidade não é repetida nem perde seu estado");
     CHECK(ap_acknowledge(&presence, 0u) == AP_E_CONTACT &&
-              presence.status == AP_QUIET,
-          "ausência de contato não confirma nem concede autoridade");
-    CHECK(ap_acknowledge(&presence, 1u) == AP_E_STATE,
-          "oferta já consumida não pode ser confirmada depois de repetida");
+              presence.status == AP_OFFER,
+          "ausência de contato não confirma nem remove a oferta");
+    CHECK(ap_acknowledge(&presence, 1u) == AP_OK &&
+              presence.status == AP_ACKNOWLEDGED && !presence.candidate_valid,
+          "contato físico posterior reconhece somente o recebimento");
 }
 
 static void test_expiry_and_cooldown(void)

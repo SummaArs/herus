@@ -67,7 +67,7 @@ int ap_observe(ap_presence_t *presence, const ap_observation_t *observation)
         return reject_observation(presence, AP_REASON_BAD_FORMAT, AP_ABSTAIN);
 
     if (presence->candidate_valid) {
-        presence->status = presence->offered ? AP_QUIET : AP_HOLD;
+        presence->status = presence->offered ? AP_OFFER : AP_HOLD;
         presence->reason = presence->offered ? AP_REASON_BUDGET : AP_REASON_NONE;
         return AP_NO_OFFER;
     }
@@ -128,7 +128,7 @@ int ap_offer(ap_presence_t *presence, uint32_t now_generation,
         return AP_NO_OFFER;
     }
     if (presence->offered || presence->offer_budget == 0u) {
-        presence->status = AP_QUIET;
+        presence->status = AP_OFFER;
         presence->reason = AP_REASON_BUDGET;
         return AP_NO_OFFER;
     }
