@@ -1,0 +1,57 @@
+{
+  "purpose": "local text adaptation experiment; no personal memory or product logs",
+  "public_dataset": {
+    "name": "Salesforce/wikitext wikitext-2-raw-v1 train parquet",
+    "license": "CC BY-SA 4.0 as declared by the dataset card; verify upstream terms before redistribution",
+    "source_url": "https://huggingface.co/datasets/Salesforce/wikitext",
+    "file": "research/datasets/text_transfer/wikitext-2-raw-v1-train.parquet",
+    "sha256": "e83889baabc497075506f91975be5fac0d45c5290b6b20582c8cd1e853d0c9f7",
+    "bytes": 6357543
+  },
+  "private_or_project_adapter_dataset": {
+    "name": "HERUS public design documents",
+    "license": "repository terms; not a personal-user corpus",
+    "files": [
+      "docs/47-HERUS-INDISPENSAVEL-E-INTELIGENCIA-PROPRIA.md",
+      "docs/50-HERUS-NUCLEO-GENERATIVO-SIMBOLICO.md",
+      "docs/60-HERUS-AUDITORIA-INTELIGENCIA-STATE-OF-ART.md",
+      "docs/80-HERUS-INTELIGENCIA-INVISIVEL-E-CRITERIO-DE-EXCELENCIA.md",
+      "docs/87-HERUS-INVESTIGACAO-ACADEMICA-PERGUNTA-E-MATRIZ.md",
+      "docs/88-HERUS-AGSC-CONTINUIDADE-SEMANTICA-GOVERNADA.md",
+      "docs/89-HERUS-AGSC-D-MUDANCA-REVOGACAO-E-ESQUECIMENTO.md",
+      "docs/90-HERUS-POISONING-L1-L2-L3-E-GUARD-DE-COMPOSICAO.md",
+      "docs/91-HERUS-ATTRIBUTION-GUARD-E-AUTORIDADE-IMPLICITA.md",
+      "docs/92-HERUS-COMPOSICAO-CONTRAFACTUAL-E-ISOLAMENTO-DE-PRINCIPAIS.md",
+      "docs/93-HERUS-DELEGACAO-NAO-TRANSITIVA-E-REVOGACAO-ENTRE-PRINCIPAIS.md"
+    ],
+    "sha256": {
+      "docs/47-HERUS-INDISPENSAVEL-E-INTELIGENCIA-PROPRIA.md": "15fae0a5d38d72ea126028c71b0fee249d5eb66528d3f5a8b37718b553eb3e4b",
+      "docs/50-HERUS-NUCLEO-GENERATIVO-SIMBOLICO.md": "d33365690d29ba56fc5100bb3a3d69d00bb56524f9eb58523597b3e5bef02ff1",
+      "docs/60-HERUS-AUDITORIA-INTELIGENCIA-STATE-OF-ART.md": "40076e22abf03769ea6c4a290fa5d4dd3d44fc0014ddc183e07977d14bf4ad90",
+      "docs/80-HERUS-INTELIGENCIA-INVISIVEL-E-CRITERIO-DE-EXCELENCIA.md": "7308a7424b3837eb0626c81e9215836de72b75841a38c038f600ee8676be2069",
+      "docs/87-HERUS-INVESTIGACAO-ACADEMICA-PERGUNTA-E-MATRIZ.md": "b198515fdb5d6ac22fc23e750b91c95a5374e6fbb306c8dc53387d29992ec677",
+      "docs/88-HERUS-AGSC-CONTINUIDADE-SEMANTICA-GOVERNADA.md": "64c0f950c15e8815d4bb91d0eb8524b57e737248979021448996deeb9926f8e6",
+      "docs/89-HERUS-AGSC-D-MUDANCA-REVOGACAO-E-ESQUECIMENTO.md": "65295695e9466ade60f59ac6eda18ff316544cac39dc4da61d0b379ad51212ac",
+      "docs/90-HERUS-POISONING-L1-L2-L3-E-GUARD-DE-COMPOSICAO.md": "65f33577acd245272866a83be8ccf013438deb9a6c014977c07e3cdcc2ebeb7e",
+      "docs/91-HERUS-ATTRIBUTION-GUARD-E-AUTORIDADE-IMPLICITA.md": "63e47b2c77a7e19e810c37790c80904826bc0a2e428eddf6f01624e1cf68699c",
+      "docs/92-HERUS-COMPOSICAO-CONTRAFACTUAL-E-ISOLAMENTO-DE-PRINCIPAIS.md": "c2c2a3d3a4c40084628a8b532eadac876c2bbd5db9ed1f9457124d619140d672",
+      "docs/93-HERUS-DELEGACAO-NAO-TRANSITIVA-E-REVOGACAO-ENTRE-PRINCIPAIS.md": "dd62e2018e5c4acf014229365a830e1fe3ba0a255236388f4255ac0d01db6197"
+    }
+  },
+  "behavior_dataset": {
+    "name": "curated HERUS behavior contract examples",
+    "license": "repository terms; synthetic project examples; no personal data",
+    "file": "research/datasets/text_transfer/herus_behavior.txt",
+    "sha256": "10113628587fd44cedbd02d8e0b585553390d79785958bbf9b2f51d1869a1089"
+  },
+  "outputs": {
+    "public_train": "research/datasets/text_transfer/public_train.txt",
+    "public_validation": "research/datasets/text_transfer/public_validation.txt",
+    "herus_adapter_train": "research/datasets/text_transfer/herus_adapter_train.txt",
+    "herus_adapter_tune": "research/datasets/text_transfer/herus_adapter_tune.txt",
+    "herus_adapter_test": "research/datasets/text_transfer/herus_adapter_test.txt",
+    "herus_behavior_train": "research/datasets/text_transfer/herus_behavior_train.txt",
+    "herus_behavior_tune": "research/datasets/text_transfer/herus_behavior_tune.txt",
+    "herus_behavior_test": "research/datasets/text_transfer/herus_behavior_test.txt"
+  }
+}

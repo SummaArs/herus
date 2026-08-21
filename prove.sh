@@ -769,6 +769,13 @@ else
     FAIL=1
 fi
 
+if python3 tools/test_text_transfer.py > /tmp/herus_text_transfer.log 2>&1; then
+    grep "TEXT TRANSFER" /tmp/herus_text_transfer.log
+else
+    echo "  FAIL  text-transfer artifact or held-out gate failed — see /tmp/herus_text_transfer.log"
+    FAIL=1
+fi
+
 echo ""
 if [ "$FAIL" = 0 ]; then
     echo "ALL INVARIANTS HOLD — host contracts pass; controlled bench flash may begin, physical gates remain pending."

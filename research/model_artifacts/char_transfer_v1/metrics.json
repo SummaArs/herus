@@ -1,0 +1,157 @@
+{
+  "method": "local character Transformer with frozen base and rank-4 output adapter",
+  "not_canonical_lora": true,
+  "base_dataset": "WikiText-2 raw train, public corpus",
+  "adapter_dataset": "public HERUS design documents only",
+  "config": {
+    "vocab_size": 834,
+    "block": 128,
+    "d_model": 64,
+    "heads": 4,
+    "layers": 2,
+    "ff": 128,
+    "rank": 4,
+    "base_steps": 700,
+    "adapter_steps": 350,
+    "adapter_strength": 0.75,
+    "candidate_strengths": [
+      0.1,
+      0.2,
+      0.3,
+      0.4,
+      0.5,
+      0.6,
+      0.75,
+      1.0
+    ]
+  },
+  "selection": {
+    "constraint": "public_tune_delta_nll <= 0.25 when feasible",
+    "candidates": [
+      {
+        "strength": 0.1,
+        "public_tune_nll": 2.3050213093851126,
+        "public_tune_delta_nll": 0.0008028095843743976,
+        "herus_tune_nll": 3.2260205669605986,
+        "behavior_tune_nll": 3.283703605333964,
+        "combined_tune_nll": 3.2548620861472815
+      },
+      {
+        "strength": 0.2,
+        "public_tune_nll": 2.313794630649043,
+        "public_tune_delta_nll": 0.009576130848304665,
+        "herus_tune_nll": 3.12826646642482,
+        "behavior_tune_nll": 3.1697859366734824,
+        "combined_tune_nll": 3.1490262015491512
+      },
+      {
+        "strength": 0.3,
+        "public_tune_nll": 2.3303437560212377,
+        "public_tune_delta_nll": 0.026125256220499438,
+        "herus_tune_nll": 3.0382600439355727,
+        "behavior_tune_nll": 3.0636101563771567,
+        "combined_tune_nll": 3.050935100156365
+      },
+      {
+        "strength": 0.4,
+        "public_tune_nll": 2.3545694799984203,
+        "public_tune_delta_nll": 0.05035098019768203,
+        "herus_tune_nll": 2.9559244805193963,
+        "behavior_tune_nll": 2.965077002843221,
+        "combined_tune_nll": 2.960500741681309
+      },
+      {
+        "strength": 0.5,
+        "public_tune_nll": 2.3865062760371787,
+        "public_tune_delta_nll": 0.08228777623644046,
+        "herus_tune_nll": 2.881350489372903,
+        "behavior_tune_nll": 2.87427020072937,
+        "combined_tune_nll": 2.8778103450511363
+      },
+      {
+        "strength": 0.6,
+        "public_tune_nll": 2.426398484847125,
+        "public_tune_delta_nll": 0.12217998504638672,
+        "herus_tune_nll": 2.8148941866894988,
+        "behavior_tune_nll": 2.791543404261271,
+        "combined_tune_nll": 2.803218795475385
+      },
+      {
+        "strength": 0.75,
+        "public_tune_nll": 2.502616508334291,
+        "public_tune_delta_nll": 0.1983980085335526,
+        "herus_tune_nll": 2.732460042263599,
+        "behavior_tune_nll": 2.684529980023702,
+        "combined_tune_nll": 2.7084950111436505
+      },
+      {
+        "strength": 1.0,
+        "public_tune_nll": 2.690027695076138,
+        "public_tune_delta_nll": 0.3858091952753999,
+        "herus_tune_nll": 2.6629209721342044,
+        "behavior_tune_nll": 2.5728131532669067,
+        "combined_tune_nll": 2.6178670627005554
+      }
+    ]
+  },
+  "metrics": {
+    "base_public_tune_nll": 2.3042184998007382,
+    "adapted_public_tune_nll": 2.502616508334291,
+    "base_public_test_nll": 2.3102797765357823,
+    "adapted_public_test_nll": 2.517608413509294,
+    "base_herus_tune_nll": 3.331723786414938,
+    "adapted_herus_tune_nll": 2.732460042263599,
+    "base_herus_test_nll": 3.2733158101426794,
+    "adapted_herus_test_nll": 2.658104401953677,
+    "base_behavior_tune_nll": 3.4056044022242227,
+    "adapted_behavior_tune_nll": 2.684529980023702,
+    "base_behavior_test_nll": 3.2830896774927774,
+    "adapted_behavior_test_nll": 2.603807051976522,
+    "public_test_delta_nll": 0.20732863697351167,
+    "herus_test_delta_nll": -0.6152114081890026,
+    "behavior_test_delta_nll": -0.6792826255162554
+  },
+  "loss_trace": {
+    "base_first": [
+      6.841165065765381,
+      6.5832438468933105,
+      6.345803260803223,
+      6.085118770599365,
+      5.811933517456055
+    ],
+    "base_last": [
+      2.2854673862457275,
+      2.347935914993286,
+      2.2902398109436035,
+      2.357670545578003,
+      2.307344436645508
+    ],
+    "adapter_first": [
+      3.3082621097564697,
+      3.4128451347351074,
+      3.323284864425659,
+      3.2921130657196045,
+      3.3039305210113525
+    ],
+    "adapter_last": [
+      2.7268142700195312,
+      2.6820273399353027,
+      2.6175119876861572,
+      2.567152738571167,
+      2.599548578262329
+    ]
+  },
+  "storage": {
+    "base_parameters": 182016,
+    "adapter_parameters": 3592,
+    "elapsed_seconds": 28.576977252960205
+  },
+  "sample": "HERUS lidentermededistatasica revotudugions\nMiste a sudame itar cina cal asuditan tore a to de crsco ase to pacrondensssoricovil ped pestivireds cual te a comisictreas imicres seothe dar stato dedsounve anthemmornacunimarlenteso re e a car dand a nadop abino eno me the con al crestare am a dea ste an ritiainal suamem derouche ento inereonormbes fer pernf a areardiveridicithe pudi po citase dado aldna prestanve e massuras decumilous ens a a pe to to a tand perarmesinte enis inate fo",
+  "interpretation": {
+    "transfer_learning_observed": true,
+    "catastrophic_forgetting_guard": true,
+    "authority_in_weights": false,
+    "third_party_hosted_llm": false,
+    "hardware_claim": false
+  }
+}
