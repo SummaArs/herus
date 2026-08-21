@@ -682,6 +682,13 @@ else
     FAIL=1
 fi
 
+if python3 tools/test_semantic_life_redteam.py > /tmp/herus_semantic_life_redteam.log 2>&1; then
+    grep "SEMANTIC-LIFE REDTEAM" /tmp/herus_semantic_life_redteam.log
+else
+    echo "  FAIL  a semantic-life mutant survived — see /tmp/herus_semantic_life_redteam.log"
+    FAIL=1
+fi
+
 echo ""
 if [ "$FAIL" = 0 ]; then
     echo "ALL INVARIANTS HOLD — host contracts pass; controlled bench flash may begin, physical gates remain pending."
