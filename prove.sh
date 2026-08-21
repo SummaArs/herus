@@ -659,6 +659,8 @@ if ( cd sim && make -s build/herus-sim ) 2>/tmp/herus_sim_build.log; then
         grep -E "^  (measured cliff|delivered|hostile frames)" /tmp/herus_sim.log | head -3
         check "Personal host simulator covers attention, energy, power-cycle and contact" "personal simulator holds a useful observation when haptic is unavailable" /tmp/herus_sim.log
         check "Personal host simulator rejects regressing time and late presentation" "a regressing monotonic clock is rejected rather than rewriting history" /tmp/herus_sim.log
+        check "Semantic-life simulator preserves selective memory and conflict abstention" "the model exposes preference ambiguity instead of choosing silently" /tmp/herus_sim.log
+        check "Semantic-life simulator scrubs reboot state and enforces the recovered floor" "reboot scrubs active semantic evidence and imports only a floor" /tmp/herus_sim.log
     else
         echo "  FAIL  the bench disagrees with the design — see /tmp/herus_sim.log"; FAIL=1
     fi
