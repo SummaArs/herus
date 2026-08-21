@@ -144,6 +144,17 @@ int main(void)
     bus.context = &mock;
     check(&score, ha_init(&device, &bus, &config) == HA_OK &&
                     ha_play(&device, &encoded, &profile) == HA_OK,
+          "fresh adapter starts a playback before a device fault is injected");
+    mock.read_go = 0u;
+    mock.read_status = HA_STATUS_OVERTEMP_BIT;
+    check(&score, ha_poll(&device) == HA_E_FAULT &&
+                    ha_state(&device) == HA_STATE_FAULT,
+          "overtemperature status enters fault instead of claiming haptic completion");
+
+    memset(&mock, 0, sizeof(mock));
+    bus.context = &mock;
+    check(&score, ha_init(&device, &bus, &config) == HA_OK &&
+                    ha_play(&device, &encoded, &profile) == HA_OK,
           "fresh adapter can begin a second controlled playback");
     check(&score, ha_abort(&device) == HA_OK &&
                     ha_state(&device) == HA_STATE_ABORTED &&

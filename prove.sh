@@ -9,7 +9,7 @@
 #   ./prove.sh            full run
 #   ./prove.sh --quiet    verdict lines only
 #
-# Sixty-six suites, each independently falsifiable:
+# Sixty-eight suites, each independently falsifiable:
 #   1  algebra      quasi-orthogonality, bundling, resonator, learning, HCP
 #   2  nucleus      bounded, opt-in local semantic intelligence
 #   3  voice        controlled local language and bounded haptic feedback
@@ -76,6 +76,8 @@
 #  64  deterministic GAN-style sabotage campaign for magic and memory
 #  65  combined Core absence, reboot, consent and bounded-memory failures
 #  66  deterministic GAN-style sabotage campaign for Core feed and cursor
+#  67  exhaustive power-fail and single-bit corruption campaign for cursor
+#  68  deterministic GAN-style sabotage campaign for haptic and radio transport
 #
 # The Nucleus suite is intentionally separate: privacy and non-autonomy are
 # properties that must fail a build when regressed, not promises in a document.
@@ -345,30 +347,36 @@ banner "57/58 local semantic evidence (temporal and conflict abstention)"
 banner "58/59 offline memory-to-reasoner composition"
 ( cd firmware && make memory-reasoning-bridge ) > /tmp/herus_memory_reasoning_bridge.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_memory_reasoning_bridge.log
-banner "59/60 explainable magic anticipation"
+banner "59/68 explainable magic anticipation"
 ( cd firmware && make magic-anticipation ) > /tmp/herus_magic_anticipation.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_magic_anticipation.log
-banner "60/66 bounded magic attention window"
+banner "60/68 bounded magic attention window"
 ( cd firmware && make magic-trigger ) > /tmp/herus_magic_trigger.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_magic_trigger.log
-banner "61/66 read-only magic dialogue bridge"
+banner "61/68 read-only magic dialogue bridge"
 ( cd firmware && make magic-dialogue-bridge ) > /tmp/herus_magic_dialogue_bridge.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_magic_dialogue_bridge.log
-banner "62/66 autonomy policy"
+banner "62/68 autonomy policy"
 ( cd firmware && make autonomy-policy ) > /tmp/herus_autonomy_policy.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_autonomy_policy.log
-banner "63/66 autonomy redteam"
+banner "63/68 autonomy redteam"
 ( cd firmware && make autonomy-redteam ) > /tmp/herus_autonomy_redteam.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_autonomy_redteam.log
-banner "64/66 magic/memory redteam"
+banner "64/68 magic/memory redteam"
 ( cd firmware && make magic-redteam ) > /tmp/herus_magic_redteam.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_magic_redteam.log
-banner "65/66 combined failure matrix"
+banner "65/68 combined failure matrix"
 ( cd firmware && make core-resilience-matrix ) > /tmp/herus_core_resilience.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_core_resilience.log
-banner "66/66 Core feed redteam"
+banner "66/68 Core feed redteam"
 ( cd firmware && make core-redteam ) > /tmp/herus_core_redteam.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_core_redteam.log
+banner "67/68 Core cursor power-fail"
+( cd firmware && make knowledge-feed-cursor-powerfail ) > /tmp/herus_cursor_powerfail.log 2>&1 || FAIL=1
+[ "$QUIET" = 0 ] && cat /tmp/herus_cursor_powerfail.log
+banner "68/68 transport redteam"
+( cd firmware && make transport-redteam ) > /tmp/herus_transport_redteam.log 2>&1 || FAIL=1
+[ "$QUIET" = 0 ] && cat /tmp/herus_transport_redteam.log
  echo ""
 
 echo "--------------------------------------------------"
@@ -398,7 +406,7 @@ check "Collision-aware symbol registry C11 preserves the same contract" "SYMBOL 
 check "HAP-SEM encodes bounded semantic frames and rejects unsafe profiles" "HAPTIC LANGUAGE: 17 pass, 0 fail" /tmp/herus_haptic_language.log
 check "HAP-SEM bridge preserves presentation, authority and abstention" "HAPTIC SEMANTIC BRIDGE: 9 pass, 0 fail" /tmp/herus_haptic_bridge.log
 check "HAP-SEM matrix covers both profiles, all tuples and directed failures" "HAPTIC LANGUAGE MATRIX: frames 1440/1440, round-trips 1440/1440, field corruptions 14400, profile mismatches 1440, failures 0" /tmp/herus_haptic_matrix.log
-check "HAP-SEM adapter preserves ordering, abort and fail-closed state" "HAPTIC ADAPTER: 17 pass, 0 fail" /tmp/herus_haptic_adapter.log
+check "HAP-SEM adapter preserves ordering, abort and fail-closed state" "HAPTIC ADAPTER: 19 pass, 0 fail" /tmp/herus_haptic_adapter.log
 check "HAP-SEM evidence validator preserves privacy, digest and blocking gates" "HAPTIC BENCH EVIDENCE VALIDATOR: 9 pass, 0 fail" /tmp/herus_haptic_evidence.log
 check "ESP32-S3 target keeps unverified hardware disabled and syntax-checks the I2C path" "HAPTIC TARGET: 4 pass, 0 fail" /tmp/herus_haptic_target.log
 check "HAP-SEM runner blocks absent hardware and binds evidence origin" "HAPTIC BENCH EVIDENCE VALIDATOR: 9 pass, 0 fail" /tmp/herus_haptic_runner.log
@@ -415,6 +423,8 @@ check "Autonomy redteam kills critical policy mutants" "AUTONOMY REDTEAM: 7/7 cr
 check "Magic redteam kills critical magic and memory mutants" "MAGIC REDTEAM: 5/5 critical magic/memory mutants killed" /tmp/herus_magic_redteam.log
 check "Combined failures preserve local abstention, reboot quarantine and bounded memory" "COMBINED FAILURES: Core absence, reboot corruption, consent revocation, authority and exhaustion all fail closed" /tmp/herus_core_resilience.log
 check "Core redteam kills feed and cursor mutants" "CORE REDTEAM: 7/7 critical Core mutants killed" /tmp/herus_core_redteam.log
+check "Cursor power-fail rejects every partial write and single-bit corruption" "KNOWLEDGE FEED CURSOR POWERFAIL: 7 pass, 0 fail" /tmp/herus_cursor_powerfail.log
+check "Transport redteam kills haptic, target and SX1262 adapter mutants" "TRANSPORT REDTEAM: 8/8 critical adapter mutants killed" /tmp/herus_transport_redteam.log
 
 # --- physical layer -------------------------------------------------------
 check "P1 constant AIRTIME across meaning tiers" "INVARIANT HOLDS" /tmp/herus_c.log

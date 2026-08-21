@@ -246,6 +246,11 @@ knowledge-feed-cursor: build
 	$(CC) $(CFLAGS) $(INC) net/crypto.c core/knowledge_feed_cursor.c core/test_knowledge_feed_cursor.c -o build/test_knowledge_feed_cursor
 	./build/test_knowledge_feed_cursor
 
+knowledge-feed-cursor-powerfail: build
+	@echo "--- knowledge feed cursor power-fail: interrupted writes and exhaustive bit corruption ---"
+	$(CC) $(CFLAGS) $(INC) net/crypto.c core/knowledge_feed_cursor.c core/test_knowledge_feed_cursor_powerfail.c -o build/test_knowledge_feed_cursor_powerfail
+	./build/test_knowledge_feed_cursor_powerfail
+
 memory-semantic-evidence: build
 	@echo "--- memory semantic evidence: bounded temporal facts and conflict abstention ---"
 	$(CC) $(CFLAGS) $(INC) core/memory_semantic_evidence.c core/test_memory_semantic_evidence.c -o build/test_memory_semantic_evidence
@@ -291,6 +296,10 @@ core-resilience-matrix:
 core-redteam:
 	@echo "--- Core redteam: deterministic feed and cursor control sabotage ---"
 	python3 ../tools/test_core_redteam.py
+
+transport-redteam:
+	@echo "--- transport redteam: deterministic haptic and SX1262 adapter sabotage ---"
+	python3 ../tools/test_transport_redteam.py
 
 symbol-registry-model:
 	@echo "--- symbol registry model: versioned collision-aware host contract ---"
