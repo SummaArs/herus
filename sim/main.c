@@ -42,6 +42,7 @@ static const entry_t TABLE[] = {
     { "study",     scenario_study,      "MIND: recall with honest refusal, for a concurseiro" },
     { "learn",     scenario_learn,      "MIND: the residue loop — it learns what it failed at" },
     { "virtual",   scenario_virtual,    "PRE-HARDWARE: Watch, Paper-Core, sensors, battery and LoRa" },
+    { "personal",  scenario_personal,   "PRE-HARDWARE: personal semantic life, attention, energy and contact" },
 };
 #define NTABLE ((int)(sizeof TABLE / sizeof *TABLE))
 

@@ -11,7 +11,7 @@
     {
       "path": "prove.sh",
       "kind": "file",
-      "sha256": "8a49405f49a60445a8fc8664d66766ea315e7f7e6004dcd8a9d5067f8508f158",
+      "sha256": "a315616f4b4cc7d6d26f8b5304ea82af8bd5a86bf6fe8c85d1ef5db51d8bc519",
       "role": "global proof ledger"
     },
     {
@@ -29,8 +29,14 @@
     {
       "path": "tools",
       "kind": "tree",
-      "sha256": "06d86ef87d64494f4dd6c48722e9c47cd9c1cb97e0cb8745ffb25e4115723ac7",
+      "sha256": "dfe61f78f64b6f5c9135a76735202d7ddcda2bf3b1d5551514bbc1ff182390eb",
       "role": "host proof and provenance tools"
+    },
+    {
+      "path": "sim",
+      "kind": "tree",
+      "sha256": "2e96588d39fabd3b96dd3c62d4dedc47ff41956462c7c0759a7ba92fee4156d3",
+      "role": "deterministic host substitute for physical world"
     },
     {
       "path": "research/hardware_readiness_manifest.json",

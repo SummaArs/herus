@@ -37,6 +37,7 @@
 #include "lexicon.h"
 #include "transport_selector.h"
 #include "personal_telemetry.h"
+#include "personal_sim.h"
 
 #define SIM_MAX_NODES     48
 #define SIM_MAX_INFLIGHT  64
@@ -295,6 +296,7 @@ void scenario_compose (sim_score *s, int argc, char **argv);
 void scenario_study   (sim_score *s, int argc, char **argv);
 void scenario_learn   (sim_score *s, int argc, char **argv);
 void scenario_virtual (sim_score *s, int argc, char **argv);
+void scenario_personal(sim_score *s, int argc, char **argv);
 
 int  opt_int   (int argc, char **argv, const char *k, int def);
 double opt_dbl (int argc, char **argv, const char *k, double def);

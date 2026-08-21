@@ -23,17 +23,21 @@ FW      := ../firmware
 INC     := -I$(FW)/core -I$(FW)/net -I$(FW)/port
 
 CORE    := $(FW)/core/hv.c $(FW)/core/sbc.c $(FW)/core/lexicon.c $(FW)/core/hcp.c $(FW)/core/text.c
-VCORE   := $(FW)/core/transport_selector.c $(FW)/core/personal_telemetry.c
+VCORE   := $(FW)/core/transport_selector.c $(FW)/core/personal_telemetry.c \
+           $(FW)/core/ambient_presence.c
 NET     := $(FW)/net/crypto.c $(FW)/net/session.c $(FW)/net/region.c \
            $(FW)/net/weave.c $(FW)/net/beat.c $(FW)/net/link.c
-SIM     := world.c channel.c render.c node.c scenarios.c stress.c compose.c study.c learn.c virtual_lab.c main.c
+SIM     := world.c channel.c render.c node.c scenarios.c stress.c compose.c study.c learn.c virtual_lab.c personal_scenario.c personal_sim.c main.c
 
-.PHONY: all run virtual virtual-mutation clean
+.PHONY: all run personal virtual virtual-mutation clean
 
 all: run
 
 run: build/herus-sim
 	./build/herus-sim
+
+personal: build/herus-sim
+	./build/herus-sim personal
 
 virtual: build/herus-sim
 	./build/herus-sim virtual
