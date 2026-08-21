@@ -679,6 +679,17 @@ if ( cd sim && make -s build/herus-sim ) 2>/tmp/herus_sim_build.log; then
         check "Poisoning L2 requires fresh local action" "a composed offer cannot execute without a fresh local action stage" /tmp/herus_sim.log
         check "Poisoning L3 rejects dormant replay" "L3 dormant bundle cannot cross a session epoch" /tmp/herus_sim.log
         check "Poisoning replay cannot manufacture action" "replay cannot manufacture action through the convenience path" /tmp/herus_sim.log
+        check "Attribution preserves typed source and role" "Offer retains typed source, role, lineage and no physical confirmation" /tmp/herus_sim.log
+        check "Attribution blocks implicit authority" "Derivation cannot manufacture action authority" /tmp/herus_sim.log
+        check "Attribution blocks role laundering" "Observation-derived memory cannot launder into policy role" /tmp/herus_sim.log
+        check "Attribution propagates revocation" "Revocation reaches derived records" /tmp/herus_sim.log
+        check "Attribution blocks reboot quarantine" "Reboot quarantines prior attribution epoch" /tmp/herus_sim.log
+        check "Attribution benchmark beats role laundering baselines" "Attribution guard blocks role laundering against permissive baselines" /tmp/herus_sim.log
+        check "Attribution benchmark beats source laundering baselines" "Attribution guard preserves source principal against permissive baselines" /tmp/herus_sim.log
+        check "Attribution benchmark binds purpose" "Attribution guard binds admission to purpose" /tmp/herus_sim.log
+        check "Attribution benchmark blocks reintroduction" "Attribution guard blocks revoked reintroduction" /tmp/herus_sim.log
+        check "Attribution benchmark blocks implicit action" "Attribution guard blocks implicit action authority" /tmp/herus_sim.log
+        check "Attribution benchmark complete vector" "Attribution guard satisfies the complete non-laundering vector" /tmp/herus_sim.log
     else
         echo "  FAIL  the bench disagrees with the design — see /tmp/herus_sim.log"; FAIL=1
     fi
@@ -723,6 +734,13 @@ if python3 tools/test_poisoning_redteam.py > /tmp/herus_poisoning_redteam.log 2>
     grep "POISONING REDTEAM" /tmp/herus_poisoning_redteam.log
 else
     echo "  FAIL  a poisoning mutant survived — see /tmp/herus_poisoning_redteam.log"
+    FAIL=1
+fi
+
+if python3 tools/test_attribution_redteam.py > /tmp/herus_attribution_redteam.log 2>&1; then
+    grep "ATTRIBUTION REDTEAM" /tmp/herus_attribution_redteam.log
+else
+    echo "  FAIL  an attribution mutant survived — see /tmp/herus_attribution_redteam.log"
     FAIL=1
 fi
 

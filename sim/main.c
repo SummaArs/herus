@@ -49,6 +49,8 @@ static const entry_t TABLE[] = {
     { "authority-benchmark", scenario_authority_benchmark, "AGSC: baselines for false memory, conflict, stale facts, reboot and action" },
     { "adaptive-change", scenario_adaptive_change, "AGSC-D: supersession, revocation, expiry, drift and epoch continuity" },
     { "poisoning", scenario_poisoning, "AGSC security: L1 direct, L2 compositional and L3 dormant poisoning" },
+    { "attribution", scenario_attribution, "AGSC attribution: typed lineage, role conservation and implicit-authority barriers" },
+    { "attribution-benchmark", scenario_attribution_benchmark, "AGSC attribution: deterministic comparison against permissive memory baselines" },
 };
 #define NTABLE ((int)(sizeof TABLE / sizeof *TABLE))
 
