@@ -18,6 +18,10 @@ SOURCES = (
     "core/memory_physical_session.c",
     "core/memory_physical_session_recovery.c",
     "core/memory_physical_session_bootstrap.c",
+    "core/symbolic_reasoner.c",
+    "core/memory_reasoning_bridge.c",
+    "core/magic_anticipation.c",
+    "core/magic_trigger.c",
     "core/memory_reboot_boundary.c",
     "core/test_memory_reboot_boundary.c",
 )
@@ -65,19 +69,19 @@ def main() -> int:
         Mutation(
             "reboot-semantic-scrub",
             "firmware/core/memory_reboot_boundary.c",
-            "    scrub_index(index);\n    rc = memory_physical_session_bootstrap(gate, session_cfg, snapshot, &bootstrap);\n",
-            "    rc = memory_physical_session_bootstrap(gate, session_cfg, snapshot, &bootstrap);\n",
+            "    scrub_index(index);\n    magic_trigger_close(trigger);\n    rc = memory_physical_session_bootstrap(gate, session_cfg, snapshot, &bootstrap);\n",
+            "    magic_trigger_close(trigger);\n    rc = memory_physical_session_bootstrap(gate, session_cfg, snapshot, &bootstrap);\n",
         ),
         Mutation(
             "reboot-argument-failure-scrub",
             "firmware/core/memory_reboot_boundary.c",
-            "    if (!gate || !index || !session_cfg || !snapshot || !out) {\n        scrub_failure(gate, index, out);\n        return MEMORY_REBOOT_BOUNDARY_E_ARG;\n    }\n",
-            "    if (!gate || !index || !session_cfg || !snapshot || !out) {\n        return MEMORY_REBOOT_BOUNDARY_E_ARG; /* REDTEAM */\n    }\n",
+            "    if (!gate || !index || !trigger || !session_cfg || !snapshot || !out) {\n        scrub_failure(gate, index, trigger, out);\n        return MEMORY_REBOOT_BOUNDARY_E_ARG;\n    }\n",
+            "    if (!gate || !index || !trigger || !session_cfg || !snapshot || !out) {\n        return MEMORY_REBOOT_BOUNDARY_E_ARG; /* REDTEAM */\n    }\n",
         ),
         Mutation(
             "reboot-null-index-gate",
             "firmware/core/memory_reboot_boundary.c",
-            "    if (!gate || !index || !session_cfg || !snapshot || !out) {\n",
+            "    if (!gate || !index || !trigger || !session_cfg || !snapshot || !out) {\n",
             "    if (!gate || !session_cfg || !snapshot || !out) {\n",
         ),
                 Mutation(
@@ -89,7 +93,7 @@ def main() -> int:
         Mutation(
             "reboot-semantic-floor-import",
             "firmware/core/memory_reboot_boundary.c",
-            "    if (bootstrap.recovered_session_floor != 0u &&\n        mse_set_generation_floor(index, bootstrap.recovered_session_floor) < MSE_OK) {\n        scrub_failure(gate, index, out);\n        return MEMORY_REBOOT_BOUNDARY_E_RECOVERY;\n    }\n",
+            "    if (bootstrap.recovered_session_floor != 0u &&\n        mse_set_generation_floor(index, bootstrap.recovered_session_floor) < MSE_OK) {\n        scrub_failure(gate, index, trigger, out);\n        return MEMORY_REBOOT_BOUNDARY_E_RECOVERY;\n    }\n",
             "    /* REDTEAM: semantic generation floor import removed. */\n",
         ),
         Mutation(
@@ -109,8 +113,19 @@ def main() -> int:
             "firmware/core/memory_semantic_evidence.c",
             "    if (index->evidence_count != 0u) return MSE_E_FLOOR;\n",
             "    /* REDTEAM: floor may be installed over active evidence. */\n",
+        ),
+        Mutation(
+            "reboot-contextual-scrub",
+            "firmware/core/memory_reboot_boundary.c",
+            "    scrub_index(index);\n    magic_trigger_close(trigger);\n    rc = memory_physical_session_bootstrap(gate, session_cfg, snapshot, &bootstrap);\n",
+            "    scrub_index(index);\n    rc = memory_physical_session_bootstrap(gate, session_cfg, snapshot, &bootstrap);\n",
+        ),
+        Mutation(
+            "reboot-contextual-scrub-result",
+            "firmware/core/memory_reboot_boundary.c",
+            "    out->contextual_window_scrubbed = 1u;\n",
+            "    /* REDTEAM: contextual scrub claim removed. */\n",
         )
-,
     )
 
     print("\n== HERUS memory reboot boundary red-team campaign ==")
@@ -122,7 +137,7 @@ def main() -> int:
     if not passed:
         print("MEMORY REBOOT REDTEAM FAILED — a stale-context or semantic-floor mutant survived")
         return 1
-    print("MEMORY REBOOT REDTEAM: 8/8 critical reboot-boundary mutants killed")
+    print("MEMORY REBOOT REDTEAM: 10/10 critical reboot-boundary mutants killed")
     return 0
 
 

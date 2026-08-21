@@ -43,6 +43,8 @@ int main(void)
 {
     score_t score = { 0, 0 };
     memory_physical_session_t gate;
+    magic_trigger_t trigger;
+    magic_context_t context;
     memory_physical_session_config_t cfg;
     memory_physical_session_recovery_snapshot_t snapshot;
     memory_reboot_boundary_result_t result;
@@ -54,6 +56,11 @@ int main(void)
     memset(&semantic_card, 0, sizeof(semantic_card));
     semantic_card.card_id = 701u;
     semantic_card.review_receipt_id = 1701u;
+    memset(&context, 0, sizeof(context));
+    context.privacy_class = MAGIC_PRIVACY_ORDINARY;
+    context.request_kind = MAGIC_REQUEST_CONTEXTUAL;
+    context.attention_window = 1u;
+    context.proactive_consent = 1u;
     memory_physical_session_config_default(&cfg);
     snapshot = committed_snapshot(8u);
     stale_index(&index);
@@ -61,19 +68,24 @@ int main(void)
                     index.generation_floor == 0u && index.evidence_count == 1u,
           "semantic floor cannot be installed over nonempty volatile evidence");
     memory_physical_session_init(&gate, &cfg);
+    check(&score, magic_trigger_begin(&trigger, &context, 5u, 3u, 2u) ==
+                        MAGIC_TRIGGER_OK && trigger.active == 1u,
+          "pre-reboot fixture contains an active bounded contextual window");
     check(&score, memory_physical_session_begin(
                         &gate, MEMORY_PHYSICAL_PURPOSE_COLLECTION_QUERY,
                         8u, 88u, 1u, 2u, 100u) == MEMORY_PHYSICAL_SESSION_OK &&
                     gate.state == MEMORY_PHYSICAL_SESSION_ACTIVE,
           "pre-reboot fixture contains active session evidence and semantic facts");
 
-    check(&score, memory_reboot_boundary_bootstrap(&gate, &index, &cfg,
+    check(&score, memory_reboot_boundary_bootstrap(&gate, &index, &trigger, &cfg,
                                                     &snapshot, &result) ==
                         MEMORY_REBOOT_BOUNDARY_OK &&
                     result.recovered_session_floor == 8u &&
                     result.semantic_generation_floor == 8u &&
                     result.active_session_scrubbed == 1u &&
                     result.semantic_index_scrubbed == 1u &&
+                    result.contextual_window_scrubbed == 1u &&
+                    trigger.active == 0u &&
                     gate.state == MEMORY_PHYSICAL_SESSION_IDLE &&
                     gate.session_floor == 8u &&
                     gate.active_session_id == 0u &&
@@ -108,7 +120,7 @@ int main(void)
     snapshot = committed_snapshot(11u);
     snapshot.committed_authenticated = 0u;
     memset(&result, 0xa5, sizeof(result));
-    check(&score, memory_reboot_boundary_bootstrap(&gate, &index, &cfg,
+    check(&score, memory_reboot_boundary_bootstrap(&gate, &index, &trigger, &cfg,
                                                     &snapshot, &result) ==
                         MEMORY_REBOOT_BOUNDARY_E_RECOVERY &&
                     gate.state == MEMORY_PHYSICAL_SESSION_BLOCKED &&
@@ -125,8 +137,11 @@ int main(void)
           "a blocked reboot boundary cannot be bypassed by starting a new session");
 
     stale_index(&index);
+    check(&score, magic_trigger_begin(&trigger, &context, 10u, 2u, 1u) ==
+                        MAGIC_TRIGGER_OK && trigger.active == 1u,
+          "failure fixture reactivates a transient contextual window");
     memset(&result, 0xa5, sizeof(result));
-    check(&score, memory_reboot_boundary_bootstrap(&gate, &index, &cfg,
+    check(&score, memory_reboot_boundary_bootstrap(&gate, &index, &trigger, &cfg,
                                                     NULL, &result) ==
                         MEMORY_REBOOT_BOUNDARY_E_ARG &&
                     gate.state == MEMORY_PHYSICAL_SESSION_BLOCKED &&
@@ -138,7 +153,7 @@ int main(void)
 
     stale_index(&index);
     memset(&result, 0xa5, sizeof(result));
-    check(&score, memory_reboot_boundary_bootstrap(&gate, NULL, &cfg,
+    check(&score, memory_reboot_boundary_bootstrap(&gate, NULL, &trigger, &cfg,
                                                     &snapshot, &result) ==
                         MEMORY_REBOOT_BOUNDARY_E_ARG &&
                     gate.state == MEMORY_PHYSICAL_SESSION_BLOCKED &&

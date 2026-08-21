@@ -9,6 +9,7 @@
 
 #include "memory_physical_session_bootstrap.h"
 #include "memory_semantic_evidence.h"
+#include "magic_trigger.h"
 
 #include <stdint.h>
 
@@ -18,6 +19,7 @@ typedef struct {
     memory_physical_session_recovery_action_t recovery_action;
     uint8_t active_session_scrubbed;
     uint8_t semantic_index_scrubbed;
+    uint8_t contextual_window_scrubbed;
 } memory_reboot_boundary_result_t;
 
 enum {
@@ -34,6 +36,7 @@ enum {
 int memory_reboot_boundary_bootstrap(
     memory_physical_session_t *gate,
     mse_index_t *index,
+    magic_trigger_t *trigger,
     const memory_physical_session_config_t *session_cfg,
     const memory_physical_session_recovery_snapshot_t *snapshot,
     memory_reboot_boundary_result_t *out);

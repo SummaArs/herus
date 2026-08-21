@@ -406,7 +406,7 @@ memory-physical-session-bootstrap: build
 
 memory-reboot-boundary: build
 	@echo "--- memory reboot boundary: floor-only recovery and semantic-index quarantine ---"
-	$(CC) $(CFLAGS) $(INC) core/memory_semantic_evidence.c core/memory_physical_session.c core/memory_physical_session_recovery.c core/memory_physical_session_bootstrap.c core/memory_reboot_boundary.c core/test_memory_reboot_boundary.c -o build/test_memory_reboot_boundary
+	$(CC) $(CFLAGS) $(INC) core/memory_semantic_evidence.c core/memory_physical_session.c core/memory_physical_session_recovery.c core/memory_physical_session_bootstrap.c core/symbolic_reasoner.c core/memory_reasoning_bridge.c core/magic_anticipation.c core/magic_trigger.c core/memory_reboot_boundary.c core/test_memory_reboot_boundary.c -o build/test_memory_reboot_boundary
 	./build/test_memory_reboot_boundary
 
 memory-reboot-redteam:
