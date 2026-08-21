@@ -328,6 +328,12 @@ banner "42e/78 personal adapter redteam (critical learning controls must be kill
 
 grep -q "FAIL" /tmp/herus_personal_adapter_redteam.log && FAIL=1 || true
 
+banner "42f/78 generative core budget (host-side object guardrails only)"
+( cd firmware && make -s generative-core-budget ) > /tmp/herus_generative_core_budget.log 2>&1 || FAIL=1
+[ "$QUIET" = 0 ] && cat /tmp/herus_generative_core_budget.log
+
+grep -q "FAIL" /tmp/herus_generative_core_budget.log && FAIL=1 || true
+
 banner "43/78 semantic compiler (controlled Portuguese to typed IR)"
 ( cd firmware && make semantic-compiler ) > /tmp/herus_semantic.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_semantic.log
@@ -465,6 +471,7 @@ check "Generative core composes direct, derived, grounded and adapted answers wi
 check "Generative core redteam kills policy, grounding, language and confirmation mutants" "GENERATIVE CORE REDTEAM: 6/6 critical mutants killed" /tmp/herus_generative_core_redteam.log
 check "Personal adapter learns only consented local style signals" "PERSONAL ADAPTER: 12 pass, 0 fail" /tmp/herus_personal_adapter.log
 check "Personal adapter redteam kills consent, origin, revocation, tie and reboot mutants" "PERSONAL ADAPTER REDTEAM: 5/5 critical mutants killed" /tmp/herus_personal_adapter_redteam.log
+check "Generative object sizes remain under host-side guardrails" "GENERATIVE CORE BUDGET: PASS host-side object limits" /tmp/herus_generative_core_budget.log
 
 # --- controlled semantic compiler ------------------------------------------
 check "Semantic compiler emits exact typed IR, composes bounded conjunctions and rejects unsupported language" "SEMANTIC COMPILER: 54 pass, 0 fail" /tmp/herus_semantic.log

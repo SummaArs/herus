@@ -11,7 +11,7 @@
     {
       "path": "prove.sh",
       "kind": "file",
-      "sha256": "6b985719dc7ec9abd5940af83884c9ce92eab9eae6363a7e2cd00946de5f6d61",
+      "sha256": "77f8f00889a00fa8a971bea51e7a935e844e58551a94d4a61ae19b8f01c2e921",
       "role": "global proof ledger"
     },
     {
@@ -23,13 +23,13 @@
     {
       "path": "firmware",
       "kind": "tree",
-      "sha256": "09d8d0f264eb5eead9f89e45c905f5e51cc47a552b8358dac403047027526fb2",
+      "sha256": "596f17a6f6a46ecc657590e8b6d79b6965be373512d4b5903553fd20dc47d87b",
       "role": "portable firmware and proof sources"
     },
     {
       "path": "tools",
       "kind": "tree",
-      "sha256": "b639e08a8ba2d082442c7556c02fb0d071ed05abdd55cd9d9285cb7576208b88",
+      "sha256": "dfe2f26956fdbe0731dbec8873a6ea67cc05f0f66528c097841e048c40acd5d2",
       "role": "host proof and provenance tools"
     },
     {
@@ -95,7 +95,7 @@
     {
       "path": "research/generative_intelligence_literature.md",
       "kind": "file",
-      "sha256": "27d0f2de6c6f3991557d6a1bd47880e5be84e12e6ec38d32636977113050c20a",
+      "sha256": "1921b3bc0534b8969d3fc422fb761411bc4b01c406ce225d0dfb67feb7cda99c",
       "role": "academic evidence for composition, groundedness and abstention"
     }
   ],
