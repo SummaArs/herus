@@ -47,6 +47,7 @@ static const entry_t TABLE[] = {
     { "physical-faults", scenario_physical_faults, "PRE-HARDWARE: adapter loss, interruption, contact and energy failure" },
     { "authority", scenario_authority, "AGSC: provenance, memory, abstention and non-amplifying action authority" },
     { "authority-benchmark", scenario_authority_benchmark, "AGSC: baselines for false memory, conflict, stale facts, reboot and action" },
+    { "adaptive-change", scenario_adaptive_change, "AGSC-D: supersession, revocation, expiry, drift and epoch continuity" },
 };
 #define NTABLE ((int)(sizeof TABLE / sizeof *TABLE))
 

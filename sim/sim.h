@@ -301,6 +301,7 @@ void scenario_semantic_life(sim_score *s, int argc, char **argv);
 void scenario_physical_faults(sim_score *s, int argc, char **argv);
 void scenario_authority(sim_score *s, int argc, char **argv);
 void scenario_authority_benchmark(sim_score *s, int argc, char **argv);
+void scenario_adaptive_change(sim_score *s, int argc, char **argv);
 
 int  opt_int   (int argc, char **argv, const char *k, int def);
 double opt_dbl (int argc, char **argv, const char *k, double def);

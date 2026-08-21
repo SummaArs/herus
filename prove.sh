@@ -670,6 +670,10 @@ if ( cd sim && make -s build/herus-sim ) 2>/tmp/herus_sim_build.log; then
         check "AGSC benchmark separates authorized recall from false memory" "AGSC reduces false memory against permissive baselines" /tmp/herus_sim.log
         check "AGSC benchmark preserves conflict and stale abstention" "AGSC preserves conflict abstention against permissive baselines" /tmp/herus_sim.log
         check "AGSC benchmark blocks reboot revival and unauthorized action" "AGSC satisfies the complete non-amplification case vector" /tmp/herus_sim.log
+        check "AGSC-D accepts only confirmed semantic change" "an explicitly confirmed change supersedes the old preference" /tmp/herus_sim.log
+        check "AGSC-D preserves historical lineage without current leakage" "superseded history remains auditable but cannot answer as current" /tmp/herus_sim.log
+        check "AGSC-D revocation reaches derived memory" "physical revocation reaches the active fact and its derived memory" /tmp/herus_sim.log
+        check "AGSC-D blocks confidence and epoch replay" "a pre-reboot observation cannot be replayed into the new epoch" /tmp/herus_sim.log
     else
         echo "  FAIL  the bench disagrees with the design — see /tmp/herus_sim.log"; FAIL=1
     fi
@@ -700,6 +704,13 @@ if python3 tools/test_authority_transition_redteam.py > /tmp/herus_authority_red
     grep "AUTHORITY REDTEAM" /tmp/herus_authority_redteam.log
 else
     echo "  FAIL  an authority-transition mutant survived — see /tmp/herus_authority_redteam.log"
+    FAIL=1
+fi
+
+if python3 tools/test_adaptive_change_redteam.py > /tmp/herus_adaptive_change_redteam.log 2>&1; then
+    grep "ADAPTIVE-CHANGE REDTEAM" /tmp/herus_adaptive_change_redteam.log
+else
+    echo "  FAIL  an adaptive-change mutant survived — see /tmp/herus_adaptive_change_redteam.log"
     FAIL=1
 fi
 
