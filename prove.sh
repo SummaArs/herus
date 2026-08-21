@@ -9,7 +9,7 @@
 #   ./prove.sh            full run
 #   ./prove.sh --quiet    verdict lines only
 #
-# Seventy suites, each independently falsifiable:
+# Seventy-two suites, each independently falsifiable:
 #   1  algebra      quasi-orthogonality, bundling, resonator, learning, HCP
 #   2  nucleus      bounded, opt-in local semantic intelligence
 #   3  voice        controlled local language and bounded haptic feedback
@@ -80,6 +80,8 @@
 #  68  deterministic GAN-style sabotage campaign for haptic and radio transport
 #  69  cross-module source-loss, revocation and assurance matrix
 #  70  cross-module deterministic GAN-style sabotage campaign
+#  71  semantic degradation matrix for capacity, conflict, ambiguity and consent
+#  72  semantic degradation deterministic GAN-style sabotage campaign
 #
 # The Nucleus suite is intentionally separate: privacy and non-autonomy are
 # properties that must fail a build when regressed, not promises in a document.
@@ -349,42 +351,48 @@ banner "57/58 local semantic evidence (temporal and conflict abstention)"
 banner "58/59 offline memory-to-reasoner composition"
 ( cd firmware && make memory-reasoning-bridge ) > /tmp/herus_memory_reasoning_bridge.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_memory_reasoning_bridge.log
-banner "59/70 explainable magic anticipation"
+banner "59/72 explainable magic anticipation"
 ( cd firmware && make magic-anticipation ) > /tmp/herus_magic_anticipation.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_magic_anticipation.log
-banner "60/70 bounded magic attention window"
+banner "60/72 bounded magic attention window"
 ( cd firmware && make magic-trigger ) > /tmp/herus_magic_trigger.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_magic_trigger.log
-banner "61/70 read-only magic dialogue bridge"
+banner "61/72 read-only magic dialogue bridge"
 ( cd firmware && make magic-dialogue-bridge ) > /tmp/herus_magic_dialogue_bridge.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_magic_dialogue_bridge.log
-banner "62/70 autonomy policy"
+banner "62/72 autonomy policy"
 ( cd firmware && make autonomy-policy ) > /tmp/herus_autonomy_policy.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_autonomy_policy.log
-banner "63/70 autonomy redteam"
+banner "63/72 autonomy redteam"
 ( cd firmware && make autonomy-redteam ) > /tmp/herus_autonomy_redteam.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_autonomy_redteam.log
-banner "64/70 magic/memory redteam"
+banner "64/72 magic/memory redteam"
 ( cd firmware && make magic-redteam ) > /tmp/herus_magic_redteam.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_magic_redteam.log
-banner "65/70 combined failure matrix"
+banner "65/72 combined failure matrix"
 ( cd firmware && make core-resilience-matrix ) > /tmp/herus_core_resilience.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_core_resilience.log
-banner "66/70 Core feed redteam"
+banner "66/72 Core feed redteam"
 ( cd firmware && make core-redteam ) > /tmp/herus_core_redteam.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_core_redteam.log
-banner "67/70 Core cursor power-fail"
+banner "67/72 Core cursor power-fail"
 ( cd firmware && make knowledge-feed-cursor-powerfail ) > /tmp/herus_cursor_powerfail.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_cursor_powerfail.log
-banner "68/70 transport redteam"
+banner "68/72 transport redteam"
 ( cd firmware && make transport-redteam ) > /tmp/herus_transport_redteam.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_transport_redteam.log
-banner "69/70 cross failure matrix"
+banner "69/72 cross failure matrix"
 ( cd firmware && make cross-failure-matrix ) > /tmp/herus_cross_failure_matrix.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_cross_failure_matrix.log
-banner "70/70 cross failure redteam"
+banner "70/72 cross failure redteam"
 ( cd firmware && make cross-failure-redteam ) > /tmp/herus_cross_failure_redteam.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_cross_failure_redteam.log
+banner "71/72 semantic degradation matrix"
+( cd firmware && make degradation-matrix ) > /tmp/herus_degradation_matrix.log 2>&1 || FAIL=1
+[ "$QUIET" = 0 ] && cat /tmp/herus_degradation_matrix.log
+banner "72/72 semantic degradation redteam"
+( cd firmware && make degradation-redteam ) > /tmp/herus_degradation_redteam.log 2>&1 || FAIL=1
+[ "$QUIET" = 0 ] && cat /tmp/herus_degradation_redteam.log
  echo ""
 
 echo "--------------------------------------------------"
@@ -435,6 +443,8 @@ check "Cursor power-fail rejects every partial write and single-bit corruption" 
 check "Transport redteam kills haptic, target and SX1262 adapter mutants" "TRANSPORT REDTEAM: 8/8 critical adapter mutants killed" /tmp/herus_transport_redteam.log
 check "Cross failure matrix preserves source-loss scrubbing and assurance denial" "CROSS FAILURE MATRIX: 15 pass, 0 fail" /tmp/herus_cross_failure_matrix.log
 check "Cross failure redteam kills authority and source-loss mutants" "CROSS FAILURE REDTEAM: 3/3 critical cross-module mutants killed" /tmp/herus_cross_failure_redteam.log
+check "Semantic degradation matrix preserves capacity, conflict, ambiguity and silence" "DEGRADATION MATRIX: 6 pass, 0 fail" /tmp/herus_degradation_matrix.log
+check "Semantic degradation redteam kills capacity and contextual mutants" "DEGRADATION REDTEAM: 5/5 critical capacity/context mutants killed" /tmp/herus_degradation_redteam.log
 
 # --- physical layer -------------------------------------------------------
 check "P1 constant AIRTIME across meaning tiers" "INVARIANT HOLDS" /tmp/herus_c.log

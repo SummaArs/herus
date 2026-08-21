@@ -49,6 +49,8 @@
 #   make memory-semantic-evidence the local temporal/conflict evidence index
 #   make memory-reasoning-bridge the offline memory-to-reasoner composition suite
 #   make magic-anticipation the explainable surprise and privacy-gate suite
+#   make degradation-matrix capacity, conflict, ambiguity and consent composition
+#   make degradation-redteam deterministic capacity/context sabotage
 #   make magic-trigger the bounded attention-window and proposal-budget suite
 #   make magic-dialogue-bridge the read-only dialogue presentation suite
 #   make autonomy-policy the explicit A0–A4 initiative and confirmation policy suite
@@ -76,7 +78,7 @@ INC     := -Icore -Inet -Iport -Itest
 CORE    := core/hv.c core/sbc.c core/lexicon.c core/hcp.c
 NET     := net/crypto.c net/session.c net/region.c net/weave.c net/beat.c net/link.c
 
-.PHONY: all algebra nucleus voice intent dialogue model-lab memory-policy memory-capture memory-extract watch-memory-frontend memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale memory-collection memory-collection-index memory-collection-recovery memory-collection-recovery-stress memory-collection-finale bench-evidence-validate bench-interruption-sim memory-proposal llm-budget-check memory-physical-session memory-physical-session-recovery memory-physical-session-recovery-stress memory-physical-session-bootstrap memory-prehardware-finale threat-model threat-model-stress proof-fire-mutations assurance capstone trust control-link delivery-plan transport-selector personal-telemetry symbolic-reasoner resonator semantic-compiler semantic-benchmark knowledge-feed knowledge-feed-cursor memory-semantic-evidence memory-reasoning-bridge magic-anticipation magic-trigger magic-dialogue-bridge autonomy-policy autonomy-redteam magic-redteam interaction interaction-rig net radio syntax vectors haptic-language haptic-language-matrix haptic-semantic-bridge haptic-adapter haptic-evidence haptic-target haptic-runner haptic-preflight cross-failure-matrix cross-failure-redteam clean
+.PHONY: all algebra nucleus voice intent dialogue model-lab memory-policy memory-capture memory-extract watch-memory-frontend memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale memory-collection memory-collection-index memory-collection-recovery memory-collection-recovery-stress memory-collection-finale bench-evidence-validate bench-interruption-sim memory-proposal llm-budget-check memory-physical-session memory-physical-session-recovery memory-physical-session-recovery-stress memory-physical-session-bootstrap memory-prehardware-finale threat-model threat-model-stress proof-fire-mutations assurance capstone trust control-link delivery-plan transport-selector personal-telemetry symbolic-reasoner resonator semantic-compiler semantic-benchmark knowledge-feed knowledge-feed-cursor memory-semantic-evidence memory-reasoning-bridge magic-anticipation degradation-matrix degradation-redteam magic-trigger magic-dialogue-bridge autonomy-policy autonomy-redteam magic-redteam interaction interaction-rig net radio syntax vectors haptic-language haptic-language-matrix haptic-semantic-bridge haptic-adapter haptic-evidence haptic-target haptic-runner haptic-preflight cross-failure-matrix cross-failure-redteam clean
 
 all: algebra nucleus voice intent dialogue model-lab memory-policy memory-capture memory-extract memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale memory-collection memory-collection-index memory-collection-recovery memory-collection-recovery-stress memory-collection-finale memory-physical-session memory-physical-session-recovery memory-physical-session-recovery-stress memory-physical-session-bootstrap memory-prehardware-finale threat-model threat-model-stress proof-fire-mutations assurance capstone trust control-link interaction interaction-rig net radio syntax haptic-language haptic-language-matrix haptic-semantic-bridge haptic-adapter haptic-evidence haptic-target haptic-runner haptic-preflight
 	@echo ""
@@ -267,6 +269,15 @@ magic-anticipation: build
 	@echo "--- magic anticipation: explainable surprise, privacy and abstention ---"
 	$(CC) $(CFLAGS) $(INC) core/memory_semantic_evidence.c core/memory_reasoning_bridge.c core/symbolic_reasoner.c core/magic_anticipation.c core/test_magic_anticipation.c -o build/test_magic_anticipation
 	./build/test_magic_anticipation
+
+degradation-matrix: build
+	@echo "--- degradation matrix: capacity, conflict, ambiguity, consent and Core absence ---"
+	$(CC) $(CFLAGS) $(INC) core/memory_semantic_evidence.c core/memory_reasoning_bridge.c core/symbolic_reasoner.c core/magic_anticipation.c core/test_degradation_matrix.c -o build/test_degradation_matrix
+	./build/test_degradation_matrix
+
+degradation-redteam:
+	@echo "--- degradation redteam: capacity and contextual-magic sabotage ---"
+	python3 ../tools/test_degradation_redteam.py
 
 magic-trigger: build
 	@echo "--- magic trigger: bounded attention window and proposal budget ---"
