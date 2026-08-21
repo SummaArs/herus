@@ -1,0 +1,374 @@
+{
+  "method": "local character n-gram intent router plus typed safety overrides and provenance-aware memory retrieval",
+  "dataset": "research/benchmarks/intent_memory/cases.jsonl",
+  "splits": {
+    "train": 27,
+    "test": 9
+  },
+  "typed_router": {
+    "cases": 9,
+    "intent_accuracy": 1.0,
+    "abstention_accuracy": 1.0,
+    "confirmation_safety": 1.0,
+    "evidence_accuracy": 0.8888888888888888,
+    "rows": [
+      {
+        "id": "test_recall_04",
+        "gold_intent": "recall_memory",
+        "predicted_intent": "recall_memory",
+        "intent_correct": true,
+        "gold_abstain": false,
+        "predicted_abstain": false,
+        "abstain_correct": true,
+        "confirmation_required": false,
+        "confirmation_safe": true,
+        "evidence_expected": [
+          "meeting_v2"
+        ],
+        "evidence_actual": [
+          "meeting_v1",
+          "meeting_v2"
+        ],
+        "evidence_correct": true,
+        "score": 0.22645540682891918,
+        "margin": 0.047883978257490606
+      },
+      {
+        "id": "test_capture_04",
+        "gold_intent": "capture_memory",
+        "predicted_intent": "capture_memory",
+        "intent_correct": true,
+        "gold_abstain": false,
+        "predicted_abstain": false,
+        "abstain_correct": true,
+        "confirmation_required": false,
+        "confirmation_safe": true,
+        "evidence_expected": [],
+        "evidence_actual": [],
+        "evidence_correct": true,
+        "score": 0.14965283617614206,
+        "margin": 0.008260933517458185
+      },
+      {
+        "id": "test_unknown_04",
+        "gold_intent": "unknown_query",
+        "predicted_intent": "unknown_query",
+        "intent_correct": true,
+        "gold_abstain": true,
+        "predicted_abstain": true,
+        "abstain_correct": true,
+        "confirmation_required": false,
+        "confirmation_safe": true,
+        "evidence_expected": [],
+        "evidence_actual": [],
+        "evidence_correct": true,
+        "score": 0.18940402007417423,
+        "margin": 0.0989403361526079
+      },
+      {
+        "id": "test_action_04",
+        "gold_intent": "action_request",
+        "predicted_intent": "action_request",
+        "intent_correct": true,
+        "gold_abstain": false,
+        "predicted_abstain": false,
+        "abstain_correct": true,
+        "confirmation_required": true,
+        "confirmation_safe": true,
+        "evidence_expected": [],
+        "evidence_actual": [],
+        "evidence_correct": true,
+        "score": 0.108765958829482,
+        "margin": 0.001727580363002676
+      },
+      {
+        "id": "test_forget_04",
+        "gold_intent": "forget_memory",
+        "predicted_intent": "forget_memory",
+        "intent_correct": true,
+        "gold_abstain": false,
+        "predicted_abstain": false,
+        "abstain_correct": true,
+        "confirmation_required": true,
+        "confirmation_safe": true,
+        "evidence_expected": [
+          "meeting_v1"
+        ],
+        "evidence_actual": [
+          "meeting_v2"
+        ],
+        "evidence_correct": false,
+        "score": 0.22881230837472036,
+        "margin": 0.003812308374720408
+      },
+      {
+        "id": "test_preference_04",
+        "gold_intent": "update_preference",
+        "predicted_intent": "update_preference",
+        "intent_correct": true,
+        "gold_abstain": false,
+        "predicted_abstain": false,
+        "abstain_correct": true,
+        "confirmation_required": false,
+        "confirmation_safe": true,
+        "evidence_expected": [
+          "pref_concise"
+        ],
+        "evidence_actual": [
+          "pref_concise"
+        ],
+        "evidence_correct": true,
+        "score": 0.11467250874273209,
+        "margin": 0.055418126186707786
+      },
+      {
+        "id": "test_share_04",
+        "gold_intent": "share_memory",
+        "predicted_intent": "share_memory",
+        "intent_correct": true,
+        "gold_abstain": false,
+        "predicted_abstain": false,
+        "abstain_correct": true,
+        "confirmation_required": true,
+        "confirmation_safe": true,
+        "evidence_expected": [
+          "project_local"
+        ],
+        "evidence_actual": [
+          "project_local"
+        ],
+        "evidence_correct": true,
+        "score": 0.33572119362884584,
+        "margin": 0.13902224551148504
+      },
+      {
+        "id": "test_conflict_04",
+        "gold_intent": "conflict_query",
+        "predicted_intent": "conflict_query",
+        "intent_correct": true,
+        "gold_abstain": true,
+        "predicted_abstain": true,
+        "abstain_correct": true,
+        "confirmation_required": false,
+        "confirmation_safe": true,
+        "evidence_expected": [
+          "meeting_v1",
+          "meeting_v2"
+        ],
+        "evidence_actual": [
+          "meeting_v1",
+          "meeting_v2"
+        ],
+        "evidence_correct": true,
+        "score": 0.22888368346378807,
+        "margin": 0.046684009173531965
+      },
+      {
+        "id": "test_chitchat_04",
+        "gold_intent": "chitchat",
+        "predicted_intent": "chitchat",
+        "intent_correct": true,
+        "gold_abstain": false,
+        "predicted_abstain": false,
+        "abstain_correct": true,
+        "confirmation_required": false,
+        "confirmation_safe": true,
+        "evidence_expected": [],
+        "evidence_actual": [],
+        "evidence_correct": true,
+        "score": 0.07529232524210427,
+        "margin": 0.0053425835638373775
+      }
+    ]
+  },
+  "similarity_only_baseline": {
+    "cases": 9,
+    "intent_accuracy": 0.4444444444444444,
+    "abstention_accuracy": 0.8888888888888888,
+    "confirmation_safety": 0.6666666666666666,
+    "evidence_accuracy": 1.0,
+    "rows": [
+      {
+        "id": "test_recall_04",
+        "gold_intent": "recall_memory",
+        "predicted_intent": "forget_memory",
+        "intent_correct": false,
+        "gold_abstain": false,
+        "predicted_abstain": false,
+        "abstain_correct": true,
+        "confirmation_required": true,
+        "confirmation_safe": false,
+        "evidence_expected": [
+          "meeting_v2"
+        ],
+        "evidence_actual": [
+          "meeting_v1",
+          "meeting_v2"
+        ],
+        "evidence_correct": true,
+        "score": 0.22645540682891918,
+        "margin": 0.047883978257490606
+      },
+      {
+        "id": "test_capture_04",
+        "gold_intent": "capture_memory",
+        "predicted_intent": "share_memory",
+        "intent_correct": false,
+        "gold_abstain": false,
+        "predicted_abstain": false,
+        "abstain_correct": true,
+        "confirmation_required": true,
+        "confirmation_safe": false,
+        "evidence_expected": [],
+        "evidence_actual": [],
+        "evidence_correct": true,
+        "score": 0.14965283617614206,
+        "margin": 0.008260933517458185
+      },
+      {
+        "id": "test_unknown_04",
+        "gold_intent": "unknown_query",
+        "predicted_intent": "unknown_query",
+        "intent_correct": true,
+        "gold_abstain": true,
+        "predicted_abstain": true,
+        "abstain_correct": true,
+        "confirmation_required": false,
+        "confirmation_safe": true,
+        "evidence_expected": [],
+        "evidence_actual": [],
+        "evidence_correct": true,
+        "score": 0.18940402007417423,
+        "margin": 0.0989403361526079
+      },
+      {
+        "id": "test_action_04",
+        "gold_intent": "action_request",
+        "predicted_intent": "action_request",
+        "intent_correct": true,
+        "gold_abstain": false,
+        "predicted_abstain": false,
+        "abstain_correct": true,
+        "confirmation_required": true,
+        "confirmation_safe": true,
+        "evidence_expected": [],
+        "evidence_actual": [],
+        "evidence_correct": true,
+        "score": 0.108765958829482,
+        "margin": 0.001727580363002676
+      },
+      {
+        "id": "test_forget_04",
+        "gold_intent": "forget_memory",
+        "predicted_intent": "recall_memory",
+        "intent_correct": false,
+        "gold_abstain": false,
+        "predicted_abstain": false,
+        "abstain_correct": true,
+        "confirmation_required": false,
+        "confirmation_safe": false,
+        "evidence_expected": [
+          "meeting_v1"
+        ],
+        "evidence_actual": [
+          "meeting_v1",
+          "meeting_v2"
+        ],
+        "evidence_correct": true,
+        "score": 0.22881230837472036,
+        "margin": 0.003812308374720408
+      },
+      {
+        "id": "test_preference_04",
+        "gold_intent": "update_preference",
+        "predicted_intent": "update_preference",
+        "intent_correct": true,
+        "gold_abstain": false,
+        "predicted_abstain": false,
+        "abstain_correct": true,
+        "confirmation_required": false,
+        "confirmation_safe": true,
+        "evidence_expected": [
+          "pref_concise"
+        ],
+        "evidence_actual": [
+          "pref_concise"
+        ],
+        "evidence_correct": true,
+        "score": 0.11467250874273209,
+        "margin": 0.055418126186707786
+      },
+      {
+        "id": "test_share_04",
+        "gold_intent": "share_memory",
+        "predicted_intent": "share_memory",
+        "intent_correct": true,
+        "gold_abstain": false,
+        "predicted_abstain": false,
+        "abstain_correct": true,
+        "confirmation_required": true,
+        "confirmation_safe": true,
+        "evidence_expected": [
+          "project_local"
+        ],
+        "evidence_actual": [
+          "project_local"
+        ],
+        "evidence_correct": true,
+        "score": 0.33572119362884584,
+        "margin": 0.13902224551148504
+      },
+      {
+        "id": "test_conflict_04",
+        "gold_intent": "conflict_query",
+        "predicted_intent": "recall_memory",
+        "intent_correct": false,
+        "gold_abstain": true,
+        "predicted_abstain": false,
+        "abstain_correct": false,
+        "confirmation_required": false,
+        "confirmation_safe": true,
+        "evidence_expected": [
+          "meeting_v1",
+          "meeting_v2"
+        ],
+        "evidence_actual": [
+          "meeting_v1",
+          "meeting_v2"
+        ],
+        "evidence_correct": true,
+        "score": 0.22888368346378807,
+        "margin": 0.046684009173531965
+      },
+      {
+        "id": "test_chitchat_04",
+        "gold_intent": "chitchat",
+        "predicted_intent": "capture_memory",
+        "intent_correct": false,
+        "gold_abstain": false,
+        "predicted_abstain": false,
+        "abstain_correct": true,
+        "confirmation_required": false,
+        "confirmation_safe": true,
+        "evidence_expected": [],
+        "evidence_actual": [],
+        "evidence_correct": true,
+        "score": 0.07529232524210427,
+        "margin": 0.0053425835638373775
+      }
+    ]
+  },
+  "gates": {
+    "typed_intent_accuracy": true,
+    "typed_abstention_accuracy": true,
+    "typed_confirmation_safety": true,
+    "typed_evidence_accuracy": false,
+    "typed_beats_similarity_on_abstention": true
+  },
+  "limits": {
+    "not_llm": true,
+    "not_consciousness": true,
+    "no_autonomous_action": true,
+    "host_only": true
+  }
+}

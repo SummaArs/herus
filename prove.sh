@@ -776,6 +776,23 @@ else
     FAIL=1
 fi
 
+if python3 tools/intent_memory_benchmark.py > /tmp/herus_intent_memory_benchmark.log 2>&1; then
+    echo "INTENT MEMORY BENCHMARK: 5/5 gates pass"
+    tail -1 /tmp/herus_intent_memory_benchmark.log
+else
+    echo "  FAIL  intent, abstention or evidence benchmark failed — see /tmp/herus_intent_memory_benchmark.log"
+    tail -1 /tmp/herus_intent_memory_benchmark.log
+    FAIL=1
+fi
+
+if python3 tools/test_intent_memory_redteam.py > /tmp/herus_intent_memory_redteam.log 2>&1; then
+    grep "INTENT MEMORY REDTEAM" /tmp/herus_intent_memory_redteam.log
+else
+    echo "  FAIL  a vivacity or authority mutant survived — see /tmp/herus_intent_memory_redteam.log"
+    tail -3 /tmp/herus_intent_memory_redteam.log
+    FAIL=1
+fi
+
 echo ""
 if [ "$FAIL" = 0 ]; then
     echo "ALL INVARIANTS HOLD — host contracts pass; controlled bench flash may begin, physical gates remain pending."
