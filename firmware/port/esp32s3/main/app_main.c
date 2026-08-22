@@ -26,6 +26,7 @@
 #include "../../hal.h"
 #include "../../sx1262.h"
 #include "../board_t3s3.h"
+#include "../haptic_drv2605l_esp32s3.h"
 
 #include "hcp.h"
 #include "lexicon.h"
@@ -49,6 +50,7 @@ static herus_link    s_link;
 static weave_t       weave;
 static beat_t        beat;
 static lex_t         lexicon;
+static ha_device_t   haptic_target;
 
 static uint64_t      domain_seed = 0x48455255530002ull;
 static uint8_t       group_key[32];
@@ -202,6 +204,23 @@ static void radio_task(void *arg)
 }
 
 /* --------------------------------------------------------- console cmds --- */
+
+static int cmd_haptic_probe(int argc, char **argv)
+{
+    int result;
+    (void)argc;
+    (void)argv;
+    result = herus_haptic_target_init(&haptic_target);
+    if (result != HT_OK) {
+        printf("haptic: target unavailable or pin map unverified (%d)\n", result);
+        return 1;
+    }
+    result = herus_haptic_target_probe();
+    (void)herus_haptic_target_shutdown();
+    printf("haptic probe: %s (%d); no waveform played\n",
+           result == HT_OK ? "electrical presence" : "failed", result);
+    return result == HT_OK ? 0 : 1;
+}
 
 static int cmd_selftest(int argc, char **argv)
 {
@@ -504,6 +523,7 @@ void app_main(void)
 
     esp_console_register_help_command();
     reg("selftest", "radio + crypto + algebra + RAM. RUN THIS FIRST.", cmd_selftest);
+    reg("haptic-probe", "probe DRV2605L electrically; never plays a waveform", cmd_haptic_probe);
     reg("test",     "run Unity hardware & MAC adversarial tests", cmd_test_radio);
     reg("lexcheck", "codebook fingerprint — must match on every board", cmd_lexcheck);
     reg("pair",     "pair demo [a|b] | pair <64 hex> [a|b]", cmd_pair);

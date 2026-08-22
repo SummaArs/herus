@@ -1,0 +1,210 @@
+{
+  "schema": "herus-generative-intelligence-contract-v1",
+  "status": "design_frozen_host_only",
+  "purpose": "Define a bounded local generative intelligence contract without hosted models, network dependence or autonomous authority.",
+  "central_claim": "Generative intelligence means producing novel, bounded and verifiable compositions from typed observations, local memory, rules and context; fluent unsupported text is not sufficient.",
+  "non_claims": [
+    "not an LLM equivalence claim",
+    "not open-domain factual coverage",
+    "not speech recognition accuracy",
+    "not physical latency or energy evidence",
+    "not autonomous action capability"
+  ],
+  "privacy": {
+    "forbidden_product_log": [
+      "audio",
+      "raw_transcript",
+      "embedding",
+      "voice_identity",
+      "location",
+      "secret",
+      "cryptographic_key",
+      "network_payload"
+    ],
+    "allowed_product_log": [
+      "typed_case_id",
+      "categorical_status",
+      "bounded_numeric_metric",
+      "typed_memory_id",
+      "provenance_digest"
+    ]
+  },
+  "pipeline": [
+    {
+      "stage": "observe",
+      "input": "bounded local observation",
+      "output": "typed observation or abstention",
+      "authority": "none"
+    },
+    {
+      "stage": "route",
+      "input": "typed observation",
+      "output": "intent_router_result",
+      "authority": "none"
+    },
+    {
+      "stage": "retrieve",
+      "input": "typed query and bounded local catalog",
+      "output": "typed evidence set with generations and provenance",
+      "authority": "none"
+    },
+    {
+      "stage": "reason",
+      "input": "facts, rules, evidence and bounded budget",
+      "output": "proof, contradiction, abduction, limit or abstention",
+      "authority": "none"
+    },
+    {
+      "stage": "compose",
+      "input": "verified components and an explicit composition plan",
+      "output": "novel typed candidate with derivation graph",
+      "authority": "none"
+    },
+    {
+      "stage": "verify",
+      "input": "candidate, derivation, provenance and policy",
+      "output": "accepted presentation, qualified proposal or abstention",
+      "authority": "none"
+    },
+    {
+      "stage": "present",
+      "input": "verified candidate",
+      "output": "bounded local text or haptic frame",
+      "authority": "presentation_only"
+    },
+    {
+      "stage": "confirm",
+      "input": "human physical gesture and purpose-bound session",
+      "output": "separate authority decision owned by existing policy gates",
+      "authority": "never inferred by generation"
+    }
+  ],
+  "answer_kinds": [
+    "direct",
+    "derived",
+    "composed",
+    "counterfactual",
+    "plan_candidate",
+    "dialogue_candidate",
+    "unknown",
+    "ambiguous",
+    "contradicted",
+    "unsupported",
+    "budget_limit",
+    "policy_blocked"
+  ],
+  "generation_dimensions": {
+    "systematic_composition": {
+      "definition": "Known components must combine correctly in unseen legal arrangements.",
+      "required_splits": [
+        "primitive_holdout",
+        "template_holdout",
+        "position_holdout",
+        "depth_holdout",
+        "length_holdout",
+        "few_shot_holdout"
+      ]
+    },
+    "grounded_continuity": {
+      "definition": "A generated claim must identify the local evidence, rule or explicit hypothetical source that supports it.",
+      "required_outcomes": ["grounded", "conflicting", "insufficient", "unsupported"]
+    },
+    "temporal_personalization": {
+      "definition": "The system must use current generations while preserving superseded history and refusing stale or revoked evidence.",
+      "required_outcomes": ["current", "historical", "expired", "revoked", "conflict", "abstain"]
+    },
+    "counterfactual_reasoning": {
+      "definition": "Hypothetical composition must remain explicitly hypothetical and cannot alter durable state or authority.",
+      "required_outcomes": ["entailed", "contradicted", "unknown", "ambiguous", "limit"]
+    },
+    "bounded_planning": {
+      "definition": "Plans are finite typed candidates; no plan step is execution and every consequential step carries a confirmation requirement.",
+      "required_outcomes": ["plan", "no_plan", "contradiction", "budget_limit", "confirmation_required"]
+    },
+    "dialogue_continuity": {
+      "definition": "The response remains coherent with the active local semantic state without retaining forbidden raw interaction data.",
+      "required_outcomes": ["continue", "clarify", "abstain", "reset_quarantine"]
+    },
+    "selective_generation": {
+      "definition": "The system may refuse, qualify or ask for clarification when query answerability, evidence, confidence or policy is insufficient.",
+      "required_outcomes": ["answer", "qualified", "clarify", "abstain", "block"]
+    }
+  },
+  "output_contract": {
+    "max_text_bytes": 256,
+    "max_evidence_roots": 4,
+    "max_derivation_nodes": 32,
+    "max_plan_steps": 12,
+    "required_fields": [
+      "case_id",
+      "answer_kind",
+      "confidence_band",
+      "abstention_reason",
+      "evidence_ids",
+      "derivation_digest",
+      "authority_state"
+    ],
+    "confidence_bands": ["none", "low", "bounded", "strong"],
+    "authority_states": ["none", "presentation_only", "confirmation_required", "granted_by_external_policy"]
+  },
+  "metrics": [
+    "exact_match",
+    "systematic_composition_accuracy",
+    "novel_combination_accuracy",
+    "proof_validity",
+    "grounded_claim_precision",
+    "unsupported_claim_rate",
+    "unknown_precision",
+    "abstention_precision",
+    "abstention_recall",
+    "contradiction_recall",
+    "temporal_update_accuracy",
+    "counterfactual_containment",
+    "plan_validity",
+    "dialogue_state_continuity",
+    "authority_violations",
+    "privacy_violations",
+    "max_steps_observed",
+    "max_memory_bytes_observed"
+  ],
+  "release_gates": {
+    "authority_violations": 0,
+    "privacy_violations": 0,
+    "unsupported_confident_answers": 0,
+    "invalid_proofs": 0,
+    "counterfactual_state_mutations": 0,
+    "stale_evidence_acceptance": 0,
+    "unbounded_search": false,
+    "physical_execution": false,
+    "network_dependency": false,
+    "hosted_llm_dependency": false
+  },
+  "baselines": [
+    "semantic_compiler_current",
+    "symbolic_reasoner_current",
+    "symbolic_planner_current",
+    "symbolic_dialogue_current",
+    "memory_reasoning_bridge_current",
+    "composed_herus_current",
+    "new_hybrid_generator"
+  ],
+  "comparison_policy": "Only identical inputs, frozen splits, identical output contracts and versioned scoring code may support a release comparison. No external LLM score is imported into a HERUS release claim.",
+  "research_basis": [
+    {
+      "claim": "Systematic generalization must be measured with controlled distribution shifts and novel component arrangements.",
+      "source": "https://arxiv.org/html/2505.13089v1"
+    },
+    {
+      "claim": "Compositional skill requires both systematicity and flexibility rather than rigid symbolic correctness alone.",
+      "source": "https://www.nature.com/articles/s41586-023-06668-3"
+    },
+    {
+      "claim": "Correct-looking retrieved generation can still contain unsupported sentences, so groundedness must be measured separately.",
+      "source": "https://aclanthology.org/2024.findings-naacl.100/"
+    },
+    {
+      "claim": "Abstention should account for query answerability, model confidence and human-value constraints.",
+      "source": "https://direct.mit.edu/tacl/article/doi/10.1162/tacl_a_00754/131566"
+    }
+  ]
+}

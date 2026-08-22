@@ -23,17 +23,71 @@ FW      := ../firmware
 INC     := -I$(FW)/core -I$(FW)/net -I$(FW)/port
 
 CORE    := $(FW)/core/hv.c $(FW)/core/sbc.c $(FW)/core/lexicon.c $(FW)/core/hcp.c $(FW)/core/text.c
-VCORE   := $(FW)/core/transport_selector.c $(FW)/core/personal_telemetry.c
+VCORE   := $(FW)/core/transport_selector.c $(FW)/core/personal_telemetry.c \
+           $(FW)/core/ambient_presence.c $(FW)/core/memory_semantic_evidence.c
 NET     := $(FW)/net/crypto.c $(FW)/net/session.c $(FW)/net/region.c \
            $(FW)/net/weave.c $(FW)/net/beat.c $(FW)/net/link.c
-SIM     := world.c channel.c render.c node.c scenarios.c stress.c compose.c study.c learn.c virtual_lab.c main.c
+SIM     := world.c channel.c render.c node.c scenarios.c stress.c compose.c study.c learn.c virtual_lab.c personal_scenario.c personal_sim.c semantic_scenario.c semantic_life.c physical_fault_scenario.c authority_transition.c authority_scenario.c authority_benchmark.c adaptive_change.c adaptive_change_scenario.c poisoning_guard.c poisoning_scenario.c attribution_guard.c attribution_scenario.c main.c
 
-.PHONY: all run virtual virtual-mutation clean
+.PHONY: all run personal semantic-life physical-faults authority authority-benchmark adaptive-change poisoning attribution attribution-composition attribution-transitive authority-redteam adaptive-change-redteam poisoning-redteam attribution-redteam composition-redteam transitive-redteam virtual virtual-mutation clean
 
 all: run
 
 run: build/herus-sim
 	./build/herus-sim
+
+personal: build/herus-sim
+	./build/herus-sim personal
+
+semantic-life: build/herus-sim
+	./build/herus-sim semantic-life
+
+physical-faults: build/herus-sim
+	./build/herus-sim physical-faults
+
+authority: build/herus-sim
+	./build/herus-sim authority
+
+authority-benchmark: build/herus-sim
+	./build/herus-sim authority-benchmark
+
+adaptive-change: build/herus-sim
+		./build/herus-sim adaptive-change
+
+poisoning: build/herus-sim
+			./build/herus-sim poisoning
+
+attribution: build/herus-sim
+				./build/herus-sim attribution
+
+attribution-composition: build/herus-sim
+		./build/herus-sim attribution-composition
+
+attribution-transitive: build/herus-sim
+		./build/herus-sim attribution-transitive
+
+
+
+
+
+
+authority-redteam:
+	cd .. && python3 tools/test_authority_transition_redteam.py
+
+adaptive-change-redteam:
+	cd .. && python3 tools/test_adaptive_change_redteam.py
+
+poisoning-redteam:
+	cd .. && python3 tools/test_poisoning_redteam.py
+
+attribution-redteam:
+	cd .. && python3 tools/test_attribution_redteam.py
+
+composition-redteam:
+	cd .. && python3 tools/test_composition_redteam.py
+
+transitive-redteam:
+	cd .. && python3 tools/test_transitive_redteam.py
 
 virtual: build/herus-sim
 	./build/herus-sim virtual

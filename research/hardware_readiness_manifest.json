@@ -34,6 +34,23 @@
   },
   "gates": [
     {
+      "id": "haptic-bring-up",
+      "domain": "haptics",
+      "status": "pending",
+      "question": "Does an identified DRV2605L and actuator reproduce a validated HAP-SEM frame in an isolated fixture with observed safety stop and no I2C errors?",
+      "evidence_required": [
+        "haptic_protocol_revision",
+        "haptic_driver_part_marking",
+        "actuator_type",
+        "haptic_profile_version",
+        "calibration_record_digest",
+        "i2c_selftest_result",
+        "fixture_record_digest",
+        "safety_stop_result"
+      ],
+      "claim_if_pass": "Only the declared board, driver, actuator, profile, fixture, instruments and firmware revision reproduced the recorded HAP-SEM playback."
+    },
+    {
       "id": "board-pin-map",
       "domain": "bring_up",
       "status": "pending",

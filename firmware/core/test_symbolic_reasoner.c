@@ -11,6 +11,9 @@
 #define P_STAGE0 20u
 #define P_STAGE1 21u
 #define P_STAGE2 22u
+#define TEST_HANDLE(ns, version, slot) \
+    ((((sr_symbol_t)(ns)) << 24) | (((sr_symbol_t)(version)) << 16) | \
+     ((sr_symbol_t)(slot)))
 
 typedef struct { int pass; int fail; } test_score_t;
 
@@ -20,8 +23,8 @@ static void check(test_score_t *score, int condition, const char *label)
     if (condition) score->pass++; else score->fail++;
 }
 
-static sr_pattern_t pattern(uint16_t subject, uint16_t predicate,
-                            uint16_t object, uint8_t negated)
+static sr_pattern_t pattern(sr_symbol_t subject, sr_symbol_t predicate,
+                            sr_symbol_t object, uint8_t negated)
 {
     sr_pattern_t p;
     p.subject = SR_CONST(subject);
@@ -145,6 +148,55 @@ int main(void)
                     answer.kind == SR_ANSWER_CONTRADICTED,
           "contradictory evidence blocks a confident answer");
 
+    {
+        sr_reasoner_t abductive;
+        sr_abduction_t proposal;
+        sr_pattern_t goal = pattern(S_ALICE, P_GRAND, S_CARA, 0u);
+        unsigned facts_before;
+        sr_init(&abductive);
+        sr_add_fact(&abductive, direct);
+        sr_add_rule(&abductive, &parent);
+        facts_before = sr_fact_count(&abductive);
+        check(&score, sr_abduce(&abductive, &goal, 8u, &proposal) ==
+                        SR_ABDUCTION_FOUND &&
+                        proposal.missing_fact.subject == S_BOB &&
+                        proposal.missing_fact.predicate == P_PARENT &&
+                        proposal.missing_fact.object == S_CARA &&
+                        proposal.rule_id == parent.id &&
+                        proposal.missing_premise == 1u &&
+                        proposal.supporting_count == 1u,
+              "abduction proposes the single missing fact with rule and support metadata");
+        check(&score, sr_fact_count(&abductive) == facts_before &&
+                        sr_rule_count(&abductive) == 1u,
+              "abduction is a read-only hypothesis and never mutates local knowledge");
+        check(&score, sr_abduce(&abductive, &goal, 0u, &proposal) ==
+                        SR_ABDUCTION_LIMIT,
+              "abduction exposes a zero-candidate budget instead of searching unboundedly");
+        goal = pattern_terms(SR_VAR(0u), SR_CONST(P_GRAND),
+                             SR_CONST(S_CARA), 0u);
+        check(&score, sr_abduce(&abductive, &goal, 8u, &proposal) ==
+                        SR_ABDUCTION_E_ARG,
+              "abduction requires a ground goal and does not guess an entity binding");
+    }
+
+    {
+        sr_reasoner_t ambiguous;
+        sr_abduction_t proposal;
+        sr_rule_t alt0 = stage_rule(12u, P_STAGE0, P_STAGE1);
+        sr_rule_t alt1 = stage_rule(13u, P_STAGE2, P_STAGE1);
+        sr_pattern_t goal = pattern(S_ALICE, P_STAGE1, S_BOB, 0u);
+        sr_init(&ambiguous);
+        sr_add_rule(&ambiguous, &alt0);
+        sr_add_rule(&ambiguous, &alt1);
+        check(&score, sr_abduce(&ambiguous, &goal, 8u, &proposal) ==
+                        SR_ABDUCTION_AMBIGUOUS &&
+                        proposal.missing_fact.subject == 0u,
+              "multiple valid missing facts produce explicit abduction ambiguity");
+        check(&score, sr_abduce(&ambiguous, &goal, 1u, &proposal) ==
+                        SR_ABDUCTION_LIMIT,
+              "abduction candidate budget stops before selecting an arbitrary explanation");
+    }
+
     memset(&invalid, 0, sizeof(invalid));
     invalid.id = 99u;
     invalid.premise_count = 1u;
@@ -164,6 +216,58 @@ int main(void)
     check(&score, sr_saturate(&reasoner, 1u) == SR_E_LIMIT &&
                     reasoner.saturation_truncated == 1u,
           "a bounded search budget produces an explicit limit, not a false result");
+
+    {
+        sr_reasoner_t handles;
+        sr_answer_t handle_answer;
+        sr_symbol_t high_subject = TEST_HANDLE(SRREG_NAMESPACE_PERSONAL,
+                                                  7u, 0x1234u);
+        sr_symbol_t high_predicate = TEST_HANDLE(SRREG_NAMESPACE_FACTORY,
+                                                    7u, 0x1234u);
+        sr_symbol_t high_object = TEST_HANDLE(SRREG_NAMESPACE_PERSONAL,
+                                                  7u, 0x1235u);
+        sr_fact_t high_fact = { high_subject, high_predicate, high_object, 0u };
+        sr_pattern_t high_query = pattern(high_subject, high_predicate,
+                                          high_object, 0u);
+        sr_init(&handles);
+        check(&score, high_subject > UINT16_MAX && high_predicate > UINT16_MAX &&
+                        high_subject != high_predicate && high_object != high_subject &&
+                        sr_add_fact(&handles, high_fact) == SR_OK &&
+                        sr_query(&handles, &high_query, &handle_answer) == SR_OK &&
+                        handle_answer.kind == SR_ANSWER_DIRECT &&
+                        handle_answer.fact.subject == high_subject &&
+                        handle_answer.fact.predicate == high_predicate &&
+                        handle_answer.fact.object == high_object,
+              "reasoner preserves collision-aware 32-bit handles without legacy truncation");
+    }
+
+    {
+        sr_reasoner_t full;
+        sr_rule_t capacity;
+        int capacity_facts_ok = 1;
+        sr_init(&full);
+        for (uint16_t subject = 1u; subject <= SR_MAX_FACTS; subject++) {
+            if (sr_add_fact(&full,
+                            (sr_fact_t){ subject, P_STAGE0, S_BOB, 0u }) != SR_OK)
+                capacity_facts_ok = 0;
+        }
+        check(&score, capacity_facts_ok && sr_fact_count(&full) == SR_MAX_FACTS,
+              "capacity fixture accepts the full bounded fact set");
+        memset(&capacity, 0, sizeof(capacity));
+        capacity.id = 88u;
+        capacity.premise_count = 1u;
+        capacity.premise[0] = pattern_terms(SR_VAR(0u), SR_CONST(P_STAGE0),
+                                             SR_CONST(S_BOB), 0u);
+        capacity.conclusion = pattern_terms(SR_VAR(0u), SR_CONST(P_STAGE1),
+                                             SR_CONST(S_BOB), 0u);
+        capacity.cost = 1u;
+        check(&score, sr_add_rule(&full, &capacity) == SR_OK,
+              "capacity fixture installs a valid generative rule");
+        check(&score, sr_saturate(&full, 64u) == SR_E_FULL &&
+                        full.saturation_truncated == 1u &&
+                        sr_fact_count(&full) == SR_MAX_FACTS,
+              "full knowledge base reports capacity truncation instead of false fixed point");
+    }
 
     printf("SYMBOLIC REASONER: %d pass, %d fail\n", score.pass, score.fail);
     return score.fail ? 1 : 0;

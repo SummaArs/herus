@@ -1,0 +1,107 @@
+{
+  "schema": "herus-haptic-bench-materials-v1",
+  "status": "blocked_by_missing_hardware",
+  "selection_policy": "identity_and_datasheet_before_power",
+  "materials": [
+    {
+      "id": "board",
+      "role": "ESP32-S3 host and radio board",
+      "candidate": "LILYGO T3-S3 V1.3 SX1262",
+      "status": "not_attached",
+      "acceptance": [
+        "physical revision marking photographed",
+        "radio variant confirmed as SX1262",
+        "matching V1.3 schematic identified",
+        "SDA/SCL access and sharing documented",
+        "ENABLE routing documented before firmware macro is enabled"
+      ],
+      "source_urls": [
+        "https://lilygo.cc/en-us/products/t3-s3-v1-3",
+        "https://github.com/Xinyuan-LilyGO/LilyGo-LoRa-Series/blob/master/docs/en/t3_s3_sx1278/t3_s3_sx1278_hw.md"
+      ]
+    },
+    {
+      "id": "driver_breakout",
+      "role": "single DRV2605L fixture driver",
+      "candidate": "Adafruit DRV2605L Haptic Motor Controller 2305",
+      "status": "candidate_not_selected",
+      "acceptance": [
+        "exact board revision and schematic archived",
+        "VDD/VIN range and pull-up direction verified",
+        "SDA/SCL and motor plus/minus accessible",
+        "ENABLE is accessible or a safe hardware-enable substitute is documented",
+        "REG and IN/TRIG behavior are verified",
+        "no hidden power source or battery is connected"
+      ],
+      "reason_not_automatically_accepted": "the public pinout documents VIN, GND, SDA, SCL, motor outputs and INT, but does not establish an exposed DRV2605L ENABLE pin for the HERUS gate",
+      "source_urls": [
+        "https://learn.adafruit.com/adafruit-drv2605-haptic-controller-breakout?view=all",
+        "https://learn.adafruit.com/adafruit-drv2605-haptic-controller-breakout/pinouts.md",
+        "https://learn.adafruit.com/adafruit-drv2605-haptic-controller-breakout/downloads"
+      ]
+    },
+    {
+      "id": "actuator",
+      "role": "single vibration actuator",
+      "candidate": "one ERM or LRA with manufacturer datasheet",
+      "status": "not_selected",
+      "acceptance": [
+        "model and actuator type known",
+        "rated voltage and overdrive limits documented",
+        "nominal frequency documented for LRA",
+        "mechanical mounting and polarity documented",
+        "manufacturer limits do not conflict with fixture envelope"
+      ],
+      "source_urls": [
+        "https://www.ti.com/lit/gpn/drv2605l",
+        "https://www.ti.com/lit/pdf/sloa189"
+      ]
+    },
+    {
+      "id": "power",
+      "role": "isolated fixture supply",
+      "candidate": "bench DC supply with current limit and output switch",
+      "status": "not_available_in_session",
+      "acceptance": [
+        "voltage/current readback",
+        "hard current limit",
+        "independent output disable",
+        "single-point power source with no parallel battery"
+      ]
+    },
+    {
+      "id": "logic_capture",
+      "role": "I2C evidence",
+      "candidate": "logic analyzer or oscilloscope with digital channels",
+      "status": "not_available_in_session",
+      "acceptance": [
+        "100 kHz I2C capture",
+        "START/STOP/address/ACK visibility",
+        "exportable private raw log and digest"
+      ]
+    },
+    {
+      "id": "waveform_capture",
+      "role": "OUT+ / OUT- measurement for later gate",
+      "candidate": "differential probe oscilloscope plus fixture",
+      "status": "not_available_in_session",
+      "acceptance": [
+        "differential measurement appropriate for PWM output",
+        "no common-ground probe across OUT+ and OUT-",
+        "calibration record and sample-rate record"
+      ]
+    },
+    {
+      "id": "safety_stop",
+      "role": "independent physical cutoff",
+      "candidate": "series supply switch or enable interlock",
+      "status": "not_available_in_session",
+      "acceptance": [
+        "operator can stop without firmware",
+        "cutoff tested before actuator playback",
+        "cutoff result recorded in private evidence"
+      ]
+    }
+  ],
+  "promotion_rule": "No material status may move to verified from repository metadata alone; board photo, schematic, datasheet and bench observation are required."
+}

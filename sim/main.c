@@ -42,6 +42,17 @@ static const entry_t TABLE[] = {
     { "study",     scenario_study,      "MIND: recall with honest refusal, for a concurseiro" },
     { "learn",     scenario_learn,      "MIND: the residue loop — it learns what it failed at" },
     { "virtual",   scenario_virtual,    "PRE-HARDWARE: Watch, Paper-Core, sensors, battery and LoRa" },
+    { "personal",  scenario_personal,   "PRE-HARDWARE: personal semantic life, attention, energy and contact" },
+    { "semantic-life", scenario_semantic_life, "PRE-HARDWARE: continuous preferences, goals, memory, reboot and abstention" },
+    { "physical-faults", scenario_physical_faults, "PRE-HARDWARE: adapter loss, interruption, contact and energy failure" },
+    { "authority", scenario_authority, "AGSC: provenance, memory, abstention and non-amplifying action authority" },
+    { "authority-benchmark", scenario_authority_benchmark, "AGSC: baselines for false memory, conflict, stale facts, reboot and action" },
+    { "adaptive-change", scenario_adaptive_change, "AGSC-D: supersession, revocation, expiry, drift and epoch continuity" },
+    { "poisoning", scenario_poisoning, "AGSC security: L1 direct, L2 compositional and L3 dormant poisoning" },
+    { "attribution", scenario_attribution, "AGSC attribution: typed lineage, role conservation and implicit-authority barriers" },
+    { "attribution-benchmark", scenario_attribution_benchmark, "AGSC attribution: deterministic comparison against permissive memory baselines" },
+    { "attribution-composition", scenario_attribution_composition, "AGSC attribution: counterfactual composition and principal-isolated sharing" },
+    { "attribution-transitive", scenario_attribution_transitive, "AGSC attribution: non-delegable shares and cross-principal revocation" },
 };
 #define NTABLE ((int)(sizeof TABLE / sizeof *TABLE))
 

@@ -5,6 +5,7 @@
 #   make nucleus    the local, bounded semantic-intelligence suite
 #   make voice      the controlled-language and bounded-haptics suite
 #   make intent     the session/confidence/ambiguity gateway suite
+#   make intent-router the bounded text-intent, evidence and abstention suite
 #   make dialogue   the bounded local conversational-intelligence suite
 #   make model-lab  the measured local-model acceptance and reply-shield suite
 #   make memory-policy the selective-memory relevance and retention-policy suite
@@ -29,6 +30,10 @@
 #   make memory-physical-session-recovery the durable reservation recovery oracle suite
 #   make memory-physical-session-recovery-stress the deterministic hostile recovery/bootstrap campaign
 #   make memory-physical-session-bootstrap the post-reboot session quarantine suite
+#   make memory-reboot-boundary floor-only recovery and semantic-index quarantine
+#   make memory-reboot-redteam deterministic stale-context recovery sabotage
+#   make memory-post-reboot-reindex supersession, expiry and conflict after reindex
+#   make memory-post-reboot-reindex-redteam deterministic silent-update sabotage
 #   make memory-prehardware-finale the final host-only post-reboot memory-chain suite
 #   make threat-model the executable evidence and residual-risk classification suite
 #   make threat-model-stress the deterministic hostile evidence-classifier campaign
@@ -41,8 +46,29 @@
 #   make transport-selector the host-only multimode route-selection suite
 #   make personal-telemetry the host-only consented personal-metric gate suite
 #   make symbolic-reasoner the bounded generative symbolic reasoning suite
+#   make generative-core the bounded hybrid composition and presentation suite
 #   make resonator the bounded VSA factorization and cleanup suite
+#   make semantic-compiler the controlled-language semantic compiler suite
+#   make semantic-language-ood the bounded language-paraphrase OOD suite
+#   make semantic-language-ood-redteam the language-paraphrase mutation campaign
+#   make semantic-benchmark the fixed-corpus semantic equivalence benchmark
+#   make llm-comparison the offline HERUS/local-baseline comparison harness
+#   make llm-comparison-redteam the comparison-harness mutation campaign
+#   make knowledge-feed the authenticated, bounded and confirmation-gated Core feed
+#   make knowledge-feed-cursor the durable anti-rollback journal suite
+#   make memory-semantic-evidence the local temporal/conflict evidence index
+#   make memory-reasoning-bridge the offline memory-to-reasoner composition suite
+#   make magic-anticipation the explainable surprise and privacy-gate suite
+#   make degradation-matrix capacity, conflict, ambiguity and consent composition
+#   make degradation-redteam deterministic capacity/context sabotage
+#   make magic-trigger the bounded attention-window and proposal-budget suite
+#   make magic-dialogue-bridge the read-only dialogue presentation suite
+#   make autonomy-policy the explicit A0–A4 initiative and confirmation policy suite
+#   make autonomy-redteam the deterministic sabotage campaign for autonomy controls
+#   make magic-redteam the deterministic sabotage campaign for magic and memory
 #   make interaction the push-to-talk, confirmation and one-shot runtime suite
+#   make cross-failure-matrix source loss, revocation and assurance composition
+#   make cross-failure-redteam deterministic cross-module authority sabotage
 #   make interaction-rig deterministic adapter and validation-lab scenarios
 #   make net        the protocol suite (crypto, session, weave, beat, framing)
 #   make radio      the SX1262 command sequences, against a recording mock bus
@@ -62,9 +88,9 @@ INC     := -Icore -Inet -Iport -Itest
 CORE    := core/hv.c core/sbc.c core/lexicon.c core/hcp.c
 NET     := net/crypto.c net/session.c net/region.c net/weave.c net/beat.c net/link.c
 
-.PHONY: all algebra nucleus voice intent dialogue model-lab memory-policy memory-capture memory-extract watch-memory-frontend memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale memory-collection memory-collection-index memory-collection-recovery memory-collection-recovery-stress memory-collection-finale bench-evidence-validate bench-interruption-sim memory-proposal llm-budget-check memory-physical-session memory-physical-session-recovery memory-physical-session-recovery-stress memory-physical-session-bootstrap memory-prehardware-finale threat-model threat-model-stress proof-fire-mutations assurance capstone trust control-link delivery-plan transport-selector personal-telemetry symbolic-reasoner resonator interaction interaction-rig net radio syntax vectors clean
+.PHONY: all algebra nucleus voice intent intent-router dialogue model-lab memory-policy memory-capture memory-extract watch-memory-frontend memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale memory-collection memory-collection-index memory-collection-recovery memory-collection-recovery-stress memory-collection-finale bench-evidence-validate bench-interruption-sim memory-proposal llm-budget-check memory-physical-session memory-physical-session-recovery memory-physical-session-recovery-stress memory-physical-session-bootstrap memory-reboot-boundary memory-reboot-redteam memory-post-reboot-reindex memory-post-reboot-reindex-redteam memory-prehardware-finale threat-model threat-model-stress proof-fire-mutations assurance capstone trust control-link delivery-plan transport-selector personal-telemetry symbolic-reasoner generative-core generative-core-redteam personal-adapter personal-adapter-redteam generative-core-budget generative-haptic generative-haptic-redteam generative-dialogue-loop generative-dialogue-loop-redteam composed-dialogue composed-dialogue-redteam compositional-ood compositional-ood-redteam resonator semantic-compiler semantic-language-ood semantic-language-ood-redteam semantic-benchmark llm-comparison llm-comparison-redteam knowledge-feed knowledge-feed-cursor memory-semantic-evidence memory-reasoning-bridge magic-anticipation degradation-matrix degradation-redteam magic-trigger magic-dialogue-bridge autonomy-policy autonomy-redteam magic-redteam interaction interaction-rig net radio syntax vectors haptic-language haptic-language-matrix haptic-semantic-bridge haptic-adapter haptic-evidence haptic-target haptic-runner haptic-preflight cross-failure-matrix cross-failure-redteam clean
 
-all: algebra nucleus voice intent dialogue model-lab memory-policy memory-capture memory-extract memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale memory-collection memory-collection-index memory-collection-recovery memory-collection-recovery-stress memory-collection-finale memory-physical-session memory-physical-session-recovery memory-physical-session-recovery-stress memory-physical-session-bootstrap memory-prehardware-finale threat-model threat-model-stress proof-fire-mutations assurance capstone trust control-link interaction interaction-rig net radio syntax
+all: algebra nucleus voice intent intent-router dialogue model-lab memory-policy memory-capture memory-extract memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale memory-collection memory-collection-index memory-collection-recovery memory-collection-recovery-stress memory-collection-finale memory-physical-session memory-physical-session-recovery memory-physical-session-recovery-stress memory-physical-session-bootstrap memory-reboot-boundary memory-reboot-redteam memory-post-reboot-reindex memory-post-reboot-reindex-redteam memory-prehardware-finale threat-model threat-model-stress proof-fire-mutations assurance capstone trust control-link interaction interaction-rig net radio syntax vectors haptic-language haptic-language-matrix haptic-semantic-bridge haptic-adapter haptic-evidence haptic-target haptic-runner haptic-preflight personal-adapter generative-core
 	@echo ""
 	@echo "=================================================="
 	@echo "ALL FIRMWARE SUITES PASS"
@@ -94,6 +120,11 @@ intent: build
 	@echo "--- intent gateway: session, confidence, ambiguity and bounded context ---"
 	$(CC) $(CFLAGS) $(INC) core/intent_gate.c core/test_intent_gate.c -o build/test_intent_gate
 	./build/test_intent_gate
+
+intent-router: build
+	@echo "--- intent router: bounded text intent, evidence, abstention and confirmation ---"
+	$(CC) $(CFLAGS) -Werror $(INC) core/intent_router.c core/test_intent_router.c -o build/test_intent_router
+	./build/test_intent_router
 
 dialogue: build
 	@echo "--- dialogue: bounded local conversation and model authority boundary ---"
@@ -207,12 +238,238 @@ personal-telemetry: build
 
 symbolic-reasoner: build
 	@echo "--- symbolic reasoner: bounded generative inference, proof and abstention ---"
-	$(CC) $(CFLAGS) $(INC) core/symbolic_reasoner.c core/test_symbolic_reasoner.c -o build/test_symbolic_reasoner
+	$(CC) $(CFLAGS) $(INC) core/symbol_registry.c core/symbolic_reasoner.c core/test_symbolic_reasoner.c -o build/test_symbolic_reasoner
 	./build/test_symbolic_reasoner
-	$(CC) $(CFLAGS) $(INC) core/symbolic_reasoner.c core/symbolic_planner.c core/test_symbolic_planner.c -o build/test_symbolic_planner
+	$(CC) $(CFLAGS) $(INC) core/symbol_registry.c core/symbolic_reasoner.c core/symbolic_planner.c core/test_symbolic_planner.c -o build/test_symbolic_planner
 	./build/test_symbolic_planner
-	$(CC) $(CFLAGS) -DHV_LUT_POPCOUNT $(INC) core/hv.c core/resonator.c core/resonator_bridge.c core/symbolic_reasoner.c core/symbolic_dialogue.c core/test_symbolic_dialogue.c -o build/test_symbolic_dialogue
+	$(CC) $(CFLAGS) -DHV_LUT_POPCOUNT $(INC) core/hv.c core/resonator.c core/resonator_bridge.c core/symbol_registry.c core/symbolic_reasoner.c core/symbolic_dialogue.c core/test_symbolic_dialogue.c -o build/test_symbolic_dialogue
 	./build/test_symbolic_dialogue
+
+generative-core: build
+	@echo "--- generative core: bounded hybrid composition, counterfactuals and plans ---"
+	$(CC) $(CFLAGS) -Werror $(INC) core/symbol_registry.c core/symbolic_reasoner.c core/symbolic_planner.c core/memory_semantic_evidence.c core/memory_reasoning_bridge.c core/personal_adapter.c core/generative_core.c core/test_generative_core.c -o build/test_generative_core
+	./build/test_generative_core
+
+generative-core-redteam:
+	@echo "--- generative core redteam: deterministic critical-control sabotage ---"
+	python3 ../tools/test_generative_core_redteam.py
+
+personal-adapter: build
+	@echo "--- personal adapter: consented local preference learning ---"
+	$(CC) $(CFLAGS) -Werror $(INC) core/personal_adapter.c core/test_personal_adapter.c -o build/test_personal_adapter
+	./build/test_personal_adapter
+
+personal-adapter-redteam:
+	@echo "--- personal adapter redteam: deterministic learning-control sabotage ---"
+	python3 ../tools/test_personal_adapter_redteam.py
+
+generative-core-budget:
+	@echo "--- generative core budget: host-side object guardrails only ---"
+	python3 ../tools/generative_core_budget.py
+
+generative-haptic: build
+	@echo "--- generative haptic bridge: operational liveliness and HAP-SEM round-trip ---"
+	$(CC) $(CFLAGS) -Werror $(INC) core/haptic_language.c core/generative_haptic_bridge.c core/test_generative_haptic_bridge.c -o build/test_generative_haptic_bridge
+	./build/test_generative_haptic_bridge
+
+generative-haptic-redteam:
+	@echo "--- generative haptic redteam: presentation must remain non-actionable ---"
+	python3 ../tools/test_generative_haptic_redteam.py
+
+generative-dialogue-loop: build
+	@echo "--- generative dialogue loop: multi-step local lifecycle ---"
+	$(CC) $(CFLAGS) -Werror $(INC) core/haptic_language.c core/generative_haptic_bridge.c core/generative_dialogue_loop.c core/test_generative_dialogue_loop.c -o build/test_generative_dialogue_loop
+	./build/test_generative_dialogue_loop
+
+generative-dialogue-loop-redteam:
+	@echo "--- generative dialogue loop redteam: lifecycle controls must be killable ---"
+	python3 ../tools/test_generative_dialogue_loop_redteam.py
+
+composed-dialogue: build
+	@echo "--- composed dialogue: router, memory, generation, haptics and reboot ---"
+	$(CC) $(CFLAGS) -Werror $(INC) core/intent_router.c core/symbolic_reasoner.c core/symbolic_planner.c core/memory_semantic_evidence.c core/memory_reasoning_bridge.c core/personal_adapter.c core/generative_core.c core/haptic_language.c core/generative_haptic_bridge.c core/generative_dialogue_loop.c core/composed_dialogue.c core/test_composed_dialogue.c -o build/test_composed_dialogue
+	./build/test_composed_dialogue
+
+composed-dialogue-redteam:
+	@echo "--- composed dialogue redteam: ghost-memory and replay controls must be killable ---"
+	python3 ../tools/test_composed_dialogue_redteam.py
+
+compositional-ood:
+	@echo "--- compositional OOD: systematic recombination and bounded generation ---"
+	python3 ../tools/compositional_ood_benchmark.py
+
+compositional-ood-redteam:
+	@echo "--- compositional OOD redteam: generalization and abstention controls must be killable ---"
+	python3 ../tools/test_compositional_ood_redteam.py
+
+semantic-compiler: build
+	@echo "--- semantic compiler: bounded controlled-language to typed IR ---"
+	$(CC) $(CFLAGS) -DHV_LUT_POPCOUNT $(INC) core/hv.c core/resonator.c core/resonator_bridge.c core/symbolic_reasoner.c core/symbolic_planner.c core/symbolic_dialogue.c core/symbol_registry.c core/semantic_compiler.c core/test_semantic_compiler.c -o build/test_semantic_compiler
+	./build/test_semantic_compiler
+
+semantic-language-ood: build
+	@echo "--- semantic language OOD: bounded paraphrases, quantifiers and safe abstention ---"
+	$(CC) $(CFLAGS) -DHV_LUT_POPCOUNT $(INC) core/hv.c core/resonator.c core/resonator_bridge.c core/symbolic_reasoner.c core/symbolic_planner.c core/symbolic_dialogue.c core/symbol_registry.c core/semantic_compiler.c core/test_semantic_compiler_language_ood.c -o build/test_semantic_compiler_language_ood
+	./build/test_semantic_compiler_language_ood
+
+semantic-language-ood-redteam:
+	@echo "--- semantic language OOD redteam: language controls must be killable ---"
+	python3 ../tools/test_semantic_compiler_language_ood_redteam.py
+
+semantic-benchmark: build
+	@echo "--- semantic benchmark: exact IR, abstention and authority gates ---"
+	$(CC) $(CFLAGS) -DHV_LUT_POPCOUNT $(INC) core/hv.c core/resonator.c core/resonator_bridge.c core/symbolic_reasoner.c core/symbolic_planner.c core/symbolic_dialogue.c core/symbol_registry.c core/semantic_compiler.c core/test_semantic_compiler_benchmark.c -o build/test_semantic_compiler_benchmark
+	./build/test_semantic_compiler_benchmark
+
+llm-comparison:
+	@echo "--- LLM comparison: offline frozen-case harness and explicit local baseline status ---"
+	python3 ../tools/llm_comparison_harness.py
+
+llm-comparison-redteam:
+	@echo "--- LLM comparison redteam: schema, privacy and bounded-result controls ---"
+	python3 ../tools/test_llm_comparison_harness_redteam.py
+
+knowledge-feed: build
+	@echo "--- knowledge feed: Core proposal, digest, rollback and local authority gates ---"
+	$(CC) $(CFLAGS) -DHV_LUT_POPCOUNT $(INC) net/crypto.c core/hv.c core/resonator.c core/resonator_bridge.c core/symbol_registry.c core/symbolic_reasoner.c core/symbolic_dialogue.c core/knowledge_feed.c core/test_knowledge_feed.c -o build/test_knowledge_feed
+	./build/test_knowledge_feed
+
+knowledge-feed-cursor: build
+	@echo "--- knowledge feed cursor: durable two-slot anti-rollback journal ---"
+	$(CC) $(CFLAGS) $(INC) net/crypto.c core/knowledge_feed_cursor.c core/test_knowledge_feed_cursor.c -o build/test_knowledge_feed_cursor
+	./build/test_knowledge_feed_cursor
+
+knowledge-feed-cursor-powerfail: build
+	@echo "--- knowledge feed cursor power-fail: interrupted writes and exhaustive bit corruption ---"
+	$(CC) $(CFLAGS) $(INC) net/crypto.c core/knowledge_feed_cursor.c core/test_knowledge_feed_cursor_powerfail.c -o build/test_knowledge_feed_cursor_powerfail
+	./build/test_knowledge_feed_cursor_powerfail
+
+memory-semantic-evidence: build
+	@echo "--- memory semantic evidence: bounded temporal facts and conflict abstention ---"
+	$(CC) $(CFLAGS) $(INC) core/memory_semantic_evidence.c core/test_memory_semantic_evidence.c -o build/test_memory_semantic_evidence
+	./build/test_memory_semantic_evidence
+
+memory-reasoning-bridge: build
+	@echo "--- memory reasoning bridge: offline composition, conflict and abstention ---"
+	$(CC) $(CFLAGS) $(INC) core/memory_semantic_evidence.c core/memory_reasoning_bridge.c core/symbolic_reasoner.c core/test_memory_reasoning_bridge.c -o build/test_memory_reasoning_bridge
+	./build/test_memory_reasoning_bridge
+
+magic-anticipation: build
+	@echo "--- magic anticipation: explainable surprise, privacy and abstention ---"
+	$(CC) $(CFLAGS) $(INC) core/memory_semantic_evidence.c core/memory_reasoning_bridge.c core/symbolic_reasoner.c core/magic_anticipation.c core/test_magic_anticipation.c -o build/test_magic_anticipation
+	./build/test_magic_anticipation
+
+degradation-matrix: build
+	@echo "--- degradation matrix: capacity, conflict, ambiguity, consent and Core absence ---"
+	$(CC) $(CFLAGS) $(INC) core/memory_semantic_evidence.c core/memory_reasoning_bridge.c core/symbolic_reasoner.c core/magic_anticipation.c core/test_degradation_matrix.c -o build/test_degradation_matrix
+	./build/test_degradation_matrix
+
+degradation-redteam:
+	@echo "--- degradation redteam: capacity and contextual-magic sabotage ---"
+	python3 ../tools/test_degradation_redteam.py
+
+magic-trigger: build
+	@echo "--- magic trigger: bounded attention window and proposal budget ---"
+	$(CC) $(CFLAGS) $(INC) core/memory_semantic_evidence.c core/memory_reasoning_bridge.c core/symbolic_reasoner.c core/magic_anticipation.c core/magic_trigger.c core/test_magic_trigger.c -o build/test_magic_trigger
+	./build/test_magic_trigger
+
+magic-dialogue-bridge: build
+	@echo "--- magic dialogue bridge: read-only local presentation ---"
+	$(CC) $(CFLAGS) $(INC) core/hv.c core/resonator.c core/resonator_bridge.c core/memory_semantic_evidence.c core/memory_reasoning_bridge.c core/symbolic_reasoner.c core/magic_anticipation.c core/magic_dialogue_bridge.c core/symbolic_dialogue.c core/test_magic_dialogue_bridge.c -o build/test_magic_dialogue_bridge
+	./build/test_magic_dialogue_bridge
+
+ambient-presence: build
+	@echo "--- ambient presence: quiet, bounded and contact-aware local offer ---"
+	$(CC) $(CFLAGS) $(INC) core/ambient_presence.c core/test_ambient_presence.c -o build/test_ambient_presence
+	./build/test_ambient_presence
+
+ambient-presence-redteam:
+	@echo "--- ambient presence redteam: deterministic invisibility sabotage ---"
+	python3 ../tools/test_ambient_presence_redteam.py
+
+autonomy-policy: build
+	@echo "--- autonomy policy: A0-A4 initiative and confirmation envelope ---"
+	$(CC) $(CFLAGS) $(INC) core/autonomy_policy.c core/test_autonomy_policy.c -o build/test_autonomy_policy
+	./build/test_autonomy_policy
+
+autonomy-redteam:
+	@echo "--- autonomy redteam: deterministic critical-control sabotage ---"
+	python3 ../tools/test_autonomy_redteam.py
+
+magic-redteam:
+	@echo "--- magic/memory redteam: deterministic critical-control sabotage ---"
+	python3 ../tools/test_magic_redteam.py
+
+core-resilience-matrix:
+	@echo "--- combined failures: Core absence, reboot, consent and bounded-memory composition ---"
+	python3 ../tools/test_combined_failures.py
+
+core-redteam:
+	@echo "--- Core redteam: deterministic feed and cursor control sabotage ---"
+	python3 ../tools/test_core_redteam.py
+
+transport-redteam:
+	@echo "--- transport redteam: deterministic haptic and SX1262 adapter sabotage ---"
+	python3 ../tools/test_transport_redteam.py
+
+symbol-registry-model:
+	@echo "--- symbol registry model: versioned collision-aware host contract ---"
+	python3 ../tools/test_symbol_registry_model.py
+
+symbol-registry-c: build
+	@echo "--- symbol registry C: portable versioned collision-aware handles ---"
+	$(CC) $(CFLAGS) $(INC) core/symbol_registry.c core/test_symbol_registry.c -o build/test_symbol_registry
+	./build/test_symbol_registry
+
+haptic-language: build
+	@echo "--- haptic language: DRV2605L-independent semantic frame encoder ---"
+	$(CC) $(CFLAGS) $(INC) core/haptic_language.c core/test_haptic_language.c -o build/test_haptic_language
+	./build/test_haptic_language
+
+haptic-language-matrix: build
+	@echo "--- haptic language matrix: 720 tuples per actuator, directed corruption and mismatch ---"
+	$(CC) $(CFLAGS) $(INC) core/haptic_language.c core/test_haptic_language_matrix.c -o build/test_haptic_language_matrix
+	./build/test_haptic_language_matrix
+
+haptic-semantic-bridge: build
+	@echo "--- haptic semantic bridge: presentation, authority and abstention ---"
+	$(CC) $(CFLAGS) $(INC) core/haptic_language.c core/haptic_semantic_bridge.c core/test_haptic_semantic_bridge.c -o build/test_haptic_semantic_bridge
+	./build/test_haptic_semantic_bridge
+
+haptic-adapter: build
+	@echo "--- haptic adapter: DRV2605L bus ordering, safety and fail-closed state ---"
+	$(CC) $(CFLAGS) $(INC) core/haptic_language.c core/haptic_adapter.c core/test_haptic_adapter.c -o build/test_haptic_adapter
+	./build/test_haptic_adapter
+
+haptic-evidence: build
+	@echo "--- haptic evidence: private numeric schema and fail-closed validator ---"
+	python3 ../tools/test_haptic_bench_evidence_validate.py
+
+haptic-runner: build
+	@echo "--- haptic runner: no-hardware block and origin-bound evidence ---"
+	python3 ../tools/test_haptic_bench_evidence_validate.py
+	python3 ../tools/haptic_bench_runner.py --prepare-blocked build/haptic_bench_blocked.json
+	python3 ../tools/haptic_bench_runner.py --validate build/haptic_bench_blocked.json
+
+haptic-preflight: build
+	@echo "--- haptic preflight: pre-energization checklist and no-hardware block ---"
+	python3 ../tools/test_haptic_preflight.py
+	python3 ../tools/haptic_preflight.py --prepare-blocked build/haptic_preflight_blocked.json
+	python3 ../tools/haptic_preflight.py --validate build/haptic_preflight_blocked.json
+
+haptic-target: build
+	@echo "--- haptic target: disabled board gate and explicit I2C test override ---"
+	$(CC) $(CFLAGS) -Itest/idf_stub -Icore -Iport/esp32s3 \
+	    core/haptic_language.c core/haptic_adapter.c \
+	    port/esp32s3/haptic_drv2605l_esp32s3.c \
+	    port/esp32s3/test_haptic_target.c -o build/test_haptic_target_default
+	./build/test_haptic_target_default
+	$(CC) $(CFLAGS) -DBOARD_HAS_HAPTIC_I2C=1 -DPIN_HAPTIC_ENABLE=16 \
+	    -DPIN_HAPTIC_ENABLE_VALID=1 -Itest/idf_stub -Icore -Iport/esp32s3 \
+	    core/haptic_language.c core/haptic_adapter.c \
+	    port/esp32s3/haptic_drv2605l_esp32s3.c \
+	    port/esp32s3/test_haptic_target.c -o build/test_haptic_target_override
+	./build/test_haptic_target_override
 
 resonator: build
 	@echo "--- resonator: bounded VSA factorization and cleanup ---"
@@ -242,6 +499,26 @@ memory-physical-session-bootstrap: build
 	@echo "--- physical session bootstrap: post-reboot floor-only quarantine ---"
 	$(CC) $(CFLAGS) $(INC) core/memory_physical_session.c core/memory_physical_session_recovery.c core/memory_physical_session_bootstrap.c core/test_memory_physical_session_bootstrap.c -o build/test_memory_physical_session_bootstrap
 	./build/test_memory_physical_session_bootstrap
+
+memory-reboot-boundary: build
+	@echo "--- memory reboot boundary: floor-only recovery and semantic-index quarantine ---"
+	$(CC) $(CFLAGS) $(INC) core/memory_semantic_evidence.c core/memory_physical_session.c core/memory_physical_session_recovery.c core/memory_physical_session_bootstrap.c core/symbolic_reasoner.c core/memory_reasoning_bridge.c core/magic_anticipation.c core/magic_trigger.c core/memory_reboot_boundary.c core/test_memory_reboot_boundary.c -o build/test_memory_reboot_boundary
+	./build/test_memory_reboot_boundary
+
+memory-reboot-redteam:
+	@echo "--- memory reboot redteam: stale-context and partial-recovery sabotage ---"
+	python3 ../tools/test_memory_reboot_redteam.py
+
+memory-post-reboot-reindex: build
+	@echo "--- post-reboot reindex: supersession, expiry, conflict and abstention ---"
+	$(CC) $(CFLAGS) $(INC) core/memory_semantic_evidence.c core/test_memory_post_reboot_reindex.c -o build/test_memory_post_reboot_reindex
+	./build/test_memory_post_reboot_reindex
+
+memory-post-reboot-reindex-redteam:
+	@echo "--- post-reboot reindex redteam: stale and silent-update sabotage ---"
+	python3 ../tools/test_post_reboot_reindex_redteam.py
+
+
 
 memory-prehardware-finale: build
 	@echo "--- pre-hardware Grand Finale: post-reboot memory-chain composition ---"
@@ -292,6 +569,15 @@ interaction: build
 	$(CC) $(CFLAGS) $(INC) net/crypto.c net/core_link.c core/voice.c core/intent_gate.c core/assurance.c core/interaction.c core/test_interaction.c -o build/test_interaction
 	./build/test_interaction
 
+cross-failure-matrix: build
+	@echo "--- cross failure matrix: source loss, revocation, assurance and one-shot handoff ---"
+	$(CC) $(CFLAGS) $(INC) net/crypto.c net/core_link.c core/voice.c core/intent_gate.c core/assurance.c core/interaction.c core/test_cross_failure_matrix.c -o build/test_cross_failure_matrix
+	./build/test_cross_failure_matrix
+
+cross-failure-redteam:
+	@echo "--- cross failure redteam: authority and source-loss sabotage ---"
+	python3 ../tools/test_cross_failure_redteam.py
+
 interaction-rig: build
 	@echo "--- interaction rig: deterministic adapter and validation-lab scenarios ---"
 	$(CC) $(CFLAGS) $(INC) net/crypto.c net/core_link.c core/voice.c core/intent_gate.c core/assurance.c core/interaction.c core/interaction_rig.c core/test_interaction_rig.c -o build/test_interaction_rig
@@ -317,7 +603,9 @@ syntax:
 	$(CC) -fsyntax-only -std=c11 -Wall -Wextra -Wno-unused-parameter \
 	    -DHV_LUT_POPCOUNT -include unistd.h -include sys/types.h \
 	    -Itest/idf_stub $(INC) -Iport/esp32s3 \
-	    port/esp32s3/main/app_main.c port/esp32s3/hal_esp32s3.c
+	            port/esp32s3/main/app_main.c port/esp32s3/hal_esp32s3.c \
+        port/esp32s3/haptic_drv2605l_esp32s3.c
+
 	@echo "    ok — app_main.c and hal_esp32s3.c type-check"
 
 vectors:

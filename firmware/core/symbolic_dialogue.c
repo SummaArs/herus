@@ -18,6 +18,8 @@ int sd_add_rule(sd_dialogue_t *dialogue, const sr_rule_t *rule)
         return SD_OK;
     case SR_E_FORMAT:
         return SD_E_FORMAT;
+    case SR_E_FULL:
+        return SD_E_LIMIT;
     default:
         return SD_E_ARG;
     }
@@ -32,6 +34,7 @@ int sd_add_personal_fact(sd_dialogue_t *dialogue, sr_fact_t fact,
     result = sr_add_fact(&dialogue->reasoner, fact);
     if (result == SR_OK || result == SR_NO_CHANGE) return SD_OK;
     if (result == SR_E_FORMAT) return SD_E_FORMAT;
+    if (result == SR_E_FULL) return SD_E_LIMIT;
     return SD_E_ARG;
 }
 
@@ -72,7 +75,7 @@ int sd_ask(sd_dialogue_t *dialogue, const sr_pattern_t *query,
     dialogue->turn++;
     out->turn = dialogue->turn;
     result = sr_saturate(&dialogue->reasoner, derivation_budget);
-    if (result == SR_E_LIMIT) {
+    if (result == SR_E_LIMIT || result == SR_E_FULL) {
         out->status = SD_E_LIMIT;
         out->answer.kind = SR_ANSWER_LIMIT;
         return SD_E_LIMIT;
@@ -85,4 +88,29 @@ int sd_ask(sd_dialogue_t *dialogue, const sr_pattern_t *query,
     result = sr_query(&dialogue->reasoner, query, &out->answer);
     out->status = result == SR_OK ? SD_OK : result;
     return out->status;
+}
+
+int sd_abduce(sd_dialogue_t *dialogue, const sr_pattern_t *ground_goal,
+              uint32_t derivation_budget, sr_abduction_t *out)
+{
+    sr_reasoner_t staged;
+    sr_abduction_status_t result;
+    if (!dialogue || !ground_goal || !out || dialogue->active != 1u)
+        return SD_E_ARG;
+    memset(out, 0, sizeof(*out));
+    if (derivation_budget == 0u) {
+        out->status = SR_ABDUCTION_LIMIT;
+        return SD_E_LIMIT;
+    }
+    /* Derive only in a caller-invisible bounded scratch copy. */
+    staged = dialogue->reasoner;
+    if (sr_saturate(&staged, derivation_budget) != SR_OK) {
+        out->status = SR_ABDUCTION_LIMIT;
+        return SD_E_LIMIT;
+    }
+    result = sr_abduce(&staged, ground_goal, derivation_budget, out);
+    if (result == SR_ABDUCTION_FOUND) return SD_OK;
+    if (result == SR_ABDUCTION_LIMIT) return SD_E_LIMIT;
+    if (result == SR_ABDUCTION_E_ARG) return SD_E_ARG;
+    return SD_E_ABSTAIN;
 }

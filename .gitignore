@@ -26,3 +26,10 @@ ORIGINAL_REQUEST.md
 
 # field data — keep your Phase 0 baseline somewhere you will not lose it
 *.csv
+
+# text-transfer experiment — data is reproducible from the recorded source and checksum
+research/datasets/text_transfer/*.parquet
+research/datasets/text_transfer/*.zip
+research/datasets/text_transfer/public_*.txt
+research/datasets/text_transfer/herus_adapter_*.txt
+research/datasets/text_transfer/herus_behavior_*.txt

@@ -47,6 +47,11 @@ int sd_add_personal_fact(sd_dialogue_t *dialogue, sr_fact_t fact,
 int sd_ask(sd_dialogue_t *dialogue, const sr_pattern_t *query,
            uint32_t derivation_budget, sd_reply_t *out);
 
+/* Propose one missing ground fact for a goal after bounded saturation. The
+ * proposal is read-only and must never be inserted as personal knowledge. */
+int sd_abduce(sd_dialogue_t *dialogue, const sr_pattern_t *ground_goal,
+              uint32_t derivation_budget, sr_abduction_t *out);
+
 /* VSA is an evidence producer only. The proposal remains transient until the
  * caller presents and physically accepts it. */
 int sd_propose_vsa_relation(sd_dialogue_t *dialogue, const hv_t *product,

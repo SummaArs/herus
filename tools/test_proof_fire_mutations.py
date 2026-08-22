@@ -110,6 +110,36 @@ def main() -> int:
                 "test_threat_model.c",
             ),
         ),
+        Mutation(
+            name="abduction-ground-goal-barrier",
+            source="symbolic_reasoner.c",
+            find="    if (ground_goal->subject.kind != SR_TERM_CONSTANT ||\n        ground_goal->predicate.kind != SR_TERM_CONSTANT ||\n        ground_goal->object.kind != SR_TERM_CONSTANT) {\n",
+            replace="    if (0) { /* F4 mutation: non-ground goals enter abduction. */\n",
+            compile_sources=(
+                "symbolic_reasoner.c",
+                "test_symbolic_reasoner.c",
+            ),
+        ),
+        Mutation(
+            name="abduction-ambiguity-barrier",
+            source="symbolic_reasoner.c",
+            find="        } else if (walk->out->status == SR_ABDUCTION_FOUND &&\n                   !fact_equal(walk->out->missing_fact, candidate)) {\n            walk->out->status = SR_ABDUCTION_AMBIGUOUS;\n            memset(&walk->out->missing_fact, 0, sizeof(walk->out->missing_fact));\n            walk->stop = 1u;\n        }\n",
+            replace="        } else if (walk->out->status == SR_ABDUCTION_FOUND &&\n                   !fact_equal(walk->out->missing_fact, candidate)) {\n            /* F4 mutation: competing hypotheses are silently tolerated. */\n        }\n",
+            compile_sources=(
+                "symbolic_reasoner.c",
+                "test_symbolic_reasoner.c",
+            ),
+        ),
+        Mutation(
+            name="abduction-candidate-budget-barrier",
+            source="symbolic_reasoner.c",
+            find="        if (walk->out->candidates_examined >= walk->max_candidates) {\n            walk->out->status = SR_ABDUCTION_LIMIT;\n            walk->stop = 1u;\n            return;\n        }\n",
+            replace="        if (0) { /* F4 mutation: candidate budget ignored. */\n            walk->out->status = SR_ABDUCTION_LIMIT;\n            walk->stop = 1u;\n            return;\n        }\n",
+            compile_sources=(
+                "symbolic_reasoner.c",
+                "test_symbolic_reasoner.c",
+            ),
+        ),
     )
 
     print("\n== F4 deterministic proof-fire mutation campaign ==")

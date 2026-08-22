@@ -2,6 +2,7 @@ idf_component_register(
     SRCS "app_main.c"
          "test_radio.c"
          "../hal_esp32s3.c"
+         "../haptic_drv2605l_esp32s3.c"
          "../../sx1262.c"
          "../../../core/hv.c"
          "../../../core/sbc.c"

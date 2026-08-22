@@ -21,11 +21,12 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 
 SIM_SOURCES = [
     "world.c", "channel.c", "render.c", "node.c", "scenarios.c",
-    "stress.c", "compose.c", "study.c", "learn.c", "virtual_lab.c", "main.c",
+    "stress.c", "compose.c", "study.c", "learn.c", "virtual_lab.c",
+    "personal_scenario.c", "personal_sim.c", "semantic_scenario.c", "semantic_life.c", "physical_fault_scenario.c", "authority_transition.c", "authority_scenario.c", "authority_benchmark.c", "adaptive_change.c", "adaptive_change_scenario.c", "poisoning_guard.c", "poisoning_scenario.c", "attribution_guard.c", "attribution_scenario.c", "main.c",
 ]
 CORE_SOURCES = [
     "hv.c", "sbc.c", "lexicon.c", "hcp.c", "text.c",
-    "transport_selector.c", "personal_telemetry.c",
+    "transport_selector.c", "personal_telemetry.c", "ambient_presence.c", "memory_semantic_evidence.c",
 ]
 NET_SOURCES = ["crypto.c", "session.c", "region.c", "weave.c", "beat.c", "link.c"]
 

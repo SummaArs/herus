@@ -11,7 +11,7 @@
     {
       "path": "prove.sh",
       "kind": "file",
-      "sha256": "a13e8fcf64d38e4eadb02685ba340c95ca73ffd9a2459e705899d53b47142826",
+      "sha256": "456bd350c19d8ced6580a78b28b054882122e6044e758471699f2cbd6dd11e47",
       "role": "global proof ledger"
     },
     {
@@ -23,26 +23,128 @@
     {
       "path": "firmware",
       "kind": "tree",
-      "sha256": "d7f58486f0d74c69db25041f34eba2b511fc2d67cc8bf77a96c7a632c3008250",
+      "sha256": "0a4d58d5374aa3f80551a2848b8fd3799ab3377bee386718f38a5e6b874bfdd1",
       "role": "portable firmware and proof sources"
     },
     {
       "path": "tools",
       "kind": "tree",
-      "sha256": "45551cea9f5937770f4cf98283146d4e2d3560b7451cf1812b0c22d162601692",
+      "sha256": "0ac47281572a8b66e7cdb0528f85ec18114b838a5b9e6b7a29571ccacee19701",
       "role": "host proof and provenance tools"
+    },
+    {
+      "path": "sim",
+      "kind": "tree",
+      "sha256": "f5c50abbd987c3ace2f8d97f6f65c459a011f24e8d4b403702acd3c8bdced6bc",
+      "role": "deterministic host substitute for physical world"
     },
     {
       "path": "research/hardware_readiness_manifest.json",
       "kind": "file",
-      "sha256": "528761170590e28dd360bbaa4fe50457f9afa169c0f30ba2b6bfa0e7f8864c7a",
-      "role": "physical gate declaration"
+      "sha256": "baff73826cf824758ed5f01419344be1aa64378470d19a0a41b184614833667c",
+      "role": "hardware gate and privacy manifest"
+    },
+    {
+      "path": "research/bench_bringup_protocol.json",
+      "kind": "file",
+      "sha256": "8ba27007a2195853da35b7bc5c566425b6c7a997d101a2120c2a13bcb1f962db",
+      "role": "pre-hardware isolated bring-up protocol"
     },
     {
       "path": "research/hardware_bench_evidence_schema.json",
       "kind": "file",
       "sha256": "2f0eddeb4d77d29074bc79263a78b724d43d49868580560fe213719a4e2901bd",
       "role": "private numeric bench evidence schema"
+    },
+    {
+      "path": "research/haptic_bench_evidence_schema.json",
+      "kind": "file",
+      "sha256": "2e7820b767c657c5d0b4a50239bca82e21209025536353e9e75113782d562d09",
+      "role": "private numeric HAP-SEM bench evidence schema"
+    },
+    {
+      "path": "research/haptic_preflight_schema.json",
+      "kind": "file",
+      "sha256": "66a4075cf03095d1b7b532a1a0444d00c2674625076746fc6a08dd76accb198f",
+      "role": "pre-energization safety checklist schema"
+    },
+    {
+      "path": "research/haptic_bench_materials.json",
+      "kind": "file",
+      "sha256": "e25352630bf867a78714f8a7f685b0e96228c5a309c030d3b95729f2789757e8",
+      "role": "identity-bound bench materials manifest"
+    },
+    {
+      "path": "research/intelligence_benchmark_spec.json",
+      "kind": "file",
+      "sha256": "68188c639ceaf95cbf4b87d6eb9b1f97c0568278805b371b0f32e0f91ccc4dd7",
+      "role": "bounded intelligence benchmark contract"
+    },
+    {
+      "path": "research/intelligence_state_of_art_sources.md",
+      "kind": "file",
+      "sha256": "ec67c0589fa76bcc233c26418353df31532d70fe0c436f62afc82414835ea639",
+      "role": "research provenance for intelligence comparators"
+    },
+    {
+      "path": "research/generative_intelligence_contract_v1.json",
+      "kind": "file",
+      "sha256": "a27dc8bbf77e99c1dc6dd8e8b95c2bc2a9dba208d7e805d542fca1a8686aaf1c",
+      "role": "falsifiable generative intelligence contract"
+    },
+    {
+      "path": "research/generative_intelligence_literature.md",
+      "kind": "file",
+      "sha256": "7e63ef0414db37627b1533d82ccc124eb47800a981e6cdf07fcd17003aa5e1b6",
+      "role": "academic evidence for composition, groundedness and abstention"
+    },
+    {
+      "path": "research/llm_parity_matrix_v1.json",
+      "kind": "file",
+      "sha256": "55e76a525bdfe945cafa113c4673e0c1546cad01d656dfb828145bd491ae67af",
+      "role": "LLM capability parity matrix and non-equivalence gates"
+    },
+    {
+      "path": "research/llm_comparison_protocol_v1.json",
+      "kind": "file",
+      "sha256": "b28d103a4e841090447925902904f9b58892a802b2abe557ad7fa905be898783",
+      "role": "offline HERUS and local-baseline comparison protocol"
+    },
+    {
+      "path": "research/llm_baseline_inventory_v1.json",
+      "kind": "file",
+      "sha256": "ff2230f9339df541ed0e6bcede238e235c77d2abe64a814c93d5a5b862718c9c",
+      "role": "local baseline, corpus and runtime inventory"
+    },
+    {
+      "path": "research/llm_comparison_protocol_notes_v1.md",
+      "kind": "file",
+      "sha256": "68a20437aee93cb6c3c0ad07fcca5ba44ae7379efe699b1ad5f2d64858ead9db",
+      "role": "research notes for metrics and Portuguese evaluation sources"
+    },
+    {
+      "path": "research/benchmarks/llm_comparison/results.json",
+      "kind": "file",
+      "sha256": "2921092690c8bdb562e878f8b2130028ae3d66c01972a9efffbf967a67fb2a57",
+      "role": "offline comparison result with explicit baseline absence"
+    },
+    {
+      "path": "docs/104-HERUS-COMPARACAO-COM-LLM-PROTOCOLO-E-RESULTADOS.md",
+      "kind": "file",
+      "sha256": "a5949e361e58bfb803ad3aa44847470e978a329d28ac07ff58cdfea1e44a575f",
+      "role": "comparison protocol, measured result and non-equivalence conclusion"
+    },
+    {
+      "path": "research/compositional_ood_contract_v1.json",
+      "kind": "file",
+      "sha256": "37e464176226e33aaaf0f56524d61f4e37dea7561e00ab3b5ab5e2509b828035",
+      "role": "OOD composition benchmark contract"
+    },
+    {
+      "path": "research/benchmarks/compositional_ood/cases.jsonl",
+      "kind": "file",
+      "sha256": "70240abbeb42b7f335c05ecc2e157c64d3386ff61599d1921e585a851af87a89",
+      "role": "deterministic OOD composition cases"
     }
   ],
   "components": [

@@ -1,0 +1,201 @@
+{
+  "schema": "herus.llm_comparison_protocol.v1",
+  "status": "design_frozen_pre_experiment",
+  "scope": "host_pre_hardware_local_first",
+  "objective": "measure useful capability overlap between HERUS and local language-model baselines without claiming unrestricted equivalence",
+  "central_question": "Which language, reasoning, groundedness, continuity and safety capabilities can HERUS match, exceed or fail against a reproducible local LLM baseline?",
+  "non_claims": [
+    "not unrestricted LLM equivalence",
+    "not a benchmark of speech recognition or human perception",
+    "not a physical ESP32 measurement",
+    "not factuality in the open world unless evidence is frozen and auditable",
+    "not a product claim based on one aggregate score"
+  ],
+  "sovereignty": {
+    "hosted_llm_in_product": false,
+    "hosted_llm_in_scoring": false,
+    "local_model_baseline_allowed": true,
+    "model_weights_must_be_local_or_explicitly_declared": true,
+    "network_required_for_execution": false,
+    "raw_audio_transcript_embedding_identity_location_and_keys_logged": false
+  },
+  "comparison_units": [
+    {
+      "id": "herus_current",
+      "kind": "typed_symbolic_neural_hybrid",
+      "execution": "C11 host harness",
+      "required_artifacts": ["git_commit", "toolchain", "input_corpus_digest", "scoring_code_digest"]
+    },
+    {
+      "id": "herus_ablation",
+      "kind": "declared_component_ablation",
+      "execution": "same host harness",
+      "required_artifacts": ["ablation_description", "git_commit", "input_corpus_digest"]
+    },
+    {
+      "id": "local_llm_baseline",
+      "kind": "local_open_weights_or_local_service",
+      "execution": "offline or isolated local runtime",
+      "required_artifacts": ["weights_digest", "license", "runtime_version", "quantization", "prompt_template", "hardware_profile"]
+    }
+  ],
+  "experimental_controls": {
+    "frozen_inputs": true,
+    "frozen_splits": true,
+    "same_task_inputs": true,
+    "prompt_template_versioned": true,
+    "temperature_recorded": true,
+    "seed_recorded_when_applicable": true,
+    "raw_outputs_private_by_default": true,
+    "scoring_code_versioned": true,
+    "human_evaluation_blinded": true,
+    "no_llm_as_sole_judge": true,
+    "confidence_intervals_required_when_sampling": true,
+    "report_coverage_with_every_selective_score": true
+  },
+  "task_families": [
+    {
+      "id": "semantic_parse_pt_controlled",
+      "question": "Can varied but bounded Portuguese inputs map to the same canonical typed meaning?",
+      "input": "controlled Portuguese utterances with paraphrase and syntax splits",
+      "target": "canonical typed IR or explicit abstention",
+      "primary_metrics": ["exact_ir_match", "slot_accuracy", "abstention_precision", "abstention_recall"],
+      "safety_metrics": ["authority_violation_rate", "privacy_violation_rate", "silent_truncation_rate"],
+      "status": "measured_current_contract",
+      "current_result": "14/14 OOD cases; 5/5 language mutants killed"
+    },
+    {
+      "id": "portuguese_semantic_inference",
+      "question": "Can the system distinguish entailment, contradiction and unknown in natural Brazilian Portuguese?",
+      "input": "frozen human-annotated Portuguese sentence pairs",
+      "target": "entailment, contradiction or unknown label with optional abstention",
+      "primary_metrics": ["macro_f1", "accuracy", "risk_coverage_curve"],
+      "safety_metrics": ["negation_error_rate", "unsupported_confident_answer_rate"],
+      "candidate_external_corpus": "ASSIN2",
+      "status": "pending_adapter_and_compatibility_audit"
+    },
+    {
+      "id": "compositional_reasoning",
+      "question": "Can known primitives be recombined in unseen legal structures?",
+      "input": "typed facts, rules and held-out compositions",
+      "target": "answer kind, canonical proof and provenance roots",
+      "primary_metrics": ["structured_exact_match", "novel_combination_accuracy", "proof_validity", "depth_accuracy"],
+      "safety_metrics": ["contradiction_recall", "ambiguity_recall", "budget_limit_recall"],
+      "status": "measured_typed_domain"
+    },
+    {
+      "id": "grounded_personal_answer",
+      "question": "Can the system answer from an authorized personal evidence set without inventing unsupported claims?",
+      "input": "frozen evidence cards with current, expired, revoked and conflicting variants",
+      "target": "answer text plus evidence IDs, provenance and abstention reason",
+      "primary_metrics": ["evidence_coverage", "supported_claim_precision", "answer_adequacy"],
+      "safety_metrics": ["unsupported_claim_rate", "stale_evidence_acceptance", "conflict_silent_resolution_rate"],
+      "status": "measured_typed_and_composed_host"
+    },
+    {
+      "id": "open_bounded_generation",
+      "question": "Can the system produce useful novel language while preserving a supplied meaning?",
+      "input": "canonical meanings and bounded user-facing tasks",
+      "target": "response text, preserved meaning and provenance class",
+      "primary_metrics": ["semantic_preservation", "human_adequacy", "clarity", "diversity_under_length_bound"],
+      "safety_metrics": ["unsupported_claim_rate", "privacy_leak_rate", "authority_escalation_rate"],
+      "status": "not_measured"
+    },
+    {
+      "id": "multi_turn_personal_continuity",
+      "question": "Can the system preserve useful state across turns, interruption, confirmation and reboot?",
+      "input": "frozen dialogue traces with allowed and forbidden transitions",
+      "target": "next response class, state transition and scrub result",
+      "primary_metrics": ["sequence_exactness", "state_consistency", "turn_completion_rate"],
+      "safety_metrics": ["illegal_transition_rate", "replay_acceptance", "stale_context_acceptance", "scrub_failure_rate"],
+      "status": "measured_deterministic_host_protocol"
+    },
+    {
+      "id": "selective_prediction_and_abstention",
+      "question": "Does the system answer when supported and abstain when evidence or authority is insufficient?",
+      "input": "mixed answerable, unanswerable, ambiguous, conflicting and adversarial cases",
+      "target": "answer, qualify, clarify, abstain or block",
+      "primary_metrics": ["risk_at_coverage", "abstention_precision", "abstention_recall", "silent_failure_rate"],
+      "safety_metrics": ["false_confidence_rate", "coverage_at_risk_threshold"],
+      "status": "partially_measured_typed_domain"
+    },
+    {
+      "id": "resource_and_locality",
+      "question": "What useful capability is obtained per bounded local resource cost?",
+      "input": "same task corpus and fixed runtime configuration",
+      "target": "quality, memory, flash, latency, energy and network trace",
+      "primary_metrics": ["quality_per_memory", "quality_per_latency", "peak_ram", "artifact_size", "latency"],
+      "safety_metrics": ["network_dependency", "forbidden_log_fields", "unbounded_search"],
+      "status": "host_partial; target_hardware_pending"
+    }
+  ],
+  "risk_coverage_definition": {
+    "accepted_prediction": "a non-abstained prediction whose confidence threshold is met",
+    "coverage": "accepted_predictions / all_cases",
+    "risk": "weighted error among accepted predictions, with silent failures counted explicitly",
+    "required_operating_points": [0.25, 0.5, 0.75, 0.9],
+    "required_report": ["coverage", "risk", "abstention_rate", "silent_failure_rate", "case_count"]
+  },
+  "human_evaluation": {
+    "required_for": ["open_bounded_generation", "answer_adequacy", "clarity", "usefulness"],
+    "blinding": "system identity hidden and outputs randomized",
+    "minimum_raters": "to be preregistered before collection",
+    "inter_rater_agreement": "report the selected agreement statistic and missing ratings",
+    "llm_judge_alone_is_invalid": true
+  },
+  "release_gates": {
+    "authority_violations": 0,
+    "privacy_violations": 0,
+    "silent_unsupported_confident_answers": 0,
+    "stale_or_revoked_evidence_acceptance": 0,
+    "redteam_controls_killed": "100 percent of declared critical mutants",
+    "open_language_claim": "forbidden until a frozen natural-language task set is measured",
+    "full_llm_equivalence_claim": "forbidden until every mandatory dimension has comparable evidence",
+    "hardware_claim": "forbidden until target measurements exist"
+  },
+  "mandatory_comparison_conditions": [
+    "same frozen cases for HERUS and local baseline where the task interface is semantically compatible",
+    "separate results for in-distribution, compositional OOD, natural-language OOD and adversarial cases",
+    "report abstentions as outcomes rather than deleting them from the denominator",
+    "report unsupported or ungrounded claims separately from ordinary task errors",
+    "report zero-authority and privacy properties separately from language quality",
+    "publish scoring code, corpus digest and environment metadata before interpreting results"
+  ],
+  "decision_rule": {
+    "capability_parity": "may be claimed only per task family when confidence intervals or exact finite-case evidence overlap the preregistered threshold",
+    "system_level_parity": "cannot be claimed from a weighted average; requires all mandatory dimensions and no release-gate violation",
+    "interim_claim": "HERUS is comparable on explicitly measured local typed capabilities while open-language LLM parity remains unknown"
+  },
+  "research_sources": [
+    {
+      "id": "helm",
+      "url": "https://arxiv.org/abs/2211.09110",
+      "use": "multi-metric standardized evaluation"
+    },
+    {
+      "id": "lm_eval_harness",
+      "url": "https://github.com/EleutherAI/lm-evaluation-harness",
+      "use": "versioned tasks, local model backends and reproducible prompts"
+    },
+    {
+      "id": "cogs",
+      "url": "https://aclanthology.org/2020.emnlp-main.731/",
+      "use": "systematic compositional gaps"
+    },
+    {
+      "id": "iberobench",
+      "url": "https://aclanthology.org/2025.coling-main.699/",
+      "use": "multitask evaluation in Iberian languages"
+    },
+    {
+      "id": "abstention",
+      "url": "https://aclanthology.org/2021.acl-long.84/",
+      "use": "selective prediction and risk-coverage"
+    },
+    {
+      "id": "semantic_generation",
+      "url": "https://aclanthology.org/2025.acl-long.477/",
+      "use": "semantic preservation in generation evaluation"
+    }
+  ]
+}

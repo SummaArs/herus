@@ -170,6 +170,11 @@ int main(void)
        "R5 the private sync word 0x1424 is written, not the SX1276-era 0x12");
     ok(m.regs[0x08AC] == 0x96, "R5b boosted RX gain is enabled");
 
+    r.packet_type_set = 0;
+    ok(sx1262_set_mode(&r, 9, 0, 1, (uint8_t)HERUS_FRAME_LEN) == SX_E_ARG,
+       "R1b reconfiguration refuses modulation when packet type authority is absent");
+    r.packet_type_set = 1;
+
     /* Tier 0.5 reconfiguration. */
     m.nframes = 0; m.n = 0;
     rc = sx1262_set_mode(&r, 9, 1, 0, (uint8_t)HERUS_SKETCH_FRAME_LEN);

@@ -18,13 +18,14 @@ static void check(score_t *score, int condition, const char *label)
     if (condition) score->pass++; else score->fail++;
 }
 
-static sr_fact_t fact(uint16_t object)
+static sr_fact_t fact(sr_symbol_t object)
 {
-    return (sr_fact_t){ O_SELF, P_STATE, object, 0u };
+    return (sr_fact_t){ SR_SYMBOL_LEGACY(O_SELF), SR_SYMBOL_LEGACY(P_STATE),
+                         object, 0u };
 }
 
-static sp_action_t action(uint8_t id, uint16_t need, uint16_t add,
-                          uint16_t remove, uint16_t cost,
+static sp_action_t action(uint8_t id, sr_symbol_t need, sr_symbol_t add,
+                          sr_symbol_t remove, uint16_t cost,
                           uint8_t confirmation)
 {
     sp_action_t a;
@@ -82,6 +83,31 @@ int main(void)
                     result.explored_nodes == 1u,
           "node budget prevents unbounded combinatorial search");
 
+    {
+        sr_symbol_t high_state = srreg_handle_make(SRREG_NAMESPACE_PERSONAL,
+                                                    7u, 0x2234u);
+        sr_symbol_t high_goal = srreg_handle_make(SRREG_NAMESPACE_FACTORY,
+                                                   7u, 0x2235u);
+        sp_problem_t handles;
+        memset(&handles, 0, sizeof(handles));
+        handles.initial_count = 1u;
+        handles.initial[0] = (sr_fact_t){ high_state, high_state, high_state, 0u };
+        handles.goal = (sr_fact_t){ high_goal, high_goal, high_goal, 0u };
+        handles.action_count = 1u;
+        handles.action[0] = (sp_action_t){
+            .id = 31u,
+            .precondition_count = 1u,
+            .add_count = 1u,
+            .cost = 1u,
+            .precondition = {{ high_state, high_state, high_state, 0u }},
+            .add = {{ high_goal, high_goal, high_goal, 0u }}
+        };
+        check(&score, high_state > UINT16_MAX && high_goal > UINT16_MAX &&
+                        sp_plan(&handles, 8u, 2u, &result) == SP_OK &&
+                        result.plan_length == 1u && result.action_id[0] == 31u,
+              "planner carries collision-aware 32-bit handles across a causal transition");
+    }
+
     memset(&problem, 0, sizeof(problem));
     problem.initial_count = 2u;
     problem.initial[0] = fact(F_IDLE);
@@ -90,6 +116,38 @@ int main(void)
     check(&score, sp_plan(&problem, 32u, 8u, &result) == SP_E_CONTRADICTION &&
                     result.status == SP_E_CONTRADICTION,
           "contradictory initial state blocks plan generation");
+
+    {
+        sp_problem_t full;
+        sp_action_t capacity_action;
+        int capacity_facts_ok = 1;
+        memset(&full, 0, sizeof(full));
+        for (uint16_t i = 0u; i < SP_MAX_STATE_FACTS; i++) {
+            full.initial[i] = (sr_fact_t){(uint16_t)(i + 1u), P_STATE,
+                                         O_SELF, 0u};
+        }
+        full.initial_count = SP_MAX_STATE_FACTS;
+        memset(&capacity_action, 0, sizeof(capacity_action));
+        capacity_action.id = 21u;
+        capacity_action.precondition_count = 1u;
+        capacity_action.precondition[0] = full.initial[0];
+        capacity_action.add_count = 1u;
+        capacity_action.add[0] = (sr_fact_t){1u, P_STATE, 99u, 0u};
+        capacity_action.cost = 1u;
+        full.action_count = 1u;
+        full.action[0] = capacity_action;
+        full.goal = capacity_action.add[0];
+        for (unsigned i = 0u; i < full.initial_count; i++) {
+            for (unsigned j = i + 1u; j < full.initial_count; j++) {
+                if (full.initial[i].subject == full.initial[j].subject)
+                    capacity_facts_ok = 0;
+            }
+        }
+        check(&score, capacity_facts_ok &&
+                        sp_plan(&full, 16u, 4u, &result) == SP_E_LIMIT &&
+                        result.status == SP_E_LIMIT,
+              "full planning state reports capacity limit instead of no plan");
+    }
 
     printf("SYMBOLIC PLANNER: %d pass, %d fail\n", score.pass, score.fail);
     return score.fail ? 1 : 0;

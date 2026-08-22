@@ -1,0 +1,97 @@
+{
+  "schema": "herus.composed_dialogue.v1",
+  "scope": "host_pre_hardware",
+  "objective": "prove_continuity_without_ghost_memory_or_residual_authority",
+  "states": [
+    "IDLE",
+    "ROUTED",
+    "GENERATING",
+    "PRESENTED",
+    "CONFIRMATION_PENDING",
+    "CONFIRMED",
+    "ABSTAINED",
+    "ABORTED",
+    "TIMED_OUT",
+    "CLEARED"
+  ],
+  "allowed_transitions": [
+    ["IDLE", "ROUTED"],
+    ["ROUTED", "GENERATING"],
+    ["GENERATING", "PRESENTED"],
+    ["GENERATING", "ABSTAINED"],
+    ["PRESENTED", "CONFIRMATION_PENDING"],
+    ["PRESENTED", "CLEARED"],
+    ["CONFIRMATION_PENDING", "CONFIRMED"],
+    ["CONFIRMATION_PENDING", "ABORTED"],
+    ["ROUTED", "ABORTED"],
+    ["GENERATING", "ABORTED"],
+    ["PRESENTED", "TIMED_OUT"],
+    ["CONFIRMATION_PENDING", "TIMED_OUT"],
+    ["ABSTAINED", "CLEARED"],
+    ["ABORTED", "CLEARED"],
+    ["TIMED_OUT", "CLEARED"],
+    ["CLEARED", "ROUTED"]
+  ],
+  "invariants": {
+    "physical_session": "only_a_nonzero_matching_session_may_confirm",
+    "one_shot_confirmation": "confirmed_session_is_zero_after_confirmation",
+    "groundedness": "memory_answer_requires_current_reviewed_evidence",
+    "conflict": "conflicting_memory_never_selects_a_side",
+    "adaptation": "personal_profile_changes_presentation_only",
+    "privacy": "forget_timeout_abort_clear_transient_payload_and_session",
+    "reboot": "pre_reboot_session_and_active_evidence_are_not_reusable",
+    "non_autonomy": "no_composed_state_executes_transmits_or_persists",
+    "boundedness": "all_text_and_evidence_are_bounded"
+  },
+  "scenarios": [
+    {
+      "id": "recall_current_memory",
+      "route": "RECALL_MEMORY",
+      "generation": "GROUNDED_DERIVED",
+      "presentation": "MEMORY_ACK",
+      "expected_terminal": "CLEARED"
+    },
+    {
+      "id": "capture_then_forget",
+      "route": "CAPTURE_MEMORY",
+      "generation": "PENDING_MEMORY",
+      "presentation": "PLAN_PENDING",
+      "expected_terminal": "CLEARED"
+    },
+    {
+      "id": "unknown_abstention",
+      "route": "UNKNOWN",
+      "generation": "ABSTAIN",
+      "presentation": "UNKNOWN",
+      "expected_terminal": "CLEARED"
+    },
+    {
+      "id": "conflict_abstention",
+      "route": "CONFLICT_QUERY",
+      "generation": "CONTRADICTED",
+      "presentation": "ALERT_UNKNOWN",
+      "expected_terminal": "CLEARED"
+    },
+    {
+      "id": "action_confirmation",
+      "route": "ACTION_REQUEST",
+      "generation": "PLAN",
+      "presentation": "PLAN_PENDING",
+      "expected_terminal": "CONFIRMED_OR_ABORTED"
+    },
+    {
+      "id": "reboot_no_ghost_memory",
+      "route": "RECALL_MEMORY",
+      "generation": "OLD_EVIDENCE_REJECTED",
+      "presentation": "UNKNOWN",
+      "expected_terminal": "CLEARED"
+    }
+  ],
+  "non_claims": [
+    "no_open_domain_llm_equivalence",
+    "no_wer_or_voice_accuracy",
+    "no_human_haptic_perception",
+    "no_physical_latency_or_energy_measurement",
+    "no_hardware_validation"
+  ]
+}

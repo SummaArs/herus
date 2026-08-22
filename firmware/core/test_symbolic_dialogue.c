@@ -118,12 +118,128 @@ int main(void)
                                        (sr_fact_t){ PERSON, OWNS, PLACE, 1u },
                                        1u) == SD_OK,
           "contradictory personal evidence can be recorded for review");
+
+    {
+        sd_dialogue_t handles;
+        sd_reply_t handle_reply;
+        sr_symbol_t high_person = srreg_handle_make(SRREG_NAMESPACE_PERSONAL,
+                                                     7u, 0x3234u);
+        sr_symbol_t high_predicate = srreg_handle_make(SRREG_NAMESPACE_FACTORY,
+                                                        7u, 0x3235u);
+        sr_symbol_t high_object = srreg_handle_make(SRREG_NAMESPACE_PERSONAL,
+                                                     7u, 0x3236u);
+        sr_fact_t high_fact = { high_person, high_predicate, high_object, 0u };
+        sr_pattern_t high_query = { SR_CONST(high_person),
+                                     SR_CONST(high_predicate),
+                                     SR_CONST(high_object), 0u };
+        sd_init(&handles);
+        check(&score, high_person > UINT16_MAX && high_predicate > UINT16_MAX &&
+                        sd_add_personal_fact(&handles, high_fact, 1u) == SD_OK &&
+                        sd_ask(&handles, &high_query, SD_MAX_DERIVATION_STEPS,
+                               &handle_reply) == SD_OK &&
+                        handle_reply.answer.kind == SR_ANSWER_DIRECT &&
+                        handle_reply.answer.fact.subject == high_person &&
+                        handle_reply.answer.fact.predicate == high_predicate &&
+                        handle_reply.answer.fact.object == high_object,
+              "dialogue preserves collision-aware 32-bit identity through confirmation and query");
+    }
+
     query = (sr_pattern_t){ SR_CONST(PERSON), SR_CONST(OWNS),
                             SR_CONST(PLACE), 0u };
     check(&score, sd_ask(&dialogue, &query, SD_MAX_DERIVATION_STEPS, &reply) ==
                     SR_E_CONTRADICTION &&
                     reply.answer.kind == SR_ANSWER_CONTRADICTED,
           "contradiction is surfaced rather than collapsed into confidence");
+
+    {
+        sd_dialogue_t abductive;
+        sr_abduction_t proposal;
+        sr_pattern_t goal = (sr_pattern_t){ SR_CONST(PERSON), SR_CONST(NEEDS),
+                                           SR_CONST(READY), 0u };
+        sr_rule_t alternative;
+        sr_rule_t second_alternative;
+        sd_init(&abductive);
+        check(&score, sd_add_rule(&abductive, &rule) == SD_OK &&
+                        sd_abduce(&abductive, &goal, 16u, &proposal) == SD_OK &&
+                        proposal.status == SR_ABDUCTION_FOUND &&
+                        proposal.missing_fact.subject == PERSON &&
+                        proposal.missing_fact.predicate == OWNS &&
+                        proposal.missing_fact.object == PLACE &&
+                        sr_fact_count(&abductive.reasoner) == 0u,
+              "dialogue exposes a missing personal fact as a read-only hypothesis");
+        check(&score, sd_abduce(&abductive, &goal, 0u, &proposal) == SD_E_LIMIT,
+              "dialogue abduction preserves an explicit derivation budget limit");
+        memset(&alternative, 0, sizeof(alternative));
+        alternative.id = 7u;
+        alternative.premise_count = 1u;
+        alternative.premise[0] = (sr_pattern_t){ SR_CONST(PERSON),
+                                                SR_CONST(OWNS),
+                                                SR_CONST(99u), 0u };
+        alternative.conclusion = (sr_pattern_t){ SR_CONST(PERSON),
+                                                SR_CONST(NEEDS),
+                                                SR_CONST(READY), 0u };
+        alternative.cost = 1u;
+        second_alternative = alternative;
+        second_alternative.id = 8u;
+        second_alternative.premise[0].object = SR_CONST(100u);
+        sd_init(&abductive);
+        check(&score, sd_add_rule(&abductive, &alternative) == SD_OK &&
+                        sd_add_rule(&abductive, &second_alternative) == SD_OK &&
+                        sd_abduce(&abductive, &goal, 16u, &proposal) ==
+                            SD_E_ABSTAIN &&
+                        proposal.status == SR_ABDUCTION_AMBIGUOUS,
+              "dialogue refuses to choose among multiple missing explanations");
+        goal.subject = SR_VAR(1u);
+        check(&score, sd_abduce(&abductive, &goal, 16u, &proposal) == SD_E_ARG,
+              "dialogue abduction rejects a non-ground goal instead of binding an entity");
+    }
+
+    {
+        sd_dialogue_t full;
+        sr_rule_t capacity;
+        sr_pattern_t capacity_query;
+        sd_dialogue_t rules_full;
+        int capacity_facts_ok = 1;
+        int capacity_rules_ok = 1;
+        int extra_fact_result;
+        int extra_rule_result;
+        sd_init(&full);
+        for (uint16_t subject = 1u; subject <= SR_MAX_FACTS; subject++) {
+            if (sd_add_personal_fact(&full,
+                                     (sr_fact_t){subject, OWNS, PLACE, 0u}, 1u) != SD_OK)
+                capacity_facts_ok = 0;
+        }
+        memset(&capacity, 0, sizeof(capacity));
+        capacity.id = 91u;
+        capacity.premise_count = 1u;
+        capacity.premise[0] = (sr_pattern_t){SR_VAR(0u), SR_CONST(OWNS),
+                                             SR_CONST(PLACE), 0u};
+        capacity.conclusion = (sr_pattern_t){SR_VAR(0u), SR_CONST(NEEDS),
+                                             SR_CONST(READY), 0u};
+        capacity.cost = 1u;
+        capacity_query = (sr_pattern_t){SR_CONST(1u), SR_CONST(NEEDS),
+                                        SR_CONST(READY), 0u};
+        check(&score, capacity_facts_ok && sr_fact_count(&full.reasoner) == SR_MAX_FACTS &&
+                        sd_add_rule(&full, &capacity) == SD_OK &&
+                        sd_ask(&full, &capacity_query, SD_MAX_DERIVATION_STEPS,
+                               &reply) == SD_E_LIMIT &&
+                        reply.answer.kind == SR_ANSWER_LIMIT,
+              "dialogue exposes a full-memory derivation as an explicit limit");
+        extra_fact_result = sd_add_personal_fact(
+            &full, (sr_fact_t){999u, OWNS, PLACE, 0u}, 1u);
+        sd_init(&rules_full);
+        for (uint16_t rule_id = 0u; rule_id < SR_MAX_RULES; rule_id++) {
+            capacity.id = (uint8_t)rule_id;
+            if (sd_add_rule(&rules_full, &capacity) != SD_OK)
+                capacity_rules_ok = 0;
+        }
+        capacity.id = 200u;
+        extra_rule_result = sd_add_rule(&rules_full, &capacity);
+        check(&score, extra_fact_result == SD_E_LIMIT && capacity_rules_ok &&
+                        sr_rule_count(&rules_full.reasoner) == SR_MAX_RULES &&
+                        extra_rule_result == SD_E_LIMIT,
+              "dialogue maps full fact and rule insertion to explicit limits");
+    }
 
     printf("SYMBOLIC DIALOGUE: %d pass, %d fail\n", score.pass, score.fail);
     return score.fail ? 1 : 0;

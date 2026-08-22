@@ -1,0 +1,162 @@
+{
+  "schema": "herus-bench-bringup-v1",
+  "state": "pre_hardware",
+  "baseline": {
+    "command": "./prove.sh --quiet",
+    "required_verdict": "ALL INVARIANTS HOLD",
+    "host_only": true,
+    "physical_claims_permitted": false
+  },
+  "rules": {
+    "one_question_per_gate": true,
+    "isolate_adapters": true,
+    "reversible_only_until_gate_pass": true,
+    "no_product_log_secrets": true,
+    "no_core_execution_authority": true,
+    "failed_gate_blocks_dependents": true
+  },
+  "evidence_policy": {
+    "required_common": [
+      "fixture_id",
+      "board_revision",
+      "firmware_revision",
+      "protocol_revision",
+      "operator_or_run_id",
+      "raw_artifact_digest",
+      "instrument_identity"
+    ],
+    "forbidden_product_payload": [
+      "audio",
+      "transcript",
+      "embedding",
+      "identity",
+      "location",
+      "key",
+      "pair_key",
+      "message_content"
+    ],
+    "confidence_transition": "pending_to_pass_only_with_declared_evidence"
+  },
+  "gates": [
+    {
+      "id": "G01",
+      "name": "host-baseline",
+      "question": "O release host-side permanece íntegro antes de tocar o hardware?",
+      "adapter": "none",
+      "instrument": "CI_or_local_reproducible_run",
+      "evidence": ["prove_output_digest", "provenance_manifest_validation", "git_revision"],
+      "abort_if": ["any_host_failure", "provenance_mismatch", "dirty_unreviewed_source"],
+      "unlocks": ["G02"]
+    },
+    {
+      "id": "G02",
+      "name": "board-pin-map",
+      "question": "A revisão física da placa corresponde ao pin map declarado?",
+      "adapter": "ESP32-S3 board HAL only",
+      "instrument": "visual_revision_check_and_safe_selftest",
+      "evidence": ["board_revision", "schematic_reference", "selftest_result"],
+      "abort_if": ["revision_unknown", "pin_mismatch", "unexpected_voltage_or_current"],
+      "unlocks": ["G03", "G04"]
+    },
+    {
+      "id": "G03",
+      "name": "haptic-fixture",
+      "question": "O driver e atuador declarados reproduzem o frame HAP-SEM em fixture isolado?",
+      "adapter": "DRV2605L_and_actuator_only",
+      "instrument": "oscilloscope_or_declared_haptic_fixture",
+      "evidence": ["driver_part_marking", "actuator_type", "profile_revision", "i2c_selftest", "safety_stop", "fixture_digest"],
+      "abort_if": ["i2c_error", "unsafe_continuous_output", "profile_mismatch", "safety_stop_failure"],
+      "unlocks": ["G08"]
+    },
+    {
+      "id": "G04",
+      "name": "energy-instrumentation",
+      "question": "A instrumentação fornece consumo medido com unidade e workload declarados?",
+      "adapter": "PMIC_or_bench_supply_only",
+      "instrument": "declared_current_voltage_or_energy_instrument",
+      "evidence": ["instrument_identity", "sampling_method", "energy_uj", "measurement_unit", "workload_digest"],
+      "abort_if": ["unit_missing", "instrument_saturation", "unstable_supply", "workload_drift"],
+      "unlocks": ["G05", "G08"]
+    },
+    {
+      "id": "G05",
+      "name": "clock-and-reset",
+      "question": "Relógio, reset e brownout preservam a política monotônica e a quarentena?",
+      "adapter": "clock_reset_and_power_event_adapter",
+      "instrument": "logic_analyzer_and_declared_power_interruption_fixture",
+      "evidence": ["clock_reset_policy", "interruption_matrix_digest", "reboot_floor_trace", "quarantine_trace"],
+      "abort_if": ["generation_regression_accepted", "old_authority_revived", "partial_record_promoted", "reset_unobservable"],
+      "unlocks": ["G06"]
+    },
+    {
+      "id": "G06",
+      "name": "nvs-crash-recovery",
+      "question": "A persistência real recobra PREPARED, floor, COMMITTED e cleanup conforme a matriz portátil?",
+      "adapter": "NVS_or_declared_storage_backend_only",
+      "instrument": "controlled_power_cut_fixture",
+      "evidence": ["backend_revision", "interruption_method", "transition_matrix_digest", "floor_review_digest", "raw_recovery_artifact_digest"],
+      "abort_if": ["rollback_accepted", "prepared_promoted", "cleanup_claimed_without_evidence", "recovery_nonrepeatable"],
+      "unlocks": ["G07"]
+    },
+    {
+      "id": "G07",
+      "name": "physical-session-and-trust",
+      "question": "Sessão física, pareamento, revogação e replay respeitam propósito, expiração e quarentena no alvo?",
+      "adapter": "trust_and_control_link_adapter",
+      "instrument": "target_rng_storage_and_transport_probe",
+      "evidence": ["storage_backend", "rng_source", "transport_revision", "revocation_digest", "replay_digest", "boot_quarantine_digest"],
+      "abort_if": ["replay_accepted", "revoked_path_active", "purpose_bypass", "boot_authority_revived"],
+      "unlocks": ["G09"]
+    },
+    {
+      "id": "G08",
+      "name": "local-interaction",
+      "question": "Contato, botão, percepção local e haptic obedecem ao protocolo A3 sem criar envio?",
+      "adapter": "button_local_perception_haptic_adapter",
+      "instrument": "declared_interaction_fixture_and_anonymized_trial_log",
+      "evidence": ["adapter_revision", "trial_log_digest", "latency_ms", "energy_uj", "confirmation_trace", "send_denial_trace"],
+      "abort_if": ["implicit_confirmation", "unsafe_haptic", "send_without_authority", "privacy_payload_logged"],
+      "unlocks": ["G09"]
+    },
+    {
+      "id": "G09",
+      "name": "radio-one-metre",
+      "question": "Dois alvos trocam frames autenticados no perfil mínimo a um metro?",
+      "adapter": "SX1262_radio_and_verified_antenna",
+      "instrument": "ranger_fixture_and_declared_rf_profile",
+      "evidence": ["radio_profile", "packet_counts", "rssi_dbm", "snr_db", "selftest_result"],
+      "abort_if": ["profile_drift", "auth_failure_hidden", "private_payload_logged", "pin_map_unknown"],
+      "unlocks": ["G10"]
+    },
+    {
+      "id": "G10",
+      "name": "urban-pdr-comparison",
+      "question": "A rota pré-registrada produz o PDR e a comparação Tier 0.5 declarados?",
+      "adapter": "two_verified_radio_targets",
+      "instrument": "pre_registered_route_and_rf_logger",
+      "evidence": ["route_revision", "distance_m", "packets_sent", "packets_received", "rf_log_digest", "matched_profiles"],
+      "abort_if": ["route_changed", "packet_accounting_incomplete", "environment_unrecorded", "result_generalized"],
+      "unlocks": ["G11"]
+    },
+    {
+      "id": "G11",
+      "name": "local-model-profile",
+      "question": "O modelo local declarado respeita memória, latência, energia e agência no alvo?",
+      "adapter": "on_wrist_local_model_only",
+      "instrument": "target_profiler_and_adversarial_fixture",
+      "evidence": ["model_digest", "peak_memory", "p95_latency_ms", "energy_uj", "adversarial_manifest_digest", "no_core_execution_trace"],
+      "abort_if": ["third_party_hosted_dependency", "agency_escape", "privacy_payload_logged", "budget_exceeded", "core_executes_action"],
+      "unlocks": ["G12"]
+    },
+    {
+      "id": "G12",
+      "name": "human-contact",
+      "question": "Pessoas compreendem, toleram e consideram útil o comportamento sutil sem transformar ausência em consentimento?",
+      "adapter": "complete_declared_prototype",
+      "instrument": "pre_registered_human_interaction_protocol",
+      "evidence": ["protocol_revision", "anonymized_trial_log_digest", "latency_ms", "energy_uj", "haptic_profile", "consent_record"],
+      "abort_if": ["unrecorded_consent", "identity_in_product_log", "interpretation_claim_without_trial", "safety_complaint"],
+      "unlocks": []
+    }
+  ]
+}

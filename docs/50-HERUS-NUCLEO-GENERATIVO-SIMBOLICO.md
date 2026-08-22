@@ -38,10 +38,10 @@ O `symbolic_dialogue` fornece a fronteira de produto. Regras de fábrica são in
 
 | Suíte | Resultado |
 |---|---:|
-| Reasoner | 17 invariantes |
-| Planner | 8 invariantes |
-| Dialogue | 10 invariantes |
-| Total desta evolução | **35 invariantes** |
+| Reasoner | 20 invariantes |
+| Planner | 9 invariantes |
+| Dialogue | 16 invariantes |
+| Total desta evolução | **45 invariantes** |
 
 Os testes cobrem duplicação, composição de duas regras, geração de conclusão nova, prova, ausência de evidência, consulta ambígua, contradição, variável não ligada, orçamento de saturação, planejamento causal, ciclo, objetivo inalcançável, limite de nós, confirmação física e limite de derivação no diálogo.
 
@@ -49,7 +49,7 @@ Os testes cobrem duplicação, composição de duas regras, geração de conclus
 
 Esta implementação ainda não interpreta fala, texto livre ou HCP automaticamente; ela recebe símbolos já tipados. Ela não possui vocabulário mundial, conhecimento geral aberto, percepção, modelo probabilístico amplo ou fluência de uma LLM. Portanto, o resultado atual é **um motor generativo semântico verificável**, não uma LLM equivalente em cobertura universal.
 
-O próximo passo técnico é construir o compilador local que transforma uma entrada de linguagem restrita em padrões e objetivos, sem permitir que texto não verificado escreva diretamente na base. Depois virão memória pessoal seletiva, busca, revisão por contraexemplo, renderização de resposta e avaliação de generalização. Cada camada deverá manter a separação entre hipótese, prova e autoridade.
+O compilador local de linguagem restrita já foi implementado em uma evolução posterior e possui documentação própria em `docs/52-HERUS-COMPILADOR-SEMANTICO-LOCAL.md`. O próximo passo não é adicionar outra camada: é testar a composição entre compilador, reasoner, planner, diálogo e Resonator sob capacidade máxima, contradições, ambiguidades e entradas adversariais. Cada extensão futura deverá manter a separação entre hipótese, prova e autoridade.
 
 ## Referências
 
