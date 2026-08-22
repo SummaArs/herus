@@ -404,6 +404,18 @@ banner "44b/78 semantic language OOD redteam (paraphrase controls must be killab
 
 grep -q "FAIL" /tmp/herus_semantic_language_ood_redteam.log && FAIL=1 || true
 
+banner "44c/78 offline HERUS/local-baseline comparison harness"
+( cd firmware && make -s llm-comparison ) > /tmp/herus_llm_comparison.log 2>&1 || FAIL=1
+[ "$QUIET" = 0 ] && cat /tmp/herus_llm_comparison.log
+
+grep -q "FAIL" /tmp/herus_llm_comparison.log && FAIL=1 || true
+
+banner "44d/78 comparison harness redteam (schema, privacy and bounded results)"
+( cd firmware && make -s llm-comparison-redteam ) > /tmp/herus_llm_comparison_redteam.log 2>&1 || FAIL=1
+[ "$QUIET" = 0 ] && cat /tmp/herus_llm_comparison_redteam.log
+
+grep -q "FAIL" /tmp/herus_llm_comparison_redteam.log && FAIL=1 || true
+
 banner "45/78 collision-aware symbol registry model (host-only)"
 python3 tools/test_symbol_registry_model.py > /tmp/herus_symbol_registry.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_symbol_registry.log
@@ -548,6 +560,8 @@ check "Semantic compiler emits exact typed IR, composes bounded conjunctions and
 check "Semantic benchmark holds exact match, abstention and zero authority violations" "SEMANTIC BENCHMARK: valid 16/16, invalid 10/10, sensitive 5/5, exact 32/32, abstention 16/16, authority violations 0" /tmp/herus_semantic_benchmark.log
 check "Semantic language OOD accepts only the measured bounded paraphrase contract" "SEMANTIC LANGUAGE OOD: 14 pass, 0 fail" /tmp/herus_semantic_language_ood.log
 check "Semantic language OOD redteam kills all critical language controls" "SEMANTIC LANGUAGE OOD REDTEAM: 5/5 critical mutants killed" /tmp/herus_semantic_language_ood_redteam.log
+check "Offline comparison harness records HERUS and explicit local-baseline status" "LLM COMPARISON HARNESS: PASS" /tmp/herus_llm_comparison.log
+check "Comparison harness redteam kills all schema, privacy and bound mutants" "LLM COMPARISON REDTEAM: 5/5 critical mutants killed" /tmp/herus_llm_comparison_redteam.log
 check "Collision-aware symbol registry separates namespaces, versions and full-state limits" "SYMBOL REGISTRY MODEL: 13 pass, 0 fail" /tmp/herus_symbol_registry.log
 check "Collision-aware symbol registry C11 preserves the same contract" "SYMBOL REGISTRY C: 15 pass, 0 fail" /tmp/herus_symbol_registry_c.log
 check "HAP-SEM encodes bounded semantic frames and rejects unsafe profiles" "HAPTIC LANGUAGE: 17 pass, 0 fail" /tmp/herus_haptic_language.log

@@ -11,7 +11,7 @@
     {
       "path": "prove.sh",
       "kind": "file",
-      "sha256": "8c0de297f45a98bff8ae3ccc326b322ea5c0e556be5f8b859142d3bac21606e4",
+      "sha256": "456bd350c19d8ced6580a78b28b054882122e6044e758471699f2cbd6dd11e47",
       "role": "global proof ledger"
     },
     {
@@ -23,13 +23,13 @@
     {
       "path": "firmware",
       "kind": "tree",
-      "sha256": "802c0e3a3e38054afe8ac87670a31617f9d5076fc091262ef6cdda9c8cb46a2a",
+      "sha256": "0a4d58d5374aa3f80551a2848b8fd3799ab3377bee386718f38a5e6b874bfdd1",
       "role": "portable firmware and proof sources"
     },
     {
       "path": "tools",
       "kind": "tree",
-      "sha256": "2604ff74dde6a7708c86d9a431de72d0e8879563a9cc31f4b0df218fb11f79c8",
+      "sha256": "0ac47281572a8b66e7cdb0528f85ec18114b838a5b9e6b7a29571ccacee19701",
       "role": "host proof and provenance tools"
     },
     {
@@ -103,6 +103,36 @@
       "kind": "file",
       "sha256": "55e76a525bdfe945cafa113c4673e0c1546cad01d656dfb828145bd491ae67af",
       "role": "LLM capability parity matrix and non-equivalence gates"
+    },
+    {
+      "path": "research/llm_comparison_protocol_v1.json",
+      "kind": "file",
+      "sha256": "b28d103a4e841090447925902904f9b58892a802b2abe557ad7fa905be898783",
+      "role": "offline HERUS and local-baseline comparison protocol"
+    },
+    {
+      "path": "research/llm_baseline_inventory_v1.json",
+      "kind": "file",
+      "sha256": "ff2230f9339df541ed0e6bcede238e235c77d2abe64a814c93d5a5b862718c9c",
+      "role": "local baseline, corpus and runtime inventory"
+    },
+    {
+      "path": "research/llm_comparison_protocol_notes_v1.md",
+      "kind": "file",
+      "sha256": "68a20437aee93cb6c3c0ad07fcca5ba44ae7379efe699b1ad5f2d64858ead9db",
+      "role": "research notes for metrics and Portuguese evaluation sources"
+    },
+    {
+      "path": "research/benchmarks/llm_comparison/results.json",
+      "kind": "file",
+      "sha256": "2921092690c8bdb562e878f8b2130028ae3d66c01972a9efffbf967a67fb2a57",
+      "role": "offline comparison result with explicit baseline absence"
+    },
+    {
+      "path": "docs/104-HERUS-COMPARACAO-COM-LLM-PROTOCOLO-E-RESULTADOS.md",
+      "kind": "file",
+      "sha256": "a5949e361e58bfb803ad3aa44847470e978a329d28ac07ff58cdfea1e44a575f",
+      "role": "comparison protocol, measured result and non-equivalence conclusion"
     },
     {
       "path": "research/compositional_ood_contract_v1.json",

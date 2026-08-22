@@ -1,0 +1,118 @@
+{
+  "schema": "herus.llm_baseline_inventory.v1",
+  "date": "2026-08-22",
+  "status": "inventory_complete_baseline_not_yet_available",
+  "repository": "SummaArs/herus",
+  "branch": "feat/herus-semantic-compiler",
+  "constraints": {
+    "product_must_not_depend_on_hosted_llm": true,
+    "evaluation_must_not_use_hosted_llm_as_judge": true,
+    "local_execution_preferred": true,
+    "network_during_scoring": false,
+    "raw_user_data_allowed": false
+  },
+  "local_environment": {
+    "torch": true,
+    "transformers": false,
+    "llama_cpp": false,
+    "sentence_transformers": false,
+    "datasets": false,
+    "evaluate": false,
+    "cuda_measurement": "not_verified",
+    "target_hardware": "not_present"
+  },
+  "available_artifacts": [
+    {
+      "id": "char_transfer_v1",
+      "path": "research/model_artifacts/char_transfer_v1",
+      "type": "compact_character_transformer_with_rank_4_output_adapter",
+      "base_corpus": "WikiText-2 raw train",
+      "adaptation_corpus": "public HERUS design documents and synthetic behavior-contract corpus",
+      "local_weights": true,
+      "parameter_counts": {
+        "base": 182016,
+        "adapter": 3592
+      },
+      "measured_signal": {
+        "herus_test_delta_nll": -0.6152114081890026,
+        "behavior_test_delta_nll": -0.6792826255162554,
+        "public_test_delta_nll": 0.20732863697351167
+      },
+      "comparable_to_chat_llm": false,
+      "reason": "character-level bounded transfer artifact with visibly imperfect samples; no instruction-following or open-generation parity demonstrated"
+    }
+  ],
+  "candidate_external_corpora": [
+    {
+      "id": "assin2",
+      "language": "pt-BR",
+      "tasks": ["textual_entailment", "semantic_similarity"],
+      "reported_rows": 9450,
+      "splits": ["train", "validation", "test"],
+      "annotation": "human labeled entailment and relatedness",
+      "url": "https://huggingface.co/datasets/nilc-nlp/assin2",
+      "use": "semantic inference adapter after compatibility audit",
+      "status": "candidate_not_imported"
+    },
+    {
+      "id": "napolab",
+      "language": "Portuguese",
+      "tasks": ["entailment", "similarity", "simplification", "sentiment", "offensive_language"],
+      "url": "https://github.com/ruanchaves/napolab",
+      "use": "dataset inventory and human-annotation criteria",
+      "status": "candidate_not_imported"
+    },
+    {
+      "id": "portuguese_bench",
+      "language": "Portuguese",
+      "tasks": ["assin2_rte", "assin2_sts", "faquad_nli", "reading_comprehension", "sentiment", "offensive_language"],
+      "url": "https://github.com/surus-lat/portuguese-bench",
+      "use": "task and prompt-format reference for local baselines",
+      "status": "reference_only"
+    },
+    {
+      "id": "iberobench",
+      "language": "Iberian_languages",
+      "tasks": ["multitask_language_evaluation"],
+      "reported_scale": "62 tasks and 179 subtasks",
+      "url": "https://aclanthology.org/2025.coling-main.699/",
+      "use": "coverage reference; not directly portable to C11 firmware",
+      "status": "reference_only"
+    }
+  ],
+  "candidate_local_llm_baselines": [
+    {
+      "id": "local_open_weights_instruct_model",
+      "required": ["local_checkpoint", "license", "tokenizer", "runtime", "quantization", "hardware_profile"],
+      "status": "blocked_until_checkpoint_and_runtime_are_available",
+      "policy": "must run offline and must not be part of HERUS product firmware"
+    },
+    {
+      "id": "local_small_decoder_baseline",
+      "required": ["local_checkpoint", "tokenizer", "deterministic_decode_config"],
+      "status": "not_available_in_current_environment",
+      "policy": "may serve as capability comparator, never as product dependency"
+    }
+  ],
+  "existing_herus_benchmarks": [
+    "research/benchmarks/compositional_ood/cases.jsonl",
+    "research/benchmarks/intent_memory/cases.jsonl",
+    "research/intelligence_benchmark_spec.json",
+    "research/generative_intelligence_contract_v1.json",
+    "research/compositional_ood_contract_v1.json",
+    "research/llm_comparison_protocol_v1.json"
+  ],
+  "baseline_decision": {
+    "immediate_executable_comparison": "HERUS current versus declared HERUS ablations on frozen typed tasks",
+    "natural_language_comparison": "requires a separately audited Portuguese adapter and a local model baseline",
+    "open_generation_comparison": "blocked; existing char_transfer_v1 is evidence of transfer signal, not a valid conversational baseline",
+    "no_result_claim_allowed": "LLM parity cannot be inferred from absence of a local baseline"
+  },
+  "next_artifacts": [
+    "versioned Portuguese task manifest with license and provenance",
+    "offline adapter interface for local text model outputs",
+    "deterministic scoring harness with abstention-aware metrics",
+    "local checkpoint acquisition record or explicit user-provided checkpoint",
+    "redteam cases for prompt injection, unsupported claims and authority escalation"
+  ]
+}

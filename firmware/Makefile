@@ -52,6 +52,8 @@
 #   make semantic-language-ood the bounded language-paraphrase OOD suite
 #   make semantic-language-ood-redteam the language-paraphrase mutation campaign
 #   make semantic-benchmark the fixed-corpus semantic equivalence benchmark
+#   make llm-comparison the offline HERUS/local-baseline comparison harness
+#   make llm-comparison-redteam the comparison-harness mutation campaign
 #   make knowledge-feed the authenticated, bounded and confirmation-gated Core feed
 #   make knowledge-feed-cursor the durable anti-rollback journal suite
 #   make memory-semantic-evidence the local temporal/conflict evidence index
@@ -86,7 +88,7 @@ INC     := -Icore -Inet -Iport -Itest
 CORE    := core/hv.c core/sbc.c core/lexicon.c core/hcp.c
 NET     := net/crypto.c net/session.c net/region.c net/weave.c net/beat.c net/link.c
 
-.PHONY: all algebra nucleus voice intent intent-router dialogue model-lab memory-policy memory-capture memory-extract watch-memory-frontend memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale memory-collection memory-collection-index memory-collection-recovery memory-collection-recovery-stress memory-collection-finale bench-evidence-validate bench-interruption-sim memory-proposal llm-budget-check memory-physical-session memory-physical-session-recovery memory-physical-session-recovery-stress memory-physical-session-bootstrap memory-reboot-boundary memory-reboot-redteam memory-post-reboot-reindex memory-post-reboot-reindex-redteam memory-prehardware-finale threat-model threat-model-stress proof-fire-mutations assurance capstone trust control-link delivery-plan transport-selector personal-telemetry symbolic-reasoner generative-core generative-core-redteam personal-adapter personal-adapter-redteam generative-core-budget generative-haptic generative-haptic-redteam generative-dialogue-loop generative-dialogue-loop-redteam composed-dialogue composed-dialogue-redteam compositional-ood compositional-ood-redteam resonator semantic-compiler semantic-language-ood semantic-language-ood-redteam semantic-benchmark knowledge-feed knowledge-feed-cursor memory-semantic-evidence memory-reasoning-bridge magic-anticipation degradation-matrix degradation-redteam magic-trigger magic-dialogue-bridge autonomy-policy autonomy-redteam magic-redteam interaction interaction-rig net radio syntax vectors haptic-language haptic-language-matrix haptic-semantic-bridge haptic-adapter haptic-evidence haptic-target haptic-runner haptic-preflight cross-failure-matrix cross-failure-redteam clean
+.PHONY: all algebra nucleus voice intent intent-router dialogue model-lab memory-policy memory-capture memory-extract watch-memory-frontend memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale memory-collection memory-collection-index memory-collection-recovery memory-collection-recovery-stress memory-collection-finale bench-evidence-validate bench-interruption-sim memory-proposal llm-budget-check memory-physical-session memory-physical-session-recovery memory-physical-session-recovery-stress memory-physical-session-bootstrap memory-reboot-boundary memory-reboot-redteam memory-post-reboot-reindex memory-post-reboot-reindex-redteam memory-prehardware-finale threat-model threat-model-stress proof-fire-mutations assurance capstone trust control-link delivery-plan transport-selector personal-telemetry symbolic-reasoner generative-core generative-core-redteam personal-adapter personal-adapter-redteam generative-core-budget generative-haptic generative-haptic-redteam generative-dialogue-loop generative-dialogue-loop-redteam composed-dialogue composed-dialogue-redteam compositional-ood compositional-ood-redteam resonator semantic-compiler semantic-language-ood semantic-language-ood-redteam semantic-benchmark llm-comparison llm-comparison-redteam knowledge-feed knowledge-feed-cursor memory-semantic-evidence memory-reasoning-bridge magic-anticipation degradation-matrix degradation-redteam magic-trigger magic-dialogue-bridge autonomy-policy autonomy-redteam magic-redteam interaction interaction-rig net radio syntax vectors haptic-language haptic-language-matrix haptic-semantic-bridge haptic-adapter haptic-evidence haptic-target haptic-runner haptic-preflight cross-failure-matrix cross-failure-redteam clean
 
 all: algebra nucleus voice intent intent-router dialogue model-lab memory-policy memory-capture memory-extract memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale memory-collection memory-collection-index memory-collection-recovery memory-collection-recovery-stress memory-collection-finale memory-physical-session memory-physical-session-recovery memory-physical-session-recovery-stress memory-physical-session-bootstrap memory-reboot-boundary memory-reboot-redteam memory-post-reboot-reindex memory-post-reboot-reindex-redteam memory-prehardware-finale threat-model threat-model-stress proof-fire-mutations assurance capstone trust control-link interaction interaction-rig net radio syntax vectors haptic-language haptic-language-matrix haptic-semantic-bridge haptic-adapter haptic-evidence haptic-target haptic-runner haptic-preflight personal-adapter generative-core
 	@echo ""
@@ -318,6 +320,14 @@ semantic-benchmark: build
 	@echo "--- semantic benchmark: exact IR, abstention and authority gates ---"
 	$(CC) $(CFLAGS) -DHV_LUT_POPCOUNT $(INC) core/hv.c core/resonator.c core/resonator_bridge.c core/symbolic_reasoner.c core/symbolic_planner.c core/symbolic_dialogue.c core/symbol_registry.c core/semantic_compiler.c core/test_semantic_compiler_benchmark.c -o build/test_semantic_compiler_benchmark
 	./build/test_semantic_compiler_benchmark
+
+llm-comparison:
+	@echo "--- LLM comparison: offline frozen-case harness and explicit local baseline status ---"
+	python3 ../tools/llm_comparison_harness.py
+
+llm-comparison-redteam:
+	@echo "--- LLM comparison redteam: schema, privacy and bounded-result controls ---"
+	python3 ../tools/test_llm_comparison_harness_redteam.py
 
 knowledge-feed: build
 	@echo "--- knowledge feed: Core proposal, digest, rollback and local authority gates ---"
