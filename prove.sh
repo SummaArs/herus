@@ -358,6 +358,18 @@ banner "42j/78 generative dialogue loop redteam (lifecycle controls must be kill
 
 grep -q "FAIL" /tmp/herus_generative_dialogue_loop_redteam.log && FAIL=1 || true
 
+banner "42k/78 composed dialogue (router, memory, generation, haptics and reboot)"
+( cd firmware && make -s composed-dialogue ) > /tmp/herus_composed_dialogue.log 2>&1 || FAIL=1
+[ "$QUIET" = 0 ] && cat /tmp/herus_composed_dialogue.log
+
+grep -q "FAIL" /tmp/herus_composed_dialogue.log && FAIL=1 || true
+
+banner "42l/78 composed dialogue redteam (ghost-memory and replay controls must be killable)"
+( cd firmware && make -s composed-dialogue-redteam ) > /tmp/herus_composed_dialogue_redteam.log 2>&1 || FAIL=1
+[ "$QUIET" = 0 ] && cat /tmp/herus_composed_dialogue_redteam.log
+
+grep -q "FAIL" /tmp/herus_composed_dialogue_redteam.log && FAIL=1 || true
+
 banner "43/78 semantic compiler (controlled Portuguese to typed IR)"
 ( cd firmware && make semantic-compiler ) > /tmp/herus_semantic.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_semantic.log
@@ -500,6 +512,8 @@ check "Generative haptic bridge preserves liveliness, round-trip and non-actiona
 check "Generative haptic redteam kills action, policy, abstention and plan mutants" "GENERATIVE HAPTIC REDTEAM: 4/4 critical mutants killed" /tmp/herus_generative_haptic_redteam.log
 check "Generative dialogue loop preserves multi-step state and cleanup" "GEN DIALOGUE LOOP: 22 pass, 0 fail" /tmp/herus_generative_dialogue_loop.log
 check "Generative dialogue loop redteam kills session, replay, timeout, abort and forget mutants" "GENERATIVE DIALOGUE LOOP REDTEAM: 5/5 critical mutants killed" /tmp/herus_generative_dialogue_loop_redteam.log
+check "Composed dialogue preserves router, grounding, adaptation, haptics and reboot" "COMPOSED DIALOGUE: 31 pass, 0 fail" /tmp/herus_composed_dialogue.log
+check "Composed dialogue redteam kills quarantine, replay, floor, expiry, conflict and scrub mutants" "COMPOSED DIALOGUE REDTEAM: 6/6 critical mutants killed" /tmp/herus_composed_dialogue_redteam.log
 
 # --- controlled semantic compiler ------------------------------------------
 check "Semantic compiler emits exact typed IR, composes bounded conjunctions and rejects unsupported language" "SEMANTIC COMPILER: 54 pass, 0 fail" /tmp/herus_semantic.log

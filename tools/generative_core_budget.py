@@ -12,6 +12,7 @@ INCLUDE = ROOT / "firmware" / "core"
 BUDGETS = {
     "generative_core": {"text": 4096, "data": 0, "bss": 0},
     "personal_adapter": {"text": 2048, "data": 0, "bss": 0},
+    "composed_dialogue": {"text": 4096, "data": 0, "bss": 0},
 }
 
 
@@ -38,6 +39,7 @@ def main() -> int:
     sources = {
         "generative_core": ROOT / "firmware" / "core" / "generative_core.c",
         "personal_adapter": ROOT / "firmware" / "core" / "personal_adapter.c",
+        "composed_dialogue": ROOT / "firmware" / "core" / "composed_dialogue.c",
     }
     failures: list[str] = []
     with tempfile.TemporaryDirectory(prefix="herus-generative-budget-") as raw:
