@@ -390,6 +390,20 @@ banner "44/78 semantic benchmark (exact IR, abstention and authority)"
 ( cd firmware && make semantic-benchmark ) > /tmp/herus_semantic_benchmark.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_semantic_benchmark.log
 
+grep -q "FAIL" /tmp/herus_semantic_benchmark.log && FAIL=1 || true
+
+banner "44a/78 semantic language OOD (bounded paraphrases and safe abstention)"
+( cd firmware && make -s semantic-language-ood ) > /tmp/herus_semantic_language_ood.log 2>&1 || FAIL=1
+[ "$QUIET" = 0 ] && cat /tmp/herus_semantic_language_ood.log
+
+grep -q "FAIL" /tmp/herus_semantic_language_ood.log && FAIL=1 || true
+
+banner "44b/78 semantic language OOD redteam (paraphrase controls must be killable)"
+( cd firmware && make -s semantic-language-ood-redteam ) > /tmp/herus_semantic_language_ood_redteam.log 2>&1 || FAIL=1
+[ "$QUIET" = 0 ] && cat /tmp/herus_semantic_language_ood_redteam.log
+
+grep -q "FAIL" /tmp/herus_semantic_language_ood_redteam.log && FAIL=1 || true
+
 banner "45/78 collision-aware symbol registry model (host-only)"
 python3 tools/test_symbol_registry_model.py > /tmp/herus_symbol_registry.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_symbol_registry.log
@@ -532,6 +546,8 @@ check "Compositional OOD redteam kills contradiction, absence, ambiguity, budget
 # --- controlled semantic compiler ------------------------------------------
 check "Semantic compiler emits exact typed IR, composes bounded conjunctions and rejects unsupported language" "SEMANTIC COMPILER: 54 pass, 0 fail" /tmp/herus_semantic.log
 check "Semantic benchmark holds exact match, abstention and zero authority violations" "SEMANTIC BENCHMARK: valid 16/16, invalid 10/10, sensitive 5/5, exact 32/32, abstention 16/16, authority violations 0" /tmp/herus_semantic_benchmark.log
+check "Semantic language OOD accepts only the measured bounded paraphrase contract" "SEMANTIC LANGUAGE OOD: 14 pass, 0 fail" /tmp/herus_semantic_language_ood.log
+check "Semantic language OOD redteam kills all critical language controls" "SEMANTIC LANGUAGE OOD REDTEAM: 5/5 critical mutants killed" /tmp/herus_semantic_language_ood_redteam.log
 check "Collision-aware symbol registry separates namespaces, versions and full-state limits" "SYMBOL REGISTRY MODEL: 13 pass, 0 fail" /tmp/herus_symbol_registry.log
 check "Collision-aware symbol registry C11 preserves the same contract" "SYMBOL REGISTRY C: 15 pass, 0 fail" /tmp/herus_symbol_registry_c.log
 check "HAP-SEM encodes bounded semantic frames and rejects unsafe profiles" "HAPTIC LANGUAGE: 17 pass, 0 fail" /tmp/herus_haptic_language.log

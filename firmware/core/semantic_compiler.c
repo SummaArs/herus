@@ -167,6 +167,10 @@ static int parse_term(const sc_token_t *token, sr_term_t *out,
         *out = SC_VAR(1u);
         return SC_OK;
     }
+    if (word_any(token, "todos", "todas") ||
+        word_any(token, "todo", "toda") ||
+        word_eq(token, "qualquer"))
+        return SC_E_UNSUPPORTED;
     return resolve_text(resolver, token->start, token->length, out);
 }
 
@@ -197,17 +201,20 @@ static int parse_relation(const sc_token_t *tokens, uint8_t start, uint8_t count
     out->subject = subject_term;
     out->object = object_term;
     out->negated = negated;
-    if (word_any(&tokens[verb], "possui", "tem")) {
+    if (word_any(&tokens[verb], "possui", "tem") ||
+        word_eq(&tokens[verb], "possuem")) {
         if (count != (uint8_t)(object + 1u)) return SC_E_SYNTAX;
         {
             int resolve_result = resolve_text(resolver, "possui", 6u, &predicate_term);
             if (resolve_result != SC_OK) return resolve_result;
         }
         out->predicate = predicate_term;
-    } else if (word_any(&tokens[verb], "esta", "está")) {
+    } else if (word_any(&tokens[verb], "esta", "está") ||
+               word_eq(&tokens[verb], "fica")) {
         object = (uint8_t)(verb + 2u);
         if ((uint8_t)(verb + 1u) >= count || object >= count ||
-            !word_any(&tokens[verb + 1u], "em", "no")) return SC_E_SYNTAX;
+            !(word_any(&tokens[verb + 1u], "em", "no") ||
+              word_eq(&tokens[verb + 1u], "na"))) return SC_E_SYNTAX;
         {
             int resolve_result = resolve_text(resolver, "estar_em", 8u, &predicate_term);
             if (resolve_result != SC_OK) return resolve_result;
@@ -306,32 +313,58 @@ static int parse_query(const sc_token_t *tokens, uint8_t count,
                        sr_pattern_t *out)
 {
     sr_term_t subject;
-    if (!tokens || !out || count < 4u || !word_eq(&tokens[0], "o") ||
-        !word_eq(&tokens[1], "que")) return SC_E_SYNTAX;
-    {
-        int term_result = parse_term(&tokens[2], &subject, resolver);
+    uint8_t subject_index;
+    uint8_t verb_index;
+    int term_result;
+    if (!tokens || !out || count == 0u) return SC_E_SYNTAX;
+
+    /* Open questions use only a few explicitly canonicalized paraphrases. */
+    if (count >= 2u && word_eq(&tokens[0], "o") &&
+        word_eq(&tokens[1], "que")) {
+        subject_index = 2u;
+        verb_index = 3u;
+        if (count >= 6u && word_any(&tokens[2], "e", "é") &&
+            word_eq(&tokens[3], "que")) {
+            subject_index = 4u;
+            verb_index = 5u;
+        }
+        if (verb_index >= count) return SC_E_SYNTAX;
+        term_result = parse_term(&tokens[subject_index], &subject, resolver);
         if (term_result != SC_OK) return term_result;
         if (subject.kind != SC_TERM_CONSTANT) return SC_E_SYNTAX;
-    }
-    memset(out, 0, sizeof(*out));
-    out->subject = subject;
-    out->object = SC_VAR(2u);
-    if (word_any(&tokens[3], "possui", "tem")) {
-        if (count != 4u) return SC_E_SYNTAX;
-        {
-            int resolve_result = resolve_text(resolver, "possui", 6u, &out->predicate);
-            if (resolve_result != SC_OK) return resolve_result;
+        memset(out, 0, sizeof(*out));
+        out->subject = subject;
+        out->object = SC_VAR(2u);
+        if (word_any(&tokens[verb_index], "possui", "tem") ||
+            word_eq(&tokens[verb_index], "possuem")) {
+            if (count != (uint8_t)(verb_index + 1u)) return SC_E_SYNTAX;
+            term_result = resolve_text(resolver, "possui", 6u,
+                                       &out->predicate);
+        } else if (word_eq(&tokens[verb_index], "pode")) {
+            if (count != (uint8_t)(verb_index + 1u)) return SC_E_SYNTAX;
+            term_result = resolve_text(resolver, "poder", 5u,
+                                       &out->predicate);
+        } else {
+            return SC_E_UNSUPPORTED;
         }
-    } else if (word_eq(&tokens[3], "pode")) {
-        if (count != 4u) return SC_E_SYNTAX;
-        {
-            int resolve_result = resolve_text(resolver, "poder", 5u, &out->predicate);
-            if (resolve_result != SC_OK) return resolve_result;
-        }
-    } else {
-        return SC_E_UNSUPPORTED;
+        return term_result;
     }
-    return SC_OK;
+
+    if (count == 3u && word_eq(&tokens[0], "onde") &&
+        (word_any(&tokens[1], "esta", "está") ||
+         word_eq(&tokens[1], "fica"))) {
+        term_result = parse_term(&tokens[2], &subject, resolver);
+        if (term_result != SC_OK) return term_result;
+        if (subject.kind != SC_TERM_CONSTANT) return SC_E_SYNTAX;
+        memset(out, 0, sizeof(*out));
+        out->subject = subject;
+        out->object = SC_VAR(2u);
+        return resolve_text(resolver, "estar_em", 8u, &out->predicate);
+    }
+
+    /* A yes/no question is accepted only when the relation grammar parses it
+     * exactly; no free-form question is converted by similarity. */
+    return parse_relation(tokens, 0u, count, resolver, out);
 }
 
 static int parse_goal(const sc_token_t *tokens, uint8_t count,

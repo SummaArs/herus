@@ -11,7 +11,7 @@
     {
       "path": "prove.sh",
       "kind": "file",
-      "sha256": "046755b9e869580f33ed121c9976df66b9d12d9325a87c365ca0fdea39c698c2",
+      "sha256": "8c0de297f45a98bff8ae3ccc326b322ea5c0e556be5f8b859142d3bac21606e4",
       "role": "global proof ledger"
     },
     {
@@ -23,13 +23,13 @@
     {
       "path": "firmware",
       "kind": "tree",
-      "sha256": "7e123cb8109b61b4b9d639596e5f6d10df8e14d041353913a79480b206b3af3d",
+      "sha256": "802c0e3a3e38054afe8ac87670a31617f9d5076fc091262ef6cdda9c8cb46a2a",
       "role": "portable firmware and proof sources"
     },
     {
       "path": "tools",
       "kind": "tree",
-      "sha256": "f018ecab97a2d3801538dd4f12fa4250ff118d25e7ef665508413dbf457dd560",
+      "sha256": "2604ff74dde6a7708c86d9a431de72d0e8879563a9cc31f4b0df218fb11f79c8",
       "role": "host proof and provenance tools"
     },
     {
@@ -95,8 +95,14 @@
     {
       "path": "research/generative_intelligence_literature.md",
       "kind": "file",
-      "sha256": "d37d88f1d77cd3ad72fb08cbc676a912194b3a260c92bade2f083304370cfc79",
+      "sha256": "7e63ef0414db37627b1533d82ccc124eb47800a981e6cdf07fcd17003aa5e1b6",
       "role": "academic evidence for composition, groundedness and abstention"
+    },
+    {
+      "path": "research/llm_parity_matrix_v1.json",
+      "kind": "file",
+      "sha256": "55e76a525bdfe945cafa113c4673e0c1546cad01d656dfb828145bd491ae67af",
+      "role": "LLM capability parity matrix and non-equivalence gates"
     },
     {
       "path": "research/compositional_ood_contract_v1.json",

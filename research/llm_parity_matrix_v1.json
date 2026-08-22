@@ -1,0 +1,140 @@
+{
+  "schema": "herus.llm_parity_matrix.v1",
+  "scope": "host_pre_hardware_local_only",
+  "objective": "compare useful capabilities rather than claim unrestricted equivalence from one score",
+  "policy": {
+    "no_hosted_third_party_llm": true,
+    "all_personal_intelligence_on_wrist": true,
+    "external_core_role": "authorized knowledge feed and charging/support only",
+    "physical_action_requires_confirmation": true,
+    "report_unmeasured_as_unknown": true,
+    "never_use_fluency_as_truth_proxy": true
+  },
+  "comparison_units": [
+    "current_herus_typed_symbolic_neural_hybrid",
+    "current_herus_ablation_baselines_where_available",
+    "published_external_results_without_reimplementation_claim",
+    "future_local_model_baseline_with_frozen_checkpoints"
+  ],
+  "dimensions": [
+    {
+      "id": "language_understanding",
+      "question": "Can the system map varied Portuguese language to stable semantic intent and entities?",
+      "metric": "exact semantic parse, slot accuracy, abstention risk-coverage",
+      "current_status": "not_measured_open_language",
+      "current_evidence": "controlled semantic compiler plus bounded language OOD contract",
+      "current_result": "14/14 language OOD cases; 5/5 critical language mutants killed",
+      "scope_limit": "not open-domain language understanding or LLM parity",
+      "release_gate": "frozen Portuguese paraphrase set with held-out syntax and human-reviewed canonical IR"
+    },
+    {
+      "id": "compositional_reasoning",
+      "question": "Can known atoms and rules be recombined in unseen structures?",
+      "metric": "structured exact match by split, depth accuracy, provenance retention",
+      "current_status": "measured",
+      "current_result": "in_distribution 2/2; held_out 7/7; safety 3/3; structured exact 12/12",
+      "scope_limit": "typed symbolic domain; not open-domain language fluency"
+    },
+    {
+      "id": "open_generation",
+      "question": "Can the system generate useful novel language rather than fixed templates?",
+      "metric": "human-rated adequacy, semantic preservation, diversity, repetition, length control",
+      "current_status": "not_measured",
+      "release_gate": "same prompts, fixed decoding, blinded human evaluation and semantic oracle"
+    },
+    {
+      "id": "factuality_groundedness",
+      "question": "Does generation remain supported by current authorized memory?",
+      "metric": "support precision, unsupported-claim rate, conflict abstention, evidence coverage",
+      "current_status": "measured_typed_only",
+      "current_result": "memory-grounded and conflict/expiry gates pass in host suites",
+      "scope_limit": "no open-world factuality benchmark yet"
+    },
+    {
+      "id": "selective_prediction",
+      "question": "Does the system abstain when evidence, confidence or budget is insufficient?",
+      "metric": "risk-coverage curve, abstention precision, false-confidence rate",
+      "current_status": "measured_typed_only",
+      "current_result": "typed abstention gates pass; similarity-only baseline is weaker in existing intent benchmark",
+      "scope_limit": "calibration on open language is not measured"
+    },
+    {
+      "id": "multi_turn_continuity",
+      "question": "Does state remain coherent across generation, presentation, confirmation, interruption and reboot?",
+      "metric": "sequence exactness, illegal-transition count, scrub completeness, replay rejection",
+      "current_status": "measured",
+      "current_result": "composed dialogue 31/31; composed redteam 6/6",
+      "scope_limit": "deterministic host protocol, not human conversation"
+    },
+    {
+      "id": "personal_adaptation",
+      "question": "Does local adaptation change only authorized presentation and forget correctly?",
+      "metric": "style accuracy, fact invariance, consent violation rate, deletion recall",
+      "current_status": "measured_typed_only",
+      "current_result": "personal adapter 12/12; redteam 5/5",
+      "scope_limit": "not general language fine-tuning"
+    },
+    {
+      "id": "safety_authority_privacy",
+      "question": "Can the system remain useful without granting action, leaking private text or laundering provenance?",
+      "metric": "authority violations, privacy payload retention, poisoning survival, redteam kill rate",
+      "current_status": "measured_host",
+      "current_result": "276 global invariants; critical redteams pass across authority, poisoning, attribution and dialogue",
+      "scope_limit": "not a proof against all attacks"
+    },
+    {
+      "id": "efficiency",
+      "question": "Can the target run within a measured resource budget?",
+      "metric": "peak RAM, flash, latency, energy per turn, thermal behavior",
+      "current_status": "host_partial",
+      "current_result": "host object guardrails: generative_core 3779 text, personal_adapter 1267 text, composed_dialogue 3164 text",
+      "scope_limit": "ESP32-S3 RAM, latency, energy and thermal data pending hardware"
+    },
+    {
+      "id": "voice_and_haptics",
+      "question": "Can the person interact naturally through local voice and understand haptic output?",
+      "metric": "WER, false activation, missed capture, human decoding accuracy, latency",
+      "current_status": "haptic_protocol_only",
+      "current_result": "HAP-SEM round-trip and non-actionability pass on host",
+      "scope_limit": "no microphone, acoustic or human perception measurement"
+    }
+  ],
+  "parity_decision_rule": {
+    "cannot_claim_full_llm_equivalence_until": [
+      "open_language_understanding_is_measured_on_frozen_public_or_reproducible_tasks",
+      "open_generation_is_blind_evaluated_for_quality_and_semantic_preservation",
+      "factuality_and_selective_prediction_are_measured_with_risk_coverage",
+      "multi_turn_continuity_and_personal_adaptation_are_measured_together",
+      "resource_and_latency_measurements_exist_on_target_hardware",
+      "all results report coverage, abstention and confidence intervals where applicable"
+    ],
+    "acceptable_interim_claim": "HERUS has verified local typed compositional, grounded and safety capabilities while open-domain LLM parity remains unmeasured."
+  },
+  "academic_comparators": [
+    {
+      "name": "HELM",
+      "url": "https://arxiv.org/abs/2211.09110",
+      "use": "multi-metric scenario coverage"
+    },
+    {
+      "name": "COGS",
+      "url": "https://aclanthology.org/2020.emnlp-main.731/",
+      "use": "systematic compositional gaps"
+    },
+    {
+      "name": "gSCAN",
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2020/hash/e5a90182cc81e12ab5e72d66e0b46fe3-Abstract.html",
+      "use": "grounded compositional generalization"
+    },
+    {
+      "name": "CFQ",
+      "url": "https://arxiv.org/abs/1912.09713",
+      "use": "compound divergence versus atom divergence"
+    },
+    {
+      "name": "TruthfulQA",
+      "url": "https://aclanthology.org/2022.acl-long.229/",
+      "use": "adversarial truthfulness and misconception resistance"
+    }
+  ]
+}

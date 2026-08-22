@@ -61,3 +61,18 @@ A versão arXiv do trabalho de Keysers et al. descreve um método para construir
 Fonte: https://arxiv.org/abs/1912.09713
 
 A página OpenReview correspondente exigiu uma verificação de navegador e não foi usada como fonte factual; o artigo arXiv foi preferido para manter a pesquisa passiva e reproduzível.
+
+### HELM e avaliação reprodutível de LMs
+
+A fonte primária do HELM apresenta uma avaliação holística que combina cenários e múltiplas métricas. O resumo reporta sete métricas — accuracy, calibration, robustness, fairness, bias, toxicity e efficiency — aplicadas a 16 cenários centrais quando possível, além de uma avaliação ampla de modelos em 42 cenários [4]. Para o HERUS, a consequência é não resumir paridade com uma LLM em “acurácia”: a matriz deve separar capacidade linguística, factualidade, calibração/abstenção, robustez, privacidade, latência e custo.
+
+O repositório do LM Evaluation Harness declara suporte a modelos locais, adaptadores e tarefas de geração, log-likelihood, perplexidade rolling e múltipla escolha. Também enfatiza prompts públicos para favorecer reprodutibilidade e comparabilidade [5]. O HERUS adotará a mesma disciplina apenas para o que é aplicável ao seu formato: entradas versionadas, seeds controladas, oráculos estruturais quando existirem e distinção entre métricas determinísticas do host e métricas ainda não medidas no hardware.
+
+[4]: https://arxiv.org/abs/2211.09110
+[5]: https://github.com/EleutherAI/lm-evaluation-harness
+
+### TruthfulQA e veracidade adversarial
+
+A fonte primária do TruthfulQA apresenta 817 perguntas em 38 categorias, construídas para induzir respostas baseadas em falsas crenças e concepções populares. No resumo, o melhor modelo avaliado foi verdadeiro em 58% das perguntas, enquanto o desempenho humano reportado foi 94%; os autores observam que aumentar o tamanho do modelo, por si só, não garante maior veracidade [6]. Para o HERUS, isso exige um eixo separado de factualidade: respostas sem evidência devem abster-se, e a capacidade de produzir texto não pode ser usada como proxy de verdade.
+
+[6]: https://aclanthology.org/2022.acl-long.229/
