@@ -370,6 +370,18 @@ banner "42l/78 composed dialogue redteam (ghost-memory and replay controls must 
 
 grep -q "FAIL" /tmp/herus_composed_dialogue_redteam.log && FAIL=1 || true
 
+banner "42m/78 compositional OOD benchmark (systematic recombination and bounded generation)"
+( cd firmware && make -s compositional-ood ) > /tmp/herus_compositional_ood.log 2>&1 || FAIL=1
+[ "$QUIET" = 0 ] && cat /tmp/herus_compositional_ood.log
+
+grep -q "FAIL" /tmp/herus_compositional_ood.log && FAIL=1 || true
+
+banner "42n/78 compositional OOD redteam (generalization and abstention controls must be killable)"
+( cd firmware && make -s compositional-ood-redteam ) > /tmp/herus_compositional_ood_redteam.log 2>&1 || FAIL=1
+[ "$QUIET" = 0 ] && cat /tmp/herus_compositional_ood_redteam.log
+
+grep -q "FAIL" /tmp/herus_compositional_ood_redteam.log && FAIL=1 || true
+
 banner "43/78 semantic compiler (controlled Portuguese to typed IR)"
 ( cd firmware && make semantic-compiler ) > /tmp/herus_semantic.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_semantic.log
@@ -514,6 +526,8 @@ check "Generative dialogue loop preserves multi-step state and cleanup" "GEN DIA
 check "Generative dialogue loop redteam kills session, replay, timeout, abort and forget mutants" "GENERATIVE DIALOGUE LOOP REDTEAM: 5/5 critical mutants killed" /tmp/herus_generative_dialogue_loop_redteam.log
 check "Composed dialogue preserves router, grounding, adaptation, haptics and reboot" "COMPOSED DIALOGUE: 31 pass, 0 fail" /tmp/herus_composed_dialogue.log
 check "Composed dialogue redteam kills quarantine, replay, floor, expiry, conflict and scrub mutants" "COMPOSED DIALOGUE REDTEAM: 6/6 critical mutants killed" /tmp/herus_composed_dialogue_redteam.log
+check "Compositional OOD preserves in-distribution, held-out and safety regimes" "COMPOSITIONAL OOD BENCHMARK: PASS" /tmp/herus_compositional_ood.log
+check "Compositional OOD redteam kills contradiction, absence, ambiguity, budget, depth and provenance mutants" "COMPOSITIONAL OOD REDTEAM: 6/6 critical mutants killed" /tmp/herus_compositional_ood_redteam.log
 
 # --- controlled semantic compiler ------------------------------------------
 check "Semantic compiler emits exact typed IR, composes bounded conjunctions and rejects unsupported language" "SEMANTIC COMPILER: 54 pass, 0 fail" /tmp/herus_semantic.log

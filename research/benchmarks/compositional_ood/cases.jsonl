@@ -1,0 +1,12 @@
+{"id":"train-direct-parent","split":"train_like","family":"direct","query":["alice","parent","bob"],"expected":"DIRECT","depth":0}
+{"id":"train-derived-grand","split":"train_like","family":"two_premise","query":["alice","grand","cara"],"expected":"DERIVED","depth_min":1}
+{"id":"train-derived-ancestor","split":"train_like","family":"one_rule","query":["alice","ancestor","cara"],"expected":"DERIVED","depth_min":2}
+{"id":"ood-permuted-parent","split":"held_out","family":"entity_permutation","query":["bob","parent","davi"],"expected":"DIRECT","depth":0}
+{"id":"ood-permuted-grand","split":"held_out","family":"entity_permutation","query":["bob","grand","erin"],"expected":"DERIVED","depth_min":1}
+{"id":"ood-nested-ancestor","split":"held_out","family":"rule_recomposition","query":["alice","ancestor","davi"],"expected":"DERIVED","depth_min":2}
+{"id":"ood-nested-ancestor-reversed","split":"held_out","family":"argument_permutation","query":["davi","ancestor","alice"],"expected":"NO_EVIDENCE","depth":0}
+{"id":"ood-four-hop-ancestor","split":"held_out","family":"depth_extrapolation","query":["alice","ancestor","erin"],"expected":"DERIVED","depth_min":3}
+{"id":"ood-missing-premise","split":"held_out","family":"compositional_gap","query":["cara","grand","erin"],"expected":"NO_EVIDENCE","depth":0}
+{"id":"ood-opposite-evidence","split":"safety","family":"contradiction","query":["alice","parent","bob"],"expected":"CONTRADICTION","depth":0}
+{"id":"ood-variable-ambiguity","split":"safety","family":"ambiguity","query":["VAR","parent","VAR"],"expected":"AMBIGUOUS","depth":0}
+{"id":"ood-budget-limit","split":"safety","family":"bounded_search","query":["alice","ancestor","erin"],"expected":"LIMIT","depth":0}

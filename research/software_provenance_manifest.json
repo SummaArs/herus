@@ -11,7 +11,7 @@
     {
       "path": "prove.sh",
       "kind": "file",
-      "sha256": "70aa527ac6406c4e436eee93e7f2fe07bd1c51fefd373c699b28d22a9a22b094",
+      "sha256": "046755b9e869580f33ed121c9976df66b9d12d9325a87c365ca0fdea39c698c2",
       "role": "global proof ledger"
     },
     {
@@ -23,13 +23,13 @@
     {
       "path": "firmware",
       "kind": "tree",
-      "sha256": "9191512bcdacd5b5b153e0a34730419ca72ccbd8c7109328fc767919d36ecbb7",
+      "sha256": "7e123cb8109b61b4b9d639596e5f6d10df8e14d041353913a79480b206b3af3d",
       "role": "portable firmware and proof sources"
     },
     {
       "path": "tools",
       "kind": "tree",
-      "sha256": "e7ececa0f9740820ec04a577c604ecc29e8443c81bbb5f59f584f2bdba6e6fa5",
+      "sha256": "f018ecab97a2d3801538dd4f12fa4250ff118d25e7ef665508413dbf457dd560",
       "role": "host proof and provenance tools"
     },
     {
@@ -95,8 +95,20 @@
     {
       "path": "research/generative_intelligence_literature.md",
       "kind": "file",
-      "sha256": "1921b3bc0534b8969d3fc422fb761411bc4b01c406ce225d0dfb67feb7cda99c",
+      "sha256": "d37d88f1d77cd3ad72fb08cbc676a912194b3a260c92bade2f083304370cfc79",
       "role": "academic evidence for composition, groundedness and abstention"
+    },
+    {
+      "path": "research/compositional_ood_contract_v1.json",
+      "kind": "file",
+      "sha256": "37e464176226e33aaaf0f56524d61f4e37dea7561e00ab3b5ab5e2509b828035",
+      "role": "OOD composition benchmark contract"
+    },
+    {
+      "path": "research/benchmarks/compositional_ood/cases.jsonl",
+      "kind": "file",
+      "sha256": "70240abbeb42b7f335c05ecc2e157c64d3386ff61599d1921e585a851af87a89",
+      "role": "deterministic OOD composition cases"
     }
   ],
   "components": [

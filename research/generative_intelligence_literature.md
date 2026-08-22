@@ -41,3 +41,23 @@ Título: *Know Your Limits: A Survey of Abstention in Large Language Models*, We
 3. A fluência não será uma métrica de segurança. Groundedness, validade da derivação, precisão de desconhecido, recall de abstenção e zero violações de autoridade serão gates de release.
 4. A resposta final deverá ter uma forma de proveniência e uma política de apresentação. O gerador pode propor, mas não pode executar, transmitir, persistir ou ampliar autoridade.
 5. O objetivo prático será uma arquitetura híbrida: símbolos e regras para exatidão, estado semântico e memória para continuidade, composição para novidade controlada e um gerador superficial bounded para verbalização. Isso é uma hipótese de engenharia, não uma reivindicação de novo paradigma antes da comparação experimental.
+
+### COGS e gaps estruturais
+
+A fonte primária do COGS descreve um conjunto de parsing semântico com gaps sistemáticos, incluindo combinações novas de estruturas sintáticas familiares e combinações novas de palavras e estruturas familiares. O resumo reporta que Transformers e LSTMs obtiveram acurácia in-distribution próxima de 96–99%, mas generalização entre gaps de 16–35%, com sensibilidade de aproximadamente 6–8 pontos a seeds. A consequência para o HERUS é separar explicitamente desempenho dentro da distribuição de generalização composicional e repetir resultados determinísticos sem depender de seed.
+
+Fonte: https://aclanthology.org/2020.emnlp-main.731/
+
+### gSCAN e grounding situado
+
+A fonte primária do gSCAN define uma linguagem grounded em estados de um grid world para avaliar generalização composicional situada. O benchmark testa propriedades como a interpretação de adjetivos em relação ao estado atual e a combinação de advérbios com verbos novos; o resumo informa que baselines multimodais fortes falharam dramaticamente quando a generalização exigia regras composicionais sistemáticas. Para o HERUS, a analogia útil não é um grid visual, mas o estado local: intenção, geração, memória, autoridade e canal háptico devem ser tratados como contexto que muda a interpretação da mesma composição.
+
+Fonte: https://proceedings.neurips.cc/paper_files/paper/2020/hash/e5a90182cc81e12ab5e72d66e0b46fe3-Abstract.html
+
+### CFQ e divergência de compostos
+
+A versão arXiv do trabalho de Keysers et al. descreve um método para construir benchmarks em que a divergência entre compostos treino-teste é maximizada enquanto a divergência entre átomos é mantida pequena. O artigo apresenta o CFQ como conjunto realista de perguntas em linguagem natural e relata uma correlação negativa forte entre compound divergence e acurácia. A implicação direta para o HERUS é não usar apenas frases novas: o benchmark deve manter operadores, símbolos e primitivas conhecidos, mas combinar essas peças em estruturas que não apareceram no treino.
+
+Fonte: https://arxiv.org/abs/1912.09713
+
+A página OpenReview correspondente exigiu uma verificação de navegador e não foi usada como fonte factual; o artigo arXiv foi preferido para manter a pesquisa passiva e reproduzível.

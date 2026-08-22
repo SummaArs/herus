@@ -1,0 +1,51 @@
+{
+  "schema": "herus.compositional_ood.v1",
+  "scope": "host_pre_hardware",
+  "purpose": "measure systematic recombination of known typed atoms under bounded local generation",
+  "data_policy": "deterministic_hand_authored_cases_only",
+  "regimes": {
+    "in_distribution": "known direct and known two-premise compositions",
+    "held_out": "known atoms and rules recombined in unseen entity, argument and depth structures",
+    "safety": "absence, contradiction, ambiguity and bounded-budget cases"
+  },
+  "metrics": {
+    "structured_exact": "status and answer kind match the case oracle",
+    "held_out_depth": "derived answer preserves a nonzero bounded derivation depth",
+    "abstention": "absence, contradiction, ambiguity and limit never become confident answers",
+    "provenance": "derived generation retains at least one bounded proof root",
+    "textual_surface": "known typed result linearizes without missing lexemes"
+  },
+  "release_gates": {
+    "c11_suite": "13/13",
+    "in_distribution": "2/2",
+    "held_out": "7/7",
+    "safety": "3/3",
+    "redteam": "6/6 critical mutants killed"
+  },
+  "baselines": {
+    "in_distribution": "direct and two-premise reasoner cases",
+    "held_out": "entity permutation, rule recomposition, depth extrapolation and reversed arguments",
+    "safety": "no-evidence, contradiction, ambiguity and search-limit behavior"
+  },
+  "non_claims": [
+    "no_open_domain_language_model_equivalence",
+    "no_voice_recognition_or_wer",
+    "no_human_fluency_measurement",
+    "no_physical_hardware_or_energy_measurement",
+    "no_claim_that_symbolic_exact_match_implies_general_intelligence"
+  ],
+  "sources": [
+    {
+      "title": "COGS: A Compositional Generalization Challenge Based on Semantic Interpretation",
+      "url": "https://aclanthology.org/2020.emnlp-main.731/"
+    },
+    {
+      "title": "A Benchmark for Systematic Generalization in Grounded Language Understanding",
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2020/hash/e5a90182cc81e12ab5e72d66e0b46fe3-Abstract.html"
+    },
+    {
+      "title": "Measuring Compositional Generalization: A Comprehensive Method on Realistic Data",
+      "url": "https://arxiv.org/abs/1912.09713"
+    }
+  ]
+}
