@@ -11,7 +11,7 @@
     {
       "path": "prove.sh",
       "kind": "file",
-      "sha256": "456bd350c19d8ced6580a78b28b054882122e6044e758471699f2cbd6dd11e47",
+      "sha256": "b6268f0ebedc7b19f7ddcadc9400310f4bd402717062404d6b911219f0c6857d",
       "role": "global proof ledger"
     },
     {
@@ -23,13 +23,13 @@
     {
       "path": "firmware",
       "kind": "tree",
-      "sha256": "0a4d58d5374aa3f80551a2848b8fd3799ab3377bee386718f38a5e6b874bfdd1",
+      "sha256": "bb054a867bcf07eeba88f730acf85e75133a40f43582a68526826ac45072d850",
       "role": "portable firmware and proof sources"
     },
     {
       "path": "tools",
       "kind": "tree",
-      "sha256": "0ac47281572a8b66e7cdb0528f85ec18114b838a5b9e6b7a29571ccacee19701",
+      "sha256": "8055a761fe53cdb9be3581ace0c1fee457e38617c50b3d1112f21958035361be",
       "role": "host proof and provenance tools"
     },
     {
@@ -200,29 +200,51 @@
       "id": "local-source-input-digest",
       "status": "active",
       "question": "Do the declared host-proof inputs match the reviewed local SHA-256 references?",
-      "evidence_required": ["manifest schema", "canonical digest algorithm", "adversarial fixture suite"],
+      "evidence_required": [
+        "manifest schema",
+        "canonical digest algorithm",
+        "adversarial fixture suite"
+      ],
       "claim_if_pass": "Only the listed local inputs match this unsigned manifest at audit time.",
-      "evidence_files": ["tools/provenance_audit.py", "research/software_provenance_manifest.json"]
+      "evidence_files": [
+        "tools/provenance_audit.py",
+        "research/software_provenance_manifest.json"
+      ]
     },
     {
       "id": "signed-build-provenance",
       "status": "pending",
       "question": "Can a verifier authenticate a provenance statement for a released artifact and trace it to a protected builder?",
-      "evidence_required": ["signed attestation", "builder trust boundary", "artifact digest", "verification procedure"],
+      "evidence_required": [
+        "signed attestation",
+        "builder trust boundary",
+        "artifact digest",
+        "verification procedure"
+      ],
       "claim_if_pass": "A separately reviewed release artifact has authenticated provenance for its declared builder boundary."
     },
     {
       "id": "complete-component-inventory",
       "status": "pending",
       "question": "Does a machine-readable inventory cover the release artifact and its resolved direct and transitive components?",
-      "evidence_required": ["artifact inventory", "coverage method", "component identities", "review record"],
+      "evidence_required": [
+        "artifact inventory",
+        "coverage method",
+        "component identities",
+        "review record"
+      ],
       "claim_if_pass": "The declared release inventory has the documented coverage, not an inferred absence of vulnerabilities."
     },
     {
       "id": "reproducible-target-build",
       "status": "pending",
       "question": "Can independent controlled environments reproduce the selected target artifact from the declared inputs?",
-      "evidence_required": ["pinned toolchain", "build recipe", "independent digest comparison", "target artifact"],
+      "evidence_required": [
+        "pinned toolchain",
+        "build recipe",
+        "independent digest comparison",
+        "target artifact"
+      ],
       "claim_if_pass": "Only the tested target artifact and declared environments reproduced the recorded digest."
     }
   ]

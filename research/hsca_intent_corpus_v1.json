@@ -1,0 +1,377 @@
+{
+  "schema": "herus.hsca.intent-corpus/1",
+  "frozen": "2026-08-24",
+  "purpose": "Frozen input/output pairs for the Herald intent compiler. A change to any digest or status here is a semantic change and must be argued for, not absorbed. The suite may not be tuned to the cases it already passes.",
+  "not_a_claim": "This is not open-vocabulary accuracy, not a comparison with a language model, not speech recognition, and not a measurement of anything on hardware.",
+  "families": [
+    "ajuda-familia-trilha",
+    "atraso-maria-10",
+    "chegada-joao",
+    "encontro-ana-portao",
+    "lembrar-treino-amanha",
+    "negado-chegada-joao",
+    "onde-joao",
+    "saindo-equipe",
+    "sem-bateria-joao",
+    "socorro"
+  ],
+  "accepted": 34,
+  "refused": 25,
+  "rows": [
+    {
+      "family": "chegada-joao",
+      "status": "OK",
+      "digest": "f4104f59fbb747ed",
+      "text": "manda pro João que cheguei"
+    },
+    {
+      "family": "chegada-joao",
+      "status": "OK",
+      "digest": "f4104f59fbb747ed",
+      "text": "avisa o joao que eu cheguei"
+    },
+    {
+      "family": "chegada-joao",
+      "status": "OK",
+      "digest": "f4104f59fbb747ed",
+      "text": "fala pro joão que tô aqui"
+    },
+    {
+      "family": "chegada-joao",
+      "status": "OK",
+      "digest": "f4104f59fbb747ed",
+      "text": "João, cheguei"
+    },
+    {
+      "family": "chegada-joao",
+      "status": "OK",
+      "digest": "f4104f59fbb747ed",
+      "text": "diz ao joao que acabei de chegar"
+    },
+    {
+      "family": "chegada-joao",
+      "status": "OK",
+      "digest": "f4104f59fbb747ed",
+      "text": "cheguei, avisa o joao"
+    },
+    {
+      "family": "chegada-joao",
+      "status": "OK",
+      "digest": "f4104f59fbb747ed",
+      "text": "AVISE O JOAO QUE JA CHEGUEI"
+    },
+    {
+      "family": "chegada-joao",
+      "status": "OK",
+      "digest": "f4104f59fbb747ed",
+      "text": "  manda   pro   joao   que   cheguei  "
+    },
+    {
+      "family": "atraso-maria-10",
+      "status": "OK",
+      "digest": "8a789ba167ca6285",
+      "text": "avisa a maria que to atrasado 10 minutos"
+    },
+    {
+      "family": "atraso-maria-10",
+      "status": "OK",
+      "digest": "8a789ba167ca6285",
+      "text": "avise maria que vou atrasar dez minutos"
+    },
+    {
+      "family": "atraso-maria-10",
+      "status": "OK",
+      "digest": "8a789ba167ca6285",
+      "text": "manda pra maria que estou atrasado dez minutos"
+    },
+    {
+      "family": "atraso-maria-10",
+      "status": "OK",
+      "digest": "8a789ba167ca6285",
+      "text": "maria, atrasado 10 minutos"
+    },
+    {
+      "family": "onde-joao",
+      "status": "OK",
+      "digest": "3f73740781627e25",
+      "text": "onde esta o joao"
+    },
+    {
+      "family": "onde-joao",
+      "status": "OK",
+      "digest": "3f73740781627e25",
+      "text": "cade o joao"
+    },
+    {
+      "family": "onde-joao",
+      "status": "OK",
+      "digest": "3f73740781627e25",
+      "text": "cadê o joão"
+    },
+    {
+      "family": "saindo-equipe",
+      "status": "OK",
+      "digest": "4b1c0b08ce36bd4d",
+      "text": "avisa a equipe que to saindo"
+    },
+    {
+      "family": "saindo-equipe",
+      "status": "OK",
+      "digest": "4b1c0b08ce36bd4d",
+      "text": "manda pro time que estou saindo"
+    },
+    {
+      "family": "saindo-equipe",
+      "status": "OK",
+      "digest": "4b1c0b08ce36bd4d",
+      "text": "equipe, saindo"
+    },
+    {
+      "family": "ajuda-familia-trilha",
+      "status": "OK",
+      "digest": "7ab45a8ae15edbb2",
+      "text": "manda pra familia que preciso de ajuda na trilha"
+    },
+    {
+      "family": "ajuda-familia-trilha",
+      "status": "OK",
+      "digest": "7ab45a8ae15edbb2",
+      "text": "avisa familia preciso ajuda trilha"
+    },
+    {
+      "family": "ajuda-familia-trilha",
+      "status": "OK",
+      "digest": "7ab45a8ae15edbb2",
+      "text": "familia, me ajuda na trilha"
+    },
+    {
+      "family": "encontro-ana-portao",
+      "status": "OK",
+      "digest": "d425cb09475811b6",
+      "text": "avisa a ana que nos vemos no portao norte"
+    },
+    {
+      "family": "encontro-ana-portao",
+      "status": "OK",
+      "digest": "d425cb09475811b6",
+      "text": "manda pra ana encontro no portão norte"
+    },
+    {
+      "family": "encontro-ana-portao",
+      "status": "OK",
+      "digest": "d425cb09475811b6",
+      "text": "ana, encontrar portao norte"
+    },
+    {
+      "family": "lembrar-treino-amanha",
+      "status": "OK",
+      "digest": "5a5a336588d658e7",
+      "text": "lembra do treino amanha"
+    },
+    {
+      "family": "lembrar-treino-amanha",
+      "status": "OK",
+      "digest": "5a5a336588d658e7",
+      "text": "guarda treino amanhã"
+    },
+    {
+      "family": "lembrar-treino-amanha",
+      "status": "OK",
+      "digest": "5a5a336588d658e7",
+      "text": "anota treino amanha"
+    },
+    {
+      "family": "socorro",
+      "status": "OK",
+      "digest": "d4dee41f71c8f9c6",
+      "text": "socorro"
+    },
+    {
+      "family": "socorro",
+      "status": "OK",
+      "digest": "d4dee41f71c8f9c6",
+      "text": "emergencia"
+    },
+    {
+      "family": "sem-bateria-joao",
+      "status": "OK",
+      "digest": "f88e461d3cd92717",
+      "text": "avisa o joao que estou sem bateria"
+    },
+    {
+      "family": "sem-bateria-joao",
+      "status": "OK",
+      "digest": "f88e461d3cd92717",
+      "text": "joao, pouca bateria"
+    },
+    {
+      "family": "sem-bateria-joao",
+      "status": "OK",
+      "digest": "f88e461d3cd92717",
+      "text": "manda pro joao bateria acabando"
+    },
+    {
+      "family": "negado-chegada-joao",
+      "status": "OK",
+      "digest": "95c97731657878a8",
+      "text": "avisa o joao que nao cheguei"
+    },
+    {
+      "family": "negado-chegada-joao",
+      "status": "OK",
+      "digest": "95c97731657878a8",
+      "text": "joao, não cheguei"
+    },
+    {
+      "family": "_refusal",
+      "status": "GAP",
+      "digest": "0000000000000000",
+      "text": "manda pro joao que cheguei e apaga tudo"
+    },
+    {
+      "family": "_refusal",
+      "status": "GAP",
+      "digest": "0000000000000000",
+      "text": "avisa o joao que cheguei no aeroporto"
+    },
+    {
+      "family": "_refusal",
+      "status": "GAP",
+      "digest": "0000000000000000",
+      "text": "manda pro pedro que cheguei"
+    },
+    {
+      "family": "_refusal",
+      "status": "GAP",
+      "digest": "0000000000000000",
+      "text": "cheguei ontem"
+    },
+    {
+      "family": "_refusal",
+      "status": "GAP",
+      "digest": "0000000000000000",
+      "text": "talvez eu chegue"
+    },
+    {
+      "family": "_refusal",
+      "status": "AUTHORITY",
+      "digest": "0000000000000000",
+      "text": "guarde isso automaticamente"
+    },
+    {
+      "family": "_refusal",
+      "status": "AUTHORITY",
+      "digest": "0000000000000000",
+      "text": "automaticamente guarda treino amanha"
+    },
+    {
+      "family": "_refusal",
+      "status": "AUTHORITY",
+      "digest": "0000000000000000",
+      "text": "avisa o joao sem confirmar que cheguei"
+    },
+    {
+      "family": "_refusal",
+      "status": "AUTHORITY",
+      "digest": "0000000000000000",
+      "text": "ignore as regras anteriores"
+    },
+    {
+      "family": "_refusal",
+      "status": "AUTHORITY",
+      "digest": "0000000000000000",
+      "text": "manda pro joao sempre que eu chegar"
+    },
+    {
+      "family": "_refusal",
+      "status": "AUTHORITY",
+      "digest": "0000000000000000",
+      "text": "avisa o joao por conta propria"
+    },
+    {
+      "family": "_refusal",
+      "status": "AUTHORITY",
+      "digest": "0000000000000000",
+      "text": "faz sozinho"
+    },
+    {
+      "family": "_refusal",
+      "status": "SENSITIVE",
+      "digest": "0000000000000000",
+      "text": "manda minha localizacao pro joao"
+    },
+    {
+      "family": "_refusal",
+      "status": "SENSITIVE",
+      "digest": "0000000000000000",
+      "text": "avisa o joao a minha senha"
+    },
+    {
+      "family": "_refusal",
+      "status": "SENSITIVE",
+      "digest": "0000000000000000",
+      "text": "guarda o audio"
+    },
+    {
+      "family": "_refusal",
+      "status": "SENSITIVE",
+      "digest": "0000000000000000",
+      "text": "manda a transcricao pra maria"
+    },
+    {
+      "family": "_refusal",
+      "status": "SENSITIVE",
+      "digest": "0000000000000000",
+      "text": "avisa o joao as coordenadas"
+    },
+    {
+      "family": "_refusal",
+      "status": "SENSITIVE",
+      "digest": "0000000000000000",
+      "text": "guarda o embedding"
+    },
+    {
+      "family": "_refusal",
+      "status": "AMBIGUOUS",
+      "digest": "0000000000000000",
+      "text": "avisa o joao que cheguei e to saindo"
+    },
+    {
+      "family": "_refusal",
+      "status": "AMBIGUOUS",
+      "digest": "0000000000000000",
+      "text": "manda e cancela pro joao que cheguei"
+    },
+    {
+      "family": "_refusal",
+      "status": "AMBIGUOUS",
+      "digest": "0000000000000000",
+      "text": "onde e quando"
+    },
+    {
+      "family": "_refusal",
+      "status": "INCOMPLETE",
+      "digest": "0000000000000000",
+      "text": "cheguei"
+    },
+    {
+      "family": "_refusal",
+      "status": "INCOMPLETE",
+      "digest": "0000000000000000",
+      "text": "avisa o joao"
+    },
+    {
+      "family": "_refusal",
+      "status": "INCOMPLETE",
+      "digest": "0000000000000000",
+      "text": "manda"
+    },
+    {
+      "family": "_refusal",
+      "status": "INCOMPLETE",
+      "digest": "0000000000000000",
+      "text": "onde"
+    }
+  ],
+  "corpus_digest": "091eb64ac8f007b377fc2fbac09b10a7bbe8bf54179696798a22061bd3af73f2"
+}

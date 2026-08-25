@@ -44,6 +44,24 @@ O HERUS também passa a ser uma plataforma de comunicação multimodo. LoRa perm
 
 A telemetria pessoal segue uma fronteira própria. O relógio poderá medir movimento e métricas de bem-estar como um wearable esportivo, mas cada amostra precisa de qualidade, origem, janela e consentimento. Coleta, retenção e compartilhamento são autorizações diferentes; o HERUS não se apresenta como dispositivo médico e não cria valores quando o sensor está indisponível.
 
+## HSCA — a camada semântica cognitiva
+
+O HERUS sempre transmitiu significado. A **HSCA** é a consequência disso levada até o fim: se a unidade de comunicação tem 34 bytes, o canal deixa de ser um requisito e vira uma escolha, e o alcance deixa de ser função da potência para virar função do tempo.
+
+| Camada | O que resolve |
+|---|---|
+| **Herald** | compila a fala curta numa intenção canônica: frases diferentes com o mesmo significado produzem o **mesmo** quadro, byte a byte. O que não é representável vira uma lacuna tipada, nunca uma aproximação. |
+| **Ladder** | onze canais — toque, glifo óptico, som, BLE, BLE-Coded, ESP-NOW, Wi-Fi, LoRa, malha, satélite e custódia. Um significado cabe em **11 de 11**; quatro segundos de fala cabem em 8. |
+| **Drift** | quando não há canal nenhum agora, o significado viaja com quem passa. Custódia sem leitura, com salto, fanout e expiração limitados. |
+| **Aura** | quem está por perto, sem servidor, sem conta, sem localização e sem identificador estável. |
+| **Keel** | mantém tudo isso no pulso: **1.028 bytes** de estado para a via cognitiva inteira, e uma matriz que dá ao Core exatamente quatro ações — carregar, retransmitir cifra, uplink de satélite e propor conhecimento. |
+
+Nada disso invalida os números de RF e energia já orçados: a forma de fio da HSCA são 24 bytes bit-compatíveis com o HCP Tier 1, ou seja, os mesmos 34 bytes de 246,8 ms em SF9.
+
+Evidência host desta revisão: **206 invariantes** em seis suítes, um corpus congelado de 59 pares entrada/saída reproduzido exatamente, e **26 de 26** controles removidos deliberadamente e detectados. Continua sem dado de campo — alcance, energia, ergonomia e fala seguem pendentes da Fase 0.
+
+A tese, o método, os limites e o que foi deliberadamente recusado estão em [Paradigma HSCA](docs/105-HERUS-HSCA-PARADIGMA.md).
+
 ## Para quem é
 
 | Cenário | Valor do HERUS |
@@ -99,6 +117,12 @@ A próxima etapa física é a Fase 0: dois devkits, bancada curta, medição RF,
 | [Resonator, VSA e raciocínio](docs/51-HERUS-RESONATOR-VSA-E-RACIOCINIO.md) | Fatoração vetorial, ponte VSA→reasoner, margens, ambiguidade e limites honestos de generalização. |
 | [Segurança](SECURITY.md) | O que a criptografia protege hoje e o que ainda depende de integração física. |
 | [Aprendizados do Atlas_Node](docs/44-ATLAS-NODE-APRENDIZADOS.md) | Comparação auditável com um sistema ESP32/BLE/rádio e adaptação de transporte limitada. |
+| [Paradigma HSCA](docs/105-HERUS-HSCA-PARADIGMA.md) | Significado de 34 bytes, as cinco camadas, o que foi recusado e por quê. |
+| [Herald](docs/106-HERUS-HERALD-COMPILADOR-DE-INTENCAO.md) | Compilador de intenção: convergência de paráfrase, cobertura total e lacunas tipadas. |
+| [Ladder](docs/107-HERUS-LADDER-ESCADA-DE-PORTADORES.md) | Os onze degraus, elegibilidade, ordenação e a fronteira de autoridade. |
+| [Drift](docs/108-HERUS-DRIFT-ALCANCE-NO-TEMPO.md) | Custódia sem leitura, limites duros e alcance medido como função do tempo. |
+| [Aura](docs/109-HERUS-AURA-PRESENCA-PRIVADA.md) | Presença sem servidor: ratchet de época, revogação e limites honestos. |
+| [Keel](docs/110-HERUS-KEEL-SOBERANIA-MEDIDA.md) | Orçamento medido no pulso e a matriz de papéis do Core. |
 
 ## Estado de engenharia
 
@@ -111,11 +135,14 @@ make -C firmware transport-selector
 make -C firmware personal-telemetry
 make -C firmware symbolic-reasoner
 make -C firmware resonator
+make -C firmware hsca
+python3 tools/test_hsca_corpus.py
+python3 tools/test_hsca_redteam.py
 make -C sim virtual
 make -C sim virtual-mutation
 ```
 
-O comando executa as verificações portáveis, o simulador e o gate de mutação. `make -C firmware symbolic-reasoner` exercita o núcleo generativo simbólico local, com composição, planejamento, diálogo, prova e abstention; `make -C firmware resonator` exercita a fatoração VSA, a ponte VSA→reasoner e o stress de codebook; `make -C sim virtual` executa a bancada pré-hardware de Watch, Paper-Core, transportes, telemetria, bateria abstrata e um enlace LoRa real dentro do modelo; `make -C sim virtual-mutation` recompila sete remoções deliberadamente inseguras e exige que todas sejam detectadas. A análise Atlas_Node inclui ainda a suíte explícita `make -C firmware delivery-plan`. Um resultado positivo confirma contratos de software e autoriza somente o início controlado da bancada; ele **não** constitui evidência de alcance, energia, UX, fluência universal ou desempenho físico.
+O comando executa as verificações portáveis, o simulador e o gate de mutação. `make -C firmware hsca` exercita a camada semântica cognitiva — compilador de intenção, escada de portadores, custódia, presença privada e o orçamento do pulso — e a composição final com o Core desligado; `tools/test_hsca_corpus.py` reexecuta o corpus congelado de intenção e `tools/test_hsca_redteam.py` remove um controle da HSCA por vez e exige que a suíte perceba. `make -C firmware symbolic-reasoner` exercita o núcleo generativo simbólico local, com composição, planejamento, diálogo, prova e abstention; `make -C firmware resonator` exercita a fatoração VSA, a ponte VSA→reasoner e o stress de codebook; `make -C sim virtual` executa a bancada pré-hardware de Watch, Paper-Core, transportes, telemetria, bateria abstrata e um enlace LoRa real dentro do modelo; `make -C sim virtual-mutation` recompila sete remoções deliberadamente inseguras e exige que todas sejam detectadas. A análise Atlas_Node inclui ainda a suíte explícita `make -C firmware delivery-plan`. Um resultado positivo confirma contratos de software e autoriza somente o início controlado da bancada; ele **não** constitui evidência de alcance, energia, UX, fluência universal ou desempenho físico.
 
 O núcleo generativo simbólico e sua definição de equivalência funcional estão documentados em [`docs/50-HERUS-NUCLEO-GENERATIVO-SIMBOLICO.md`](docs/50-HERUS-NUCLEO-GENERATIVO-SIMBOLICO.md). O Resonator VSA, a ponte de autoridade e os limites de generalização estão em [`docs/51-HERUS-RESONATOR-VSA-E-RACIOCINIO.md`](docs/51-HERUS-RESONATOR-VSA-E-RACIOCINIO.md). A fronteira entre uma proposta de modelo e um candidato de memória pode ser exercitada com `make -C firmware memory-proposal`. A política multimodo pode ser exercitada com `make -C firmware transport-selector`, e a telemetria pessoal consentida com `make -C firmware personal-telemetry`. O sizing grosseiro da demonstração de LLM em ESP32-S3 pode ser reproduzido separadamente com `make -C firmware llm-budget-check`. Esses alvos validam somente contratos e comparações C11/Python host-only; persistência, HCP, comunicação, inferência, qualidade, autonomia e desempenho continuam exigindo os gates humanos e físicos existentes.
 

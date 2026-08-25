@@ -9,7 +9,7 @@
 #   ./prove.sh            full run
 #   ./prove.sh --quiet    verdict lines only
 #
-# Seventy-eight suites, each independently falsifiable:
+# Eighty-six suites, each independently falsifiable:
 #   1  algebra      quasi-orthogonality, bundling, resonator, learning, HCP
 #   2  nucleus      bounded, opt-in local semantic intelligence
 #   3  voice        controlled local language and bounded haptic feedback
@@ -88,6 +88,17 @@
 #  76  deterministic GAN-style sabotage campaign for post-reboot reindex
 #  77  ambient presence, quiet bounded offers and contact-aware acknowledgement
 #  78  deterministic GAN-style sabotage campaign for ambient presence
+#
+# HSCA — the semantic cognitive architecture. One canonical meaning, 34 bytes
+# wide, and the five layers that agree on it:
+#  79  herald    intent compiler: paraphrase convergence, total coverage, refusal
+#  80  ladder    one meaning, eleven channels, and the reach/authority boundary
+#  81  drift     custody without readership; reach as a function of time
+#  82  aura      private presence with no server, no account and no location
+#  83  keel      the measured wrist budget and the Core role matrix
+#  84  finale    the whole chain composed, with the Core switched off
+#  85  corpus    the frozen intent corpus replayed, digest by digest
+#  86  redteam   one HSCA control removed at a time; every mutant must be caught
 #
 # The Nucleus suite is intentionally separate: privacy and non-autonomy are
 # properties that must fail a build when regressed, not promises in a document.
@@ -935,6 +946,30 @@ if python3 tools/test_intent_router_c11_redteam.py > /tmp/herus_intent_router_c1
 else
     echo "  FAIL  intent router C11 redteam failed — see /tmp/herus_intent_router_c11_redteam.log"
     tail -5 /tmp/herus_intent_router_c11_redteam.log
+    FAIL=1
+fi
+
+banner "79-84/86 HSCA (herald, ladder, drift, aura, keel, finale)"
+( cd firmware && make -s hsca ) > /tmp/herus_hsca.log 2>&1 || FAIL=1
+[ "$QUIET" = 0 ] && cat /tmp/herus_hsca.log
+grep -q "FAIL" /tmp/herus_hsca.log && FAIL=1 || true
+grep -E "HSCA (HERALD|LADDER|DRIFT|AURA|KEEL|FINALE):" /tmp/herus_hsca.log || true
+
+banner "85/86 HSCA frozen intent corpus"
+if python3 tools/test_hsca_corpus.py > /tmp/herus_hsca_corpus.log 2>&1; then
+    grep "HSCA CORPUS" /tmp/herus_hsca_corpus.log
+else
+    echo "  FAIL  the intent corpus drifted — see /tmp/herus_hsca_corpus.log"
+    tail -8 /tmp/herus_hsca_corpus.log
+    FAIL=1
+fi
+
+banner "86/86 HSCA control-removal campaign"
+if python3 tools/test_hsca_redteam.py > /tmp/herus_hsca_redteam.log 2>&1; then
+    grep "HSCA REDTEAM" /tmp/herus_hsca_redteam.log
+else
+    echo "  FAIL  an HSCA control is not load bearing — see /tmp/herus_hsca_redteam.log"
+    tail -10 /tmp/herus_hsca_redteam.log
     FAIL=1
 fi
 

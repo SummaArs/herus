@@ -2,6 +2,9 @@
 #
 #   make            all host-verifiable suites
 #   make algebra    the two algebra suites (hv/sbc/lexicon)
+#   make hsca       the semantic cognitive architecture: herald, ladder,
+#                   drift, aura, keel and their composed finale
+#   make hsca-redteam  remove one HSCA control at a time and require detection
 #   make nucleus    the local, bounded semantic-intelligence suite
 #   make voice      the controlled-language and bounded-haptics suite
 #   make intent     the session/confidence/ambiguity gateway suite
@@ -88,9 +91,9 @@ INC     := -Icore -Inet -Iport -Itest
 CORE    := core/hv.c core/sbc.c core/lexicon.c core/hcp.c
 NET     := net/crypto.c net/session.c net/region.c net/weave.c net/beat.c net/link.c
 
-.PHONY: all algebra nucleus voice intent intent-router dialogue model-lab memory-policy memory-capture memory-extract watch-memory-frontend memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale memory-collection memory-collection-index memory-collection-recovery memory-collection-recovery-stress memory-collection-finale bench-evidence-validate bench-interruption-sim memory-proposal llm-budget-check memory-physical-session memory-physical-session-recovery memory-physical-session-recovery-stress memory-physical-session-bootstrap memory-reboot-boundary memory-reboot-redteam memory-post-reboot-reindex memory-post-reboot-reindex-redteam memory-prehardware-finale threat-model threat-model-stress proof-fire-mutations assurance capstone trust control-link delivery-plan transport-selector personal-telemetry symbolic-reasoner generative-core generative-core-redteam personal-adapter personal-adapter-redteam generative-core-budget generative-haptic generative-haptic-redteam generative-dialogue-loop generative-dialogue-loop-redteam composed-dialogue composed-dialogue-redteam compositional-ood compositional-ood-redteam resonator semantic-compiler semantic-language-ood semantic-language-ood-redteam semantic-benchmark llm-comparison llm-comparison-redteam knowledge-feed knowledge-feed-cursor memory-semantic-evidence memory-reasoning-bridge magic-anticipation degradation-matrix degradation-redteam magic-trigger magic-dialogue-bridge autonomy-policy autonomy-redteam magic-redteam interaction interaction-rig net radio syntax vectors haptic-language haptic-language-matrix haptic-semantic-bridge haptic-adapter haptic-evidence haptic-target haptic-runner haptic-preflight cross-failure-matrix cross-failure-redteam clean
+.PHONY: all algebra nucleus voice intent intent-router dialogue model-lab memory-policy memory-capture memory-extract watch-memory-frontend memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale memory-collection memory-collection-index memory-collection-recovery memory-collection-recovery-stress memory-collection-finale bench-evidence-validate bench-interruption-sim memory-proposal llm-budget-check memory-physical-session memory-physical-session-recovery memory-physical-session-recovery-stress memory-physical-session-bootstrap memory-reboot-boundary memory-reboot-redteam memory-post-reboot-reindex memory-post-reboot-reindex-redteam memory-prehardware-finale threat-model threat-model-stress proof-fire-mutations assurance capstone trust control-link delivery-plan transport-selector personal-telemetry symbolic-reasoner generative-core generative-core-redteam personal-adapter personal-adapter-redteam generative-core-budget generative-haptic generative-haptic-redteam generative-dialogue-loop generative-dialogue-loop-redteam composed-dialogue composed-dialogue-redteam compositional-ood compositional-ood-redteam resonator semantic-compiler semantic-language-ood semantic-language-ood-redteam semantic-benchmark llm-comparison llm-comparison-redteam knowledge-feed knowledge-feed-cursor memory-semantic-evidence memory-reasoning-bridge magic-anticipation degradation-matrix degradation-redteam magic-trigger magic-dialogue-bridge autonomy-policy autonomy-redteam magic-redteam interaction interaction-rig net radio syntax vectors haptic-language haptic-language-matrix haptic-semantic-bridge haptic-adapter haptic-evidence haptic-target haptic-runner haptic-preflight cross-failure-matrix cross-failure-redteam hsca hsca-herald hsca-ladder hsca-drift hsca-aura hsca-keel hsca-finale hsca-redteam hsca-corpus clean
 
-all: algebra nucleus voice intent intent-router dialogue model-lab memory-policy memory-capture memory-extract memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale memory-collection memory-collection-index memory-collection-recovery memory-collection-recovery-stress memory-collection-finale memory-physical-session memory-physical-session-recovery memory-physical-session-recovery-stress memory-physical-session-bootstrap memory-reboot-boundary memory-reboot-redteam memory-post-reboot-reindex memory-post-reboot-reindex-redteam memory-prehardware-finale threat-model threat-model-stress proof-fire-mutations assurance capstone trust control-link interaction interaction-rig net radio syntax vectors haptic-language haptic-language-matrix haptic-semantic-bridge haptic-adapter haptic-evidence haptic-target haptic-runner haptic-preflight personal-adapter generative-core
+all: algebra nucleus voice intent intent-router dialogue model-lab memory-policy memory-capture memory-extract memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale memory-collection memory-collection-index memory-collection-recovery memory-collection-recovery-stress memory-collection-finale memory-physical-session memory-physical-session-recovery memory-physical-session-recovery-stress memory-physical-session-bootstrap memory-reboot-boundary memory-reboot-redteam memory-post-reboot-reindex memory-post-reboot-reindex-redteam memory-prehardware-finale threat-model threat-model-stress proof-fire-mutations assurance capstone trust control-link interaction interaction-rig net radio syntax vectors haptic-language haptic-language-matrix haptic-semantic-bridge haptic-adapter haptic-evidence haptic-target haptic-runner haptic-preflight personal-adapter generative-core hsca
 	@echo ""
 	@echo "=================================================="
 	@echo "ALL FIRMWARE SUITES PASS"
@@ -614,6 +617,64 @@ vectors:
 
 build:
 	@mkdir -p build
+
+# --- HSCA: the semantic cognitive architecture -------------------------------
+#
+# One meaning, canonical and 34 bytes wide, is the unit that every layer below
+# agrees on. herald compiles speech into it, ladder decides which of eleven
+# channels can carry it, drift turns reach into a function of time, aura says
+# who is nearby without a server, and keel keeps all of it on the wrist.
+
+HSCA := core/hir.c core/herald.c core/ladder.c core/drift.c core/aura.c core/keel.c
+
+hsca: hsca-herald hsca-ladder hsca-drift hsca-aura hsca-keel hsca-finale
+	@echo ""
+	@echo "HSCA: every semantic-cognitive suite passes"
+
+hsca-herald: build
+	@echo "--- hsca/herald: intent compiler, paraphrase convergence and refusal ---"
+	$(CC) $(CFLAGS) -Werror $(INC) net/crypto.c core/hir.c core/herald.c \
+	    core/test_hsca_herald.c -o build/test_hsca_herald
+	./build/test_hsca_herald
+
+hsca-ladder: build
+	@echo "--- hsca/ladder: one meaning, every channel ---"
+	$(CC) $(CFLAGS) -Werror $(INC) core/ladder.c core/test_hsca_ladder.c \
+	    -o build/test_hsca_ladder
+	./build/test_hsca_ladder
+
+hsca-drift: build
+	@echo "--- hsca/drift: custody, opacity and reach as a function of time ---"
+	$(CC) $(CFLAGS) -Werror $(INC) net/crypto.c core/hir.c core/herald.c core/drift.c \
+	    core/test_hsca_drift.c -o build/test_hsca_drift
+	./build/test_hsca_drift
+
+hsca-aura: build
+	@echo "--- hsca/aura: private presence, no server and no identity ---"
+	$(CC) $(CFLAGS) -Werror $(INC) net/crypto.c core/aura.c core/test_hsca_aura.c \
+	    -o build/test_hsca_aura
+	./build/test_hsca_aura
+
+hsca-keel: build
+	@echo "--- hsca/keel: the wrist budget and the Core role matrix ---"
+	$(CC) $(CFLAGS) -Werror $(INC) net/crypto.c $(HSCA) core/test_hsca_keel.c \
+	    -o build/test_hsca_keel
+	./build/test_hsca_keel
+
+hsca-finale: build
+	@echo "--- hsca/finale: the whole chain, with the Core switched off ---"
+	$(CC) $(CFLAGS) -Werror $(INC) net/crypto.c $(HSCA) core/test_hsca_finale.c \
+	    -o build/test_hsca_finale
+	./build/test_hsca_finale
+
+hsca-redteam:
+	@echo "--- hsca/redteam: remove one control, require the suite to notice ---"
+	python3 ../tools/test_hsca_redteam.py
+
+hsca-corpus:
+	@echo "--- hsca/corpus: replay the frozen intent corpus ---"
+	python3 ../tools/test_hsca_corpus.py
+
 
 clean:
 	rm -rf build test_herus test_algebra
