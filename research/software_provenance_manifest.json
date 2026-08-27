@@ -47,20 +47,32 @@
     {
       "path": "research/Makefile",
       "kind": "file",
-      "sha256": "df5f9152171a71ba571ac6bb26fd35c536d4dcdf6f936df45664b62b96d8d135",
+      "sha256": "60961f9fea82c42abe125bacdd65641e240ced7a02d2ebba5f023d8624ab5de0",
       "role": "host-only research test entrypoint"
     },
     {
       "path": "research/semantic_ir.py",
       "kind": "file",
-      "sha256": "9688cfea2ef8f2dd30180acbae0e5e344ef0753eb853b12159b834275e8ee9c7",
+      "sha256": "6733920ab546f41cd4bf779b6c515d0e5ba3c45a99f3d512e967f5163ef78e0f",
       "role": "host-only semantic IR implementation"
     },
     {
       "path": "research/test_semantic_ir.py",
       "kind": "file",
-      "sha256": "3014980f426ce2153629563f20d866799d5a6a3852d81d9909b45756a9ab5c34",
+      "sha256": "d00b87f0746fc87968b15da8b094c3ad2178365434b7a4e3ae62a0b7c3935d50",
       "role": "host-only semantic IR tests"
+    },
+    {
+      "path": "research/semantic_ir_fuzz.py",
+      "kind": "file",
+      "sha256": "8773731916b1c9ada4ffa3607349cab25fa79974031565b0f997a1947b4c780a",
+      "role": "deterministic semantic IR adversarial fuzzer"
+    },
+    {
+      "path": "research/test_semantic_ir_fuzz.py",
+      "kind": "file",
+      "sha256": "664ec69bb04a70fc0e0339e0937266c978ab9bf9ba7be7ba83301aaca096f1de",
+      "role": "semantic IR fuzz campaign test"
     },
     {
       "path": "research/semantic_ir.schema.json",

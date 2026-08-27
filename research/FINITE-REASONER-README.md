@@ -19,7 +19,8 @@ A operação generativa não é uma licença para inventar símbolos. Toda expre
 
 ```bash
 cd research
-python3 -m unittest -v test_finite_reasoner.py
+python3 -m unittest -v test_finite_reasoner.py test_semantic_ir.py test_semantic_ir_fuzz.py
+python3 semantic_ir_fuzz.py
 python3 finite_reasoner.py
 ```
 
@@ -34,3 +35,7 @@ A adoção de uma LLM local permanece uma hipótese posterior. Se existir, ela a
 > Um núcleo simbólico finito pode oferecer composição nova e explicável dentro de um vocabulário fechado, preservando garantias de tipagem, orçamento e falha fechada; ele não resolve compreensão ou geração abertas sem uma fonte adicional de grounding e aprendizagem.
 
 Essa hipótese é falsificável por testes de composição, generalização combinatória, taxa de rejeição, crescimento do e-graph, custo de memória, conflitos paraconsistentes e conversão para cartões canônicos. O protótipo não deve ser apresentado como solução para síntese de programas de propósito geral.
+
+## Campanha adversarial atual
+
+`semantic_ir_fuzz.py` executa uma campanha determinística com seed `0x48525553`: 100 casos-base válidos e 27 mutadores inválidos, totalizando 2.700 casos mutados. O relatório JSON bruto fica em `evidence/semantic_ir_fuzz_raw.json`; os logs completos ficam em `evidence/adversarial_validation_raw.txt`. O critério de aprovação é zero caso válido rejeitado e zero caso mutado aceito.

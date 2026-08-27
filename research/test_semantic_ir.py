@@ -78,6 +78,11 @@ class SemanticIRTests(unittest.TestCase):
         self.assertIsNone(to_firmware_command(low))
         self.assertIsNone(to_firmware_command(narrow))
 
+    def test_unicode_evidence_ref_is_rejected_like_schema(self):
+        value = valid_ir(evidence=[{"kind": "OBSERVATION", "ref": "ação", "polarity": "POSITIVE", "weight": 90}])
+        issues = validate_ir(value)
+        self.assertTrue(any(issue.path == "$.evidence[0].ref" and issue.code == "FORMAT" for issue in issues))
+
     def test_unknown_or_invalid_evidence_is_rejected(self):
         value = valid_ir(evidence=[{"kind": "HUNCH", "ref": "bad ref", "polarity": "MAYBE", "weight": 101}])
         issues = validate_ir(value)
