@@ -101,10 +101,14 @@ def validate_ir(value: Any) -> tuple[IRIssue, ...]:
         issues.append(_issue("$.eventKind", "ENUM", "eventKind is outside the finite vocabulary"))
     if value["source"] not in {item.value for item in Source}:
         issues.append(_issue("$.source", "ENUM", "source is outside the finite vocabulary"))
+    score_valid = True
     for key in ("confidencePct", "runnerUpPct"):
         number = value[key]
         if isinstance(number, bool) or not isinstance(number, int) or not 0 <= number <= 100:
             issues.append(_issue(f"$.{key}", "RANGE", "must be an integer in 0..100"))
+            score_valid = False
+    if score_valid and value["runnerUpPct"] > value["confidencePct"]:
+        issues.append(_issue("$.runnerUpPct", "ORDER", "runner-up score cannot exceed the primary score"))
     if value["authority"] != "PROPOSAL_ONLY":
         issues.append(_issue("$.authority", "AUTHORITY", "only PROPOSAL_ONLY is accepted"))
     if value["hypothesisStatus"] not in {item.value for item in HypothesisStatus}:
@@ -149,6 +153,19 @@ def validate_ir(value: Any) -> tuple[IRIssue, ...]:
             weight = item["weight"]
             if isinstance(weight, bool) or not isinstance(weight, int) or not 0 <= weight <= 100:
                 issues.append(_issue(f"{prefix}.weight", "RANGE", "weight must be an integer in 0..100"))
+    if not any(issue.path.startswith("$.evidence") for issue in issues):
+        evidence = value["evidence"]
+        positive = any(item["polarity"] == "POSITIVE" and item["weight"] > 0 for item in evidence)
+        negative = any(item["polarity"] == "NEGATIVE" and item["weight"] > 0 for item in evidence)
+        status = value["hypothesisStatus"]
+        supported = {
+            "TRUE": positive and not negative,
+            "FALSE": negative and not positive,
+            "BOTH": positive and negative,
+            "NEITHER": not positive and not negative,
+        }
+        if status in supported and not supported[status]:
+            issues.append(_issue("$.hypothesisStatus", "EVIDENCE", "hypothesis status does not match positive/negative evidence"))
     return tuple(issues)
 
 
@@ -171,10 +188,38 @@ def compile_ir(value: Mapping[str, Any]) -> tuple[SemanticProposal | None, tuple
 
 
 def to_firmware_command(proposal: SemanticProposal) -> tuple[str, int] | None:
-    """Map only unambiguous proposals to the existing finite command vocabulary."""
+    """Map only compiler-shaped, unambiguous proposals to finite commands."""
+    if not isinstance(proposal, SemanticProposal):
+        return None
     if proposal.hypothesis_status != HypothesisStatus.TRUE:
         return None
+    if not isinstance(proposal.event_kind, EventKind) or not isinstance(proposal.source, Source):
+        return None
+    if proposal.event_kind is EventKind.ARRIVE:
+        if proposal.minutes is not None and (isinstance(proposal.minutes, bool) or not isinstance(proposal.minutes, int) or not 1 <= proposal.minutes <= 60):
+            return None
+    elif proposal.minutes is not None:
+        return None
+    if not isinstance(proposal.confidence_pct, int) or isinstance(proposal.confidence_pct, bool):
+        return None
+    if not isinstance(proposal.runner_up_pct, int) or isinstance(proposal.runner_up_pct, bool):
+        return None
+    if not 0 <= proposal.runner_up_pct <= proposal.confidence_pct <= 100:
+        return None
     if proposal.confidence_pct < 80 or proposal.confidence_pct - proposal.runner_up_pct < 15:
+        return None
+    if not proposal.evidence or any(
+        not isinstance(item, Mapping)
+        or set(item) != {"kind", "ref", "polarity", "weight"}
+        or item.get("kind") not in ALLOWED_EVIDENCE_KINDS
+        or not isinstance(item.get("ref"), str)
+        or not EVIDENCE_REF_RE.fullmatch(item["ref"])
+        or item.get("polarity") != "POSITIVE"
+        or not isinstance(item.get("weight"), int)
+        or isinstance(item.get("weight"), bool)
+        or not 1 <= item["weight"] <= 100
+        for item in proposal.evidence
+    ):
         return None
     if proposal.event_kind is EventKind.ARRIVE:
         return "VOICE_COMMAND_ARRIVE", proposal.minutes or 0

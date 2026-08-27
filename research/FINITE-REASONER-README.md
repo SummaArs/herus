@@ -38,4 +38,6 @@ Essa hipótese é falsificável por testes de composição, generalização comb
 
 ## Campanha adversarial atual
 
-`semantic_ir_fuzz.py` executa uma campanha determinística com seed `0x48525553`: 100 casos-base válidos e 27 mutadores inválidos, totalizando 2.700 casos mutados. O relatório JSON bruto fica em `evidence/semantic_ir_fuzz_raw.json`; os logs completos ficam em `evidence/adversarial_validation_raw.txt`. O critério de aprovação é zero caso válido rejeitado e zero caso mutado aceito.
+`semantic_ir_fuzz.py` executa uma campanha determinística com seed `0x48525553`: 100 casos-base válidos e 32 mutadores inválidos, totalizando 3.200 casos mutados. O relatório JSON bruto fica em `evidence/semantic_ir_fuzz_raw.json`; os logs completos ficam em `evidence/adversarial_validation_raw.txt`. O critério de aprovação é zero caso válido rejeitado e zero caso mutado aceito.
+
+O contrato também rejeita score primário menor que o runner-up, status de hipótese incompatível com a polaridade da evidência e objetos `SemanticProposal` forjados para contornar o compilador. A ponte de comando exige tipos de enum reais, slots coerentes e evidência positiva canônica; continua retornando apenas uma proposta de comando finito para o gate do firmware.

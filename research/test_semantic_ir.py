@@ -3,6 +3,8 @@ import unittest
 from semantic_ir import (
     EventKind,
     HypothesisStatus,
+    SemanticProposal,
+    Source,
     compile_ir,
     meaning_key,
     to_firmware_command,
@@ -67,10 +69,45 @@ class SemanticIRTests(unittest.TestCase):
         self.assertIsNone(compile_ir(value)[0])
 
     def test_contradiction_blocks_firmware_command(self):
-        proposal, issues = compile_ir(valid_ir(hypothesisStatus="BOTH"))
+        evidence = [
+            {"kind": "OBSERVATION", "ref": "positive", "polarity": "POSITIVE", "weight": 90},
+            {"kind": "OBSERVATION", "ref": "negative", "polarity": "NEGATIVE", "weight": 90},
+        ]
+        proposal, issues = compile_ir(valid_ir(hypothesisStatus="BOTH", evidence=evidence))
         self.assertEqual(issues, ())
         self.assertEqual(proposal.hypothesis_status, HypothesisStatus.BOTH)
         self.assertIsNone(to_firmware_command(proposal))
+
+    def test_primary_score_must_dominate_runner_up(self):
+        issues = validate_ir(valid_ir(confidencePct=50, runnerUpPct=51))
+        self.assertTrue(any(issue.code == "ORDER" for issue in issues))
+
+    def test_hypothesis_status_must_match_evidence(self):
+        evidence = [{"kind": "OBSERVATION", "ref": "negative", "polarity": "NEGATIVE", "weight": 90}]
+        issues = validate_ir(valid_ir(hypothesisStatus="TRUE", evidence=evidence))
+        self.assertTrue(any(issue.code == "EVIDENCE" for issue in issues))
+
+    def test_forged_proposal_cannot_bypass_bridge(self):
+        forged_minutes = SemanticProposal(
+            event_kind=EventKind.HELP,
+            source=Source.TEXT,
+            confidence_pct=100,
+            runner_up_pct=0,
+            minutes=15,
+            hypothesis_status=HypothesisStatus.TRUE,
+            evidence=({"kind": "OBSERVATION", "ref": "x", "polarity": "POSITIVE", "weight": 100},),
+        )
+        forged_negative = SemanticProposal(
+            event_kind=EventKind.HELP,
+            source=Source.TEXT,
+            confidence_pct=100,
+            runner_up_pct=0,
+            minutes=None,
+            hypothesis_status=HypothesisStatus.TRUE,
+            evidence=({"kind": "OBSERVATION", "ref": "x", "polarity": "NEGATIVE", "weight": 100},),
+        )
+        self.assertIsNone(to_firmware_command(forged_minutes))
+        self.assertIsNone(to_firmware_command(forged_negative))
 
     def test_low_confidence_and_small_margin_block(self):
         low, _ = compile_ir(valid_ir(confidencePct=79))

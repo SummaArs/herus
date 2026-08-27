@@ -8,8 +8,8 @@ class SemanticIRFuzzTests(unittest.TestCase):
         report = run_campaign(cases_per_mutator=25)
         self.assertEqual(report["valid_failures"], [])
         self.assertEqual(report["mutation_failures"], [])
-        self.assertEqual(report["mutator_count"], 27)
-        self.assertEqual(report["mutated_cases"], 25 * 27)
+        self.assertEqual(report["mutator_count"], 32)
+        self.assertEqual(report["mutated_cases"], 25 * 32)
         self.assertTrue(report["pass"])
 
 

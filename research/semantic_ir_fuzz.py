@@ -29,7 +29,7 @@ def valid_case(rng: random.Random) -> dict[str, Any]:
                 "kind": rng.choice(["OBSERVATION", "RULE", "MODEL", "USER"]),
                 "ref": f"case.{rng.randint(0, 9999)}",
                 "polarity": "POSITIVE",
-                "weight": rng.randint(0, 100),
+                "weight": rng.randint(1, 100),
             }
         ],
         "hypothesisStatus": "TRUE",
@@ -48,6 +48,7 @@ def mutators() -> dict[str, Mutator]:
         "confidence_bool": lambda x: x.update(confidencePct=True),
         "confidence_over": lambda x: x.update(confidencePct=101),
         "runner_up_under": lambda x: x.update(runnerUpPct=-1),
+        "runner_up_above_primary": lambda x: x.update(confidencePct=50, runnerUpPct=51),
         "slots_unknown_key": lambda x: x.update(slots={"minutes": None, "seconds": 10}),
         "slots_missing_minutes": lambda x: x.update(slots={}),
         "minutes_zero": lambda x: x.update(eventKind="ARRIVE", slots={"minutes": 0}),
@@ -66,6 +67,10 @@ def mutators() -> dict[str, Mutator]:
         "evidence_bad_polarity": lambda x: x.update(evidence=[{**x["evidence"][0], "polarity": "MAYBE"}]),
         "evidence_bad_weight": lambda x: x.update(evidence=[{**x["evidence"][0], "weight": 101}]),
         "hypothesis_unknown": lambda x: x.update(hypothesisStatus="MAYBE"),
+        "hypothesis_false_with_positive": lambda x: x.update(hypothesisStatus="FALSE"),
+        "hypothesis_neither_with_positive": lambda x: x.update(hypothesisStatus="NEITHER"),
+        "hypothesis_both_without_negative": lambda x: x.update(hypothesisStatus="BOTH"),
+        "true_with_negative_evidence": lambda x: x.update(evidence=[{**x["evidence"][0], "polarity": "NEGATIVE"}]),
     }
 
 
