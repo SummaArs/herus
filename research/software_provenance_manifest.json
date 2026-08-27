@@ -23,7 +23,7 @@
     {
       "path": "firmware",
       "kind": "tree",
-      "sha256": "d4c322beaae63a488f90f266511d7ca43ba51d6e4cacb4aaa6feba867bd5503b",
+      "sha256": "fbb47386138b5c3ef9bdea38c62937df2d2e6ff51cd233a0976d0bffa4a0bdc5",
       "role": "portable firmware and proof sources"
     },
     {
@@ -47,7 +47,7 @@
     {
       "path": "research/Makefile",
       "kind": "file",
-      "sha256": "12c5dc53f2d0f77249ea7023357c498447f5b3728364bd71cad0353170cc30f4",
+      "sha256": "0e7ea911354c8117a53735dd09587f483c33a2d02bc3e4fd6fc17520ca7ca69e",
       "role": "host-only research test entrypoint"
     },
     {
@@ -107,25 +107,25 @@
     {
       "path": "research/convergence.py",
       "kind": "file",
-      "sha256": "1bb046542b7a3d034d94aa79a4f93f1c065271eacba4297223d29b4030da4390",
+      "sha256": "274f26d0e592ef72699a1cec9b423602e45eee3023c7b5f342464aa8e6c76446",
       "role": "fail-closed typed convergence comparator"
     },
     {
       "path": "research/test_convergence.py",
       "kind": "file",
-      "sha256": "3b68f945785461c613b97dd7c4dc6411a805bddb809ead8b0f5643640406d3ac",
+      "sha256": "a2fa7e21381348aca678f37c12152b8aa5da9d20271092878ab4e064395d508e",
       "role": "convergence comparator adversarial tests"
     },
     {
       "path": "research/datasets_manifest.json",
       "kind": "file",
-      "sha256": "d069edffd6e006d3b5ea772674aa7340c6ff530b2ea6c82b35414d502414c92c",
+      "sha256": "163ad3f3210ced79d035cb4591e17a8c88e03ca85fbc5c6f6ad1e6f07512f1ec",
       "role": "real dataset provenance and alignment manifest"
     },
     {
       "path": "research/test_datasets_manifest.py",
       "kind": "file",
-      "sha256": "7a172a5eb6930a725693c90dc4ae8b00890d568375c7384e3a1808411cea799e",
+      "sha256": "4d68d52cecda68494e4bd393b576fcd293025d51e1f3484e31a600a15dd224fa",
       "role": "dataset manifest and aggregate audit tests"
     },
     {
@@ -203,8 +203,74 @@
     {
       "path": "research/test_source_audit.py",
       "kind": "file",
-      "sha256": "b18198ae0fddd6724315a133a6d8ffa3cb510791f824730b99188372c52daa13",
+      "sha256": "2c163352ed7c8b5231dc76d08e93e50f4f1967273a72ff8bc673f6d3b99bd154",
       "role": "source and aggregate evidence gate tests"
+    },
+    {
+      "path": "research/audit_minds14_text.py",
+      "kind": "file",
+      "sha256": "20669ade993d8197f0c3e4642fa79f117648adb5898c831193ec6bc6007ef494",
+      "role": "full MInDS-14 pt-PT metadata and parser audit"
+    },
+    {
+      "path": "research/fetch_minds14_batch.py",
+      "kind": "file",
+      "sha256": "c69d7a947faff099ee489fe21270492876c45b6f0aeccdabd85e6ddceb1f1062",
+      "role": "bounded temporary MInDS-14 audio batch audit"
+    },
+    {
+      "path": "research/fetch_minds14_sample.py",
+      "kind": "file",
+      "sha256": "eb82bcd1e8b257902e5910bb1765e3b78a47fb35fb7ac154fe60177e9c9ee6de",
+      "role": "bounded temporary MInDS-14 audio sample audit"
+    },
+    {
+      "path": "research/identity_audit.py",
+      "kind": "file",
+      "sha256": "1373ca169b8e59ea5a33faf33a4efe9c2eb7dca50e6f60c01cda1af85f9703b4",
+      "role": "fail-closed multimodal identity audit"
+    },
+    {
+      "path": "research/test_identity_audit.py",
+      "kind": "file",
+      "sha256": "2f6d257dca46d5698a5110d82e95dfbde0213175c088a3552c9033ed3acdda5f",
+      "role": "identity audit adversarial tests"
+    },
+    {
+      "path": "research/test_minds14_batch.py",
+      "kind": "file",
+      "sha256": "a7130e6b49daa71f642ffbb738abf25fa2b3b5eabe25fd802bb8bde25585fb39",
+      "role": "MInDS-14 batch endpoint regression tests"
+    },
+    {
+      "path": "research/test_minds14_sample.py",
+      "kind": "file",
+      "sha256": "ec59bdc2c9f529a0114a4f58dc38324066bf2b4c791e2b296ffd3a0ef3e95e7c",
+      "role": "MInDS-14 WAV and wrapper regression tests"
+    },
+    {
+      "path": "README.md",
+      "kind": "file",
+      "sha256": "ff968463d76a7bfd170760133a183a572ffc27533cfab5cc1fe5f058e7ce390a",
+      "role": "public project state and verification documentation"
+    },
+    {
+      "path": "docs/50-INTENT-COMPILER-E-SEMANTIC-IR.md",
+      "kind": "file",
+      "sha256": "cb80424fe8dc9339873ca825f9b524620c02f38a25852fcb89df0af427cbbb94",
+      "role": "intent compiler and semantic IR research record"
+    },
+    {
+      "path": "research/annotation_protocol.py",
+      "kind": "file",
+      "sha256": "50e79ff9f7abdb2dafc7a94a467283fd05fe76ddcb6e12a0f54b9018c95fbb16",
+      "role": "independent finite HERUS annotation protocol"
+    },
+    {
+      "path": "research/test_annotation_protocol.py",
+      "kind": "file",
+      "sha256": "2f343eaf2c53e0bfb65f390794527a8cc937b7fe16e44c6418e3fcbbe7949651",
+      "role": "independent annotation boundary tests"
     }
   ],
   "components": [

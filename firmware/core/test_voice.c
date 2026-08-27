@@ -76,6 +76,15 @@ static void test_fail_closed_and_critical(void)
        r.event == VOICE_EVENT_CRITICAL_DRAFT && r.requires_confirmation &&
        r.draft.intent == lex.intent_help && r.draft.tier != HCP_TIER_SOS,
        "V2 spoken help is a private critical draft, never an autonomous public SOS");
+    ok(voice_parse_pt("preciso de ajuda", &lex, &r) == VOICE_DRAFT &&
+       r.event == VOICE_EVENT_CRITICAL_DRAFT && r.requires_confirmation,
+       "V2 the controlled help phrase remains a private critical draft");
+    ok(voice_parse_pt("quero ajuda para aprender uma frase", &lex, &r) == VOICE_REJECTED &&
+       r.draft.intent == 0,
+       "V2 help words embedded in an external sentence are rejected, not promoted to a draft");
+    ok(voice_parse_pt("cancelar depois", &lex, &r) == VOICE_REJECTED &&
+       r.draft.intent == 0,
+       "V2 cancellation words embedded in an external sentence are rejected, not executed");
     ok(voice_parse_pt("cancelar e chego em dez minutos", &lex, &r) == VOICE_REJECTED &&
        r.draft.intent == 0,
        "V2 conflicting cancel and arrival intents are rejected, not priority-resolved");

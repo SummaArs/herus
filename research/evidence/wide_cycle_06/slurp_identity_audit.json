@@ -1,0 +1,77 @@
+{
+  "source": "SLURP official textual annotations plus metadata",
+  "text_split_count": 3,
+  "text_rows": 16521,
+  "text_unique_recording_references": 72395,
+  "metadata_entries": 16521,
+  "metadata_unique_recording_names": 72395,
+  "metadata_duplicate_filename_count": 1,
+  "metadata_duplicate_filename_conflict_count": 0,
+  "text_repeated_reference_count": 1,
+  "text_repeated_reference_occurrences": 1,
+  "missing_reference_count": 0,
+  "duplicate_numeric_id_count": 0,
+  "numeric_id_join_used": false,
+  "label_join_used": false,
+  "order_join_used": false,
+  "basename_join_used": false,
+  "individual_identifiers_published": false,
+  "individual_filenames_published": false,
+  "text_split_metadata": {
+    "train": {
+      "rows": 11514,
+      "sha256": "4a05a3de6c7f028aff298c4a90196e6a3fecd1938d96fb1c125d6fd10d5e301e",
+      "bytes": 12745012,
+      "fields": [
+        "action",
+        "entities",
+        "intent",
+        "recordings",
+        "scenario",
+        "sentence",
+        "sentence_annotation",
+        "slurp_id",
+        "tokens"
+      ]
+    },
+    "devel": {
+      "rows": 2033,
+      "sha256": "00d346b183ecc2d160853cd3dc20e8ccd207d9e1809cf6e2c05182076bd0ecc9",
+      "bytes": 2221203,
+      "fields": [
+        "action",
+        "entities",
+        "intent",
+        "recordings",
+        "scenario",
+        "sentence",
+        "sentence_annotation",
+        "slurp_id",
+        "tokens"
+      ]
+    },
+    "test": {
+      "rows": 2974,
+      "sha256": "fe3449af69b42fda7163345482556066c35a80f7e552a6d67e212a0e2f0783cc",
+      "bytes": 3267569,
+      "fields": [
+        "action",
+        "entities",
+        "intent",
+        "recordings",
+        "scenario",
+        "sentence",
+        "sentence_annotation",
+        "slurp_id",
+        "tokens"
+      ]
+    }
+  },
+  "metadata_sha256": "be7943d576c0b79b34ae32796e5c9474bd3d4d123bb35e38f73497f4a429fb83",
+  "identity_status": "AMBIGUOUS",
+  "identity_unambiguous": false,
+  "identity_gate_passed": false,
+  "herus_automatic_mapping_count": 0,
+  "herus_convergence_proven": false,
+  "verdict": "identity_blocked; no pair promotion"
+}

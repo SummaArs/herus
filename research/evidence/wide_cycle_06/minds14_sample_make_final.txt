@@ -1,0 +1,6 @@
+MInDS-14 single-sample audit
+Gate: MINDS14_ALLOW_AUDIO=1
+Result: official row fetched locally; WAV structure validated; parser ran on same-record transcription; temporary audio deleted before exit.
+Published output: research/evidence/wide_cycle_06/minds14_single_sample_audit.json
+No individual path, signed URL, sentence, label or raw media retained in this log.
+Exit status: 0

@@ -1,9 +1,9 @@
 """Fail-closed comparison primitives for real-data semantic convergence.
 
 This module does not infer alignment. A multimodal rate is computable only when
-both observations carry the same source, sample ID, and an explicit PAIRED
-alignment class. INTRAMODAL observations may only be compared within the same
-modality; UNPAIRED observations are never comparable.
+both observations carry the same source, verified sample identity, and an
+explicit PAIRED alignment class. INTRAMODAL observations may only be compared
+within the same modality; UNPAIRED observations are never comparable.
 """
 from __future__ import annotations
 
@@ -17,6 +17,19 @@ class AlignmentClass(str, Enum):
     UNPAIRED = "UNPAIRED"
 
 
+class IdentityStatus(str, Enum):
+    VERIFIED = "VERIFIED"
+    AMBIGUOUS = "AMBIGUOUS"
+    CONFLICT = "CONFLICT"
+
+
+class PairingBasis(str, Enum):
+    SOURCE_SAMPLE_ID = "SOURCE_SAMPLE_ID"
+    LABEL = "LABEL"
+    ORDER = "ORDER"
+    PATH_BASENAME = "PATH_BASENAME"
+
+
 @dataclass(frozen=True)
 class Observation:
     source: str
@@ -24,6 +37,9 @@ class Observation:
     modality: str
     alignment: AlignmentClass
     semantic_key: str
+    identity_status: IdentityStatus = IdentityStatus.VERIFIED
+    pairing_basis: PairingBasis = PairingBasis.SOURCE_SAMPLE_ID
+    timestamp_ms: int | None = None
 
 
 @dataclass(frozen=True)
@@ -44,6 +60,23 @@ def compare(left: Observation, right: Observation) -> Comparison:
         return Comparison(False, False, None, "source_mismatch")
     if left.sample_id != right.sample_id:
         return Comparison(False, False, None, "sample_id_mismatch")
+
+    for observation in (left, right):
+        if observation.identity_status is IdentityStatus.AMBIGUOUS:
+            return Comparison(False, False, None, "identity_ambiguous")
+        if observation.identity_status is IdentityStatus.CONFLICT:
+            return Comparison(False, False, None, "identity_conflict")
+        if observation.pairing_basis is PairingBasis.LABEL:
+            return Comparison(False, False, None, "label_only_pairing")
+        if observation.pairing_basis is PairingBasis.ORDER:
+            return Comparison(False, False, None, "order_only_pairing")
+        if observation.pairing_basis is PairingBasis.PATH_BASENAME:
+            return Comparison(False, False, None, "basename_only_pairing")
+
+    if (left.timestamp_ms is None) != (right.timestamp_ms is None):
+        return Comparison(False, False, None, "timestamp_mismatch")
+    if left.timestamp_ms is not None and left.timestamp_ms != right.timestamp_ms:
+        return Comparison(False, False, None, "timestamp_mismatch")
 
     if left.alignment is AlignmentClass.UNPAIRED or right.alignment is AlignmentClass.UNPAIRED:
         return Comparison(False, False, None, "unpaired_observation")
@@ -69,4 +102,7 @@ def multimodal_rate(pairs: list[tuple[Observation, Observation]]) -> float:
     refused = [item.reason for item in comparisons if not item.allowed or not item.multimodal]
     if refused:
         raise ValueError("invalid_multimodal_pairs:" + ",".join(refused))
+    sample_keys = [(left.source, left.sample_id) for left, _ in pairs]
+    if len(set(sample_keys)) != len(sample_keys):
+        raise ValueError("invalid_multimodal_pairs:duplicate_sample_id")
     return sum(bool(item.equal) for item in comparisons) / len(comparisons)

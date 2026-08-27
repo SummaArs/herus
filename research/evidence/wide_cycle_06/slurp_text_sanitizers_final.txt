@@ -1,0 +1,24 @@
+make: Entering directory '/home/ubuntu/herus/research'
+cc -fsanitize=address,undefined -fno-omit-frame-pointer -O1 -g -Wall -Wextra -Werror -std=c11 -I../firmware/core ../firmware/core/voice.c real_jsonl_voice_runner.c -o /tmp/herus-slurp-voice-runner-san
+ASAN_OPTIONS=detect_leaks=1 python3 run_slurp_voice.py --runner /tmp/herus-slurp-voice-runner-san --output evidence/wide_cycle_05/slurp_voice_parser_sanitizers.json "/tmp/slurp-original/dataset/slurp/train.jsonl" "/tmp/slurp-original/dataset/slurp/devel.jsonl" "/tmp/slurp-original/dataset/slurp/test.jsonl"
+{
+  "jsonl_rows_seen": 16521,
+  "jsonl_rows_sent_to_c": 16521,
+  "jsonl_extraction_failures": 0,
+  "herus_command_authority": 0,
+  "automatic_label_mapping": 0,
+  "jsonl_rows_train": 11514,
+  "jsonl_rows_devel": 2033,
+  "jsonl_rows_test": 2974,
+  "parser_input_rows": 16521,
+  "parser_draft": 0,
+  "parser_cancel": 0,
+  "parser_unknown": 16426,
+  "parser_rejected": 95,
+  "parser_overlong": 0,
+  "parser_non_ascii": 0,
+  "parser_empty": 0
+}
+ASAN_OPTIONS=detect_leaks=1 /tmp/herus-slurp-voice-runner-san < /dev/null > /dev/null
+rm -f /tmp/herus-slurp-voice-runner-san
+make: Leaving directory '/home/ubuntu/herus/research'

@@ -1,0 +1,138 @@
+make: Entering directory '/home/ubuntu/herus/research'
+python3 analyze_mintrec_metadata.py
+{
+  "source": {
+    "name": "MIntRec",
+    "repository": "https://github.com/thuiar/MIntRec",
+    "storage": "https://drive.google.com/drive/folders/18iLqmUYDDOwIiiRbgwLpzw76BD62PK0p",
+    "policy": "metadata-only audit; no automatic label mapping"
+  },
+  "splits": {
+    "train": {
+      "path": "research/source_data/MIntRec/metadata/train.tsv",
+      "bytes": 75488,
+      "sha256": "348289d7d140b2c0716b35a03e7045b684c4b90f5c30d1281f9a6b7cb3b9903b",
+      "rows": 1334,
+      "columns": [
+        "season",
+        "episode",
+        "clip",
+        "text",
+        "label"
+      ],
+      "columns_match": true
+    },
+    "test": {
+      "path": "research/source_data/MIntRec/metadata/test.tsv",
+      "bytes": 26287,
+      "sha256": "e4394869fc02898e00fad0a1b03e0333760a9b0499da2fa3f8af030a384c8f3a",
+      "rows": 445,
+      "columns": [
+        "season",
+        "episode",
+        "clip",
+        "text",
+        "label"
+      ],
+      "columns_match": true
+    }
+  },
+  "total_rows": 1779,
+  "unique_segment_ids": 1779,
+  "duplicate_segment_ids_across_splits": {},
+  "label_counts": {
+    "Advise": 98,
+    "Agree": 47,
+    "Apologise": 109,
+    "Arrange": 88,
+    "Ask for help": 41,
+    "Care": 76,
+    "Comfort": 70,
+    "Complain": 229,
+    "Criticize": 93,
+    "Flaunt": 42,
+    "Greet": 48,
+    "Inform": 227,
+    "Introduce": 84,
+    "Joke": 41,
+    "Leave": 68,
+    "Oppose": 41,
+    "Praise": 170,
+    "Prevent": 58,
+    "Taunt": 50,
+    "Thank": 99
+  },
+  "source_labels": [
+    "Advise",
+    "Agree",
+    "Apologise",
+    "Arrange",
+    "Ask for help",
+    "Care",
+    "Comfort",
+    "Complain",
+    "Criticize",
+    "Flaunt",
+    "Greet",
+    "Inform",
+    "Introduce",
+    "Joke",
+    "Leave",
+    "Oppose",
+    "Praise",
+    "Prevent",
+    "Taunt",
+    "Thank"
+  ],
+  "unsupported_for_herus_without_annotation": [
+    "Advise",
+    "Agree",
+    "Apologise",
+    "Arrange",
+    "Ask for help",
+    "Care",
+    "Comfort",
+    "Complain",
+    "Criticize",
+    "Flaunt",
+    "Greet",
+    "Inform",
+    "Introduce",
+    "Joke",
+    "Leave",
+    "Oppose",
+    "Praise",
+    "Prevent",
+    "Taunt",
+    "Thank"
+  ],
+  "empty_text_rows": [],
+  "herus_event_vocabulary": [
+    "ARRIVE",
+    "CANCEL",
+    "HELP"
+  ],
+  "automatic_mapping_count": 0,
+  "verdict": {
+    "metadata_integrity": true,
+    "split_leakage": false,
+    "herus_convergence_proven": false,
+    "reason": "TSVs prove real text/label metadata and split integrity only; aligned audio/video files were not downloaded or mapped to the finite HERUS vocabulary."
+  }
+}
+cc -O2 -Wall -Wextra -Werror -std=c11 -I../firmware/core ../firmware/core/voice.c real_corpus_voice_runner.c -o /tmp/herus-real-corpus-runner
+/tmp/herus-real-corpus-runner source_data/MIntRec/metadata/train.tsv source_data/MIntRec/metadata/test.tsv | tee evidence/wide_cycle_04/real_corpus_voice_raw.txt
+real_corpus_files=2
+real_corpus_rows=1779
+parser_draft=0
+parser_cancel=0
+parser_unknown=1636
+parser_rejected=143
+rows_too_long_for_voice_api=28
+overlong_corpus_lines=0
+rows_non_ascii=0
+rows_empty_text=0
+automatic_label_mapping=0
+multimodal_convergence_proven=0
+rm -f /tmp/herus-real-corpus-runner
+make: Leaving directory '/home/ubuntu/herus/research'

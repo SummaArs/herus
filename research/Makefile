@@ -1,4 +1,4 @@
-.PHONY: test real-corpus real-corpus-sanitizers real-corpus-audit paired-audio-audit slurp-text-audit slurp-text-sanitizers demo
+.PHONY: test real-corpus real-corpus-sanitizers real-corpus-audit paired-audio-audit slurp-text-audit slurp-text-sanitizers minds14-sample-audit minds14-batch-audit minds14-batch-sanitizers demo
 
 PYTHON ?= python3
 CC ?= cc
@@ -7,7 +7,7 @@ CFLAGS ?= -O2 -Wall -Wextra -Werror -std=c11
 # Host-only research track. This target is intentionally not part of the
 # firmware proof ledger until its semantics and resource costs are reviewed.
 test:
-	$(PYTHON) -m unittest -v test_finite_reasoner.py test_semantic_ir.py test_semantic_ir_fuzz.py test_semantic_ir_corpus.py test_convergence.py test_datasets_manifest.py test_paired_audio_audit.py test_source_audit.py test_probe_remote_zip.py test_benchmark_ir.py test_slurp_text.py
+	$(PYTHON) -m unittest -v test_finite_reasoner.py test_semantic_ir.py test_semantic_ir_fuzz.py test_semantic_ir_corpus.py test_convergence.py test_annotation_protocol.py test_datasets_manifest.py test_paired_audio_audit.py test_source_audit.py test_probe_remote_zip.py test_benchmark_ir.py test_slurp_text.py test_minds14_sample.py test_minds14_batch.py test_identity_audit.py
 
 real-corpus:
 	@test -f source_data/MIntRec/metadata/train.tsv
@@ -48,10 +48,28 @@ slurp-text-sanitizers:
 	@test -f "$(SLURP_ROOT)/dataset/slurp/devel.jsonl"
 	@test -f "$(SLURP_ROOT)/dataset/slurp/test.jsonl"
 	$(CC) -fsanitize=address,undefined -fno-omit-frame-pointer -O1 -g -Wall -Wextra -Werror -std=c11 -I../firmware/core ../firmware/core/voice.c real_jsonl_voice_runner.c -o /tmp/herus-slurp-voice-runner-san
-					ASAN_OPTIONS=detect_leaks=1 $(PYTHON) run_slurp_voice.py --runner /tmp/herus-slurp-voice-runner-san --output evidence/wide_cycle_05/slurp_voice_parser_sanitizers.json "$(SLURP_ROOT)/dataset/slurp/train.jsonl" "$(SLURP_ROOT)/dataset/slurp/devel.jsonl" "$(SLURP_ROOT)/dataset/slurp/test.jsonl"
+		ASAN_OPTIONS=detect_leaks=1 $(PYTHON) run_slurp_voice.py --runner /tmp/herus-slurp-voice-runner-san --output evidence/wide_cycle_05/slurp_voice_parser_sanitizers.json "$(SLURP_ROOT)/dataset/slurp/train.jsonl" "$(SLURP_ROOT)/dataset/slurp/devel.jsonl" "$(SLURP_ROOT)/dataset/slurp/test.jsonl"
 
 	ASAN_OPTIONS=detect_leaks=1 /tmp/herus-slurp-voice-runner-san < /dev/null > /dev/null
 	rm -f /tmp/herus-slurp-voice-runner-san
+
+minds14-sample-audit:
+	@test "$(MINDS14_ALLOW_AUDIO)" = "1" || (echo "missing MINDS14_ALLOW_AUDIO=1; explicit local research audio gate" >&2; exit 2)
+	$(CC) $(CFLAGS) -I../firmware/core ../firmware/core/voice.c real_jsonl_voice_runner.c -o /tmp/herus-minds14-parser
+	$(PYTHON) fetch_minds14_sample.py --c-runner /tmp/herus-minds14-parser --output-audio /tmp/herus-minds14-sample.wav --output-json evidence/wide_cycle_06/minds14_single_sample_audit.json
+	rm -f /tmp/herus-minds14-parser /tmp/herus-minds14-sample.wav
+
+minds14-batch-audit:
+	@test "$(MINDS14_ALLOW_AUDIO)" = "1" || (echo "missing MINDS14_ALLOW_AUDIO=1; explicit local research audio gate" >&2; exit 2)
+	$(CC) $(CFLAGS) -I../firmware/core ../firmware/core/voice.c real_jsonl_voice_runner.c -o /tmp/herus-minds14-parser
+	$(PYTHON) fetch_minds14_batch.py --c-runner /tmp/herus-minds14-parser --offsets "$${MIND14_OFFSETS:-0,100,500,600}" --output evidence/wide_cycle_06/minds14_batch_audit.json
+	rm -f /tmp/herus-minds14-parser
+
+minds14-batch-sanitizers:
+	@test "$(MINDS14_ALLOW_AUDIO)" = "1" || (echo "missing MINDS14_ALLOW_AUDIO=1; explicit local research audio gate" >&2; exit 2)
+	$(CC) -fsanitize=address,undefined -fno-omit-frame-pointer -O1 -g -Wall -Wextra -Werror -std=c11 -I../firmware/core ../firmware/core/voice.c real_jsonl_voice_runner.c -o /tmp/herus-minds14-parser-san
+	ASAN_OPTIONS=detect_leaks=1 $(PYTHON) fetch_minds14_batch.py --c-runner /tmp/herus-minds14-parser-san --offsets "$${MIND14_OFFSETS:-0,100,500,600}" --output evidence/wide_cycle_06/minds14_batch_sanitizers.json
+	rm -f /tmp/herus-minds14-parser-san
 
 demo:
 	$(PYTHON) finite_reasoner.py

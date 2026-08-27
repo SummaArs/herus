@@ -172,6 +172,57 @@
       ]
     },
     {
+      "id": "minds14",
+      "name": "MInDS-14 Multilingual Spoken Intent Dataset",
+      "version_or_snapshot": "Hugging Face revision 40ce77cb32a384e4d50a568e1ec39ac804019d33; config pt-PT; split train",
+      "source_urls": [
+        "https://huggingface.co/datasets/PolyAI/minds14",
+        "https://huggingface.co/api/datasets/PolyAI/minds14",
+        "https://datasets-server.huggingface.co/rows?dataset=PolyAI%2Fminds14&config=pt-PT&split=train&offset=100&length=1"
+      ],
+      "source_commit": "40ce77cb32a384e4d50a568e1ec39ac804019d33",
+      "license_or_terms": "The Hub dataset card declares Creative Commons Attribution 4.0 (CC-BY-4.0). Exact terms for the sampled asset and any redistribution/use beyond this local research audit remain a legal gate.",
+      "license_confirmed_for_raw_data": false,
+      "redistribution_allowed": null,
+      "redistribution_status": "source_declared_cc_by_4_0; one small sample fetched locally and deleted; no redistribution",
+      "modalities": ["audio", "transcription", "intent_class", "language_id"],
+      "alignment_class": "PAIRED_DECLARED_BY_SOURCE",
+      "alignment_statement": "The same API row exposes an audio asset, transcription and intent_class. Four offsets were fetched from the same revision and each had all fields; no semantic ASR agreement was measured.",
+      "download_status": {
+        "one_sample": "downloaded_validated_and_deleted",
+        "four_sample_batch": "downloaded_validated_and_deleted",
+        "full_config": "not_downloaded",
+        "parquet": "not_downloaded"
+      },
+      "local_files": [
+        {
+          "path": "research/evidence/wide_cycle_06/minds14_single_sample_audit.json",
+          "sha256": "b6d5ae3e711c0b068bbb2332da1ce73277d0a2efc786958aed133101d5c0381e",
+          "rows": 1
+        },
+        {
+          "path": "research/evidence/wide_cycle_06/minds14_batch_audit.json",
+          "sha256": "6a3bf548e1dc17efc2d41a2de1fda950436c894de577c0d659d8ef7fffd7945c",
+          "rows": 4
+        }
+      ],
+      "herus_label_mapping": {
+        "status": "none",
+        "mapping_count": 0,
+        "reason": "External banking intents are not ARRIVE, HELP or CANCEL; no mapping is inferred from words, slots or labels."
+      },
+      "can_prove": [
+        "Exact Hub revision/config/split and API row identity for the sampled records",
+        "Presence and structural validity of four WAV containers paired in the same API rows with transcription and intent_class",
+        "C parser fail-closed behavior on the sampled Portuguese transcription bytes"
+      ],
+      "cannot_prove": [
+        "Audio semantic agreement with transcription because audio was not decoded and no ASR was run",
+        "HERUS intent coverage or command correctness without independent annotation",
+        "Full-config integrity, speaker independence or physical-device performance"
+      ]
+    },
+    {
       "id": "slurp",
       "name": "SLURP Spoken Language Understanding Resource Package",
       "version_or_snapshot": "official repository snapshot 8eb16545762be97ace75334109d73824217311f1; text JSONL audited locally; audio not downloaded",

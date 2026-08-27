@@ -55,6 +55,19 @@ static int any_word(const char *s, const char *const *words, unsigned n)
     return 0;
 }
 
+static int help_phrase_valid(const char *s)
+{
+    return !strcmp(s, "socorro") || !strcmp(s, "ajuda") || !strcmp(s, "ajude") ||
+           !strcmp(s, "preciso de socorro") || !strcmp(s, "preciso de ajuda") ||
+           !strcmp(s, "preciso de ajude");
+}
+
+static int cancel_phrase_valid(const char *s)
+{
+    return !strcmp(s, "cancelar") || !strcmp(s, "cancela") ||
+           !strcmp(s, "pare") || !strcmp(s, "parar");
+}
+
 static int word_number(const char *w)
 {
     static const struct { const char *word; int value; } map[] = {
@@ -206,16 +219,24 @@ voice_status_t voice_parse_pt(const char *transcript, const voice_lexicon_t *lex
     char text[VOICE_TRANSCRIPT_MAX];
     int minutes;
     int has_cancel;
+    int has_cancel_word;
     int has_help;
+    int has_help_word;
     int has_arrive;
 
     if (!out) return VOICE_REJECTED;
     result_reset(out, VOICE_REJECTED, VOICE_EVENT_REJECTED);
     if (!lexicon_valid(lexicon) || !normalise(transcript, text)) return out->status;
 
-    has_cancel = any_word(text, cancel_words, sizeof(cancel_words) / sizeof(cancel_words[0]));
-    has_help = any_word(text, help_words, sizeof(help_words) / sizeof(help_words[0]));
+    has_cancel_word = any_word(text, cancel_words, sizeof(cancel_words) / sizeof(cancel_words[0]));
+    has_help_word = any_word(text, help_words, sizeof(help_words) / sizeof(help_words[0]));
+    has_cancel = has_cancel_word && cancel_phrase_valid(text);
+    has_help = has_help_word && help_phrase_valid(text);
     has_arrive = any_word(text, arrive_words, sizeof(arrive_words) / sizeof(arrive_words[0]));
+    /* A control word embedded in an unsupported sentence is not a command.
+     * This prevents ordinary speech such as "quero ajuda para pagar" from
+     * becoming a critical draft merely because it contains "ajuda". */
+    if ((has_cancel_word && !has_cancel) || (has_help_word && !has_help)) return out->status;
     if (has_cancel + has_help + has_arrive > 1) return out->status;
 
     if (has_cancel) {

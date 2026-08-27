@@ -1,0 +1,27 @@
+{
+  "protocol_version": "herus-independent-annotation-v1",
+  "labels": [
+    "ARRIVE",
+    "HELP",
+    "CANCEL",
+    "OTHER",
+    "AMBIGUOUS",
+    "CONFLICT"
+  ],
+  "non_operational_labels": [
+    "AMBIGUOUS",
+    "CONFLICT",
+    "OTHER"
+  ],
+  "requires_independent_human_judgment": true,
+  "external_label_mapping": "forbidden",
+  "bridge_path": "none",
+  "rules": {
+    "no_evidence": "AMBIGUOUS",
+    "multiple_intents_or_incompatible_judgments": "CONFLICT",
+    "no_HERUS_intent": "OTHER",
+    "OTHER_AMBIGUOUS_CONFLICT_cross_bridge": "forbidden",
+    "annotation_is_not_confirmation": true
+  },
+  "cycle_status": "protocol_only_no_real_HERUS_annotations_claimed"
+}

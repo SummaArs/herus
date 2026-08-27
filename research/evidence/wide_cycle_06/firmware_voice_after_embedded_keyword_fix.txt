@@ -1,0 +1,46 @@
+make: Entering directory '/home/ubuntu/herus/firmware'
+--- voice: controlled language and bounded haptics ---
+cc -O2 -Wall -Wextra -std=c11 -Icore -Inet -Iport -Itest core/voice.c core/test_voice.c -o build/test_voice
+./build/test_voice
+
+== V1  controlled Portuguese creates a semantic draft ==
+  PASS V1 arrival with a spoken duration becomes one configured HCP time slot
+  PASS V1 voice produces no transport state and cannot be sent without confirmation code
+  PASS V1 arrival without duration remains a compact semantic glyph
+
+== V2  cancellation, unknown speech and help fail safely ==
+  PASS V2 cancellation discards only the local draft and never makes a frame
+  PASS V2 unknown language fails closed instead of guessing a radio intent
+  PASS V2 a duration outside the configured vocabulary is rejected, not truncated
+  PASS V2 the upper supported duration remains accepted
+  PASS V2 a composed duration above 60 is rejected, not reduced to its tens
+  PASS V2 two unit terms are rejected instead of accepting the first one
+  PASS V2 mixed numeric composition is rejected instead of reduced to 5
+  PASS V2 mixed numeric overflow is rejected before conversion
+  PASS V2 negative duration syntax is rejected rather than normalised to 1
+  PASS V2 signed positive duration syntax is rejected rather than normalised to 1
+  PASS V2 unsupported hundreds are rejected instead of reduced to 25
+  PASS V2 spoken help is a private critical draft, never an autonomous public SOS
+  PASS V2 the controlled help phrase remains a private critical draft
+  PASS V2 help words embedded in an external sentence are rejected, not promoted to a draft
+  PASS V2 cancellation words embedded in an external sentence are rejected, not executed
+  PASS V2 conflicting cancel and arrival intents are rejected, not priority-resolved
+  PASS V2 conflicting help and arrival intents are rejected, not priority-resolved
+  PASS V2 negated cancellation is rejected instead of becoming cancellation
+  PASS V2 negated arrival is rejected instead of becoming arrival
+
+== V3  typed local-ASR commands retain semantic bounds ==
+  PASS V3 a typed arrival command creates the same bounded semantic-only draft
+  PASS V3 help and cancel reject unsupported duration parameters instead of guessing
+
+== V3  haptic plans are finite and driver-independent ==
+  PASS V3 every standard voice event has a bounded safe vibration plan
+  PASS V3 every standard voice event has a bounded safe vibration plan
+  PASS V3 every standard voice event has a bounded safe vibration plan
+  PASS V3 every standard voice event has a bounded safe vibration plan
+  PASS V3 every standard voice event has a bounded safe vibration plan
+  PASS V3 every standard voice event has a bounded safe vibration plan
+  PASS V3 an overlong motor-on command is rejected before hardware
+  PASS V3 too many pulses are rejected before hardware
+VOICE/HAPTIC INVARIANTS HOLD — speech is local, confirmed and bounded.
+make: Leaving directory '/home/ubuntu/herus/firmware'

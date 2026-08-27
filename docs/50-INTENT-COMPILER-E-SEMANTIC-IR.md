@@ -189,3 +189,25 @@ O parser C real do HERUS também foi executado sobre as 1.779 transcrições ing
 | Fluent Speech Commands | Áudio–transcrição–slots/intenção, declarado pela fonte | Nenhum arquivo baixado | Candidato a benchmark de comando falado pareado | Mapeamento para HERUS e desempenho físico |
 
 O manifesto de fontes, licenças, hashes, estado de download e limites está em `research/datasets_manifest.json`. Os dados crus permanecem ignorados pelo Git; os artefatos agregados e logs seguros do ciclo estão em `research/evidence/wide_cycle_04/`. Veredito do ciclo: **`herus_convergence_proven=false`**.
+
+## Resultado Wide Research — ciclo 06: pareamento real, rejeição e autoridade
+
+O ciclo 06 acrescentou uma fonte com estrutura multimodal declarada no mesmo registro: MInDS-14, configuração `pt-PT`, split `train`, revisão do Hub `40ce77cb32a384e4d50a568e1ec39ac804019d33`. A ficha pública descreve 14 classes de intent e registros com áudio, transcrição, `intent_class` e `lang_id` [1]. A API oficial de linhas foi usada com offsets explícitos porque `first-rows` não sustentou a amostragem determinística; a identidade foi validada por `row_idx`, schema e URL de host oficial [2]. Isso é **pareamento estrutural declarado pela fonte**, não prova de que a gravação corresponde semanticamente à transcrição nem dá autoridade ao rótulo externo.
+
+| Auditoria | Resultado objetivo | O que não foi provado |
+|---|---:|---|
+| MInDS-14 `pt-PT/train` completo por metadata | 604/604 linhas vistas em 7 páginas; 604 células de áudio presentes no host oficial; 604 transcrições; 14 IDs externos; 0 bytes de áudio baixados nesta etapa | Integridade acústica, ASR ou correspondência semântica áudio–texto |
+| Amostra temporária determinística | 4 offsets reais (`0,100,500,600`); 4/4 WAVs estruturalmente válidos; 4 transcrições e 4 intents no mesmo registro; arquivos apagados | Decodificação semântica, qualidade de ASR, anotação HERUS ou hardware |
+| Parser C sobre o split completo | Antes da correção: 1 `DRAFT` indevido; depois: `DRAFT=0`, `CANCEL=0`, `UNKNOWN=53`, `REJECTED=551`, `non_ascii=545` | Cobertura positiva de HERUS; os rótulos `intent_class` não entraram no parser |
+| Autoridade externa | `automatic_label_mapping=0`; `herus_command_authority=0`; `herus_convergence_proven=false` | Qualquer conversão de intent bancário para `ARRIVE`, `HELP` ou `CANCEL` |
+
+A primeira execução do parser encontrou uma **brecha real**: uma palavra HELP inserida numa frase longa de domínio bancário foi promovida a `VOICE_DRAFT` crítico. Nenhuma ação foi transmitida, pois a saída ainda exige confirmação, mas a proposta indevida violava o contrato de cobertura/rejeição. A correção tornou HELP e CANCEL frases controladas; palavras de controle embutidas em sentenças não reconhecidas agora são rejeitadas. Uma regressão genérica preserva HELP legítimo e bloqueia esse padrão. O split completo foi repetido e o único `DRAFT` desapareceu.
+
+Também foi criado `herus-independent-annotation-v1`, com `ARRIVE`, `HELP`, `CANCEL`, `OTHER`, `AMBIGUOUS` e `CONFLICT`. O protocolo é independente dos rótulos externos, exige proveniência do anotador e não tem caminho para bridge ou confirmação. `OTHER`, `AMBIGUOUS` e `CONFLICT` são estados não operacionais; mesmo uma anotação positiva não substitui confirmação física. Portanto, este ciclo não reivindica anotação HERUS real nem convergência multimodal.
+
+Os áudios baixados para a amostra e o batch foram temporários e apagados; nenhum WAV, URL assinada, frase individual ou identificador de registro foi publicado. Os JSONs agregados, o relatório e os logs redigidos estão em `research/evidence/wide_cycle_06/`. O manifesto preserva `license_confirmed_for_raw_data=false`: a licença declarada pela ficha é um dado de distribuição, não autorização jurídica final para redistribuição ou produto. Veredito: **`herus_convergence_proven=false`**.
+
+### Referências
+
+[1]: https://huggingface.co/datasets/PolyAI/minds14 "PolyAI/MInDS-14 — ficha do dataset no Hugging Face"
+[2]: https://datasets-server.huggingface.co/rows?dataset=PolyAI%2Fminds14&config=pt-PT&split=train&offset=100&length=1 "Hugging Face Datasets Server — endpoint de linhas MInDS-14"
