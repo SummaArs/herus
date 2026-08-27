@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/SummaArs/herus/research/semantic_ir.schema.json",
+  "title": "HERUS Semantic IR v0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "eventKind",
+    "source",
+    "confidencePct",
+    "runnerUpPct",
+    "slots",
+    "evidence",
+    "hypothesisStatus",
+    "authority"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "eventKind": {
+      "enum": ["ARRIVE", "HELP", "CANCEL"]
+    },
+    "source": {
+      "enum": ["TEXT", "VOICE", "BUTTON", "SENSOR", "VISION", "CODE", "ENVIRONMENT"]
+    },
+    "confidencePct": { "type": "integer", "minimum": 0, "maximum": 100 },
+    "runnerUpPct": { "type": "integer", "minimum": 0, "maximum": 100 },
+    "slots": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["minutes"],
+      "properties": {
+        "minutes": {
+          "anyOf": [
+            { "type": "null" },
+            { "type": "integer", "minimum": 1, "maximum": 60 }
+          ]
+        }
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 8,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["kind", "ref", "polarity", "weight"],
+        "properties": {
+          "kind": { "enum": ["OBSERVATION", "RULE", "MODEL", "USER"] },
+          "ref": { "type": "string", "minLength": 1, "maxLength": 48, "pattern": "^[A-Za-z0-9_.:-]+$" },
+          "polarity": { "enum": ["POSITIVE", "NEGATIVE"] },
+          "weight": { "type": "integer", "minimum": 0, "maximum": 100 }
+        }
+      }
+    },
+    "hypothesisStatus": {
+      "enum": ["TRUE", "FALSE", "BOTH", "NEITHER"]
+    },
+    "authority": {
+      "const": "PROPOSAL_ONLY"
+    }
+  }
+}

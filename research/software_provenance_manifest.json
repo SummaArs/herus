@@ -47,8 +47,26 @@
     {
       "path": "research/Makefile",
       "kind": "file",
-      "sha256": "45ac0ddaf357d163122f311d44104e39ff34d8121cca75b7f3d143403ee1263c",
+      "sha256": "df5f9152171a71ba571ac6bb26fd35c536d4dcdf6f936df45664b62b96d8d135",
       "role": "host-only research test entrypoint"
+    },
+    {
+      "path": "research/semantic_ir.py",
+      "kind": "file",
+      "sha256": "9688cfea2ef8f2dd30180acbae0e5e344ef0753eb853b12159b834275e8ee9c7",
+      "role": "host-only semantic IR implementation"
+    },
+    {
+      "path": "research/test_semantic_ir.py",
+      "kind": "file",
+      "sha256": "3014980f426ce2153629563f20d866799d5a6a3852d81d9909b45756a9ab5c34",
+      "role": "host-only semantic IR tests"
+    },
+    {
+      "path": "research/semantic_ir.schema.json",
+      "kind": "file",
+      "sha256": "df7fb05d5c3fd24e2e1364a6b470c00cf77ba236b5dd4584cffcf7384652cf10",
+      "role": "versioned finite semantic IR contract"
     },
     {
       "path": "research/hardware_readiness_manifest.json",

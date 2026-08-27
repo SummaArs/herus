@@ -149,3 +149,5 @@ A tese para avançar é, portanto:
 - [Visão Semantic IR / arquitetura cognitiva](../research/source_materials/visao_semantic_ir_herus.txt)
 - [Protótipo de raciocínio finito](../research/FINITE-REASONER-README.md)
 - [Desafio do raciocínio generativo](49-DESAFIO-RACIOCINIO-GENERATIVO.md)
+- [Baseline bruto da arquitetura](../research/evidence/baseline_program.txt)
+- [Baseline bruto do contrato de intenção](../research/evidence/intent_contract_baseline.txt)

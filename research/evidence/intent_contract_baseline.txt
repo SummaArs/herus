@@ -1,0 +1,2155 @@
+=== INTENT CONTRACT LOCATIONS ===
+firmware/core/dialogue.h:150: * Nucleus semantic learner, trust binding or interaction-runtime state. */
+firmware/core/hcp.h:154:/* ---------------- local semantic form ----------------
+firmware/core/intent_gate.c:1:/* intent_gate.c — no-autonomy confidence and ambiguity gate for local ASR. */
+firmware/core/intent_gate.c:2:#include "intent_gate.h"
+firmware/core/intent_gate.c:19:intent_gate_status_t intent_gate_evaluate(const intent_observation_t *obs,
+firmware/core/intent_gate.c:22:                                          intent_gate_result_t *out)
+firmware/core/intent_gate.h:1:/* intent_gate.h — fail-closed admission of local ASR command events.
+firmware/core/intent_gate.h:30:} intent_observation_t;
+firmware/core/intent_gate.h:46:} intent_gate_status_t;
+firmware/core/intent_gate.h:49:    intent_gate_status_t status;
+firmware/core/intent_gate.h:51:} intent_gate_result_t;
+firmware/core/intent_gate.h:56:intent_gate_status_t intent_gate_evaluate(const intent_observation_t *obs,
+firmware/core/intent_gate.h:59:                                          intent_gate_result_t *out);
+firmware/core/interaction.c:73:static int reject_asr_result(interaction_t *it, intent_gate_status_t status, uint32_t now_ms)
+firmware/core/interaction.c:163:int interaction_asr_result(interaction_t *it, const intent_observation_t *obs,
+firmware/core/interaction.c:166:    intent_gate_result_t gate;
+firmware/core/interaction.c:172:    (void)intent_gate_evaluate(obs, it->session_id, hint, &gate);
+firmware/core/interaction.h:12:#include "intent_gate.h"
+firmware/core/interaction.h:50:/* Counters and measured energy only. No transcript, raw audio, semantic content,
+firmware/core/interaction.h:108:int interaction_asr_result(interaction_t *it, const intent_observation_t *obs,
+firmware/core/interaction.h:124:/* Move the one confirmed semantic draft to the application. The caller must set
+firmware/core/memory_capture.h:44: * contain no audio, transcript or semantic candidate. */
+firmware/core/memory_collection.h:4: * is not a transcript store, search index, semantic deduplicator, model memory,
+firmware/core/memory_collection.h:123: * semantically or alter any card field. */
+firmware/core/memory_consolidation.h:119: * parses free text, performs semantic search, uses a model, sends data nor creates
+firmware/core/memory_policy.h:8: * Its result is advisory: it may mark a semantic candidate as discard, review or
+firmware/core/memory_proposal.h:3: * A future local model may propose a bounded semantic interpretation, but it must
+firmware/core/memory_retrieval.h:48:/* A presentation is not a factual claim, semantic answer, text summary or action.
+firmware/core/memory_vault.c:1:/* memory_vault.c — sealed minimal semantic-card vault. */
+firmware/core/memory_vault.h:1:/* memory_vault.h — encrypted local vault for minimal semantic memory cards.
+firmware/core/memory_vault.h:52: * semantic content is retained as telemetry. */
+firmware/core/nucleus.c:1:/* nucleus.c — bounded, opt-in semantic transition memory for the Herus Nucleus. */
+firmware/core/nucleus.c:14:static int semantic_valid(const hcp_msg_t *m)
+firmware/core/nucleus.c:30:static void semantic_template(hcp_msg_t *out, const hcp_msg_t *in)
+firmware/core/nucleus.c:41:static uint64_t semantic_fingerprint(const hcp_msg_t *m)
+firmware/core/nucleus.c:57:static int semantic_equal(const hcp_msg_t *a, const hcp_msg_t *b)
+firmware/core/nucleus.c:76:            semantic_equal(&n->rule[i].next, next)) return &n->rule[i];
+firmware/core/nucleus.c:119:    if (!n || !semantic_valid(m)) return NUC_REJECTED;
+firmware/core/nucleus.c:122:    semantic_template(&next, m);
+firmware/core/nucleus.c:123:    fp = semantic_fingerprint(&next);
+firmware/core/nucleus.c:156:    if (!n || !out || !cap || !max_age || !semantic_valid(context)) return 0;
+firmware/core/nucleus.c:159:    semantic_template(&key, context);
+firmware/core/nucleus.c:160:    fp = semantic_fingerprint(&key);
+firmware/core/nucleus.h:34:    hcp_msg_t next;            /* semantic template only; transport fields are zero */
+firmware/core/test_capstone.c:102:static intent_observation_t observation(uint32_t session)
+firmware/core/test_capstone.c:104:    intent_observation_t o;
+firmware/core/test_capstone.c:134:    intent_observation_t obs;
+firmware/core/test_capstone.c:161:       interaction_asr_result(&it, &(intent_observation_t){
+firmware/core/test_dialogue.c:110:       "D1 even action-looking model text is only a local reply, not a sendable semantic draft");
+firmware/core/test_intent_gate.c:1:/* test_intent_gate.c — executable contract for Advance 5 confidence gateway. */
+firmware/core/test_intent_gate.c:2:#include "intent_gate.h"
+firmware/core/test_intent_gate.c:12:static intent_observation_t observation(uint32_t session, voice_command_t command,
+firmware/core/test_intent_gate.c:15:    intent_observation_t o;
+firmware/core/test_intent_gate.c:27:    intent_observation_t o;
+firmware/core/test_intent_gate.c:29:    intent_gate_result_t out;
+firmware/core/test_intent_gate.c:33:    ok(intent_gate_evaluate(&o, 7, NULL, &out) == INTENT_GATE_ACCEPT_DIRECT && !out.context_used,
+firmware/core/test_intent_gate.c:39:    ok(intent_gate_evaluate(&o, 7, &hint, &out) == INTENT_GATE_LOW_CONFIDENCE,
+firmware/core/test_intent_gate.c:43:    ok(intent_gate_evaluate(&o, 7, &hint, &out) == INTENT_GATE_ACCEPT_CONTEXT && out.context_used,
+firmware/core/test_intent_gate.c:47:    ok(intent_gate_evaluate(&o, 7, &hint, &out) == INTENT_GATE_AMBIGUOUS && !out.context_used,
+firmware/core/test_intent_gate.c:51:    ok(intent_gate_evaluate(&o, 7, NULL, &out) == INTENT_GATE_STALE,
+firmware/core/test_intent_gate.c:56:    ok(intent_gate_evaluate(&o, 7, NULL, &out) == INTENT_GATE_REJECTED,
+firmware/core/test_interaction.c:62:       "I1 the application receives semantic content once, with transport fields still unset");
+firmware/core/test_interaction.c:104:static intent_observation_t asr(uint32_t session, voice_command_t command,
+firmware/core/test_interaction.c:107:    intent_observation_t o;
+firmware/core/test_interaction.c:121:    intent_observation_t o;
+firmware/core/test_interaction.c:165:    intent_observation_t o;
+firmware/core/test_interaction_rig.c:64:       "R2 confirmation timeout clears UI and semantic pending state");
+firmware/core/test_memory_consolidation.c:200:       "M5 recovery is an identifier-bound vault read, not semantic search or model inference");
+firmware/core/test_memory_proposal.c:87:       "P1 unsupported semantic kind is rejected without a partial candidate");
+firmware/core/test_memory_retrieval.c:68:    printf("\n== M6 controlled semantic retrieval is local, bounded and ambiguity-safe ==\n");
+firmware/core/test_nucleus.c:36:    printf("\n== N1  consent, semantic transition and explainable confidence ==\n");
+firmware/core/test_nucleus.c:78:       "N2 non-semantic tiers are rejected before they can enter local memory");
+firmware/core/test_voice.c:18:    printf("\n== V1  controlled Portuguese creates a semantic draft ==\n");
+firmware/core/test_voice.c:32:       "V1 arrival without duration remains a compact semantic glyph");
+firmware/core/test_voice.c:62:    printf("\n== V3  typed local-ASR commands retain semantic bounds ==\n");
+firmware/core/test_voice.c:67:       "V3 a typed arrival command creates the same bounded semantic-only draft");
+firmware/core/voice.c:74: * marker is present but its value is outside the supported semantic vocabulary. */
+firmware/core/voice.h:64:    hcp_msg_t      draft;                 /* semantic fields only; transport is zero */
+firmware/core/voice.h:80: * semantic-only result used by the text parser. `minutes` is allowed only for
+firmware/core/voice.h:82: * transport field; those belong to intent_gate and interaction respectively. */
+firmware/net/core_link.c:53:static int observation_valid(const intent_observation_t *o)
+firmware/net/core_link.c:86:                                  const intent_observation_t *observation,
+firmware/net/core_link.h:14:#include "intent_gate.h"
+firmware/net/core_link.h:39:    intent_observation_t observation;
+firmware/net/core_link.h:61:                                  const intent_observation_t *observation,
+firmware/net/test_core_link.c:21:static intent_observation_t observation(void)
+firmware/net/test_core_link.c:23:    intent_observation_t o;
+firmware/net/test_core_link.c:38:    intent_observation_t obs = observation();
+firmware/net/test_core_link.c:46:        intent_observation_t wrong_session = obs;
+firmware/net/test_trust.c:83:    intent_observation_t obs;
+firmware/net/trust.c:206:                              const intent_observation_t *observation,
+firmware/net/trust.h:79:                              const intent_observation_t *observation,
+firmware/test/test_net.c:159: * the semantic form on both sides and comparing bit-for-bit — if the receiver
+sim/compose.c:65:typedef struct { int intent, nslot, role[2], fill[2]; int hour, peer; } msg_t;
+sim/study.c:54:typedef struct { uint16_t intent; uint8_t role[NSLOT]; uint16_t fill[NSLOT]; } fact_t;
+=== HEADER ===
+--- firmware/core/intent_gate.c
+/* intent_gate.c — no-autonomy confidence and ambiguity gate for local ASR. */
+#include "intent_gate.h"
+#include <string.h>
+
+static int command_valid(voice_command_t command, uint8_t minutes)
+{
+    if (command == VOICE_COMMAND_ARRIVE) return minutes <= 60u;
+    if (command == VOICE_COMMAND_HELP || command == VOICE_COMMAND_CANCEL) return minutes == 0u;
+    return 0;
+}
+
+static int hint_qualifies(const intent_context_hint_t *hint, voice_command_t command)
+{
+    return hint && hint->available == 1u && hint->command == command &&
+           hint->support >= INTENT_GATE_CONTEXT_MIN_SUPPORT &&
+           hint->confidence_pct >= INTENT_GATE_CONTEXT_MIN_CONF_PCT;
+}
+
+intent_gate_status_t intent_gate_evaluate(const intent_observation_t *obs,
+                                          uint32_t active_session,
+                                          const intent_context_hint_t *hint,
+                                          intent_gate_result_t *out)
+{
+    uint8_t margin;
+    if (out) memset(out, 0, sizeof(*out));
+    if (!obs || !out || !active_session || obs->session_id != active_session) {
+        if (out) out->status = INTENT_GATE_STALE;
+        return INTENT_GATE_STALE;
+    }
+    if ((obs->source != INTENT_SOURCE_CORE && obs->source != INTENT_SOURCE_NUCLEUS) ||
+        !command_valid(obs->command, obs->minutes) ||
+        obs->confidence_pct > 100u || obs->runner_up_pct > 100u ||
+        obs->runner_up_pct > obs->confidence_pct) {
+        out->status = INTENT_GATE_REJECTED;
+        return out->status;
+    }
+    if (obs->confidence_pct < INTENT_GATE_MIN_CONFIDENCE_PCT) {
+        out->status = INTENT_GATE_LOW_CONFIDENCE;
+        return out->status;
+    }
+
+    margin = (uint8_t)(obs->confidence_pct - obs->runner_up_pct);
+    if (margin >= INTENT_GATE_MIN_MARGIN_PCT) {
+        out->status = INTENT_GATE_ACCEPT_DIRECT;
+        return out->status;
+    }
+    if (hint_qualifies(hint, obs->command)) {
+        out->status = INTENT_GATE_ACCEPT_CONTEXT;
+        out->context_used = 1u;
+        return out->status;
+    }
+    out->status = INTENT_GATE_AMBIGUOUS;
+    return out->status;
+}
+--- firmware/core/intent_gate.h
+/* intent_gate.h — fail-closed admission of local ASR command events.
+ *
+ * The gate classifies an observation. It has no audio, transcript, clock, radio,
+ * key, Nucleus state or HCP transport. In particular, a context hint may only
+ * disambiguate the same already-strong command; it cannot invent or promote one.
+ */
+#ifndef HERUS_INTENT_GATE_H
+#define HERUS_INTENT_GATE_H
+
+#include <stdint.h>
+#include "voice.h"
+
+#define INTENT_GATE_MIN_CONFIDENCE_PCT  80u
+#define INTENT_GATE_MIN_MARGIN_PCT      15u
+#define INTENT_GATE_CONTEXT_MIN_SUPPORT  3u
+#define INTENT_GATE_CONTEXT_MIN_CONF_PCT 70u
+
+typedef enum {
+    INTENT_SOURCE_CORE = 0,
+    INTENT_SOURCE_NUCLEUS = 1
+} intent_source_t;
+
+typedef struct {
+    intent_source_t  source;          /* local Core or local Nucleus only */
+    uint32_t         session_id;      /* must equal active physical PTT session */
+    voice_command_t  command;         /* configured command class, never free text */
+    uint8_t          minutes;         /* valid only for ARRIVE */
+    uint8_t          confidence_pct;  /* primary candidate score, 0..100 */
+    uint8_t          runner_up_pct;   /* strongest alternate score, 0..100 */
+} intent_observation_t;
+
+typedef struct {
+    uint8_t         available;        /* 1 only after local authorized-message evidence */
+    voice_command_t command;          /* predicted intent; must equal ASR primary */
+    uint16_t        support;          /* retained observations behind the hint */
+    uint8_t         confidence_pct;   /* support / all retained context observations */
+} intent_context_hint_t;
+
+typedef enum {
+    INTENT_GATE_ACCEPT_DIRECT = 0,
+    INTENT_GATE_ACCEPT_CONTEXT,
+    INTENT_GATE_STALE,
+    INTENT_GATE_LOW_CONFIDENCE,
+    INTENT_GATE_AMBIGUOUS,
+    INTENT_GATE_REJECTED
+} intent_gate_status_t;
+
+typedef struct {
+    intent_gate_status_t status;
+    uint8_t              context_used;
+} intent_gate_result_t;
+
+/* Decide whether an observation for active_session may become a local draft.
+ * A stale result is intentionally ignored. The function does not mutate input,
+ * request a confirmation, create an HCP message, or communicate with hardware. */
+intent_gate_status_t intent_gate_evaluate(const intent_observation_t *obs,
+                                          uint32_t active_session,
+                                          const intent_context_hint_t *hint,
+                                          intent_gate_result_t *out);
+
+#endif /* HERUS_INTENT_GATE_H */
+--- firmware/core/interaction.c
+/* interaction.c — portable event runtime; deliberately no driver or transport calls. */
+#include "interaction.h"
+#include <string.h>
+
+static uint32_t elapsed(uint32_t now, uint32_t then)
+{
+    return (uint32_t)(now - then); /* wrap-safe for intervals below 2^31 ms */
+}
+
+static void actions_reset(interaction_t *it)
+{
+    memset(&it->actions, 0, sizeof(it->actions));
+}
+
+static void pending_clear(interaction_t *it)
+{
+    memset(&it->pending, 0, sizeof(it->pending));
+    memset(&it->parsed, 0, sizeof(it->parsed));
+}
+
+static void haptic(interaction_t *it, voice_event_t event)
+{
+    voice_haptic_plan(event, &it->actions.haptic);
+    it->actions.play_haptic = haptic_plan_safe(&it->actions.haptic) ? 1u : 0u;
+}
+
+static void enter_link_lost(interaction_t *it, uint32_t now_ms)
+{
+    if (it->state == INTERACTION_LISTENING) it->actions.stop_capture = 1;
+    if (it->state == INTERACTION_AWAIT_CONFIRM || it->state == INTERACTION_READY_SEND)
+        it->actions.clear_draft = 1;
+    pending_clear(it);
+    it->state = INTERACTION_LINK_LOST;
+    it->metrics.source_lost++;
+    it->metrics.last_latency_ms = elapsed(now_ms, it->listen_started_ms);
+    haptic(it, VOICE_EVENT_REJECTED);
+}
+
+/* The only conversion from an accepted parser/command output to runtime state.
+ * It deliberately stops at AWAIT_CONFIRM; no ASR result reaches READY_SEND. */
+static int apply_voice_result(interaction_t *it, voice_status_t status, uint32_t now_ms)
+{
+    it->actions.stop_capture = 1;
+    it->metrics.last_latency_ms = elapsed(now_ms, it->listen_started_ms);
+    if (status == VOICE_DRAFT) {
+        it->pending = it->parsed.draft;
+        it->state = INTERACTION_AWAIT_CONFIRM;
+        it->confirm_started_ms = now_ms;
+        it->metrics.drafts++;
+        it->actions.present_draft = 1;
+        haptic(it, it->parsed.event);
+        return INTERACTION_OK;
+    }
+
+    it->actions.clear_draft = 1;
+    pending_clear(it);
+    if (status == VOICE_CANCEL_LOCAL) {
+        it->state = INTERACTION_CANCELLED;
+        it->metrics.cancelled++;
+        haptic(it, VOICE_EVENT_CANCEL);
+    } else if (status == VOICE_UNKNOWN) {
+        it->state = INTERACTION_REJECTED;
+        it->metrics.unknown++;
+        haptic(it, VOICE_EVENT_UNKNOWN);
+    } else {
+        it->state = INTERACTION_REJECTED;
+        it->metrics.rejected++;
+        haptic(it, VOICE_EVENT_REJECTED);
+    }
+    return INTERACTION_OK;
+}
+
+static int reject_asr_result(interaction_t *it, intent_gate_status_t status, uint32_t now_ms)
+{
+    it->actions.stop_capture = 1;
+    it->actions.clear_draft = 1;
+    pending_clear(it);
+    it->state = INTERACTION_REJECTED;
+    it->metrics.last_latency_ms = elapsed(now_ms, it->listen_started_ms);
+    if (status == INTENT_GATE_LOW_CONFIDENCE) {
+        it->metrics.asr_low_confidence++;
+        it->metrics.unknown++;
+        haptic(it, VOICE_EVENT_UNKNOWN);
+    } else if (status == INTENT_GATE_AMBIGUOUS) {
+        it->metrics.asr_ambiguous++;
+        it->metrics.unknown++;
+        haptic(it, VOICE_EVENT_UNKNOWN);
+    } else {
+        it->metrics.rejected++;
+        haptic(it, VOICE_EVENT_REJECTED);
+    }
+    return INTERACTION_OK;
+}
+
+void interaction_config_default(interaction_config_t *out)
+{
+    if (!out) return;
+    voice_lexicon_default(&out->lexicon);
+    out->listen_timeout_ms = INTERACTION_DEFAULT_LISTEN_MS;
+    out->confirm_timeout_ms = INTERACTION_DEFAULT_CONFIRM_MS;
+    out->allow_test_transcript = 0;
+}
+
+void interaction_init(interaction_t *it, const interaction_config_t *cfg)
+{
+    interaction_config_t local;
+    if (!it) return;
+    if (!cfg) {
+        interaction_config_default(&local);
+        cfg = &local;
+    }
+    memset(it, 0, sizeof(*it));
+    it->cfg = *cfg;
+    if (!it->cfg.listen_timeout_ms) it->cfg.listen_timeout_ms = INTERACTION_DEFAULT_LISTEN_MS;
+    if (!it->cfg.confirm_timeout_ms) it->cfg.confirm_timeout_ms = INTERACTION_DEFAULT_CONFIRM_MS;
+    it->state = INTERACTION_IDLE;
+    it->asr_available = 1; /* host and an on-Core ASR are usable until told otherwise */
+}
+
+void interaction_set_asr_available(interaction_t *it, int available, uint32_t now_ms)
+{
+    if (!it) return;
+    actions_reset(it);
+    it->asr_available = available ? 1u : 0u;
+    if (!it->asr_available && (it->state == INTERACTION_LISTENING ||
+                               it->state == INTERACTION_AWAIT_CONFIRM ||
+                               it->state == INTERACTION_READY_SEND))
+        enter_link_lost(it, now_ms);
+}
+
+int interaction_push_to_talk(interaction_t *it, uint32_t now_ms)
+{
+    if (!it) return INTERACTION_E_ARG;
+    actions_reset(it);
+    if (it->state == INTERACTION_LISTENING || it->state == INTERACTION_AWAIT_CONFIRM ||
+        it->state == INTERACTION_READY_SEND) return INTERACTION_E_STATE;
+    if (!it->asr_available) {
+        enter_link_lost(it, now_ms);
+        return INTERACTION_E_SOURCE;
+    }
+    pending_clear(it);
+    it->session_id++;
+    if (!it->session_id) it->session_id++; /* reserve zero as invalid */
+    it->state = INTERACTION_LISTENING;
+    it->listen_started_ms = now_ms;
+    it->metrics.sessions++;
+    it->actions.start_capture = 1;
+    return INTERACTION_OK;
+}
+
+int interaction_transcript(interaction_t *it, const char *text, uint32_t now_ms)
+{
+    voice_status_t status;
+    if (!it || !text) return INTERACTION_E_ARG;
+    if (it->state != INTERACTION_LISTENING) return INTERACTION_E_STATE;
+    if (!it->cfg.allow_test_transcript) return INTERACTION_E_UNTRUSTED;
+
+    actions_reset(it);
+    status = voice_parse_pt(text, &it->cfg.lexicon, &it->parsed);
+    return apply_voice_result(it, status, now_ms);
+}
+
+int interaction_asr_result(interaction_t *it, const intent_observation_t *obs,
+                           const intent_context_hint_t *hint, uint32_t now_ms)
+{
+    intent_gate_result_t gate;
+    voice_status_t status;
+    if (!it || !obs) return INTERACTION_E_ARG;
+    if (it->state != INTERACTION_LISTENING) return INTERACTION_E_STATE;
+
+    actions_reset(it);
+    (void)intent_gate_evaluate(obs, it->session_id, hint, &gate);
+    if (gate.status == INTENT_GATE_STALE) {
+        it->metrics.asr_stale++;
+        return INTERACTION_OK; /* leave active capture and UX untouched */
+    }
+    if (gate.status != INTENT_GATE_ACCEPT_DIRECT && gate.status != INTENT_GATE_ACCEPT_CONTEXT)
+        return reject_asr_result(it, gate.status, now_ms);
+
+    status = voice_from_command(obs->command, obs->minutes, &it->cfg.lexicon, &it->parsed);
+    if (status != VOICE_DRAFT && status != VOICE_CANCEL_LOCAL)
+        return reject_asr_result(it, INTENT_GATE_REJECTED, now_ms);
+    if (gate.status == INTENT_GATE_ACCEPT_CONTEXT) it->metrics.asr_context_assisted++;
+    return apply_voice_result(it, status, now_ms);
+}
+
+int interaction_core_link_result(interaction_t *it, core_link_rx_t *rx,
+                                 const core_link_key_t *key, const uint8_t *wire,
+                                 size_t wire_len, const intent_context_hint_t *hint,
+                                 uint32_t now_ms)
+{
+    core_link_intent_t opened;
+    if (!it || !rx || !key || !wire) return INTERACTION_E_ARG;
+    if (it->state != INTERACTION_LISTENING) return INTERACTION_E_STATE;
+    if (core_link_open_nucleus_intent(rx, key, wire, wire_len, now_ms, &opened) != CORE_LINK_OK)
+        return INTERACTION_E_UNTRUSTED;
+    return interaction_asr_result(it, &opened.observation, hint, now_ms);
+}
+
+uint32_t interaction_session_id(const interaction_t *it)
+{
+    return it ? it->session_id : 0u;
+}
+
+int interaction_confirm(interaction_t *it, int accepted, uint32_t now_ms)
+{
+    if (!it) return INTERACTION_E_ARG;
+    if (it->state != INTERACTION_AWAIT_CONFIRM) return INTERACTION_E_STATE;
+    actions_reset(it);
+    if (!it->asr_available) {
+        enter_link_lost(it, now_ms);
+        return INTERACTION_E_SOURCE;
+    }
+    if (!accepted) {
+        it->state = INTERACTION_CANCELLED;
+        it->metrics.cancelled++;
+        it->actions.clear_draft = 1;
+        pending_clear(it);
+        haptic(it, VOICE_EVENT_CANCEL);
+        return INTERACTION_OK;
+    }
+    it->state = INTERACTION_READY_SEND;
+    it->metrics.confirms++;
+    haptic(it, VOICE_EVENT_CONFIRMED);
+    return INTERACTION_OK;
+}
+
+int interaction_take_send(interaction_t *it, hcp_msg_t *out)
+{
+    if (!it || !out) return INTERACTION_E_ARG;
+    if (it->state != INTERACTION_READY_SEND) return INTERACTION_E_STATE;
+    actions_reset(it);
+    *out = it->pending;
+    pending_clear(it);
+    it->state = INTERACTION_IDLE;
+    it->metrics.sent++;
+    it->actions.clear_draft = 1;
+    return INTERACTION_OK;
+}
+
+int interaction_take_send_assured(interaction_t *it,
+                                  const assurance_snapshot_t *snapshot,
+                                  hcp_msg_t *out)
+{
+    assurance_decision_t decision;
+    if (!it || !snapshot || !out) return INTERACTION_E_ARG;
+    if (assurance_decide(snapshot, &decision) != ASSURANCE_OK)
+        return INTERACTION_E_UNTRUSTED;
+    return interaction_take_send(it, out);
+}
+
+int interaction_tick(interaction_t *it, uint32_t now_ms)
+{
+    if (!it) return INTERACTION_E_ARG;
+    actions_reset(it);
+    if (it->state == INTERACTION_LISTENING &&
+        elapsed(now_ms, it->listen_started_ms) >= it->cfg.listen_timeout_ms) {
+        it->state = INTERACTION_TIMED_OUT;
+        it->metrics.timed_out++;
+        it->metrics.last_latency_ms = elapsed(now_ms, it->listen_started_ms);
+--- firmware/core/interaction.h
+/* interaction.h — safe runtime between push-to-talk, local ASR, HCP and haptics.
+ *
+ * The runtime accepts events; it does not own a microphone, ASR engine, haptic
+ * driver, radio, key or clock. It can therefore prove that no draft reaches the
+ * link layer before physical confirmation, independent of the target platform.
+ */
+#ifndef HERUS_INTERACTION_H
+#define HERUS_INTERACTION_H
+
+#include <stdint.h>
+#include "voice.h"
+#include "intent_gate.h"
+#include "core_link.h"
+#include "assurance.h"
+
+#define INTERACTION_DEFAULT_LISTEN_MS   6000u
+#define INTERACTION_DEFAULT_CONFIRM_MS  8000u
+
+typedef enum {
+    INTERACTION_IDLE = 0,
+    INTERACTION_LISTENING,
+    INTERACTION_AWAIT_CONFIRM,
+    INTERACTION_READY_SEND,
+    INTERACTION_CANCELLED,
+    INTERACTION_REJECTED,
+    INTERACTION_TIMED_OUT,
+    INTERACTION_LINK_LOST
+} interaction_state_t;
+
+enum {
+    INTERACTION_OK       =  0,
+    INTERACTION_E_ARG    = -1,
+    INTERACTION_E_STATE  = -2,
+    INTERACTION_E_SOURCE = -3,
+    INTERACTION_E_UNTRUSTED = -4
+};
+
+/* The portable runtime writes these desired effects after each event. A target
+ * adapter may start/stop its AFE/ASR, render a draft, clear UX and apply haptics.
+ * None of these fields gives an adapter permission to transmit. */
+typedef struct {
+    uint8_t start_capture;
+    uint8_t stop_capture;
+    uint8_t present_draft;
+    uint8_t clear_draft;
+    uint8_t play_haptic;
+    haptic_plan_t haptic;
+} interaction_actions_t;
+
+/* Counters and measured energy only. No transcript, raw audio, semantic content,
+ * key, address or location appears here, so this structure is safe to retain as
+ * local diagnostic telemetry. */
+typedef struct {
+    uint32_t sessions;
+    uint32_t drafts;
+    uint32_t confirms;
+    uint32_t sent;
+    uint32_t cancelled;
+    uint32_t unknown;
+    uint32_t rejected;
+    uint32_t timed_out;
+    uint32_t source_lost;
+    uint32_t asr_stale;
+    uint32_t asr_low_confidence;
+    uint32_t asr_ambiguous;
+    uint32_t asr_context_assisted;
+    uint32_t last_latency_ms;     /* push-to-talk -> draft or terminal result */
+    uint64_t measured_energy_uj;  /* caller-supplied PMIC/bench measurement only */
+} interaction_metrics_t;
+
+typedef struct {
+    voice_lexicon_t lexicon;
+    uint32_t listen_timeout_ms;
+    uint32_t confirm_timeout_ms;
+    uint8_t  allow_test_transcript; /* host-only parser path; production defaults to 0 */
+} interaction_config_t;
+
+typedef struct {
+    interaction_config_t cfg;
+    interaction_state_t  state;
+    uint8_t              asr_available; /* local Core or trusted local Nucleus */
+    uint32_t             session_id;     /* nonzero, advances only on physical PTT */
+    uint32_t             listen_started_ms;
+    uint32_t             confirm_started_ms;
+    hcp_msg_t            pending;       /* zero unless confirmation is pending/ready */
+    voice_result_t       parsed;        /* current local result, never serialized */
+    interaction_actions_t actions;
+    interaction_metrics_t metrics;
+} interaction_t;
+
+void interaction_config_default(interaction_config_t *out);
+void interaction_init(interaction_t *it, const interaction_config_t *cfg);
+
+/* Report availability of the local ASR source. If it disappears during a live
+ * session, the runtime stops capture, wipes the draft and enters LINK_LOST. */
+void interaction_set_asr_available(interaction_t *it, int available, uint32_t now_ms);
+
+/* Physical button press is the sole transition that starts capture. */
+int interaction_push_to_talk(interaction_t *it, uint32_t now_ms);
+
+/* Feed a local ASR transcript only while LISTENING. This is disabled by default
+ * and exists only for host tests until a typed local-ASR adapter is wired. */
+int interaction_transcript(interaction_t *it, const char *text, uint32_t now_ms);
+
+/* Feed a typed observation from an on-Core or local-Nucleus ASR adapter. The
+ * gateway binds it to the active push-to-talk session, fails closed on low
+ * confidence/ambiguity, and cannot bypass physical confirmation. */
+int interaction_asr_result(interaction_t *it, const intent_observation_t *obs,
+                           const intent_context_hint_t *hint, uint32_t now_ms);
+
+/* Open a Nucleus->Core companion envelope, then submit its typed observation to
+ * the same gateway. Any envelope failure leaves the listening session untouched. */
+int interaction_core_link_result(interaction_t *it, core_link_rx_t *rx,
+                                 const core_link_key_t *key, const uint8_t *wire,
+                                 size_t wire_len, const intent_context_hint_t *hint,
+                                 uint32_t now_ms);
+
+/* Return the active/recent physical PTT session id for adapter tagging. */
+uint32_t interaction_session_id(const interaction_t *it);
+
+/* The physical confirmation handler may release a pending draft exactly once. */
+int interaction_confirm(interaction_t *it, int accepted, uint32_t now_ms);
+
+/* Move the one confirmed semantic draft to the application. The caller must set
+ * seq/ttl/prio and call link_send separately. On success the runtime returns IDLE
+ * immediately, so a second call cannot send the same meaning again. */
+int interaction_take_send(interaction_t *it, hcp_msg_t *out);
+
+/* Grand Finale integration path: the caller supplies a nonsecret snapshot derived
+ * from live state. Assurance may only block the pre-existing one-time handoff; it
+ * cannot create a draft, HCP message or send. */
+int interaction_take_send_assured(interaction_t *it,
+                                  const assurance_snapshot_t *snapshot,
+                                  hcp_msg_t *out);
+
+/* Enforce listen and confirmation deadlines using caller-supplied monotonic ms. */
+int interaction_tick(interaction_t *it, uint32_t now_ms);
+
+/* Register measured—not estimated—energy from a PMIC or bench instrument. */
+void interaction_note_energy_uj(interaction_t *it, uint32_t energy_uj);
+
+const interaction_actions_t *interaction_actions(const interaction_t *it);
+const interaction_metrics_t *interaction_metrics(const interaction_t *it);
+
+#endif /* HERUS_INTERACTION_H */
+--- firmware/core/test_capstone.c
+/* test_capstone.c — Grand Finale end-to-end safety composition proof. */
+#include "interaction.h"
+#include "dialogue.h"
+#include "model_lab.h"
+#include "trust.h"
+#include <stdio.h>
+#include <string.h>
+
+typedef struct {
+    uint8_t blob[TRUST_STORE_BLOB_LEN];
+    int present;
+    int fail_erase;
+} vault_t;
+
+static int FAILED = 0;
+static void ok(int condition, const char *what)
+{
+    printf("  %-4s %s\n", condition ? "PASS" : "FAIL", what);
+    if (!condition) FAILED = 1;
+}
+
+static int store_active(void *ctx, const uint8_t blob[TRUST_STORE_BLOB_LEN])
+{
+    vault_t *v = ctx;
+    memcpy(v->blob, blob, sizeof(v->blob));
+    v->present = 1;
+    return 0;
+}
+
+static int load_active(void *ctx, uint8_t blob[TRUST_STORE_BLOB_LEN])
+{
+    vault_t *v = ctx;
+    if (v->present) memcpy(blob, v->blob, sizeof(v->blob));
+    else memset(blob, 0, TRUST_STORE_BLOB_LEN);
+    return 0;
+}
+
+static int erase_vault(void *ctx)
+{
+    vault_t *v = ctx;
+    if (v->fail_erase) return -1;
+    memset(v->blob, 0, sizeof(v->blob));
+    v->present = 0;
+    return 0;
+}
+
+static trust_storage_t storage(vault_t *v)
+{
+    trust_storage_t s;
+    s.ctx = v;
+    s.store_active = store_active;
+    s.load_active = load_active;
+    s.erase = erase_vault;
+    return s;
+}
+
+static int action_reply(void *ctx, const dialogue_request_t *request,
+                        dialogue_model_reply_t *out)
+{
+    (void)ctx;
+    (void)request;
+    memset(out, 0, sizeof(*out));
+    strcpy(out->reply, "envie ajuda agora");
+    out->reply_len = (uint8_t)strlen(out->reply);
+    out->topic = DIALOGUE_TOPIC_SAFETY;
+    return 0;
+}
+
+static void accepted_model(model_lab_profile_t *p, model_lab_budget_t *b,
+                           model_lab_decision_t *d)
+{
+    memset(p, 0, sizeof(*p));
+    memset(b, 0, sizeof(*b));
+    p->measured_on_target = 1; p->local_only = 1; p->model_digest[0] = 1;
+    p->model_flash_bytes = 1; p->peak_internal_bytes = 1; p->peak_psram_bytes = 1;
+    p->p95_latency_ms = 1; p->energy_per_turn_uj = 1;
+    p->functional_cases = p->functional_passed = 1;
+    p->adversarial_cases = p->adversarial_rejected = 1;
+    b->max_model_flash_bytes = 1; b->max_peak_internal_bytes = 1;
+    b->max_peak_psram_bytes = 1; b->max_p95_latency_ms = 1;
+    b->max_energy_per_turn_uj = 1; b->min_functional_cases = 1;
+    b->min_adversarial_cases = 1;
+    (void)model_lab_decide(p, b, d);
+}
+
+static assurance_snapshot_t snapshot_for(interaction_t *it,
+                                         const model_lab_decision_t *model)
+{
+    assurance_snapshot_t s;
+    memset(&s, 0, sizeof(s));
+    s.source = ASSURANCE_SOURCE_CORE;
+    s.physical_session_current = interaction_session_id(it) != 0u;
+    s.intent_accepted = it->state == INTERACTION_READY_SEND;
+    s.physical_confirmation = it->state == INTERACTION_READY_SEND;
+    s.handoff_unused = it->state == INTERACTION_READY_SEND;
+    s.local_model_enabled = 1;
+    s.local_model_accepted = model->accepted;
+    s.model_reply_display_only = 1;
+    return s;
+}
+
+static intent_observation_t observation(uint32_t session)
+{
+    intent_observation_t o;
+    o.source = INTENT_SOURCE_CORE;
+    o.session_id = session;
+    o.command = VOICE_COMMAND_ARRIVE;
+    o.minutes = 0;
+    o.confidence_pct = 95;
+    o.runner_up_pct = 0;
+    return o;
+}
+
+static void material(uint8_t secret[SHA256_LEN], uint8_t core[TRUST_NONCE_LEN],
+                     uint8_t nucleus[TRUST_NONCE_LEN])
+{
+    for (unsigned i = 0; i < SHA256_LEN; i++) secret[i] = (uint8_t)(0x21u + i);
+    for (unsigned i = 0; i < TRUST_NONCE_LEN; i++) {
+        core[i] = (uint8_t)(0x61u + i);
+        nucleus[i] = (uint8_t)(0x91u + i);
+    }
+}
+
+int main(void)
+{
+    dialogue_t dialogue;
+    dialogue_model_t model;
+    dialogue_topic_t topic;
+    char reply[DIALOGUE_REPLY_MAX];
+    model_lab_profile_t profile;
+    model_lab_budget_t budget;
+    model_lab_decision_t model_decision;
+    interaction_t it;
+    intent_observation_t obs;
+    assurance_snapshot_t snap;
+    hcp_msg_t sent;
+    trust_t trust;
+    vault_t vault;
+    trust_storage_t store;
+    core_link_tx_t tx;
+    core_link_rx_t rx;
+    uint8_t secret[SHA256_LEN], core_nonce[TRUST_NONCE_LEN], nucleus_nonce[TRUST_NONCE_LEN];
+    uint8_t wire[CORE_LINK_WIRE_LEN];
+    uint32_t sas;
+
+    printf("\n== C10  Grand Finale chain: dialogue -> model -> intent -> trust ==\n");
+    accepted_model(&profile, &budget, &model_decision);
+    model.ctx = NULL;
+    model.generate_local = action_reply;
+    dialogue_init(&dialogue, NULL, &model);
+    ok(model_decision.accepted && dialogue_begin_turn(&dialogue, 33, 0) == DIALOGUE_OK &&
+       dialogue_submit_utterance(&dialogue, "preciso de ajuda", 16, 1) == DIALOGUE_OK &&
+       dialogue_take_reply(&dialogue, reply, sizeof(reply), &topic) == DIALOGUE_OK &&
+       !strcmp(reply, "envie ajuda agora") && topic == DIALOGUE_TOPIC_SAFETY,
+       "C10 a measured local-model candidate may produce action-looking UX text only");
+
+    interaction_init(&it, NULL);
+    ok(interaction_take_send(&it, &sent) == INTERACTION_E_STATE,
+       "C10 dialogue output creates neither an interaction draft nor a send handoff");
+    ok(interaction_push_to_talk(&it, 10) == INTERACTION_OK &&
+       interaction_asr_result(&it, &(intent_observation_t){
+           INTENT_SOURCE_CORE, interaction_session_id(&it), VOICE_COMMAND_ARRIVE,
+           0, 95, 0 }, NULL, 11) == INTERACTION_OK &&
+       interaction_confirm(&it, 1, 12) == INTERACTION_OK,
+       "C10 a separate physical command session still creates the only candidate handoff");
+    snap = snapshot_for(&it, &model_decision);
+    ok(interaction_take_send_assured(&it, &snap, &sent) == INTERACTION_OK &&
+       it.state == INTERACTION_IDLE && sent.intent == it.cfg.lexicon.intent_arrive,
+       "C10 only all local gates plus accepted display-only model evidence release one handoff");
+
+    interaction_init(&it, NULL);
+    interaction_push_to_talk(&it, 20);
+    obs = observation(interaction_session_id(&it));
+    interaction_asr_result(&it, &obs, NULL, 21);
+    interaction_confirm(&it, 1, 22);
+    snap = snapshot_for(&it, &model_decision);
+    snap.model_reply_display_only = 0;
+    ok(interaction_take_send_assured(&it, &snap, &sent) == INTERACTION_E_UNTRUSTED &&
+       it.state == INTERACTION_READY_SEND,
+       "C10 suspected model agency blocks rather than consumes a confirmed local draft");
+
+    memset(&vault, 0, sizeof(vault));
+    store = storage(&vault);
+    material(secret, core_nonce, nucleus_nonce);
+    trust_init(&trust);
+    core_link_tx_init(&tx);
+    core_link_rx_init(&rx);
+    trust_begin(&trust, 1, 1, secret, core_nonce, nucleus_nonce, 30);
+    trust_sas(&trust, &sas);
+    ok(trust_confirm(&trust, 1, sas, 1, sas, 31, &store) == TRUST_OK &&
+       trust.state == TRUST_ACTIVE,
+       "C10 a Nucleus path becomes eligible only after the real paired trust ceremony");
+    vault.fail_erase = 1;
+    ok(trust_revoke(&trust, &tx, &rx, &store) == TRUST_E_STORAGE &&
+       trust.state == TRUST_REVOKED &&
+       trust_seal_nucleus_intent(&trust, &tx, 32, 1, 33, &obs, wire) == TRUST_E_STATE,
+       "C10 erase failure leaves trust revoked and forbids future authenticated envelopes");
+
+    interaction_init(&it, NULL);
+    interaction_push_to_talk(&it, 40);
+    obs = observation(interaction_session_id(&it));
+    interaction_asr_result(&it, &obs, NULL, 41);
+    interaction_confirm(&it, 1, 42);
+    snap = snapshot_for(&it, &model_decision);
+    snap.source = ASSURANCE_SOURCE_NUCLEUS;
+    snap.trust_active = trust.state == TRUST_ACTIVE;
+    snap.control_link_authenticated = 1;
+    snap.control_link_fresh = 1;
+    snap.trust_revoked = trust.state == TRUST_REVOKED;
+    ok(interaction_take_send_assured(&it, &snap, &sent) == INTERACTION_E_UNTRUSTED &&
+       it.state == INTERACTION_READY_SEND,
+       "C10 revocation has precedence over a previously confirmed handoff and claimed fresh link");
+
+    if (FAILED) {
+        printf("CAPSTONE TESTS FAILED\n");
+        return 1;
+    }
+    printf("CAPSTONE INVARIANTS HOLD — no dialogue, model or revoked companion state bypasses physical confirmation.\n");
+    return 0;
+}
+--- firmware/core/test_intent_gate.c
+/* test_intent_gate.c — executable contract for Advance 5 confidence gateway. */
+#include "intent_gate.h"
+#include <stdio.h>
+
+static int FAILED = 0;
+static void ok(int cond, const char *what)
+{
+    printf("  %-4s %s\n", cond ? "PASS" : "FAIL", what);
+    if (!cond) FAILED = 1;
+}
+
+static intent_observation_t observation(uint32_t session, voice_command_t command,
+                                        uint8_t confidence, uint8_t runner_up)
+{
+    intent_observation_t o;
+    o.source = INTENT_SOURCE_CORE;
+    o.session_id = session;
+    o.command = command;
+    o.minutes = 0;
+    o.confidence_pct = confidence;
+    o.runner_up_pct = runner_up;
+    return o;
+}
+
+int main(void)
+{
+    intent_observation_t o;
+    intent_context_hint_t hint;
+    intent_gate_result_t out;
+
+    printf("\n== G1  session-bound confidence and bounded context ==\n");
+    o = observation(7, VOICE_COMMAND_ARRIVE, 90, 20);
+    ok(intent_gate_evaluate(&o, 7, NULL, &out) == INTENT_GATE_ACCEPT_DIRECT && !out.context_used,
+       "G1 a high-confidence, wide-margin local command is accepted directly");
+
+    hint.available = 1; hint.command = VOICE_COMMAND_ARRIVE;
+    hint.support = 9; hint.confidence_pct = 95;
+    o = observation(7, VOICE_COMMAND_ARRIVE, 79, 0);
+    ok(intent_gate_evaluate(&o, 7, &hint, &out) == INTENT_GATE_LOW_CONFIDENCE,
+       "G1 context cannot promote a command below the confidence floor");
+
+    o = observation(7, VOICE_COMMAND_ARRIVE, 86, 75);
+    ok(intent_gate_evaluate(&o, 7, &hint, &out) == INTENT_GATE_ACCEPT_CONTEXT && out.context_used,
+       "G1 qualified local context can only disambiguate the same strong command");
+
+    hint.command = VOICE_COMMAND_HELP;
+    ok(intent_gate_evaluate(&o, 7, &hint, &out) == INTENT_GATE_AMBIGUOUS && !out.context_used,
+       "G1 a different context hint cannot replace the ASR primary command");
+
+    o = observation(6, VOICE_COMMAND_HELP, 100, 0);
+    ok(intent_gate_evaluate(&o, 7, NULL, &out) == INTENT_GATE_STALE,
+       "G1 a stale session result is ignored before command or confidence is trusted");
+
+    o = observation(7, VOICE_COMMAND_HELP, 95, 0);
+    o.minutes = 1;
+    ok(intent_gate_evaluate(&o, 7, NULL, &out) == INTENT_GATE_REJECTED,
+       "G1 malformed command parameters fail closed");
+
+    if (FAILED) {
+        printf("INTENT GATE TESTS FAILED\n");
+        return 1;
+    }
+    printf("INTENT GATE INVARIANTS HOLD — confidence, context and session never authorize a send.\n");
+    return 0;
+}
+--- firmware/core/test_interaction.c
+/* test_interaction.c — executable state-machine contract for Advance 2. */
+#include "interaction.h"
+#include <stdio.h>
+#include <string.h>
+
+static int FAILED = 0;
+
+static void init_test(interaction_t *it)
+{
+    interaction_config_t cfg;
+    interaction_config_default(&cfg);
+    cfg.allow_test_transcript = 1;
+    interaction_init(it, &cfg);
+}
+
+static void ok(int cond, const char *what)
+{
+    printf("  %-4s %s\n", cond ? "PASS" : "FAIL", what);
+    if (!cond) FAILED = 1;
+}
+
+static void test_production_rejects_text_path(void)
+{
+    interaction_t it;
+    printf("\n== I0  production accepts typed local ASR, not raw test text ==\n");
+    interaction_init(&it, NULL);
+    interaction_push_to_talk(&it, 10);
+    ok(interaction_transcript(&it, "chego", 20) == INTERACTION_E_UNTRUSTED &&
+       it.state == INTERACTION_LISTENING && interaction_actions(&it)->start_capture,
+       "I0 raw transcript input is disabled by default and cannot end the live session");
+}
+
+static void test_only_confirmed_draft_sends(void)
+{
+    interaction_t it;
+    hcp_msg_t out;
+
+    printf("\n== I1  push-to-talk -> local ASR -> confirmation -> one send ==\n");
+    init_test(&it);
+    ok(interaction_push_to_talk(&it, 100) == INTERACTION_OK &&
+       it.state == INTERACTION_LISTENING && interaction_actions(&it)->start_capture,
+       "I1 only a push-to-talk event starts the local capture window");
+    ok(interaction_take_send(&it, &out) == INTERACTION_E_STATE,
+       "I1 no message can leave while the runtime is listening");
+
+    ok(interaction_transcript(&it, "chego em vinte e cinco minutos", 600) == INTERACTION_OK &&
+       it.state == INTERACTION_AWAIT_CONFIRM && interaction_actions(&it)->stop_capture &&
+       interaction_actions(&it)->present_draft && interaction_actions(&it)->play_haptic,
+       "I1 a valid local transcript stops capture and presents a haptic draft");
+    ok(interaction_take_send(&it, &out) == INTERACTION_E_STATE,
+       "I1 a valid draft still cannot be transmitted before physical confirmation");
+
+    ok(interaction_confirm(&it, 1, 650) == INTERACTION_OK && it.state == INTERACTION_READY_SEND &&
+       interaction_actions(&it)->play_haptic && interaction_actions(&it)->haptic.n == 2 &&
+       interaction_actions(&it)->haptic.pulse[0].on_ms == 160 &&
+       interaction_actions(&it)->haptic.pulse[1].on_ms == 80,
+       "I1 physical confirmation opens the one-time send gate and gives a distinct confirmed haptic");
+    ok(interaction_take_send(&it, &out) == INTERACTION_OK && it.state == INTERACTION_IDLE &&
+       out.intent == it.cfg.lexicon.intent_arrive && out.nslot == 1 &&
+       out.slot[0].filler == it.cfg.lexicon.minute_filler_base + 25 &&
+       out.seq == 0 && out.ttl == 0 && out.prio == 0,
+       "I1 the application receives semantic content once, with transport fields still unset");
+    ok(interaction_take_send(&it, &out) == INTERACTION_E_STATE &&
+       interaction_metrics(&it)->sent == 1 && interaction_metrics(&it)->last_latency_ms == 500,
+       "I1 taking the send returns to idle and prevents duplicate transmission");
+}
+
+static void test_terminal_paths_clear_drafts(void)
+{
+    interaction_t it;
+    hcp_msg_t out;
+
+    printf("\n== I2  cancellation, timeout, source loss and help fail safely ==\n");
+    init_test(&it);
+    interaction_push_to_talk(&it, 0);
+    interaction_tick(&it, INTERACTION_DEFAULT_LISTEN_MS);
+    ok(it.state == INTERACTION_TIMED_OUT && interaction_actions(&it)->stop_capture &&
+       interaction_actions(&it)->clear_draft && interaction_take_send(&it, &out) == INTERACTION_E_STATE,
+       "I2 listening timeout stops capture, erases state and never opens send");
+
+    interaction_push_to_talk(&it, 7000);
+    interaction_transcript(&it, "preciso de socorro", 7100);
+    ok(it.state == INTERACTION_AWAIT_CONFIRM && it.pending.tier != HCP_TIER_SOS &&
+       interaction_take_send(&it, &out) == INTERACTION_E_STATE,
+       "I2 spoken help remains a private draft and cannot become public SOS or auto-send");
+    interaction_confirm(&it, 0, 7200);
+    ok(it.state == INTERACTION_CANCELLED && interaction_actions(&it)->clear_draft &&
+       it.pending.intent == 0,
+       "I2 declining confirmation clears the critical draft locally");
+
+    interaction_push_to_talk(&it, 8000);
+    interaction_set_asr_available(&it, 0, 8050);
+    ok(it.state == INTERACTION_LINK_LOST && interaction_actions(&it)->stop_capture &&
+       interaction_take_send(&it, &out) == INTERACTION_E_STATE,
+       "I2 loss of the local ASR source stops capture and cannot leave a stale draft");
+    interaction_set_asr_available(&it, 1, 8100);
+    ok(interaction_push_to_talk(&it, 8200) == INTERACTION_OK,
+       "I2 a new explicit button press is required after source recovery");
+    interaction_transcript(&it, "cancelar", 8250);
+    ok(it.state == INTERACTION_CANCELLED && interaction_metrics(&it)->cancelled == 2,
+       "I2 spoken cancellation remains local and is accounted for as a terminal event");
+}
+
+static intent_observation_t asr(uint32_t session, voice_command_t command,
+                                 uint8_t confidence, uint8_t runner_up)
+{
+    intent_observation_t o;
+    o.source = INTENT_SOURCE_CORE;
+    o.session_id = session;
+    o.command = command;
+    o.minutes = 0;
+    o.confidence_pct = confidence;
+    o.runner_up_pct = runner_up;
+    return o;
+}
+
+static void test_typed_asr_is_still_confirmed(void)
+{
+    interaction_t it;
+    hcp_msg_t out;
+    intent_observation_t o;
+    intent_context_hint_t hint;
+
+    printf("\n== I4  typed ASR confidence gate remains non-transmitting ==\n");
+    interaction_init(&it, NULL);
+    interaction_push_to_talk(&it, 100);
+    o = asr(interaction_session_id(&it) - 1u, VOICE_COMMAND_ARRIVE, 100, 0);
+    ok(interaction_asr_result(&it, &o, NULL, 120) == INTERACTION_OK &&
+       it.state == INTERACTION_LISTENING && interaction_metrics(&it)->asr_stale == 1,
+       "I4 stale ASR output is ignored without ending the current physical session");
+
+    o = asr(interaction_session_id(&it), VOICE_COMMAND_ARRIVE, 75, 0);
+    ok(interaction_asr_result(&it, &o, NULL, 140) == INTERACTION_OK &&
+       it.state == INTERACTION_REJECTED && interaction_metrics(&it)->asr_low_confidence == 1 &&
+       interaction_take_send(&it, &out) == INTERACTION_E_STATE,
+       "I4 low confidence stops capture and cannot create a sendable draft");
+
+    interaction_push_to_talk(&it, 200);
+    hint.available = 1; hint.command = VOICE_COMMAND_ARRIVE;
+    hint.support = 3; hint.confidence_pct = 70;
+    o = asr(interaction_session_id(&it), VOICE_COMMAND_ARRIVE, 86, 75);
+    ok(interaction_asr_result(&it, &o, &hint, 300) == INTERACTION_OK &&
+       it.state == INTERACTION_AWAIT_CONFIRM && interaction_metrics(&it)->asr_context_assisted == 1 &&
+       interaction_take_send(&it, &out) == INTERACTION_E_STATE,
+       "I4 qualified context may disambiguate only into a confirmed local draft");
+    ok(interaction_confirm(&it, 1, 320) == INTERACTION_OK &&
+       interaction_take_send(&it, &out) == INTERACTION_OK && out.intent == it.cfg.lexicon.intent_arrive,
+       "I4 even a context-assisted command still needs physical confirmation for one handoff");
+}
+
+static core_link_key_t link_key(void)
+{
+    core_link_key_t key;
+    for (unsigned i = 0; i < SHA256_LEN; i++) key.pair_key[i] = (uint8_t)(0x41u + i);
+    key.pair_id = 0x434F5245u; /* local provisioning label only */
+    return key;
+}
+
+static void test_authenticated_nucleus_path(void)
+{
+    interaction_t it;
+    core_link_key_t key = link_key();
+    core_link_tx_t tx;
+    core_link_rx_t rx;
+    intent_observation_t o;
+    hcp_msg_t out;
+    uint8_t wire[CORE_LINK_WIRE_LEN];
+
+    printf("\n== I5  authenticated Nucleus result still enters the same gate ==\n");
+    interaction_init(&it, NULL);
+    core_link_tx_init(&tx);
+    core_link_rx_init(&rx);
+    interaction_push_to_talk(&it, 100);
+    o = asr(interaction_session_id(&it), VOICE_COMMAND_ARRIVE, 92, 10);
+    o.source = INTENT_SOURCE_NUCLEUS;
+    core_link_seal_nucleus_intent(&tx, &key, 120, interaction_session_id(&it), 300, &o, wire);
+    ok(interaction_core_link_result(&it, &rx, &key, wire, sizeof(wire), NULL, 200) == INTERACTION_OK &&
+       it.state == INTERACTION_AWAIT_CONFIRM && interaction_take_send(&it, &out) == INTERACTION_E_STATE,
+       "I5 authenticated Nucleus command becomes only a local draft, never a send");
+    ok(interaction_confirm(&it, 1, 220) == INTERACTION_OK &&
+       interaction_take_send(&it, &out) == INTERACTION_OK && out.intent == it.cfg.lexicon.intent_arrive,
+       "I5 the encrypted local path still requires physical confirmation and one handoff");
+
+    interaction_push_to_talk(&it, 400);
+    o.session_id = interaction_session_id(&it);
+    core_link_seal_nucleus_intent(&tx, &key, 420, interaction_session_id(&it), 600, &o, wire);
+    wire[CORE_LINK_HEADER_LEN] ^= 1u;
+    ok(interaction_core_link_result(&it, &rx, &key, wire, sizeof(wire), NULL, 500) == INTERACTION_E_UNTRUSTED &&
+       it.state == INTERACTION_LISTENING && interaction_take_send(&it, &out) == INTERACTION_E_STATE,
+       "I5 tampered companion ciphertext is rejected without ending or authorizing the live session");
+}
+
+static void test_confirmation_timeout_and_telemetry(void)
+{
+    interaction_t it;
+    const interaction_metrics_t *m;
+
+    printf("\n== I3  confirmation deadline and privacy-preserving telemetry ==\n");
+    init_test(&it);
+    interaction_push_to_talk(&it, 1000);
+    interaction_transcript(&it, "estou chegando", 1100);
+    interaction_tick(&it, 1100 + INTERACTION_DEFAULT_CONFIRM_MS);
+    ok(it.state == INTERACTION_CANCELLED && interaction_actions(&it)->clear_draft &&
+       it.pending.intent == 0,
+       "I3 an unanswered draft expires and is cleared before a future session");
+
+    interaction_note_energy_uj(&it, 1234);
+    interaction_note_energy_uj(&it, 66);
+    m = interaction_metrics(&it);
+    ok(m->sessions == 1 && m->drafts == 1 && m->cancelled == 1 &&
+       m->measured_energy_uj == 1300,
+       "I3 telemetry keeps counts, latency and measured energy without transcript storage");
+}
+
+int main(void)
+{
+    test_production_rejects_text_path();
+    test_only_confirmed_draft_sends();
+    test_terminal_paths_clear_drafts();
+    test_typed_asr_is_still_confirmed();
+    test_authenticated_nucleus_path();
+    test_confirmation_timeout_and_telemetry();
+    if (FAILED) {
+        printf("INTERACTION TESTS FAILED\n");
+        return 1;
+    }
+    printf("INTERACTION INVARIANTS HOLD — local speech is push-to-talk, confirmed and one-shot.\n");
+    return 0;
+}
+--- firmware/net/core_link.c
+/* core_link.c — authenticated Core/Nucleus companion-control envelope. */
+#include "core_link.h"
+#include <string.h>
+
+#define OFF_VER       0u
+#define OFF_DIR       1u
+#define OFF_PAIR      2u
+#define OFF_SEQ       6u
+#define OFF_SESSION  14u
+#define OFF_EXPIRES  18u
+#define OFF_PAYLOAD  CORE_LINK_HEADER_LEN
+#define OFF_TAG     (CORE_LINK_HEADER_LEN + CORE_LINK_PAYLOAD_LEN)
+
+static const uint8_t KDF_INFO[] = "HERUS/CORE-NUCLEUS/CONTROL/v1";
+
+static void put_u32(uint8_t *p, uint32_t x)
+{
+    p[0] = (uint8_t)(x >> 24); p[1] = (uint8_t)(x >> 16);
+    p[2] = (uint8_t)(x >> 8);  p[3] = (uint8_t)x;
+}
+
+static uint32_t get_u32(const uint8_t *p)
+{
+    return ((uint32_t)p[0] << 24) | ((uint32_t)p[1] << 16) |
+           ((uint32_t)p[2] << 8) | (uint32_t)p[3];
+}
+
+static void put_u64_56(uint8_t *p, uint64_t x)
+{
+    for (unsigned i = 0; i < 7; i++) p[i] = (uint8_t)(x >> (48u - 8u * i));
+}
+
+static uint64_t get_u64_56(const uint8_t *p)
+{
+    uint64_t x = 0;
+    for (unsigned i = 0; i < 7; i++) x = (x << 8) | p[i];
+    return x;
+}
+
+static int key_valid(const core_link_key_t *key)
+{
+    uint8_t zero[SHA256_LEN] = {0};
+    return key && key->pair_id && !ct_eq(key->pair_key, zero, sizeof(zero));
+}
+
+static int command_valid(voice_command_t command, uint8_t minutes)
+{
+    if (command == VOICE_COMMAND_ARRIVE) return minutes <= 60u;
+    if (command == VOICE_COMMAND_HELP || command == VOICE_COMMAND_CANCEL) return minutes == 0u;
+    return 0;
+}
+
+static int observation_valid(const intent_observation_t *o)
+{
+    return o && o->source == INTENT_SOURCE_NUCLEUS && command_valid(o->command, o->minutes) &&
+           o->confidence_pct <= 100u && o->runner_up_pct <= o->confidence_pct;
+}
+
+static int derive_key_nonce(const core_link_key_t *key, uint8_t direction, uint64_t seq,
+                            uint8_t out_key[SHA256_LEN], uint8_t nonce[12])
+{
+    uint8_t salt[4];
+    if (!key_valid(key) || !seq || seq > CORE_LINK_SEQ_MAX) return -1;
+    put_u32(salt, key->pair_id);
+    if (hkdf(salt, sizeof(salt), key->pair_key, sizeof(key->pair_key),
+             KDF_INFO, sizeof(KDF_INFO) - 1u, out_key, SHA256_LEN)) return -1;
+    put_u32(nonce, key->pair_id);
+    nonce[4] = direction;
+    put_u64_56(nonce + 5, seq);
+    return 0;
+}
+
+void core_link_tx_init(core_link_tx_t *tx)
+{
+    if (tx) tx->next_seq = 1u;
+}
+
+void core_link_rx_init(core_link_rx_t *rx)
+{
+    if (rx) rx->last_seq = 0u;
+}
+
+int core_link_seal_nucleus_intent(core_link_tx_t *tx, const core_link_key_t *key,
+                                  uint32_t now_ms, uint32_t session_id,
+                                  uint32_t expires_ms,
+                                  const intent_observation_t *observation,
+                                  uint8_t out[CORE_LINK_WIRE_LEN])
+{
+    uint8_t control_key[SHA256_LEN], nonce[12], payload[CORE_LINK_PAYLOAD_LEN];
+    uint32_t ttl;
+    uint64_t seq;
+    if (!tx || !out || !session_id || !expires_ms || !observation_valid(observation) ||
+        observation->session_id != session_id)
+        return CORE_LINK_E_ARG;
+    ttl = (uint32_t)(expires_ms - now_ms);
+    if ((int32_t)ttl <= 0 || ttl > CORE_LINK_MAX_TTL_MS) return CORE_LINK_E_ARG;
+    seq = tx->next_seq;
+    if (!seq || seq > CORE_LINK_SEQ_MAX || derive_key_nonce(key, CORE_LINK_DIR_NUCLEUS_TO_CORE,
+                                                              seq, control_key, nonce))
+        return CORE_LINK_E_ARG;
+
+    memset(out, 0, CORE_LINK_WIRE_LEN);
+    out[OFF_VER] = CORE_LINK_VERSION;
+    out[OFF_DIR] = CORE_LINK_DIR_NUCLEUS_TO_CORE;
+    put_u32(out + OFF_PAIR, key->pair_id);
+    put_u64_56(out + OFF_SEQ, seq);
+    put_u32(out + OFF_SESSION, session_id);
+    put_u32(out + OFF_EXPIRES, expires_ms);
+    payload[0] = (uint8_t)observation->source;
+    payload[1] = (uint8_t)observation->command;
+    payload[2] = observation->minutes;
+    payload[3] = observation->confidence_pct;
+    payload[4] = observation->runner_up_pct;
+    aead_encrypt(control_key, nonce, out, CORE_LINK_HEADER_LEN, payload, sizeof(payload),
+                 out + OFF_PAYLOAD, out + OFF_TAG, CORE_LINK_TAG_LEN);
+    secure_zero(control_key, sizeof(control_key));
+    secure_zero(payload, sizeof(payload));
+    tx->next_seq++;
+    return CORE_LINK_OK;
+}
+
+int core_link_open_nucleus_intent(core_link_rx_t *rx, const core_link_key_t *key,
+                                  const uint8_t *wire, size_t wire_len,
+                                  uint32_t now_ms, core_link_intent_t *out)
+{
+    uint8_t control_key[SHA256_LEN], nonce[12], payload[CORE_LINK_PAYLOAD_LEN];
+    uint64_t seq;
+    uint32_t pair, session, expires;
+    int rc = CORE_LINK_E_FORMAT;
+    if (out) memset(out, 0, sizeof(*out));
+    if (!rx || !key || !wire || !out || wire_len != CORE_LINK_WIRE_LEN) return CORE_LINK_E_ARG;
+    if (wire[OFF_VER] != CORE_LINK_VERSION) return CORE_LINK_E_FORMAT;
+    if (wire[OFF_DIR] != CORE_LINK_DIR_NUCLEUS_TO_CORE) return CORE_LINK_E_DIR;
+    pair = get_u32(wire + OFF_PAIR);
+    if (!key_valid(key) || pair != key->pair_id) return CORE_LINK_E_PAIR;
+    seq = get_u64_56(wire + OFF_SEQ);
+    if (!seq || seq > CORE_LINK_SEQ_MAX || seq <= rx->last_seq) return CORE_LINK_E_REPLAY;
+    if (derive_key_nonce(key, wire[OFF_DIR], seq, control_key, nonce)) return CORE_LINK_E_ARG;
+    if (aead_decrypt(control_key, nonce, wire, CORE_LINK_HEADER_LEN,
+                     wire + OFF_PAYLOAD, CORE_LINK_PAYLOAD_LEN, wire + OFF_TAG,
+                     CORE_LINK_TAG_LEN, payload)) {
+        rc = CORE_LINK_E_AUTH;
+        goto done;
+    }
+    session = get_u32(wire + OFF_SESSION);
+    expires = get_u32(wire + OFF_EXPIRES);
+    if (!session || !expires) {
+        rc = CORE_LINK_E_FORMAT;
+        goto done;
+    }
+    out->session_id = session;
+    out->expires_ms = expires;
+    out->observation.source = (intent_source_t)payload[0];
+    out->observation.session_id = session;
+    out->observation.command = (voice_command_t)payload[1];
+    out->observation.minutes = payload[2];
+    out->observation.confidence_pct = payload[3];
+    out->observation.runner_up_pct = payload[4];
+    if (!observation_valid(&out->observation)) {
+        memset(out, 0, sizeof(*out));
+        rc = CORE_LINK_E_FORMAT;
+        goto done;
+    }
+    /* Authenticated packets consume their sequence even if stale in time: otherwise
+     * an attacker can repeatedly force parsing of the same expired ciphertext. */
+    rx->last_seq = seq;
+    if ((int32_t)(expires - now_ms) <= 0) {
+        memset(out, 0, sizeof(*out));
+        rc = CORE_LINK_E_EXPIRED;
+        goto done;
+    }
+    rc = CORE_LINK_OK;
+done:
+    secure_zero(control_key, sizeof(control_key));
+    secure_zero(payload, sizeof(payload));
+    return rc;
+}
+--- firmware/net/core_link.h
+/* core_link.h — authenticated companion-control envelope for Core <-> Nucleus.
+ *
+ * The transport (BLE or authenticated 2.4 GHz) is below this layer. This envelope
+ * binds a local Nucleus ASR observation to pair, direction, sequence, expiry and
+ * physical PTT session before it reaches the Core intent gateway. It transports no
+ * audio, transcript, HCP message, mesh key, location or send authority.
+ */
+#ifndef HERUS_CORE_LINK_H
+#define HERUS_CORE_LINK_H
+
+#include <stddef.h>
+#include <stdint.h>
+#include "crypto.h"
+#include "intent_gate.h"
+
+#define CORE_LINK_VERSION       1u
+#define CORE_LINK_HEADER_LEN   22u
+#define CORE_LINK_PAYLOAD_LEN   5u
+#define CORE_LINK_TAG_LEN      16u
+#define CORE_LINK_WIRE_LEN (CORE_LINK_HEADER_LEN + CORE_LINK_PAYLOAD_LEN + CORE_LINK_TAG_LEN)
+#define CORE_LINK_SEQ_MAX 0x00FFFFFFFFFFFFFFULL
+#define CORE_LINK_MAX_TTL_MS 8000u
+
+typedef enum {
+    CORE_LINK_DIR_NUCLEUS_TO_CORE = 1u
+} core_link_direction_t;
+
+typedef struct {
+    uint8_t  pair_key[SHA256_LEN]; /* target port should source from protected storage */
+    uint32_t pair_id;              /* local binding id, never a mesh/BLE address */
+} core_link_key_t;
+
+typedef struct { uint64_t next_seq; } core_link_tx_t;
+typedef struct { uint64_t last_seq; } core_link_rx_t;
+
+typedef struct {
+    uint32_t            session_id;
+    uint32_t            expires_ms;
+    intent_observation_t observation;
+} core_link_intent_t;
+
+enum {
+    CORE_LINK_OK        =  0,
+    CORE_LINK_E_ARG     = -1,
+    CORE_LINK_E_FORMAT  = -2,
+    CORE_LINK_E_PAIR    = -3,
+    CORE_LINK_E_DIR     = -4,
+    CORE_LINK_E_AUTH    = -5,
+    CORE_LINK_E_REPLAY  = -6,
+    CORE_LINK_E_EXPIRED = -7
+};
+
+void core_link_tx_init(core_link_tx_t *tx);
+void core_link_rx_init(core_link_rx_t *rx);
+
+/* Seal a Nucleus-local ASR command. Each successful call consumes exactly one
+ * sequence. `out` must hold CORE_LINK_WIRE_LEN bytes. */
+int core_link_seal_nucleus_intent(core_link_tx_t *tx, const core_link_key_t *key,
+                                  uint32_t now_ms, uint32_t session_id,
+                                  uint32_t expires_ms,
+                                  const intent_observation_t *observation,
+                                  uint8_t out[CORE_LINK_WIRE_LEN]);
+
+/* Authenticate, decrypt and replay-check a Nucleus->Core envelope. A valid but
+ * expired envelope consumes its sequence and returns CORE_LINK_E_EXPIRED. Any
+ * other failure leaves `out` zeroed and never advances rx state. */
+int core_link_open_nucleus_intent(core_link_rx_t *rx, const core_link_key_t *key,
+                                  const uint8_t *wire, size_t wire_len,
+                                  uint32_t now_ms, core_link_intent_t *out);
+
+#endif /* HERUS_CORE_LINK_H */
+--- firmware/net/test_core_link.c
+/* test_core_link.c — executable contract for Advance 6 companion control link. */
+#include "core_link.h"
+#include <stdio.h>
+#include <string.h>
+
+static int FAILED = 0;
+static void ok(int cond, const char *what)
+{
+    printf("  %-4s %s\n", cond ? "PASS" : "FAIL", what);
+    if (!cond) FAILED = 1;
+}
+
+static core_link_key_t key_fixture(void)
+{
+    core_link_key_t key;
+    for (unsigned i = 0; i < SHA256_LEN; i++) key.pair_key[i] = (uint8_t)(0x31u + i);
+    key.pair_id = 0x4E55434Cu; /* "NUCL", provisioning-local only */
+    return key;
+}
+
+static intent_observation_t observation(void)
+{
+    intent_observation_t o;
+    o.source = INTENT_SOURCE_NUCLEUS;
+    o.session_id = 77;
+    o.command = VOICE_COMMAND_ARRIVE;
+    o.minutes = 12;
+    o.confidence_pct = 91;
+    o.runner_up_pct = 20;
+    return o;
+}
+
+int main(void)
+{
+    core_link_key_t key = key_fixture();
+    core_link_tx_t tx;
+    core_link_rx_t rx;
+    intent_observation_t obs = observation();
+    core_link_intent_t out;
+    uint8_t wire[CORE_LINK_WIRE_LEN], tampered[CORE_LINK_WIRE_LEN];
+
+    printf("\n== L1  authenticated Core/Nucleus companion control ==\n");
+    core_link_tx_init(&tx);
+    core_link_rx_init(&rx);
+    {
+        intent_observation_t wrong_session = obs;
+        wrong_session.session_id = 78;
+        ok(core_link_seal_nucleus_intent(&tx, &key, 100, 77, 200, &wrong_session, wire) == CORE_LINK_E_ARG &&
+           core_link_seal_nucleus_intent(&tx, &key, 100, 77, 8101, &obs, wire) == CORE_LINK_E_ARG &&
+           tx.next_seq == 1,
+           "L1 mismatched session and overlong TTL cannot consume a control sequence");
+    }
+    ok(core_link_seal_nucleus_intent(&tx, &key, 100, 77, 200, &obs, wire) == CORE_LINK_OK &&
+       core_link_open_nucleus_intent(&rx, &key, wire, sizeof(wire), 100, &out) == CORE_LINK_OK &&
+       out.session_id == 77 && out.observation.source == INTENT_SOURCE_NUCLEUS &&
+       out.observation.command == VOICE_COMMAND_ARRIVE && out.observation.minutes == 12 &&
+       out.observation.confidence_pct == 91 && rx.last_seq == 1,
+       "L1 authenticated envelope preserves only the typed local observation");
+    ok(core_link_open_nucleus_intent(&rx, &key, wire, sizeof(wire), 100, &out) == CORE_LINK_E_REPLAY &&
+       rx.last_seq == 1,
+       "L1 accepted ciphertext cannot be replayed into the same Core link state");
+
+    core_link_seal_nucleus_intent(&tx, &key, 100, 77, 300, &obs, wire);
+    memcpy(tampered, wire, sizeof(wire));
+    tampered[CORE_LINK_HEADER_LEN] ^= 0x01u;
+    ok(core_link_open_nucleus_intent(&rx, &key, tampered, sizeof(tampered), 100, &out) == CORE_LINK_E_AUTH &&
+       out.session_id == 0 && rx.last_seq == 1,
+       "L1 one altered encrypted byte exposes no observation and consumes no sequence");
+    ok(core_link_open_nucleus_intent(&rx, &key, wire, sizeof(wire), 100, &out) == CORE_LINK_OK &&
+       rx.last_seq == 2,
+       "L1 original authenticated ciphertext remains usable after a failed forgery");
+
+    core_link_seal_nucleus_intent(&tx, &key, 50, 77, 100, &obs, wire);
+    ok(core_link_open_nucleus_intent(&rx, &key, wire, sizeof(wire), 100, &out) == CORE_LINK_E_EXPIRED &&
+       rx.last_seq == 3 && out.session_id == 0,
+       "L1 valid expired ciphertext is discarded and its sequence is consumed");
+    ok(core_link_open_nucleus_intent(&rx, &key, wire, sizeof(wire), 50, &out) == CORE_LINK_E_REPLAY,
+       "L1 moving the clock backwards cannot revive an expired envelope");
+
+    core_link_tx_init(&tx);
+    core_link_rx_init(&rx);
+    core_link_seal_nucleus_intent(&tx, &key, 100, 77, 300, &obs, wire);
+    {
+        core_link_key_t wrong_pair = key;
+        wrong_pair.pair_id ^= 1u;
+        ok(core_link_open_nucleus_intent(&rx, &wrong_pair, wire, sizeof(wire), 100, &out) == CORE_LINK_E_PAIR &&
+           rx.last_seq == 0,
+           "L1 ciphertext from a different companion binding cannot enter this Core state");
+    }
+    wire[1] = 0;
+    ok(core_link_open_nucleus_intent(&rx, &key, wire, sizeof(wire), 100, &out) == CORE_LINK_E_DIR &&
+       rx.last_seq == 0,
+       "L1 an envelope in an unauthorized direction never reaches AEAD plaintext");
+
+    if (FAILED) {
+        printf("CORE LINK TESTS FAILED\n");
+        return 1;
+    }
+    printf("CORE LINK INVARIANTS HOLD — authenticated companion control is session-scoped and replay-safe.\n");
+    return 0;
+}
+--- firmware/net/test_trust.c
+/* test_trust.c — executable contract for Advance 7 trust lifecycle. */
+#include "trust.h"
+#include <stdio.h>
+#include <string.h>
+
+typedef struct {
+    uint8_t blob[TRUST_STORE_BLOB_LEN];
+    int present;
+    int fail_store;
+    int fail_erase;
+    unsigned stores;
+    unsigned erases;
+} vault_t;
+
+static int FAILED = 0;
+static void ok(int cond, const char *what)
+{
+    printf("  %-4s %s\n", cond ? "PASS" : "FAIL", what);
+    if (!cond) FAILED = 1;
+}
+
+static int zeroed(const void *p, size_t n)
+{
+    const uint8_t *b = p;
+    uint8_t any = 0;
+    for (size_t i = 0; i < n; i++) any |= b[i];
+    return any == 0;
+}
+
+static int store_active(void *ctx, const uint8_t blob[TRUST_STORE_BLOB_LEN])
+{
+    vault_t *v = ctx;
+    v->stores++;
+    if (v->fail_store) return -1;
+    memcpy(v->blob, blob, sizeof(v->blob));
+    v->present = 1;
+    return 0;
+}
+
+static int load_active(void *ctx, uint8_t blob[TRUST_STORE_BLOB_LEN])
+{
+    vault_t *v = ctx;
+    if (v->present) memcpy(blob, v->blob, sizeof(v->blob));
+    else memset(blob, 0, TRUST_STORE_BLOB_LEN);
+    return 0;
+}
+
+static int erase(void *ctx)
+{
+    vault_t *v = ctx;
+    v->erases++;
+    if (v->fail_erase) return -1;
+    secure_zero(v->blob, sizeof(v->blob));
+    v->present = 0;
+    return 0;
+}
+
+static trust_storage_t storage(vault_t *v)
+{
+    trust_storage_t s;
+    s.ctx = v; s.store_active = store_active; s.load_active = load_active; s.erase = erase;
+    return s;
+}
+
+static void material(uint8_t secret[SHA256_LEN], uint8_t core[TRUST_NONCE_LEN],
+                     uint8_t nucleus[TRUST_NONCE_LEN], uint8_t seed)
+{
+    for (unsigned i = 0; i < SHA256_LEN; i++) secret[i] = (uint8_t)(seed + i);
+    for (unsigned i = 0; i < TRUST_NONCE_LEN; i++) {
+        core[i] = (uint8_t)(seed + 0x20u + i);
+        nucleus[i] = (uint8_t)(seed + 0x60u + i);
+    }
+}
+
+int main(void)
+{
+    trust_t t, restored;
+    vault_t v;
+    trust_storage_t s;
+    uint8_t secret[SHA256_LEN], core[TRUST_NONCE_LEN], nucleus[TRUST_NONCE_LEN];
+    core_link_tx_t tx;
+    core_link_rx_t rx;
+    intent_observation_t obs;
+    core_link_intent_t opened;
+    uint8_t wire[CORE_LINK_WIRE_LEN];
+    uint32_t sas;
+
+    memset(&v, 0, sizeof(v));
+    s = storage(&v);
+    material(secret, core, nucleus, 0x11u);
+    trust_init(&t);
+    obs.source = INTENT_SOURCE_NUCLEUS; obs.session_id = 9;
+    obs.command = VOICE_COMMAND_ARRIVE; obs.minutes = 0;
+    obs.confidence_pct = 90; obs.runner_up_pct = 0;
+    core_link_tx_init(&tx);
+    core_link_rx_init(&rx);
+
+    printf("\n== T1  explicit pairing, key lifecycle and revocation ==\n");
+    ok(trust_begin(&t, 1, 0, secret, core, nucleus, 100) == TRUST_E_PHYSICAL &&
+       t.state == TRUST_UNPAIRED,
+       "T1 one-sided physical pairing mode cannot create an offer");
+
+    ok(trust_begin(&t, 1, 1, secret, core, nucleus, 100) == TRUST_OK &&
+       trust_sas(&t, &sas) == TRUST_OK && sas < TRUST_SAS_MODULO &&
+       trust_seal_nucleus_intent(&t, &tx, 101, 9, 200, &obs, wire) == TRUST_E_STATE,
+       "T1 a pending offer has a six-digit SAS but cannot seal a control envelope");
+    ok(trust_confirm(&t, 1, sas, 0, sas, 200, &s) == TRUST_E_CONFIRM &&
+       t.state == TRUST_UNPAIRED && !v.present,
+       "T1 absent human confirmation zeroizes the offer and stores nothing");
+
+    trust_begin(&t, 1, 1, secret, core, nucleus, 250);
+    trust_sas(&t, &sas);
+    ok(trust_confirm(&t, 1, sas, 1, (sas + 1u) % TRUST_SAS_MODULO, 260, &s) == TRUST_E_CONFIRM &&
+       t.state == TRUST_UNPAIRED && !v.present,
+       "T1 a divergent six-digit SAS cannot activate or persist a link key");
+
+    trust_begin(&t, 1, 1, secret, core, nucleus, 300);
+    ok(trust_tick(&t, 300 + TRUST_OFFER_TTL_MS) == TRUST_E_TIMEOUT &&
+       t.state == TRUST_UNPAIRED,
+       "T1 an unattended association offer expires without activating trust");
+
+    trust_begin(&t, 1, 1, secret, core, nucleus, 350);
+    trust_sas(&t, &sas);
+    v.fail_store = 1;
+    ok(trust_confirm(&t, 1, sas, 1, sas, 360, &s) == TRUST_E_STORAGE &&
+       t.state == TRUST_UNPAIRED && !v.present && zeroed(t.transport_secret, sizeof(t.transport_secret)),
+       "T1 failed protected persistence zeroizes derived material and exposes no link key");
+    v.fail_store = 0;
+
+    trust_begin(&t, 1, 1, secret, core, nucleus, 400);
+    trust_sas(&t, &sas);
+    ok(trust_confirm(&t, 1, sas, 1, sas, 500, &s) == TRUST_OK && t.state == TRUST_ACTIVE &&
+       v.present,
+       "T1 dual confirmation plus successful protected-store operation creates an active link");
+
+    core_link_tx_init(&tx);
+    core_link_rx_init(&rx);
+    ok(trust_seal_nucleus_intent(&t, &tx, 600, 9, 900, &obs, wire) == CORE_LINK_OK &&
+       trust_open_nucleus_intent(&t, &rx, wire, sizeof(wire), 700, &opened) == CORE_LINK_OK,
+       "T1 only an active trust link can seal and open an A6 control envelope");
+    ok(trust_begin(&t, 1, 1, secret, core, nucleus, 700) == TRUST_E_STATE,
+       "T1 an active link cannot be silently replaced by a new offer");
+
+    v.fail_erase = 1;
+    ok(tx.next_seq == 2 && rx.last_seq == 1 &&
+       trust_revoke(&t, &tx, &rx, &s) == TRUST_E_STORAGE && t.state == TRUST_REVOKED &&
+       zeroed(t.active_blob, sizeof(t.active_blob)) && zeroed(t.transport_secret, sizeof(t.transport_secret)) &&
+       zeroed(t.core_nonce, sizeof(t.core_nonce)) && zeroed(t.nucleus_nonce, sizeof(t.nucleus_nonce)) &&
+       tx.next_seq == 1 && rx.last_seq == 0 &&
+       trust_seal_nucleus_intent(&t, &tx, 750, 9, 900, &obs, wire) == TRUST_E_STATE &&
+       trust_begin(&t, 1, 1, secret, core, nucleus, 800) == TRUST_E_STATE,
+       "T1 erase failure fails closed and zeroizes RAM: the link cannot export or re-pair");
+    v.fail_erase = 0;
+    ok(trust_retry_erase(&t, &s) == TRUST_OK && t.state == TRUST_UNPAIRED && !v.present &&
+       v.erases == 2,
+       "T1 successful retry erases protected record before re-provisioning is allowed");
+
+    material(secret, core, nucleus, 0x51u);
+    ok(trust_begin(&t, 1, 1, secret, core, nucleus, 900) == TRUST_OK &&
+       trust_sas(&t, &sas) == TRUST_OK &&
+       trust_confirm(&t, 1, sas, 1, sas, 1000, &s) == TRUST_OK &&
+       trust_open_nucleus_intent(&t, &rx, wire, sizeof(wire), 850, &opened) != CORE_LINK_OK &&
+       t.generation == 2,
+       "T1 re-provisioning after revocation derives a new binding that rejects the prior envelope");
+
+    trust_init(&restored);
+    core_link_tx_init(&tx);
+    ok(trust_restore(&restored, &s) == TRUST_OK && restored.state == TRUST_ACTIVE &&
+       trust_seal_nucleus_intent(&restored, &tx, 1100, 9, 1200, &obs, wire) == CORE_LINK_OK,
+       "T1 only an intact active protected record restores a usable control link");
+    secure_zero(v.blob, sizeof(v.blob));
+    trust_init(&restored);
+    ok(trust_restore(&restored, &s) == TRUST_E_RECORD && restored.state == TRUST_UNPAIRED,
+       "T1 a revoked or malformed record cannot resurrect a companion trust link");
+
+    if (FAILED) {
+        printf("TRUST LIFECYCLE TESTS FAILED\n");
+        return 1;
+    }
+    printf("TRUST LIFECYCLE INVARIANTS HOLD — pairing is explicit, revocable and non-resurrectable.\n");
+    return 0;
+}
+--- firmware/net/trust.c
+/* trust.c — explicit application-level lifecycle for Core/Nucleus trust. */
+#include "trust.h"
+#include <string.h>
+
+static const uint8_t SAS_INFO[] = "HERUS/SAS/v1";
+static const uint8_t PAIR_INFO[] = "HERUS/PAIR/v1";
+static const uint8_t PAIR_ID_INFO[] = "HERUS/PAIR-ID/v1";
+
+enum {
+    REC_VERSION = 0u,
+    REC_STATE = 1u,
+    REC_GENERATION = 4u,
+    REC_PAIR_ID = 8u,
+    REC_KEY = 12u
+};
+
+static uint32_t elapsed(uint32_t now, uint32_t then)
+{
+    return (uint32_t)(now - then);
+}
+
+static void put_u32(uint8_t *p, uint32_t x)
+{
+    p[0] = (uint8_t)(x >> 24); p[1] = (uint8_t)(x >> 16);
+    p[2] = (uint8_t)(x >> 8); p[3] = (uint8_t)x;
+}
+
+static uint32_t get_u32(const uint8_t *p)
+{
+    return ((uint32_t)p[0] << 24) | ((uint32_t)p[1] << 16) |
+           ((uint32_t)p[2] << 8) | (uint32_t)p[3];
+}
+
+static int nonzero(const uint8_t *p, unsigned n)
+{
+    uint8_t any = 0;
+    if (!p) return 0;
+    for (unsigned i = 0; i < n; i++) any |= p[i];
+    return any != 0;
+}
+
+static void provisional_zero(trust_t *t)
+{
+    secure_zero(t->transport_secret, sizeof(t->transport_secret));
+    secure_zero(t->core_nonce, sizeof(t->core_nonce));
+    secure_zero(t->nucleus_nonce, sizeof(t->nucleus_nonce));
+    t->offer_started_ms = 0;
+    t->sas = 0;
+}
+
+static void active_zero(trust_t *t)
+{
+    secure_zero(t->active_blob, sizeof(t->active_blob));
+}
+
+static int record_valid(const uint8_t record[TRUST_STORE_BLOB_LEN])
+{
+    return record && record[REC_VERSION] == TRUST_VERSION &&
+           record[REC_STATE] == TRUST_ACTIVE &&
+           get_u32(record + REC_GENERATION) && get_u32(record + REC_PAIR_ID) &&
+           nonzero(record + REC_KEY, SHA256_LEN);
+}
+
+static uint32_t compute_sas(const uint8_t secret[SHA256_LEN],
+                            const uint8_t core_nonce[TRUST_NONCE_LEN],
+                            const uint8_t nucleus_nonce[TRUST_NONCE_LEN])
+{
+    uint8_t input[sizeof(SAS_INFO) - 1u + 2u * TRUST_NONCE_LEN];
+    uint8_t mac[SHA256_LEN];
+    uint32_t value;
+    memcpy(input, SAS_INFO, sizeof(SAS_INFO) - 1u);
+    memcpy(input + sizeof(SAS_INFO) - 1u, core_nonce, TRUST_NONCE_LEN);
+    memcpy(input + sizeof(SAS_INFO) - 1u + TRUST_NONCE_LEN, nucleus_nonce, TRUST_NONCE_LEN);
+    hmac_sha256(secret, SHA256_LEN, input, sizeof(input), mac);
+    value = ((uint32_t)mac[0] << 24) | ((uint32_t)mac[1] << 16) |
+            ((uint32_t)mac[2] << 8) | (uint32_t)mac[3];
+    secure_zero(input, sizeof(input));
+    secure_zero(mac, sizeof(mac));
+    return value % TRUST_SAS_MODULO;
+}
+
+static void derive_record(const trust_t *t, uint8_t out[TRUST_STORE_BLOB_LEN])
+{
+    uint8_t salt[2u * TRUST_NONCE_LEN];
+    uint8_t pair_id_hash[SHA256_LEN];
+    uint32_t generation = t->generation + 1u;
+    uint32_t pair_id;
+    memcpy(salt, t->core_nonce, TRUST_NONCE_LEN);
+    memcpy(salt + TRUST_NONCE_LEN, t->nucleus_nonce, TRUST_NONCE_LEN);
+    memset(out, 0, TRUST_STORE_BLOB_LEN);
+    if (!generation) generation = 1u;
+    out[REC_VERSION] = TRUST_VERSION;
+    out[REC_STATE] = TRUST_ACTIVE;
+    put_u32(out + REC_GENERATION, generation);
+    (void)hkdf(salt, sizeof(salt), t->transport_secret, SHA256_LEN,
+               PAIR_INFO, sizeof(PAIR_INFO) - 1u, out + REC_KEY, SHA256_LEN);
+    hmac_sha256(out + REC_KEY, SHA256_LEN, PAIR_ID_INFO,
+                sizeof(PAIR_ID_INFO) - 1u, pair_id_hash);
+    pair_id = get_u32(pair_id_hash);
+    if (!pair_id) pair_id = 1u;
+    put_u32(out + REC_PAIR_ID, pair_id);
+    secure_zero(salt, sizeof(salt));
+    secure_zero(pair_id_hash, sizeof(pair_id_hash));
+}
+
+void trust_init(trust_t *t)
+{
+    if (!t) return;
+    memset(t, 0, sizeof(*t));
+    t->state = TRUST_UNPAIRED;
+}
+
+int trust_begin(trust_t *t, int core_pair_button, int nucleus_pair_button,
+                const uint8_t secret[SHA256_LEN],
+                const uint8_t core_nonce[TRUST_NONCE_LEN],
+                const uint8_t nucleus_nonce[TRUST_NONCE_LEN], uint32_t now_ms)
+{
+    if (!t || !secret || !core_nonce || !nucleus_nonce) return TRUST_E_ARG;
+    if (t->state != TRUST_UNPAIRED) return TRUST_E_STATE;
+    if (!core_pair_button || !nucleus_pair_button) return TRUST_E_PHYSICAL;
+    if (!nonzero(secret, SHA256_LEN) || !nonzero(core_nonce, TRUST_NONCE_LEN) ||
+        !nonzero(nucleus_nonce, TRUST_NONCE_LEN)) return TRUST_E_SECRET;
+    memcpy(t->transport_secret, secret, SHA256_LEN);
+    memcpy(t->core_nonce, core_nonce, TRUST_NONCE_LEN);
+    memcpy(t->nucleus_nonce, nucleus_nonce, TRUST_NONCE_LEN);
+    t->offer_started_ms = now_ms;
+    t->sas = compute_sas(t->transport_secret, t->core_nonce, t->nucleus_nonce);
+    t->state = TRUST_OFFERED;
+    return TRUST_OK;
+}
+
+int trust_sas(const trust_t *t, uint32_t *out_sas)
+{
+    if (!t || !out_sas) return TRUST_E_ARG;
+    if (t->state != TRUST_OFFERED && t->state != TRUST_CONFIRMED) return TRUST_E_STATE;
+    *out_sas = t->sas;
+    return TRUST_OK;
+}
+
+void trust_cancel(trust_t *t)
+{
+    if (!t) return;
+    if (t->state == TRUST_OFFERED || t->state == TRUST_CONFIRMED) {
+        provisional_zero(t);
+        t->state = TRUST_UNPAIRED;
+    }
+}
+
+int trust_tick(trust_t *t, uint32_t now_ms)
+{
+    if (!t) return TRUST_E_ARG;
+    if (t->state != TRUST_OFFERED && t->state != TRUST_CONFIRMED) return TRUST_E_STATE;
+    if (elapsed(now_ms, t->offer_started_ms) < TRUST_OFFER_TTL_MS) return TRUST_OK;
+    trust_cancel(t);
+    return TRUST_E_TIMEOUT;
+}
+
+int trust_confirm(trust_t *t, int core_confirmed, uint32_t core_sas,
+                  int nucleus_confirmed, uint32_t nucleus_sas,
+                  uint32_t now_ms, const trust_storage_t *storage)
+{
+    uint8_t candidate[TRUST_STORE_BLOB_LEN];
+    if (!t || !storage || !storage->store_active) return TRUST_E_ARG;
+    if (t->state != TRUST_OFFERED) return TRUST_E_STATE;
+    if (elapsed(now_ms, t->offer_started_ms) >= TRUST_OFFER_TTL_MS) {
+        trust_cancel(t);
+        return TRUST_E_TIMEOUT;
+    }
+    if (!core_confirmed || !nucleus_confirmed || core_sas != t->sas ||
+        nucleus_sas != t->sas) {
+        trust_cancel(t);
+        return TRUST_E_CONFIRM;
+    }
+    t->state = TRUST_CONFIRMED;
+    derive_record(t, candidate);
+    if (!record_valid(candidate) || storage->store_active(storage->ctx, candidate)) {
+        secure_zero(candidate, sizeof(candidate));
+        provisional_zero(t);
+        t->state = TRUST_UNPAIRED;
+        return TRUST_E_STORAGE;
+    }
+    active_zero(t);
+    memcpy(t->active_blob, candidate, sizeof(t->active_blob));
+    t->generation = get_u32(candidate + REC_GENERATION);
+    secure_zero(candidate, sizeof(candidate));
+    provisional_zero(t);
+    t->state = TRUST_ACTIVE;
+    return TRUST_OK;
+}
+
+static int active_control_key(const trust_t *t, core_link_key_t *out)
+{
+    if (!t || !out) return TRUST_E_ARG;
+    if (t->state != TRUST_ACTIVE || !record_valid(t->active_blob)) {
+        secure_zero(out, sizeof(*out));
+        return TRUST_E_STATE;
+    }
+    memcpy(out->pair_key, t->active_blob + REC_KEY, sizeof(out->pair_key));
+    out->pair_id = get_u32(t->active_blob + REC_PAIR_ID);
+    return TRUST_OK;
+}
+
+int trust_seal_nucleus_intent(const trust_t *t, core_link_tx_t *tx,
+                              uint32_t now_ms, uint32_t session_id,
+                              uint32_t expires_ms,
+                              const intent_observation_t *observation,
+                              uint8_t out[CORE_LINK_WIRE_LEN])
+{
+    core_link_key_t key;
+    int rc = active_control_key(t, &key);
+    if (rc) return rc;
+    rc = core_link_seal_nucleus_intent(tx, &key, now_ms, session_id, expires_ms,
+                                       observation, out);
+    secure_zero(&key, sizeof(key));
+    return rc;
+}
+
+int trust_open_nucleus_intent(const trust_t *t, core_link_rx_t *rx,
+                              const uint8_t *wire, uint32_t wire_len,
+                              uint32_t now_ms, core_link_intent_t *out)
+{
+    core_link_key_t key;
+    int rc = active_control_key(t, &key);
+    if (rc) {
+        if (out) secure_zero(out, sizeof(*out));
+        return rc;
+    }
+    rc = core_link_open_nucleus_intent(rx, &key, wire, wire_len, now_ms, out);
+    secure_zero(&key, sizeof(key));
+    return rc;
+}
+
+int trust_revoke(trust_t *t, core_link_tx_t *tx, core_link_rx_t *rx,
+                 const trust_storage_t *storage)
+{
+    if (!t || !tx || !rx || !storage || !storage->erase) return TRUST_E_ARG;
+    if (t->state != TRUST_ACTIVE && t->state != TRUST_REVOKED) return TRUST_E_STATE;
+    active_zero(t);
+    provisional_zero(t);
+    core_link_tx_init(tx);
+    core_link_rx_init(rx);
+    t->state = TRUST_REVOKED;
+    if (storage->erase(storage->ctx)) return TRUST_E_STORAGE;
+    t->state = TRUST_UNPAIRED;
+    return TRUST_OK;
+}
+
+int trust_retry_erase(trust_t *t, const trust_storage_t *storage)
+{
+    if (!t || !storage || !storage->erase) return TRUST_E_ARG;
+    if (t->state != TRUST_REVOKED) return TRUST_E_STATE;
+    if (storage->erase(storage->ctx)) return TRUST_E_STORAGE;
+    t->state = TRUST_UNPAIRED;
+    return TRUST_OK;
+}
+
+int trust_restore(trust_t *t, const trust_storage_t *storage)
+{
+    uint8_t record[TRUST_STORE_BLOB_LEN];
+    if (!t || !storage || !storage->load_active) return TRUST_E_ARG;
+--- firmware/net/trust.h
+/* trust.h — explicit Core/Nucleus companion trust lifecycle.
+ *
+ * This is an application-layer ceremony above BLE LE Secure Connections or OOB.
+ * It receives an already-authenticated transport secret and platform-generated
+ * nonces, then requires dual physical confirmation before deriving the Core/Nucleus
+ * control key. It has no BLE, GPIO, RNG, filesystem, radio or transport calls.
+ */
+#ifndef HERUS_TRUST_H
+#define HERUS_TRUST_H
+
+#include <stdint.h>
+#include "core_link.h"
+#include "trust_store.h"
+
+#define TRUST_VERSION          TRUST_STORE_VERSION
+#define TRUST_NONCE_LEN       16u
+#define TRUST_SAS_MODULO 1000000u
+#define TRUST_OFFER_TTL_MS  60000u
+
+typedef enum {
+    TRUST_UNPAIRED = 0,
+    TRUST_OFFERED,
+    TRUST_CONFIRMED,
+    TRUST_ACTIVE,
+    TRUST_REVOKED
+} trust_state_t;
+
+typedef struct {
+    trust_state_t state;
+    uint32_t      generation;
+    uint8_t       active_blob[TRUST_STORE_BLOB_LEN];
+    uint8_t       transport_secret[SHA256_LEN];
+    uint8_t       core_nonce[TRUST_NONCE_LEN];
+    uint8_t       nucleus_nonce[TRUST_NONCE_LEN];
+    uint32_t      offer_started_ms;
+    uint32_t      sas;
+} trust_t;
+
+enum {
+    TRUST_OK          =  0,
+    TRUST_E_ARG       = -1,
+    TRUST_E_STATE     = -2,
+    TRUST_E_PHYSICAL  = -3,
+    TRUST_E_SECRET    = -4,
+    TRUST_E_TIMEOUT   = -5,
+    TRUST_E_CONFIRM   = -6,
+    TRUST_E_STORAGE   = -7,
+    TRUST_E_RECORD    = -8
+};
+
+void trust_init(trust_t *t);
+
+/* Begin only when BOTH devices are in explicit physical pairing mode. `secret`
+ * is supplied by authenticated BLE LE Secure Connections or an equivalent OOB
+ * channel; the caller obtains the two platform-random 128-bit nonces. */
+int trust_begin(trust_t *t, int core_pair_button, int nucleus_pair_button,
+                const uint8_t secret[SHA256_LEN],
+                const uint8_t core_nonce[TRUST_NONCE_LEN],
+                const uint8_t nucleus_nonce[TRUST_NONCE_LEN], uint32_t now_ms);
+
+/* Return the six-digit comparison value only while an offer is pending. */
+int trust_sas(const trust_t *t, uint32_t *out_sas);
+
+/* Both device UIs must explicitly confirm and report the SAME displayed SAS.
+ * Failure, divergence or failure to store leaves no active key. */
+int trust_confirm(trust_t *t, int core_confirmed, uint32_t core_sas,
+                  int nucleus_confirmed, uint32_t nucleus_sas,
+                  uint32_t now_ms, const trust_storage_t *storage);
+
+/* Expire a pending offer at 60 s, zeroizing all provisional material. */
+int trust_tick(trust_t *t, uint32_t now_ms);
+void trust_cancel(trust_t *t);
+
+/* The key remains inside this module. These adapters are the only production
+ * path from an ACTIVE companion trust into the raw A6 envelope functions. */
+int trust_seal_nucleus_intent(const trust_t *t, core_link_tx_t *tx,
+                              uint32_t now_ms, uint32_t session_id,
+                              uint32_t expires_ms,
+                              const intent_observation_t *observation,
+                              uint8_t out[CORE_LINK_WIRE_LEN]);
+int trust_open_nucleus_intent(const trust_t *t, core_link_rx_t *rx,
+                              const uint8_t *wire, uint32_t wire_len,
+                              uint32_t now_ms, core_link_intent_t *out);
+
+/* Immediately stop export and scrub the active key plus A6 anti-replay state.
+ * If erase fails the object remains REVOKED (not re-pairable) until retry succeeds. */
+int trust_revoke(trust_t *t, core_link_tx_t *tx, core_link_rx_t *rx,
+                 const trust_storage_t *storage);
+int trust_retry_erase(trust_t *t, const trust_storage_t *storage);
+
+/* Restore only a structurally valid ACTIVE record supplied by protected storage. */
+int trust_restore(trust_t *t, const trust_storage_t *storage);
+
+#endif /* HERUS_TRUST_H */
+=== RELATED TESTS ===
+firmware/core/assurance.c:23:        failures |= ASSURANCE_FAIL_CONFIRM;
+firmware/core/assurance.h:42:    ASSURANCE_FAIL_CONFIRM     = 1u << 3,
+firmware/core/intent_gate.c:1:/* intent_gate.c — no-autonomy confidence and ambiguity gate for local ASR. */
+firmware/core/intent_gate.c:2:#include "intent_gate.h"
+firmware/core/intent_gate.c:19:intent_gate_status_t intent_gate_evaluate(const intent_observation_t *obs,
+firmware/core/intent_gate.c:22:                                          intent_gate_result_t *out)
+firmware/core/intent_gate.c:52:    out->status = INTENT_GATE_AMBIGUOUS;
+firmware/core/intent_gate.h:1:/* intent_gate.h — fail-closed admission of local ASR command events.
+firmware/core/intent_gate.h:30:} intent_observation_t;
+firmware/core/intent_gate.h:44:    INTENT_GATE_AMBIGUOUS,
+firmware/core/intent_gate.h:46:} intent_gate_status_t;
+firmware/core/intent_gate.h:49:    intent_gate_status_t status;
+firmware/core/intent_gate.h:51:} intent_gate_result_t;
+firmware/core/intent_gate.h:56:intent_gate_status_t intent_gate_evaluate(const intent_observation_t *obs,
+firmware/core/intent_gate.h:59:                                          intent_gate_result_t *out);
+firmware/core/interaction.c:30:    if (it->state == INTERACTION_AWAIT_CONFIRM || it->state == INTERACTION_READY_SEND)
+firmware/core/interaction.c:40: * It deliberately stops at AWAIT_CONFIRM; no ASR result reaches READY_SEND. */
+firmware/core/interaction.c:47:        it->state = INTERACTION_AWAIT_CONFIRM;
+firmware/core/interaction.c:61:    } else if (status == VOICE_UNKNOWN) {
+firmware/core/interaction.c:64:        haptic(it, VOICE_EVENT_UNKNOWN);
+firmware/core/interaction.c:73:static int reject_asr_result(interaction_t *it, intent_gate_status_t status, uint32_t now_ms)
+firmware/core/interaction.c:83:        haptic(it, VOICE_EVENT_UNKNOWN);
+firmware/core/interaction.c:84:    } else if (status == INTENT_GATE_AMBIGUOUS) {
+firmware/core/interaction.c:87:        haptic(it, VOICE_EVENT_UNKNOWN);
+firmware/core/interaction.c:100:    out->confirm_timeout_ms = INTERACTION_DEFAULT_CONFIRM_MS;
+firmware/core/interaction.c:115:    if (!it->cfg.confirm_timeout_ms) it->cfg.confirm_timeout_ms = INTERACTION_DEFAULT_CONFIRM_MS;
+firmware/core/interaction.c:126:                               it->state == INTERACTION_AWAIT_CONFIRM ||
+firmware/core/interaction.c:135:    if (it->state == INTERACTION_LISTENING || it->state == INTERACTION_AWAIT_CONFIRM ||
+firmware/core/interaction.c:163:int interaction_asr_result(interaction_t *it, const intent_observation_t *obs,
+firmware/core/interaction.c:166:    intent_gate_result_t gate;
+firmware/core/interaction.c:172:    (void)intent_gate_evaluate(obs, it->session_id, hint, &gate);
+firmware/core/interaction.c:208:    if (it->state != INTERACTION_AWAIT_CONFIRM) return INTERACTION_E_STATE;
+firmware/core/interaction.c:224:    haptic(it, VOICE_EVENT_CONFIRMED);
+firmware/core/interaction.c:265:    } else if (it->state == INTERACTION_AWAIT_CONFIRM &&
+firmware/core/interaction.h:12:#include "intent_gate.h"
+firmware/core/interaction.h:17:#define INTERACTION_DEFAULT_CONFIRM_MS  8000u
+firmware/core/interaction.h:22:    INTERACTION_AWAIT_CONFIRM,
+firmware/core/interaction.h:108:int interaction_asr_result(interaction_t *it, const intent_observation_t *obs,
+firmware/core/lexicon.c:295:        case LEX_V1_UNKNOWN:    return "desconhecido";
+firmware/core/lexicon.c:296:        case LEX_V2_AMBIGUOUS:  return "ambiguo";
+firmware/core/lexicon.c:311:    r.verdict = LEX_V1_UNKNOWN; r.id = -1; r.runner_up = -1;
+firmware/core/lexicon.c:342:                  ? LEX_V0_SUGGEST : LEX_V1_UNKNOWN;
+firmware/core/lexicon.c:347:                                              r.verdict = LEX_V2_AMBIGUOUS;
+firmware/core/lexicon.h:84: *   V1 UNKNOWN     Nothing is close enough to be evidence. Say so, log a
+firmware/core/lexicon.h:86: *   V2 AMBIGUOUS   Two candidates are too close to separate. The device knows
+firmware/core/lexicon.h:103:    LEX_V1_UNKNOWN,
+firmware/core/lexicon.h:104:    LEX_V2_AMBIGUOUS,
+firmware/core/memory_collection_finale.c:19:           status == MEMORY_RETRIEVAL_AMBIGUOUS;
+firmware/core/memory_collection_index.c:124:    else if (out->status == MEMORY_RETRIEVAL_AMBIGUOUS)
+firmware/core/memory_collection_index.h:73: * NO_MATCH and AMBIGUOUS retain the existing no-winner rule. Callers must perform
+firmware/core/memory_extract.c:192:        out->reasons |= MEMORY_EXTRACT_REASON_AMBIGUOUS;
+firmware/core/memory_extract.h:39:    MEMORY_EXTRACT_REASON_AMBIGUOUS     = 1u << 9,
+firmware/core/memory_finale.c:14:           status == MEMORY_RETRIEVAL_AMBIGUOUS;
+firmware/core/memory_policy.c:52:        out->reasons = MEMORY_REASON_LOW_CONFIDENCE | MEMORY_REASON_AMBIGUOUS;
+firmware/core/memory_policy.h:79:    MEMORY_REASON_AMBIGUOUS      = 1u << 10
+firmware/core/memory_proposal.c:111:        out->reasons |= MEMORY_EXTRACT_REASON_AMBIGUOUS;
+firmware/core/memory_retrieval.c:167:        out->status = MEMORY_RETRIEVAL_AMBIGUOUS;
+firmware/core/memory_retrieval.h:24:    MEMORY_RETRIEVAL_AMBIGUOUS
+firmware/core/memory_retrieval.h:89: * A score below threshold returns NO_MATCH; close scores return AMBIGUOUS. */
+firmware/core/memory_retrieval_present.c:33:    case MEMORY_RETRIEVAL_AMBIGUOUS:
+firmware/core/memory_retrieval_present.c:113:    case MEMORY_RETRIEVAL_AMBIGUOUS:
+firmware/core/memory_retrieval_present.c:114:        p->pending.phrase = MEMORY_RETRIEVAL_PHRASE_AMBIGUOUS_REVIEW;
+firmware/core/memory_retrieval_present.c:115:        set_haptic(&p->pending, VOICE_EVENT_UNKNOWN);
+firmware/core/memory_retrieval_present.h:29:    MEMORY_RETRIEVAL_PHRASE_AMBIGUOUS_REVIEW,
+firmware/core/memory_retrieval_present.h:36: * AMBIGUOUS every typed detail is zero. */
+firmware/core/test_assurance.c:43:       (d.failures & ASSURANCE_FAIL_CONFIRM) && (d.failures & ASSURANCE_FAIL_HANDOFF),
+firmware/core/test_capstone.c:102:static intent_observation_t observation(uint32_t session)
+firmware/core/test_capstone.c:104:    intent_observation_t o;
+firmware/core/test_capstone.c:134:    intent_observation_t obs;
+firmware/core/test_capstone.c:161:       interaction_asr_result(&it, &(intent_observation_t){
+firmware/core/test_intent_gate.c:1:/* test_intent_gate.c — executable contract for Advance 5 confidence gateway. */
+firmware/core/test_intent_gate.c:2:#include "intent_gate.h"
+firmware/core/test_intent_gate.c:12:static intent_observation_t observation(uint32_t session, voice_command_t command,
+firmware/core/test_intent_gate.c:15:    intent_observation_t o;
+firmware/core/test_intent_gate.c:27:    intent_observation_t o;
+firmware/core/test_intent_gate.c:29:    intent_gate_result_t out;
+firmware/core/test_intent_gate.c:33:    ok(intent_gate_evaluate(&o, 7, NULL, &out) == INTENT_GATE_ACCEPT_DIRECT && !out.context_used,
+firmware/core/test_intent_gate.c:39:    ok(intent_gate_evaluate(&o, 7, &hint, &out) == INTENT_GATE_LOW_CONFIDENCE,
+firmware/core/test_intent_gate.c:43:    ok(intent_gate_evaluate(&o, 7, &hint, &out) == INTENT_GATE_ACCEPT_CONTEXT && out.context_used,
+firmware/core/test_intent_gate.c:47:    ok(intent_gate_evaluate(&o, 7, &hint, &out) == INTENT_GATE_AMBIGUOUS && !out.context_used,
+firmware/core/test_intent_gate.c:51:    ok(intent_gate_evaluate(&o, 7, NULL, &out) == INTENT_GATE_STALE,
+firmware/core/test_intent_gate.c:56:    ok(intent_gate_evaluate(&o, 7, NULL, &out) == INTENT_GATE_REJECTED,
+firmware/core/test_interaction.c:47:       it.state == INTERACTION_AWAIT_CONFIRM && interaction_actions(&it)->stop_capture &&
+firmware/core/test_interaction.c:83:    ok(it.state == INTERACTION_AWAIT_CONFIRM && it.pending.tier != HCP_TIER_SOS &&
+firmware/core/test_interaction.c:104:static intent_observation_t asr(uint32_t session, voice_command_t command,
+firmware/core/test_interaction.c:107:    intent_observation_t o;
+firmware/core/test_interaction.c:121:    intent_observation_t o;
+firmware/core/test_interaction.c:143:       it.state == INTERACTION_AWAIT_CONFIRM && interaction_metrics(&it)->asr_context_assisted == 1 &&
+firmware/core/test_interaction.c:165:    intent_observation_t o;
+firmware/core/test_interaction.c:178:       it.state == INTERACTION_AWAIT_CONFIRM && interaction_take_send(&it, &out) == INTERACTION_E_STATE,
+firmware/core/test_interaction.c:202:    interaction_tick(&it, 1100 + INTERACTION_DEFAULT_CONFIRM_MS);
+firmware/core/test_interaction_rig.c:24:       rig.runtime.state == INTERACTION_AWAIT_CONFIRM &&
+firmware/core/test_interaction_rig.c:61:    interaction_rig_tick(&rig, 250 + INTERACTION_DEFAULT_CONFIRM_MS);
+firmware/core/test_memory_collection_finale.c:402:    snapshot = safe_snapshot(MEMORY_RETRIEVAL_AMBIGUOUS);
+firmware/core/test_memory_collection_index.c:220:           MEMORY_COLLECTION_INDEX_OK && result.status == MEMORY_RETRIEVAL_AMBIGUOUS &&
+firmware/core/test_memory_extract.c:84:       MEMORY_EXTRACT_OK && (candidate.reasons & MEMORY_EXTRACT_REASON_AMBIGUOUS) &&
+firmware/core/test_memory_finale.c:220:    retrieved.status = MEMORY_RETRIEVAL_AMBIGUOUS;
+firmware/core/test_memory_finale.c:225:       presentation.phrase == MEMORY_RETRIEVAL_PHRASE_AMBIGUOUS_REVIEW &&
+firmware/core/test_memory_finale.c:228:    snapshot = safe_snapshot(MEMORY_RETRIEVAL_AMBIGUOUS);
+firmware/core/test_memory_policy.c:49:       (a.reasons & MEMORY_REASON_AMBIGUOUS),
+firmware/core/test_memory_proposal.c:117:       (candidate.reasons & MEMORY_EXTRACT_REASON_AMBIGUOUS) != 0u &&
+firmware/core/test_memory_retrieval.c:97:       out.status == MEMORY_RETRIEVAL_AMBIGUOUS && out.card_id == 0u &&
+firmware/core/test_memory_retrieval_present.c:51:    r.status = MEMORY_RETRIEVAL_AMBIGUOUS;
+firmware/core/test_memory_retrieval_present.c:97:       out.phrase == MEMORY_RETRIEVAL_PHRASE_AMBIGUOUS_REVIEW &&
+firmware/core/test_threat_model.c:98:       (d.failures & THREAT_MODEL_FAIL_RETRIEVAL_AMBIG) &&
+firmware/core/test_voice.c:45:    ok(voice_parse_pt("toque uma musica", &lex, &r) == VOICE_UNKNOWN &&
+firmware/core/test_voice.c:46:       r.event == VOICE_EVENT_UNKNOWN && r.draft.intent == 0,
+firmware/core/test_watch_memory_frontend.c:107:    ok(watch_memory_reason(&f) == WATCH_MEMORY_REASON_AMBIGUOUS_SPEAKER,
+firmware/core/test_watch_memory_frontend.c:172:    ok(watch_memory_state(&f) == WATCH_MEMORY_CONFIRMED,
+firmware/core/threat_model.c:113:        require_flag(snapshot->memory_ambiguity_preserved, THREAT_MODEL_FAIL_RETRIEVAL_AMBIG, &failures);
+firmware/core/threat_model.h:103:    THREAT_MODEL_FAIL_RETRIEVAL_AMBIG   = 1u << 18,
+firmware/core/voice.c:187:        result_reset(out, VOICE_UNKNOWN, VOICE_EVENT_UNKNOWN);
+firmware/core/voice.c:223:    case VOICE_EVENT_CONFIRMED:
+firmware/core/voice.c:229:    case VOICE_EVENT_UNKNOWN:
+firmware/core/voice.h:29:    VOICE_UNKNOWN,
+firmware/core/voice.h:45:    VOICE_EVENT_CONFIRMED,
+firmware/core/voice.h:47:    VOICE_EVENT_UNKNOWN,
+firmware/core/voice.h:82: * transport field; those belong to intent_gate and interaction respectively. */
+firmware/core/watch_memory_frontend.c:127:                WATCH_MEMORY_REASON_AMBIGUOUS_SPEAKER);
+firmware/core/watch_memory_frontend.c:175:    f->state = WATCH_MEMORY_CONFIRMED;
+firmware/core/watch_memory_frontend.h:26:    WATCH_MEMORY_CONFIRMED,
+firmware/core/watch_memory_frontend.h:38:    WATCH_MEMORY_REASON_AMBIGUOUS_SPEAKER = 1u << 4,
+sim/learn.c:254:                            vet[LEX_V2_AMBIGUOUS], vet[LEX_V3_COLLISION], vet[LEX_V1_UNKNOWN]);
+sim/study.c:213:        if (by[LEX_V1_UNKNOWN] || by[LEX_V2_AMBIGUOUS] || by[LEX_V3_COLLISION])
+sim/study.c:215:                   by[LEX_V1_UNKNOWN], by[LEX_V2_AMBIGUOUS], by[LEX_V3_COLLISION]);

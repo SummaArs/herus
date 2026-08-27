@@ -1,0 +1,188 @@
+=== BRANCH/REMOTE ===
+main
+origin	https://github.com/SummaArs/herus.git (fetch)
+origin	https://github.com/SummaArs/herus.git (push)
+[33m0001b3a[m documenta Intent Compiler e Semantic IR
+[33m09d6874[m Merge pull request #39 from SummaArs/feat/herus-everyday-sovereign-intelligence
+[33m0dfdf44[m Merge origin/main into feat/herus-everyday-sovereign-intelligence
+[33mb156087[m Merge pull request #38 from SummaArs/feat/atlas-transport-lessons
+[33ma9d67c5[m Merge origin/main into feat/atlas-transport-lessons
+=== STATUS ===
+[31m??[m baseline_program.txt
+=== TOP LEVEL ===
+./.git/COMMIT_EDITMSG
+./.git/HEAD
+./.git/config
+./.git/description
+./.git/index
+./.git/packed-refs
+./.gitignore
+./ANALISE_CRITICA_HERUS.md
+./CONTRIBUTING.md
+./LICENSE
+./README.md
+./SECURITY.md
+./baseline_program.txt
+./crypto.o
+./docs/00-HERUS-MASTER.md
+./docs/01-ALGEBRA.md
+./docs/02-PROTOCOL.md
+./docs/03-BUILD-GUIDE.md
+./docs/04-PRODUCT.md
+./docs/05-FIRMWARE.md
+./docs/06-NUCLEO.md
+./docs/07-VOZ-HAPTICA.md
+./docs/08-RUNTIME-INTERACAO.md
+./docs/09-VALIDACAO-FISICA.md
+./docs/10-INVESTIGACAO-PREREGISTRADA.md
+./docs/11-GATEWAY-CONFIANCA.md
+./docs/12-ENLACE-CORE-NUCLEO.md
+./docs/13-CICLO-DE-CONFIANCA.md
+./docs/14-DIALOGO-LLM-LOCAL.md
+./docs/15-LAB-ACEITACAO-MODELO.md
+./docs/16-GRAND-FINALE.md
+./docs/17-MEMORIA-SELETIVA.md
+./docs/18-SESSAO-CAPTURA-MEMORIA.md
+./docs/19-EXTRACAO-CANDIDATOS.md
+./docs/20-COFRE-MEMORIA.md
+./docs/21-CONSOLIDACAO-HUMANA.md
+./docs/22-RECUPERACAO-SEMANTICA.md
+./docs/23-INTERFACE-RECUPERACAO-HUMANA.md
+./docs/24-GRAND-FINALE-MEMORIA.md
+./docs/25-MODELO-AMEACAS-EXECUTAVEL.md
+./docs/26-COLECAO-MEMORIA.md
+./docs/27-INDICE-PRIVADO-COLECAO.md
+./docs/28-RECUPERACAO-TRANSACIONAL.md
+./docs/29-PROVENIENCIA-LOCAL-BUILD.md
+./docs/30-GRAND-FINALE-COLECAO.md
+./docs/31-SESSAO-FISICA-PROPOSITO.md
+./docs/32-RECUPERACAO-RESERVA-SESSAO.md
+./docs/33-QUARENTENA-BOOT-SESSAO.md
+./docs/34-GRAN-FINALE-PRE-HARDWARE.md
+./docs/35-PROVA-DE-FOGO-HOST.md
+./docs/36-PROTOCOLO-BANCADA-FISICA.md
+./docs/37-GUIA-MONTAGEM-FISICA.md
+./docs/38-PRODUTO-DESEJAVEL-E-ADOCAO.md
+./docs/40-LLM-LOCAL-ESP32-E-HERUS.md
+./docs/41-PROPOSTA-TIPADA-E-INVARIANTES.md
+./docs/44-ATLAS-NODE-APRENDIZADOS.md
+./docs/47-HERUS-INDISPENSAVEL-E-INTELIGENCIA-PROPRIA.md
+./docs/48-ARQUITETURA-FINITA-E-LINGUAGEM.md
+./docs/49-DESAFIO-RACIOCINIO-GENERATIVO.md
+./docs/50-INTENT-COMPILER-E-SEMANTIC-IR.md
+./firmware/Makefile
+./memory_collection.o
+./memory_vault.o
+./prove.sh
+./research/FINITE-REASONER-README.md
+./research/Makefile
+./research/external_findings.md
+./research/finite_reasoner.py
+./research/hardware_bench_evidence_schema.json
+./research/hardware_readiness_manifest.json
+./research/interaction_study_manifest.json
+./research/software_provenance_manifest.json
+./research/test_finite_reasoner.py
+./session.o
+./sim/Makefile
+./sim/README.md
+./sim/channel.c
+./sim/compose.c
+./sim/learn.c
+./sim/main.c
+./sim/node.c
+./sim/render.c
+./sim/scenarios.c
+./sim/sim.h
+./sim/stress.c
+./sim/study.c
+./sim/world.c
+./sx1262.o
+./tools/bench_evidence_validate.py
+./tools/budget.py
+./tools/fieldlog.py
+./tools/frontier.py
+./tools/gen_vectors.py
+./tools/interactionlog.py
+./tools/interactionstudy.py
+./tools/llm_budget_check.py
+./tools/provenance_audit.py
+./tools/readiness_audit.py
+./tools/studyplan.py
+./tools/test_bench_evidence_validate.py
+./tools/test_interactionlog.sh
+./tools/test_interactionstudy.py
+./tools/test_llm_budget_check.py
+./tools/test_proof_fire_mutations.py
+./tools/test_provenance_audit.py
+./tools/test_readiness_audit.py
+./trust.o
+=== RESEARCH ===
+research/FINITE-REASONER-README.md
+research/Makefile
+research/__pycache__/finite_reasoner.cpython-312.pyc
+research/__pycache__/test_finite_reasoner.cpython-312.pyc
+research/external_findings.md
+research/finite_reasoner.py
+research/hardware_bench_evidence_schema.json
+research/hardware_readiness_manifest.json
+research/interaction_study_manifest.json
+research/software_provenance_manifest.json
+research/source_materials/herus_pesquisa.pdf
+research/source_materials/herus_pesquisa_notas.md
+research/source_materials/proposta_compilador_intencao_ooncore.docx
+research/source_materials/proposta_compilador_ooncore_extraida.txt
+research/source_materials/visao_semantic_ir_herus.txt
+research/test_finite_reasoner.py
+=== SEMANTIC IR REFERENCES ===
+docs/00-HERUS-MASTER.md:31:semantic communicator with a symbolic intent layer. That distinction is
+docs/00-HERUS-MASTER.md:83:     [ dense semantic memory ]                                   Weave
+docs/00-HERUS-MASTER.md:84:       context / episode / semantic                                 |
+docs/00-HERUS-MASTER.md:148:| **0 Glyph** | 2 B id, 24 B plaintext | 34 B | 9 | 246.8 ms | 650 m | fixed-lexicon intent, beacon |
+docs/00-HERUS-MASTER.md:149:| **1 Composed** | intent + up to 9 role/filler | 34 B | 9 | 246.8 ms | 650 m | "arriving, 10 min, north gate" |
+docs/00-HERUS-MASTER.md:165:Tier 1 is the interesting one. A message is an intent plus bindings:
+docs/00-HERUS-MASTER.md:168:MSG = ROLE_intent ⊗ ARRIVE  ⊕  ROLE_time ⊗ MIN_10  ⊕  ROLE_place ⊗ NORTH_GATE
+docs/00-HERUS-MASTER.md:535:That covers the algebra, the opt-in bounded Nucleus predictor, controlled local voice/haptic contracts, the session-bound intent-confidence gateway, the authenticated Core↔Nucleus control envelope, the confirmed interaction runtime, the deterministic validation lab and telemetry gates, the preregistered study method, the protocol (crypto differentially tested against
+docs/01-ALGEBRA.md:386:Sound. Context (30 s ring) → episode (session, decayed) → semantic (flash).
+docs/01-ALGEBRA.md:389:One thing to add: **an eviction policy for L3.** Unbounded semantic memory on
+docs/02-PROTOCOL.md:147: bytes 2..3    u16  intent symbol id
+docs/02-PROTOCOL.md:157:$$M = \rho^1\phi(\text{intent}) + \sum_{k} \rho^{k+2}\big(\phi(\text{role}_k) \oplus \phi(\text{filler}_k)\big)$$
+docs/03-BUILD-GUIDE.md:65:algebra (T1–T11), the opt-in bounded Nucleus predictor, controlled voice/haptic contracts, the session-bound intent-confidence gateway, bounded dialogue, local-model acceptance policy, selective-memory relevance policy, explicit transient memory-capture session, typed non-retaining candidate extraction, the authorised encrypted memory-vault contract, bounded human memory consolidation, controlled typed memory retrieval, one-shot human retrieval presentation, the composed memory Grand Finale, the bounded transactional multi-card collection, its private abstention-safe index, its crash-state recovery oracle, its human-gated collection Grand Finale, its purpose-bound collection physical-session gate, its durable session-reservation recovery oracle that cannot revive active authority, its floor-only post-reboot session-bootstrap quarantine, its final host-only memory-chain composition, its deterministic F1–F4 proof-of-fire campaigns for recovery, collection, threat scope and selected-control mutation detection, its unsigned local provenance audit and the executable threat-model classifier, Grand Finale assurance and capstone chain, the explicit Core↔Nucleus trust lifecycle and authenticated control envelope, the confirmed interaction runtime, deterministic adapter/telemetry gates, the frozen hardware-readiness manifest, the preregistered study method, the protocol (crypto vs OpenSSL, ratchet, replay, forgery,
+docs/03-BUILD-GUIDE.md:263:   semantic SBC prototypes (32 KB). **Total 72 KB.** Watch it with
+docs/03-BUILD-GUIDE.md:355:calendar retention policy or physical-media sanitization. The portable retrieval suite proves only bounded typed matching in RAM; it does not evidence natural-language search, personal relevance, a model, NVS access or a physical recovery interaction. The portable presentation suite proves only symbolic status and bounded haptic plans; it does not evidence voice intelligibility, haptic perception, display legibility, WCAG conformance, physical controls, accessibility, user understanding, energy or latency. The memory Grand Finale additionally proves a host fixture composition and cross-layer refusal policy; it does not evidence a multi-card persistent store, protected root/NVS, power-loss recovery, ASR, physical interaction, user comprehension or any hardware metric. The executable threat model then classifies this host evidence and keeps platform/supply-chain gaps visible; it is not a runtime monitor, penetration test, hardware assurance or risk-probability estimate. The portable collection additionally proves a fixed-capacity authenticated transaction and logical recovery in RAM; it does not prove NVS semantics, physical purge, power-loss behavior, root protection, wear, capacity on target or the suitability of any particular MCU/secure element. Its private index adds typed, physically gated and budget-limited matching over that authenticated record; it does not prove search at scale, private-information-retrieval cryptography, ORAM, language understanding, relevance to a person, persistent index privacy, latency, energy or a backend on the target. The crash-state recovery oracle additionally proves only C11 classification of authenticated `PREPARED`/`COMMITTED` records against an asserted monotonic floor; it does not prove callbacks are durable, brownout/power-loss behavior, flash atomicity, partial-write detection, wear, eFuse/secure-element counters, root protection, physical purge or a selected target platform. The portable provenance audit additionally compares declared local source inputs against unsigned SHA-256 references and rejects unsafe manifest shape; it does not prove checkout authenticity, component completeness, signed provenance, SLSA level, builder isolation, target artifact reproducibility, CI trust or supply-chain physical integrity. The collection physical-session gate additionally binds collection operations to a transient purpose, time window and consumed local use; it does not prove a button, gesture, user identity, biometrics, event source, trusted clock, nonce quality, reset-resistant counter, anti-replay across reboot or protected execution until the selected adapter is tested on target. The durable session-reservation recovery oracle additionally classifies authenticated `PREPARED`/`COMMITTED` markers against a floor declared by that future adapter and can only advance a burned ID or block; it never recreates a live session and does not prove durable storage, atomic ordering, reboot behavior, event origin, physical confirmation, secure boot, protected RAM or post-reboot replay resistance. The post-reboot bootstrap then reinitializes the host gate as `IDLE` and imports only that floor; it does not observe a reset, clear physical RAM, authenticate storage, prove a new event or establish replay resistance until the selected adapter is interrupted and measured on target. The Gran Finale composes this gate state with the collection chain and TM-04 in a host fixture, but it remains only a diagnostic of contract coherence; it cannot turn target validation, physical persistence or any human event into a fact. The F1 host campaign additionally rejects a terminal `UINT32_MAX` reservation floor because no successor session would remain representable; it does not demonstrate a target counter, durable media or counter-rotation strategy.
+docs/04-PRODUCT.md:82:Day 1   "arriving / in 10 min / at home"     = intent + 2 slots
+docs/04-PRODUCT.md:111:**Falsification criterion (Phase 2).** Define *semantic density* = recoverable
+docs/05-FIRMWARE.md:23:    nucleus.[ch]   Nucleus: opt-in, bounded semantic transition memory
+docs/05-FIRMWARE.md:65:| **intent gateway** | sessão física, limiar de confiança, margem de ambiguidade, contexto limitado e rejeição de resultado obsoleto | testes determinísticos sem áudio, transcrição, Núcleo físico, rádio ou transporte |
+docs/05-FIRMWARE.md:187:| **Intent gateway hardware adapter** | `intent_gate.[ch]` proves session/confidence policy only. Mapping ESP-SR command IDs and confidence fields, obtaining authorized Nucleus hints and carrying the session over an encrypted local link remain target adapters. | Advance 5 integration track; see [11-GATEWAY-CONFIANCA.md](11-GATEWAY-CONFIANCA.md) |
+docs/05-FIRMWARE.md:189:| **Physical validation** | `interaction_rig.[ch]` and `tools/interactionlog.py` prove scenario sequencing and log gates only. A/B source choice, intent accuracy, false-draft rate, latency and energy still require a pre-registered hardware run. | Advance 3 lab track; see [09-VALIDACAO-FISICA.md](09-VALIDACAO-FISICA.md) |
+docs/05-FIRMWARE.md:298:Board B prints the intent and the named slots. That is a meaning crossing the air
+docs/14-DIALOGO-LLM-LOCAL.md:64:A resposta conversacional não é um `intent_observation_t`. Ela não pode alcançar `intent_gate`, `interaction_take_send`, `core_link`, `trust_seal_*`, HCP ou rádio. Caso a pessoa queira enviar algo mencionado na conversa, inicia uma **nova** sessão de comando por PTT; as barreiras de confiança, ambiguidade e confirmação continuam intactas.
+docs/16-GRAND-FINALE.md:19:A composição segue o princípio do menor privilégio. O modelo pode responder localmente, mas sua saída não se torna `intent_observation_t`; o runtime pode ter rascunho confirmado, mas só devolve um handoff único; o Núcleo pode fornecer observação autenticada, mas exige vínculo ativo, envelope fresco e confirmação; revogação posterior domina o estado anterior.
+docs/18-SESSAO-CAPTURA-MEMORIA.md:73:A sessão de memória não é uma sessão de comunicação. Ela não compartilha o `session_id` do runtime push-to-talk, não cria `intent_observation_t`, não cria HCP, não chama `memory_policy_assess()`, não grava no cofre e não encaminha conteúdo ao Núcleo remoto.
+docs/50-INTENT-COMPILER-E-SEMANTIC-IR.md:1:# Intent Compiler, Semantic IR e a evolução do HERUS
+docs/50-INTENT-COMPILER-E-SEMANTIC-IR.md:7:O material fornecido revela uma conexão importante: o **Intent Compiler** não é apenas um gerador de JSON para a OonCore. Ele é um primeiro exemplo de uma camada de compilação cognitiva: uma entrada ambígua e compacta é convertida em uma representação intermediária declarativa; um compilador determinístico expande a representação; validadores, referências cruzadas e testes rejeitam o que não pode ser aceito.
+docs/50-INTENT-COMPILER-E-SEMANTIC-IR.md:9:No HERUS, essa ideia deve ser transportada sem importar a promessa de NLU aberto. A Semantic IR deve ser uma **representação intermediária semântica finita, tipada e versionada**, que converte eventos de texto, voz, sensores, visão, código ou ambiente em cartões de contexto, propostas, estados e relações canônicas. Ela não é um espaço livre de embeddings nem uma autorização para qualquer modalidade escrever diretamente no cofre ou no rádio.
+docs/50-INTENT-COMPILER-E-SEMANTIC-IR.md:13:## O que a proposta do Intent Compiler prova
+docs/50-INTENT-COMPILER-E-SEMANTIC-IR.md:29:## Semantic IR do HERUS
+docs/50-INTENT-COMPILER-E-SEMANTIC-IR.md:40:                 Semantic IR tipada e versionada
+docs/50-INTENT-COMPILER-E-SEMANTIC-IR.md:61:### Contrato mínimo da Semantic IR
+docs/50-INTENT-COMPILER-E-SEMANTIC-IR.md:76:## Como o Intent Compiler entra no HERUS
+docs/50-INTENT-COMPILER-E-SEMANTIC-IR.md:78:O Intent Compiler do OonCore oferece o padrão para a futura camada `Semantic IR Compiler`:
+docs/50-INTENT-COMPILER-E-SEMANTIC-IR.md:94:Primeiro, demonstrar que diferentes entradas controladas — texto curto, botão, evento de sensor e comando vocal limitado — convergem para a mesma Semantic IR canônica. A meta não é cobertura universal; é equivalência verificável entre modalidades dentro de um vocabulário finito.
+docs/50-INTENT-COMPILER-E-SEMANTIC-IR.md:96:O Intent Compiler é o modelo de processo para esta fase: uma entrada compacta é revisável; a expansão é determinística; o portão explica falhas; o artefato aceito pode ser reproduzido byte a byte.
+docs/50-INTENT-COMPILER-E-SEMANTIC-IR.md:113:| SSM/Mamba/CNN/ViT | São frontends substituíveis; o contrato comum é a Semantic IR. |
+docs/50-INTENT-COMPILER-E-SEMANTIC-IR.md:149:- [Visão Semantic IR / arquitetura cognitiva](../research/source_materials/visao_semantic_ir_herus.txt)
+research/interaction_study_manifest.json:35:    "intent_lower_wilson_95": 0.90,
+research/finite_reasoner.py:3:This module is intentionally host-only and outside firmware/. It does not claim
+research/Makefile:5:# Host-only research track. This target is intentionally not part of the
+research/Makefile:6:# firmware proof ledger until its semantics and resource costs are reviewed.
+research/source_materials/visao_semantic_ir_herus.txt:35:Linguagem	SSM/attention + Semantic IR
+research/source_materials/visao_semantic_ir_herus.txt:44:Multimodal	uma Semantic IR comum
+research/source_materials/visao_semantic_ir_herus.txt:78:semantic events
+research/source_materials/visao_semantic_ir_herus.txt:103:Semantic IR seria a "linguagem universal" do HERUS.
+research/source_materials/visao_semantic_ir_herus.txt:126:E aí o seu Intent Compiler do OonCore deixa de ser apenas uma tecnologia reaproveitada.
+research/source_materials/visao_semantic_ir_herus.txt:141:> diferentes entradas → mesma Semantic IR.
+README.md:98:| [Intent Compiler e Semantic IR](docs/50-INTENT-COMPILER-E-SEMANTIC-IR.md) | Conexão entre compilação de intenção, representação intermediária semântica, percepção multimodal e núcleo cognitivo verificável. |
+=== TEST COUNTS ===
+88
