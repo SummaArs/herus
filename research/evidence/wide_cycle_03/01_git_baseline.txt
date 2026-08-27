@@ -1,0 +1,5 @@
+[31m??[m PLANO_WIDE_RESEARCH_PROXIMO_AVANCO.md
+[31m??[m research/evidence/wide_cycle_03/
+[33mc4f59bf[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m testa convergencia real do parser e da Semantic IR
+[33m2b54c85[m endurece invariantes e bridge da Semantic IR
+[33m26ba677[m adiciona fuzzing adversarial da Semantic IR

@@ -43,6 +43,12 @@ jobs:
       - name: Sanitizers
         run: make -C sim sanitizers
 
+      - name: Firmware sanitizers
+        run: make -C firmware sanitizers
+
+      - name: Firmware static analyzer
+        run: make -C firmware analyzer
+
       - name: Research prototype
         run: make -C research test
 

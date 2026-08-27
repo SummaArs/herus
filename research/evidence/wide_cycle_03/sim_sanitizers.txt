@@ -1,0 +1,505 @@
+make: Entering directory '/home/ubuntu/herus/sim'
+make clean
+make[1]: Entering directory '/home/ubuntu/herus/sim'
+rm -rf build
+make[1]: Leaving directory '/home/ubuntu/herus/sim'
+make CC='cc -fsanitize=address,undefined -fno-omit-frame-pointer -g' \
+	CFLAGS='-O1 -Wall -Wextra -Werror=return-type -Werror=implicit-function-declaration -std=c11' \
+	build/herus-sim
+make[1]: Entering directory '/home/ubuntu/herus/sim'
+cc -fsanitize=address,undefined -fno-omit-frame-pointer -g -O1 -Wall -Wextra -Werror=return-type -Werror=implicit-function-declaration -std=c11 -DHV_LUT_POPCOUNT -I../firmware/core -I../firmware/net -I../firmware/port world.c channel.c render.c node.c scenarios.c stress.c compose.c study.c learn.c main.c ../firmware/core/hv.c ../firmware/core/sbc.c ../firmware/core/lexicon.c ../firmware/core/hcp.c ../firmware/core/text.c ../firmware/net/crypto.c ../firmware/net/session.c ../firmware/net/region.c ../firmware/net/weave.c ../firmware/net/beat.c ../firmware/net/link.c \
+    -o build/herus-sim -lm
+scenarios.c: In function ‘scenario_babel’:
+scenarios.c:484:5: warning: missing initializer for field ‘seen’ of ‘herus_link’ [-Wmissing-field-initializers]
+  484 |     herus_link tx = { &a, HZ_REGION_BR915, 14, roles, 4 };
+      |     ^~~~~~~~~~
+In file included from sim.h:34,
+                 from scenarios.c:15:
+../firmware/net/link.h:74:20: note: ‘seen’ declared here
+   74 |     link_dedup    *seen;
+      |                    ^~~~
+scenarios.c:504:9: warning: missing initializer for field ‘seen’ of ‘herus_link’ [-Wmissing-field-initializers]
+  504 |         herus_link rxl = { &r, HZ_REGION_BR915, 14, roles, 4 };
+      |         ^~~~~~~~~~
+../firmware/net/link.h:74:20: note: ‘seen’ declared here
+   74 |     link_dedup    *seen;
+      |                    ^~~~
+scenarios.c:521:5: warning: missing initializer for field ‘seen’ of ‘herus_link’ [-Wmissing-field-initializers]
+  521 |     herus_link tx2 = { &a2, HZ_REGION_BR915, 14, roles, 4 };
+      |     ^~~~~~~~~~
+../firmware/net/link.h:74:20: note: ‘seen’ declared here
+   74 |     link_dedup    *seen;
+      |                    ^~~~
+scenarios.c:524:5: warning: missing initializer for field ‘seen’ of ‘herus_link’ [-Wmissing-field-initializers]
+  524 |     herus_link rx2 = { &b2, HZ_REGION_BR915, 14, roles, 4 };
+      |     ^~~~~~~~~~
+../firmware/net/link.h:74:20: note: ‘seen’ declared here
+   74 |     link_dedup    *seen;
+      |                    ^~~~
+stress.c: In function ‘scenario_birthday’:
+stress.c:238:42: warning: unused parameter ‘argc’ [-Wunused-parameter]
+  238 | void scenario_birthday(sim_score *s, int argc, char **argv)
+      |                                      ~~~~^~~~
+stress.c:238:55: warning: unused parameter ‘argv’ [-Wunused-parameter]
+  238 | void scenario_birthday(sim_score *s, int argc, char **argv)
+      |                                                ~~~~~~~^~~~
+make[1]: Leaving directory '/home/ubuntu/herus/sim'
+ASAN_OPTIONS=detect_leaks=1 ./build/herus-sim
+HERUS — simulated bench
+frame 34 B, 246.8 ms at SF9, dwell limit 400 ms, D = 10240 bits
+the firmware under test is firmware/core and firmware/net, unmodified.
+
+0. self-test — does the world agree with tools/budget.py?
+-----------------------------------------------------------
+  at the documented 14 dBm / bare chip, the world still says:
+    Tier 0 glyph capsule    365 m (docs 365)   Band    650 m (docs 650)
+    Tier 2 voice  Band      487 m (docs 487)   meaning outranges speech by 33%
+  PASS  capsule glyph range reproduces docs (365 m)
+  PASS  Band glyph range reproduces docs (650 m)
+  PASS  voice range reproduces docs (487 m)
+  PASS  the sensitivity model reproduces every SX1262 figure to 0.01 dB
+
+  at the DESIGN point (22 dBm, bare chip): capsule 579 m, Band 1030 m
+  PASS  meaning outranges speech, at equal antenna
+
+  the dwell limit buys bytes or spreading factor, never both:
+    Rich   SF9  34 B   246.8 ms  -129.5 dBm  9 slots  ->  579 m / 1030 m urban
+    Reach  SF10 24 B   370.7 ms  -132.0 dBm  4 slots  ->  669 m / 1189 m urban
+    SF11 fits zero bytes in 400 ms and SF12's preamble alone is 663 ms,
+    so Reach is the last rung the regulation leaves open.
+
+  PASS  P2 Reach (SF10, 24 B) is legal
+  PASS  24 B is the CEILING at SF10 — one more byte is illegal
+  PASS  SF11 cannot carry a single byte, so there is no rung above Reach
+  34 B at SF9 airtime                      246.8 ms  (docs: 246.8 ms)
+  PASS  the world uses the firmware's own airtime
+  PASS  P2 the frame the world transmits is legal
+  PASS  leaf        20 ms / 2.0 s ->   1.78 mAh/day (weave.h: 1.78)
+  PASS  responsive  20 ms / 0.5 s ->   5.60 mAh/day (weave.h: 5.60)
+  PASS  relay       continuous    -> 127.71 mAh/day (weave.h: 127.68)
+
+1. range — how far does a meaning carry, in metres
+----------------------------------------------------
+  antenna capsule (-8 dBi), clutter 22 dB, shadowing sigma 0 dB, 12 messages per step
+
+   distance   delivered   asleep   below sens   false
+     100 m        100 %        0            0       0
+     200 m        100 %        0            0       0
+     300 m        100 %        0            0       0
+     400 m        100 %        0            0       0
+     500 m        100 %        0            0       0
+     550 m         67 %        0            0       0
+     600 m          0 %        0           12       0
+     700 m          0 %        0           12       0
+     800 m          0 %        0           12       0
+     900 m          0 %        0           12       0
+    1000 m          0 %        0           12       0
+    1100 m          0 %        0           12       0
+    1200 m          0 %        0           12       0
+    1300 m          0 %        0           12       0
+    1400 m          0 %        0           12       0
+
+  measured cliff  550 m .. 600 m      link budget predicts  579 m
+  PASS  the measured range matches the link budget, +/- one step
+  PASS  the link works at all at short range
+
+2. relay — three hops, and what the relay is allowed to know
+--------------------------------------------------------------
+  A at 0 m, relay B at 300 m, C at 600 m   (direct A->C is 600 m)
+  A and C share a ratchet. B holds no key at all.
+
+  delivered            20 / 20  (100 %)
+  relayed by B         20 frames
+  B opened             0 frames
+  mean latency         4246 ms   (worst 4247 ms)
+  duplicates suppressed 0
+  PASS  a message crosses a gap no single hop covers
+  PASS  the relay actually relayed
+  PASS  the relay never opened a frame it carried
+  PASS  nobody received anything addressed elsewhere
+  PASS  flooding terminates — relays are bounded by ttl, not by luck
+
+3. crowd — N units in one slot, and what the slot can hold
+------------------------------------------------------------
+  12 units, 10 minutes, 30 msg/unit/hour, 1 channel(s)
+  offered              60
+  delivered            53  (88 %)
+  lost to collision    197 receptions
+  CAD deferrals        2004   (listen before talk: on)
+  lost to a closed rx  15 receptions
+  relay transmissions  500   (8.3x amplification of the offered load)
+  band occupancy       23.0 % of wall clock
+  mean latency         1339 ms
+  PASS  no unit opened a frame addressed to another
+  PASS  flooding terminates — dedup bounds relays by node count
+  PASS  the band is not saturated at this offered load
+
+4. attack — a hostile transmitter in the same room
+----------------------------------------------------
+  honest messages offered           100
+  delivered                         41
+  adversary captured a frame        yes
+  verbatim replays transmitted      300
+  forgeries transmitted             600
+  jamming bursts transmitted        60
+  ------------------------------------------------
+  hostile frames the victim opened  0
+  reached the AEAD and failed       120   (SESS_E_AUTH, 2^-64 each)
+  rejected on address alone         121   (never cost a decryption)
+  receptions lost to the jammer     203
+
+  One SF9 transmitter can attempt at most 4.1 forgeries per second,
+  against a 20/s token bucket — airtime is 4.9x tighter than the rate
+  limiter, so it is physics that bounds this attack. Sustained for a
+  year that is 2^27 attempts against a 2^-64 tag: 2^-37 odds of one
+  success.
+  PASS  the adversary really was in range and did capture ciphertext
+  PASS  the attacks actually ran
+  PASS  the forgeries really did reach the tag check, so the test tested something
+  PASS  no replay and no forgery ever opened
+  PASS  the adversary opened nothing it captured
+  PASS  nothing false was ever delivered as meaning
+  PASS  jamming degrades the link, it does not corrupt it
+
+5. a day — does the battery survive, and what does latency cost
+-----------------------------------------------------------------
+  two paired units 200 m apart, 20 messages per hour each way, 24 h
+
+   role         delivered   mean lat   worst lat    mAh/day   400 mAh lasts
+   leaf           471/480      2008 ms     2252 ms       3.82    104.6 days
+   responsive     462/480       474 ms      757 ms       7.64     52.4 days
+   relay          480/480      2031 ms     2255 ms     129.67      3.1 days
+
+  A leaf harvests 19.46 mAh/day in 1.5 h of sun (docs). A relay wants
+  127.68 mAh/day and gets 26 cm2 of cell, which is why relaying is a
+  property of the strap and not a setting.
+  PASS  a leaf's daily draw is under what the Band harvests
+  PASS  a 400 mAh cell carries a leaf for over a month
+
+6. babel — one frame, three languages, no translation step
+------------------------------------------------------------
+  on air, 34 bytes:  d4ad007de698046b99cb81fb92afe58666079b5c149ea43bf946d37a0aec0a1314af
+  airtime 246.8 ms at SF9. Nothing in those bytes is a word.
+
+    receiver set to pt-BR  ->  socorro | onde: o rio | quando: agora
+    receiver set to en     ->  help | where: the river | when: now
+    receiver set to es     ->  socorro | donde: el rio | cuando: ahora
+
+  a v3 sender adds role 30, which this firmware has never heard of:
+    v1 receiver ->  encontrei | onde: a trilha | quanto: dois
+  PASS  the same 34 bytes render in three languages
+  PASS  P4 an unknown role does not reject the frame
+  PASS  P4 the unknown field is dropped and the rest survives
+
+7. drift — what the crystal costs when nobody talks for a while
+-----------------------------------------------------------------
+   silence before the next message   delivered   worst-case drift
+       60 s                          10/10           2.4 ms
+      120 s                          10/10           4.8 ms
+      240 s                          10/10           9.6 ms
+      480 s                          10/10          19.2 ms
+      960 s                           1/10          38.4 ms
+     1920 s                           1/10          76.8 ms
+     3840 s                           1/10         153.6 ms
+
+  The tolerance is asymmetric, and that is a property of the radio rather
+  than of the schedule: the receiver may open its 20 ms window anywhere
+  from 20 ms BEFORE the sender starts to 32.8 ms after it, because a frame
+  whose preamble is still running is still detectable. At 40 us/s of
+  relative drift that band is worth about 500 s of silence in the worst
+  direction — so BEAT_RESYNC_MS = 60 s is not a comfort setting, it is the
+  deadline past which a silent group stops being able to hear each other,
+  with roughly 8x of headroom.
+  PASS  the link survives at least the resync interval of silence
+  PASS  the resync interval has at least 8x of margin against the crystal
+
+8. cognition — recovering a role from a composed hypervector
+--------------------------------------------------------------
+  two units, same domain seed, never exchanged a codebook:
+    distance between their code for symbol 5          0 bits
+    distance to a DIFFERENT symbol                 5081 bits  (D/2 = 5120)
+
+  a 4-slot meaning, bundled into one 10240-bit vector, then unbound:
+    role 1  ->  recovered exactly  (sent 1)
+    role 2  ->  recovered exactly  (sent 5)
+    role 3  ->  recovered exactly  (sent 8)
+    role 4  ->  recovered exactly  (sent 11)
+    role 20 (never sent) -> correctly absent
+  PASS  two units derive identical codes from a shared seed alone
+  PASS  distinct symbols are quasi-orthogonal, as the whole design assumes
+  PASS  the composed meaning still encodes to 24 bytes
+  PASS  every role is recovered from the bundle by unbinding
+  PASS  a role that was never sent is reported absent, not guessed
+
+S1. deaf — one bad tunnel and the link never comes back
+---------------------------------------------------------
+  A transmits every 3 s. B is out of range for 150 s — 50 frames lost,
+  against a receive window of 32.
+
+  delivered, whole run          50 / 100
+  frames B never recognised     1   (SESS_E_ADDR, the cheap reject)
+  deep resyncs that landed      1   (session_recover)
+  B's receive counter           100
+  A's send counter              100
+  counters apart by             0
+
+  after B returns to 100 m, with a perfect radio link:  the link recovers
+  PASS  the outage really did exceed the window, so the test is loaded
+  PASS  a link that loses more than SESS_WINDOW frames can still recover
+
+S2. drain — what a stranger with a transmitter costs a leaf
+-------------------------------------------------------------
+  6 leaves in earshot, one attacker, 240 minutes
+  junk frames transmitted       57192
+  frames the leaves relayed     1491
+  relays the governor refused   4840
+  worst leaf spent              2014 uAh forwarding frames nobody sent it
+  ------------------------------------------------
+  sustained draw under attack    13.87 mAh/day
+  the same leaf, left alone       1.78 mAh/day
+  what a Band harvests in sun    19.46 mAh/day
+  400 mAh cell lasts              28.8 days under attack, 225 days idle
+  PASS  the attack actually ran long enough to mean something
+  PASS  under sustained attack a leaf still draws less than its strap harvests
+
+S3. unmask — does relay silence say who the message was for?
+--------------------------------------------------------------
+  8 units, all relay-capable, all in range of each other.
+  node 0 sends 40 messages to node 3. The observer holds no key.
+
+  frames relayed by somebody                    160
+  of those, relayed by their own recipient      22   (decoys)
+  frames where exactly one node stayed silent   0
+  of those, the silent one WAS the recipient    0
+  recipient identified with accuracy            0 %
+
+  P6 keeps every stable identifier off the air. It says nothing about
+  what a node DOES with a frame, and doing nothing is an observable.
+  PASS  the mesh really was relaying, so the test is loaded
+  PASS  the recipient relayed its own traffic, as leak L1 requires
+  PASS  relay behaviour does not identify the recipient better than guessing
+
+S4. birthday — what E-P2 cost, in collisions per peer
+-------------------------------------------------------
+  E-P2 spent two address bits on ttl: 14 bits of address, 32 live per
+  session. A frame for peer X can land in the window of peer Y, and the
+  cost is one wasted AEAD over 24 bytes plus one rate-limiter token.
+
+   peers   live addrs   P(a random frame hits some window)   measured
+       2          64                            0.0039     0.0040
+       4         128                            0.0078     0.0075
+       8         256                            0.0155     0.0151
+      16         512                            0.0308     0.0303
+      32        1024                            0.0606     0.0607
+
+  At 32 peers that is one wasted decryption per 17 foreign frames.
+  A 24-byte AEAD costs ~16 us, so even at the band's ceiling of 4.1
+  frames/s the wasted work is 0.0004 % of one core. E-P2's bill is real
+  and it is small — the honest conclusion is that it was worth paying.
+  PASS  the measured collision rate matches the birthday model
+  PASS  even at 32 peers, fewer than 1 in 10 foreign frames costs a decryption
+
+S5. reliable — the retry that single-use keys forbid
+------------------------------------------------------
+  Two leaves, 200 m, 480 messages over 24 h. `copies` is how many
+  DISTINCT sealed frames carry each message — a byte-identical
+  retransmission cannot open at the far end, by design.
+
+   copies   delivered   delivered twice   suppressed   leaf mAh/day
+       1     449/480                0            0         3.81
+       2     480/480                0          469         5.86
+
+  one copy  93.54 % delivered
+  two copies 100.00 % delivered, for +2.05 mAh/day
+  duplicates suppressed at the far end: 469
+  PASS  a second distinct frame recovers messages the first one lost
+  PASS  the far end really did receive and discard duplicates
+       3     480/480                0          954         7.91
+  PASS  no message is ever delivered to the user twice
+
+S6. reach — SF10 at 24 bytes, and the wall behind it
+------------------------------------------------------
+  The 400 ms dwell limit is a currency: it buys bytes or spreading
+  factor, never both. What it buys, exactly:
+
+   profile   SF   frame   airtime    sens      slots   dwell headroom
+   Rich       9    34 B    246.8 ms   -129.5     9       153.2 ms
+   Reach     10    24 B    370.7 ms   -132.0     4        29.3 ms
+
+  SF11 carries zero bytes inside the limit and SF12's preamble alone
+  is 663 ms. region.h asserts both, so this is the last rung.
+
+   antenna    profile   measured cliff   link budget   gain
+   capsule    Rich           575 m          579 m    (baseline)
+   capsule    Reach          650 m          669 m    
+              gain         +13.0 %
+   Band       Rich          1025 m         1030 m    (baseline)
+   Band       Reach         1175 m         1189 m    
+              gain         +14.6 %
+  PASS  Reach carries further than Rich, capsule antenna
+  PASS  Reach carries further than Rich, Band antenna
+  PASS  P2 the Reach frame is legal
+
+S7. hardware — what each part is worth, in metres and milliamps
+-----------------------------------------------------------------
+   step                                             budget   capsule    Band     gain
+   as specified: SX1262 14 dBm, bare chip, Rich    134.5     365 m     650 m
+   + Reach (SF10, 24 B) — modulation, free       137.0     422 m     750 m   +2.5 dB
+   + the SX1262's own PA at 22 dBm — no new part  145.0     669 m    1189 m   +8.0 dB
+   + receive LNA, NF 6.03 -> 1.30 dB — ~$1, 5 mA  149.7     878 m    1561 m   +4.7 dB
+   + engineered strap antenna (PROJECTED, bench)   153.7    1240 m    1965 m   +4.0 dB
+
+   what it costs, at 50 messages a day and a leaf's 1% receive duty:
+     transmit  14 dBm   4.63 uAh/frame  ->   0.23 mAh/day
+     transmit  22 dBm  12.15 uAh/frame  ->   0.61 mAh/day   (+0.38)
+     receive   no LNA                      1.27 mAh/day
+     receive   with LNA                    2.47 mAh/day   (+1.20)
+     a Band harvests                      19.46 mAh/day
+     full ladder, leaf total               3.59 mAh/day  -> 111 days on 400 mAh
+
+   a relay listens continuously, so the same LNA costs it
+   247 mAh/day instead of 127 — the part that helps sensitivity most
+   is the one a relay can least afford. That is a SKU decision, not a
+   firmware one.
+  PASS  the whole ladder still fits inside what a Band harvests
+  PASS  the buildable ladder more than doubles the published range
+
+C1. compose — how many presses is a sentence
+---------------------------------------------
+  One button, one vibration motor, no screen. The device proposes a
+  symbol; a short press accepts, a long press asks for the next. A
+  symbol offered at rank k therefore costs k+1 presses, and the whole
+  job of the cognition layer is to put the right one at rank 0.
+
+  4000 messages, trained on the first 2800, measured on the last 1200.
+
+   model     presses/message   worst message   vs no model
+   flat                13.89              32        1.0x
+   unigram             12.06              41        1.2x
+   context              9.44              34        1.5x
+   top-2 whole          7.74              22        1.8x
+   structured           6.60              20        2.1x
+
+   the whole-message model offered the right sentence outright
+   24% of the time, from 2 proposals per context.
+
+  the example, end to end:
+    "problema | o que: a bomba | onde: o talhao 3"
+      flat           16 presses
+      unigram        12 presses
+      context        19 presses
+      top-2 whole    15 presses
+      structured     13 presses
+
+  What this costs on the device: 4970 bytes of counters, no floats,
+  no training on the wrist — the table is built by the same offline
+  compiler that builds the codex, from the group's own traffic.
+
+   a perfect model would still cost 1.99 presses — accepting IS a press.
+   so the model is worth 7.3 of the 11.9 presses that were on the table,
+   and 4.61 presses of slack remain between it and the floor.
+
+   OPEN TARGET, not asserted: an average message under 5 presses.
+   Measured 6.60. Four sessions of radio work moved the range from
+   650 m to 1561 m and did not move this number by one press, and it
+   is this number a person will judge the device by. The binding
+   constraint on the product is the input model, not the link.
+  PASS  context ranking beats a frequency table
+  PASS  scoping fillers by their role beats ranking the whole lexicon
+  PASS  the structured composer halves the cost of speaking
+  PASS  the composer is measured against a floor it cannot beat, not against zero
+  PASS  the worst message in 1200 stays inside twenty presses
+
+E1. study — a device a concurseiro can trust
+----------------------------------------------
+  150 facts compiled offline into hypervector prototypes. Queries are
+  bundles of role/filler bindings, degraded the way a tired student
+  degrades them. The answer threshold is derived below, not chosen;
+  4 sigma of margin separates a decision from an ambiguity.
+
+  codex built: 150 facts, minimum pairwise separation 2809 bits (D/2 = 5120)
+
+  calibration, per query size, over 150 facts:
+    slots   weakest TRUE   strongest FALSE   gap    threshold
+      1          60.5             41.4    +19.1       51.0
+      2          60.9             22.3    +38.6       41.6
+      3         101.2             31.6    +69.6       66.4
+
+   query                                      certo  sugestao  recusa  ERRADO
+   exact          — the student remembers it all  150       0      0       0
+   one slot short — forgot the orgao         150       0      0       0
+   two slots short — only the artigo         144       0      6       0
+         desconhecido=0  ambiguo=6  colisao=0
+   reordered      — same slots, different order    0     150      0       0
+   one wrong      — misremembered a filler (correction)    0     150*     0       0
+   not in codex   — never studied it           0       0    150       0
+         desconhecido=150  ambiguo=0  colisao=0
+
+  exact recall               150 / 150
+  recall from 2 of 3 slots   150 / 150
+  reordered: answered or correctly suggested   148 / 150
+  never-studied refused      150 / 150
+  CONFIDENTLY WRONG            0
+
+  (* = every suggestion pointed at the right fact)
+
+  A language model asked these same six questions answers all six
+  fluently, and has no mechanism to produce the fourth column. That
+  column is the product.
+  PASS  every fact is recalled exactly from a complete query
+  PASS  the device is never confidently wrong
+  PASS  a fact never studied is always refused, never invented
+  PASS  most facts survive losing a third of the query
+  PASS  a shorter query needs a lower bar, and the bars are measured not chosen
+
+E2. learn — the residue loop, over fourteen days
+--------------------------------------------------
+  vocabulary 95 words; the compiler ships 760 bytes of weights.
+  calibration on the shipped codex (16 facts):
+    weakest UNSEEN-phrasing match to a known fact    101.2 sigma
+    strongest match from a question with no answer     2.1 sigma
+    they separate —  answer bar 51.6, suggest bar 50.6
+
+   day  codex  perguntas  respondeu  sugeriu  "sei o tema"  nao sabia  ERRADO
+     1     16         40         10        0             0         30       0   [amb 0 col 0 desc 30]
+     2     40         40         21        0             0         19       0   [amb 0 col 0 desc 19]
+     3     54         40         30        0             0         10       0   [amb 0 col 0 desc 10]
+     4     61         40         38        0             0          2       0   [amb 0 col 0 desc 2]
+     5     63         40         39        0             0          1       0   [amb 0 col 0 desc 1]
+     6     64         40         40        0             0          0       0
+     7     64         40         40        0             0          0       0
+     8     64         40         40        0             0          0       0
+     9     64         40         40        0             0          0       0
+    10     64         40         40        0             0          0       0
+    11     64         40         40        0             0          0       0
+    12     64         40         40        0             0          0       0
+    13     64         40         40        0             0          0       0
+    14     64         40         40        0             0          0       0
+
+  codex        16 facts on day 1  ->  64 on day 14
+  answered     10 / 40 on day 1  ->  40 / 40 on day 14
+  graph rescue 0 times said "I do not know that, but I know this topic"
+  storage      72 prototypes x 1280 B = 90.0 KB, for the whole syllabus
+  CONFIDENTLY WRONG, across all 14 days and 560 questions:  0
+
+  Nothing here ran a language model on the wrist. The model wrote the
+  phrasings on a computer, once per new fact, and what reached the
+  device was 1280 bytes of bundled symbol. Neural understood; symbol
+  guarantees.
+  PASS  an unseen phrasing is separable from a fact never taught
+  PASS  the device answers more on day 14 than on day 1
+  PASS  the residue loop covers most of the syllabus in two weeks
+  PASS  the codex triples and the device is still never confidently wrong
+  (the topic graph is only consulted while gaps remain; by day 6 there are none)
+  PASS  by the end it answers everything asked, and still nothing falsely
+
+==================================================
+ALL 74 INVARIANTS HOLD IN SIMULATION
+==================================================
+
+What this does and does not prove: every byte on air was produced and
+opened by the shipping firmware, so a delivery here is a real decode.
+Propagation, sensitivity, capture, crystal drift and current draw are
+models, and models are where a simulator lies. The numbers that decide
+the project are still Phase 0 — a printed shell and a walked street.
+make: Leaving directory '/home/ubuntu/herus/sim'

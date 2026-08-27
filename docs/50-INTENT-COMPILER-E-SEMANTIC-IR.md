@@ -151,3 +151,23 @@ A tese para avançar é, portanto:
 - [Desafio do raciocínio generativo](49-DESAFIO-RACIOCINIO-GENERATIVO.md)
 - [Baseline bruto da arquitetura](../research/evidence/baseline_program.txt)
 - [Baseline bruto do contrato de intenção](../research/evidence/intent_contract_baseline.txt)
+
+## Resultado Wide Research — ciclo 03
+
+O primeiro ciclo paralelo testou simultaneamente o contrato host, o parser C, a convergência com comandos tipados e a memória persistente. O corpus é derivado dos fixtures existentes em `firmware/core/test_voice.c`; não é telemetria de produção. Ele contém 13 casos com oráculo fechado em `research/evidence/semantic_ir_real_corpus.json`.
+
+O bridge C encontrou e fechou uma falha real no parser: composições como `cento e vinte e cinco minutos`, `20 e 5 minutos`, sinais numéricos e intenções conflitantes não podem ser reduzidas silenciosamente. Bytes não ASCII são rejeitados antes da normalização porque a gramática atual é explicitamente ASCII e limitada. O ciclo também corrigiu a classificação de `rollback_failures` em `memory_collection.c`, preservando o diagnóstico antes de zerar o registro.
+
+Gates executados no ciclo:
+
+| Gate | Resultado |
+|---|---|
+| Pesquisa host | 26 testes, `OK`. |
+| Firmware completo | `ALL FIRMWARE SUITES PASS`. |
+| Bridge C | 7 invariantes de convergência, `PASS`. |
+| ASan/UBSan | Voz, bridge e coleção de memória, sem erro. |
+| GCC analyzer | Parser de voz e bridge, sem defeito. |
+| Simulador | 74 invariantes, `ALL 74 INVARIANTS HOLD`. |
+| Proveniência | Manifesto válido, fail-closed preservado. |
+
+O log completo está em `research/evidence/wide_cycle_03/validation_raw.txt`. Os logs separados de cada frente estão no mesmo diretório. O alvo `make -C firmware sanitizers` e o alvo `make -C firmware analyzer` foram adicionados à CI; ambos continuam separados da autoridade operacional do firmware.

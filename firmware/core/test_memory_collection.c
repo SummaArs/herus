@@ -342,12 +342,31 @@ int main(void)
 
     backend_init(&f);
     cfg = config_for(&f);
+    ok(memory_collection_init(&c, &cfg) == MEMORY_COLLECTION_OK,
+       "T10 rollback metric fixture starts from an empty collection");
+    card = eligible_card(551u, 5501u);
+    auth = auth_for(&card);
+    access = physical_access(&gate, MEMORY_PHYSICAL_PURPOSE_COLLECTION_INSERT, 106u);
+    ok(memory_collection_insert(&c, &auth, &card, &access) == MEMORY_COLLECTION_OK &&
+       c.generation == 1u && f.floor == 1u,
+       "T10 rollback metric fixture commits a baseline generation");
+    f.floor = 2u;
+    access = physical_access(&gate, MEMORY_PHYSICAL_PURPOSE_COLLECTION_OPEN, 107u);
+    memset(&out, 0xA5, sizeof(out));
+    ok(memory_collection_open(&c, 551u, &access, &out) == MEMORY_COLLECTION_E_STATE &&
+       c.state == MEMORY_COLLECTION_BLOCKED && c.metrics.rollback_failures == 1u &&
+       out.card_id == 0u,
+       "T10 runtime floor mismatch blocks and records rollback before scrubbing output");
+    (void)memory_physical_session_cancel(&gate);
+
+    backend_init(&f);
+    cfg = config_for(&f);
     ROOT_FAIL = 1;
     ok(memory_collection_init(&c, &cfg) == MEMORY_COLLECTION_OK,
        "T10 empty collection does not pretend to test a root before a cryptographic operation");
     card = eligible_card(601u, 6001u);
     auth = auth_for(&card);
-    access = physical_access(&gate, MEMORY_PHYSICAL_PURPOSE_COLLECTION_INSERT, 105u);
+    access = physical_access(&gate, MEMORY_PHYSICAL_PURPOSE_COLLECTION_INSERT, 108u);
     ok(memory_collection_insert(&c, &auth, &card, &access) != MEMORY_COLLECTION_OK &&
        c.state == MEMORY_COLLECTION_BLOCKED,
        "T10 root-load failure blocks mutation with no false persistence result");

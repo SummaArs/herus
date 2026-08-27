@@ -44,6 +44,7 @@
 #   make net        the protocol suite (crypto, session, weave, beat, framing)
 #   make radio      the SX1262 command sequences, against a recording mock bus
 #   make analyzer   run GCC static analysis on the production voice parser and IR bridge
+#   make sanitizers run ASan/UBSan on voice, Semantic IR bridge and memory collection
 #   make syntax     type-check the ESP32-S3 app without an ESP32 present
 #   make vectors    regenerate crypto vectors from an independent implementation
 #   make clean
@@ -60,7 +61,7 @@ INC     := -Icore -Inet -Iport -Itest
 CORE    := core/hv.c core/sbc.c core/lexicon.c core/hcp.c
 NET     := net/crypto.c net/session.c net/region.c net/weave.c net/beat.c net/link.c
 
-.PHONY: all algebra nucleus voice semantic-ir intent dialogue analyzer model-lab memory-policy memory-capture memory-extract watch-memory-frontend memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale memory-collection memory-collection-index memory-collection-recovery memory-collection-recovery-stress memory-collection-finale bench-evidence-validate bench-interruption-sim memory-proposal llm-budget-check memory-physical-session memory-physical-session-recovery memory-physical-session-recovery-stress memory-physical-session-bootstrap memory-prehardware-finale threat-model threat-model-stress proof-fire-mutations assurance capstone trust control-link delivery-plan interaction interaction-rig net radio syntax vectors clean
+.PHONY: all algebra nucleus voice semantic-ir intent dialogue analyzer sanitizers model-lab memory-policy memory-capture memory-extract watch-memory-frontend memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale memory-collection memory-collection-index memory-collection-recovery memory-collection-recovery-stress memory-collection-finale bench-evidence-validate bench-interruption-sim memory-proposal llm-budget-check memory-physical-session memory-physical-session-recovery memory-physical-session-recovery-stress memory-physical-session-bootstrap memory-prehardware-finale threat-model threat-model-stress proof-fire-mutations assurance capstone trust control-link delivery-plan interaction interaction-rig net radio syntax vectors clean
 
 all: algebra nucleus voice semantic-ir intent dialogue analyzer model-lab memory-policy memory-capture memory-extract memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale memory-collection memory-collection-index memory-collection-recovery memory-collection-recovery-stress memory-collection-finale memory-physical-session memory-physical-session-recovery memory-physical-session-recovery-stress memory-physical-session-bootstrap memory-prehardware-finale threat-model threat-model-stress proof-fire-mutations assurance capstone trust control-link interaction interaction-rig net radio syntax
 	@echo ""
@@ -283,6 +284,17 @@ radio: build
 	$(CC) $(CFLAGS) $(INC) test/test_radio.c port/sx1262.c net/region.c \
 	    -o build/test_radio
 	./build/test_radio
+
+sanitizers: build
+	@echo "--- sanitizers: voice, Semantic IR bridge and memory collection ---"
+	$(CC) -fsanitize=address,undefined -fno-omit-frame-pointer -O1 -g -Wall -Wextra -std=c11 $(INC) core/voice.c core/test_voice.c -o build/san_voice
+	./build/san_voice
+	$(CC) -fsanitize=address,undefined -fno-omit-frame-pointer -O1 -g -Wall -Wextra -std=c11 $(INC) core/voice.c core/test_semantic_ir_bridge.c -o build/san_semantic_ir_bridge
+	./build/san_semantic_ir_bridge
+	$(CC) -fsanitize=address,undefined -fno-omit-frame-pointer -O1 -g -Wall -Wextra -std=c11 $(INC) net/crypto.c core/memory_policy.c core/memory_physical_session.c core/memory_collection_recovery.c core/memory_collection.c core/test_memory_collection.c -o build/san_memory_collection
+	./build/san_memory_collection
+	rm -f build/san_voice build/san_semantic_ir_bridge build/san_memory_collection
+	@echo "    ok — ASan/UBSan found no defect in the changed paths"
 
 analyzer: build
 	@echo "--- static analysis: voice parser and Semantic IR bridge ---"

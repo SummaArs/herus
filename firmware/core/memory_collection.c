@@ -342,12 +342,15 @@ static int load_current(memory_collection_t *c, collection_record_t *out)
     }
     rc = decode_blob(c, blob, out);
     secure_zero(blob, sizeof(blob));
-    if (rc != MEMORY_COLLECTION_OK || out->txn != MEMORY_COLLECTION_TXN_NONE ||
-        out->generation != floor) {
-        secure_zero(out, sizeof(*out));
-        block(c, rc == MEMORY_COLLECTION_E_AUTHENTICITY ? 0 : 1,
-              out->generation != floor, rc == MEMORY_COLLECTION_E_AUTHENTICITY);
-        return rc == MEMORY_COLLECTION_E_AUTHENTICITY ? rc : MEMORY_COLLECTION_E_ROLLBACK;
+    {
+        int generation_mismatch = out->generation != floor;
+        if (rc != MEMORY_COLLECTION_OK || out->txn != MEMORY_COLLECTION_TXN_NONE ||
+            generation_mismatch) {
+            secure_zero(out, sizeof(*out));
+            block(c, rc == MEMORY_COLLECTION_E_AUTHENTICITY ? 0 : 1,
+                  generation_mismatch, rc == MEMORY_COLLECTION_E_AUTHENTICITY);
+            return rc == MEMORY_COLLECTION_E_AUTHENTICITY ? rc : MEMORY_COLLECTION_E_ROLLBACK;
+        }
     }
     return MEMORY_COLLECTION_OK;
 }

@@ -17,13 +17,13 @@
     {
       "path": ".github/workflows/prove.yml",
       "kind": "file",
-      "sha256": "93267ba5b9e17b8ad317b4a81c1e4d51d427928bd28f9ca7b90aef397c16d6ce",
+      "sha256": "1cdfe71ea5e13920ac09e792e3774eb02e9f7a2acd677d9899492cc6f96489f9",
       "role": "host proof workflow"
     },
     {
       "path": "firmware",
       "kind": "tree",
-      "sha256": "34d2e2641f3b27481ba7499e15f9bc1d97cd97bb006e7efbfa3627674a486716",
+      "sha256": "3993fe294433424a964ff92ced8825b9fe09d9ddfd9ce5879811d9be46ef6fd5",
       "role": "portable firmware and proof sources"
     },
     {

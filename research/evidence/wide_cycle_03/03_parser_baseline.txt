@@ -1,0 +1,560 @@
+firmware/core/intent_gate.c:19:intent_gate_status_t intent_gate_evaluate(const intent_observation_t *obs,
+firmware/core/intent_gate.h:56:intent_gate_status_t intent_gate_evaluate(const intent_observation_t *obs,
+firmware/core/interaction.c:159:    status = voice_parse_pt(text, &it->cfg.lexicon, &it->parsed);
+firmware/core/interaction.c:172:    (void)intent_gate_evaluate(obs, it->session_id, hint, &gate);
+firmware/core/interaction.c:180:    status = voice_from_command(obs->command, obs->minutes, &it->cfg.lexicon, &it->parsed);
+firmware/core/test_intent_gate.c:33:    ok(intent_gate_evaluate(&o, 7, NULL, &out) == INTENT_GATE_ACCEPT_DIRECT && !out.context_used,
+firmware/core/test_intent_gate.c:39:    ok(intent_gate_evaluate(&o, 7, &hint, &out) == INTENT_GATE_LOW_CONFIDENCE,
+firmware/core/test_intent_gate.c:43:    ok(intent_gate_evaluate(&o, 7, &hint, &out) == INTENT_GATE_ACCEPT_CONTEXT && out.context_used,
+firmware/core/test_intent_gate.c:47:    ok(intent_gate_evaluate(&o, 7, &hint, &out) == INTENT_GATE_AMBIGUOUS && !out.context_used,
+firmware/core/test_intent_gate.c:51:    ok(intent_gate_evaluate(&o, 7, NULL, &out) == INTENT_GATE_STALE,
+firmware/core/test_intent_gate.c:56:    ok(intent_gate_evaluate(&o, 7, NULL, &out) == INTENT_GATE_REJECTED,
+firmware/core/test_voice.c:20:    ok(voice_parse_pt("Chego em dez minutos", &lex, &r) == VOICE_DRAFT &&
+firmware/core/test_voice.c:30:    ok(voice_parse_pt("estou chegando", &lex, &r) == VOICE_DRAFT &&
+firmware/core/test_voice.c:42:    ok(voice_parse_pt("cancelar", &lex, &r) == VOICE_CANCEL_LOCAL &&
+firmware/core/test_voice.c:45:    ok(voice_parse_pt("toque uma musica", &lex, &r) == VOICE_UNKNOWN &&
+firmware/core/test_voice.c:48:    ok(voice_parse_pt("chego em noventa minutos", &lex, &r) == VOICE_REJECTED &&
+firmware/core/test_voice.c:51:    ok(voice_parse_pt("chego em sessenta minutos", &lex, &r) == VOICE_DRAFT &&
+firmware/core/test_voice.c:54:    ok(voice_parse_pt("chego em sessenta e cinco minutos", &lex, &r) == VOICE_REJECTED &&
+firmware/core/test_voice.c:57:    ok(voice_parse_pt("chego em vinte e dez minutos", &lex, &r) == VOICE_REJECTED &&
+firmware/core/test_voice.c:60:    ok(voice_parse_pt("chego em 20 e 5 minutos", &lex, &r) == VOICE_REJECTED &&
+firmware/core/test_voice.c:63:    ok(voice_parse_pt("chego em 60 e 5 minutos", &lex, &r) == VOICE_REJECTED &&
+firmware/core/test_voice.c:66:    ok(voice_parse_pt("chego em -1 minutos", &lex, &r) == VOICE_REJECTED &&
+firmware/core/test_voice.c:69:    ok(voice_parse_pt("chego em +1 minutos", &lex, &r) == VOICE_REJECTED &&
+firmware/core/test_voice.c:72:    ok(voice_parse_pt("chego em cento e vinte e cinco minutos", &lex, &r) == VOICE_REJECTED &&
+firmware/core/test_voice.c:75:    ok(voice_parse_pt("preciso de socorro", &lex, &r) == VOICE_DRAFT &&
+firmware/core/test_voice.c:79:    ok(voice_parse_pt("cancelar e chego em dez minutos", &lex, &r) == VOICE_REJECTED &&
+firmware/core/test_voice.c:82:    ok(voice_parse_pt("preciso de socorro e estou chegando", &lex, &r) == VOICE_REJECTED &&
+firmware/core/test_voice.c:85:    ok(voice_parse_pt("não cancelar", &lex, &r) == VOICE_REJECTED &&
+firmware/core/test_voice.c:88:    ok(voice_parse_pt("não estou chegando", &lex, &r) == VOICE_REJECTED &&
+firmware/core/test_voice.c:100:    ok(voice_from_command(VOICE_COMMAND_ARRIVE, 12, &lex, &r) == VOICE_DRAFT &&
+firmware/core/test_voice.c:104:    ok(voice_from_command(VOICE_COMMAND_HELP, 1, &lex, &r) == VOICE_REJECTED &&
+firmware/core/test_voice.c:105:       voice_from_command(VOICE_COMMAND_CANCEL, 1, &lex, &r) == VOICE_REJECTED,
+firmware/core/voice.c:161:voice_status_t voice_from_command(voice_command_t command, uint8_t minutes,
+firmware/core/voice.c:199:voice_status_t voice_parse_pt(const char *transcript, const voice_lexicon_t *lexicon,
+firmware/core/voice.h:76:voice_status_t voice_parse_pt(const char *transcript, const voice_lexicon_t *lexicon,
+firmware/core/voice.h:83:voice_status_t voice_from_command(voice_command_t command, uint8_t minutes,
+firmware/core/test_semantic_ir_bridge.c:36:    ok(voice_parse_pt("Chego em dez minutos", &lex, &text) == VOICE_DRAFT &&
+firmware/core/test_semantic_ir_bridge.c:37:       voice_from_command(VOICE_COMMAND_ARRIVE, 10, &lex, &typed) == VOICE_DRAFT &&
+firmware/core/test_semantic_ir_bridge.c:41:    ok(voice_parse_pt("estou chegando", &lex, &text) == VOICE_DRAFT &&
+firmware/core/test_semantic_ir_bridge.c:42:       voice_from_command(VOICE_COMMAND_ARRIVE, 0, &lex, &typed) == VOICE_DRAFT &&
+firmware/core/test_semantic_ir_bridge.c:54:    ok(voice_parse_pt("preciso de socorro", &lex, &text) == VOICE_DRAFT &&
+firmware/core/test_semantic_ir_bridge.c:55:       voice_from_command(VOICE_COMMAND_HELP, 0, &lex, &typed) == VOICE_DRAFT &&
+firmware/core/test_semantic_ir_bridge.c:59:    ok(voice_parse_pt("cancelar", &lex, &text) == VOICE_CANCEL_LOCAL &&
+firmware/core/test_semantic_ir_bridge.c:60:       voice_from_command(VOICE_COMMAND_CANCEL, 0, &lex, &typed) == VOICE_CANCEL_LOCAL &&
+firmware/core/test_semantic_ir_bridge.c:71:    ok(voice_parse_pt("toque uma musica", &lex, &result) == VOICE_UNKNOWN &&
+firmware/core/test_semantic_ir_bridge.c:74:    ok(voice_parse_pt("chego em noventa minutos", &lex, &result) == VOICE_REJECTED &&
+firmware/core/test_semantic_ir_bridge.c:77:    ok(voice_from_command(VOICE_COMMAND_HELP, 1, &lex, &result) == VOICE_REJECTED &&
+firmware/core/test_semantic_ir_bridge.c:78:       voice_from_command(VOICE_COMMAND_CANCEL, 1, &lex, &result) == VOICE_REJECTED,
+research/software_provenance_manifest.json:57:      "role": "host-only semantic IR implementation"
+research/software_provenance_manifest.json:63:      "role": "host-only semantic IR tests"
+research/software_provenance_manifest.json:69:      "role": "deterministic semantic IR adversarial fuzzer"
+research/software_provenance_manifest.json:75:      "role": "semantic IR fuzz campaign test"
+research/software_provenance_manifest.json:81:      "role": "versioned finite semantic IR contract"
+research/source_materials/visao_semantic_ir_herus.txt:35:Linguagem	SSM/attention + Semantic IR
+research/source_materials/visao_semantic_ir_herus.txt:44:Multimodal	uma Semantic IR comum
+research/source_materials/visao_semantic_ir_herus.txt:103:Semantic IR seria a "linguagem universal" do HERUS.
+research/source_materials/visao_semantic_ir_herus.txt:141:> diferentes entradas → mesma Semantic IR.
+research/semantic_ir.schema.json:4:  "title": "HERUS Semantic IR v0.1",
+research/semantic_ir.py:1:"""Semantic IR v0.1: finite, typed and fail-closed bridge for HERUS.
+research/semantic_ir.py:88:        return (_issue("$", "TYPE", "Semantic IR must be an object"),)
+research/semantic_ir.py:91:        issues.append(_issue(f"$.{key}", "UNKNOWN_KEY", "key is outside the Semantic IR contract"))
+research/evidence/baseline_program.txt:5:[33m0001b3a[m documenta Intent Compiler e Semantic IR
+research/evidence/baseline_program.txt:163:docs/50-INTENT-COMPILER-E-SEMANTIC-IR.md:1:# Intent Compiler, Semantic IR e a evolução do HERUS
+research/evidence/baseline_program.txt:165:docs/50-INTENT-COMPILER-E-SEMANTIC-IR.md:9:No HERUS, essa ideia deve ser transportada sem importar a promessa de NLU aberto. A Semantic IR deve ser uma **representação intermediária semântica finita, tipada e versionada**, que converte eventos de texto, voz, sensores, visão, código ou ambiente em cartões de contexto, propostas, estados e relações canônicas. Ela não é um espaço livre de embeddings nem uma autorização para qualquer modalidade escrever diretamente no cofre ou no rádio.
+research/evidence/baseline_program.txt:167:docs/50-INTENT-COMPILER-E-SEMANTIC-IR.md:29:## Semantic IR do HERUS
+research/evidence/baseline_program.txt:168:docs/50-INTENT-COMPILER-E-SEMANTIC-IR.md:40:                 Semantic IR tipada e versionada
+research/evidence/baseline_program.txt:169:docs/50-INTENT-COMPILER-E-SEMANTIC-IR.md:61:### Contrato mínimo da Semantic IR
+research/evidence/baseline_program.txt:171:docs/50-INTENT-COMPILER-E-SEMANTIC-IR.md:78:O Intent Compiler do OonCore oferece o padrão para a futura camada `Semantic IR Compiler`:
+research/evidence/baseline_program.txt:172:docs/50-INTENT-COMPILER-E-SEMANTIC-IR.md:94:Primeiro, demonstrar que diferentes entradas controladas — texto curto, botão, evento de sensor e comando vocal limitado — convergem para a mesma Semantic IR canônica. A meta não é cobertura universal; é equivalência verificável entre modalidades dentro de um vocabulário finito.
+research/evidence/baseline_program.txt:174:docs/50-INTENT-COMPILER-E-SEMANTIC-IR.md:113:| SSM/Mamba/CNN/ViT | São frontends substituíveis; o contrato comum é a Semantic IR. |
+research/evidence/baseline_program.txt:175:docs/50-INTENT-COMPILER-E-SEMANTIC-IR.md:149:- [Visão Semantic IR / arquitetura cognitiva](../research/source_materials/visao_semantic_ir_herus.txt)
+research/evidence/baseline_program.txt:180:research/source_materials/visao_semantic_ir_herus.txt:35:Linguagem	SSM/attention + Semantic IR
+research/evidence/baseline_program.txt:181:research/source_materials/visao_semantic_ir_herus.txt:44:Multimodal	uma Semantic IR comum
+research/evidence/baseline_program.txt:183:research/source_materials/visao_semantic_ir_herus.txt:103:Semantic IR seria a "linguagem universal" do HERUS.
+research/evidence/baseline_program.txt:185:research/source_materials/visao_semantic_ir_herus.txt:141:> diferentes entradas → mesma Semantic IR.
+research/evidence/baseline_program.txt:186:README.md:98:| [Intent Compiler e Semantic IR](docs/50-INTENT-COMPILER-E-SEMANTIC-IR.md) | Conexão entre compilação de intenção, representação intermediária semântica, percepção multimodal e núcleo cognitivo verificável. |
+research/evidence/intent_contract_baseline.txt:6:firmware/core/intent_gate.c:19:intent_gate_status_t intent_gate_evaluate(const intent_observation_t *obs,
+research/evidence/intent_contract_baseline.txt:13:firmware/core/intent_gate.h:56:intent_gate_status_t intent_gate_evaluate(const intent_observation_t *obs,
+research/evidence/intent_contract_baseline.txt:18:firmware/core/interaction.c:172:    (void)intent_gate_evaluate(obs, it->session_id, hint, &gate);
+research/evidence/intent_contract_baseline.txt:57:firmware/core/test_intent_gate.c:33:    ok(intent_gate_evaluate(&o, 7, NULL, &out) == INTENT_GATE_ACCEPT_DIRECT && !out.context_used,
+research/evidence/intent_contract_baseline.txt:58:firmware/core/test_intent_gate.c:39:    ok(intent_gate_evaluate(&o, 7, &hint, &out) == INTENT_GATE_LOW_CONFIDENCE,
+research/evidence/intent_contract_baseline.txt:59:firmware/core/test_intent_gate.c:43:    ok(intent_gate_evaluate(&o, 7, &hint, &out) == INTENT_GATE_ACCEPT_CONTEXT && out.context_used,
+research/evidence/intent_contract_baseline.txt:60:firmware/core/test_intent_gate.c:47:    ok(intent_gate_evaluate(&o, 7, &hint, &out) == INTENT_GATE_AMBIGUOUS && !out.context_used,
+research/evidence/intent_contract_baseline.txt:61:firmware/core/test_intent_gate.c:51:    ok(intent_gate_evaluate(&o, 7, NULL, &out) == INTENT_GATE_STALE,
+research/evidence/intent_contract_baseline.txt:62:firmware/core/test_intent_gate.c:56:    ok(intent_gate_evaluate(&o, 7, NULL, &out) == INTENT_GATE_REJECTED,
+research/evidence/intent_contract_baseline.txt:117:intent_gate_status_t intent_gate_evaluate(const intent_observation_t *obs,
+research/evidence/intent_contract_baseline.txt:209:intent_gate_status_t intent_gate_evaluate(const intent_observation_t *obs,
+research/evidence/intent_contract_baseline.txt:374:    status = voice_parse_pt(text, &it->cfg.lexicon, &it->parsed);
+research/evidence/intent_contract_baseline.txt:387:    (void)intent_gate_evaluate(obs, it->session_id, hint, &gate);
+research/evidence/intent_contract_baseline.txt:395:    status = voice_from_command(obs->command, obs->minutes, &it->cfg.lexicon, &it->parsed);
+research/evidence/intent_contract_baseline.txt:876:    ok(intent_gate_evaluate(&o, 7, NULL, &out) == INTENT_GATE_ACCEPT_DIRECT && !out.context_used,
+research/evidence/intent_contract_baseline.txt:882:    ok(intent_gate_evaluate(&o, 7, &hint, &out) == INTENT_GATE_LOW_CONFIDENCE,
+research/evidence/intent_contract_baseline.txt:886:    ok(intent_gate_evaluate(&o, 7, &hint, &out) == INTENT_GATE_ACCEPT_CONTEXT && out.context_used,
+research/evidence/intent_contract_baseline.txt:890:    ok(intent_gate_evaluate(&o, 7, &hint, &out) == INTENT_GATE_AMBIGUOUS && !out.context_used,
+research/evidence/intent_contract_baseline.txt:894:    ok(intent_gate_evaluate(&o, 7, NULL, &out) == INTENT_GATE_STALE,
+research/evidence/intent_contract_baseline.txt:899:    ok(intent_gate_evaluate(&o, 7, NULL, &out) == INTENT_GATE_REJECTED,
+research/evidence/intent_contract_baseline.txt:2035:firmware/core/intent_gate.c:19:intent_gate_status_t intent_gate_evaluate(const intent_observation_t *obs,
+research/evidence/intent_contract_baseline.txt:2044:firmware/core/intent_gate.h:56:intent_gate_status_t intent_gate_evaluate(const intent_observation_t *obs,
+research/evidence/intent_contract_baseline.txt:2061:firmware/core/interaction.c:172:    (void)intent_gate_evaluate(obs, it->session_id, hint, &gate);
+research/evidence/intent_contract_baseline.txt:2107:firmware/core/test_intent_gate.c:33:    ok(intent_gate_evaluate(&o, 7, NULL, &out) == INTENT_GATE_ACCEPT_DIRECT && !out.context_used,
+research/evidence/intent_contract_baseline.txt:2108:firmware/core/test_intent_gate.c:39:    ok(intent_gate_evaluate(&o, 7, &hint, &out) == INTENT_GATE_LOW_CONFIDENCE,
+research/evidence/intent_contract_baseline.txt:2109:firmware/core/test_intent_gate.c:43:    ok(intent_gate_evaluate(&o, 7, &hint, &out) == INTENT_GATE_ACCEPT_CONTEXT && out.context_used,
+research/evidence/intent_contract_baseline.txt:2110:firmware/core/test_intent_gate.c:47:    ok(intent_gate_evaluate(&o, 7, &hint, &out) == INTENT_GATE_AMBIGUOUS && !out.context_used,
+research/evidence/intent_contract_baseline.txt:2111:firmware/core/test_intent_gate.c:51:    ok(intent_gate_evaluate(&o, 7, NULL, &out) == INTENT_GATE_STALE,
+research/evidence/intent_contract_baseline.txt:2112:firmware/core/test_intent_gate.c:56:    ok(intent_gate_evaluate(&o, 7, NULL, &out) == INTENT_GATE_REJECTED,
+research/evidence/intent_contract_baseline.txt:2136:firmware/core/test_voice.c:45:    ok(voice_parse_pt("toque uma musica", &lex, &r) == VOICE_UNKNOWN &&
+research/evidence/adversarial_baseline.txt:2:[33m1c8e34a[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m adiciona Semantic IR e testes adversariais
+research/evidence/adversarial_baseline.txt:6:"""Semantic IR v0.1: finite, typed and fail-closed bridge for HERUS.
+research/evidence/adversarial_baseline.txt:91:        return (_issue("$", "TYPE", "Semantic IR must be an object"),)
+research/evidence/adversarial_baseline.txt:94:        issues.append(_issue(f"$.{key}", "UNKNOWN_KEY", "key is outside the Semantic IR contract"))
+research/evidence/corpus_source_scan.txt:24:firmware/core/interaction.c:159:    status = voice_parse_pt(text, &it->cfg.lexicon, &it->parsed);
+research/evidence/corpus_source_scan.txt:25:firmware/core/interaction.c:180:    status = voice_from_command(obs->command, obs->minutes, &it->cfg.lexicon, &it->parsed);
+research/evidence/corpus_source_scan.txt:162:firmware/core/test_voice.c:20:    ok(voice_parse_pt("Chego em dez minutos", &lex, &r) == VOICE_DRAFT &&
+research/evidence/corpus_source_scan.txt:163:firmware/core/test_voice.c:30:    ok(voice_parse_pt("estou chegando", &lex, &r) == VOICE_DRAFT &&
+research/evidence/corpus_source_scan.txt:165:firmware/core/test_voice.c:42:    ok(voice_parse_pt("cancelar", &lex, &r) == VOICE_CANCEL_LOCAL &&
+research/evidence/corpus_source_scan.txt:168:firmware/core/test_voice.c:45:    ok(voice_parse_pt("toque uma musica", &lex, &r) == VOICE_UNKNOWN &&
+research/evidence/corpus_source_scan.txt:169:firmware/core/test_voice.c:48:    ok(voice_parse_pt("chego em noventa minutos", &lex, &r) == VOICE_REJECTED &&
+research/evidence/corpus_source_scan.txt:170:firmware/core/test_voice.c:51:    ok(voice_parse_pt("preciso de socorro", &lex, &r) == VOICE_DRAFT &&
+research/evidence/corpus_source_scan.txt:171:firmware/core/test_voice.c:64:    ok(voice_from_command(VOICE_COMMAND_ARRIVE, 12, &lex, &r) == VOICE_DRAFT &&
+research/evidence/corpus_source_scan.txt:172:firmware/core/test_voice.c:68:    ok(voice_from_command(VOICE_COMMAND_HELP, 1, &lex, &r) == VOICE_REJECTED &&
+research/evidence/corpus_source_scan.txt:173:firmware/core/test_voice.c:69:       voice_from_command(VOICE_COMMAND_CANCEL, 1, &lex, &r) == VOICE_REJECTED,
+research/evidence/corpus_source_scan.txt:177:firmware/core/voice.c:123:voice_status_t voice_from_command(voice_command_t command, uint8_t minutes,
+research/evidence/corpus_source_scan.txt:182:firmware/core/voice.c:161:voice_status_t voice_parse_pt(const char *transcript, const voice_lexicon_t *lexicon,
+research/evidence/corpus_source_scan.txt:199:firmware/core/voice.h:76:voice_status_t voice_parse_pt(const char *transcript, const voice_lexicon_t *lexicon,
+research/evidence/corpus_source_scan.txt:201:firmware/core/voice.h:83:voice_status_t voice_from_command(voice_command_t command, uint8_t minutes,
+research/evidence/corpus_source_scan.txt:325:research/evidence/corpus_source_scan.txt:171:firmware/core/test_voice.c:64:    ok(voice_from_command(VOICE_COMMAND_ARRIVE, 12, &lex, &r) == VOICE_DRAFT &&
+research/evidence/corpus_source_scan.txt:326:research/evidence/corpus_source_scan.txt:172:firmware/core/test_voice.c:68:    ok(voice_from_command(VOICE_COMMAND_HELP, 1, &lex, &r) == VOICE_REJECTED &&
+research/evidence/corpus_source_scan.txt:327:research/evidence/corpus_source_scan.txt:173:firmware/core/test_voice.c:69:       voice_from_command(VOICE_COMMAND_CANCEL, 1, &lex, &r) == VOICE_REJECTED,
+research/evidence/corpus_cycle_validation_raw.txt:348:--- semantic IR: real parser and typed-adapter convergence ---
+research/evidence/corpus_cycle_validation_raw.txt:388:--- static analysis: voice parser and Semantic IR bridge ---
+research/evidence/wide_cycle_03/02_ir_baseline.txt:1:"""Semantic IR v0.1: finite, typed and fail-closed bridge for HERUS.
+research/evidence/wide_cycle_03/02_ir_baseline.txt:88:        return (_issue("$", "TYPE", "Semantic IR must be an object"),)
+research/evidence/wide_cycle_03/02_ir_baseline.txt:91:        issues.append(_issue(f"$.{key}", "UNKNOWN_KEY", "key is outside the Semantic IR contract"))
+research/evidence/wide_cycle_03/02_ir_baseline.txt:239:  "title": "HERUS Semantic IR v0.1",
+research/evidence/wide_cycle_03/03_parser_baseline.txt:1:firmware/core/intent_gate.c:19:intent_gate_status_t intent_gate_evaluate(const intent_observation_t *obs,
+research/evidence/wide_cycle_03/03_parser_baseline.txt:2:firmware/core/intent_gate.h:56:intent_gate_status_t intent_gate_evaluate(const intent_observation_t *obs,
+research/evidence/wide_cycle_03/03_parser_baseline.txt:3:firmware/core/interaction.c:159:    status = voice_parse_pt(text, &it->cfg.lexicon, &it->parsed);
+research/evidence/wide_cycle_03/03_parser_baseline.txt:4:firmware/core/interaction.c:172:    (void)intent_gate_evaluate(obs, it->session_id, hint, &gate);
+research/evidence/wide_cycle_03/03_parser_baseline.txt:5:firmware/core/interaction.c:180:    status = voice_from_command(obs->command, obs->minutes, &it->cfg.lexicon, &it->parsed);
+research/evidence/wide_cycle_03/03_parser_baseline.txt:6:firmware/core/test_intent_gate.c:33:    ok(intent_gate_evaluate(&o, 7, NULL, &out) == INTENT_GATE_ACCEPT_DIRECT && !out.context_used,
+research/evidence/wide_cycle_03/03_parser_baseline.txt:7:firmware/core/test_intent_gate.c:39:    ok(intent_gate_evaluate(&o, 7, &hint, &out) == INTENT_GATE_LOW_CONFIDENCE,
+research/evidence/wide_cycle_03/03_parser_baseline.txt:8:firmware/core/test_intent_gate.c:43:    ok(intent_gate_evaluate(&o, 7, &hint, &out) == INTENT_GATE_ACCEPT_CONTEXT && out.context_used,
+research/evidence/wide_cycle_03/03_parser_baseline.txt:9:firmware/core/test_intent_gate.c:47:    ok(intent_gate_evaluate(&o, 7, &hint, &out) == INTENT_GATE_AMBIGUOUS && !out.context_used,
+research/evidence/wide_cycle_03/03_parser_baseline.txt:10:firmware/core/test_intent_gate.c:51:    ok(intent_gate_evaluate(&o, 7, NULL, &out) == INTENT_GATE_STALE,
+research/evidence/wide_cycle_03/03_parser_baseline.txt:11:firmware/core/test_intent_gate.c:56:    ok(intent_gate_evaluate(&o, 7, NULL, &out) == INTENT_GATE_REJECTED,
+research/evidence/wide_cycle_03/03_parser_baseline.txt:12:firmware/core/test_voice.c:20:    ok(voice_parse_pt("Chego em dez minutos", &lex, &r) == VOICE_DRAFT &&
+research/evidence/wide_cycle_03/03_parser_baseline.txt:13:firmware/core/test_voice.c:30:    ok(voice_parse_pt("estou chegando", &lex, &r) == VOICE_DRAFT &&
+research/evidence/wide_cycle_03/03_parser_baseline.txt:14:firmware/core/test_voice.c:42:    ok(voice_parse_pt("cancelar", &lex, &r) == VOICE_CANCEL_LOCAL &&
+research/evidence/wide_cycle_03/03_parser_baseline.txt:15:firmware/core/test_voice.c:45:    ok(voice_parse_pt("toque uma musica", &lex, &r) == VOICE_UNKNOWN &&
+research/evidence/wide_cycle_03/03_parser_baseline.txt:16:firmware/core/test_voice.c:48:    ok(voice_parse_pt("chego em noventa minutos", &lex, &r) == VOICE_REJECTED &&
+research/evidence/wide_cycle_03/03_parser_baseline.txt:17:firmware/core/test_voice.c:51:    ok(voice_parse_pt("chego em sessenta minutos", &lex, &r) == VOICE_DRAFT &&
+research/evidence/wide_cycle_03/03_parser_baseline.txt:18:firmware/core/test_voice.c:54:    ok(voice_parse_pt("chego em sessenta e cinco minutos", &lex, &r) == VOICE_REJECTED &&
+research/evidence/wide_cycle_03/03_parser_baseline.txt:19:firmware/core/test_voice.c:57:    ok(voice_parse_pt("chego em vinte e dez minutos", &lex, &r) == VOICE_REJECTED &&
+research/evidence/wide_cycle_03/03_parser_baseline.txt:20:firmware/core/test_voice.c:60:    ok(voice_parse_pt("chego em 20 e 5 minutos", &lex, &r) == VOICE_REJECTED &&
+research/evidence/wide_cycle_03/03_parser_baseline.txt:21:firmware/core/test_voice.c:63:    ok(voice_parse_pt("chego em 60 e 5 minutos", &lex, &r) == VOICE_REJECTED &&
+research/evidence/wide_cycle_03/03_parser_baseline.txt:22:firmware/core/test_voice.c:66:    ok(voice_parse_pt("chego em -1 minutos", &lex, &r) == VOICE_REJECTED &&
+research/evidence/wide_cycle_03/03_parser_baseline.txt:23:firmware/core/test_voice.c:69:    ok(voice_parse_pt("chego em +1 minutos", &lex, &r) == VOICE_REJECTED &&
+research/evidence/wide_cycle_03/03_parser_baseline.txt:24:firmware/core/test_voice.c:72:    ok(voice_parse_pt("chego em cento e vinte e cinco minutos", &lex, &r) == VOICE_REJECTED &&
+research/evidence/wide_cycle_03/03_parser_baseline.txt:25:firmware/core/test_voice.c:75:    ok(voice_parse_pt("preciso de socorro", &lex, &r) == VOICE_DRAFT &&
+research/evidence/wide_cycle_03/03_parser_baseline.txt:26:firmware/core/test_voice.c:79:    ok(voice_parse_pt("cancelar e chego em dez minutos", &lex, &r) == VOICE_REJECTED &&
+research/evidence/wide_cycle_03/03_parser_baseline.txt:27:firmware/core/test_voice.c:82:    ok(voice_parse_pt("preciso de socorro e estou chegando", &lex, &r) == VOICE_REJECTED &&
+research/evidence/wide_cycle_03/03_parser_baseline.txt:28:firmware/core/test_voice.c:85:    ok(voice_parse_pt("não cancelar", &lex, &r) == VOICE_REJECTED &&
+research/evidence/wide_cycle_03/03_parser_baseline.txt:29:firmware/core/test_voice.c:88:    ok(voice_parse_pt("não estou chegando", &lex, &r) == VOICE_REJECTED &&
+research/evidence/wide_cycle_03/03_parser_baseline.txt:30:firmware/core/test_voice.c:100:    ok(voice_from_command(VOICE_COMMAND_ARRIVE, 12, &lex, &r) == VOICE_DRAFT &&
+research/evidence/wide_cycle_03/03_parser_baseline.txt:31:firmware/core/test_voice.c:104:    ok(voice_from_command(VOICE_COMMAND_HELP, 1, &lex, &r) == VOICE_REJECTED &&
+research/evidence/wide_cycle_03/03_parser_baseline.txt:32:firmware/core/test_voice.c:105:       voice_from_command(VOICE_COMMAND_CANCEL, 1, &lex, &r) == VOICE_REJECTED,
+research/evidence/wide_cycle_03/03_parser_baseline.txt:33:firmware/core/voice.c:161:voice_status_t voice_from_command(voice_command_t command, uint8_t minutes,
+research/evidence/wide_cycle_03/03_parser_baseline.txt:34:firmware/core/voice.c:199:voice_status_t voice_parse_pt(const char *transcript, const voice_lexicon_t *lexicon,
+research/evidence/wide_cycle_03/03_parser_baseline.txt:35:firmware/core/voice.h:76:voice_status_t voice_parse_pt(const char *transcript, const voice_lexicon_t *lexicon,
+research/evidence/wide_cycle_03/03_parser_baseline.txt:36:firmware/core/voice.h:83:voice_status_t voice_from_command(voice_command_t command, uint8_t minutes,
+research/evidence/wide_cycle_03/03_parser_baseline.txt:37:firmware/core/test_semantic_ir_bridge.c:36:    ok(voice_parse_pt("Chego em dez minutos", &lex, &text) == VOICE_DRAFT &&
+research/evidence/wide_cycle_03/03_parser_baseline.txt:38:firmware/core/test_semantic_ir_bridge.c:37:       voice_from_command(VOICE_COMMAND_ARRIVE, 10, &lex, &typed) == VOICE_DRAFT &&
+research/evidence/wide_cycle_03/03_parser_baseline.txt:39:firmware/core/test_semantic_ir_bridge.c:41:    ok(voice_parse_pt("estou chegando", &lex, &text) == VOICE_DRAFT &&
+research/evidence/wide_cycle_03/03_parser_baseline.txt:40:firmware/core/test_semantic_ir_bridge.c:42:       voice_from_command(VOICE_COMMAND_ARRIVE, 0, &lex, &typed) == VOICE_DRAFT &&
+research/evidence/wide_cycle_03/03_parser_baseline.txt:41:firmware/core/test_semantic_ir_bridge.c:54:    ok(voice_parse_pt("preciso de socorro", &lex, &text) == VOICE_DRAFT &&
+research/evidence/wide_cycle_03/03_parser_baseline.txt:42:firmware/core/test_semantic_ir_bridge.c:55:       voice_from_command(VOICE_COMMAND_HELP, 0, &lex, &typed) == VOICE_DRAFT &&
+research/evidence/wide_cycle_03/03_parser_baseline.txt:43:firmware/core/test_semantic_ir_bridge.c:59:    ok(voice_parse_pt("cancelar", &lex, &text) == VOICE_CANCEL_LOCAL &&
+research/evidence/wide_cycle_03/03_parser_baseline.txt:44:firmware/core/test_semantic_ir_bridge.c:60:       voice_from_command(VOICE_COMMAND_CANCEL, 0, &lex, &typed) == VOICE_CANCEL_LOCAL &&
+research/evidence/wide_cycle_03/03_parser_baseline.txt:45:firmware/core/test_semantic_ir_bridge.c:71:    ok(voice_parse_pt("toque uma musica", &lex, &result) == VOICE_UNKNOWN &&
+research/evidence/wide_cycle_03/03_parser_baseline.txt:46:firmware/core/test_semantic_ir_bridge.c:74:    ok(voice_parse_pt("chego em noventa minutos", &lex, &result) == VOICE_REJECTED &&
+research/evidence/wide_cycle_03/03_parser_baseline.txt:47:firmware/core/test_semantic_ir_bridge.c:77:    ok(voice_from_command(VOICE_COMMAND_HELP, 1, &lex, &result) == VOICE_REJECTED &&
+research/evidence/wide_cycle_03/03_parser_baseline.txt:48:firmware/core/test_semantic_ir_bridge.c:78:       voice_from_command(VOICE_COMMAND_CANCEL, 1, &lex, &result) == VOICE_REJECTED,
+research/evidence/wide_cycle_03/03_parser_baseline.txt:49:research/software_provenance_manifest.json:57:      "role": "host-only semantic IR implementation"
+research/evidence/wide_cycle_03/03_parser_baseline.txt:50:research/software_provenance_manifest.json:63:      "role": "host-only semantic IR tests"
+research/evidence/wide_cycle_03/03_parser_baseline.txt:51:research/software_provenance_manifest.json:69:      "role": "deterministic semantic IR adversarial fuzzer"
+research/evidence/wide_cycle_03/03_parser_baseline.txt:52:research/software_provenance_manifest.json:75:      "role": "semantic IR fuzz campaign test"
+research/evidence/wide_cycle_03/03_parser_baseline.txt:53:research/software_provenance_manifest.json:81:      "role": "versioned finite semantic IR contract"
+research/evidence/wide_cycle_03/03_parser_baseline.txt:54:research/source_materials/visao_semantic_ir_herus.txt:35:Linguagem	SSM/attention + Semantic IR
+research/evidence/wide_cycle_03/03_parser_baseline.txt:55:research/source_materials/visao_semantic_ir_herus.txt:44:Multimodal	uma Semantic IR comum
+research/evidence/wide_cycle_03/03_parser_baseline.txt:56:research/source_materials/visao_semantic_ir_herus.txt:103:Semantic IR seria a "linguagem universal" do HERUS.
+research/evidence/wide_cycle_03/03_parser_baseline.txt:57:research/source_materials/visao_semantic_ir_herus.txt:141:> diferentes entradas → mesma Semantic IR.
+research/evidence/wide_cycle_03/03_parser_baseline.txt:58:research/semantic_ir.schema.json:4:  "title": "HERUS Semantic IR v0.1",
+research/evidence/wide_cycle_03/03_parser_baseline.txt:59:research/semantic_ir.py:1:"""Semantic IR v0.1: finite, typed and fail-closed bridge for HERUS.
+research/evidence/wide_cycle_03/03_parser_baseline.txt:60:research/semantic_ir.py:88:        return (_issue("$", "TYPE", "Semantic IR must be an object"),)
+research/evidence/wide_cycle_03/03_parser_baseline.txt:61:research/semantic_ir.py:91:        issues.append(_issue(f"$.{key}", "UNKNOWN_KEY", "key is outside the Semantic IR contract"))
+research/evidence/wide_cycle_03/03_parser_baseline.txt:62:research/evidence/baseline_program.txt:5:[33m0001b3a[m documenta Intent Compiler e Semantic IR
+research/evidence/wide_cycle_03/03_parser_baseline.txt:63:research/evidence/baseline_program.txt:163:docs/50-INTENT-COMPILER-E-SEMANTIC-IR.md:1:# Intent Compiler, Semantic IR e a evolução do HERUS
+research/evidence/wide_cycle_03/03_parser_baseline.txt:64:research/evidence/baseline_program.txt:165:docs/50-INTENT-COMPILER-E-SEMANTIC-IR.md:9:No HERUS, essa ideia deve ser transportada sem importar a promessa de NLU aberto. A Semantic IR deve ser uma **representação intermediária semântica finita, tipada e versionada**, que converte eventos de texto, voz, sensores, visão, código ou ambiente em cartões de contexto, propostas, estados e relações canônicas. Ela não é um espaço livre de embeddings nem uma autorização para qualquer modalidade escrever diretamente no cofre ou no rádio.
+research/evidence/wide_cycle_03/03_parser_baseline.txt:65:research/evidence/baseline_program.txt:167:docs/50-INTENT-COMPILER-E-SEMANTIC-IR.md:29:## Semantic IR do HERUS
+research/evidence/wide_cycle_03/03_parser_baseline.txt:66:research/evidence/baseline_program.txt:168:docs/50-INTENT-COMPILER-E-SEMANTIC-IR.md:40:                 Semantic IR tipada e versionada
+research/evidence/wide_cycle_03/03_parser_baseline.txt:67:research/evidence/baseline_program.txt:169:docs/50-INTENT-COMPILER-E-SEMANTIC-IR.md:61:### Contrato mínimo da Semantic IR
+research/evidence/wide_cycle_03/03_parser_baseline.txt:68:research/evidence/baseline_program.txt:171:docs/50-INTENT-COMPILER-E-SEMANTIC-IR.md:78:O Intent Compiler do OonCore oferece o padrão para a futura camada `Semantic IR Compiler`:
+research/evidence/wide_cycle_03/03_parser_baseline.txt:69:research/evidence/baseline_program.txt:172:docs/50-INTENT-COMPILER-E-SEMANTIC-IR.md:94:Primeiro, demonstrar que diferentes entradas controladas — texto curto, botão, evento de sensor e comando vocal limitado — convergem para a mesma Semantic IR canônica. A meta não é cobertura universal; é equivalência verificável entre modalidades dentro de um vocabulário finito.
+research/evidence/wide_cycle_03/03_parser_baseline.txt:70:research/evidence/baseline_program.txt:174:docs/50-INTENT-COMPILER-E-SEMANTIC-IR.md:113:| SSM/Mamba/CNN/ViT | São frontends substituíveis; o contrato comum é a Semantic IR. |
+research/evidence/wide_cycle_03/03_parser_baseline.txt:71:research/evidence/baseline_program.txt:175:docs/50-INTENT-COMPILER-E-SEMANTIC-IR.md:149:- [Visão Semantic IR / arquitetura cognitiva](../research/source_materials/visao_semantic_ir_herus.txt)
+research/evidence/wide_cycle_03/03_parser_baseline.txt:72:research/evidence/baseline_program.txt:180:research/source_materials/visao_semantic_ir_herus.txt:35:Linguagem	SSM/attention + Semantic IR
+research/evidence/wide_cycle_03/03_parser_baseline.txt:73:research/evidence/baseline_program.txt:181:research/source_materials/visao_semantic_ir_herus.txt:44:Multimodal	uma Semantic IR comum
+research/evidence/wide_cycle_03/03_parser_baseline.txt:74:research/evidence/baseline_program.txt:183:research/source_materials/visao_semantic_ir_herus.txt:103:Semantic IR seria a "linguagem universal" do HERUS.
+research/evidence/wide_cycle_03/03_parser_baseline.txt:75:research/evidence/baseline_program.txt:185:research/source_materials/visao_semantic_ir_herus.txt:141:> diferentes entradas → mesma Semantic IR.
+research/evidence/wide_cycle_03/03_parser_baseline.txt:76:research/evidence/baseline_program.txt:186:README.md:98:| [Intent Compiler e Semantic IR](docs/50-INTENT-COMPILER-E-SEMANTIC-IR.md) | Conexão entre compilação de intenção, representação intermediária semântica, percepção multimodal e núcleo cognitivo verificável. |
+research/evidence/wide_cycle_03/03_parser_baseline.txt:77:research/evidence/intent_contract_baseline.txt:6:firmware/core/intent_gate.c:19:intent_gate_status_t intent_gate_evaluate(const intent_observation_t *obs,
+research/evidence/wide_cycle_03/03_parser_baseline.txt:78:research/evidence/intent_contract_baseline.txt:13:firmware/core/intent_gate.h:56:intent_gate_status_t intent_gate_evaluate(const intent_observation_t *obs,
+research/evidence/wide_cycle_03/03_parser_baseline.txt:79:research/evidence/intent_contract_baseline.txt:18:firmware/core/interaction.c:172:    (void)intent_gate_evaluate(obs, it->session_id, hint, &gate);
+research/evidence/wide_cycle_03/03_parser_baseline.txt:80:research/evidence/intent_contract_baseline.txt:57:firmware/core/test_intent_gate.c:33:    ok(intent_gate_evaluate(&o, 7, NULL, &out) == INTENT_GATE_ACCEPT_DIRECT && !out.context_used,
+research/evidence/wide_cycle_03/03_parser_baseline.txt:81:research/evidence/intent_contract_baseline.txt:58:firmware/core/test_intent_gate.c:39:    ok(intent_gate_evaluate(&o, 7, &hint, &out) == INTENT_GATE_LOW_CONFIDENCE,
+research/evidence/wide_cycle_03/03_parser_baseline.txt:82:research/evidence/intent_contract_baseline.txt:59:firmware/core/test_intent_gate.c:43:    ok(intent_gate_evaluate(&o, 7, &hint, &out) == INTENT_GATE_ACCEPT_CONTEXT && out.context_used,
+research/evidence/wide_cycle_03/03_parser_baseline.txt:83:research/evidence/intent_contract_baseline.txt:60:firmware/core/test_intent_gate.c:47:    ok(intent_gate_evaluate(&o, 7, &hint, &out) == INTENT_GATE_AMBIGUOUS && !out.context_used,
+research/evidence/wide_cycle_03/03_parser_baseline.txt:84:research/evidence/intent_contract_baseline.txt:61:firmware/core/test_intent_gate.c:51:    ok(intent_gate_evaluate(&o, 7, NULL, &out) == INTENT_GATE_STALE,
+research/evidence/wide_cycle_03/03_parser_baseline.txt:85:research/evidence/intent_contract_baseline.txt:62:firmware/core/test_intent_gate.c:56:    ok(intent_gate_evaluate(&o, 7, NULL, &out) == INTENT_GATE_REJECTED,
+research/evidence/wide_cycle_03/03_parser_baseline.txt:86:research/evidence/intent_contract_baseline.txt:117:intent_gate_status_t intent_gate_evaluate(const intent_observation_t *obs,
+research/evidence/wide_cycle_03/03_parser_baseline.txt:87:research/evidence/intent_contract_baseline.txt:209:intent_gate_status_t intent_gate_evaluate(const intent_observation_t *obs,
+research/evidence/wide_cycle_03/03_parser_baseline.txt:88:research/evidence/intent_contract_baseline.txt:374:    status = voice_parse_pt(text, &it->cfg.lexicon, &it->parsed);
+research/evidence/wide_cycle_03/03_parser_baseline.txt:89:research/evidence/intent_contract_baseline.txt:387:    (void)intent_gate_evaluate(obs, it->session_id, hint, &gate);
+research/evidence/wide_cycle_03/03_parser_baseline.txt:90:research/evidence/intent_contract_baseline.txt:395:    status = voice_from_command(obs->command, obs->minutes, &it->cfg.lexicon, &it->parsed);
+research/evidence/wide_cycle_03/03_parser_baseline.txt:91:research/evidence/intent_contract_baseline.txt:876:    ok(intent_gate_evaluate(&o, 7, NULL, &out) == INTENT_GATE_ACCEPT_DIRECT && !out.context_used,
+research/evidence/wide_cycle_03/03_parser_baseline.txt:92:research/evidence/intent_contract_baseline.txt:882:    ok(intent_gate_evaluate(&o, 7, &hint, &out) == INTENT_GATE_LOW_CONFIDENCE,
+research/evidence/wide_cycle_03/03_parser_baseline.txt:93:research/evidence/intent_contract_baseline.txt:886:    ok(intent_gate_evaluate(&o, 7, &hint, &out) == INTENT_GATE_ACCEPT_CONTEXT && out.context_used,
+research/evidence/wide_cycle_03/03_parser_baseline.txt:94:research/evidence/intent_contract_baseline.txt:890:    ok(intent_gate_evaluate(&o, 7, &hint, &out) == INTENT_GATE_AMBIGUOUS && !out.context_used,
+research/evidence/wide_cycle_03/03_parser_baseline.txt:95:research/evidence/intent_contract_baseline.txt:894:    ok(intent_gate_evaluate(&o, 7, NULL, &out) == INTENT_GATE_STALE,
+research/evidence/wide_cycle_03/03_parser_baseline.txt:96:research/evidence/intent_contract_baseline.txt:899:    ok(intent_gate_evaluate(&o, 7, NULL, &out) == INTENT_GATE_REJECTED,
+research/evidence/wide_cycle_03/03_parser_baseline.txt:97:research/evidence/intent_contract_baseline.txt:2035:firmware/core/intent_gate.c:19:intent_gate_status_t intent_gate_evaluate(const intent_observation_t *obs,
+research/evidence/wide_cycle_03/03_parser_baseline.txt:98:research/evidence/intent_contract_baseline.txt:2044:firmware/core/intent_gate.h:56:intent_gate_status_t intent_gate_evaluate(const intent_observation_t *obs,
+research/evidence/wide_cycle_03/03_parser_baseline.txt:99:research/evidence/intent_contract_baseline.txt:2061:firmware/core/interaction.c:172:    (void)intent_gate_evaluate(obs, it->session_id, hint, &gate);
+research/evidence/wide_cycle_03/03_parser_baseline.txt:100:research/evidence/intent_contract_baseline.txt:2107:firmware/core/test_intent_gate.c:33:    ok(intent_gate_evaluate(&o, 7, NULL, &out) == INTENT_GATE_ACCEPT_DIRECT && !out.context_used,
+research/evidence/wide_cycle_03/03_parser_baseline.txt:101:research/evidence/intent_contract_baseline.txt:2108:firmware/core/test_intent_gate.c:39:    ok(intent_gate_evaluate(&o, 7, &hint, &out) == INTENT_GATE_LOW_CONFIDENCE,
+research/evidence/wide_cycle_03/03_parser_baseline.txt:102:research/evidence/intent_contract_baseline.txt:2109:firmware/core/test_intent_gate.c:43:    ok(intent_gate_evaluate(&o, 7, &hint, &out) == INTENT_GATE_ACCEPT_CONTEXT && out.context_used,
+research/evidence/wide_cycle_03/03_parser_baseline.txt:103:research/evidence/intent_contract_baseline.txt:2110:firmware/core/test_intent_gate.c:47:    ok(intent_gate_evaluate(&o, 7, &hint, &out) == INTENT_GATE_AMBIGUOUS && !out.context_used,
+research/evidence/wide_cycle_03/03_parser_baseline.txt:104:research/evidence/intent_contract_baseline.txt:2111:firmware/core/test_intent_gate.c:51:    ok(intent_gate_evaluate(&o, 7, NULL, &out) == INTENT_GATE_STALE,
+research/evidence/wide_cycle_03/03_parser_baseline.txt:105:research/evidence/intent_contract_baseline.txt:2112:firmware/core/test_intent_gate.c:56:    ok(intent_gate_evaluate(&o, 7, NULL, &out) == INTENT_GATE_REJECTED,
+research/evidence/wide_cycle_03/03_parser_baseline.txt:106:research/evidence/intent_contract_baseline.txt:2136:firmware/core/test_voice.c:45:    ok(voice_parse_pt("toque uma musica", &lex, &r) == VOICE_UNKNOWN &&
+research/evidence/wide_cycle_03/03_parser_baseline.txt:107:research/evidence/adversarial_baseline.txt:2:[33m1c8e34a[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m adiciona Semantic IR e testes adversariais
+research/evidence/wide_cycle_03/03_parser_baseline.txt:108:research/evidence/adversarial_baseline.txt:6:"""Semantic IR v0.1: finite, typed and fail-closed bridge for HERUS.
+research/evidence/wide_cycle_03/03_parser_baseline.txt:109:research/evidence/adversarial_baseline.txt:91:        return (_issue("$", "TYPE", "Semantic IR must be an object"),)
+research/evidence/wide_cycle_03/03_parser_baseline.txt:110:research/evidence/adversarial_baseline.txt:94:        issues.append(_issue(f"$.{key}", "UNKNOWN_KEY", "key is outside the Semantic IR contract"))
+research/evidence/wide_cycle_03/03_parser_baseline.txt:111:research/evidence/corpus_source_scan.txt:24:firmware/core/interaction.c:159:    status = voice_parse_pt(text, &it->cfg.lexicon, &it->parsed);
+research/evidence/wide_cycle_03/03_parser_baseline.txt:112:research/evidence/corpus_source_scan.txt:25:firmware/core/interaction.c:180:    status = voice_from_command(obs->command, obs->minutes, &it->cfg.lexicon, &it->parsed);
+research/evidence/wide_cycle_03/03_parser_baseline.txt:113:research/evidence/corpus_source_scan.txt:162:firmware/core/test_voice.c:20:    ok(voice_parse_pt("Chego em dez minutos", &lex, &r) == VOICE_DRAFT &&
+research/evidence/wide_cycle_03/03_parser_baseline.txt:114:research/evidence/corpus_source_scan.txt:163:firmware/core/test_voice.c:30:    ok(voice_parse_pt("estou chegando", &lex, &r) == VOICE_DRAFT &&
+research/evidence/wide_cycle_03/03_parser_baseline.txt:115:research/evidence/corpus_source_scan.txt:165:firmware/core/test_voice.c:42:    ok(voice_parse_pt("cancelar", &lex, &r) == VOICE_CANCEL_LOCAL &&
+research/evidence/wide_cycle_03/03_parser_baseline.txt:116:research/evidence/corpus_source_scan.txt:168:firmware/core/test_voice.c:45:    ok(voice_parse_pt("toque uma musica", &lex, &r) == VOICE_UNKNOWN &&
+research/evidence/wide_cycle_03/03_parser_baseline.txt:117:research/evidence/corpus_source_scan.txt:169:firmware/core/test_voice.c:48:    ok(voice_parse_pt("chego em noventa minutos", &lex, &r) == VOICE_REJECTED &&
+research/evidence/wide_cycle_03/03_parser_baseline.txt:118:research/evidence/corpus_source_scan.txt:170:firmware/core/test_voice.c:51:    ok(voice_parse_pt("preciso de socorro", &lex, &r) == VOICE_DRAFT &&
+research/evidence/wide_cycle_03/03_parser_baseline.txt:119:research/evidence/corpus_source_scan.txt:171:firmware/core/test_voice.c:64:    ok(voice_from_command(VOICE_COMMAND_ARRIVE, 12, &lex, &r) == VOICE_DRAFT &&
+research/evidence/wide_cycle_03/03_parser_baseline.txt:120:research/evidence/corpus_source_scan.txt:172:firmware/core/test_voice.c:68:    ok(voice_from_command(VOICE_COMMAND_HELP, 1, &lex, &r) == VOICE_REJECTED &&
+research/evidence/wide_cycle_03/03_parser_baseline.txt:121:research/evidence/corpus_source_scan.txt:173:firmware/core/test_voice.c:69:       voice_from_command(VOICE_COMMAND_CANCEL, 1, &lex, &r) == VOICE_REJECTED,
+research/evidence/wide_cycle_03/03_parser_baseline.txt:122:research/evidence/corpus_source_scan.txt:177:firmware/core/voice.c:123:voice_status_t voice_from_command(voice_command_t command, uint8_t minutes,
+research/evidence/wide_cycle_03/03_parser_baseline.txt:123:research/evidence/corpus_source_scan.txt:182:firmware/core/voice.c:161:voice_status_t voice_parse_pt(const char *transcript, const voice_lexicon_t *lexicon,
+research/evidence/wide_cycle_03/03_parser_baseline.txt:124:research/evidence/corpus_source_scan.txt:199:firmware/core/voice.h:76:voice_status_t voice_parse_pt(const char *transcript, const voice_lexicon_t *lexicon,
+research/evidence/wide_cycle_03/03_parser_baseline.txt:125:research/evidence/corpus_source_scan.txt:201:firmware/core/voice.h:83:voice_status_t voice_from_command(voice_command_t command, uint8_t minutes,
+research/evidence/wide_cycle_03/03_parser_baseline.txt:126:research/evidence/corpus_source_scan.txt:325:research/evidence/corpus_source_scan.txt:171:firmware/core/test_voice.c:64:    ok(voice_from_command(VOICE_COMMAND_ARRIVE, 12, &lex, &r) == VOICE_DRAFT &&
+research/evidence/wide_cycle_03/03_parser_baseline.txt:127:research/evidence/corpus_source_scan.txt:326:research/evidence/corpus_source_scan.txt:172:firmware/core/test_voice.c:68:    ok(voice_from_command(VOICE_COMMAND_HELP, 1, &lex, &r) == VOICE_REJECTED &&
+research/evidence/wide_cycle_03/03_parser_baseline.txt:128:research/evidence/corpus_source_scan.txt:327:research/evidence/corpus_source_scan.txt:173:firmware/core/test_voice.c:69:       voice_from_command(VOICE_COMMAND_CANCEL, 1, &lex, &r) == VOICE_REJECTED,
+research/evidence/wide_cycle_03/03_parser_baseline.txt:129:research/evidence/corpus_cycle_validation_raw.txt:348:--- semantic IR: real parser and typed-adapter convergence ---
+research/evidence/wide_cycle_03/03_parser_baseline.txt:130:research/evidence/corpus_cycle_validation_raw.txt:388:--- static analysis: voice parser and Semantic IR bridge ---
+research/evidence/wide_cycle_03/03_parser_baseline.txt:131:research/evidence/wide_cycle_03/02_ir_baseline.txt:1:"""Semantic IR v0.1: finite, typed and fail-closed bridge for HERUS.
+research/evidence/wide_cycle_03/03_parser_baseline.txt:132:research/evidence/wide_cycle_03/02_ir_baseline.txt:88:        return (_issue("$", "TYPE", "Semantic IR must be an object"),)
+research/evidence/wide_cycle_03/03_parser_baseline.txt:133:research/evidence/wide_cycle_03/02_ir_baseline.txt:91:        issues.append(_issue(f"$.{key}", "UNKNOWN_KEY", "key is outside the Semantic IR contract"))
+research/evidence/wide_cycle_03/03_parser_baseline.txt:134:research/evidence/wide_cycle_03/02_ir_baseline.txt:239:  "title": "HERUS Semantic IR v0.1",
+research/evidence/wide_cycle_03/03_parser_baseline.txt:135:research/evidence/wide_cycle_03/03_parser_baseline.txt:1:firmware/core/intent_gate.c:19:intent_gate_status_t intent_gate_evaluate(const intent_observation_t *obs,
+research/evidence/wide_cycle_03/03_parser_baseline.txt:136:research/evidence/wide_cycle_03/03_parser_baseline.txt:2:firmware/core/intent_gate.h:56:intent_gate_status_t intent_gate_evaluate(const intent_observation_t *obs,
+research/evidence/wide_cycle_03/03_parser_baseline.txt:137:research/evidence/wide_cycle_03/03_parser_baseline.txt:3:firmware/core/interaction.c:159:    status = voice_parse_pt(text, &it->cfg.lexicon, &it->parsed);
+research/evidence/wide_cycle_03/03_parser_baseline.txt:138:research/evidence/wide_cycle_03/03_parser_baseline.txt:4:firmware/core/interaction.c:172:    (void)intent_gate_evaluate(obs, it->session_id, hint, &gate);
+research/evidence/wide_cycle_03/03_parser_baseline.txt:139:research/evidence/wide_cycle_03/03_parser_baseline.txt:5:firmware/core/interaction.c:180:    status = voice_from_command(obs->command, obs->minutes, &it->cfg.lexicon, &it->parsed);
+research/evidence/wide_cycle_03/03_parser_baseline.txt:140:research/evidence/wide_cycle_03/03_parser_baseline.txt:6:firmware/core/test_intent_gate.c:33:    ok(intent_gate_evaluate(&o, 7, NULL, &out) == INTENT_GATE_ACCEPT_DIRECT && !out.context_used,
+research/evidence/wide_cycle_03/03_parser_baseline.txt:141:research/evidence/wide_cycle_03/03_parser_baseline.txt:7:firmware/core/test_intent_gate.c:39:    ok(intent_gate_evaluate(&o, 7, &hint, &out) == INTENT_GATE_LOW_CONFIDENCE,
+research/evidence/wide_cycle_03/03_parser_baseline.txt:142:research/evidence/wide_cycle_03/03_parser_baseline.txt:8:firmware/core/test_intent_gate.c:43:    ok(intent_gate_evaluate(&o, 7, &hint, &out) == INTENT_GATE_ACCEPT_CONTEXT && out.context_used,
+research/evidence/wide_cycle_03/03_parser_baseline.txt:143:research/evidence/wide_cycle_03/03_parser_baseline.txt:9:firmware/core/test_intent_gate.c:47:    ok(intent_gate_evaluate(&o, 7, &hint, &out) == INTENT_GATE_AMBIGUOUS && !out.context_used,
+research/evidence/wide_cycle_03/03_parser_baseline.txt:144:research/evidence/wide_cycle_03/03_parser_baseline.txt:10:firmware/core/test_intent_gate.c:51:    ok(intent_gate_evaluate(&o, 7, NULL, &out) == INTENT_GATE_STALE,
+research/evidence/wide_cycle_03/03_parser_baseline.txt:145:research/evidence/wide_cycle_03/03_parser_baseline.txt:11:firmware/core/test_intent_gate.c:56:    ok(intent_gate_evaluate(&o, 7, NULL, &out) == INTENT_GATE_REJECTED,
+research/evidence/wide_cycle_03/03_parser_baseline.txt:146:research/evidence/wide_cycle_03/03_parser_baseline.txt:12:firmware/core/test_voice.c:20:    ok(voice_parse_pt("Chego em dez minutos", &lex, &r) == VOICE_DRAFT &&
+research/evidence/wide_cycle_03/03_parser_baseline.txt:147:research/evidence/wide_cycle_03/03_parser_baseline.txt:13:firmware/core/test_voice.c:30:    ok(voice_parse_pt("estou chegando", &lex, &r) == VOICE_DRAFT &&
+research/evidence/wide_cycle_03/03_parser_baseline.txt:148:research/evidence/wide_cycle_03/03_parser_baseline.txt:14:firmware/core/test_voice.c:42:    ok(voice_parse_pt("cancelar", &lex, &r) == VOICE_CANCEL_LOCAL &&
+research/evidence/wide_cycle_03/03_parser_baseline.txt:149:research/evidence/wide_cycle_03/03_parser_baseline.txt:15:firmware/core/test_voice.c:45:    ok(voice_parse_pt("toque uma musica", &lex, &r) == VOICE_UNKNOWN &&
+research/evidence/wide_cycle_03/03_parser_baseline.txt:150:research/evidence/wide_cycle_03/03_parser_baseline.txt:16:firmware/core/test_voice.c:48:    ok(voice_parse_pt("chego em noventa minutos", &lex, &r) == VOICE_REJECTED &&
+research/evidence/wide_cycle_03/03_parser_baseline.txt:151:research/evidence/wide_cycle_03/03_parser_baseline.txt:17:firmware/core/test_voice.c:51:    ok(voice_parse_pt("chego em sessenta minutos", &lex, &r) == VOICE_DRAFT &&
+research/evidence/wide_cycle_03/03_parser_baseline.txt:152:research/evidence/wide_cycle_03/03_parser_baseline.txt:18:firmware/core/test_voice.c:54:    ok(voice_parse_pt("chego em sessenta e cinco minutos", &lex, &r) == VOICE_REJECTED &&
+research/evidence/wide_cycle_03/03_parser_baseline.txt:153:research/evidence/wide_cycle_03/03_parser_baseline.txt:19:firmware/core/test_voice.c:57:    ok(voice_parse_pt("chego em vinte e dez minutos", &lex, &r) == VOICE_REJECTED &&
+research/evidence/wide_cycle_03/03_parser_baseline.txt:154:research/evidence/wide_cycle_03/03_parser_baseline.txt:20:firmware/core/test_voice.c:60:    ok(voice_parse_pt("chego em 20 e 5 minutos", &lex, &r) == VOICE_REJECTED &&
+research/evidence/wide_cycle_03/03_parser_baseline.txt:155:research/evidence/wide_cycle_03/03_parser_baseline.txt:21:firmware/core/test_voice.c:63:    ok(voice_parse_pt("chego em 60 e 5 minutos", &lex, &r) == VOICE_REJECTED &&
+research/evidence/wide_cycle_03/03_parser_baseline.txt:156:research/evidence/wide_cycle_03/03_parser_baseline.txt:22:firmware/core/test_voice.c:66:    ok(voice_parse_pt("chego em -1 minutos", &lex, &r) == VOICE_REJECTED &&
+research/evidence/wide_cycle_03/03_parser_baseline.txt:157:research/evidence/wide_cycle_03/03_parser_baseline.txt:23:firmware/core/test_voice.c:69:    ok(voice_parse_pt("chego em +1 minutos", &lex, &r) == VOICE_REJECTED &&
+research/evidence/wide_cycle_03/03_parser_baseline.txt:158:research/evidence/wide_cycle_03/03_parser_baseline.txt:24:firmware/core/test_voice.c:72:    ok(voice_parse_pt("chego em cento e vinte e cinco minutos", &lex, &r) == VOICE_REJECTED &&
+research/evidence/wide_cycle_03/03_parser_baseline.txt:159:research/evidence/wide_cycle_03/03_parser_baseline.txt:25:firmware/core/test_voice.c:75:    ok(voice_parse_pt("preciso de socorro", &lex, &r) == VOICE_DRAFT &&
+research/evidence/wide_cycle_03/03_parser_baseline.txt:160:research/evidence/wide_cycle_03/03_parser_baseline.txt:26:firmware/core/test_voice.c:79:    ok(voice_parse_pt("cancelar e chego em dez minutos", &lex, &r) == VOICE_REJECTED &&
+research/evidence/wide_cycle_03/03_parser_baseline.txt:161:research/evidence/wide_cycle_03/03_parser_baseline.txt:27:firmware/core/test_voice.c:82:    ok(voice_parse_pt("preciso de socorro e estou chegando", &lex, &r) == VOICE_REJECTED &&
+research/evidence/wide_cycle_03/03_parser_baseline.txt:162:research/evidence/wide_cycle_03/03_parser_baseline.txt:28:firmware/core/test_voice.c:85:    ok(voice_parse_pt("não cancelar", &lex, &r) == VOICE_REJECTED &&
+research/evidence/wide_cycle_03/03_parser_baseline.txt:163:research/evidence/wide_cycle_03/03_parser_baseline.txt:29:firmware/core/test_voice.c:88:    ok(voice_parse_pt("não estou chegando", &lex, &r) == VOICE_REJECTED &&
+research/evidence/wide_cycle_03/03_parser_baseline.txt:164:research/evidence/wide_cycle_03/03_parser_baseline.txt:30:firmware/core/test_voice.c:100:    ok(voice_from_command(VOICE_COMMAND_ARRIVE, 12, &lex, &r) == VOICE_DRAFT &&
+research/evidence/wide_cycle_03/03_parser_baseline.txt:165:research/evidence/wide_cycle_03/03_parser_baseline.txt:31:firmware/core/test_voice.c:104:    ok(voice_from_command(VOICE_COMMAND_HELP, 1, &lex, &r) == VOICE_REJECTED &&
+research/evidence/wide_cycle_03/03_parser_baseline.txt:166:research/evidence/wide_cycle_03/03_parser_baseline.txt:32:firmware/core/test_voice.c:105:       voice_from_command(VOICE_COMMAND_CANCEL, 1, &lex, &r) == VOICE_REJECTED,
+/* voice.c — a deliberately small Portuguese grammar for safe local interaction. */
+#include "voice.h"
+#include <ctype.h>
+#include <stdlib.h>
+#include <string.h>
+
+static int lexicon_valid(const voice_lexicon_t *l)
+{
+    return l && l->intent_arrive < HCP_INTENT_N && l->intent_help < HCP_INTENT_N &&
+           l->role_time < HCP_ROLE_N && l->minute_filler_base <= HCP_FILLER_N - 60u;
+}
+
+/* Preserve only lowercase ASCII letters, digits and spaces. UTF-8 punctuation
+ * and accents are treated as separators; the starter grammar intentionally uses
+ * accent-free command stems so ASR normalisation differences fail closed. */
+static int normalise(const char *in, char out[VOICE_TRANSCRIPT_MAX])
+{
+    unsigned n = 0;
+    int previous_space = 1;
+    if (!in || !*in) return 0;
+    for (; *in; in++) {
+        unsigned char c = (unsigned char)*in;
+        if (n + 1 >= VOICE_TRANSCRIPT_MAX) return 0;
+        if (c >= 128 || c == '+' || c == '-') return 0;
+        if (isalnum(c) && c < 128) {
+            out[n++] = (char)tolower(c);
+            previous_space = 0;
+        } else if (!previous_space) {
+            out[n++] = ' ';
+            previous_space = 1;
+        }
+    }
+    while (n && out[n - 1] == ' ') n--;
+    out[n] = '\0';
+    return n != 0;
+}
+
+static int word_present(const char *s, const char *word)
+{
+    size_t n = strlen(word);
+    const char *p = s;
+    while ((p = strstr(p, word)) != NULL) {
+        int left = (p == s || p[-1] == ' ');
+        int right = (p[n] == '\0' || p[n] == ' ');
+        if (left && right) return 1;
+        p++;
+    }
+    return 0;
+}
+
+static int any_word(const char *s, const char *const *words, unsigned n)
+{
+    for (unsigned i = 0; i < n; i++) if (word_present(s, words[i])) return 1;
+    return 0;
+}
+
+static int word_number(const char *w)
+{
+    static const struct { const char *word; int value; } map[] = {
+        { "um", 1 }, { "uma", 1 }, { "dois", 2 }, { "duas", 2 },
+        { "tres", 3 }, { "quatro", 4 }, { "cinco", 5 }, { "seis", 6 },
+        { "sete", 7 }, { "oito", 8 }, { "nove", 9 }, { "dez", 10 },
+        { "onze", 11 }, { "doze", 12 }, { "treze", 13 }, { "quatorze", 14 },
+        { "quinze", 15 }, { "dezesseis", 16 }, { "dezessete", 17 },
+        { "dezoito", 18 }, { "dezenove", 19 }, { "vinte", 20 },
+        { "trinta", 30 }, { "quarenta", 40 }, { "cinquenta", 50 },
+        { "sessenta", 60 }
+    };
+    for (unsigned i = 0; i < sizeof(map) / sizeof(map[0]); i++)
+        if (!strcmp(w, map[i].word)) return map[i].value;
+    return -1;
+}
+
+/* Return 0 when no duration is mentioned, 1..60 when valid, -1 when a duration
+ * marker is present but its value is outside the supported semantic vocabulary. */
+static int parse_minutes(const char *s)
+{
+    char copy[VOICE_TRANSCRIPT_MAX];
+    char *tok[VOICE_TRANSCRIPT_MAX / 2];
+    unsigned ntok = 0;
+    unsigned marker = 0;
+    int has_marker = word_present(s, "minuto") || word_present(s, "minutos") ||
+                     word_present(s, "min") || word_present(s, "mins");
+
+    if (!has_marker) return 0;
+    strncpy(copy, s, sizeof(copy));
+    copy[sizeof(copy) - 1] = '\0';
+    for (char *p = strtok(copy, " "); p && ntok < sizeof(tok) / sizeof(tok[0]);
+         p = strtok(NULL, " ")) tok[ntok++] = p;
+
+    for (unsigned i = 0; i < ntok; i++) {
+        if (!strcmp(tok[i], "minuto") || !strcmp(tok[i], "minutos") ||
+            !strcmp(tok[i], "min") || !strcmp(tok[i], "mins")) {
+            marker = i;
+            break;
+        }
+    }
+    if (!marker) return -1;
+
+    /* Only the bounded number phrase immediately before the marker is valid.
+     * The previous implementation scanned for the first number anywhere, so
+     * "sessenta e cinco minutos" became 60 and "vinte e dez minutos" became
+     * 20. Both are silent semantic truncations. */
+    {
+        unsigned last = marker - 1;
+        char *end = NULL;
+        long numeric = strtol(tok[last], &end, 10);
+        if (*tok[last] && end && end != tok[last] && !*end) {
+            char *prior_end = NULL;
+            long prior_numeric = 0;
+            int prior_is_numeric = 0;
+            if (last > 0) {
+                prior_numeric = strtol(tok[last - 1], &prior_end, 10);
+                prior_is_numeric = *tok[last - 1] && prior_end != tok[last - 1] && !*prior_end;
+            }
+            if (last == 0 || strcmp(tok[last - 1], "em") ||
+                (last > 0 && (!strcmp(tok[last - 1], "e") ||
+                              word_number(tok[last - 1]) >= 0 || prior_is_numeric))) return -1;
+            (void)prior_numeric;
+            return (numeric >= 1 && numeric <= 60) ? (int)numeric : -1;
+        }
+
+        int value = word_number(tok[last]);
+        if (value < 0) return -1;
+        if (value > 0 && value < 10 && last > 0 && !strcmp(tok[last - 1], "e")) {
+            unsigned tens_index = last - 2;
+            if (last < 2) return -1;
+            int tens = word_number(tok[tens_index]);
+            if (tens < 20 || tens > 60 || tens % 10 != 0) return -1;
+            value += tens;
+            if (value > 60) return -1;
+            /* The supported grammar has exactly one connector: em +
+             * (dez|vinte|vinte e cinco) + minutos. This rejects unsupported
+             * hundreds and duplicated number terms instead of truncating. */
+            if (tens_index == 0 || strcmp(tok[tens_index - 1], "em")) return -1;
+            return value;
+        }
+        if (last > 0 && (word_number(tok[last - 1]) >= 0 ||
+                          !strcmp(tok[last - 1], "e"))) return -1;
+        if (last == 0 || strcmp(tok[last - 1], "em")) return -1;
+        return (value >= 1 && value <= 60) ? value : -1;
+    }
+}
+
+static void result_reset(voice_result_t *out, voice_status_t status, voice_event_t event)
+{
+    memset(out, 0, sizeof(*out));
+    out->status = status;
+    out->event = event;
+}
+
+void voice_lexicon_default(voice_lexicon_t *out)
+{
+    if (!out) return;
+    out->intent_arrive = 1;
+    out->intent_help = 2;
+    out->role_time = 1;
+    out->minute_filler_base = 1;
+}
+
+voice_status_t voice_from_command(voice_command_t command, uint8_t minutes,
+                                  const voice_lexicon_t *lexicon,
+                                  voice_result_t *out)
+{
+    if (!out) return VOICE_REJECTED;
+    result_reset(out, VOICE_REJECTED, VOICE_EVENT_REJECTED);
+    if (!lexicon_valid(lexicon)) return out->status;
+
+    if (command == VOICE_COMMAND_CANCEL) {
+        if (minutes) return out->status;
+        result_reset(out, VOICE_CANCEL_LOCAL, VOICE_EVENT_CANCEL);
+        return out->status;
+    }
+    if (command == VOICE_COMMAND_HELP) {
+        if (minutes) return out->status;
+        result_reset(out, VOICE_DRAFT, VOICE_EVENT_CRITICAL_DRAFT);
+        out->draft.ver = HCP_VERSION;
+        out->draft.tier = HCP_TIER_GLYPH;
+        out->draft.intent = lexicon->intent_help;
+        out->requires_confirmation = 1;
+        return out->status;
+    }
+    if (command != VOICE_COMMAND_ARRIVE || minutes > 60u) return out->status;
+
+    result_reset(out, VOICE_DRAFT, VOICE_EVENT_DRAFT);
+    out->draft.ver = HCP_VERSION;
+    out->draft.tier = minutes ? HCP_TIER_COMPOSED : HCP_TIER_GLYPH;
+    out->draft.intent = lexicon->intent_arrive;
+    if (minutes) {
+        out->draft.nslot = 1;
+        out->draft.slot[0].role = lexicon->role_time;
+        out->draft.slot[0].filler = (uint16_t)(lexicon->minute_filler_base + minutes);
+        out->minutes = minutes;
+    }
+    out->requires_confirmation = 1;
+    return out->status;
+}
+
+voice_status_t voice_parse_pt(const char *transcript, const voice_lexicon_t *lexicon,
+                              voice_result_t *out)
+{
+    static const char *const cancel_words[] = { "cancelar", "cancela", "pare", "parar" };
+    static const char *const help_words[] = { "socorro", "ajuda", "ajude" };
+    static const char *const arrive_words[] = { "chego", "chegando", "chegar", "chegarei" };
+    char text[VOICE_TRANSCRIPT_MAX];
+    int minutes;
+    int has_cancel;
+    int has_help;
+    int has_arrive;
+
+    if (!out) return VOICE_REJECTED;
+    result_reset(out, VOICE_REJECTED, VOICE_EVENT_REJECTED);
+    if (!lexicon_valid(lexicon) || !normalise(transcript, text)) return out->status;
+
+    has_cancel = any_word(text, cancel_words, sizeof(cancel_words) / sizeof(cancel_words[0]));
+    has_help = any_word(text, help_words, sizeof(help_words) / sizeof(help_words[0]));
+    has_arrive = any_word(text, arrive_words, sizeof(arrive_words) / sizeof(arrive_words[0]));
+    if (has_cancel + has_help + has_arrive > 1) return out->status;
+
+    if (has_cancel) {
+        result_reset(out, VOICE_CANCEL_LOCAL, VOICE_EVENT_CANCEL);
+        return out->status;
+    }
+    if (has_help) {
+        result_reset(out, VOICE_DRAFT, VOICE_EVENT_CRITICAL_DRAFT);
+        out->draft.ver = HCP_VERSION;
+        out->draft.tier = HCP_TIER_GLYPH;
+        out->draft.intent = lexicon->intent_help;
+        out->requires_confirmation = 1;
+        return out->status;
+    }
+    if (!has_arrive) {
+        result_reset(out, VOICE_UNKNOWN, VOICE_EVENT_UNKNOWN);
+        return out->status;
+    }
+
+    minutes = parse_minutes(text);
+    if (minutes < 0) return out->status;
+
+    result_reset(out, VOICE_DRAFT, VOICE_EVENT_DRAFT);
+    out->draft.ver = HCP_VERSION;
+    out->draft.tier = minutes ? HCP_TIER_COMPOSED : HCP_TIER_GLYPH;
+    out->draft.intent = lexicon->intent_arrive;
+    if (minutes) {
+        out->draft.nslot = 1;
+        out->draft.slot[0].role = lexicon->role_time;
+        out->draft.slot[0].filler = (uint16_t)(lexicon->minute_filler_base + minutes);
+        out->minutes = (uint8_t)minutes;
+    }
+    out->requires_confirmation = 1;
+    return out->status;
+}
+
+static void add_pulse(haptic_plan_t *p, uint16_t on, uint16_t off)
+{
+    if (p->n >= HAPTIC_MAX_PULSE) return;
+    p->pulse[p->n].on_ms = on;
+    p->pulse[p->n].off_ms = off;
+    p->n++;
+}

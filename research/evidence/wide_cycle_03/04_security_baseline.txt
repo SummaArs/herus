@@ -1,0 +1,360 @@
+firmware/core/assurance.c:22:    if (!exactly_one(snapshot->physical_confirmation))
+firmware/core/assurance.c:27:    /* Revocation is terminal and dominates a previously valid trust/link path. */
+firmware/core/assurance.c:28:    if (snapshot->trust_revoked != 0u)
+firmware/core/assurance.c:31:        if (!exactly_one(snapshot->trust_active))
+firmware/core/assurance.h:4: * own a key, build HCP, call link_send, call a model, log content or access I/O.
+firmware/core/assurance.h:5: * Its purpose is to make cross-module safety preconditions fail-closed and
+firmware/core/assurance.h:6: * independently testable before an application takes a confirmed handoff.
+firmware/core/assurance.h:26:    uint8_t physical_confirmation;
+firmware/core/assurance.h:28:    uint8_t trust_active;              /* required for a Nucleus-origin result */
+firmware/core/assurance.h:31:    uint8_t trust_revoked;              /* always dominates all preceding state */
+firmware/core/assurance.h:65: * it is not a packet, an HCP message, a radio permission or a send operation. */
+firmware/core/delivery_plan.c:34:        metrics->sends = 0u;
+firmware/core/delivery_plan.c:101:        if (metrics) metrics->sends++;
+firmware/core/delivery_plan.h:57:    uint32_t sends;
+firmware/core/dialogue.c:1:/* dialogue.c — bounded local conversational intelligence, never a send authority. */
+firmware/core/dialogue.h:5: * radio, storage, HCP, Core-link or send API. The ESP32-S3 target has not yet
+firmware/core/dialogue.h:7: * production adapter is deliberately optional and fail-closed when unavailable.
+firmware/core/dialogue.h:9: * The adapter is untrusted. It sees exactly one current local-ASR utterance and
+firmware/core/dialogue.h:11: * identity, location, keys, learned Nucleus rules, radio state or send authority.
+firmware/core/dialogue.h:14: * push-to-talk command session and pass the existing intent/confirmation gates to
+firmware/core/dialogue.h:15: * send a meaning.
+firmware/core/dialogue.h:57: * reply is treated as untrusted local UX; it is not parsed as a command. */
+firmware/core/dialogue.h:132:/* Add a trusted, non-textual local topic card. Model output cannot call this API;
+firmware/core/dialogue.h:141:/* Copy the local reply to caller-owned UX memory, then zero the internal copy and
+firmware/core/dialogue.h:150: * Nucleus semantic learner, trust binding or interaction-runtime state. */
+firmware/core/hcp.c:108:                 * ORIGINAL on-air position travels with them in pos[]. The sender
+firmware/core/hcp.h:8: *   - Translation. The sender transmits meaning, so the receiver renders it in
+firmware/core/hcp.h:29: * unbinding is for cognition (matching a heard phrase against memory), not for
+firmware/core/hcp.h:107:    uint16_t seq;                   /* application sequence, replay window */
+firmware/core/hcp.h:111:     * slot[] once hcp_filter_known_roles has dropped fields a newer sender added.
+firmware/core/hcp.h:112:     * The sender bound slot k under rho^(k+2), so anything that unbinds must use
+firmware/core/hcp.h:118:/* Encode always writes exactly HCP_PLAINTEXT_LEN bytes and zero-pads the tail
+firmware/core/hcp.h:127: * sender that built its message with `= {0}` would have pos[] all zero, bind every
+firmware/core/hcp.h:138: * HCP_PLAINTEXT_LEN and never writes outside *m. */
+firmware/core/hcp.h:145: * sender added. An implementation that instead rejects the frame has turned every
+firmware/core/hcp.h:170: * Returns 1 and writes *filler if the evidence exceeds `sigma` standard
+firmware/core/hcp.h:178: * rotation will not match what the sender bound. */
+firmware/core/hv.h:16: *       memory, never by mutating the codebook (see lexicon.h).
+firmware/core/intent_gate.h:1:/* intent_gate.h — fail-closed admission of local ASR command events.
+firmware/core/intent_gate.h:55: * request a confirmation, create an HCP message, or communicate with hardware. */
+firmware/core/interaction.c:48:        it->confirm_started_ms = now_ms;
+firmware/core/interaction.c:100:    out->confirm_timeout_ms = INTERACTION_DEFAULT_CONFIRM_MS;
+firmware/core/interaction.c:115:    if (!it->cfg.confirm_timeout_ms) it->cfg.confirm_timeout_ms = INTERACTION_DEFAULT_CONFIRM_MS;
+firmware/core/interaction.c:205:int interaction_confirm(interaction_t *it, int accepted, uint32_t now_ms)
+firmware/core/interaction.c:223:    it->metrics.confirms++;
+firmware/core/interaction.c:228:int interaction_take_send(interaction_t *it, hcp_msg_t *out)
+firmware/core/interaction.c:241:int interaction_take_send_assured(interaction_t *it,
+firmware/core/interaction.c:249:    return interaction_take_send(it, out);
+firmware/core/interaction.c:266:               elapsed(now_ms, it->confirm_started_ms) >= it->cfg.confirm_timeout_ms) {
+firmware/core/interaction.h:5: * link layer before physical confirmation, independent of the target platform.
+firmware/core/interaction.h:38:/* The portable runtime writes these desired effects after each event. A target
+firmware/core/interaction.h:56:    uint32_t confirms;
+firmware/core/interaction.h:74:    uint32_t confirm_timeout_ms;
+firmware/core/interaction.h:81:    uint8_t              asr_available; /* local Core or trusted local Nucleus */
+firmware/core/interaction.h:84:    uint32_t             confirm_started_ms;
+firmware/core/interaction.h:85:    hcp_msg_t            pending;       /* zero unless confirmation is pending/ready */
+firmware/core/interaction.h:107: * confidence/ambiguity, and cannot bypass physical confirmation. */
+firmware/core/interaction.h:121:/* The physical confirmation handler may release a pending draft exactly once. */
+firmware/core/interaction.h:122:int interaction_confirm(interaction_t *it, int accepted, uint32_t now_ms);
+firmware/core/interaction.h:124:/* Move the one confirmed semantic draft to the application. The caller must set
+firmware/core/interaction.h:125: * seq/ttl/prio and call link_send separately. On success the runtime returns IDLE
+firmware/core/interaction.h:126: * immediately, so a second call cannot send the same meaning again. */
+firmware/core/interaction.h:127:int interaction_take_send(interaction_t *it, hcp_msg_t *out);
+firmware/core/interaction.h:131: * cannot create a draft, HCP message or send. */
+firmware/core/interaction.h:132:int interaction_take_send_assured(interaction_t *it,
+firmware/core/interaction.h:136:/* Enforce listen and confirmation deadlines using caller-supplied monotonic ms. */
+firmware/core/interaction_rig.c:50:int interaction_rig_confirm(interaction_rig_t *rig, int accepted, uint32_t now_ms)
+firmware/core/interaction_rig.c:54:    rc = interaction_confirm(&rig->runtime, accepted, now_ms);
+firmware/core/interaction_rig.c:75:int interaction_rig_take_send(interaction_rig_t *rig, hcp_msg_t *out)
+firmware/core/interaction_rig.c:79:    rc = interaction_take_send(&rig->runtime, out);
+firmware/core/interaction_rig.h:5: * sequencing before ESP-SR, GPIO, a motor driver or link_send are introduced.
+firmware/core/interaction_rig.h:31:int interaction_rig_confirm(interaction_rig_t *rig, int accepted, uint32_t now_ms);
+firmware/core/interaction_rig.h:34:int interaction_rig_take_send(interaction_rig_t *rig, hcp_msg_t *out);
+firmware/core/lexicon.h:1:/* lexicon.h — Herus symbol space, associative memory, and reasoning.
+firmware/core/lexicon.h:10: *   proto_t   The mutable, learned prototype memory. Counter-based bundling,
+firmware/core/lexicon.h:79: * proto_classify answers "this one" or "-1". For a device meant to be trusted
+firmware/core/memory_capture.c:1:/* memory_capture.c — explicit, one-shot memory-capture session. */
+firmware/core/memory_capture.c:2:#include "memory_capture.h"
+firmware/core/memory_capture.c:11:static int config_valid(const memory_capture_config_t *cfg)
+firmware/core/memory_capture.c:16:static void clear_actions(memory_capture_t *m)
+firmware/core/memory_capture.c:21:static void terminal(memory_capture_t *m, memory_capture_state_t state,
+firmware/core/memory_capture.c:33:void memory_capture_config_default(memory_capture_config_t *out)
+firmware/core/memory_capture.c:39:void memory_capture_init(memory_capture_t *m, const memory_capture_config_t *cfg,
+firmware/core/memory_capture.c:40:                         const memory_capture_adapter_t *adapter)
+firmware/core/memory_capture.c:42:    memory_capture_config_t defaults;
+firmware/core/memory_capture.c:44:    memory_capture_config_default(&defaults);
+firmware/core/memory_capture.c:51:int memory_capture_begin(memory_capture_t *m, uint32_t physical_gesture_id,
+firmware/core/memory_capture.c:75:    m->actions.memory_indicator = 1u;
+firmware/core/memory_capture.c:80:int memory_capture_deliver(memory_capture_t *m, uint32_t capture_session_id,
+firmware/core/memory_capture.c:152:int memory_capture_cancel(memory_capture_t *m, uint32_t physical_gesture_id,
+firmware/core/memory_capture.c:164:int memory_capture_tick(memory_capture_t *m, uint32_t now_ms)
+firmware/core/memory_capture.c:174:void memory_capture_source_failed(memory_capture_t *m, uint32_t now_ms)
+firmware/core/memory_capture.c:181:uint32_t memory_capture_session_id(const memory_capture_t *m)
+firmware/core/memory_capture.c:186:const memory_capture_actions_t *memory_capture_actions(const memory_capture_t *m)
+firmware/core/memory_capture.c:191:const memory_capture_metrics_t *memory_capture_metrics(const memory_capture_t *m)
+firmware/core/memory_capture.h:1:/* memory_capture.h — explicit, bounded and transient memory-capture session.
+firmware/core/memory_capture.h:4: * call a model, write memory or transmit. It governs the only period during which
+firmware/core/memory_capture.h:6: * memory pipeline. A physical gesture starts it; timeout, cancellation, failure or
+firmware/core/memory_capture.h:9: * The byte buffer passed to memory_capture_deliver() is caller-owned only for the
+firmware/core/memory_capture.h:12: * memory_capture_t.
+firmware/core/memory_capture.h:30:} memory_capture_state_t;
+firmware/core/memory_capture.h:48:    uint8_t memory_indicator;
+firmware/core/memory_capture.h:50:} memory_capture_actions_t;
+firmware/core/memory_capture.h:59:} memory_capture_adapter_t;
+firmware/core/memory_capture.h:63:} memory_capture_config_t;
+firmware/core/memory_capture.h:67: * product memory or behavioural log. */
+firmware/core/memory_capture.h:78:} memory_capture_metrics_t;
+firmware/core/memory_capture.h:81:    memory_capture_config_t  cfg;
+firmware/core/memory_capture.h:82:    memory_capture_adapter_t adapter;
+firmware/core/memory_capture.h:83:    memory_capture_state_t   state;
+firmware/core/memory_capture.h:88:    memory_capture_actions_t actions;
+firmware/core/memory_capture.h:89:    memory_capture_metrics_t metrics;
+firmware/core/memory_capture.h:90:} memory_capture_t;
+firmware/core/memory_capture.h:92:void memory_capture_config_default(memory_capture_config_t *out);
+firmware/core/memory_capture.h:93:void memory_capture_init(memory_capture_t *m, const memory_capture_config_t *cfg,
+firmware/core/memory_capture.h:94:                         const memory_capture_adapter_t *adapter);
+firmware/core/memory_capture.h:96:/* Begin a memory window. `physical_gesture_id` must be nonzero and must come from
+firmware/core/memory_capture.h:97: * a currently held target gesture; zero and re-entry fail closed. It is never
+firmware/core/memory_capture.h:99:int memory_capture_begin(memory_capture_t *m, uint32_t physical_gesture_id,
+firmware/core/memory_capture.h:106:int memory_capture_deliver(memory_capture_t *m, uint32_t capture_session_id,
+firmware/core/memory_capture.h:111:int memory_capture_cancel(memory_capture_t *m, uint32_t physical_gesture_id,
+firmware/core/memory_capture.h:115:int memory_capture_tick(memory_capture_t *m, uint32_t now_ms);
+firmware/core/memory_capture.h:118:void memory_capture_source_failed(memory_capture_t *m, uint32_t now_ms);
+firmware/core/memory_capture.h:120:uint32_t memory_capture_session_id(const memory_capture_t *m);
+firmware/core/memory_capture.h:121:const memory_capture_actions_t *memory_capture_actions(const memory_capture_t *m);
+firmware/core/memory_capture.h:122:const memory_capture_metrics_t *memory_capture_metrics(const memory_capture_t *m);
+firmware/core/memory_collection.c:1:/* memory_collection.c — bounded, transactional and portable card collection. */
+firmware/core/memory_collection.c:2:#include "memory_collection.h"
+firmware/core/memory_collection.c:3:#include "memory_collection_private.h"
+firmware/core/memory_collection.c:4:#include "memory_collection_recovery.h"
+firmware/core/memory_collection.c:18:extern int memory_collection_platform_load_root(uint32_t collection_id,
+firmware/core/memory_collection.c:22:    memory_collection_txn_t txn;
+firmware/core/memory_collection.c:26:    memory_vault_card_t cards[MEMORY_COLLECTION_MAX_CARDS];
+firmware/core/memory_collection.c:55:static int access_valid(const memory_collection_access_t *access)
+firmware/core/memory_collection.c:60:static int access_consume(const memory_collection_access_t *access,
+firmware/core/memory_collection.c:61:                          memory_physical_purpose_t purpose)
+firmware/core/memory_collection.c:63:    return memory_physical_session_consume(access->gate, purpose,
+firmware/core/memory_collection.c:69:static int config_valid(const memory_collection_config_t *cfg)
+firmware/core/memory_collection.c:78:static int card_valid(const memory_vault_card_t *card)
+firmware/core/memory_collection.c:80:    memory_assessment_t assessment;
+firmware/core/memory_collection.c:92:    if (memory_policy_assess(&card->signal, &assessment) != MEMORY_POLICY_OK)
+firmware/core/memory_collection.c:97:static int auth_valid(const memory_vault_write_authorization_t *auth,
+firmware/core/memory_collection.c:98:                      const memory_vault_card_t *card)
+firmware/core/memory_collection.c:103:           auth->human_confirmed == 1u;
+firmware/core/memory_collection.c:109:static void pack_card(const memory_vault_card_t *card, uint8_t out[24])
+firmware/core/memory_collection.c:128:                       memory_vault_card_t *out)
+firmware/core/memory_collection.c:140:    out->signal.kind = (memory_kind_t)in[2];
+firmware/core/memory_collection.c:141:    out->signal.scope = (memory_scope_t)in[3];
+firmware/core/memory_collection.c:142:    out->signal.sensitivity = (memory_sensitivity_t)in[4];
+firmware/core/memory_collection.c:147:    out->origin = (memory_extract_origin_t)in[9];
+firmware/core/memory_collection.c:160:static int derive_key(const memory_collection_t *c, uint32_t generation,
+firmware/core/memory_collection.c:167:    if (memory_collection_platform_load_root(c->cfg.collection_id, root) != 0 ||
+firmware/core/memory_collection.c:207:static int build_blob(const memory_collection_t *c, const collection_record_t *r,
+firmware/core/memory_collection.c:243:static int decode_blob(const memory_collection_t *c,
+firmware/core/memory_collection.c:280:    r->txn = (memory_collection_txn_t)blob[1];
+firmware/core/memory_collection.c:301:static void block(memory_collection_t *c, int backend, int rollback, int auth)
+firmware/core/memory_collection.c:310:static int load_floor(memory_collection_t *c, uint32_t *floor)
+firmware/core/memory_collection.c:321:static int load_current(memory_collection_t *c, collection_record_t *out)
+firmware/core/memory_collection.c:355:static int commit_record(memory_collection_t *c, memory_collection_txn_t txn,
+firmware/core/memory_collection.c:430:static int recover_prepared(memory_collection_t *c, const collection_record_t *prepared,
+firmware/core/memory_collection.c:431:                            memory_collection_recovery_action_t action)
+firmware/core/memory_collection.c:468:int memory_collection_init(memory_collection_t *c,
+firmware/core/memory_collection.c:469:                           const memory_collection_config_t *cfg)
+firmware/core/memory_collection.c:479:    memory_collection_recovery_snapshot_t recovery_snapshot;
+firmware/core/memory_collection.c:480:    memory_collection_recovery_action_t recovery_action;
+firmware/core/memory_collection.c:531:    rc = memory_collection_recovery_assess(&recovery_snapshot, &recovery_action);
+firmware/core/memory_collection.c:581:int memory_collection_insert(memory_collection_t *c,
+firmware/core/memory_collection.c:582:                             const memory_vault_write_authorization_t *auth,
+firmware/core/memory_collection.c:583:                             const memory_vault_card_t *card,
+firmware/core/memory_collection.c:584:                             const memory_collection_access_t *access)
+firmware/core/memory_collection.c:623:int memory_collection_open(memory_collection_t *c, uint32_t expected_card_id,
+firmware/core/memory_collection.c:624:                           const memory_collection_access_t *access,
+firmware/core/memory_collection.c:625:                           memory_vault_card_t *out)
+firmware/core/memory_collection.c:652:int memory_collection_copy_cards_for_index(
+firmware/core/memory_collection.c:653:    memory_collection_t *c, const memory_collection_access_t *access,
+firmware/core/memory_collection.c:654:    memory_vault_card_t out[MEMORY_COLLECTION_MAX_CARDS], uint8_t *out_count)
+firmware/core/memory_collection.c:658:    memset(out, 0, sizeof(memory_vault_card_t) * MEMORY_COLLECTION_MAX_CARDS);
+firmware/core/memory_collection.c:676:int memory_collection_remove(memory_collection_t *c, uint32_t card_id,
+firmware/core/memory_collection.c:677:                             const memory_collection_access_t *access)
+firmware/core/memory_collection.c:711:int memory_collection_compact(memory_collection_t *c,
+firmware/core/memory_collection.c:712:                              const memory_collection_access_t *access)
+firmware/core/memory_collection.c:715:    memory_vault_card_t tmp;
+firmware/core/memory_collection.c:749:const memory_collection_metrics_t *memory_collection_metrics(
+firmware/core/memory_collection.c:750:    const memory_collection_t *c)
+firmware/core/memory_collection.h:1:/* memory_collection.h — portable, bounded and transactional memory-card collection.
+firmware/core/memory_collection.h:4: * is not a transcript store, search index, semantic deduplicator, model memory,
+firmware/core/memory_collection.h:12:#include "memory_vault.h"
+firmware/core/memory_collection.h:13:#include "memory_collection_store.h"
+firmware/core/memory_collection.h:14:#include "memory_physical_session.h"
+firmware/core/memory_collection.h:23:} memory_collection_state_t;
+firmware/core/memory_collection.h:30:} memory_collection_txn_t;
+firmware/core/memory_collection.h:37:    memory_physical_session_t *gate;
+firmware/core/memory_collection.h:40:} memory_collection_access_t;
+firmware/core/memory_collection.h:44:    memory_collection_storage_t storage;
+firmware/core/memory_collection.h:45:} memory_collection_config_t;
+firmware/core/memory_collection.h:64:} memory_collection_metrics_t;
+firmware/core/memory_collection.h:67:    memory_collection_config_t cfg;
+firmware/core/memory_collection.h:68:    memory_collection_state_t state;
+firmware/core/memory_collection.h:71:    memory_collection_metrics_t metrics;
+firmware/core/memory_collection.h:72:} memory_collection_t;
+firmware/core/memory_collection.h:98:int memory_collection_init(memory_collection_t *c,
+firmware/core/memory_collection.h:99:                           const memory_collection_config_t *cfg);
+firmware/core/memory_collection.h:105:int memory_collection_insert(memory_collection_t *c,
+firmware/core/memory_collection.h:106:                             const memory_vault_write_authorization_t *auth,
+firmware/core/memory_collection.h:107:                             const memory_vault_card_t *card,
+firmware/core/memory_collection.h:108:                             const memory_collection_access_t *access);
+firmware/core/memory_collection.h:112:int memory_collection_open(memory_collection_t *c, uint32_t expected_card_id,
+firmware/core/memory_collection.h:113:                           const memory_collection_access_t *access,
+firmware/core/memory_collection.h:114:                           memory_vault_card_t *out);
+firmware/core/memory_collection.h:118:int memory_collection_remove(memory_collection_t *c, uint32_t card_id,
+firmware/core/memory_collection.h:119:                             const memory_collection_access_t *access);
+firmware/core/memory_collection.h:124:int memory_collection_compact(memory_collection_t *c,
+firmware/core/memory_collection.h:125:                              const memory_collection_access_t *access);
+firmware/core/memory_collection.h:127:const memory_collection_metrics_t *memory_collection_metrics(
+firmware/core/memory_collection.h:128:    const memory_collection_t *c);
+firmware/core/memory_collection_finale.c:1:/* memory_collection_finale.c — pure fail-closed audit of composed collection evidence. */
+firmware/core/memory_collection_finale.c:2:#include "memory_collection_finale.h"
+firmware/core/memory_collection_finale.c:15:static int retrieval_status_valid(memory_retrieval_status_t status)
+firmware/core/memory_collection_finale.c:22:int memory_collection_finale_audit(const memory_collection_finale_snapshot_t *snapshot,
+firmware/core/memory_collection_finale.c:23:                                   memory_collection_finale_decision_t *out)
+firmware/core/memory_collection_finale.c:36:    if (!exactly_one(snapshot->human_review_confirmed))
+firmware/core/memory_collection_finale.c:38:    if (!exactly_one(snapshot->write_authorization_bound))
+firmware/core/memory_collection_finale.c:71:    if (!exactly_zero(snapshot->model_in_memory_path))
+firmware/core/memory_collection_finale.h:1:/* memory_collection_finale.h — pure composed audit for the multi-card memory path.
+firmware/core/memory_collection_finale.h:13:#include "memory_collection.h"
+firmware/core/memory_collection_finale.h:14:#include "memory_policy.h"
+firmware/core/memory_collection_finale.h:15:#include "memory_retrieval.h"
+firmware/core/memory_collection_finale.h:23:    memory_disposition_t policy_disposition;
+firmware/core/memory_collection_finale.h:24:    uint8_t human_review_confirmed;
+firmware/core/memory_collection_finale.h:25:    uint8_t write_authorization_bound;
+firmware/core/memory_collection_finale.h:28:    memory_collection_state_t collection_state;
+firmware/core/memory_collection_finale.h:36:    memory_retrieval_status_t index_status;
+firmware/core/memory_collection_finale.h:43:    uint8_t model_in_memory_path;
+firmware/core/memory_collection_finale.h:44:} memory_collection_finale_snapshot_t;
+firmware/core/memory_collection_finale.h:68:} memory_collection_finale_failure_t;
+firmware/core/memory_collection_finale.h:71: * authority: collection insert/open/index/presentation remain separate operations
+firmware/core/memory_collection_finale.h:72: * with their own physical confirmation and failure paths. */
+firmware/core/memory_collection_finale.h:74:    uint32_t failures; /* OR of memory_collection_finale_failure_t */
+firmware/core/memory_collection_finale.h:76:} memory_collection_finale_decision_t;
+firmware/core/memory_collection_finale.h:84:int memory_collection_finale_audit(const memory_collection_finale_snapshot_t *snapshot,
+firmware/core/memory_collection_finale.h:85:                                   memory_collection_finale_decision_t *out);
+firmware/core/memory_collection_index.c:1:/* memory_collection_index.c — bounded private retrieval over an authenticated collection. */
+firmware/core/memory_collection_index.c:2:#include "memory_collection_index.h"
+firmware/core/memory_collection_index.c:3:#include "memory_collection_private.h"
+firmware/core/memory_collection_index.c:7:static int access_valid(const memory_collection_access_t *access)
+firmware/core/memory_collection_index.c:12:static int query_valid(const memory_retrieval_query_t *query)
+firmware/core/memory_collection_index.c:24:static int config_valid(const memory_collection_index_config_t *cfg)
+firmware/core/memory_collection_index.c:30:void memory_collection_index_config_default(memory_collection_index_config_t *cfg)
+firmware/core/memory_collection_index.c:36:int memory_collection_index_init(memory_collection_index_t *index,
+firmware/core/memory_collection_index.c:37:                                 const memory_collection_index_config_t *cfg)
+firmware/core/memory_collection_index.c:43:    memory_retrieval_init(&index->retrieval);
+firmware/core/memory_collection_index.c:48:int memory_collection_index_query(memory_collection_index_t *index,
+firmware/core/memory_collection_index.c:49:                                  memory_collection_t *collection,
+firmware/core/memory_collection_index.c:50:                                  const memory_collection_access_t *access,
+firmware/core/memory_collection_index.c:51:                                  const memory_retrieval_query_t *query,
+firmware/core/memory_collection_index.c:52:                                  memory_retrieval_result_t *out)
+firmware/core/memory_collection_index.c:54:    memory_vault_card_t cards[MEMORY_COLLECTION_MAX_CARDS];
+firmware/core/memory_collection_index.c:55:    memory_consolidation_access_t retrieval_access;
+firmware/core/memory_collection_index.c:73:    if (memory_physical_session_validate(access->gate,
+firmware/core/memory_collection_index.c:94:    rc = memory_collection_copy_cards_for_index(collection, access, cards, &card_count);
+firmware/core/memory_collection_index.c:110:     * it cannot start, renew or replay authority over the collection. */
+firmware/core/memory_collection_index.c:112:    retrieval_access.physical_confirmed = 1u;
+firmware/core/memory_collection_index.c:113:    rc = memory_retrieval_query(&index->retrieval, &retrieval_access, query, cards,
+firmware/core/memory_collection_index.c:131:const memory_collection_index_metrics_t *memory_collection_index_metrics(
+firmware/core/memory_collection_index.c:132:    const memory_collection_index_t *index)
+firmware/core/memory_collection_index.h:1:/* memory_collection_index.h — private, bounded retrieval mediator over a collection.
+firmware/core/memory_collection_index.h:5: * only during a physically confirmed, typed query; it exposes only the existing
+firmware/core/memory_collection_index.h:6: * minimal retrieval result. It cannot list cards, open a card, write, erase,
+firmware/core/memory_collection_index.h:13:#include "memory_collection.h"
+firmware/core/memory_collection_index.h:14:#include "memory_retrieval.h"
+firmware/core/memory_collection_index.h:16:/* A session-local query budget limits repeated typed probes in one confirmed
+firmware/core/memory_collection_index.h:18: * host code proves only canonical nonzero IDs and confirmation. */
+firmware/core/memory_collection_index.h:26:} memory_collection_index_state_t;
+firmware/core/memory_collection_index.h:30:} memory_collection_index_config_t;
+firmware/core/memory_collection_index.h:44:} memory_collection_index_metrics_t;
+firmware/core/memory_collection_index.h:47:    memory_collection_index_config_t cfg;
+firmware/core/memory_collection_index.h:48:    memory_collection_index_state_t state;
+firmware/core/memory_collection_index.h:51:    memory_retrieval_t retrieval;
+firmware/core/memory_collection_index.h:52:    memory_collection_index_metrics_t metrics;
+firmware/core/memory_collection_index.h:53:} memory_collection_index_t;
+firmware/core/memory_collection_index.h:66:void memory_collection_index_config_default(memory_collection_index_config_t *cfg);
+firmware/core/memory_collection_index.h:67:int memory_collection_index_init(memory_collection_index_t *index,
+firmware/core/memory_collection_index.h:68:                                 const memory_collection_index_config_t *cfg);
+firmware/core/memory_collection_index.h:72: * the minimal status fields from memory_retrieval; it does not open that card.
+firmware/core/memory_collection_index.h:74: * a separate memory_collection_open under canonical physical access if they need
+firmware/core/memory_collection_index.h:76:int memory_collection_index_query(memory_collection_index_t *index,
+firmware/core/memory_collection_index.h:77:                                  memory_collection_t *collection,
+firmware/core/memory_collection_index.h:78:                                  const memory_collection_access_t *access,
+firmware/core/memory_collection_index.h:79:                                  const memory_retrieval_query_t *query,
+firmware/core/memory_collection_index.h:80:                                  memory_retrieval_result_t *out);
+firmware/core/memory_collection_index.h:82:const memory_collection_index_metrics_t *memory_collection_index_metrics(
+firmware/core/memory_collection_index.h:83:    const memory_collection_index_t *index);
+firmware/core/memory_collection_private.h:1:/* memory_collection_private.h — internal HERUS core seam for bounded index evaluation.
+firmware/core/memory_collection_private.h:4: * convention to memory_collection_index.c. It copies authenticated cards into a
+firmware/core/memory_collection_private.h:12:#include "memory_collection.h"
+firmware/core/memory_collection_private.h:14:int memory_collection_copy_cards_for_index(memory_collection_t *collection,
+firmware/core/memory_collection_private.h:15:                                           const memory_collection_access_t *access,
+firmware/core/memory_collection_private.h:16:                                           memory_vault_card_t out[MEMORY_COLLECTION_MAX_CARDS],
+firmware/core/memory_collection_recovery.c:1:/* memory_collection_recovery.c — side-effect-free crash-recovery oracle. */
+firmware/core/memory_collection_recovery.c:2:#include "memory_collection_recovery.h"
+firmware/core/memory_collection_recovery.c:9:static int snapshot_valid(const memory_collection_recovery_snapshot_t *s)
+firmware/core/memory_collection_recovery.c:38:int memory_collection_recovery_assess(
+firmware/core/memory_collection_recovery.c:39:    const memory_collection_recovery_snapshot_t *snapshot,
+firmware/core/memory_collection_recovery.c:40:    memory_collection_recovery_action_t *out_action)
+firmware/core/memory_collection_recovery.h:1:/* memory_collection_recovery.h — pure crash-recovery decision for a collection.
+firmware/core/memory_collection_recovery.h:21:} memory_collection_recovery_action_t;
+firmware/core/memory_collection_recovery.h:37:} memory_collection_recovery_snapshot_t;
+firmware/core/memory_collection_recovery.h:47: * contradiction returns E_INVALID and BLOCKED. The caller must fail closed. */
+firmware/core/memory_collection_recovery.h:48:int memory_collection_recovery_assess(
+firmware/core/memory_collection_recovery.h:49:    const memory_collection_recovery_snapshot_t *snapshot,
+firmware/core/memory_collection_recovery.h:50:    memory_collection_recovery_action_t *out_action);
+firmware/core/memory_collection_store.h:1:/* memory_collection_store.h — opaque transactional collection-storage port.
+firmware/core/memory_collection_store.h:50:} memory_collection_storage_t;
+firmware/core/memory_consolidation.c:1:/* memory_consolidation.c — bounded human review around the Step-4 vault. */
+firmware/core/memory_consolidation.c:2:#include "memory_consolidation.h"
+firmware/core/memory_consolidation.c:7:static int config_valid(const memory_consolidation_config_t *cfg)
+firmware/core/memory_consolidation.c:12:static int proposal_valid(const memory_consolidation_proposal_t *proposal)
+firmware/core/memory_consolidation.c:14:    memory_assessment_t assessment;
+firmware/core/memory_consolidation.c:31:    if (memory_policy_assess(&proposal->signal, &assessment) != MEMORY_POLICY_OK)
+firmware/core/memory_consolidation.c:36:static int access_valid(const memory_consolidation_access_t *access)
+firmware/core/memory_consolidation.c:39:           access->physical_confirmed == 1u;
+firmware/core/memory_consolidation.c:42:static int review_elapsed(const memory_consolidation_t *c, uint32_t now_ms)
+firmware/core/memory_consolidation.c:47:static void scrub_pending(memory_consolidation_t *c)
+firmware/core/memory_consolidation.c:54:static int expire_if_due(memory_consolidation_t *c, uint32_t now_ms)
+firmware/core/memory_consolidation.c:66:void memory_consolidation_config_default(memory_consolidation_config_t *cfg)
+firmware/core/memory_consolidation.c:72:int memory_consolidation_init(memory_consolidation_t *c,
+firmware/core/memory_consolidation.c:73:                              const memory_consolidation_config_t *cfg)
+firmware/core/memory_consolidation.c:84:int memory_consolidation_begin(memory_consolidation_t *c,
+firmware/core/memory_consolidation.c:85:                               const memory_consolidation_proposal_t *proposal,
+firmware/core/memory_consolidation.c:102:int memory_consolidation_expire(memory_consolidation_t *c, uint32_t now_ms)
+firmware/core/memory_consolidation.c:113:int memory_consolidation_mark_conflict(memory_consolidation_t *c,
+firmware/core/memory_consolidation.c:126:int memory_consolidation_confirm_store(memory_consolidation_t *c,
+firmware/core/memory_consolidation.c:127:                                       memory_vault_t *vault,
+firmware/core/memory_consolidation.c:128:                                       const memory_consolidation_access_t *access,
+firmware/core/memory_consolidation.c:131:    memory_vault_card_t card;
+firmware/core/memory_consolidation.c:132:    memory_vault_write_authorization_t auth;
+firmware/core/memory_consolidation.c:158:    auth.human_confirmed = 1u;
+firmware/core/memory_consolidation.c:160:    rc = memory_vault_seal(vault, &auth, &card);
+firmware/core/memory_consolidation.c:175:int memory_consolidation_cancel(memory_consolidation_t *c)
+firmware/core/memory_consolidation.c:188:int memory_consolidation_recall(memory_consolidation_t *c, memory_vault_t *vault,
+firmware/core/memory_consolidation.c:190:                                const memory_consolidation_access_t *access,
+firmware/core/memory_consolidation.c:191:                                memory_vault_card_t *out)
+firmware/core/memory_consolidation.c:202:    rc = memory_vault_open(vault, expected_card_id, out);
+firmware/core/memory_consolidation.c:213:int memory_consolidation_erase(memory_consolidation_t *c, memory_vault_t *vault,
+firmware/core/memory_consolidation.c:214:                               const memory_consolidation_access_t *access)
+firmware/core/memory_consolidation.c:223:    rc = memory_vault_erase(vault);
+firmware/core/memory_consolidation.c:233:const memory_consolidation_metrics_t *memory_consolidation_metrics(
+firmware/core/memory_consolidation.c:234:    const memory_consolidation_t *c)
+firmware/core/memory_consolidation.h:1:/* memory_consolidation.h — human-controlled selective-memory consolidation.
+firmware/core/memory_consolidation.h:5: * It accepts a minimal typed proposal (never memory_candidate_t), holds it only
+firmware/core/memory_consolidation.h:6: * during a bounded physical review, and emits vault authority only after canonical
+firmware/core/memory_consolidation.h:7: * user confirmation. Conflict is never auto-resolved. Timeout/cancel/failure scrub
+firmware/core/memory_consolidation.h:15:#include "memory_policy.h"
+firmware/core/memory_consolidation.h:16:#include "memory_extract.h"
+firmware/core/memory_consolidation.h:17:#include "memory_vault.h"
+firmware/core/memory_consolidation.h:27:} memory_consolidation_state_t;
+firmware/core/memory_consolidation.h:29:/* Intentionally not memory_candidate_t and deliberately contains no text, audio,
+firmware/core/memory_consolidation.h:33:    memory_signal_t         signal;
+firmware/core/memory_consolidation.h:34:    memory_extract_origin_t origin;
+firmware/core/memory_consolidation.h:36:} memory_consolidation_proposal_t;

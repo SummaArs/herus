@@ -1,0 +1,23 @@
+research_exit=0
+sim_exit=0
+firmware_exit=0
+=== research markers ===
+Ran 26 tests in 0.024s
+OK
+=== sim markers ===
+ALL 74 INVARIANTS HOLD IN SIMULATION
+=== firmware markers ===
+research/evidence/wide_cycle_03/firmware_all.txt:SEMANTIC IR BRIDGE INVARIANTS HOLD
+research/evidence/wide_cycle_03/firmware_all.txt:    ok — GCC analyzer found no defect in the changed path
+research/evidence/wide_cycle_03/firmware_all.txt:MEMORY COLLECTION INVARIANTS HOLD — bounded records remain authorised, authenticated and fail-closed.
+research/evidence/wide_cycle_03/firmware_all.txt:ALL FIRMWARE SUITES PASS
+research/evidence/wide_cycle_03/firmware_sanitizers.txt:SEMANTIC IR BRIDGE INVARIANTS HOLD
+research/evidence/wide_cycle_03/firmware_sanitizers.txt:MEMORY COLLECTION INVARIANTS HOLD — bounded records remain authorised, authenticated and fail-closed.
+research/evidence/wide_cycle_03/firmware_sanitizers.txt:    ok — ASan/UBSan found no defect in the changed paths
+research/evidence/wide_cycle_03/firmware_analyzer.txt:    ok — GCC analyzer found no defect in the changed path
+=== OFFICIAL PROVE ===
+  PASS  9-slot composed record round-trips
+  PASS  Threat model classifies host controls only with complete canonical evidence
+  PASS  74 system invariants hold in simulation (sim/build/herus-sim)
+ALL INVARIANTS HOLD — host contracts pass; controlled bench flash may begin, physical gates remain pending.
+official_prove_exit=0
