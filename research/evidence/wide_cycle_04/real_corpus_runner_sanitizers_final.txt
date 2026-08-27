@@ -1,0 +1,17 @@
+make: Entering directory '/home/ubuntu/herus/research'
+cc -fsanitize=address,undefined -fno-omit-frame-pointer -O1 -g -Wall -Wextra -Werror -std=c11 -I../firmware/core ../firmware/core/voice.c real_corpus_voice_runner.c -o /tmp/herus-real-corpus-runner-san
+ASAN_OPTIONS=detect_leaks=1 /tmp/herus-real-corpus-runner-san source_data/MIntRec/metadata/train.tsv source_data/MIntRec/metadata/test.tsv | tee evidence/wide_cycle_04/real_corpus_runner_sanitizers_raw.txt
+real_corpus_files=2
+real_corpus_rows=1779
+parser_draft=0
+parser_cancel=0
+parser_unknown=1636
+parser_rejected=143
+rows_too_long_for_voice_api=28
+overlong_corpus_lines=0
+rows_non_ascii=0
+rows_empty_text=0
+automatic_label_mapping=0
+multimodal_convergence_proven=0
+rm -f /tmp/herus-real-corpus-runner-san
+make: Leaving directory '/home/ubuntu/herus/research'

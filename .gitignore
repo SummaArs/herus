@@ -26,3 +26,6 @@ ORIGINAL_REQUEST.md
 
 # field data — keep your Phase 0 baseline somewhere you will not lose it
 *.csv
+
+# external datasets and source repositories — never commit raw or derived source trees
+research/source_data/

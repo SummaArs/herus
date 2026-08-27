@@ -171,3 +171,21 @@ Gates executados no ciclo:
 | Proveniência | Manifesto válido, fail-closed preservado. |
 
 O log completo está em `research/evidence/wide_cycle_03/validation_raw.txt`. Os logs separados de cada frente estão no mesmo diretório. O alvo `make -C firmware sanitizers` e o alvo `make -C firmware analyzer` foram adicionados à CI; ambos continuam separados da autoridade operacional do firmware.
+
+
+## Resultado Wide Research — ciclo 04: dados reais
+
+O ciclo 04 separou explicitamente três classes de evidência: `PAIRED` para modalidades que compartilham fonte e `sample_id` com alinhamento declarado; `INTRAMODAL` para pares dentro de uma modalidade, como áudio e sua transcrição; e `UNPAIRED` para observações sem pareamento verificável. O comparador em `research/convergence.py` recusa cálculo quando há divergência de fonte, ID, modalidade, classe de alinhamento ou qualquer tentativa de promover dados não pareados.
+
+A execução local utilizou metadados reais de MIntRec obtidos do armazenamento oficial. Foram auditadas 1.334 linhas de `train.tsv` e 445 de `test.tsv`, totalizando 1.779 segmentos e 1.779 IDs únicos. Os arquivos tinham as colunas esperadas, zero textos vazios, zero duplicatas entre os dois splits e 20 rótulos de origem. Nenhum rótulo pertence ao vocabulário operacional `ARRIVE`/`HELP`/`CANCEL`; `automatic_mapping_count=0`. A mídia áudio/vídeo não foi baixada, portanto a execução não verificou a presença multimodal no mesmo segmento.
+
+O parser C real do HERUS também foi executado sobre as 1.779 transcrições inglesas desses TSVs. O resultado foi `DRAFT=0`, `CANCEL=0`, `UNKNOWN=1.636` e `REJECTED=143`; 28 linhas excederam o limite da API vocal e nenhuma linha vazia ou não ASCII foi observada. Esse resultado é uma medição de rejeição/fora de domínio, não uma medição de cobertura do vocabulário HERUS e não valida o mapeamento de intenções em inglês para comandos em português.
+
+| Fonte | Pareamento declarado | Estado local | Pode testar | Não pode provar |
+|---|---|---|---|---|
+| MIntRec | Texto–áudio–vídeo por segmento, declarado pela fonte | Somente TSVs de texto/rótulo auditados | Integridade de metadados, IDs, rejeição fora do domínio | Convergência multimodal local ou mapeamento para HERUS |
+| Common Voice `pt` | Áudio–transcrição por clip | Nenhum arquivo baixado | Robustez intramodal após fixar release e termos | Intenção HERUS ou voz–sensor |
+| WESAD | Streams de sensores sincronizados internamente | Nenhum arquivo baixado | Contexto temporal e qualidade de sensores | Voz–sensor, texto–sensor ou comandos HERUS |
+| Fluent Speech Commands | Áudio–transcrição–slots/intenção, declarado pela fonte | Nenhum arquivo baixado | Candidato a benchmark de comando falado pareado | Mapeamento para HERUS e desempenho físico |
+
+O manifesto de fontes, licenças, hashes, estado de download e limites está em `research/datasets_manifest.json`. Os dados crus permanecem ignorados pelo Git; os artefatos agregados e logs seguros do ciclo estão em `research/evidence/wide_cycle_04/`. Veredito do ciclo: **`herus_convergence_proven=false`**.

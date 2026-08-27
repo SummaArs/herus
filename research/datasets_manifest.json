@@ -1,0 +1,166 @@
+{
+  "schema_version": "herus.datasets.v1",
+  "policy": {
+    "raw_data_commit": false,
+    "synthetic_pairing": false,
+    "automatic_label_mapping_to_herus": false,
+    "multimodal_claim_requires_same_sample_id_source_and_declared_alignment": true
+  },
+  "datasets": [
+    {
+      "id": "mintrec",
+      "name": "MIntRec",
+      "version_or_snapshot": "repository snapshot used locally; metadata train/test downloaded from official storage, dev not downloaded",
+      "source_urls": [
+        "https://github.com/thuiar/MIntRec",
+        "https://drive.google.com/drive/folders/18iLqmUYDDOwIiiRbgwLpzw76BD62PK0p"
+      ],
+      "source_commit": "6bc239695df342c22c324bb3a76789fa295ff999",
+      "license_or_terms": "Repository code is MIT. Dataset/media redistribution terms are not explicitly confirmed in the audited source.",
+      "license_confirmed_for_raw_data": false,
+      "redistribution_allowed": null,
+      "redistribution_status": "not_verified; raw media and downloaded TSVs remain local and ignored",
+      "modalities": ["text", "audio", "video", "intent_label"],
+      "alignment_class": "PAIRED_DECLARED_BY_SOURCE",
+      "alignment_statement": "The source describes text, audio and video aligned by segment ID; this local run downloaded and validated only text/label TSV metadata, not audio/video presence.",
+      "download_status": {
+        "metadata_train": "downloaded_and_audited",
+        "metadata_dev": "not_downloaded",
+        "metadata_test": "downloaded_and_audited",
+        "audio": "not_downloaded",
+        "video": "not_downloaded",
+        "heavy_archive": "not_downloaded"
+      },
+      "local_files": [
+        {
+          "path": "research/source_data/MIntRec/metadata/train.tsv",
+          "sha256": "348289d7d140b2c0716b35a03e7045b684c4b90f5c30d1281f9a6b7cb3b9903b",
+          "bytes": 75488,
+          "rows": 1334
+        },
+        {
+          "path": "research/source_data/MIntRec/metadata/test.tsv",
+          "sha256": "e4394869fc02898e00fad0a1b03e0333760a9b0499da2fa3f8af030a384c8f3a",
+          "bytes": 26287,
+          "rows": 445
+        }
+      ],
+      "herus_label_mapping": {
+        "status": "none",
+        "mapping_count": 0,
+        "reason": "The 20 source labels are outside ARRIVE/HELP/CANCEL; mapping requires new annotation and is not inferred from lexical similarity."
+      },
+      "can_prove": [
+        "Real text/label metadata integrity for the downloaded splits",
+        "No duplicate segment IDs between the downloaded train/test splits",
+        "Parser out-of-domain rejection/unknown behavior on real English transcripts"
+      ],
+      "cannot_prove": [
+        "HERUS multimodal convergence, because aligned audio/video were not locally validated",
+        "Correctness of an automatic mapping from MIntRec labels to HERUS events",
+        "Physical-device or firmware performance"
+      ]
+    },
+    {
+      "id": "common_voice_pt_scripted_v26",
+      "name": "Common Voice Scripted Speech Portuguese",
+      "version_or_snapshot": "Scripted Speech v26.0, locale pt, as listed by the official dataset page at audit time",
+      "source_urls": [
+        "https://commonvoice.mozilla.org/en/datasets",
+        "https://www.mozillafoundation.org/en/blog/common-voice-18-dataset-release/",
+        "https://github.com/common-voice/cv-dataset"
+      ],
+      "license_or_terms": "CC0 is described by the Mozilla release material for Common Voice data; the exact downloaded package/version must be checked before use or redistribution.",
+      "license_confirmed_for_raw_data": false,
+      "redistribution_allowed": null,
+      "redistribution_status": "version-specific confirmation pending; no files downloaded",
+      "modalities": ["audio", "transcript"],
+      "alignment_class": "INTRAMODAL_PAIRED_AUDIO_TRANSCRIPT",
+      "alignment_statement": "Each clip is paired with a reference transcript, but the source is not an intent/sensor/multimodal command dataset.",
+      "download_status": {
+        "audio": "not_downloaded",
+        "transcript": "not_downloaded"
+      },
+      "local_files": [],
+      "herus_label_mapping": {
+        "status": "none",
+        "mapping_count": 0,
+        "reason": "Read speech does not provide HERUS command annotations; no labels are inferred."
+      },
+      "can_prove": [
+        "Potential real-data robustness of an ASR/transcript frontend after a fixed release and permitted download"
+      ],
+      "cannot_prove": [
+        "Audio–sensor or text–sensor convergence",
+        "HERUS intent coverage without independent annotation"
+      ]
+    },
+    {
+      "id": "wesad",
+      "name": "WESAD Wearable Stress and Affect Detection",
+      "version_or_snapshot": "UCI dataset record 465 and authors' distribution; exact local snapshot not downloaded",
+      "source_urls": [
+        "https://archive.ics.uci.edu/dataset/465/wesad+wearable+stress+and+affect+detection",
+        "https://ubi29.informatik.uni-siegen.de/usi/data_wesad.html",
+        "https://doi.org/10.24432/C57K5T"
+      ],
+      "license_or_terms": "Authors' source states scientific non-commercial use with attribution; no broad redistribution license confirmed in the audited material.",
+      "license_confirmed_for_raw_data": false,
+      "redistribution_allowed": null,
+      "redistribution_status": "not_verified; no files downloaded",
+      "modalities": ["physiological_sensor", "motion_sensor", "context_label"],
+      "alignment_class": "PAIRED_INTERNAL_SENSOR_STREAMS",
+      "alignment_statement": "Pulse/chest sensor streams are synchronized within the experiment; there is no voice or text stream paired to these samples.",
+      "download_status": {
+        "raw_sensor_archive": "not_downloaded"
+      },
+      "local_files": [],
+      "herus_label_mapping": {
+        "status": "none",
+        "mapping_count": 0,
+        "reason": "Neutral/stress/amusement are benchmark context labels, not ARRIVE/HELP/CANCEL commands."
+      },
+      "can_prove": [
+        "Potential temporal sensor-quality and finite-context experiments after a permitted local download"
+      ],
+      "cannot_prove": [
+        "Voice–sensor convergence",
+        "Text–sensor convergence",
+        "HERUS command correctness"
+      ]
+    },
+    {
+      "id": "fluent_speech_commands",
+      "name": "Fluent Speech Commands",
+      "version_or_snapshot": "source page audited 2026-08-27; exact package snapshot not downloaded",
+      "source_urls": [
+        "https://fluent.ai/fluent-speech-commands-a-dataset-for-spoken-language-understanding-research/",
+        "https://arxiv.org/abs/1904.03670"
+      ],
+      "license_or_terms": "Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International; source says academic research only.",
+      "license_confirmed_for_raw_data": true,
+      "redistribution_allowed": false,
+      "redistribution_status": "research-use terms identified; no raw files downloaded or redistributed",
+      "modalities": ["audio", "transcript", "slots", "intent"],
+      "alignment_class": "PAIRED_DECLARED_BY_SOURCE",
+      "alignment_statement": "The source describes a CSV row with speaker ID, audio path, transcription and slots for the same utterance; local ID/file verification has not yet been run.",
+      "download_status": {
+        "audio": "not_downloaded",
+        "csv": "not_downloaded"
+      },
+      "local_files": [],
+      "herus_label_mapping": {
+        "status": "none",
+        "mapping_count": 0,
+        "reason": "External smart-home intents are retained as benchmark labels; no lexical or semantic automatic mapping to HERUS is allowed."
+      },
+      "can_prove": [
+        "Potential real audio–transcript–intent convergence in a command-shaped benchmark after a permitted local sample and same-ID checks"
+      ],
+      "cannot_prove": [
+        "HERUS event convergence without independent mapping annotation",
+        "Firmware or physical-device performance"
+      ]
+    }
+  ]
+}

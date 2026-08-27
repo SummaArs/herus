@@ -23,7 +23,7 @@
     {
       "path": "firmware",
       "kind": "tree",
-      "sha256": "3993fe294433424a964ff92ced8825b9fe09d9ddfd9ce5879811d9be46ef6fd5",
+      "sha256": "d4c322beaae63a488f90f266511d7ca43ba51d6e4cacb4aaa6feba867bd5503b",
       "role": "portable firmware and proof sources"
     },
     {
@@ -47,7 +47,7 @@
     {
       "path": "research/Makefile",
       "kind": "file",
-      "sha256": "78e001321430dc023aaf49df81250c25782b4b69ce95d83590efa7cb6c4c6e1d",
+      "sha256": "ba918868d1ae64c0073bb9201e65a5bc05a619e92aa75883847f455f72b4f38f",
       "role": "host-only research test entrypoint"
     },
     {
@@ -91,6 +91,42 @@
       "kind": "file",
       "sha256": "2f0eddeb4d77d29074bc79263a78b724d43d49868580560fe213719a4e2901bd",
       "role": "private numeric bench evidence schema"
+    },
+    {
+      "path": "research/analyze_mintrec_metadata.py",
+      "kind": "file",
+      "sha256": "5b42d3cc6c75b155cd5f88e253b289ad9e7db23c3d0320418c682b8ed20f917c",
+      "role": "real MIntRec metadata audit"
+    },
+    {
+      "path": "research/real_corpus_voice_runner.c",
+      "kind": "file",
+      "sha256": "3f3a1809cf7fa89835db756b492095634ec82686f48a3022c84ecefea7fb8fdc",
+      "role": "host-only real corpus parser runner"
+    },
+    {
+      "path": "research/convergence.py",
+      "kind": "file",
+      "sha256": "1bb046542b7a3d034d94aa79a4f93f1c065271eacba4297223d29b4030da4390",
+      "role": "fail-closed typed convergence comparator"
+    },
+    {
+      "path": "research/test_convergence.py",
+      "kind": "file",
+      "sha256": "3b68f945785461c613b97dd7c4dc6411a805bddb809ead8b0f5643640406d3ac",
+      "role": "convergence comparator adversarial tests"
+    },
+    {
+      "path": "research/datasets_manifest.json",
+      "kind": "file",
+      "sha256": "f9ec4f961a81ab6b39ed1f8f79e4d45cc841bc607109b130cf0d41d67255a3d5",
+      "role": "real dataset provenance and alignment manifest"
+    },
+    {
+      "path": "research/test_datasets_manifest.py",
+      "kind": "file",
+      "sha256": "395fc7c62ef594409490dce6a7fea2606b410f9d9fa9d27ab280a4ff532ec6b5",
+      "role": "dataset manifest and aggregate audit tests"
     }
   ],
   "components": [

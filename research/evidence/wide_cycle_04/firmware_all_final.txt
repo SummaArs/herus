@@ -1,0 +1,1079 @@
+make: Entering directory '/home/ubuntu/herus/firmware'
+--- algebra: hv + lexicon + hcp ---
+cc -O2 -Wall -Wextra -std=c11 -DHV_LUT_POPCOUNT -Icore -Inet -Iport -Itest core/hv.c core/lexicon.c core/hcp.c \
+    core/test_herus.c -o build/test_herus -lm
+./build/test_herus
+HERUS core proof suite   D=10240 bits (1280 B)  sketch=256 bits
+
+== T1  quasi-orthogonality of random codes ==
+  D = 10240, pairs = 499500
+  mean dist   measured 5120.0   theory 5120.0
+  sigma       measured 50.55   theory 50.60
+  closest pair 4867 bits = 5.00 sigma from the mean
+  furthest     5366 bits
+  P(pair exceeds 55% similarity)     = 2.269e-24   [draft said <1e-6]
+  P(any collision among 10k symbols) = 1.134e-16
+
+== T2  bundling capacity (how many symbols fit in one hypervector) ==
+      K   d/D meas  d/D exact 0.5-.399/vK  margin_s recoverable
+      3     0.2508     0.2500     0.2697      50.4 yes
+      5     0.3121     0.3125     0.3216      38.0 yes
+      9     0.3638     0.3633     0.3670      27.6 yes
+     21     0.4129     0.4119     0.4130      17.6 yes
+     51     0.4450     0.4439     0.4441      11.1 yes
+    101     0.4607     0.4602     0.4603       7.9 yes
+    201     0.4720     0.4718     0.4719       5.7 yes
+    401     0.4800     0.4801     0.4801       4.0 NO
+  rule: a member stays recoverable against a 512-entry lexicon
+        while its margin exceeds ~4.5 sigma (union bound).
+
+== T3/T4  algebraic invariants ==
+  T3 (A^B)^B == A                        : EXACT
+     sim(A^B, A) = +0.0027  (must be ~0)   : ok
+     sim(rot(A), A) = -0.0004              : ok
+     rot^-1(rot(A)) == A                 : EXACT
+  T4 A^maj(V) == maj(A^V), K=5 odd       : EXACT  (draft: "approx")
+     K=4: two tie-break seeds differ by 1953 bits (ties are real)
+
+== T5  n-gram encoding: which corruptions survive ==
+  bigram encoding, reference "gato" -> bigrams {ga,at,to}
+    gato      identical              sim = +1.000
+    gata      substitution (last)    sim = +0.498
+    gxto      substitution (mid)     sim = +0.258
+    gaato     insertion              sim = +0.628
+    gtao      TRANSPOSITION          sim = +0.241
+    gate      substitution (last)    sim = +0.516
+    cachorro  unrelated              sim = -0.018
+  NOTE: the draft claimed "gtao" shares 2 of 3 bigrams with "gato".
+        It shares zero: {gt,ta,ao} n {ga,at,to} = {}. Character
+        n-grams are robust to substitution and insertion and are
+        WORST-CASE for transposition. Use trigrams + bigrams together
+        if transposition matters.
+
+== T6  two-stage search (sketch prefilter) vs exhaustive ==
+  shortlist  1 : agreement with exhaustive = 100.00%
+  shortlist  2 : agreement with exhaustive = 100.00%
+  shortlist  4 : agreement with exhaustive = 100.00%
+  shortlist  8 : agreement with exhaustive = 100.00%
+  shortlist 16 : agreement with exhaustive = 100.00%
+
+== T7  Tier-0.5: decoding a subsampled sketch through a noisy channel ==
+  lexicon = 512 symbols, 256-bit subsampled sketch, 4000 trials/point
+     BER  sketch ok   framed-8B ok verdict
+      5%    100.00%      1.65e-02   sketch usable
+     10%    100.00%      2.18e-04   sketch usable
+     15%    100.00%      2.26e-06   sketch usable
+     20%    100.00%      1.77e-08   sketch usable
+     25%    100.00%      1.01e-10   sketch usable
+     30%     99.90%      4.05e-13   sketch usable
+     35%     95.95%      1.08e-15   sketch usable
+     40%     57.10%      1.79e-18   sketch degrading
+     45%      8.60%      1.69e-21   sketch degrading
+
+== T8  resonator network: factorising a composed message ==
+  3 factors x 32 candidates = 32768 combinations in the search space
+  solved 183/200 = 91.5%, mean 2.7 iterations
+  a brute-force decoder would test 32768 hypotheses; the resonator
+  holds all of them superposed and collapses in ~3 steps.
+
+== T9  online learning with an enforced separation invariant ==
+  8 classes x 12 noisy samples (25% bit noise)
+  min pairwise prototype separation = 5033 bits (floor 3000)
+  in-domain : 100.0% correct, 0.0% rejected
+  out-of-domain queries accepted (false alarms) : 0.00%
+  a softmax classifier has no equivalent of this column: it always
+  emits a distribution. Rejection is a native property here.
+  adversarial mislabelling: 33/40 updates refused by the drift guard,
+  separation held at 3013 bits
+
+== T10  throughput (host measurement -> MCU projection) ==
+  exhaustive  512 x 1280 B :    348.3 us/query
+  two-stage   sketch+8   :     14.5 us/query   (24.0x faster)
+  bytes touched: exhaustive 655360, two-stage 26624 (24.6x less)
+  MCU projection at 4 cycles/byte (LUT popcount, no HW popcount on
+  Xtensa LX7 or Cortex-M33):
+    ESP32-S3  @240 MHz : exhaustive 10.92 ms, two-stage 0.44 ms
+    nRF54L15  @128 MHz : exhaustive 20.48 ms, two-stage 0.83 ms
+  energy/query (active current x time):
+    ESP32-S3  @45 mA   : 0.006 uAh   two-stage
+    nRF54L15  @3.2 mA  : 0.001 uAh   two-stage
+  RAM: codebook 0 B (derived), sketch table 16384 B, working set ~5120 B
+
+== T11  HCP wire format rev 0.2: constant length, tier-opaque, 9 slots ==
+  Tier-0 glyph          encodes to 24 bytes
+  Tier-1, 9 full slots encodes to 24 bytes
+  constant length       : YES  (defeats length-based traffic analysis)
+  round-trip 9 slots    : ok
+  unbind all 9 slots    : 9/9 recovered exactly  : ok
+  unbind an absent role : correctly reports absent  : ok
+  an unknown role id is simply not queried, so old firmware ignores
+  new fields instead of failing: forward compatibility for free.
+
+--- algebra: dense vs sparse block codes ---
+cc -O2 -Wall -Wextra -std=c11 -DHV_LUT_POPCOUNT -Icore -Inet -Iport -Itest core/hv.c core/sbc.c \
+    core/test_algebra.c -o build/test_algebra -lm
+./build/test_algebra
+Herus algebra fire test — D=10240 dense, SBC S=128 B=64
+
+=== T1  quasi-orthogonality ===
+dense  D=10240   mean d = 5119.4 (theory 5120.0)   sigma = 50.29 (theory 50.60)
+       normalised sigma = 0.0049  -> 1 sigma is 0.49% of similarity
+       P(sim > 55%) = P(Z > 10.1) ~ 2.27e-24   [draft said '< 1e-6']
+sbc    S=128 B=64 mean match = 1.98 (theory 2.00)  sigma = 1.41 (theory 1.40)
+       random similarity = 1.55% vs dense 50% -> 32x more headroom
+
+=== T2  binding is exactly invertible ===
+sim(a^b, a) = 0.5061   sbc sim(bind, a) = 0.0234   (both ~random)
+round-trip failures: 0 / 4000  -> PASS
+
+=== T3  bundle capacity law ===
+ K   dense measured   closed form   0.5+0.399/sqrt(K)   sbc measured
+   1   1.0000           1.0000        0.8990              1.0000
+   3   0.7504           0.7500        0.7304              0.3477
+   5   0.6873           0.6875        0.6784              0.2310
+   7   0.6567           0.6563        0.6508              0.1839
+   9   0.6365           0.6367        0.6330              0.1615
+  15   0.6040           0.6047        0.6030              0.1283
+  31   0.5720           0.5722        0.5717              0.0857
+  63   0.5507           0.5505        0.5503              0.0628
+ 127   0.5356           0.5355        0.5354              0.0478
+
+=== T4  retrieval capacity (lexicon L=512, 200 trials, success = ALL K members win) ===
+  K    dense success   sbc success
+   3     100.0%         100.0%
+   5     100.0%         100.0%
+   9     100.0%          99.5%
+  15     100.0%          88.0%
+  21     100.0%          43.5%
+  31     100.0%           3.5%
+  63     100.0%           0.0%
+  95     100.0%           0.0%
+ 127     100.0%           0.0%
+ 191      65.0%           0.0%
+ 255      15.5%           0.0%
+closed-form dense limit K < 0.637*D/z^2, z=4.6 (union bound, L=512, eps=1e-3): K_max ~ 308
+
+=== T5  role symmetry: the draft's relation encoding answers backwards ===
+symmetric  forwards -> value  1.0000    backwards -> arg  1.0000
+           both resolve perfectly, so the roles are indistinguishable: BUG
+ordered    forwards -> value  1.0000    backwards -> arg  0.4910
+           forwards exact, backwards at chance: roles now carry direction
+
+=== T6  reject threshold ===
+dense: sigma_norm = 0.00494, union-bound z = 4.62
+       derived threshold = 0.5228  (52.28%)
+       draft threshold   = 0.6000 (60%) = 20.2 sigma
+genuine K=9 member accepted: derived 100.0%   draft-60% 100.0%
+false accepts at derived bar: 0 / 2000
+
+=== T7  what n-gram encoding actually tolerates ===
+               positional only   +order-free channel
+identical      1.0000            1.0000    status
+substitution   0.7190            0.7409    statvs
+prefix insert  0.8481            0.8592    estatus
+transposition  0.7244            0.7569    statsu
+unrelated word 0.5026            0.5197    silence
+note: the draft claimed 'gtao' shares 2 of 3 bigrams with 'gato'.
+      bigrams(gato)={ga,at,to}, bigrams(gtao)={gt,ta,ao}: they share NONE.
+      n-grams tolerate substitution, not transposition. The order-free
+      channel is what buys transposition tolerance back.
+
+=== T8  Tier 0.5 graceful decode (lexicon 512, 3000 trials per point) ===
+raw BER   dense sketch 256 b (32 B)   sbc sketch 16 blk (12 B)   sbc 32 blk (24 B)
+     0%        100.00%                 100.00%                100.00%
+     2%        100.00%                 100.00%                100.00%
+     5%        100.00%                 100.00%                100.00%
+    10%        100.00%                  99.63%                100.00%
+    15%        100.00%                  94.73%                 99.93%
+    20%        100.00%                  75.60%                 97.23%
+    25%        100.00%                  47.50%                 81.23%
+    30%         99.90%                  23.57%                 46.27%
+
+=== T9  exhaustive search cost, L=512 ===
+dense  1280 B/vector     249018 ns/query   655360 bytes touched
+sbc    128 B/vector        7990 ns/query   65536 bytes touched   (10.0x less traffic)
+speedup measured: 31.2x  (popcount path: byte LUT, as on Xtensa LX7 / Cortex-M33)
+
+=== T10 two-stage search == exhaustive search ===
+agreement with exhaustive: 100.00%  (16 blocks coarse, top-8 shortlist)
+cost ratio vs exhaustive: 0.14  (16/128 + 8/512)
+
+done.
+--- nucleus: bounded local semantic intelligence ---
+cc -O2 -Wall -Wextra -std=c11 -Icore -Inet -Iport -Itest core/nucleus.c core/test_nucleus.c -o build/test_nucleus
+./build/test_nucleus
+
+== N1  consent, semantic transition and explainable confidence ==
+  PASS N1 learning is off by default and stores no unconsented observation
+  PASS N1 first authorised meaning arms context only
+  PASS N1 only repeated transitions become ranked suggestions with explicit confidence
+  PASS N1 a suggestion preserves meaning but strips transport state before confirmation
+  PASS N1 querying a prediction never trains, transmits or changes the learned state
+
+== N2  malformed input, self-loop suppression, expiry and erasure ==
+  PASS N2 non-semantic tiers are rejected before they can enter local memory
+  PASS N2 repeated identical meanings refresh context but never create self-suggestions
+  PASS N2 stale knowledge has a deterministic expiry path
+  PASS N2 a zero retention policy erases even freshly learned context immediately
+  PASS N2 forget erases every learned template, pending context and consent state
+
+== N3  mobile-base governance stays advisory and conservative ==
+  PASS N3 healthy telemetry recommends relay and charge but does not actuate either
+  PASS N3 weak delivery asks the owner to reposition the puck before changing protocol
+  PASS N3 low battery suppresses relay recommendation rather than spending the last reserve
+  PASS N3 a lost Core link never triggers autonomous traffic or charging control
+NUCLEUS INVARIANTS HOLD — local intelligence is bounded, opt-in and non-autonomous.
+--- voice: controlled language and bounded haptics ---
+cc -O2 -Wall -Wextra -std=c11 -Icore -Inet -Iport -Itest core/voice.c core/test_voice.c -o build/test_voice
+./build/test_voice
+
+== V1  controlled Portuguese creates a semantic draft ==
+  PASS V1 arrival with a spoken duration becomes one configured HCP time slot
+  PASS V1 voice produces no transport state and cannot be sent without confirmation code
+  PASS V1 arrival without duration remains a compact semantic glyph
+
+== V2  cancellation, unknown speech and help fail safely ==
+  PASS V2 cancellation discards only the local draft and never makes a frame
+  PASS V2 unknown language fails closed instead of guessing a radio intent
+  PASS V2 a duration outside the configured vocabulary is rejected, not truncated
+  PASS V2 the upper supported duration remains accepted
+  PASS V2 a composed duration above 60 is rejected, not reduced to its tens
+  PASS V2 two unit terms are rejected instead of accepting the first one
+  PASS V2 mixed numeric composition is rejected instead of reduced to 5
+  PASS V2 mixed numeric overflow is rejected before conversion
+  PASS V2 negative duration syntax is rejected rather than normalised to 1
+  PASS V2 signed positive duration syntax is rejected rather than normalised to 1
+  PASS V2 unsupported hundreds are rejected instead of reduced to 25
+  PASS V2 spoken help is a private critical draft, never an autonomous public SOS
+  PASS V2 conflicting cancel and arrival intents are rejected, not priority-resolved
+  PASS V2 conflicting help and arrival intents are rejected, not priority-resolved
+  PASS V2 negated cancellation is rejected instead of becoming cancellation
+  PASS V2 negated arrival is rejected instead of becoming arrival
+
+== V3  typed local-ASR commands retain semantic bounds ==
+  PASS V3 a typed arrival command creates the same bounded semantic-only draft
+  PASS V3 help and cancel reject unsupported duration parameters instead of guessing
+
+== V3  haptic plans are finite and driver-independent ==
+  PASS V3 every standard voice event has a bounded safe vibration plan
+  PASS V3 every standard voice event has a bounded safe vibration plan
+  PASS V3 every standard voice event has a bounded safe vibration plan
+  PASS V3 every standard voice event has a bounded safe vibration plan
+  PASS V3 every standard voice event has a bounded safe vibration plan
+  PASS V3 every standard voice event has a bounded safe vibration plan
+  PASS V3 an overlong motor-on command is rejected before hardware
+  PASS V3 too many pulses are rejected before hardware
+VOICE/HAPTIC INVARIANTS HOLD — speech is local, confirmed and bounded.
+--- semantic IR: real parser and typed-adapter convergence ---
+cc -O2 -Wall -Wextra -std=c11 -Icore -Inet -Iport -Itest core/voice.c core/test_semantic_ir_bridge.c -o build/test_semantic_ir_bridge
+./build/test_semantic_ir_bridge
+
+== SIR1 real parser/adapter convergence ==
+  PASS text arrival and typed arrival converge to the same semantic draft
+  PASS text arrival without duration and typed arrival without duration converge
+  PASS text help and typed help converge to the same private critical draft
+  PASS text cancellation and typed cancellation converge to the same local event
+  PASS unknown text is rejected without a semantic command
+  PASS out-of-domain duration is rejected without truncation
+  PASS typed control commands reject an unsupported duration
+SEMANTIC IR BRIDGE INVARIANTS HOLD
+--- intent gateway: session, confidence, ambiguity and bounded context ---
+cc -O2 -Wall -Wextra -std=c11 -Icore -Inet -Iport -Itest core/intent_gate.c core/test_intent_gate.c -o build/test_intent_gate
+./build/test_intent_gate
+
+== G1  session-bound confidence and bounded context ==
+  PASS G1 a high-confidence, wide-margin local command is accepted directly
+  PASS G1 context cannot promote a command below the confidence floor
+  PASS G1 qualified local context can only disambiguate the same strong command
+  PASS G1 a different context hint cannot replace the ASR primary command
+  PASS G1 a stale session result is ignored before command or confidence is trusted
+  PASS G1 malformed command parameters fail closed
+INTENT GATE INVARIANTS HOLD — confidence, context and session never authorize a send.
+--- dialogue: bounded local conversation and model authority boundary ---
+cc -O2 -Wall -Wextra -std=c11 -Icore -Inet -Iport -Itest net/crypto.c core/dialogue.c core/test_dialogue.c -o build/test_dialogue
+./build/test_dialogue
+
+== D1  local conversational boundary ==
+  PASS D1 no conversation turn begins without a nonzero physical session
+  PASS D1 a local model receives one bounded utterance and typed topic cards only
+  PASS D1 the runtime retains no transcript and zeroizes its local UX reply after delivery
+  PASS D1 even action-looking model text is only a local reply, not a sendable semantic draft
+  PASS D1 malformed or unauthorized model output is rejected without a retained reply
+  PASS D1 unavailable local inference fails closed and permits no fallback network path
+  PASS D1 an expired turn is cleared and a new turn still requires a fresh physical session
+  PASS D1 typed context expires independently of a new conversation turn
+  PASS D1 privacy erase removes all bounded context and pending response without touching transport
+DIALOGUE INVARIANTS HOLD — local conversation remains bounded, private and non-autonomous.
+--- static analysis: voice parser and Semantic IR bridge ---
+cc -fanalyzer -O0 -Wall -Wextra -Werror -std=c11 -Icore -Inet -Iport -Itest -c core/voice.c -o build/analyzer_voice.o
+cc -fanalyzer -O0 -Wall -Wextra -Werror -std=c11 -Icore -Inet -Iport -Itest -c core/test_semantic_ir_bridge.c -o build/analyzer_semantic_ir_bridge.o
+rm -f build/analyzer_voice.o build/analyzer_semantic_ir_bridge.o
+    ok — GCC analyzer found no defect in the changed path
+--- model lab: target evidence, budgets and display-only reply shield ---
+cc -O2 -Wall -Wextra -std=c11 -Icore -Inet -Iport -Itest net/crypto.c core/model_lab.c core/test_model_lab.c -o build/test_model_lab
+./build/test_model_lab
+
+== M1  measured local-model acceptance gate ==
+  PASS M1 only a complete target-measured, local-only profile inside every budget is accepted
+  PASS M1 an unspecified budget denies release instead of silently accepting a model
+  PASS M1 host-only, connected or unidentified weights cannot enter production
+  PASS M1 one byte, millisecond or microjoule above a declared budget fails acceptance
+  PASS M1 incomplete evaluation, a network attempt or authority escalation fails closed
+  PASS M1 action-looking output remains an explicitly display-only reply
+  PASS M1 malformed reply is rejected and its destination is zeroized
+MODEL LAB INVARIANTS HOLD — only measured, local, bounded and adversarially clean models may be accepted.
+--- memory policy: consent, relevance, review and no persistence ---
+cc -O2 -Wall -Wextra -std=c11 -Icore -Inet -Iport -Itest core/memory_policy.c core/test_memory_policy.c -o build/test_memory_policy
+./build/test_memory_policy
+
+== M1  selective-memory relevance is consented, conservative and reversible ==
+  PASS M1 unconsented speech is discarded before relevance is considered
+  PASS M1 an ambiguous extraction cannot be retained merely because it sounds important
+  PASS M1 ordinary low-value talk is intentionally forgotten
+  PASS M1 plausible but non-obvious value becomes a review candidate, not an automatic memory
+  PASS M1 confident, ordinary self decisions may be eligible for reversible consolidation
+  PASS M1 an explicit self-memory request is eligible even when automatic relevance is weak
+  PASS M1 sensitive personal material is never auto-retained
+  PASS M1 another person’s information is never auto-retained
+  PASS M1 untyped candidate data is rejected without a partial decision
+MEMORY POLICY INVARIANTS HOLD — relevance is consented, conservative and cannot persist by itself.
+--- memory capture: physical session, timeout and transient discard ---
+cc -O2 -Wall -Wextra -std=c11 -Icore -Inet -Iport -Itest core/memory_capture.c core/test_memory_capture.c -o build/test_memory_capture
+./build/test_memory_capture
+
+== M2 explicit memory capture is physical, one-shot and transient ==
+  PASS M2 no capture starts without a physical gesture
+  PASS M2 physical gesture opens a visible bounded local capture window
+  PASS M2 a live capture cannot be re-entered or replaced by another gesture
+  PASS M2 stale or mismatched source data is never consumed and is scrubbed immediately
+  PASS M2 one synchronous delivery closes capture and zeroizes its buffer
+  PASS M2 a completed capture permits a new physical session
+  PASS M2 a late buffer from an earlier capture cannot enter a later session
+  PASS M2 physical cancellation removes authorization and requests source discard
+  PASS M2 expiry closes the window even if the source adapter remains silent
+  PASS M2 an oversized source buffer is scrubbed and terminates authorization
+  PASS M2 a new session can start after a rejected source without reviving old data
+  PASS M2 adapter failure still scrubs the buffer and fails closed
+MEMORY CAPTURE INVARIANTS HOLD — capture is physical, bounded, one-shot and transient.
+--- memory extract: typed candidate, uncertainty and zero retention ---
+cc -O2 -Wall -Wextra -std=c11 -Icore -Inet -Iport -Itest core/memory_capture.c core/memory_policy.c core/memory_extract.c core/test_memory_extract.c -o build/test_memory_extract
+./build/test_memory_extract
+
+== M3 candidate extraction is typed, uncertain and non-retaining ==
+  PASS M3 no candidate is produced without a live capture-session identifier
+  PASS M3 free conversation outside the controlled grammar is discarded
+  PASS M3 explicit own idea becomes a typed candidate without carrying its text
+  PASS M3 changing the caller text after extraction cannot alter retained extractor state
+  PASS M3 policy may make an ordinary explicit candidate eligible but does not persist it
+  PASS M3 controlled decision syntax produces an uncertain typed interpretation, not a fact
+  PASS M3 sensitive information about another person is marked and forced to review
+  PASS M3 a low-confidence local-ASR observation cannot become memory by grammar alone
+  PASS M3 oversized input is rejected before grammar or policy evaluation
+  PASS M3 an expired or cancelled capture cannot be reused for later extraction
+  PASS M3 metrics are numeric-only and account for candidate, rejection and risk paths
+MEMORY EXTRACT INVARIANTS HOLD — grammar is conservative, output is typed and no text is retained.
+--- memory vault: explicit authority, AEAD and monotonic anti-rollback ---
+cc -O2 -Wall -Wextra -std=c11 -Icore -Inet -Iport -Itest net/crypto.c core/memory_policy.c core/memory_vault.c core/test_memory_vault.c -o build/test_memory_vault
+./build/test_memory_vault
+
+== M4 encrypted memory vault is authorised, authenticated and fail-closed ==
+  PASS M4 initialisation loads an independent monotonic floor without loading a root key
+  PASS M4 an eligible card cannot persist without canonical explicit human authorization
+  PASS M4 sensitive or third-party-shaped candidates cannot bypass policy into the vault
+  PASS M4 an authorised minimal card seals with a committed monotonic generation
+  PASS M4 a valid sealed card opens only under its expected local identifier
+  PASS M4 tag alteration is rejected and releases no plaintext card
+  PASS M4 a fresh instance obtains the durable floor before accepting a record
+  PASS M4 AAD/header-context alteration fails before any card can be returned
+  PASS M4 a different root material cannot authenticate the sealed record
+  PASS M4 original backend restores after a rejected foreign-root attempt
+  PASS M4 replacement advances the protected generation floor
+  PASS M4 restoring an authenticated old blob is rejected against the separate durable floor
+  PASS M4 a later seal derives a new generation-specific key rather than reusing erased state
+  PASS M4 erase failure blocks both reading and writing instead of assuming deletion
+  PASS M4 successful erase removes the record but never lowers the anti-rollback floor
+  PASS M4 failed record persistence blocks the vault before a generation can be claimed
+MEMORY VAULT INVARIANTS HOLD — human authority, full AEAD authentication, durable generation and fail-closed deletion are enforced in host simulation.
+--- memory consolidation: bounded human review, conflict, recall and removal ---
+cc -O2 -Wall -Wextra -std=c11 -Icore -Inet -Iport -Itest net/crypto.c core/memory_policy.c core/memory_vault.c core/memory_consolidation.c core/test_memory_consolidation.c -o build/test_memory_consolidation
+./build/test_memory_consolidation
+
+== M5 human consolidation is bounded, explicit and non-autonomous ==
+  PASS M5 fixture vault starts from a valid protected-generation contract
+  PASS M5 consolidation begins idle with a bounded transient review window
+  PASS M5 sensitive or policy-ineligible proposals cannot enter a human review queue
+  PASS M5 beginning review retains only a transient typed proposal and writes nothing
+  PASS M5 a physical confirmation from another session cannot authorize persistence
+  PASS M5 an expired review scrubs the proposal and never turns timeout into retention
+  PASS M5 cancellation returns control to the person without creating a receipt or record
+  PASS M5 an incompatible existing card becomes an explicit conflict, not an automatic choice
+  PASS M5 conflict blocks even a valid physical confirmation until the proposal is cancelled
+  PASS M5 cancelling conflict zeroizes the pending proposal rather than resolving it silently
+  PASS M5 same-session canonical confirmation is the only path that issues a receipt and seals a card
+  PASS M5 the persisted card carries typed provenance and review receipt, not free content
+  PASS M5 controlled recovery refuses a non-canonical physical access assertion
+  PASS M5 recovery is an identifier-bound vault read, not semantic search or model inference
+  PASS M5 authorised removal calls the vault erase while preserving its anti-rollback floor
+  PASS M5 a later reviewed record uses the next vault generation and a new receipt
+  PASS M5 erase backend failure becomes a failed state rather than a false deletion claim
+  PASS M5 an explicit reinitialisation is required after a vault failure; no automatic retry occurs
+  PASS M5 failed vault write scrubs review state and cannot retry without a new review
+  PASS M5 numeric-only metrics account for vault failure without recording card content
+MEMORY CONSOLIDATION INVARIANTS HOLD — review is human, bounded, conflict-safe and reversible without model authority.
+--- memory retrieval: typed local matching, ambiguity and zero authority ---
+cc -O2 -Wall -Wextra -std=c11 -Icore -Inet -Iport -Itest core/memory_policy.c core/memory_retrieval.c core/test_memory_retrieval.c -o build/test_memory_retrieval
+./build/test_memory_retrieval
+
+== M6 controlled semantic retrieval is local, bounded and ambiguity-safe ==
+  PASS M6 a constrained typed query returns only its highest eligible card with match reasons
+  PASS M6 recovery refuses a non-canonical physical access assertion and exposes no card
+  PASS M6 an unbounded query cannot enumerate every card in memory
+  PASS M6 close typed scores return ambiguity instead of silently selecting a memory
+  PASS M6 a constrained query with no eligible source returns no match rather than a near guess
+  PASS M6 a unique winner is independent of caller ordering and has no hidden recency preference
+  PASS M6 a sensitive or policy-incompatible source invalidates the set before ranking
+  PASS M6 duplicate identifiers are rejected instead of producing ambiguous provenance
+  PASS M6 source cardinality is bounded before scoring, allocation or any external lookup
+  PASS M6 numeric-only metrics account for match, ambiguity and rejected boundaries without card content
+MEMORY RETRIEVAL INVARIANTS HOLD — typed local matching is bounded, explainable and never autonomous.
+--- memory retrieval presentation: bounded status, uncertainty and zero authority ---
+cc -O2 -Wall -Wextra -std=c11 -Icore -Inet -Iport -Itest core/voice.c core/memory_retrieval_present.c core/test_memory_retrieval_present.c -o build/test_memory_retrieval_present
+./build/test_memory_retrieval_present
+
+== M7 retrieval presentation preserves uncertainty and human control ==
+  PASS M7 a unique match becomes one bounded symbolic status with only typed provenance
+  PASS M7 presentation is one-shot and cannot repeat a retrieval result silently
+  PASS M7 a different physical session cannot dismiss or reset a shown status
+  PASS M7 same-session dismissal scrubs transient presentation state without changing retrieval
+  PASS M7 no-match is presented as absence under criteria and never leaks a near card
+  PASS M7 no-match can be explicitly dismissed and returns to idle
+  PASS M7 ambiguity becomes a review status without selecting or exposing either contender
+  PASS M7 ambiguity does not create a follow-on action when dismissed
+  PASS M7 non-canonical physical access produces no local status or retained presentation
+  PASS M7 malformed match result fails closed before any voice, haptic or visual effect
+  PASS M7 blocked presenter cannot retry a result autonomously after malformed input
+  PASS M7 no-match carrying a hidden winner is rejected rather than exposed to the adapter
+  PASS M7 ambiguity carrying winner provenance is rejected rather than resolved by presentation
+  PASS M7 numeric-only metrics count presentation state without card identifier or content
+MEMORY RETRIEVAL PRESENTATION INVARIANTS HOLD — status is bounded, one-shot and has zero authority.
+--- memory Grand Finale: composed human-gated private-memory chain ---
+cc -O2 -Wall -Wextra -std=c11 -Icore -Inet -Iport -Itest net/crypto.c core/voice.c core/memory_capture.c core/memory_policy.c core/memory_extract.c core/memory_vault.c core/memory_consolidation.c core/memory_retrieval.c core/memory_retrieval_present.c core/memory_finale.c core/test_memory_finale.c -o build/test_memory_finale
+./build/test_memory_finale
+
+== M8 Grand Finale: selective memory remains human, private and fail-closed ==
+  PASS M8 fixture vault begins with a protected-generation contract
+  PASS M8 the chain starts only in an explicit bounded physical capture session
+  PASS M8 conservative extraction and policy produce only a typed eligible candidate, never content retention
+  PASS M8 human consolidation begins independently of capture and storage
+  PASS M8 eligible proposal reaches the vault only through separate same-session human confirmation
+  PASS M8 controlled recall returns only the minimal typed card under physical access
+  PASS M8 local retrieval ranks the authorised typed card without opening storage or using a model
+  PASS M8 presentation exposes a bounded local status without identifier or free content
+  PASS M8 the entire authorised fixture chain is compositionally consistent without authorising any new action
+  PASS M8 an ambiguous recovery remains a valid final status but never exposes or selects a contender
+  PASS M8 ambiguity is evidence of uncertainty, not a broken chain or permission to guess
+  PASS M8 third-party sensitive fixture remains review-only before consolidation
+  PASS M8 review-only third-party sensitive input cannot cross into persistence even with a session
+  PASS M8 final audit records policy refusal as a blocking cross-layer failure
+  PASS M8 explicit conflict blocks a later confirmation and cannot overwrite the sealed card
+  PASS M8 conflict dominates all otherwise plausible downstream evidence
+  PASS M8 model presence and noncanonical physical evidence fail closed even with all other fields set
+  PASS M8 malformed or unverified presentation cannot be treated as harmless UI after retrieval
+MEMORY GRAND FINALE INVARIANTS HOLD — the composed chain is private, human-gated, uncertainty-safe and has zero model authority.
+--- memory collection: bounded transactional multi-card persistence contract ---
+cc -O2 -Wall -Wextra -std=c11 -Icore -Inet -Iport -Itest net/crypto.c core/memory_policy.c core/memory_physical_session.c core/memory_collection_recovery.c core/memory_collection.c core/test_memory_collection.c -o build/test_memory_collection
+./build/test_memory_collection
+
+== T10 multi-card collection remains human-gated, bounded and transactional ==
+  PASS T10 fixture physical-session gate initializes without a physical-device claim
+  PASS T10 empty collection initialises only from an empty floor and empty records
+  PASS T10 authorised card is prepared, floor-committed, promoted and cleaned up
+  PASS T10 physical access opens exactly one known minimal card
+  PASS T10 noncanonical physical access cannot add a card
+  PASS T10 missing human write authorization cannot be replaced by collection access or silently reused
+  PASS T10 sensitive card never crosses the collection boundary automatically or leaves reusable authority
+  PASS T10 duplicate opaque card id is rejected rather than overwritten or merged
+  PASS T10 bounded collection accepts each independently authorised card within capacity
+  PASS T10 bounded collection accepts each independently authorised card within capacity
+  PASS T10 bounded collection accepts each independently authorised card within capacity
+  PASS T10 bounded collection accepts each independently authorised card within capacity
+  PASS T10 bounded collection accepts each independently authorised card within capacity
+  PASS T10 bounded collection accepts each independently authorised card within capacity
+  PASS T10 bounded collection accepts each independently authorised card within capacity
+  PASS T10 capacity exhaustion does not evict or overwrite an existing memory
+  PASS T10 physical removal is logical, generation-advancing and leaves no success ambiguity
+  PASS T10 removed identifiers cannot be recovered and failure output is scrubbed
+  PASS T10 compaction only rewrites canonical active cards under physical access
+  PASS T10 fresh fixture initialises for transaction-recovery scenarios
+  PASS T10 commit failure after prepared/floor write blocks instead of claiming persistence
+  PASS T10 authenticated unambiguous prepared state is promoted deterministically on reopen
+  PASS T10 interruption before floor commit leaves only a discardable authenticated preparation
+  PASS T10 old floor discards unfinished successor and preserves prior committed collection
+  PASS T10 second committed mutation advances an independent collection generation
+  PASS T10 restored older committed collection is rejected against independent floor
+  PASS T10 fresh fixture initialises for post-commit cleanup interruption
+  PASS T10 interruption after committed write keeps matching prepared state for cleanup only
+  PASS T10 matching committed/prepared state finalizes cleanup without replaying mutation
+  PASS T10 fresh fixture initialises for authenticity scenario
+  PASS T10 authenticity fixture stores one card
+  PASS T10 altered collection tag is never decoded as a card set
+  PASS T10 rollback metric fixture starts from an empty collection
+  PASS T10 rollback metric fixture commits a baseline generation
+  PASS T10 runtime floor mismatch blocks and records rollback before scrubbing output
+  PASS T10 empty collection does not pretend to test a root before a cryptographic operation
+  PASS T10 root-load failure blocks mutation with no false persistence result
+MEMORY COLLECTION INVARIANTS HOLD — bounded records remain authorised, authenticated and fail-closed.
+--- memory collection index: bounded private typed retrieval ---
+cc -O2 -Wall -Wextra -std=c11 -Icore -Inet -Iport -Itest net/crypto.c core/memory_policy.c core/memory_retrieval.c core/memory_physical_session.c core/memory_collection_recovery.c core/memory_collection.c core/memory_collection_index.c core/test_memory_collection_index.c -o build/test_memory_collection_index
+./build/test_memory_collection_index
+
+== T11 private collection index remains bounded, abstention-safe and zero-authority ==
+  PASS T11 fixture session gate initializes without claiming a real control
+  PASS T11 collection and portable in-RAM index initialise without a query or card cache
+  PASS T11 authorised first minimal card enters the encrypted collection
+  PASS T11 index returns a minimal opaque match without automatically opening a card
+  PASS T11 independently authorised second card enters without changing first card
+  PASS T11 typed kind filter selects only the matching opaque identifier
+  PASS T11 third independently authorised card creates a genuine same-type contender
+  PASS T11 close contenders remain ambiguous and never expose a winner
+  PASS T11 unmatched typed request abstains without enumerating collection contents
+  PASS T11 each physical session has a bounded probe budget and a rejected probe clears output
+  PASS T11 noncanonical physical access cannot read the private index
+  PASS T11 empty query cannot enumerate every card in the collection
+  PASS T11 corrupted collection is blocked before any malformed query can become retrieval
+  PASS T11 collection authenticity failure blocks index rather than returning stale candidates
+COLLECTION INDEX INVARIANTS HOLD — bounded typed queries stay private, abstention-safe and non-authoritative.
+--- memory collection recovery: portable crash-state oracle ---
+cc -O2 -Wall -Wextra -std=c11 -Icore -Inet -Iport -Itest core/memory_collection_recovery.c core/test_memory_collection_recovery.c -o build/test_memory_collection_recovery
+./build/test_memory_collection_recovery
+
+== T12 recovery oracle distinguishes safe crash states from contradictions ==
+  PASS T12 only zero floor plus no records is a new empty collection
+  PASS T12 authenticated committed record exactly bound to floor remains active
+  PASS T12 first prepared write before floor commit is discarded, not promoted
+  PASS T12 first prepared write after floor commit is promoted deterministically
+  PASS T12 old floor retains committed generation and discards incomplete successor
+  PASS T12 new floor permits only its authenticated immediate successor
+  PASS T12 duplicate prepared state after committed write only needs cleanup
+  PASS T12 stale floor never silently reactivates a newer committed record
+  PASS T12 skipped generation is not a recoverable transaction topology
+  PASS T12 orphan prepared record beyond first generation is not discarded blindly
+  PASS T12 present but unauthenticated committed state cannot enter recovery
+  PASS T12 same-generation records without authenticated equality are contradictory
+  PASS T12 noncanonical presence flag cannot be interpreted as evidence
+COLLECTION RECOVERY INVARIANTS HOLD — only floor-bound authenticated states recover.
+--- collection recovery stress: deterministic hostile crash-state campaign ---
+cc -O2 -Wall -Wextra -std=c11 -Icore -Inet -Iport -Itest core/memory_collection_recovery.c core/test_memory_collection_recovery_stress.c -o build/test_memory_collection_recovery_stress
+./build/test_memory_collection_recovery_stress
+
+== F2 deterministic hostile collection-recovery campaign ==
+  PASS F2 null oracle inputs fail before any permissive collection decision
+  PASS F2 generated accepted and rejected collection topologies without unsafe action shape
+  PASS F2 exercised every permitted collection-recovery action
+  INFO seed=0xf2c011ec structured=100000 raw=20000 accepted=177 rejected=121174
+COLLECTION RECOVERY STRESS INVARIANTS HOLD — hostile collection snapshots yield a bounded action or fail closed.
+--- memory collection Grand Finale: human-gated multi-card composition ---
+cc -O2 -Wall -Wextra -std=c11 -Icore -Inet -Iport -Itest net/crypto.c core/voice.c core/memory_capture.c core/memory_policy.c core/memory_extract.c core/memory_vault.c core/memory_consolidation.c core/memory_retrieval.c core/memory_retrieval_present.c core/memory_physical_session.c core/memory_collection_recovery.c core/memory_collection.c core/memory_collection_index.c core/memory_collection_finale.c core/test_memory_collection_finale.c -o build/test_memory_collection_finale
+./build/test_memory_collection_finale
+
+== M14 collection Grand Finale keeps human authority, abstention and no fallback ==
+  PASS M14 fixture begins with separate RAM contracts for unit authorization and collection transaction
+  PASS M14 only a bounded physical capture and typed eligible signal reach human consolidation
+  PASS M14 human review is an independent bounded authority boundary
+  PASS M14 same-session human confirmation emits the existing minimal-card authority before collection admission
+  PASS M14 collection uses a separate purpose-bound session gate without claiming a real gesture
+  PASS M14 collection accepts only the separately human-authorised minimal card under INSERT purpose
+  PASS M14 reopened collection accepts only its authenticated committed topology before indexing
+  PASS M14 in-RAM index begins without a card cache, query or automatic open
+  PASS M14 typed physical query returns only a minimal match and does not open the collection card
+  PASS M14 one-shot presentation exposes no opaque identifier or free content after collection match
+  PASS M14 composed evidence is diagnostic only and creates no new collection, index or presentation authority
+  PASS M14 unfinished query capability is explicitly cancelled before a new retrieval purpose
+  PASS M14 no-match remains a terminal abstention with no collection enumeration
+  PASS M14 no-match reaches only symbolic presentation, not a retry or fallback
+  PASS M14 abstention is a coherent composed result, never a permission to select a card
+  PASS M14 ambiguity is coherent only as uncertainty and cannot imply a winner
+  PASS M14 review, blocked collection/session, budget bypass, automatic open, legacy fallback and model agency all dominate success
+  PASS M14 noncanonical physical evidence, unauthenticated record and malformed presentation fail closed together
+  PASS M14 unknown retrieval status cannot inherit a permissive terminal state
+  PASS M14 missing audit input never creates a composed evidence decision
+COLLECTION FINALE INVARIANTS HOLD — human authority, transactional recovery and abstention compose without model, fallback or auto-open authority.
+--- physical session: purpose-bound bounded replay gate ---
+cc -O2 -Wall -Wextra -std=c11 -Icore -Inet -Iport -Itest core/memory_physical_session.c core/test_memory_physical_session.c -o build/test_memory_physical_session
+./build/test_memory_physical_session
+
+== T14 physical-session gate remains purpose-bound, bounded and replay-resistant in RAM ==
+  PASS T14 portable gate starts empty without a gesture, identity, key or persisted session
+  PASS T14 canonical adapter evidence starts one bounded insert-purpose session
+  PASS T14 a successful insert use is consumed and transient ID/nonce evidence is scrubbed
+  PASS T14 replay after a consumed single-use authorization cannot regain authority
+  PASS T14 a previously accepted session ID cannot be begun again before reboot
+  PASS T14 a wrong collection purpose cannot consume or redirect an active authorization
+  PASS T14 only typed query purpose may have a bounded multi-use authorization and its final use consumes it
+  PASS T14 no purpose can exceed the local query bound or turn mutation into multi-use authority
+  PASS T14 time rollback is rejected and expiry scrubs evidence instead of accepting a late operation
+  PASS T14 cancel revokes a pending authorization and never becomes a usable fallback
+  PASS T14 empty nonce, noncanonical event evidence and unknown purpose fail before a session starts
+  PASS T14 overflowing expiry arithmetic cannot create an unbounded authorization
+  PASS T14 invalid configuration blocks rather than selecting an implicit session window or budget
+  PASS T14 missing gate inputs never create a physical-session decision
+  PASS T14 metrics remain aggregate-only and expose neither session nor event evidence
+PHYSICAL SESSION INVARIANTS HOLD — purpose, freshness and bounded use fail closed without claiming a physical gesture.
+--- physical session recovery: durable reservation oracle ---
+cc -O2 -Wall -Wextra -std=c11 -Icore -Inet -Iport -Itest core/memory_physical_session_recovery.c core/test_memory_physical_session_recovery.c -o build/test_memory_physical_session_recovery
+./build/test_memory_physical_session_recovery
+
+== T15 physical-session reservation recovery never revives pre-reboot authority ==
+  PASS T15 empty durable reservation state is the only allowed initial topology
+  PASS T15 authenticated committed reservation restores only its replay floor, never an active capability
+  PASS T15 first prepared reservation before durable floor commit is discarded
+  PASS T15 first prepared reservation anchored by the new floor can be promoted only as burned state
+  PASS T15 successor prepared before its durable floor commit is discarded without consuming new authority
+  PASS T15 immediate authenticated successor bound to floor is promoted as a consumed reservation
+  PASS T15 matching prepared/committed pair finalizes cleanup without restoring a session
+  PASS T15 same reservation ID without authenticated full equality blocks instead of guessing cleanup
+  PASS T15 an initial reservation cannot skip the first durable ID
+  PASS T15 a prepared reservation must be the immediate successor of its base
+  PASS T15 unauthenticated committed reservation never establishes a replay floor
+  PASS T15 query reservation with zero uses is noncanonical and blocks
+  PASS T15 mutation reservation cannot carry more than one use
+  PASS T15 unknown or none purpose never survives reboot as a reservation
+  PASS T15 terminal UINT32_MAX committed floor blocks because no fresh successor session is representable
+  PASS T15 terminal UINT32_MAX prepared floor blocks before promotion can exhaust future sessions
+  PASS T15 noncanonical boolean evidence blocks before any recovery action
+  PASS T15 absent record fields cannot smuggle a reservation into recovery
+  PASS T15 missing recovery inputs never create a permissive decision
+PHYSICAL SESSION RECOVERY INVARIANTS HOLD — post-reboot reservation state never revives authority and every contradiction blocks.
+--- recovery stress: deterministic hostile reservation and bootstrap campaign ---
+cc -O2 -Wall -Wextra -std=c11 -Icore -Inet -Iport -Itest core/memory_physical_session.c core/memory_physical_session_recovery.c core/memory_physical_session_bootstrap.c core/test_memory_physical_session_recovery_stress.c -o build/test_memory_physical_session_recovery_stress
+./build/test_memory_physical_session_recovery_stress
+
+== F1 deterministic hostile recovery/bootstrap campaign ==
+  PASS F1 null oracle inputs fail before any permissive action
+  PASS F1 generated accepted and rejected topologies without an unsafe bootstrap transition
+  PASS F1 exercised every permitted recovery action under bootstrap quarantine
+  INFO seed=0xf1a0c0de structured=100000 raw=20000 accepted=308 rejected=122004
+RECOVERY STRESS INVARIANTS HOLD — hostile snapshots either reach idle quarantine or a scrubbed blocked gate.
+--- physical session bootstrap: post-reboot floor-only quarantine ---
+cc -O2 -Wall -Wextra -std=c11 -Icore -Inet -Iport -Itest core/memory_physical_session.c core/memory_physical_session_recovery.c core/memory_physical_session_bootstrap.c core/test_memory_physical_session_bootstrap.c -o build/test_memory_physical_session_bootstrap
+./build/test_memory_physical_session_bootstrap
+
+== T16 post-reboot bootstrap imports a floor, never session authority ==
+  PASS T16 empty recovery starts an idle, fully scrubbed gate at floor zero
+  PASS T16 empty bootstrap cannot validate or consume a session that was never newly begun
+  PASS T16 a first session still requires an explicit new canonical event assertion
+  PASS T16 fixture establishes pre-reboot active evidence that bootstrap must erase
+  PASS T16 committed floor replaces an active pre-reboot session with idle quarantine
+  PASS T16 neither the old active ID nor the recovered floor ID can regain authority
+  PASS T16 only a successor ID with a new canonical event assertion can begin after bootstrap
+  PASS T16 promoted prepared marker imports only its burned successor floor
+  PASS T16 promotion forbids reuse of the prepared ID and does not carry its purpose or use
+  PASS T16 pre-floor prepared marker is discarded while its declared prior floor remains quarantined
+  PASS T16 discard creates no authority; reuse is possible only through a new asserted event beyond retained floor
+  PASS T16 cleanup finalization leaves a scrubbed idle gate, not the matching session active
+  PASS T16 contradictory recovery blocks and scrubs even an already active in-RAM fixture
+  PASS T16 invalid session configuration blocks rather than retaining stale authority
+  PASS T16 missing bootstrap inputs never yield a permissive result or preserve gate state
+PHYSICAL SESSION BOOTSTRAP INVARIANTS HOLD — recovery imports only a floor and no pre-reboot session can revive.
+--- pre-hardware Grand Finale: post-reboot memory-chain composition ---
+cc -O2 -Wall -Wextra -std=c11 -Icore -Inet -Iport -Itest net/crypto.c core/memory_policy.c core/memory_physical_session.c core/memory_physical_session_recovery.c core/memory_physical_session_bootstrap.c core/memory_collection_recovery.c core/memory_collection.c core/memory_retrieval.c core/memory_collection_index.c core/memory_collection_finale.c core/threat_model.c core/memory_prehardware_finale.c core/test_memory_prehardware_finale.c -o build/test_memory_prehardware_finale
+./build/test_memory_prehardware_finale
+
+== G1 pre-hardware Grand Finale composes boot quarantine and memory authority ==
+  PASS G1 fixture persists an authorized minimal card and reopens only authenticated collection topology
+  PASS G1 final composition imports only committed floor and leaves no active post-reboot authority
+  PASS G1 no stale/ floor ID or unasserted event can query collection after a coherent finale
+  PASS G1 only a new successor session reaches typed query and still cannot auto-open a card
+  PASS G1 unfinished post-boot query remains explicitly cancellable and scrubs active evidence
+  PASS G1 automatic open in composed evidence blocks and scrubs the final gate
+  PASS G1 removing only TM-04 boot-quarantine evidence blocks final readiness
+  PASS G1 unauthenticated durable reservation cannot cross the final composition
+  PASS G1 missing finale inputs never produce readiness or preserve a permissive gate
+PREHARDWARE FINALE INVARIANTS HOLD — a coherent host chain reaches only idle quarantine, never active authority.
+--- threat model: evidence-scoped mitigation and residual-risk boundaries ---
+cc -O2 -Wall -Wextra -std=c11 -Icore -Inet -Iport -Itest core/threat_model.c core/test_threat_model.c -o build/test_threat_model
+./build/test_threat_model
+
+== T9 executable threat model keeps evidence, scope and residual risk explicit ==
+  PASS T9 authenticated radio, replay, rate and flood controls can be host-mitigated together
+  PASS T9 pairing, authentication, freshness and revocation are separate required trust evidence
+  PASS T9 selective capture, policy, human authority, collection composition, physical-session binding, reservation recovery, post-reboot quarantine and conflict controls compose for retention
+  PASS T9 access gating, ambiguity and one-shot presentation compose for recovery
+  PASS T9 model display-only, no-memory and no-send boundaries are independently required
+  PASS T9 numeric-only telemetry and forbidden-data absence are both required for host privacy evidence
+  PASS T9 loss of replay refusal cannot be hidden by encryption, rate limits or flood bounds
+  PASS T9 sensitive review and conflict blocking remain mandatory even after human authority exists
+  PASS T9 retention loses host mitigation when crash recovery lacks an explicit safe topology
+  PASS T9 retention loses host mitigation when collection composition can bypass human authority, abstention or no-fallback evidence
+  PASS T9 retention loses host mitigation when collection access can fall back to an unbound physical assertion
+  PASS T9 retention loses host mitigation when a reserved session could revive after reboot without recovery evidence
+  PASS T9 retention loses host mitigation when post-reboot bootstrap could restore transient session authority
+  PASS T9 recovery cannot claim host mitigation if it hides uncertainty or repeats local status
+  PASS T9 a future model loses mitigation classification if it gains memory or radio authority
+  PASS T9 telemetry privacy fails closed when forbidden product data could enter diagnostics
+  PASS T9 constant airtime does not become a false claim of hiding transmission presence or direction
+  PASS T9 portable evidence never upgrades secure boot, flash, JTAG, NVS or power-loss to host mitigation
+  PASS T9 a valid unsigned local digest remains pending until supply-chain provenance is authenticated
+  PASS T9 supply-chain evidence fails closed when the local input digest control is absent
+  PASS T9 noncanonical evidence fails before a threat can be classified as protected
+  PASS T9 an unknown threat identifier cannot inherit a permissive classification
+  PASS T9 missing audit inputs never create an evidence decision
+THREAT MODEL INVARIANTS HOLD — mitigation is evidence-scoped, host-only and fail-closed.
+--- threat-model stress: deterministic hostile evidence campaign ---
+cc -O2 -Wall -Wextra -std=c11 -Icore -Inet -Iport -Itest core/threat_model.c core/test_threat_model_stress.c -o build/test_threat_model_stress
+./build/test_threat_model_stress
+
+== F3 deterministic hostile threat-model campaign ==
+  PASS F3 null threat-model inputs cannot produce classification
+  PASS F3 only complete canonical evidence mitigates supported host domains
+  PASS F3 unsupported metadata, target platform and supply chain never become host mitigation
+  PASS F3 generated mitigated and blocked classifications without scope or format escalation
+  INFO seed=0xf3e1d3ce canonical=50000 raw=10000 host_success=31403 blocked=571117
+THREAT MODEL STRESS INVARIANTS HOLD — hostile evidence never escalates model, privacy or target scope.
+--- proof-fire mutations: selected critical controls must be detected when removed ---
+python3 ../tools/test_proof_fire_mutations.py
+
+== F4 deterministic proof-fire mutation campaign ==
+  PASS F4 terminal-session-floor-rejection: removed control was detected by its adversarial proof
+  PASS F4 bootstrap-scrub-evidence: removed control was detected by its adversarial proof
+  PASS F4 collection-authentication-requirement: removed control was detected by its adversarial proof
+  PASS F4 model-send-authority-barrier: removed control was detected by its adversarial proof
+PROOF-FIRE MUTATION INVARIANTS HOLD — selected authority, authentication, quarantine and exhaustion controls are detected when removed.
+--- assurance: Grand Finale composition, revocation and zero agency ---
+cc -O2 -Wall -Wextra -std=c11 -Icore -Inet -Iport -Itest core/assurance.c core/test_assurance.c -o build/test_assurance
+./build/test_assurance
+
+== A10.1  Grand Finale assurance composition ==
+  PASS A10.1 a direct-Core handoff is permitted only after all existing local gates agree
+  PASS A10.1 missing PTT, accepted intent, confirmation or unused handoff denies by default
+  PASS A10.1 a Nucleus result needs an active, authenticated and fresh companion path
+  PASS A10.1 revocation dominates an otherwise valid companion path
+  PASS A10.1 an enabled model needs A9 acceptance and an explicit display-only boundary
+  PASS A10.1 accepted local-model evidence cannot add authority beyond the existing handoff gate
+  PASS A10.1 noncanonical state values are treated as unsafe, never truthy
+ASSURANCE INVARIANTS HOLD — composition remains physical, confirmed, revocable and non-autonomous.
+--- capstone: Grand Finale dialogue, model, interaction and trust chain ---
+cc -O2 -Wall -Wextra -std=c11 -Icore -Inet -Iport -Itest net/crypto.c net/core_link.c net/trust.c core/voice.c core/intent_gate.c core/interaction.c core/dialogue.c core/model_lab.c core/assurance.c core/test_capstone.c -o build/test_capstone
+./build/test_capstone
+
+== C10  Grand Finale chain: dialogue -> model -> intent -> trust ==
+  PASS C10 a measured local-model candidate may produce action-looking UX text only
+  PASS C10 dialogue output creates neither an interaction draft nor a send handoff
+  PASS C10 a separate physical command session still creates the only candidate handoff
+  PASS C10 only all local gates plus accepted display-only model evidence release one handoff
+  PASS C10 suspected model agency blocks rather than consumes a confirmed local draft
+  PASS C10 a Nucleus path becomes eligible only after the real paired trust ceremony
+  PASS C10 erase failure leaves trust revoked and forbids future authenticated envelopes
+  PASS C10 revocation has precedence over a previously confirmed handoff and claimed fresh link
+CAPSTONE INVARIANTS HOLD — no dialogue, model or revoked companion state bypasses physical confirmation.
+--- trust lifecycle: explicit pairing, protected storage and revocation ---
+cc -O2 -Wall -Wextra -std=c11 -Icore -Inet -Iport -Itest net/crypto.c net/core_link.c net/trust.c net/test_trust.c -o build/test_trust
+./build/test_trust
+
+== T1  explicit pairing, key lifecycle and revocation ==
+  PASS T1 one-sided physical pairing mode cannot create an offer
+  PASS T1 a pending offer has a six-digit SAS but cannot seal a control envelope
+  PASS T1 absent human confirmation zeroizes the offer and stores nothing
+  PASS T1 a divergent six-digit SAS cannot activate or persist a link key
+  PASS T1 an unattended association offer expires without activating trust
+  PASS T1 failed protected persistence zeroizes derived material and exposes no link key
+  PASS T1 dual confirmation plus successful protected-store operation creates an active link
+  PASS T1 only an active trust link can seal and open an A6 control envelope
+  PASS T1 an active link cannot be silently replaced by a new offer
+  PASS T1 erase failure fails closed and zeroizes RAM: the link cannot export or re-pair
+  PASS T1 successful retry erases protected record before re-provisioning is allowed
+  PASS T1 re-provisioning after revocation derives a new binding that rejects the prior envelope
+  PASS T1 only an intact active protected record restores a usable control link
+  PASS T1 a revoked or malformed record cannot resurrect a companion trust link
+TRUST LIFECYCLE INVARIANTS HOLD — pairing is explicit, revocable and non-resurrectable.
+--- Core/Nucleus control link: AEAD, expiry and replay protection ---
+cc -O2 -Wall -Wextra -std=c11 -Icore -Inet -Iport -Itest net/crypto.c net/core_link.c net/test_core_link.c -o build/test_core_link
+./build/test_core_link
+
+== L1  authenticated Core/Nucleus companion control ==
+  PASS L1 mismatched session and overlong TTL cannot consume a control sequence
+  PASS L1 authenticated envelope preserves only the typed local observation
+  PASS L1 accepted ciphertext cannot be replayed into the same Core link state
+  PASS L1 one altered encrypted byte exposes no observation and consumes no sequence
+  PASS L1 original authenticated ciphertext remains usable after a failed forgery
+  PASS L1 valid expired ciphertext is discarded and its sequence is consumed
+  PASS L1 moving the clock backwards cannot revive an expired envelope
+  PASS L1 ciphertext from a different companion binding cannot enter this Core state
+  PASS L1 an envelope in an unauthorized direction never reaches AEAD plaintext
+CORE LINK INVARIANTS HOLD — authenticated companion control is session-scoped and replay-safe.
+--- interaction: push-to-talk, confirmation and one-shot send gate ---
+cc -O2 -Wall -Wextra -std=c11 -Icore -Inet -Iport -Itest net/crypto.c net/core_link.c core/voice.c core/intent_gate.c core/assurance.c core/interaction.c core/test_interaction.c -o build/test_interaction
+./build/test_interaction
+
+== I0  production accepts typed local ASR, not raw test text ==
+  PASS I0 raw transcript input is disabled by default and cannot end the live session
+
+== I1  push-to-talk -> local ASR -> confirmation -> one send ==
+  PASS I1 only a push-to-talk event starts the local capture window
+  PASS I1 no message can leave while the runtime is listening
+  PASS I1 a valid local transcript stops capture and presents a haptic draft
+  PASS I1 a valid draft still cannot be transmitted before physical confirmation
+  PASS I1 physical confirmation opens the one-time send gate and gives a distinct confirmed haptic
+  PASS I1 the application receives semantic content once, with transport fields still unset
+  PASS I1 taking the send returns to idle and prevents duplicate transmission
+
+== I2  cancellation, timeout, source loss and help fail safely ==
+  PASS I2 listening timeout stops capture, erases state and never opens send
+  PASS I2 spoken help remains a private draft and cannot become public SOS or auto-send
+  PASS I2 declining confirmation clears the critical draft locally
+  PASS I2 loss of the local ASR source stops capture and cannot leave a stale draft
+  PASS I2 a new explicit button press is required after source recovery
+  PASS I2 spoken cancellation remains local and is accounted for as a terminal event
+
+== I4  typed ASR confidence gate remains non-transmitting ==
+  PASS I4 stale ASR output is ignored without ending the current physical session
+  PASS I4 low confidence stops capture and cannot create a sendable draft
+  PASS I4 qualified context may disambiguate only into a confirmed local draft
+  PASS I4 even a context-assisted command still needs physical confirmation for one handoff
+
+== I5  authenticated Nucleus result still enters the same gate ==
+  PASS I5 authenticated Nucleus command becomes only a local draft, never a send
+  PASS I5 the encrypted local path still requires physical confirmation and one handoff
+  PASS I5 tampered companion ciphertext is rejected without ending or authorizing the live session
+
+== I3  confirmation deadline and privacy-preserving telemetry ==
+  PASS I3 an unanswered draft expires and is cleared before a future session
+  PASS I3 telemetry keeps counts, latency and measured energy without transcript storage
+INTERACTION INVARIANTS HOLD — local speech is push-to-talk, confirmed and one-shot.
+--- interaction rig: deterministic adapter and validation-lab scenarios ---
+cc -O2 -Wall -Wextra -std=c11 -Icore -Inet -Iport -Itest net/crypto.c net/core_link.c core/voice.c core/intent_gate.c core/assurance.c core/interaction.c core/interaction_rig.c core/test_interaction_rig.c -o build/test_interaction_rig
+./build/test_interaction_rig
+
+== R1  deterministic Core/Nucleus adapter path ==
+  PASS R1 physical push creates exactly one adapter capture request
+  PASS R1 local ASR result stops capture, presents a draft and emits a safe haptic plan
+  PASS R1 one explicit confirmation yields exactly one application hand-off
+  PASS R1 the rig cannot hand the same meaning to the link twice
+  PASS R1 a measured energy integral is mirrored without audio or transcript data
+
+== R2  adapter failure paths cannot retain or send a draft ==
+  PASS R2 loss of Core/Nucleus ASR stops capture and rejects any hand-off
+  PASS R2 confirmation timeout clears UI and semantic pending state
+  PASS R2 listen timeout ends the adapter session before any transcript or send
+INTERACTION RIG INVARIANTS HOLD — adapter sequencing is deterministic and non-transmitting.
+--- protocol: crypto, ratchet, framing, weave, beat ---
+cc -O2 -Wall -Wextra -std=c11 -DHV_LUT_POPCOUNT -Icore -Inet -Iport -Itest test/test_net.c net/crypto.c net/session.c net/region.c net/weave.c net/beat.c net/link.c core/hv.c core/sbc.c core/lexicon.c core/hcp.c \
+    -o build/test_net -lm
+test/test_net.c: In function ‘x_cost’:
+test/test_net.c:702:5: warning: missing initializer for field ‘seen’ of ‘herus_link’ [-Wmissing-field-initializers]
+  702 |     herus_link tx = { &a, HZ_REGION_BR915, 14, roles, 4 };
+      |     ^~~~~~~~~~
+In file included from test/test_net.c:34:
+test/../net/link.h:74:20: note: ‘seen’ declared here
+   74 |     link_dedup    *seen;
+      |                    ^~~~
+test/test_net.c:703:5: warning: missing initializer for field ‘seen’ of ‘herus_link’ [-Wmissing-field-initializers]
+  703 |     herus_link rx = { &b, HZ_REGION_BR915, 14, roles, 4 };
+      |     ^~~~~~~~~~
+test/../net/link.h:74:20: note: ‘seen’ declared here
+   74 |     link_dedup    *seen;
+      |                    ^~~~
+In file included from /usr/include/string.h:548,
+                 from test/test_net.c:23:
+In function ‘memcpy’,
+    inlined from ‘w_weave’ at test/test_net.c:565:9:
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h:29:10: warning: ‘*(unsigned char (*)[544])(&next[0][0])’ may be used uninitialized [-Wmaybe-uninitialized]
+   29 |   return __builtin___memcpy_chk (__dest, __src, __len,
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   30 |                                  __glibc_objsize0 (__dest));
+      |                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~
+test/test_net.c: In function ‘w_weave’:
+test/test_net.c:551:17: note: ‘next’ declared here
+  551 |         uint8_t next[16][LINK_FRAME_LEN];
+      |                 ^~~~
+./build/test_net
+HERUS protocol proof suite   frame 34 B, airtime 246.8 ms, D=10240 bits
+
+== V1-V6  crypto vs an independent implementation (Python cryptography / OpenSSL) ==
+  SHA-256      50 cases, 0 mismatched
+  PASS V1 SHA-256 matches the reference on every case
+  HMAC-SHA256  50 cases, 0 mismatched
+  PASS V2 HMAC-SHA256 matches the reference
+  HKDF-SHA256  50 cases, 0 mismatched
+  PASS V3 HKDF-SHA256 matches the reference
+  ChaCha20     50 cases, 0 mismatched
+  PASS V4 ChaCha20 matches the reference
+  Poly1305     50 cases, 0 mismatched
+  PASS V5 Poly1305 matches the reference
+  ChaCha20-Poly1305 50 cases, 0 mismatched
+  PASS V6 AEAD encrypt+decrypt matches the reference
+  PASS V6b crossing the ChaCha20 counter wrap is refused, not silently defined
+
+== P1/P2/P7  the frame ledger, recomputed here and not quoted ==
+  tier             bytes   SF    airtime dwell
+  Tier 0 glyph        34    9    246.8 ms ok
+  Tier 1 composed     34    9    246.8 ms ok
+  Tier 0.5 sketch     38    9    246.8 ms ok
+  Tier 2 voice       178    7    287.0 ms ok
+  SOS beacon          82    8    256.5 ms ok
+  P1 constant airtime: INVARIANT HOLDS (Tier 0 34 B and Tier 0.5 38 B both 246.8 ms)
+  P2 dwell           : every frame within 400 ms
+  PASS P1 Tier 0/1 and Tier 0.5 occupy identical airtime
+  PASS P2 every shipped frame is inside the 400 ms dwell limit
+  PASS P2 SF10 is illegal at 34 B — SF9 really is the ceiling
+  PASS P2 the region profile refuses SF10 at transmit time as well
+  PASS P2 LAB profile allows SF12 — research is possible, but never by default
+  PASS P7 Tier 2 IS distinguishable, and that is stated rather than hidden
+
+== P3  hypervectors are never transmitted ==
+  PASS P3 a 3-slot composed record encodes to 24 bytes
+  PASS P3 it decodes
+  PASS P3 round trip is exact including the extremes of both bit fields
+  PASS P3 both ends rebuild the identical 10240-bit vector from ids alone
+  on air 24 B of ids vs 1280 B of hypervector -> 53x
+  swapping slots 0 and 1 moves the vector by 2853 bits (-44.8 sigma)
+  PASS P3/footgun6 slot order changes the meaning — rho^(k+2) is doing its job
+  PASS P3 unbinding slot 1 (role 2) recovers filler 17
+  PASS P3 an absent role is reported absent, not resolved to noise
+
+== P4  a newer sender's unknown roles are skipped, never rejected ==
+  PASS P4 v1 firmware DECODES a frame containing a role it has never heard of
+  PASS P4 it keeps the 2 fields it understands
+  PASS P4 and the surviving fields are the right ones
+  PASS P4 the intent still arrives — the message is usable, not discarded
+  PASS P4 kept slots carry their ORIGINAL on-air positions, not their new indices
+  PASS P4 unbinding a kept slot at pos[] recovers its filler
+  PASS P4 unbinding it at the dense index instead finds nothing — pos[] is load-bearing
+
+== P5  AEAD tiers reject a single flipped bit; Tier 0.5 must not have a MAC ==
+  single-bit flips rejected: 256 / 256
+  PASS P5 an AEAD tier rejects every single-bit corruption
+  Tier 0.5: 1 bit corrupted on air -> 1 bits wrong after decrypt
+  PASS P5 Tier 0.5 does not avalanche — one bit in, one bit out
+  PASS P5 the epoch address still matches (it is advisory, there is nothing to verify)
+
+== P6  no stable identifier is ever on air ==
+  64 consecutive frames, 0 address repeats (birthday expectation 0.12)
+  PASS P6 addresses do not repeat — there is nothing to track
+  PASS P6 the same message sent twice looks completely different on air
+
+== P8  erratum E-P2: ttl is mutable in flight, the address is not ==
+  PASS P8 ttl 3 is readable by a relay with no key
+  PASS P8 hop 1 decrements to 2
+  PASS P8 hop 2 decrements to 1
+  PASS P8 hop 3 decrements to 0
+  PASS P8 hop 4 refuses — the frame must be dropped
+  PASS P8 after 3 relays rewrote the ttl the tag still verifies end to end
+  PASS P8 modifying an address bit makes the frame unopenable
+
+== S1-S5  ratchet: reorder, replay, forgery, rate limit, forward secrecy ==
+  arrival order 3,0,7,1 -> 4/4 opened with the right counter
+  PASS S1 out-of-order frames open, and the counter is recovered
+  PASS S2 a replayed frame is never accepted
+  PASS S2 replay of a frame that arrived out of order is never accepted either
+  4 genuinely late frames: 4 opened once, 0 opened twice
+  PASS S2c a late frame still opens — the skipped-key cache works
+  PASS S2d but only once: the key is destroyed on use
+  24 replays of frames now all consumed -> 0 accepted
+  PASS S2e once consumed, every frame is refused forever
+  PASS S2b SOS window: a fresh counter is accepted
+  PASS S2b SOS window: the same counter twice is refused
+  PASS S2b SOS window: an earlier unseen counter still works
+  PASS S2b SOS window: sliding past 64 counters leaves the old ones refused
+  2000 forgery attempts against a valid address -> 0 accepted
+  PASS S3 a 64-bit tag holds against every forgery attempt tried
+  100 forgery attempts in one second -> 20 reached the AEAD, 80 rate-dropped
+  PASS S4 the decrypt path is rate limited, so 2^-64 per attempt means something
+  200 random foreign frames -> 200 rejected on address alone, 0 tokens spent
+  PASS S4b foreign traffic is rejected without spending crypto or tokens
+  PASS S5 the chain has advanced and the consumed keys are gone (forward secrecy)
+  PASS S5b after a DH ratchet step both ends still agree
+  PASS S5c and pre-step frames no longer open (post-compromise recovery)
+
+== W1-W2  Weave: flooding terminates and deadlines are enforced ==
+  10 relays, ttl 3: flood produced 10 transmissions and stopped after 2 rounds
+  PASS W1 flooding terminates, bounded by dedup rather than by ttl alone
+  PASS W1b a frame addressed to us is relayed as a decoy (leak L1)
+  PASS W1c ttl 0 means nobody relays, so there is no silence to observe
+  PASS W1d the relay governor caps a stranger at one hour's budget
+  PASS W2 an expired frame is dropped and counted, not retried indefinitely
+  PASS W2b idle and low battery -> leaf
+  PASS W2c recent traffic -> responsive
+  PASS W2d sun and charge -> relay
+  PASS W2e on charger -> relay
+
+== B1-B2  Beat: the guard covers the drift, and resync converges ==
+  PASS B1 a slot is open at the epoch
+  PASS B1 and closed mid-period
+  PASS B1 and open again one period later
+  PASS B1 the wake time is the period minus the guard
+  drift after 60000 ms at 40 ppm = 2400 us (guard is 10000 us)
+  PASS B1 worst-case drift over a resync interval fits inside the guard
+  PASS B2 a better clock re-anchors us
+  PASS B2 and afterwards the peer's instant is inside our slot
+  PASS B2 a free-running peer cannot drag a good clock off the boundary
+
+== C1  encoding is canonical — one byte string per meaning ==
+  PASS C1 role 0 with filler 0 is refused — 0x0000 already means ABSENT (footgun #5)
+  PASS C1 a filler that does not fit 11 bits is refused, not truncated
+  PASS C1 an intent past 11 bits is refused
+  PASS C1 the corrected message encodes
+  PASS C1 a gap in the slot list is rejected
+  PASS C1 a set reserved bit is rejected
+  PASS C1 an unknown protocol version is rejected
+
+== X1  cost per frame, measured (host; MCU projection in docs/05-FIRMWARE.md) ==
+  seal + open, 20000 round trips: 19.04 us per frame on this host
+  airtime for the same frame: 246784 us -> the radio is 12962x the cost of the crypto
+  PASS X1 the whole stack costs far less than the airtime it protects
+  PASS X1 and 20000 consecutive frames stayed correct
+  session state: 648 B per peer   weave: 1536 B   beat: 24 B
+
+ALL PROTOCOL INVARIANTS HOLD.
+--- SX1262 command sequences (mock bus, no hardware) ---
+cc -O2 -Wall -Wextra -std=c11 -Icore -Inet -Iport -Itest test/test_radio.c port/sx1262.c net/region.c \
+    -o build/test_radio
+./build/test_radio
+SX1262 driver proof suite (recording mock bus, no hardware)
+
+  PASS init completes
+  PASS R0 the chip is reset exactly once
+  PASS R1 SetPacketType(LORA) is issued BEFORE SetModulationParams
+  PASS R1 and the packet type is LoRa
+  915 MHz -> 0x39300000 (expected 0x39300000)
+  PASS R2 the frequency word is freq * 2^25 / 32 MHz
+  PASS R3 PA config for +22 dBm is 04 07 00 01 (datasheet table 13-21)
+  PASS R3 and TX power comes from the same row, not a different one
+  PASS R3 over-current protection raised to 140 mA for the HP PA
+  PASS R4 preamble is 8 symbols
+  PASS R4 header is explicit for the AEAD tiers
+  PASS R4 payload length is the ledger's 34 bytes
+  PASS R4 CRC is on for the AEAD tiers
+  PASS R5 the private sync word 0x1424 is written, not the SX1276-era 0x12
+  PASS R5b boosted RX gain is enabled
+  PASS R6 Tier 0.5 switches to implicit header, CRC off, 38-byte fixed length
+  19 commands issued, 21 BUSY waits
+  PASS R7 BUSY is honoured before every single command
+  20 ms -> 1280 steps (expect 1280), 2000 ms -> 128000 steps (expect 128000)
+  PASS R8 SetRxDutyCycle converts ms to 15.625 us steps exactly
+  PASS R8b StopTimerOnPreamble is disabled first, or noise silently ruins the duty cycle
+  PASS R9 a TX power that is not a datasheet row is refused, not approximated
+
+  --- selftest on a healthy board ---
+  [ok]   SPI read/write round trip
+  [ok]   no device errors (oscillator started, all blocks calibrated)
+  [ok]   status byte 0x2A (chip mode 2, command status 5)
+  [ok]   receiver noise floor -110 dBm (plausible)
+  SELFTEST PASSED — the radio is alive and configured.
+  PASS R10 the selftest passes on a healthy board
+  PASS R10 a wrong pin map is diagnosed, and the report names the file to edit
+  PASS R10 a TCXO misconfiguration is diagnosed by name with the fix
+  PASS R10 a receiver that never starts is diagnosed
+
+SX1262 COMMAND SEQUENCES VERIFIED.
+--- ESP32-S3 app: host type-check against stub headers ---
+cc -fsyntax-only -std=c11 -Wall -Wextra -Wno-unused-parameter \
+    -DHV_LUT_POPCOUNT -include unistd.h -include sys/types.h \
+    -Itest/idf_stub -Icore -Inet -Iport -Itest -Iport/esp32s3 \
+    port/esp32s3/main/app_main.c port/esp32s3/hal_esp32s3.c
+    ok — app_main.c and hal_esp32s3.c type-check
+
+==================================================
+ALL FIRMWARE SUITES PASS
+==================================================
+make: Leaving directory '/home/ubuntu/herus/firmware'

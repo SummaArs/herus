@@ -10,9 +10,10 @@ static int lexicon_valid(const voice_lexicon_t *l)
            l->role_time < HCP_ROLE_N && l->minute_filler_base <= HCP_FILLER_N - 60u;
 }
 
-/* Preserve only lowercase ASCII letters, digits and spaces. UTF-8 punctuation
- * and accents are treated as separators; the starter grammar intentionally uses
- * accent-free command stems so ASR normalisation differences fail closed. */
+/* Preserve only lowercase ASCII letters, digits and spaces. Any non-ASCII
+ * byte, including UTF-8 punctuation or accents, rejects the transcript; the
+ * starter grammar intentionally uses accent-free command stems so ASR
+ * normalisation differences fail closed rather than changing meaning. */
 static int normalise(const char *in, char out[VOICE_TRANSCRIPT_MAX])
 {
     unsigned n = 0;

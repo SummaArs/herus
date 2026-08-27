@@ -1,0 +1,100 @@
+./.git/HEAD 21 bytes
+./.git/config 260 bytes
+./.git/description 73 bytes
+./.git/hooks/applypatch-msg.sample 478 bytes
+./.git/hooks/commit-msg.sample 896 bytes
+./.git/hooks/fsmonitor-watchman.sample 4726 bytes
+./.git/hooks/post-update.sample 189 bytes
+./.git/hooks/pre-applypatch.sample 424 bytes
+./.git/hooks/pre-commit.sample 1643 bytes
+./.git/hooks/pre-merge-commit.sample 416 bytes
+./.git/hooks/pre-push.sample 1374 bytes
+./.git/hooks/pre-rebase.sample 4898 bytes
+./.git/hooks/pre-receive.sample 544 bytes
+./.git/hooks/prepare-commit-msg.sample 1492 bytes
+./.git/hooks/push-to-checkout.sample 2783 bytes
+./.git/hooks/sendemail-validate.sample 2308 bytes
+./.git/hooks/update.sample 3650 bytes
+./.git/index 7395 bytes
+./.git/info/exclude 240 bytes
+./.git/logs/HEAD 205 bytes
+./.git/packed-refs 112 bytes
+./.git/shallow 41 bytes
+./.gitignore 30 bytes
+./LICENSE 1069 bytes
+./README.md 9674 bytes
+./TalkNet_ASD/.gitignore 1416 bytes
+./TalkNet_ASD/README.md 2 bytes
+./TalkNet_ASD/calculate_score.py 5189 bytes
+./TalkNet_ASD/detect_speaker.py 26956 bytes
+./TalkNet_ASD/loss.py 1296 bytes
+./TalkNet_ASD/model/attentionLayer.py 1356 bytes
+./TalkNet_ASD/model/audioEncoder.py 3851 bytes
+./TalkNet_ASD/model/talkNetModel.py 2349 bytes
+./TalkNet_ASD/model/visualEncoder.py 6193 bytes
+./TalkNet_ASD/talkNet.py 4889 bytes
+./__init__.py 146 bytes
+./backbones/FusionNets/MAG_BERT.py 13543 bytes
+./backbones/FusionNets/MISA.py 10697 bytes
+./backbones/FusionNets/MULT.py 5965 bytes
+./backbones/FusionNets/__init__.py 0 bytes
+./backbones/SubNets/AlignNets.py 4649 bytes
+./backbones/SubNets/FeatureNets.py 671 bytes
+./backbones/SubNets/__init__.py 0 bytes
+./backbones/__init__.py 330 bytes
+./backbones/base.py 925 bytes
+./configs/__init__.py 0 bytes
+./configs/base.py 904 bytes
+./configs/mag_bert.py 2195 bytes
+./configs/mag_bert_bi.py 1540 bytes
+./configs/misa_bert.py 2657 bytes
+./configs/misa_bert_bi.py 2655 bytes
+./configs/mult_bert.py 3338 bytes
+./configs/mult_bert_bi.py 3338 bytes
+./configs/text_bert.py 1673 bytes
+./configs/text_bert_bi.py 1673 bytes
+./data/__init__.py 1240 bytes
+./data/audio_pre.py 2770 bytes
+./data/base.py 4857 bytes
+./data/mm_pre.py 817 bytes
+./data/text_pre.py 8662 bytes
+./data/video_pre.py 2781 bytes
+./examples/run_mag_bert.sh 567 bytes
+./examples/run_mag_bert_bi.sh 574 bytes
+./examples/run_misa_bert.sh 561 bytes
+./examples/run_misa_bert_bi.sh 569 bytes
+./examples/run_mult_bert.sh 561 bytes
+./examples/run_mult_bert_bi.sh 568 bytes
+./examples/run_text_bert.sh 561 bytes
+./examples/run_text_bert_bi.sh 568 bytes
+./figs/architecture.png 901382 bytes
+./figs/example.png 444595 bytes
+./figs/statistics.png 148440 bytes
+./methods/MAG_BERT/manager.py 6474 bytes
+./methods/MISA/manager.py 8857 bytes
+./methods/MISA/utils.py 2280 bytes
+./methods/MULT/manager.py 5877 bytes
+./methods/TEXT/manager.py 7932 bytes
+./methods/__init__.py 229 bytes
+./requirements.txt 231 bytes
+./results/results.md 2514 bytes
+./run.py 5991 bytes
+./tools/audio_preprocess.py 4168 bytes
+./tools/video_preprocess.py 7781 bytes
+./utils/__init__.py 0 bytes
+./utils/functions.py 4875 bytes
+./utils/metrics.py 2175 bytes
+=== DATA LINKS ===
+README.md:81:You can download the full data from [Google Drive](https://drive.google.com/drive/folders/18iLqmUYDDOwIiiRbgwLpzw76BD62PK0p?usp=sharing) or [BaiduYun Disk](https://pan.baidu.com/s/1xWcrNL-lUiUSLklnozyQvQ) (code：95lo)
+README.md:89:| train.tsv / dev.tsv / test.tsv | These files contain (1) video segment indexes (season, episode, clip)<br />(2) clean text utterances (3) multimodal annotations (among 20 intent<br />classes) for training, validation, and testing.                                                       |
+data/base.py:39:        self.train_data_index, self.train_label_ids = self._get_indexes_annotations(os.path.join(self.data_path, 'train.tsv'), args.data_mode)
+data/base.py:40:        self.dev_data_index, self.dev_label_ids = self._get_indexes_annotations(os.path.join(self.data_path, 'dev.tsv'), args.data_mode)
+data/base.py:41:        self.test_data_index, self.test_label_ids = self._get_indexes_annotations(os.path.join(self.data_path, 'test.tsv'), args.data_mode)
+data/text_pre.py:109:                self._read_tsv(os.path.join(data_dir, "train.tsv")), "train")
+data/text_pre.py:112:                self._read_tsv(os.path.join(data_dir, "dev.tsv")), "train")
+data/text_pre.py:115:                self._read_tsv(os.path.join(data_dir, "test.tsv")), "test")
+
+=== SOURCE REPOSITORY SNAPSHOT ===
+MIntRec source clone HEAD: 6bc239695df342c22c324bb3a76789fa295ff999
+MIntRec source clone remote: https://github.com/thuiar/MIntRec
+MIntRec source clone status: metadata/ is untracked local download; no source code was modified.
