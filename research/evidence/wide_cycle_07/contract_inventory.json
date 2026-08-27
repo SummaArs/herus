@@ -1,0 +1,99 @@
+{
+  "cycle": "wide_cycle_07",
+  "baseline_commit": "ff84ce6c16681e0e9115d4c96584d2edeca1ec64",
+  "status": "inventory_only_no_runtime_change",
+  "classification": {
+    "immutable": "A mudança silenciosa altera significado, segurança, legalidade, wire compatibility ou autoridade.",
+    "extension_limited": "A extensão é aditiva somente dentro de limites documentados; consumidores antigos devem rejeitar ou ignorar de forma segura.",
+    "migratable": "A mudança exige versão explícita, migração, rollback e teste de corrupção/interrupção.",
+    "experimental": "Não é contrato de produto e não pode ganhar autoridade por compatibilidade acidental."
+  },
+  "contracts": [
+    {
+      "id": "hcp_wire",
+      "files": ["docs/02-PROTOCOL.md", "firmware/core/hcp.h", "firmware/net/link.h"],
+      "class": "IMMUTABLE_BASE_WITH_FORWARD_EXTENSION",
+      "immutable_properties": ["airtime", "dwell", "cipher_tier", "symbol_only_transmission", "ephemeral_address", "replay_dedup_semantics"],
+      "allowed_extension": "unknown role ids are skipped; explicitly reserved/padded space may be used only without moving airtime or offsets",
+      "breaking_change": "field offsets, crypto tier, airtime, address semantics, replay/dedup or meaning of an existing id",
+      "authority": "transport can transmit only after upstream interaction/assurance handoff"
+    },
+    {
+      "id": "semantic_ir",
+      "files": ["research/semantic_ir.schema.json", "research/semantic_ir.py"],
+      "class": "VERSIONED_MIGRATABLE",
+      "current_contract": "schemaVersion=1; closed event/source enums; additionalProperties=false; authority=PROPOSAL_ONLY",
+      "allowed_extension": "new version with explicit parser/migration and old-version fixture",
+      "breaking_change": "new event, field, source or authority accepted by version 1 without migration",
+      "authority": "proposal only; no direct memory, radio, confirmation or transport path"
+    },
+    {
+      "id": "voice_grammar",
+      "files": ["firmware/core/voice.h", "firmware/core/voice.c"],
+      "class": "EXTENSION_LIMITED_WITH_FAIL_CLOSED_REJECTION",
+      "current_contract": "finite Portuguese grammar; transcript max 96 bytes; ARRIVE/HELP/CANCEL; recognized speech creates only local draft or local cancel",
+      "allowed_extension": "add exact controlled phrases that preserve one-intent parsing, bounded slots and confirmation requirement",
+      "breaking_change": "accept an embedded keyword, infer an external intent, coerce numeric input or produce a transport-ready state",
+      "authority": "draft only; every draft requires separate physical confirmation"
+    },
+    {
+      "id": "core_link",
+      "files": ["firmware/net/core_link.h", "firmware/net/core_link.c"],
+      "class": "FIXED_WIRE_VERSIONED",
+      "current_contract": "version 1; 22-byte header + 5-byte typed payload + 16-byte tag = 43-byte wire envelope; pair, direction, sequence, expiry and session binding",
+      "allowed_extension": "reuse declared typed payload capacity or introduce a new version and explicit decoder behavior",
+      "breaking_change": "wire length, replay/expiry/session semantics, authentication boundary or transcript/audio/HCP insertion",
+      "authority": "typed observation reaches intent gateway only; envelope cannot send"
+    },
+    {
+      "id": "interaction",
+      "files": ["firmware/core/interaction.h", "firmware/core/interaction.c"],
+      "class": "EXTENSION_LIMITED",
+      "current_contract": "physical PTT starts capture; ASR reaches AWAIT_CONFIRM; only confirmed draft reaches application handoff; one-shot send",
+      "allowed_extension": "append diagnostic metrics or UX states without bypassing existing transitions; preserve zeroization/timeouts",
+      "breaking_change": "ASR or adapter reaches READY_SEND without confirmation, repeated send, or automatic session reactivation",
+      "authority": "sole portable handoff to application; link_send remains separate"
+    },
+    {
+      "id": "memory_vault_and_collection",
+      "files": ["firmware/core/memory_vault.h", "firmware/core/memory_collection.h", "firmware/core/memory_collection_store.h"],
+      "class": "VERSIONED_MIGRATABLE",
+      "current_contract": "version 1; minimal typed cards; collection max 8; generation/floor recovery; purpose-bound physical session and explicit human authorization",
+      "allowed_extension": "new storage version with authenticated migration, floor preservation, rollback and blocked ambiguity",
+      "breaking_change": "implicit candidate/model/radio write, semantic enumeration, loss of generation floor or reactivation after reboot",
+      "authority": "vault/collection writes require independent human authorization and physical session"
+    },
+    {
+      "id": "provenance",
+      "files": ["research/software_provenance_manifest.json", "tools/provenance_audit.py"],
+      "class": "PROCESS_CONTROL",
+      "current_contract": "declared local input digests, strict mismatch failure, external attestation not claimed",
+      "allowed_extension": "add protected stable inputs or improve the manifest schema with a migration",
+      "breaking_change": "silently ignore stale digest, include self-referential mutable evidence tree or claim external attestation without evidence",
+      "authority": "audit control only; never runtime authority"
+    }
+  ],
+  "authority_paths": [
+    {
+      "id": "proposal",
+      "path": ["adapter_or_parser", "intent_gate", "interaction"],
+      "required_gate": "typed observation, active PTT session, confidence/margin/context rules"
+    },
+    {
+      "id": "radio_send",
+      "path": ["interaction", "physical_confirmation", "assurance", "application_handoff", "link_send"],
+      "required_gate": "one physical confirmation and transport fields set after handoff"
+    },
+    {
+      "id": "memory_write",
+      "path": ["memory_proposal", "human_review", "physical_session", "memory_vault_or_collection"],
+      "required_gate": "explicit card/receipt-bound authorization and purpose-bound session"
+    },
+    {
+      "id": "external_data",
+      "path": ["benchmark_or_dataset", "evidence_only"],
+      "required_gate": "none; external labels have zero HERUS command authority"
+    }
+  ],
+  "conclusion": "The architecture already supports incremental evolution at explicit seams, but Semantic IR, wire formats and persistence are not universally backward compatible. The Swiss-watch principle is valid only as contract preservation plus versioned migration, not as a ban on breaking security fixes or internal replacement."
+}

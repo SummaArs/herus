@@ -1,0 +1,105 @@
+
+--------------------------------------------------
+INVARIANT CHECKS
+--------------------------------------------------
+  PASS  P1 constant AIRTIME across meaning tiers
+  PASS  P2 no frame exceeds the 400 ms dwell limit
+  PASS  binding is exactly invertible
+  PASS  role order survives (errata E6)
+  PASS  9-slot composed record round-trips
+  PASS  Nucleus learning is opt-in, bounded and non-autonomous
+  PASS  Voice remains local, confirmed and haptically bounded
+  PASS  Intent gateway is session-bound, confidence-gated and non-autonomous
+  PASS  Dialogue retains no transcript and clears local UX reply
+  PASS  Dialogue output has zero transmission authority
+  PASS  Model lab requires target-measured local and identified weights
+  PASS  Model lab rejects resource, network and authority regressions
+  PASS  Memory policy requires consent and rejects ambiguity
+  PASS  Memory policy sends sensitive or third-party candidates to review
+  PASS  Memory capture is physical, one-shot, bounded and transient
+  PASS  Memory capture scrubs stale, late and failed buffers
+  PASS  Memory extraction is typed, conservative and non-retaining
+  PASS  Memory extraction routes low confidence and third-party sensitive input safely
+  PASS  Memory vault requires explicit human authority and excludes sensitive cards
+  PASS  Memory vault authenticates records and rejects durable rollback fail-closed
+  PASS  Memory consolidation expires and cancels without autonomous retention
+  PASS  Memory consolidation blocks conflict and deletion failure without false success
+  PASS  Memory retrieval requires a bounded typed query and physical access
+  PASS  Memory retrieval exposes ambiguity rather than choosing a close score
+  PASS  Retrieval presentation is physical, one-shot and scrubs transient state
+  PASS  Retrieval presentation exposes uncertainty without selecting a contender
+  PASS  Memory Grand Finale composes capture, policy, review, vault, retrieval and presentation
+  PASS  Memory Grand Finale blocks conflict, unsafe review and model agency
+  PASS  Memory collection is capacity-bounded, physically authorised and does not overwrite
+  PASS  Memory collection authenticates transactions and rejects rollback without false success
+  PASS  Collection index requires typed physical queries and limits repeated probes
+  PASS  Collection index preserves ambiguity and never auto-opens a card
+  PASS  Collection recovery discards a pre-floor prepared record without promoting it
+  PASS  Collection recovery promotes only an authenticated immediate successor bound to floor
+  PASS  Collection Grand Finale composes human authority, authenticated recovery and typed retrieval
+  PASS  Collection Grand Finale preserves abstention and blocks auto-open, fallback and model agency
+  PASS  Physical session binds purpose, expiry and one-time/bounded consumption
+  PASS  Collection Finale requires purpose-bound session evidence and rejects legacy access
+  PASS  Reservation recovery promotes only an authenticated immediate successor already anchored in durable floor
+  PASS  Reservation recovery never revives pre-reboot session authority and contradictions block
+  PASS  F1 hostile recovery snapshots reach only idle quarantine or a scrubbed blocked gate
+  PASS  F1 reaches every permitted recovery action while refusing recovered floor reuse
+  PASS  F2 hostile collection snapshots yield only bounded recovery actions or fail closed
+  PASS  F2 reaches every permitted collection-recovery action without mutating input
+  PASS  F3 hostile threat evidence never escalates invalid format or scope to host mitigation
+  PASS  F3 preserves pending target and out-of-scope boundaries under canonical full evidence
+  PASS  F4 detects removal of selected authority, authentication, quarantine and exhaustion controls
+  PASS  F4 detects removal of model send authority barrier
+  PASS  Bootstrap imports only the recovered floor and scrubs prior active session evidence
+  PASS  Bootstrap blocks invalid recovery/configuration instead of reviving authority
+  PASS  Final host chain imports only a floor and ends in idle quarantine
+  PASS  Final host chain blocks old access, auto-open, missing quarantine evidence and invalid reservation
+  PASS  Threat model classifies host controls only with complete canonical evidence
+  PASS  Threat model retains model agency, physical platform and unsupported scope as non-success
+  PASS  Assurance fails closed across physical, trust and model state
+  PASS  Capstone keeps dialogue and revoked trust out of handoff
+  PASS  Trust requires physical pairing and matched SAS before activation
+  PASS  Trust revocation zeroizes RAM and fails closed
+  PASS  Control link authenticates, expires and rejects replay
+  PASS  Interaction is push-to-talk, confirmed and one-shot
+  PASS  Interaction rig keeps adapter sequencing non-transmitting
+  PASS  Telemetry gates reject an unsafe send
+  PASS  Hardware readiness manifest keeps evidence pending and private
+  PASS  Local provenance manifest validates only declared unsigned inputs
+  PASS  Local provenance rejects tampered inputs, secrets and trust escalation
+  PASS  Preregistered study keeps gates and rejects unsafe send
+  PASS  crypto agrees with an independent implementation
+  PASS  hypervectors are never transmitted
+  PASS  P4 unknown roles are skipped, not rejected
+  PASS  every single-bit corruption is rejected
+  PASS  Tier 0.5 does not avalanche
+  PASS  no stable identifier is on air (P6)
+  PASS  ttl is mutable, the address is not (E-P2)
+  PASS  replay is refused forever
+  PASS  forgery fails at 2^-64 per attempt
+  PASS  the decrypt path is rate limited
+  PASS  flooding terminates
+  PASS  Beat guard covers crystal drift
+  PASS  encoding is canonical
+  PASS  SetPacketType precedes SetModulationParams
+  PASS  the frequency word is correct
+  PASS  PA config and TX power agree
+  PASS  the private sync word is written
+  PASS  BUSY is honoured before every command
+  PASS  the selftest diagnoses a wrong pin map
+  PASS  the ESP32-S3 app type-checks
+  PASS  P2 every frame in the ledger is within dwell
+
+--- simulated bench: the firmware in a world with distance and adversaries ---
+  PASS  74 system invariants hold in simulation (sim/build/herus-sim)
+  measured cliff  550 m .. 600 m      link budget predicts  579 m
+  delivered            20 / 20  (100 %)
+  delivered            53  (88 %)
+
+SOMETHING REGRESSED — do not flash, and do not trust the documents.
+  PASS  74 system invariants hold in simulation (sim/build/herus-sim)
+  measured cliff  550 m .. 600 m      link budget predicts  579 m
+  delivered            20 / 20  (100 %)
+  delivered            53  (88 %)
+
+ALL INVARIANTS HOLD — host contracts pass; controlled bench flash may begin, physical gates remain pending.

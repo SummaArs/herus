@@ -101,6 +101,11 @@ A próxima etapa física é a Fase 0: dois devkits, bancada curta, medição RF,
 | [Evidências Wide Research ciclo 04](research/evidence/wide_cycle_04/) | Logs e auditorias agregadas do primeiro uso local de metadados reais; dados crus permanecem fora do Git. |
 | [Relatório Wide Research ciclo 05](research/evidence/wide_cycle_05/report.md) | Auditoria real do SLURP, probe ZIP por Range, licenças por modalidade, parser C e bloqueios restantes; nenhum áudio ou archive bruto publicado. |
 | [Evidências Wide Research ciclo 06](research/evidence/wide_cycle_06/) | Auditoria MInDS-14 por API `/rows`, quatro WAVs estruturais temporários, split pt-PT completo sem download de áudio, correção de falso HELP e identidade SLURP ainda ambígua. |
+| [Evidências Wide Research ciclo 07](research/evidence/wide_cycle_07/) | Política de evolução incremental, inventário de contratos, ensaios de Core-Link/HCP/Semantic IR/coleção e decisão de mudança mínima; sem migração persistente alegada. |
+
+## Evolução incremental
+
+O HERUS adota o princípio **construir, estabilizar, observar, melhorar pontualmente e preservar** como política de contratos e invariantes, não como proibição absoluta de mudança interna. HCP tem uma extensão forward-compatible específica para papéis desconhecidos; Semantic IR, Core-Link e persistência exigem versão/migração quando a estrutura fechada muda. Uma correção de segurança pode exigir quebra controlada. O ciclo 07 não adicionou autoridade ao núcleo: adicionou regressões de versão/tamanho do Core-Link, testes host-only e documentação verificável. Veja a [política de evolução](research/evidence/wide_cycle_07/evolution_policy.md), a [matriz de contratos](research/evidence/wide_cycle_07/contracts_matrix.md) e a [decisão de complexidade](research/evidence/wide_cycle_07/complexity_report.md).
 
 ## Estado de engenharia
 

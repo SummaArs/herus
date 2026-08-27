@@ -1,0 +1,22 @@
+--- NEW IMPORTS ---
+from pathlib
+import json
+import re
+import unittest
+--- NEW AUTHORITY TERMS ---
+research/test_evolution_compatibility.py:18:        self.assertEqual(schema["properties"]["authority"]["const"], "PROPOSAL_ONLY")
+research/test_evolution_compatibility.py:24:        self.assertIn("#define CORE_LINK_VERSION       1u", header)
+research/test_evolution_compatibility.py:25:        self.assertIn("#define CORE_LINK_WIRE_LEN (CORE_LINK_HEADER_LEN + CORE_LINK_PAYLOAD_LEN + CORE_LINK_TAG_LEN)", header)
+research/test_evolution_compatibility.py:26:        self.assertRegex(source, r"wire_len != CORE_LINK_WIRE_LEN")
+research/test_evolution_compatibility.py:27:        self.assertRegex(source, r"wire\[OFF_VER\] != CORE_LINK_VERSION")
+research/test_evolution_compatibility.py:49:        self.assertIn("The physical confirmation handler may release a pending draft exactly once", header)
+research/evidence/wide_cycle_07/compatibility_reversibility.md:9:| Semantic IR | `schemaVersion` diferente, propriedades desconhecidas, enum fechado, `PROPOSAL_ONLY`, contradição e limiares | Rejeição ou proposta sem autoridade |
+research/evidence/wide_cycle_07/compatibility_reversibility.md:11:| Core-Link | comprimento diferente de 43 bytes | `CORE_LINK_E_ARG`, saída zerada e sequência RX inalterada |
+research/evidence/wide_cycle_07/compatibility_reversibility.md:12:| Core-Link | versão futura no header | `CORE_LINK_E_FORMAT`, saída zerada e sequência RX inalterada |
+research/evidence/wide_cycle_07/evolution_policy.md:42:O HCP preserva airtime, dwell, tier criptográfico, transmissão apenas de símbolos, endereço efêmero, replay/deduplicação e a regra P4 de ignorar papéis desconhecidos. O Core-Link preserva versão, comprimento, autenticação, par, direção, sequência, expiração e vínculo à sessão. A Semantic IR preserva `PROPOSAL_ONLY`, enumerações fechadas e rejeição de propriedades desconhecidas. Voz preserva gramática finita, rejeição de palavras embutidas, limite de transcript e confirmação posterior. Cofre/coleção preservam autorização humana, sessão física, geração/floor, capacidade declarada e bloqueio de ambiguidade.
+research/evidence/wide_cycle_07/evolution_policy.md:66:A política não autoriza NLU/NLG aberto, ontologia geral, formalismo adicional no firmware, LLM hospedada, LLM local com autoridade, mapeamento de rótulo externo, persistência de transcrição/áudio, fallback generativo ou aprendizado que invente símbolos fora do vocabulário finito. VSA/HDC permanece limitado a `bind`, `unbind` e `bundle` sobre cartões tipados. Os estados `OTHER`, `AMBIGUOUS` e `CONFLICT` são abstenção não operacional e nunca atravessam a bridge.
+research/evidence/wide_cycle_07/contract_inventory.json:25:      "current_contract": "schemaVersion=1; closed event/source enums; additionalProperties=false; authority=PROPOSAL_ONLY",
+research/evidence/wide_cycle_07/contract_inventory.json:37:      "authority": "draft only; every draft requires separate physical confirmation"
+research/evidence/wide_cycle_07/contract_inventory.json:55:      "authority": "sole portable handoff to application; link_send remains separate"
+research/evidence/wide_cycle_07/contract_inventory.json:84:      "path": ["interaction", "physical_confirmation", "assurance", "application_handoff", "link_send"],
+research/evidence/wide_cycle_07/contract_inventory.json:85:      "required_gate": "one physical confirmation and transport fields set after handoff"

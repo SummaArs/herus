@@ -80,6 +80,20 @@ int main(void)
     core_link_tx_init(&tx);
     core_link_rx_init(&rx);
     core_link_seal_nucleus_intent(&tx, &key, 100, 77, 300, &obs, wire);
+    memset(&out, 0xA5, sizeof(out));
+    ok(core_link_open_nucleus_intent(&rx, &key, wire, sizeof(wire) - 1u, 100, &out) == CORE_LINK_E_ARG &&
+       out.session_id == 0 && rx.last_seq == 0,
+       "L1 truncated or extended wire length cannot enter the Core state");
+    memcpy(tampered, wire, sizeof(wire));
+    tampered[0] = (uint8_t)(CORE_LINK_VERSION + 1u);
+    memset(&out, 0xA5, sizeof(out));
+    ok(core_link_open_nucleus_intent(&rx, &key, tampered, sizeof(tampered), 100, &out) == CORE_LINK_E_FORMAT &&
+       out.session_id == 0 && rx.last_seq == 0,
+       "L1 a future envelope version is rejected without compatibility coercion");
+
+    core_link_tx_init(&tx);
+    core_link_rx_init(&rx);
+    core_link_seal_nucleus_intent(&tx, &key, 100, 77, 300, &obs, wire);
     {
         core_link_key_t wrong_pair = key;
         wrong_pair.pair_id ^= 1u;

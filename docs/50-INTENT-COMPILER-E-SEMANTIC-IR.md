@@ -207,6 +207,25 @@ Também foi criado `herus-independent-annotation-v1`, com `ARRIVE`, `HELP`, `CAN
 
 Os áudios baixados para a amostra e o batch foram temporários e apagados; nenhum WAV, URL assinada, frase individual ou identificador de registro foi publicado. Os JSONs agregados, o relatório e os logs redigidos estão em `research/evidence/wide_cycle_06/`. O manifesto preserva `license_confirmed_for_raw_data=false`: a licença declarada pela ficha é um dado de distribuição, não autorização jurídica final para redistribuição ou produto. Veredito: **`herus_convergence_proven=false`**.
 
+## Resultado Wide Research — ciclo 07: evolução incremental
+
+O ciclo avaliou o princípio **construir, estabilizar, observar, melhorar pontualmente e preservar** contra os contratos reais do HERUS. O princípio é válido como política de preservação de invariantes e composição incremental, mas não como compatibilidade universal nem como proibição absoluta de substituição interna. Uma implementação pode ser trocada quando preserva ou migra o contrato, possui rollback e não amplia autoridade. Uma correção de segurança pode exigir quebra controlada.
+
+| Superfície | Decisão de evolução | Evidência do ciclo |
+|---|---|---|
+| HCP wire | Base imutável com extensão específica | Airtime, dwell, criptografia, símbolos, endereço efêmero, replay/dedup e P4 permanecem protegidos; papéis desconhecidos são ignorados |
+| Semantic IR | Migração versionada | `schemaVersion=1`, enums fechados, `additionalProperties=false` e `PROPOSAL_ONLY` não aceitam extensão silenciosa |
+| Core-Link | Wire fixo e versionado | Envelope de versão 1 com 43 bytes; teste novo rejeita comprimento incorreto e versão futura sem avançar RX |
+| Voz/interação | Extensão limitada | Frases controladas podem ser adicionadas; draft continua anterior à confirmação física e o envio permanece one-shot |
+| Cofre/coleção | Migração versionada | Geração/floor, autenticação, sessão física e bloqueio de contradição não podem ser perdidos |
+| Pesquisa/LLM/raciocínio | Host-only experimental | Nenhuma nova autoridade ou fallback generativo foi introduzido |
+
+Foram inventariados 48 headers públicos e 5 schemas/manifestos. Os ensaios reais de firmware passaram com as novas regressões de Core-Link; os testes host específicos de Semantic IR, política e compatibilidade passaram com 22 casos. A suíte de pesquisa completa passou com 101 testes. O delta de runtime foi zero: o ciclo adicionou 14 linhas de testes C, dois testes host-only, política, matriz, inventário e evidência. Não foi criada uma migração persistente entre versões porque o repositório ainda não possui duas versões concretas de formato; fingir essa cobertura seria incompatível com a política.
+
+O ciclo também fixou os estados `OTHER`, `AMBIGUOUS` e `CONFLICT` como abstenção não operacional. Rótulos externos, modelos e adapters não ganham autoridade por compatibilidade ou por permanecerem estáveis. A conclusão é que o HERUS já tem seams para crescer por composição, mas a longevidade depende de contratos explícitos, versionamento onde a estrutura é fechada, testes de reversibilidade e rejeição de complexidade sem problema real.
+
+A política, matriz, inventário, ensaios e métricas estão em `research/evidence/wide_cycle_07/`. O projeto continua pré-hardware; nenhum resultado de RF, energia, UX, ASR embarcado ou longevidade real foi alegado.
+
 ### Referências
 
 [1]: https://huggingface.co/datasets/PolyAI/minds14 "PolyAI/MInDS-14 — ficha do dataset no Hugging Face"

@@ -1,0 +1,12 @@
+ firmware/net/test_core_link.c | 14 [32m++++++++++++++[m
+ research/Makefile             |  2 [32m+[m[31m-[m
+ 2 files changed, 15 insertions(+), 1 deletion(-)
+14	0	firmware/net/test_core_link.c
+1	1	research/Makefile
+--- UNTRACKED CODE SIZES ---
+50 research/test_evolution_policy.py
+55 research/test_evolution_compatibility.py
+99 research/evidence/wide_cycle_07/contract_inventory.json
+31 research/evidence/wide_cycle_07/contracts_matrix.md
+74 research/evidence/wide_cycle_07/evolution_policy.md
+25 research/evidence/wide_cycle_07/compatibility_reversibility.md
