@@ -23,7 +23,7 @@
     {
       "path": "firmware",
       "kind": "tree",
-      "sha256": "38203529ab9c255a69e4bf2ce55b63d605f75b2ce7633323354d08c07ffb594c",
+      "sha256": "34d2e2641f3b27481ba7499e15f9bc1d97cd97bb006e7efbfa3627674a486716",
       "role": "portable firmware and proof sources"
     },
     {
@@ -47,7 +47,7 @@
     {
       "path": "research/Makefile",
       "kind": "file",
-      "sha256": "60961f9fea82c42abe125bacdd65641e240ced7a02d2ebba5f023d8624ab5de0",
+      "sha256": "78e001321430dc023aaf49df81250c25782b4b69ce95d83590efa7cb6c4c6e1d",
       "role": "host-only research test entrypoint"
     },
     {

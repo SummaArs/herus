@@ -1,0 +1,429 @@
+=== VOICE FIXTURES ===
+firmware/core/delivery_plan.c:38:        metrics->cancelled = 0u;
+firmware/core/delivery_plan.c:135:int delivery_plan_cancel(delivery_plan_t *plan, delivery_plan_metrics_t *metrics,
+firmware/core/delivery_plan.c:144:    plan->state = DELIVERY_PLAN_CANCELLED;
+firmware/core/delivery_plan.c:146:    if (metrics) metrics->cancelled++;
+firmware/core/delivery_plan.c:147:    *event = DELIVERY_EVENT_CANCELLED;
+firmware/core/delivery_plan.h:23:    DELIVERY_PLAN_CANCELLED,
+firmware/core/delivery_plan.h:33:    DELIVERY_EVENT_CANCELLED,
+firmware/core/delivery_plan.h:61:    uint32_t cancelled;
+firmware/core/delivery_plan.h:88:/* Physical/user cancellation is terminal and invalidates every future retry. */
+firmware/core/delivery_plan.h:89:int delivery_plan_cancel(delivery_plan_t *plan, delivery_plan_metrics_t *metrics,
+firmware/core/dialogue.h:137: * Text is bounded and borrowed; the dialogue layer stores no transcript. */
+firmware/core/intent_gate.c:7:    if (command == VOICE_COMMAND_ARRIVE) return minutes <= 60u;
+firmware/core/intent_gate.c:8:    if (command == VOICE_COMMAND_HELP || command == VOICE_COMMAND_CANCEL) return minutes == 0u;
+firmware/core/intent_gate.h:3: * The gate classifies an observation. It has no audio, transcript, clock, radio,
+firmware/core/intent_gate.h:27:    uint8_t          minutes;         /* valid only for ARRIVE */
+firmware/core/interaction.c:57:    if (status == VOICE_CANCEL_LOCAL) {
+firmware/core/interaction.c:58:        it->state = INTERACTION_CANCELLED;
+firmware/core/interaction.c:59:        it->metrics.cancelled++;
+firmware/core/interaction.c:60:        haptic(it, VOICE_EVENT_CANCEL);
+firmware/core/interaction.c:101:    out->allow_test_transcript = 0;
+firmware/core/interaction.c:151:int interaction_transcript(interaction_t *it, const char *text, uint32_t now_ms)
+firmware/core/interaction.c:156:    if (!it->cfg.allow_test_transcript) return INTERACTION_E_UNTRUSTED;
+firmware/core/interaction.c:159:    status = voice_parse_pt(text, &it->cfg.lexicon, &it->parsed);
+firmware/core/interaction.c:180:    status = voice_from_command(obs->command, obs->minutes, &it->cfg.lexicon, &it->parsed);
+firmware/core/interaction.c:181:    if (status != VOICE_DRAFT && status != VOICE_CANCEL_LOCAL)
+firmware/core/interaction.c:215:        it->state = INTERACTION_CANCELLED;
+firmware/core/interaction.c:216:        it->metrics.cancelled++;
+firmware/core/interaction.c:219:        haptic(it, VOICE_EVENT_CANCEL);
+firmware/core/interaction.c:267:        it->state = INTERACTION_CANCELLED;
+firmware/core/interaction.c:268:        it->metrics.cancelled++;
+firmware/core/interaction.c:271:        haptic(it, VOICE_EVENT_CANCEL);
+firmware/core/interaction.h:24:    INTERACTION_CANCELLED,
+firmware/core/interaction.h:50:/* Counters and measured energy only. No transcript, raw audio, semantic content,
+firmware/core/interaction.h:58:    uint32_t cancelled;
+firmware/core/interaction.h:75:    uint8_t  allow_test_transcript; /* host-only parser path; production defaults to 0 */
+firmware/core/interaction.h:101:/* Feed a local ASR transcript only while LISTENING. This is disabled by default
+firmware/core/interaction.h:103:int interaction_transcript(interaction_t *it, const char *text, uint32_t now_ms);
+firmware/core/interaction_rig.c:26:        host_cfg.allow_test_transcript = 1;
+firmware/core/interaction_rig.c:41:int interaction_rig_transcript(interaction_rig_t *rig, const char *text, uint32_t now_ms)
+firmware/core/interaction_rig.c:45:    rc = interaction_transcript(&rig->runtime, text, now_ms);
+firmware/core/interaction_rig.h:30:int interaction_rig_transcript(interaction_rig_t *rig, const char *text, uint32_t now_ms);
+firmware/core/memory_capture.c:152:int memory_capture_cancel(memory_capture_t *m, uint32_t physical_gesture_id,
+firmware/core/memory_capture.c:159:    m->metrics.cancelled++;
+firmware/core/memory_capture.c:160:    terminal(m, MEMORY_CAPTURE_CANCELLED, now_ms);
+firmware/core/memory_capture.h:6: * memory pipeline. A physical gesture starts it; timeout, cancellation, failure or
+firmware/core/memory_capture.h:11: * pointer, byte, transcript, embedding, identity, location or key is retained in
+firmware/core/memory_capture.h:27:    MEMORY_CAPTURE_CANCELLED,
+firmware/core/memory_capture.h:44: * contain no audio, transcript or semantic candidate. */
+firmware/core/memory_capture.h:65:/* Numeric-only diagnostics. There is intentionally no payload length, transcript,
+firmware/core/memory_capture.h:71:    uint32_t cancelled;
+firmware/core/memory_capture.h:109:/* A physical cancel ends the capture and asks the source adapter to discard any
+firmware/core/memory_capture.h:111:int memory_capture_cancel(memory_capture_t *m, uint32_t physical_gesture_id,
+firmware/core/memory_collection.h:4: * is not a transcript store, search index, semantic deduplicator, model memory,
+firmware/core/memory_collection_finale.h:5: * collection, index, vault, text, audio, transcript, embedding, identity,
+firmware/core/memory_consolidation.c:175:int memory_consolidation_cancel(memory_consolidation_t *c)
+firmware/core/memory_consolidation.c:184:    c->metrics.cancelled++;
+firmware/core/memory_consolidation.h:7: * user confirmation. Conflict is never auto-resolved. Timeout/cancel/failure scrub
+firmware/core/memory_consolidation.h:30: * transcript, embedding, identity, location, timestamp, key or network field. */
+firmware/core/memory_consolidation.h:55:    uint32_t cancelled;
+firmware/core/memory_consolidation.h:102: * the current proposal is cancelled and a new physical review begins. */
+firmware/core/memory_consolidation.h:116:int memory_consolidation_cancel(memory_consolidation_t *c);
+firmware/core/memory_physical_session.c:165:int memory_physical_session_cancel(memory_physical_session_t *gate)
+firmware/core/memory_physical_session.c:172:    gate->metrics.cancelled++;
+firmware/core/memory_physical_session.c:173:    scrub_active(gate, MEMORY_PHYSICAL_SESSION_CANCELLED);
+firmware/core/memory_physical_session.h:6: * transcript, embedding, identity, location, model output or callback.
+firmware/core/memory_physical_session.h:31:    MEMORY_PHYSICAL_SESSION_CANCELLED,
+firmware/core/memory_physical_session.h:49:    uint32_t cancelled;
+firmware/core/memory_physical_session.h:80:    MEMORY_PHYSICAL_SESSION_E_CANCELLED = -8
+firmware/core/memory_physical_session.h:119:int memory_physical_session_cancel(memory_physical_session_t *gate);
+firmware/core/memory_policy.h:5: * explicitly authorised memory session. It has no field for audio, transcript,
+firmware/core/memory_prehardware_finale.c:28:           gate->metrics.consumed == 0u && gate->metrics.cancelled == 0u &&
+firmware/core/memory_retrieval.h:28: * supplied: a query cannot enumerate all cards. No free-text, audio, transcript,
+firmware/core/memory_retrieval_present.c:110:        set_haptic(&p->pending, VOICE_EVENT_CANCEL);
+firmware/core/memory_retrieval_present.h:7: * transcript, embedding, identity, location, timestamp, radio frame or HCP.
+firmware/core/memory_vault.h:7: * transcript, embedding, identity, location or raw capture payload.
+firmware/core/test_capstone.c:63:    strcpy(out->reply, "envie ajuda agora");
+firmware/core/test_capstone.c:107:    o.command = VOICE_COMMAND_ARRIVE;
+firmware/core/test_capstone.c:152:       dialogue_submit_utterance(&dialogue, "preciso de ajuda", 16, 1) == DIALOGUE_OK &&
+firmware/core/test_capstone.c:154:       !strcmp(reply, "envie ajuda agora") && topic == DIALOGUE_TOPIC_SAFETY,
+firmware/core/test_capstone.c:162:           INTENT_SOURCE_CORE, interaction_session_id(&it), VOICE_COMMAND_ARRIVE,
+firmware/core/test_delivery_plan.c:102:static void test_attempt_exhaustion_and_cancel(void)
+firmware/core/test_delivery_plan.c:127:       "cancel plan begins");
+firmware/core/test_delivery_plan.c:128:    ok(delivery_plan_cancel(&p, &m, &ev) == DELIVERY_PLAN_OK,
+firmware/core/test_delivery_plan.c:129:       "active plan can be cancelled");
+firmware/core/test_delivery_plan.c:130:    expect_event(ev, DELIVERY_EVENT_CANCELLED, "cancel emits terminal event");
+firmware/core/test_delivery_plan.c:132:       "cancelled plan has no future retry");
+firmware/core/test_delivery_plan.c:133:    ok(m.cancelled == 1u, "cancellation is counted");
+firmware/core/test_delivery_plan.c:165:    test_attempt_exhaustion_and_cancel();
+firmware/core/test_dialogue.c:58:        strcpy(out->reply, "enviar ajuda agora");
+firmware/core/test_dialogue.c:103:       "D1 the runtime retains no transcript and zeroizes its local UX reply after delivery");
+firmware/core/test_dialogue.c:109:       !strcmp(reply, "enviar ajuda agora") && d.state == DIALOGUE_IDLE,
+firmware/core/test_intent_gate.c:32:    o = observation(7, VOICE_COMMAND_ARRIVE, 90, 20);
+firmware/core/test_intent_gate.c:36:    hint.available = 1; hint.command = VOICE_COMMAND_ARRIVE;
+firmware/core/test_intent_gate.c:38:    o = observation(7, VOICE_COMMAND_ARRIVE, 79, 0);
+firmware/core/test_intent_gate.c:42:    o = observation(7, VOICE_COMMAND_ARRIVE, 86, 75);
+firmware/core/test_intent_gate.c:46:    hint.command = VOICE_COMMAND_HELP;
+firmware/core/test_intent_gate.c:50:    o = observation(6, VOICE_COMMAND_HELP, 100, 0);
+firmware/core/test_intent_gate.c:54:    o = observation(7, VOICE_COMMAND_HELP, 95, 0);
+firmware/core/test_interaction.c:12:    cfg.allow_test_transcript = 1;
+firmware/core/test_interaction.c:28:    ok(interaction_transcript(&it, "chego", 20) == INTERACTION_E_UNTRUSTED &&
+firmware/core/test_interaction.c:30:       "I0 raw transcript input is disabled by default and cannot end the live session");
+firmware/core/test_interaction.c:46:    ok(interaction_transcript(&it, "chego em vinte e cinco minutos", 600) == INTERACTION_OK &&
+firmware/core/test_interaction.c:49:       "I1 a valid local transcript stops capture and presents a haptic draft");
+firmware/core/test_interaction.c:73:    printf("\n== I2  cancellation, timeout, source loss and help fail safely ==\n");
+firmware/core/test_interaction.c:82:    interaction_transcript(&it, "preciso de socorro", 7100);
+firmware/core/test_interaction.c:87:    ok(it.state == INTERACTION_CANCELLED && interaction_actions(&it)->clear_draft &&
+firmware/core/test_interaction.c:99:    interaction_transcript(&it, "cancelar", 8250);
+firmware/core/test_interaction.c:100:    ok(it.state == INTERACTION_CANCELLED && interaction_metrics(&it)->cancelled == 2,
+firmware/core/test_interaction.c:101:       "I2 spoken cancellation remains local and is accounted for as a terminal event");
+firmware/core/test_interaction.c:127:    o = asr(interaction_session_id(&it) - 1u, VOICE_COMMAND_ARRIVE, 100, 0);
+firmware/core/test_interaction.c:132:    o = asr(interaction_session_id(&it), VOICE_COMMAND_ARRIVE, 75, 0);
+firmware/core/test_interaction.c:139:    hint.available = 1; hint.command = VOICE_COMMAND_ARRIVE;
+firmware/core/test_interaction.c:141:    o = asr(interaction_session_id(&it), VOICE_COMMAND_ARRIVE, 86, 75);
+firmware/core/test_interaction.c:174:    o = asr(interaction_session_id(&it), VOICE_COMMAND_ARRIVE, 92, 10);
+firmware/core/test_interaction.c:201:    interaction_transcript(&it, "estou chegando", 1100);
+firmware/core/test_interaction.c:203:    ok(it.state == INTERACTION_CANCELLED && interaction_actions(&it)->clear_draft &&
+firmware/core/test_interaction.c:210:    ok(m->sessions == 1 && m->drafts == 1 && m->cancelled == 1 &&
+firmware/core/test_interaction.c:212:       "I3 telemetry keeps counts, latency and measured energy without transcript storage");
+firmware/core/test_interaction_rig.c:23:    ok(interaction_rig_transcript(&rig, "chego em dez minutos", 1500) == INTERACTION_OK &&
+firmware/core/test_interaction_rig.c:41:       "R1 a measured energy integral is mirrored without audio or transcript data");
+firmware/core/test_interaction_rig.c:60:    interaction_rig_transcript(&rig, "estou chegando", 250);
+firmware/core/test_interaction_rig.c:62:    ok(rig.runtime.state == INTERACTION_CANCELLED &&
+firmware/core/test_interaction_rig.c:71:       "R2 listen timeout ends the adapter session before any transcript or send");
+firmware/core/test_memory_capture.c:101:    ok(memory_capture_cancel(&m, 41u, 40u) == MEMORY_CAPTURE_OK &&
+firmware/core/test_memory_capture.c:102:       m.state == MEMORY_CAPTURE_CANCELLED && memory_capture_session_id(&m) == 0u &&
+firmware/core/test_memory_capture.c:104:       "M2 physical cancellation removes authorization and requests source discard");
+firmware/core/test_memory_collection.c:225:       c.count == 1u && memory_physical_session_cancel(&gate) == MEMORY_PHYSICAL_SESSION_OK,
+firmware/core/test_memory_collection.c:231:       c.count == 1u && memory_physical_session_cancel(&gate) == MEMORY_PHYSICAL_SESSION_OK,
+firmware/core/test_memory_collection_finale.c:351:    (void)memory_capture_cancel(&capture, 7u, 202u);
+firmware/core/test_memory_collection_finale.c:381:    ok(memory_physical_session_cancel(&collection_gate) == MEMORY_PHYSICAL_SESSION_OK,
+firmware/core/test_memory_collection_finale.c:382:       "M14 unfinished query capability is explicitly cancelled before a new retrieval purpose");
+firmware/core/test_memory_collection_index.c:197:       memory_physical_session_cancel(&gate) == MEMORY_PHYSICAL_SESSION_OK,
+firmware/core/test_memory_collection_index.c:209:       result.card_id == 102u && memory_physical_session_cancel(&gate) == MEMORY_PHYSICAL_SESSION_OK,
+firmware/core/test_memory_collection_index.c:223:       memory_physical_session_cancel(&gate) == MEMORY_PHYSICAL_SESSION_OK,
+firmware/core/test_memory_collection_index.c:231:       memory_physical_session_cancel(&gate) == MEMORY_PHYSICAL_SESSION_OK,
+firmware/core/test_memory_collection_index.c:241:       memory_physical_session_cancel(&gate) == MEMORY_PHYSICAL_SESSION_OK,
+firmware/core/test_memory_consolidation.c:162:    ok(memory_consolidation_cancel(&c) == MEMORY_CONSOLIDATION_OK &&
+firmware/core/test_memory_consolidation.c:164:       "M5 cancellation returns control to the person without creating a receipt or record");
+firmware/core/test_memory_consolidation.c:174:       "M5 conflict blocks even a valid physical confirmation until the proposal is cancelled");
+firmware/core/test_memory_consolidation.c:175:    ok(memory_consolidation_cancel(&c) == MEMORY_CONSOLIDATION_OK &&
+firmware/core/test_memory_consolidation.c:177:       "M5 cancelling conflict zeroizes the pending proposal rather than resolving it silently");
+firmware/core/test_memory_extract.c:99:    (void)memory_capture_cancel(&c, 10u, 200u);
+firmware/core/test_memory_extract.c:102:       "M3 an expired or cancelled capture cannot be reused for later extraction");
+firmware/core/test_memory_finale.c:196:    (void)memory_capture_cancel(&capture, 5u, 202u);
+firmware/core/test_memory_physical_session.c:92:       memory_physical_session_cancel(&gate) == MEMORY_PHYSICAL_SESSION_OK &&
+firmware/core/test_memory_physical_session.c:93:       gate.state == MEMORY_PHYSICAL_SESSION_CANCELLED &&
+firmware/core/test_memory_physical_session.c:96:       "T14 cancel revokes a pending authorization and never becomes a usable fallback");
+firmware/core/test_memory_physical_session.c:121:       metrics->cancelled == 1u && metrics->expired == 1u &&
+firmware/core/test_memory_physical_session_bootstrap.c:38:           gate->metrics.consumed == 0u && gate->metrics.cancelled == 0u &&
+firmware/core/test_memory_physical_session_recovery_stress.c:191:           gate->metrics.consumed == 0u && gate->metrics.cancelled == 0u &&
+firmware/core/test_memory_physical_session_recovery_stress.c:204:           gate->metrics.consumed == 0u && gate->metrics.cancelled == 0u &&
+firmware/core/test_memory_physical_session_recovery_stress.c:265:        if (memory_physical_session_cancel(&gate) != MEMORY_PHYSICAL_SESSION_OK) {
+firmware/core/test_memory_physical_session_recovery_stress.c:266:            fail_once("F1 fresh successor session could not be explicitly cancelled");
+firmware/core/test_memory_prehardware_finale.c:294:    ok(memory_physical_session_cancel(&boot_gate) == MEMORY_PHYSICAL_SESSION_OK &&
+firmware/core/test_memory_prehardware_finale.c:295:       boot_gate.state == MEMORY_PHYSICAL_SESSION_CANCELLED && boot_gate.active_session_id == 0u,
+firmware/core/test_memory_prehardware_finale.c:296:       "G1 unfinished post-boot query remains explicitly cancellable and scrubs active evidence");
+firmware/core/test_memory_proposal.c:122:    (void)memory_capture_cancel(&capture, 17u, 200u);
+firmware/core/test_memory_proposal.c:127:       "P1 cancelled sessions cannot be reused to compile a proposal");
+firmware/core/test_model_lab.c:104:    strcpy(candidate.reply, "enviar ajuda agora");
+firmware/core/test_model_lab.c:108:       !strcmp(displayed.reply, "enviar ajuda agora") && displayed.topic == DIALOGUE_TOPIC_SAFETY,
+firmware/core/test_voice.c:20:    ok(voice_parse_pt("Chego em dez minutos", &lex, &r) == VOICE_DRAFT &&
+firmware/core/test_voice.c:30:    ok(voice_parse_pt("estou chegando", &lex, &r) == VOICE_DRAFT &&
+firmware/core/test_voice.c:40:    printf("\n== V2  cancellation, unknown speech and help fail safely ==\n");
+firmware/core/test_voice.c:42:    ok(voice_parse_pt("cancelar", &lex, &r) == VOICE_CANCEL_LOCAL &&
+firmware/core/test_voice.c:43:       r.event == VOICE_EVENT_CANCEL && !r.requires_confirmation && r.draft.intent == 0,
+firmware/core/test_voice.c:44:       "V2 cancellation discards only the local draft and never makes a frame");
+firmware/core/test_voice.c:45:    ok(voice_parse_pt("toque uma musica", &lex, &r) == VOICE_UNKNOWN &&
+firmware/core/test_voice.c:48:    ok(voice_parse_pt("chego em noventa minutos", &lex, &r) == VOICE_REJECTED &&
+firmware/core/test_voice.c:51:    ok(voice_parse_pt("preciso de socorro", &lex, &r) == VOICE_DRAFT &&
+firmware/core/test_voice.c:64:    ok(voice_from_command(VOICE_COMMAND_ARRIVE, 12, &lex, &r) == VOICE_DRAFT &&
+firmware/core/test_voice.c:68:    ok(voice_from_command(VOICE_COMMAND_HELP, 1, &lex, &r) == VOICE_REJECTED &&
+firmware/core/test_voice.c:69:       voice_from_command(VOICE_COMMAND_CANCEL, 1, &lex, &r) == VOICE_REJECTED,
+firmware/core/test_voice.c:70:       "V3 help and cancel reject unsupported duration parameters instead of guessing");
+firmware/core/threat_model.h:5: * engine. It receives no key, packet, card, candidate, text, audio, transcript,
+firmware/core/voice.c:80:    int has_marker = word_present(s, "minuto") || word_present(s, "minutos") ||
+firmware/core/voice.c:123:voice_status_t voice_from_command(voice_command_t command, uint8_t minutes,
+firmware/core/voice.c:131:    if (command == VOICE_COMMAND_CANCEL) {
+firmware/core/voice.c:133:        result_reset(out, VOICE_CANCEL_LOCAL, VOICE_EVENT_CANCEL);
+firmware/core/voice.c:136:    if (command == VOICE_COMMAND_HELP) {
+firmware/core/voice.c:145:    if (command != VOICE_COMMAND_ARRIVE || minutes > 60u) return out->status;
+firmware/core/voice.c:161:voice_status_t voice_parse_pt(const char *transcript, const voice_lexicon_t *lexicon,
+firmware/core/voice.c:164:    static const char *const cancel_words[] = { "cancelar", "cancela", "pare", "parar" };
+firmware/core/voice.c:165:    static const char *const help_words[] = { "socorro", "ajuda", "ajude" };
+firmware/core/voice.c:166:    static const char *const arrive_words[] = { "chego", "chegando", "chegar", "chegarei" };
+firmware/core/voice.c:172:    if (!lexicon_valid(lexicon) || !normalise(transcript, text)) return out->status;
+firmware/core/voice.c:174:    if (any_word(text, cancel_words, sizeof(cancel_words) / sizeof(cancel_words[0]))) {
+firmware/core/voice.c:175:        result_reset(out, VOICE_CANCEL_LOCAL, VOICE_EVENT_CANCEL);
+firmware/core/voice.c:227:    case VOICE_EVENT_CANCEL:
+firmware/core/voice.h:21:    uint16_t intent_help;         /* private HELP, never a public Tier SOS */
+firmware/core/voice.h:28:    VOICE_CANCEL_LOCAL,
+firmware/core/voice.h:34: * a transcript, a wire value or permission to send. */
+firmware/core/voice.h:37:    VOICE_COMMAND_ARRIVE = 1,
+firmware/core/voice.h:38:    VOICE_COMMAND_HELP = 2,
+firmware/core/voice.h:39:    VOICE_COMMAND_CANCEL = 3
+firmware/core/voice.h:46:    VOICE_EVENT_CANCEL,
+firmware/core/voice.h:73:/* Parse a local ASR transcript in Brazilian Portuguese. Accepted speech is a
+firmware/core/voice.h:74: * deliberately bounded grammar: arrival, private help, cancellation and minutes
+firmware/core/voice.h:76:voice_status_t voice_parse_pt(const char *transcript, const voice_lexicon_t *lexicon,
+firmware/core/voice.h:81: * ARRIVE and must be 0 or 1..60. This function never trusts a score, session or
+firmware/core/voice.h:83:voice_status_t voice_from_command(voice_command_t command, uint8_t minutes,
+firmware/core/watch_memory_frontend.h:5: * adapter and the existing memory policy. It stores no audio, text, transcript,
+sim/compose.c:53:    "problema", "resolvido", "socorro", "saindo", "chegando", "confirmado",
+sim/compose.c:83:     * "socorro" almost never. */
+sim/compose.c:91:        else if (last == 1) { p[10] += 0.30; }                /* venha -> chegando */
+sim/compose.c:93:        else if (last == 9) { p[10] += 0.30; }                /* saindo -> chegando */
+sim/render.c:24:    {  3, { "socorro",      "help",        "socorro"      } },
+sim/scenarios.c:488:    m.intent = 3;                       /* socorro / help / socorro */
+=== SEMANTIC FIXTURES ===
+research/semantic_ir.schema.json:9:    "eventKind",
+research/semantic_ir.schema.json:11:    "confidencePct",
+research/semantic_ir.schema.json:20:    "eventKind": {
+research/semantic_ir.schema.json:26:    "confidencePct": { "type": "integer", "minimum": 0, "maximum": 100 },
+research/semantic_ir.py:47:    "eventKind",
+research/semantic_ir.py:49:    "confidencePct",
+research/semantic_ir.py:100:    if value["eventKind"] not in {item.value for item in EventKind}:
+research/semantic_ir.py:101:        issues.append(_issue("$.eventKind", "ENUM", "eventKind is outside the finite vocabulary"))
+research/semantic_ir.py:105:    for key in ("confidencePct", "runnerUpPct"):
+research/semantic_ir.py:110:    if score_valid and value["runnerUpPct"] > value["confidencePct"]:
+research/semantic_ir.py:121:        if set(slots) != {"minutes"}:
+research/semantic_ir.py:122:            for key in sorted(set(slots) - {"minutes"}):
+research/semantic_ir.py:125:                issues.append(_issue("$.slots.minutes", "REQUIRED", "minutes slot is required, including as null"))
+research/semantic_ir.py:126:        minutes = slots.get("minutes")
+research/semantic_ir.py:128:            issues.append(_issue("$.slots.minutes", "RANGE", "minutes must be null or an integer in 1..60"))
+research/semantic_ir.py:129:        if value.get("eventKind") != EventKind.ARRIVE.value and minutes is not None:
+research/semantic_ir.py:130:            issues.append(_issue("$.slots.minutes", "SEMANTIC", "minutes is only valid for ARRIVE"))
+research/semantic_ir.py:179:        event_kind=EventKind(value["eventKind"]),
+research/semantic_ir.py:181:        confidence_pct=value["confidencePct"],
+research/semantic_ir.py:183:        minutes=value["slots"]["minutes"],
+research/semantic_ir.py:225:        return "VOICE_COMMAND_ARRIVE", proposal.minutes or 0
+research/semantic_ir.py:227:        return "VOICE_COMMAND_HELP", 0
+research/semantic_ir.py:229:        return "VOICE_COMMAND_CANCEL", 0
+research/semantic_ir.py:233:def meaning_key(proposal: SemanticProposal) -> tuple[object, ...]:
+research/test_semantic_ir.py:9:    meaning_key,
+research/test_semantic_ir.py:18:        "eventKind": "ARRIVE",
+research/test_semantic_ir.py:20:        "confidencePct": 96,
+research/test_semantic_ir.py:22:        "slots": {"minutes": 15},
+research/test_semantic_ir.py:39:        self.assertEqual(to_firmware_command(proposal), ("VOICE_COMMAND_ARRIVE", 15))
+research/test_semantic_ir.py:41:    def test_equivalent_modalities_have_same_meaning_key(self):
+research/test_semantic_ir.py:48:        self.assertEqual(meaning_key(text), meaning_key(voice))
+research/test_semantic_ir.py:49:        self.assertEqual(meaning_key(voice), meaning_key(button))
+research/test_semantic_ir.py:66:        value = valid_ir(eventKind="HELP", slots={"minutes": 15})
+research/test_semantic_ir.py:82:        issues = validate_ir(valid_ir(confidencePct=50, runnerUpPct=51))
+research/test_semantic_ir.py:113:        low, _ = compile_ir(valid_ir(confidencePct=79))
+research/test_semantic_ir.py:114:        narrow, _ = compile_ir(valid_ir(confidencePct=90, runnerUpPct=80))
+research/test_semantic_ir.py:132:        self.assertTrue(any(issue.path == "$.slots.minutes" for issue in issues))
+research/test_semantic_ir.py:136:            EventKind.CANCEL.value: ("VOICE_COMMAND_CANCEL", 0),
+research/test_semantic_ir.py:137:            EventKind.HELP.value: ("VOICE_COMMAND_HELP", 0),
+research/test_semantic_ir.py:140:            value = valid_ir(eventKind=event, slots={"minutes": None})
+research/evidence/intent_contract_baseline.txt:105:    if (command == VOICE_COMMAND_ARRIVE) return minutes <= 60u;
+research/evidence/intent_contract_baseline.txt:106:    if (command == VOICE_COMMAND_HELP || command == VOICE_COMMAND_CANCEL) return minutes == 0u;
+research/evidence/intent_contract_baseline.txt:729:    o.command = VOICE_COMMAND_ARRIVE;
+research/evidence/intent_contract_baseline.txt:784:           INTENT_SOURCE_CORE, interaction_session_id(&it), VOICE_COMMAND_ARRIVE,
+research/evidence/intent_contract_baseline.txt:875:    o = observation(7, VOICE_COMMAND_ARRIVE, 90, 20);
+research/evidence/intent_contract_baseline.txt:879:    hint.available = 1; hint.command = VOICE_COMMAND_ARRIVE;
+research/evidence/intent_contract_baseline.txt:881:    o = observation(7, VOICE_COMMAND_ARRIVE, 79, 0);
+research/evidence/intent_contract_baseline.txt:885:    o = observation(7, VOICE_COMMAND_ARRIVE, 86, 75);
+research/evidence/intent_contract_baseline.txt:889:    hint.command = VOICE_COMMAND_HELP;
+research/evidence/intent_contract_baseline.txt:893:    o = observation(6, VOICE_COMMAND_HELP, 100, 0);
+research/evidence/intent_contract_baseline.txt:897:    o = observation(7, VOICE_COMMAND_HELP, 95, 0);
+research/evidence/intent_contract_baseline.txt:1036:    o = asr(interaction_session_id(&it) - 1u, VOICE_COMMAND_ARRIVE, 100, 0);
+research/evidence/intent_contract_baseline.txt:1041:    o = asr(interaction_session_id(&it), VOICE_COMMAND_ARRIVE, 75, 0);
+research/evidence/intent_contract_baseline.txt:1048:    hint.available = 1; hint.command = VOICE_COMMAND_ARRIVE;
+research/evidence/intent_contract_baseline.txt:1050:    o = asr(interaction_session_id(&it), VOICE_COMMAND_ARRIVE, 86, 75);
+research/evidence/intent_contract_baseline.txt:1083:    o = asr(interaction_session_id(&it), VOICE_COMMAND_ARRIVE, 92, 10);
+research/evidence/intent_contract_baseline.txt:1187:    if (command == VOICE_COMMAND_ARRIVE) return minutes <= 60u;
+research/evidence/intent_contract_baseline.txt:1188:    if (command == VOICE_COMMAND_HELP || command == VOICE_COMMAND_CANCEL) return minutes == 0u;
+research/evidence/intent_contract_baseline.txt:1415:    o.command = VOICE_COMMAND_ARRIVE;
+research/evidence/intent_contract_baseline.txt:1445:       out.observation.command == VOICE_COMMAND_ARRIVE && out.observation.minutes == 12 &&
+research/evidence/intent_contract_baseline.txt:1584:    obs.command = VOICE_COMMAND_ARRIVE; obs.minutes = 0;
+research/evidence/semantic_ir_fuzz_raw.json:28:    "slots_missing_minutes:REQUIRED": 1,
+research/evidence/adversarial_baseline.txt:50:    "eventKind",
+research/evidence/adversarial_baseline.txt:52:    "confidencePct",
+research/evidence/adversarial_baseline.txt:103:    if value["eventKind"] not in {item.value for item in EventKind}:
+research/evidence/adversarial_baseline.txt:104:        issues.append(_issue("$.eventKind", "ENUM", "eventKind is outside the finite vocabulary"))
+research/evidence/adversarial_baseline.txt:107:    for key in ("confidencePct", "runnerUpPct"):
+research/evidence/adversarial_baseline.txt:120:        if set(slots) != {"minutes"}:
+research/evidence/adversarial_baseline.txt:121:            for key in sorted(set(slots) - {"minutes"}):
+research/evidence/adversarial_baseline.txt:124:                issues.append(_issue("$.slots.minutes", "REQUIRED", "minutes slot is required, including as null"))
+research/evidence/adversarial_baseline.txt:125:        minutes = slots.get("minutes")
+research/evidence/adversarial_baseline.txt:127:            issues.append(_issue("$.slots.minutes", "RANGE", "minutes must be null or an integer in 1..60"))
+research/evidence/adversarial_baseline.txt:128:        if value.get("eventKind") != EventKind.ARRIVE.value and minutes is not None:
+research/evidence/adversarial_baseline.txt:129:            issues.append(_issue("$.slots.minutes", "SEMANTIC", "minutes is only valid for ARRIVE"))
+research/evidence/adversarial_baseline.txt:165:        event_kind=EventKind(value["eventKind"]),
+research/evidence/adversarial_baseline.txt:167:        confidence_pct=value["confidencePct"],
+research/evidence/adversarial_baseline.txt:169:        minutes=value["slots"]["minutes"],
+research/evidence/adversarial_baseline.txt:183:        return "VOICE_COMMAND_ARRIVE", proposal.minutes or 0
+research/evidence/adversarial_baseline.txt:185:        return "VOICE_COMMAND_HELP", 0
+research/evidence/adversarial_baseline.txt:187:        return "VOICE_COMMAND_CANCEL", 0
+research/evidence/adversarial_baseline.txt:191:def meaning_key(proposal: SemanticProposal) -> tuple[object, ...]:
+research/evidence/adversarial_baseline.txt:201:    meaning_key,
+research/evidence/adversarial_baseline.txt:210:        "eventKind": "ARRIVE",
+research/evidence/adversarial_baseline.txt:212:        "confidencePct": 96,
+research/evidence/adversarial_baseline.txt:214:        "slots": {"minutes": 15},
+research/evidence/adversarial_baseline.txt:231:        self.assertEqual(to_firmware_command(proposal), ("VOICE_COMMAND_ARRIVE", 15))
+research/evidence/adversarial_baseline.txt:233:    def test_equivalent_modalities_have_same_meaning_key(self):
+research/evidence/adversarial_baseline.txt:240:        self.assertEqual(meaning_key(text), meaning_key(voice))
+research/evidence/adversarial_baseline.txt:241:        self.assertEqual(meaning_key(voice), meaning_key(button))
+research/evidence/adversarial_baseline.txt:258:        value = valid_ir(eventKind="HELP", slots={"minutes": 15})
+research/evidence/adversarial_baseline.txt:270:        low, _ = compile_ir(valid_ir(confidencePct=79))
+research/evidence/adversarial_baseline.txt:271:        narrow, _ = compile_ir(valid_ir(confidencePct=90, runnerUpPct=80))
+research/evidence/adversarial_baseline.txt:284:        self.assertTrue(any(issue.path == "$.slots.minutes" for issue in issues))
+research/evidence/adversarial_baseline.txt:288:            EventKind.CANCEL.value: ("VOICE_COMMAND_CANCEL", 0),
+research/evidence/adversarial_baseline.txt:289:            EventKind.HELP.value: ("VOICE_COMMAND_HELP", 0),
+research/evidence/adversarial_baseline.txt:292:            value = valid_ir(eventKind=event, slots={"minutes": None})
+research/evidence/adversarial_validation_raw.txt:12:test_equivalent_modalities_have_same_meaning_key (test_semantic_ir.SemanticIRTests.test_equivalent_modalities_have_same_meaning_key) ... ok
+research/evidence/semantic_ir_cycle_02_validation_raw.txt:15:test_equivalent_modalities_have_same_meaning_key (test_semantic_ir.SemanticIRTests.test_equivalent_modalities_have_same_meaning_key) ... ok
+research/evidence/semantic_ir_cycle_02_validation_raw.txt:62:    "slots_missing_minutes:REQUIRED": 1,
+research/evidence/corpus_source_scan.txt:13:firmware/core/intent_gate.c:7:    if (command == VOICE_COMMAND_ARRIVE) return minutes <= 60u;
+research/evidence/corpus_source_scan.txt:14:firmware/core/intent_gate.c:8:    if (command == VOICE_COMMAND_HELP || command == VOICE_COMMAND_CANCEL) return minutes == 0u;
+research/evidence/corpus_source_scan.txt:78:firmware/core/test_capstone.c:107:    o.command = VOICE_COMMAND_ARRIVE;
+research/evidence/corpus_source_scan.txt:81:firmware/core/test_capstone.c:162:           INTENT_SOURCE_CORE, interaction_session_id(&it), VOICE_COMMAND_ARRIVE,
+research/evidence/corpus_source_scan.txt:93:firmware/core/test_intent_gate.c:32:    o = observation(7, VOICE_COMMAND_ARRIVE, 90, 20);
+research/evidence/corpus_source_scan.txt:94:firmware/core/test_intent_gate.c:36:    hint.available = 1; hint.command = VOICE_COMMAND_ARRIVE;
+research/evidence/corpus_source_scan.txt:95:firmware/core/test_intent_gate.c:38:    o = observation(7, VOICE_COMMAND_ARRIVE, 79, 0);
+research/evidence/corpus_source_scan.txt:96:firmware/core/test_intent_gate.c:42:    o = observation(7, VOICE_COMMAND_ARRIVE, 86, 75);
+research/evidence/corpus_source_scan.txt:97:firmware/core/test_intent_gate.c:46:    hint.command = VOICE_COMMAND_HELP;
+research/evidence/corpus_source_scan.txt:98:firmware/core/test_intent_gate.c:50:    o = observation(6, VOICE_COMMAND_HELP, 100, 0);
+research/evidence/corpus_source_scan.txt:99:firmware/core/test_intent_gate.c:54:    o = observation(7, VOICE_COMMAND_HELP, 95, 0);
+research/evidence/corpus_source_scan.txt:111:firmware/core/test_interaction.c:127:    o = asr(interaction_session_id(&it) - 1u, VOICE_COMMAND_ARRIVE, 100, 0);
+research/evidence/corpus_source_scan.txt:112:firmware/core/test_interaction.c:132:    o = asr(interaction_session_id(&it), VOICE_COMMAND_ARRIVE, 75, 0);
+research/evidence/corpus_source_scan.txt:113:firmware/core/test_interaction.c:139:    hint.available = 1; hint.command = VOICE_COMMAND_ARRIVE;
+research/evidence/corpus_source_scan.txt:114:firmware/core/test_interaction.c:141:    o = asr(interaction_session_id(&it), VOICE_COMMAND_ARRIVE, 86, 75);
+research/evidence/corpus_source_scan.txt:115:firmware/core/test_interaction.c:174:    o = asr(interaction_session_id(&it), VOICE_COMMAND_ARRIVE, 92, 10);
+research/evidence/corpus_source_scan.txt:171:firmware/core/test_voice.c:64:    ok(voice_from_command(VOICE_COMMAND_ARRIVE, 12, &lex, &r) == VOICE_DRAFT &&
+research/evidence/corpus_source_scan.txt:172:firmware/core/test_voice.c:68:    ok(voice_from_command(VOICE_COMMAND_HELP, 1, &lex, &r) == VOICE_REJECTED &&
+research/evidence/corpus_source_scan.txt:173:firmware/core/test_voice.c:69:       voice_from_command(VOICE_COMMAND_CANCEL, 1, &lex, &r) == VOICE_REJECTED,
+research/evidence/corpus_source_scan.txt:178:firmware/core/voice.c:131:    if (command == VOICE_COMMAND_CANCEL) {
+research/evidence/corpus_source_scan.txt:180:firmware/core/voice.c:136:    if (command == VOICE_COMMAND_HELP) {
+research/evidence/corpus_source_scan.txt:181:firmware/core/voice.c:145:    if (command != VOICE_COMMAND_ARRIVE || minutes > 60u) return out->status;
+research/evidence/corpus_source_scan.txt:193:firmware/core/voice.h:37:    VOICE_COMMAND_ARRIVE = 1,
+research/evidence/corpus_source_scan.txt:194:firmware/core/voice.h:38:    VOICE_COMMAND_HELP = 2,
+research/evidence/corpus_source_scan.txt:195:firmware/core/voice.h:39:    VOICE_COMMAND_CANCEL = 3
+research/evidence/corpus_source_scan.txt:210:research/semantic_ir.schema.json:9:    "eventKind",
+research/evidence/corpus_source_scan.txt:211:research/semantic_ir.schema.json:11:    "confidencePct",
+research/evidence/corpus_source_scan.txt:212:research/semantic_ir.schema.json:20:    "eventKind": {
+research/evidence/corpus_source_scan.txt:213:research/semantic_ir.schema.json:26:    "confidencePct": { "type": "integer", "minimum": 0, "maximum": 100 },
+research/evidence/corpus_source_scan.txt:214:research/semantic_ir.py:47:    "eventKind",
+research/evidence/corpus_source_scan.txt:215:research/semantic_ir.py:49:    "confidencePct",
+research/evidence/corpus_source_scan.txt:216:research/semantic_ir.py:100:    if value["eventKind"] not in {item.value for item in EventKind}:
+research/evidence/corpus_source_scan.txt:217:research/semantic_ir.py:101:        issues.append(_issue("$.eventKind", "ENUM", "eventKind is outside the finite vocabulary"))
+research/evidence/corpus_source_scan.txt:218:research/semantic_ir.py:105:    for key in ("confidencePct", "runnerUpPct"):
+research/evidence/corpus_source_scan.txt:219:research/semantic_ir.py:110:    if score_valid and value["runnerUpPct"] > value["confidencePct"]:
+research/evidence/corpus_source_scan.txt:220:research/semantic_ir.py:121:        if set(slots) != {"minutes"}:
+research/evidence/corpus_source_scan.txt:221:research/semantic_ir.py:122:            for key in sorted(set(slots) - {"minutes"}):
+research/evidence/corpus_source_scan.txt:222:research/semantic_ir.py:125:                issues.append(_issue("$.slots.minutes", "REQUIRED", "minutes slot is required, including as null"))
+research/evidence/corpus_source_scan.txt:223:research/semantic_ir.py:126:        minutes = slots.get("minutes")
+research/evidence/corpus_source_scan.txt:224:research/semantic_ir.py:128:            issues.append(_issue("$.slots.minutes", "RANGE", "minutes must be null or an integer in 1..60"))
+research/evidence/corpus_source_scan.txt:225:research/semantic_ir.py:129:        if value.get("eventKind") != EventKind.ARRIVE.value and minutes is not None:
+research/evidence/corpus_source_scan.txt:226:research/semantic_ir.py:130:            issues.append(_issue("$.slots.minutes", "SEMANTIC", "minutes is only valid for ARRIVE"))
+research/evidence/corpus_source_scan.txt:227:research/semantic_ir.py:179:        event_kind=EventKind(value["eventKind"]),
+research/evidence/corpus_source_scan.txt:228:research/semantic_ir.py:181:        confidence_pct=value["confidencePct"],
+research/evidence/corpus_source_scan.txt:229:research/semantic_ir.py:183:        minutes=value["slots"]["minutes"],
+research/evidence/corpus_source_scan.txt:230:research/semantic_ir.py:225:        return "VOICE_COMMAND_ARRIVE", proposal.minutes or 0
+research/evidence/corpus_source_scan.txt:231:research/semantic_ir.py:227:        return "VOICE_COMMAND_HELP", 0
+research/evidence/corpus_source_scan.txt:232:research/semantic_ir.py:229:        return "VOICE_COMMAND_CANCEL", 0
+research/evidence/corpus_source_scan.txt:233:research/semantic_ir.py:233:def meaning_key(proposal: SemanticProposal) -> tuple[object, ...]:
+research/evidence/corpus_source_scan.txt:234:research/test_semantic_ir.py:9:    meaning_key,
+research/evidence/corpus_source_scan.txt:235:research/test_semantic_ir.py:18:        "eventKind": "ARRIVE",
+research/evidence/corpus_source_scan.txt:236:research/test_semantic_ir.py:20:        "confidencePct": 96,
+research/evidence/corpus_source_scan.txt:237:research/test_semantic_ir.py:22:        "slots": {"minutes": 15},
+research/evidence/corpus_source_scan.txt:238:research/test_semantic_ir.py:39:        self.assertEqual(to_firmware_command(proposal), ("VOICE_COMMAND_ARRIVE", 15))
+research/evidence/corpus_source_scan.txt:239:research/test_semantic_ir.py:41:    def test_equivalent_modalities_have_same_meaning_key(self):
+research/evidence/corpus_source_scan.txt:240:research/test_semantic_ir.py:48:        self.assertEqual(meaning_key(text), meaning_key(voice))
+research/evidence/corpus_source_scan.txt:241:research/test_semantic_ir.py:49:        self.assertEqual(meaning_key(voice), meaning_key(button))
+research/evidence/corpus_source_scan.txt:242:research/test_semantic_ir.py:66:        value = valid_ir(eventKind="HELP", slots={"minutes": 15})
+research/evidence/corpus_source_scan.txt:243:research/test_semantic_ir.py:82:        issues = validate_ir(valid_ir(confidencePct=50, runnerUpPct=51))
+research/evidence/corpus_source_scan.txt:244:research/test_semantic_ir.py:113:        low, _ = compile_ir(valid_ir(confidencePct=79))
+research/evidence/corpus_source_scan.txt:245:research/test_semantic_ir.py:114:        narrow, _ = compile_ir(valid_ir(confidencePct=90, runnerUpPct=80))
+research/evidence/corpus_source_scan.txt:246:research/test_semantic_ir.py:132:        self.assertTrue(any(issue.path == "$.slots.minutes" for issue in issues))
+research/evidence/corpus_source_scan.txt:247:research/test_semantic_ir.py:136:            EventKind.CANCEL.value: ("VOICE_COMMAND_CANCEL", 0),
+research/evidence/corpus_source_scan.txt:248:research/test_semantic_ir.py:137:            EventKind.HELP.value: ("VOICE_COMMAND_HELP", 0),
+research/evidence/corpus_source_scan.txt:249:research/test_semantic_ir.py:140:            value = valid_ir(eventKind=event, slots={"minutes": None})
+research/evidence/corpus_source_scan.txt:250:research/evidence/intent_contract_baseline.txt:105:    if (command == VOICE_COMMAND_ARRIVE) return minutes <= 60u;
+research/evidence/corpus_source_scan.txt:251:research/evidence/intent_contract_baseline.txt:106:    if (command == VOICE_COMMAND_HELP || command == VOICE_COMMAND_CANCEL) return minutes == 0u;
+research/evidence/corpus_source_scan.txt:252:research/evidence/intent_contract_baseline.txt:729:    o.command = VOICE_COMMAND_ARRIVE;
+research/evidence/corpus_source_scan.txt:253:research/evidence/intent_contract_baseline.txt:784:           INTENT_SOURCE_CORE, interaction_session_id(&it), VOICE_COMMAND_ARRIVE,
+research/evidence/corpus_source_scan.txt:254:research/evidence/intent_contract_baseline.txt:875:    o = observation(7, VOICE_COMMAND_ARRIVE, 90, 20);
+research/evidence/corpus_source_scan.txt:255:research/evidence/intent_contract_baseline.txt:879:    hint.available = 1; hint.command = VOICE_COMMAND_ARRIVE;
+research/evidence/corpus_source_scan.txt:256:research/evidence/intent_contract_baseline.txt:881:    o = observation(7, VOICE_COMMAND_ARRIVE, 79, 0);
+research/evidence/corpus_source_scan.txt:257:research/evidence/intent_contract_baseline.txt:885:    o = observation(7, VOICE_COMMAND_ARRIVE, 86, 75);
+research/evidence/corpus_source_scan.txt:258:research/evidence/intent_contract_baseline.txt:889:    hint.command = VOICE_COMMAND_HELP;
+research/evidence/corpus_source_scan.txt:259:research/evidence/intent_contract_baseline.txt:893:    o = observation(6, VOICE_COMMAND_HELP, 100, 0);
+research/evidence/corpus_source_scan.txt:260:research/evidence/intent_contract_baseline.txt:897:    o = observation(7, VOICE_COMMAND_HELP, 95, 0);
+research/evidence/corpus_source_scan.txt:261:research/evidence/intent_contract_baseline.txt:1036:    o = asr(interaction_session_id(&it) - 1u, VOICE_COMMAND_ARRIVE, 100, 0);
+research/evidence/corpus_source_scan.txt:262:research/evidence/intent_contract_baseline.txt:1041:    o = asr(interaction_session_id(&it), VOICE_COMMAND_ARRIVE, 75, 0);
+research/evidence/corpus_source_scan.txt:263:research/evidence/intent_contract_baseline.txt:1048:    hint.available = 1; hint.command = VOICE_COMMAND_ARRIVE;
+research/evidence/corpus_source_scan.txt:264:research/evidence/intent_contract_baseline.txt:1050:    o = asr(interaction_session_id(&it), VOICE_COMMAND_ARRIVE, 86, 75);
+research/evidence/corpus_source_scan.txt:265:research/evidence/intent_contract_baseline.txt:1083:    o = asr(interaction_session_id(&it), VOICE_COMMAND_ARRIVE, 92, 10);
+research/evidence/corpus_source_scan.txt:266:research/evidence/intent_contract_baseline.txt:1187:    if (command == VOICE_COMMAND_ARRIVE) return minutes <= 60u;
+research/evidence/corpus_source_scan.txt:267:research/evidence/intent_contract_baseline.txt:1188:    if (command == VOICE_COMMAND_HELP || command == VOICE_COMMAND_CANCEL) return minutes == 0u;
+research/evidence/corpus_source_scan.txt:268:research/evidence/intent_contract_baseline.txt:1415:    o.command = VOICE_COMMAND_ARRIVE;
+research/evidence/corpus_source_scan.txt:269:research/evidence/intent_contract_baseline.txt:1445:       out.observation.command == VOICE_COMMAND_ARRIVE && out.observation.minutes == 12 &&
+research/evidence/corpus_source_scan.txt:270:research/evidence/intent_contract_baseline.txt:1584:    obs.command = VOICE_COMMAND_ARRIVE; obs.minutes = 0;
+research/evidence/corpus_source_scan.txt:271:research/evidence/semantic_ir_fuzz_raw.json:28:    "slots_missing_minutes:REQUIRED": 1,
+research/evidence/corpus_source_scan.txt:272:research/evidence/adversarial_baseline.txt:50:    "eventKind",
+research/evidence/corpus_source_scan.txt:273:research/evidence/adversarial_baseline.txt:52:    "confidencePct",
+research/evidence/corpus_source_scan.txt:274:research/evidence/adversarial_baseline.txt:103:    if value["eventKind"] not in {item.value for item in EventKind}:
+research/evidence/corpus_source_scan.txt:275:research/evidence/adversarial_baseline.txt:104:        issues.append(_issue("$.eventKind", "ENUM", "eventKind is outside the finite vocabulary"))
+research/evidence/corpus_source_scan.txt:276:research/evidence/adversarial_baseline.txt:107:    for key in ("confidencePct", "runnerUpPct"):
+research/evidence/corpus_source_scan.txt:277:research/evidence/adversarial_baseline.txt:120:        if set(slots) != {"minutes"}:
+research/evidence/corpus_source_scan.txt:278:research/evidence/adversarial_baseline.txt:121:            for key in sorted(set(slots) - {"minutes"}):
+research/evidence/corpus_source_scan.txt:279:research/evidence/adversarial_baseline.txt:124:                issues.append(_issue("$.slots.minutes", "REQUIRED", "minutes slot is required, including as null"))
+research/evidence/corpus_source_scan.txt:280:research/evidence/adversarial_baseline.txt:125:        minutes = slots.get("minutes")
+research/evidence/corpus_source_scan.txt:281:research/evidence/adversarial_baseline.txt:127:            issues.append(_issue("$.slots.minutes", "RANGE", "minutes must be null or an integer in 1..60"))
+research/evidence/corpus_source_scan.txt:282:research/evidence/adversarial_baseline.txt:128:        if value.get("eventKind") != EventKind.ARRIVE.value and minutes is not None:
+research/evidence/corpus_source_scan.txt:283:research/evidence/adversarial_baseline.txt:129:            issues.append(_issue("$.slots.minutes", "SEMANTIC", "minutes is only valid for ARRIVE"))
+research/evidence/corpus_source_scan.txt:284:research/evidence/adversarial_baseline.txt:165:        event_kind=EventKind(value["eventKind"]),
+research/evidence/corpus_source_scan.txt:285:research/evidence/adversarial_baseline.txt:167:        confidence_pct=value["confidencePct"],
+research/evidence/corpus_source_scan.txt:286:research/evidence/adversarial_baseline.txt:169:        minutes=value["slots"]["minutes"],
+research/evidence/corpus_source_scan.txt:287:research/evidence/adversarial_baseline.txt:183:        return "VOICE_COMMAND_ARRIVE", proposal.minutes or 0
+research/evidence/corpus_source_scan.txt:288:research/evidence/adversarial_baseline.txt:185:        return "VOICE_COMMAND_HELP", 0
+research/evidence/corpus_source_scan.txt:289:research/evidence/adversarial_baseline.txt:187:        return "VOICE_COMMAND_CANCEL", 0
+research/evidence/corpus_source_scan.txt:290:research/evidence/adversarial_baseline.txt:191:def meaning_key(proposal: SemanticProposal) -> tuple[object, ...]:
+research/evidence/corpus_source_scan.txt:291:research/evidence/adversarial_baseline.txt:201:    meaning_key,
+research/evidence/corpus_source_scan.txt:292:research/evidence/adversarial_baseline.txt:210:        "eventKind": "ARRIVE",
+research/evidence/corpus_source_scan.txt:293:research/evidence/adversarial_baseline.txt:212:        "confidencePct": 96,
+research/evidence/corpus_source_scan.txt:294:research/evidence/adversarial_baseline.txt:214:        "slots": {"minutes": 15},
+research/evidence/corpus_source_scan.txt:295:research/evidence/adversarial_baseline.txt:231:        self.assertEqual(to_firmware_command(proposal), ("VOICE_COMMAND_ARRIVE", 15))
+research/evidence/corpus_source_scan.txt:296:research/evidence/adversarial_baseline.txt:233:    def test_equivalent_modalities_have_same_meaning_key(self):
+research/evidence/corpus_source_scan.txt:297:research/evidence/adversarial_baseline.txt:240:        self.assertEqual(meaning_key(text), meaning_key(voice))
+research/evidence/corpus_source_scan.txt:298:research/evidence/adversarial_baseline.txt:241:        self.assertEqual(meaning_key(voice), meaning_key(button))
+research/evidence/corpus_source_scan.txt:299:research/evidence/adversarial_baseline.txt:258:        value = valid_ir(eventKind="HELP", slots={"minutes": 15})
+research/evidence/corpus_source_scan.txt:300:research/evidence/adversarial_baseline.txt:270:        low, _ = compile_ir(valid_ir(confidencePct=79))
+research/evidence/corpus_source_scan.txt:301:research/evidence/adversarial_baseline.txt:271:        narrow, _ = compile_ir(valid_ir(confidencePct=90, runnerUpPct=80))
+research/evidence/corpus_source_scan.txt:302:research/evidence/adversarial_baseline.txt:284:        self.assertTrue(any(issue.path == "$.slots.minutes" for issue in issues))
+research/evidence/corpus_source_scan.txt:303:research/evidence/adversarial_baseline.txt:288:            EventKind.CANCEL.value: ("VOICE_COMMAND_CANCEL", 0),
+research/evidence/corpus_source_scan.txt:304:research/evidence/adversarial_baseline.txt:289:            EventKind.HELP.value: ("VOICE_COMMAND_HELP", 0),
+research/evidence/corpus_source_scan.txt:305:research/evidence/adversarial_baseline.txt:292:            value = valid_ir(eventKind=event, slots={"minutes": None})

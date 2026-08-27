@@ -1,0 +1,88 @@
+{
+  "corpusVersion": 1,
+  "provenance": {
+    "sourceFile": "firmware/core/test_voice.c",
+    "purpose": "fixtures de regressão do parser de voz e do adaptador de comando tipado",
+    "notProductionTelemetry": true
+  },
+  "cases": [
+    {
+      "id": "V1-arrival-duration",
+      "mode": "TEXT",
+      "input": "Chego em dez minutos",
+      "expected": {"status": "DRAFT", "eventKind": "ARRIVE", "minutes": 10, "requiresConfirmation": true}
+    },
+    {
+      "id": "V1-arrival-no-duration",
+      "mode": "TEXT",
+      "input": "estou chegando",
+      "expected": {"status": "DRAFT", "eventKind": "ARRIVE", "minutes": null, "requiresConfirmation": true}
+    },
+    {
+      "id": "V2-cancel",
+      "mode": "TEXT",
+      "input": "cancelar",
+      "expected": {"status": "CANCEL_LOCAL", "eventKind": "CANCEL", "minutes": null, "requiresConfirmation": false}
+    },
+    {
+      "id": "V2-unknown",
+      "mode": "TEXT",
+      "input": "toque uma musica",
+      "expected": {"status": "UNKNOWN", "eventKind": null, "minutes": null, "requiresConfirmation": false}
+    },
+    {
+      "id": "V2-out-of-domain-duration",
+      "mode": "TEXT",
+      "input": "chego em noventa minutos",
+      "expected": {"status": "REJECTED", "eventKind": null, "minutes": null, "requiresConfirmation": false}
+    },
+    {
+      "id": "V2-private-help",
+      "mode": "TEXT",
+      "input": "preciso de socorro",
+      "expected": {"status": "DRAFT", "eventKind": "HELP", "minutes": null, "requiresConfirmation": true, "publicSos": false}
+    },
+    {
+      "id": "V2-conflicting-cancel-arrival",
+      "mode": "TEXT",
+      "input": "cancelar e chego em dez minutos",
+      "expected": {"status": "REJECTED", "eventKind": null, "minutes": null, "requiresConfirmation": false}
+    },
+    {
+      "id": "V2-conflicting-help-arrival",
+      "mode": "TEXT",
+      "input": "preciso de socorro e estou chegando",
+      "expected": {"status": "REJECTED", "eventKind": null, "minutes": null, "requiresConfirmation": false}
+    },
+    {
+      "id": "V2-negated-cancel",
+      "mode": "TEXT",
+      "input": "não cancelar",
+      "expected": {"status": "REJECTED", "eventKind": null, "minutes": null, "requiresConfirmation": false}
+    },
+    {
+      "id": "V2-negated-arrival",
+      "mode": "TEXT",
+      "input": "não estou chegando",
+      "expected": {"status": "REJECTED", "eventKind": null, "minutes": null, "requiresConfirmation": false}
+    },
+    {
+      "id": "V3-typed-arrival",
+      "mode": "TYPED_COMMAND",
+      "input": {"command": "ARRIVE", "minutes": 12},
+      "expected": {"status": "DRAFT", "eventKind": "ARRIVE", "minutes": 12, "requiresConfirmation": true}
+    },
+    {
+      "id": "V3-typed-help-invalid-duration",
+      "mode": "TYPED_COMMAND",
+      "input": {"command": "HELP", "minutes": 1},
+      "expected": {"status": "REJECTED", "eventKind": null, "minutes": null, "requiresConfirmation": false}
+    },
+    {
+      "id": "V3-typed-cancel-invalid-duration",
+      "mode": "TYPED_COMMAND",
+      "input": {"command": "CANCEL", "minutes": 1},
+      "expected": {"status": "REJECTED", "eventKind": null, "minutes": null, "requiresConfirmation": false}
+    }
+  ]
+}

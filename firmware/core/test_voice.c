@@ -48,10 +48,46 @@ static void test_fail_closed_and_critical(void)
     ok(voice_parse_pt("chego em noventa minutos", &lex, &r) == VOICE_REJECTED &&
        r.event == VOICE_EVENT_REJECTED && r.draft.intent == 0,
        "V2 a duration outside the configured vocabulary is rejected, not truncated");
+    ok(voice_parse_pt("chego em sessenta minutos", &lex, &r) == VOICE_DRAFT &&
+       r.minutes == 60,
+       "V2 the upper supported duration remains accepted");
+    ok(voice_parse_pt("chego em sessenta e cinco minutos", &lex, &r) == VOICE_REJECTED &&
+       r.draft.intent == 0,
+       "V2 a composed duration above 60 is rejected, not reduced to its tens");
+    ok(voice_parse_pt("chego em vinte e dez minutos", &lex, &r) == VOICE_REJECTED &&
+       r.draft.intent == 0,
+       "V2 two unit terms are rejected instead of accepting the first one");
+    ok(voice_parse_pt("chego em 20 e 5 minutos", &lex, &r) == VOICE_REJECTED &&
+       r.draft.intent == 0,
+       "V2 mixed numeric composition is rejected instead of reduced to 5");
+    ok(voice_parse_pt("chego em 60 e 5 minutos", &lex, &r) == VOICE_REJECTED &&
+       r.draft.intent == 0,
+       "V2 mixed numeric overflow is rejected before conversion");
+    ok(voice_parse_pt("chego em -1 minutos", &lex, &r) == VOICE_REJECTED &&
+       r.draft.intent == 0,
+       "V2 negative duration syntax is rejected rather than normalised to 1");
+    ok(voice_parse_pt("chego em +1 minutos", &lex, &r) == VOICE_REJECTED &&
+       r.draft.intent == 0,
+       "V2 signed positive duration syntax is rejected rather than normalised to 1");
+    ok(voice_parse_pt("chego em cento e vinte e cinco minutos", &lex, &r) == VOICE_REJECTED &&
+       r.draft.intent == 0,
+       "V2 unsupported hundreds are rejected instead of reduced to 25");
     ok(voice_parse_pt("preciso de socorro", &lex, &r) == VOICE_DRAFT &&
        r.event == VOICE_EVENT_CRITICAL_DRAFT && r.requires_confirmation &&
        r.draft.intent == lex.intent_help && r.draft.tier != HCP_TIER_SOS,
        "V2 spoken help is a private critical draft, never an autonomous public SOS");
+    ok(voice_parse_pt("cancelar e chego em dez minutos", &lex, &r) == VOICE_REJECTED &&
+       r.draft.intent == 0,
+       "V2 conflicting cancel and arrival intents are rejected, not priority-resolved");
+    ok(voice_parse_pt("preciso de socorro e estou chegando", &lex, &r) == VOICE_REJECTED &&
+       r.draft.intent == 0,
+       "V2 conflicting help and arrival intents are rejected, not priority-resolved");
+    ok(voice_parse_pt("não cancelar", &lex, &r) == VOICE_REJECTED &&
+       r.draft.intent == 0,
+       "V2 negated cancellation is rejected instead of becoming cancellation");
+    ok(voice_parse_pt("não estou chegando", &lex, &r) == VOICE_REJECTED &&
+       r.draft.intent == 0,
+       "V2 negated arrival is rejected instead of becoming arrival");
 }
 
 static void test_typed_commands(void)

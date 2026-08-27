@@ -21,6 +21,7 @@ static int normalise(const char *in, char out[VOICE_TRANSCRIPT_MAX])
     for (; *in; in++) {
         unsigned char c = (unsigned char)*in;
         if (n + 1 >= VOICE_TRANSCRIPT_MAX) return 0;
+        if (c >= 128 || c == '+' || c == '-') return 0;
         if (isalnum(c) && c < 128) {
             out[n++] = (char)tolower(c);
             previous_space = 0;
@@ -77,6 +78,7 @@ static int parse_minutes(const char *s)
     char copy[VOICE_TRANSCRIPT_MAX];
     char *tok[VOICE_TRANSCRIPT_MAX / 2];
     unsigned ntok = 0;
+    unsigned marker = 0;
     int has_marker = word_present(s, "minuto") || word_present(s, "minutos") ||
                      word_present(s, "min") || word_present(s, "mins");
 
@@ -87,21 +89,57 @@ static int parse_minutes(const char *s)
          p = strtok(NULL, " ")) tok[ntok++] = p;
 
     for (unsigned i = 0; i < ntok; i++) {
-        char *end = NULL;
-        long numeric = strtol(tok[i], &end, 10);
-        if (*tok[i] && end && !*end) return (numeric >= 1 && numeric <= 60) ? (int)numeric : -1;
-
-        int first = word_number(tok[i]);
-        if (first < 0) continue;
-        if (first >= 20 && first < 60 && i + 1 < ntok) {
-            unsigned j = i + 1;
-            if (!strcmp(tok[j], "e") && j + 1 < ntok) j++;
-            int second = word_number(tok[j]);
-            if (second > 0 && second < 10) first += second;
+        if (!strcmp(tok[i], "minuto") || !strcmp(tok[i], "minutos") ||
+            !strcmp(tok[i], "min") || !strcmp(tok[i], "mins")) {
+            marker = i;
+            break;
         }
-        return (first >= 1 && first <= 60) ? first : -1;
     }
-    return -1;
+    if (!marker) return -1;
+
+    /* Only the bounded number phrase immediately before the marker is valid.
+     * The previous implementation scanned for the first number anywhere, so
+     * "sessenta e cinco minutos" became 60 and "vinte e dez minutos" became
+     * 20. Both are silent semantic truncations. */
+    {
+        unsigned last = marker - 1;
+        char *end = NULL;
+        long numeric = strtol(tok[last], &end, 10);
+        if (*tok[last] && end && end != tok[last] && !*end) {
+            char *prior_end = NULL;
+            long prior_numeric = 0;
+            int prior_is_numeric = 0;
+            if (last > 0) {
+                prior_numeric = strtol(tok[last - 1], &prior_end, 10);
+                prior_is_numeric = *tok[last - 1] && prior_end != tok[last - 1] && !*prior_end;
+            }
+            if (last == 0 || strcmp(tok[last - 1], "em") ||
+                (last > 0 && (!strcmp(tok[last - 1], "e") ||
+                              word_number(tok[last - 1]) >= 0 || prior_is_numeric))) return -1;
+            (void)prior_numeric;
+            return (numeric >= 1 && numeric <= 60) ? (int)numeric : -1;
+        }
+
+        int value = word_number(tok[last]);
+        if (value < 0) return -1;
+        if (value > 0 && value < 10 && last > 0 && !strcmp(tok[last - 1], "e")) {
+            unsigned tens_index = last - 2;
+            if (last < 2) return -1;
+            int tens = word_number(tok[tens_index]);
+            if (tens < 20 || tens > 60 || tens % 10 != 0) return -1;
+            value += tens;
+            if (value > 60) return -1;
+            /* The supported grammar has exactly one connector: em +
+             * (dez|vinte|vinte e cinco) + minutos. This rejects unsupported
+             * hundreds and duplicated number terms instead of truncating. */
+            if (tens_index == 0 || strcmp(tok[tens_index - 1], "em")) return -1;
+            return value;
+        }
+        if (last > 0 && (word_number(tok[last - 1]) >= 0 ||
+                          !strcmp(tok[last - 1], "e"))) return -1;
+        if (last == 0 || strcmp(tok[last - 1], "em")) return -1;
+        return (value >= 1 && value <= 60) ? value : -1;
+    }
 }
 
 static void result_reset(voice_result_t *out, voice_status_t status, voice_event_t event)
@@ -166,16 +204,24 @@ voice_status_t voice_parse_pt(const char *transcript, const voice_lexicon_t *lex
     static const char *const arrive_words[] = { "chego", "chegando", "chegar", "chegarei" };
     char text[VOICE_TRANSCRIPT_MAX];
     int minutes;
+    int has_cancel;
+    int has_help;
+    int has_arrive;
 
     if (!out) return VOICE_REJECTED;
     result_reset(out, VOICE_REJECTED, VOICE_EVENT_REJECTED);
     if (!lexicon_valid(lexicon) || !normalise(transcript, text)) return out->status;
 
-    if (any_word(text, cancel_words, sizeof(cancel_words) / sizeof(cancel_words[0]))) {
+    has_cancel = any_word(text, cancel_words, sizeof(cancel_words) / sizeof(cancel_words[0]));
+    has_help = any_word(text, help_words, sizeof(help_words) / sizeof(help_words[0]));
+    has_arrive = any_word(text, arrive_words, sizeof(arrive_words) / sizeof(arrive_words[0]));
+    if (has_cancel + has_help + has_arrive > 1) return out->status;
+
+    if (has_cancel) {
         result_reset(out, VOICE_CANCEL_LOCAL, VOICE_EVENT_CANCEL);
         return out->status;
     }
-    if (any_word(text, help_words, sizeof(help_words) / sizeof(help_words[0]))) {
+    if (has_help) {
         result_reset(out, VOICE_DRAFT, VOICE_EVENT_CRITICAL_DRAFT);
         out->draft.ver = HCP_VERSION;
         out->draft.tier = HCP_TIER_GLYPH;
@@ -183,7 +229,7 @@ voice_status_t voice_parse_pt(const char *transcript, const voice_lexicon_t *lex
         out->requires_confirmation = 1;
         return out->status;
     }
-    if (!any_word(text, arrive_words, sizeof(arrive_words) / sizeof(arrive_words[0]))) {
+    if (!has_arrive) {
         result_reset(out, VOICE_UNKNOWN, VOICE_EVENT_UNKNOWN);
         return out->status;
     }
