@@ -1,0 +1,130 @@
+{
+  "cycle": "wide_cycle_05",
+  "audit_date": "2026-08-27",
+  "policy": {
+    "download_without_license_confirmation": false,
+    "download_full_large_archive_without_need": false,
+    "use_mirror_without_lineage": false,
+    "synthetic_pairing": false,
+    "raw_media_commit": false
+  },
+  "sources": [
+    {
+      "id": "fluent_speech_commands",
+      "source_url": "https://fluent.ai/fluent-speech-commands-a-dataset-for-spoken-language-understanding-research/",
+      "license_url": "https://fluent.ai/wp-content/uploads/2021/04/Fluent_Speech_Commands_Public_License.pdf",
+      "declared_modalities": ["audio", "transcript", "slots", "intent"],
+      "declared_alignment": true,
+      "license_status": "confirmed_research_only_noncommercial_no_share",
+      "access_status": "blocked_historical_endpoint_redirected",
+      "local_files": [],
+      "result": "not_locally_validated",
+      "limitation": "No package checksum, CSV, WAV or same-ID file verification was obtained."
+    },
+    {
+      "id": "sonos_snips_access",
+      "source_url": "https://github.com/sonos/spoken-language-understanding-research-datasets",
+      "access_form": "https://forms.gle/JtmFYM7xK1SaMfZYA",
+      "declared_modalities": ["audio", "text", "intent", "slots"],
+      "declared_alignment": true,
+      "license_status": "academic_research_only_no_commercial_use_same_terms_redistribution",
+      "access_status": "blocked_form_and_grant_required",
+      "local_files": [],
+      "result": "not_locally_validated",
+      "limitation": "No form submission or automated access attempt was made."
+    },
+    {
+      "id": "slurp_zenodo_11106554",
+      "source_url": "https://zenodo.org/records/11106554",
+      "api_url": "https://zenodo.org/api/records/11106554",
+      "record_license": "cc-by-4.0",
+      "declared_file": {
+        "name": "slurp.zip",
+        "bytes": 9644648983,
+        "md5": "62f96f9b1f605117e26e2639349869d"
+      },
+      "declared_modalities": ["audio", "dataset_metadata"],
+      "declared_alignment": "not_verified_member_by_member",
+      "access_status": "central_directory_verified_content_blocked",
+      "range_probe": {
+        "bytes": 20000000,
+        "http_status": 206,
+        "zip_mode": "zip64",
+        "central_directory_offset": 9624755610,
+        "central_directory_size": 19893275,
+        "central_directory_fully_read": true,
+        "member_count": 141759,
+        "filtered_metadata_members": 3
+      },
+      "local_files": [],
+      "result": "blocked",
+      "limitation": "The record is a third-party upload; the archive includes an internal CC BY-NC 4.0 audio notice, and member content was not validated beyond metadata/license probes."
+    },
+    {
+      "id": "slurp",
+      "source_url": "https://github.com/pswietojanski/slurp",
+      "repository_commit": "8eb16545762be97ace75334109d73824217311f1",
+      "declared_modalities": ["text", "audio", "intent", "slots", "recording_metadata"],
+      "declared_alignment": "text_recording_metadata_by_exact_filename; audio_bytes_not_loaded",
+      "license_status": "text_cc_by_4_audio_cc_by_nc_4",
+      "access_status": "text_repository_downloaded_and_bounded_metadata_member_verified",
+      "local_files": [
+        {
+          "kind": "text_jsonl",
+          "splits": ["train", "devel", "test"],
+          "rows": 16521,
+          "sha256": {
+            "train": "4a05a3de6c7f028aff298c4a90196e6a3fecd1938d96fb1c125d6fd10d5e301e",
+            "devel": "00d346b183ecc2d160853cd3dc20e8ccd207d9e1809cf6e2c05182076bd0ecc9",
+            "test": "fe3449af69b42fda7163345482556066c35a80f7e552a6d67e212a0e2f0783cc"
+          }
+        },
+        {
+          "kind": "metadata_json_member",
+          "bytes": 18473896,
+          "sha256": "be7943d576c0b79b34ae32796e5c9474bd3d4d123bb35e38f73497f4a429fb83"
+        }
+      ],
+      "result": "text_metadata_integrity_only",
+      "metrics": {
+        "text_rows": 16521,
+        "unique_slurp_ids": 16521,
+        "recording_references": 72395,
+        "metadata_joined_rows": 16521,
+        "missing_recording_references": 0,
+        "duplicate_metadata_filenames": 1,
+        "duplicate_text_recording_references": 1,
+        "audio_loaded": false,
+        "herus_mapping_count": 0
+      },
+      "limitation": "Audio is CC BY-NC 4.0 and was not downloaded; one duplicate filename/reference blocks unambiguous paired alignment; external intents are not HERUS events."
+    },
+    {
+      "id": "mintrec",
+      "source_url": "https://github.com/thuiar/MIntRec",
+      "declared_modalities": ["text", "audio", "video", "intent_label"],
+      "declared_alignment": "text_audio_video_by_segment_source_claim",
+      "license_status": "code_mit_data_media_terms_unconfirmed",
+      "access_status": "metadata_only_local_audit",
+      "local_files": [
+        {
+          "path": "train.tsv",
+          "rows": 1334,
+          "sha256": "348289d7d140b2c0716b35a03e7045b684c4b90f5c30d1281f9a6b7cb3b9903b"
+        },
+        {
+          "path": "test.tsv",
+          "rows": 445,
+          "sha256": "e4394869fc02898e00fad0a1b03e0333760a9b0499da2fa3f8af030a384c8f3a"
+        }
+      ],
+      "result": "metadata_integrity_only",
+      "limitation": "Audio/video were not downloaded or validated and source labels are not HERUS events."
+    }
+  ],
+  "verdict": {
+    "paired_audio_text_intent_locally_verified": false,
+    "herus_convergence_proven": false,
+    "reason": "Every available route was either license/access blocked, too large and lineage-unverified, or metadata-only without locally validated media."
+  }
+}

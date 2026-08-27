@@ -1,0 +1,41 @@
+{
+  "source": "SLURP Zenodo metadata member",
+  "path": "/tmp/slurp_metadata.json",
+  "bytes": 18473896,
+  "sha256": "be7943d576c0b79b34ae32796e5c9474bd3d4d123bb35e38f73497f4a429fb83",
+  "top_level_records": 16521,
+  "records_with_recordings": 16521,
+  "recordings": 72396,
+  "unique_user_ids": 174,
+  "unique_recording_ids": 41502,
+  "unique_answer_ids": 18424,
+  "status_counts": {
+    "correct": 72396
+  },
+  "file_suffix_counts": {
+    ".flac": 72396
+  },
+  "field_key_count": 9,
+  "field_key_counts": {
+    "ansid": 72396,
+    "nlub_id": 16521,
+    "recid": 72396,
+    "recordings": 16521,
+    "sentence_normalised": 16521,
+    "sentence_original": 16521,
+    "status": 88917,
+    "userid_amt": 16521,
+    "usrid": 72396
+  },
+  "numeric_key_count_redacted": 16521,
+  "filename_key_count_redacted": 72396,
+  "sensitive_key_names_present": true,
+  "herus_automatic_mapping_count": 0,
+  "audio_loaded": false,
+  "verdict": {
+    "metadata_schema_observed": true,
+    "aligned_audio_transcript_intent_proven": false,
+    "herus_convergence_proven": false,
+    "reason": "The member exposes recording metadata and IDs but this audit did not load audio or a transcript/intent annotation package; no HERUS label mapping is inferred."
+  }
+}

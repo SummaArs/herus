@@ -1,0 +1,16 @@
+{
+  "member_name": "slurp/LICENSE.txt",
+  "range_start": 4388,
+  "range_end_requested": 70168,
+  "downloaded_bytes": 65781,
+  "compression_method": 8,
+  "compressed_size": 216,
+  "uncompressed_size": 583,
+  "crc32": 19559804,
+  "sha256": "97547dd6236684935697b26629fb6e70b3be4ed535c2d85fdc053a6389192849",
+  "archive_downloaded": false,
+  "member_downloaded": true,
+  "executed": false,
+  "output_path": "/tmp/slurp_zip_license.txt",
+  "verdict": "member_verified"
+}

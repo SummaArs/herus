@@ -1,0 +1,18 @@
+{
+  "jsonl_rows_seen": 16521,
+  "jsonl_rows_sent_to_c": 16521,
+  "jsonl_extraction_failures": 0,
+  "herus_command_authority": 0,
+  "automatic_label_mapping": 0,
+  "jsonl_rows_train": 11514,
+  "jsonl_rows_devel": 2033,
+  "jsonl_rows_test": 2974,
+  "parser_input_rows": 16521,
+  "parser_draft": 0,
+  "parser_cancel": 0,
+  "parser_unknown": 16426,
+  "parser_rejected": 95,
+  "parser_overlong": 0,
+  "parser_non_ascii": 0,
+  "parser_empty": 0
+}

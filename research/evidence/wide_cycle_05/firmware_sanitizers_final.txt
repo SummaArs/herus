@@ -1,0 +1,99 @@
+make: Entering directory '/home/ubuntu/herus/firmware'
+--- sanitizers: voice, Semantic IR bridge and memory collection ---
+cc -fsanitize=address,undefined -fno-omit-frame-pointer -O1 -g -Wall -Wextra -std=c11 -Icore -Inet -Iport -Itest core/voice.c core/test_voice.c -o build/san_voice
+./build/san_voice
+
+== V1  controlled Portuguese creates a semantic draft ==
+  PASS V1 arrival with a spoken duration becomes one configured HCP time slot
+  PASS V1 voice produces no transport state and cannot be sent without confirmation code
+  PASS V1 arrival without duration remains a compact semantic glyph
+
+== V2  cancellation, unknown speech and help fail safely ==
+  PASS V2 cancellation discards only the local draft and never makes a frame
+  PASS V2 unknown language fails closed instead of guessing a radio intent
+  PASS V2 a duration outside the configured vocabulary is rejected, not truncated
+  PASS V2 the upper supported duration remains accepted
+  PASS V2 a composed duration above 60 is rejected, not reduced to its tens
+  PASS V2 two unit terms are rejected instead of accepting the first one
+  PASS V2 mixed numeric composition is rejected instead of reduced to 5
+  PASS V2 mixed numeric overflow is rejected before conversion
+  PASS V2 negative duration syntax is rejected rather than normalised to 1
+  PASS V2 signed positive duration syntax is rejected rather than normalised to 1
+  PASS V2 unsupported hundreds are rejected instead of reduced to 25
+  PASS V2 spoken help is a private critical draft, never an autonomous public SOS
+  PASS V2 conflicting cancel and arrival intents are rejected, not priority-resolved
+  PASS V2 conflicting help and arrival intents are rejected, not priority-resolved
+  PASS V2 negated cancellation is rejected instead of becoming cancellation
+  PASS V2 negated arrival is rejected instead of becoming arrival
+
+== V3  typed local-ASR commands retain semantic bounds ==
+  PASS V3 a typed arrival command creates the same bounded semantic-only draft
+  PASS V3 help and cancel reject unsupported duration parameters instead of guessing
+
+== V3  haptic plans are finite and driver-independent ==
+  PASS V3 every standard voice event has a bounded safe vibration plan
+  PASS V3 every standard voice event has a bounded safe vibration plan
+  PASS V3 every standard voice event has a bounded safe vibration plan
+  PASS V3 every standard voice event has a bounded safe vibration plan
+  PASS V3 every standard voice event has a bounded safe vibration plan
+  PASS V3 every standard voice event has a bounded safe vibration plan
+  PASS V3 an overlong motor-on command is rejected before hardware
+  PASS V3 too many pulses are rejected before hardware
+VOICE/HAPTIC INVARIANTS HOLD — speech is local, confirmed and bounded.
+cc -fsanitize=address,undefined -fno-omit-frame-pointer -O1 -g -Wall -Wextra -std=c11 -Icore -Inet -Iport -Itest core/voice.c core/test_semantic_ir_bridge.c -o build/san_semantic_ir_bridge
+./build/san_semantic_ir_bridge
+
+== SIR1 real parser/adapter convergence ==
+  PASS text arrival and typed arrival converge to the same semantic draft
+  PASS text arrival without duration and typed arrival without duration converge
+  PASS text help and typed help converge to the same private critical draft
+  PASS text cancellation and typed cancellation converge to the same local event
+  PASS unknown text is rejected without a semantic command
+  PASS out-of-domain duration is rejected without truncation
+  PASS typed control commands reject an unsupported duration
+SEMANTIC IR BRIDGE INVARIANTS HOLD
+cc -fsanitize=address,undefined -fno-omit-frame-pointer -O1 -g -Wall -Wextra -std=c11 -Icore -Inet -Iport -Itest net/crypto.c core/memory_policy.c core/memory_physical_session.c core/memory_collection_recovery.c core/memory_collection.c core/test_memory_collection.c -o build/san_memory_collection
+./build/san_memory_collection
+
+== T10 multi-card collection remains human-gated, bounded and transactional ==
+  PASS T10 fixture physical-session gate initializes without a physical-device claim
+  PASS T10 empty collection initialises only from an empty floor and empty records
+  PASS T10 authorised card is prepared, floor-committed, promoted and cleaned up
+  PASS T10 physical access opens exactly one known minimal card
+  PASS T10 noncanonical physical access cannot add a card
+  PASS T10 missing human write authorization cannot be replaced by collection access or silently reused
+  PASS T10 sensitive card never crosses the collection boundary automatically or leaves reusable authority
+  PASS T10 duplicate opaque card id is rejected rather than overwritten or merged
+  PASS T10 bounded collection accepts each independently authorised card within capacity
+  PASS T10 bounded collection accepts each independently authorised card within capacity
+  PASS T10 bounded collection accepts each independently authorised card within capacity
+  PASS T10 bounded collection accepts each independently authorised card within capacity
+  PASS T10 bounded collection accepts each independently authorised card within capacity
+  PASS T10 bounded collection accepts each independently authorised card within capacity
+  PASS T10 bounded collection accepts each independently authorised card within capacity
+  PASS T10 capacity exhaustion does not evict or overwrite an existing memory
+  PASS T10 physical removal is logical, generation-advancing and leaves no success ambiguity
+  PASS T10 removed identifiers cannot be recovered and failure output is scrubbed
+  PASS T10 compaction only rewrites canonical active cards under physical access
+  PASS T10 fresh fixture initialises for transaction-recovery scenarios
+  PASS T10 commit failure after prepared/floor write blocks instead of claiming persistence
+  PASS T10 authenticated unambiguous prepared state is promoted deterministically on reopen
+  PASS T10 interruption before floor commit leaves only a discardable authenticated preparation
+  PASS T10 old floor discards unfinished successor and preserves prior committed collection
+  PASS T10 second committed mutation advances an independent collection generation
+  PASS T10 restored older committed collection is rejected against independent floor
+  PASS T10 fresh fixture initialises for post-commit cleanup interruption
+  PASS T10 interruption after committed write keeps matching prepared state for cleanup only
+  PASS T10 matching committed/prepared state finalizes cleanup without replaying mutation
+  PASS T10 fresh fixture initialises for authenticity scenario
+  PASS T10 authenticity fixture stores one card
+  PASS T10 altered collection tag is never decoded as a card set
+  PASS T10 rollback metric fixture starts from an empty collection
+  PASS T10 rollback metric fixture commits a baseline generation
+  PASS T10 runtime floor mismatch blocks and records rollback before scrubbing output
+  PASS T10 empty collection does not pretend to test a root before a cryptographic operation
+  PASS T10 root-load failure blocks mutation with no false persistence result
+MEMORY COLLECTION INVARIANTS HOLD — bounded records remain authorised, authenticated and fail-closed.
+rm -f build/san_voice build/san_semantic_ir_bridge build/san_memory_collection
+    ok — ASan/UBSan found no defect in the changed paths
+make: Leaving directory '/home/ubuntu/herus/firmware'

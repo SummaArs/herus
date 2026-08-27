@@ -4,8 +4,50 @@
     "raw_data_commit": false,
     "synthetic_pairing": false,
     "automatic_label_mapping_to_herus": false,
-    "multimodal_claim_requires_same_sample_id_source_and_declared_alignment": true
+    "multimodal_claim_requires_same_sample_id_source_and_declared_alignment": true,
+    "research_only_dataset_does_not_authorize_product_use": true,
+    "mirror_content_requires_lineage_verification": true
   },
+  "blocked_candidates": [
+    {
+      "id": "sonos_snips_access",
+      "name": "Sonos/Snips spoken-language-understanding research datasets",
+      "source_urls": [
+        "https://github.com/sonos/spoken-language-understanding-research-datasets",
+        "https://forms.gle/JtmFYM7xK1SaMfZYA"
+      ],
+      "status": "access_requires_form_and_grant",
+      "license_or_terms": "Academic/research only; no commercial use; redistribution only unmodified under same terms; attribution required.",
+      "raw_data_downloaded": false,
+      "reason": "The official README requires a form and access grant; no automated download was attempted."
+    },
+    {
+      "id": "slurp_zenodo_11106554",
+      "name": "SLURP-flac-files Zenodo record",
+      "source_urls": [
+        "https://zenodo.org/records/11106554",
+        "https://zenodo.org/api/records/11106554"
+      ],
+      "status": "blocked_content_lineage_audio_license_and_size",
+      "license_or_terms": "The Zenodo record declares CC BY 4.0 for the record; internal archive lineage and member-level terms were not verified.",
+      "declared_file": {
+        "name": "slurp.zip",
+        "bytes": 9644648983,
+        "md5": "62f96f9b1f605117e26e2639349869d"
+      },
+      "raw_data_downloaded": false,
+      "range_probe": {
+        "status": "central_directory_only",
+        "bytes_downloaded": 20000000,
+        "zip_mode": "zip64",
+        "central_directory_size": 19893275,
+        "central_directory_fully_read": true,
+        "member_count": 141759,
+        "filtered_metadata_members": 3
+      },
+      "reason": "A 9.6 GB mirror is unnecessary until content lineage, member terms and a deterministic sample path are verified."
+    }
+  ],
   "datasets": [
     {
       "id": "mintrec",
@@ -130,23 +172,94 @@
       ]
     },
     {
+      "id": "slurp",
+      "name": "SLURP Spoken Language Understanding Resource Package",
+      "version_or_snapshot": "official repository snapshot 8eb16545762be97ace75334109d73824217311f1; text JSONL audited locally; audio not downloaded",
+      "source_urls": [
+        "https://github.com/pswietojanski/slurp",
+        "https://zenodo.org/records/4274930",
+        "https://doi.org/10.5281/zenodo.11106554"
+      ],
+      "source_commit": "8eb16545762be97ace75334109d73824217311f1",
+      "license_or_terms": "Textual data CC BY 4.0; audio data CC BY-NC 4.0 according to the original repository LICENSE.txt. The third-party Zenodo record 11106554 declares CC BY 4.0 for its record but does not override the original audio terms.",
+      "license_confirmed_for_raw_data": false,
+      "redistribution_allowed": null,
+      "redistribution_status": "text_cc_by_4_confirmed_locally; audio_cc_by_nc_4_and_no_audio_downloaded",
+      "modalities": ["text", "audio", "intent", "slots", "recording_metadata"],
+      "alignment_class": "PAIRED_DECLARED_BY_SOURCE",
+      "alignment_statement": "The original package associates JSONL text annotations and audio filenames; this cycle joined text to recording metadata by exact filename, but audio bytes were not loaded and one duplicated filename/reference keeps the join non-unique.",
+      "download_status": {
+        "text_jsonl": "downloaded_from_official_repository_and_audited",
+        "metadata_member": "bounded_range_downloaded_and_audited",
+        "audio": "not_downloaded_due_cc_by_nc_4",
+        "full_archive": "not_downloaded",
+        "third_party_archive": "bounded_probe_only"
+      },
+      "local_files": [
+        {
+          "path": "temporary official repository dataset/slurp/train.jsonl",
+          "sha256": "4a05a3de6c7f028aff298c4a90196e6a3fecd1938d96fb1c125d6fd10d5e301e",
+          "bytes": 12745012,
+          "rows": 11514
+        },
+        {
+          "path": "temporary official repository dataset/slurp/devel.jsonl",
+          "sha256": "00d346b183ecc2d160853cd3dc20e8ccd207d9e1809cf6e2c05182076bd0ecc9",
+          "bytes": 2221203,
+          "rows": 2033
+        },
+        {
+          "path": "temporary official repository dataset/slurp/test.jsonl",
+          "sha256": "fe3449af69b42fda7163345482556066c35a80f7e552a6d67e212a0e2f0783cc",
+          "bytes": 3267569,
+          "rows": 2974
+        },
+        {
+          "path": "temporary bounded member slurp/dataset/slurp/metadata.json",
+          "sha256": "be7943d576c0b79b34ae32796e5c9474bd3d4d123bb35e38f73497f4a429fb83",
+          "bytes": 18473896,
+          "rows": 16521
+        }
+      ],
+      "herus_label_mapping": {
+        "status": "none",
+        "mapping_count": 0,
+        "reason": "The 93 external intents and 18 scenarios are benchmark labels; no lexical or semantic mapping to ARRIVE/HELP/CANCEL is inferred."
+      },
+      "can_prove": [
+        "Real textual JSONL schema and split integrity",
+        "Exact presence of recording filenames in the bounded metadata member",
+        "Portuguese HERUS parser coverage/rejection on real English sentences"
+      ],
+      "cannot_prove": [
+        "Audio waveform correctness or audio-transcript semantic convergence because audio was not loaded",
+        "Unambiguous paired alignment because one filename/reference is duplicated",
+        "HERUS event convergence without independent annotation",
+        "Firmware or physical-device performance"
+      ]
+    },
+    {
       "id": "fluent_speech_commands",
       "name": "Fluent Speech Commands",
-      "version_or_snapshot": "source page audited 2026-08-27; exact package snapshot not downloaded",
+      "version_or_snapshot": "source page and public license PDF audited 2026-08-27; exact package snapshot not downloaded",
       "source_urls": [
         "https://fluent.ai/fluent-speech-commands-a-dataset-for-spoken-language-understanding-research/",
+        "https://fluent.ai/wp-content/uploads/2021/04/Fluent_Speech_Commands_Public_License.pdf",
+        "https://groups.google.com/a/fluent.ai/g/fluent-speech-commands",
         "https://arxiv.org/abs/1904.03670"
       ],
       "license_or_terms": "Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International; source says academic research only.",
       "license_confirmed_for_raw_data": true,
       "redistribution_allowed": false,
-      "redistribution_status": "research-use terms identified; no raw files downloaded or redistributed",
+      "redistribution_status": "not_allowed_by_public_license; no raw files downloaded or redistributed",
       "modalities": ["audio", "transcript", "slots", "intent"],
       "alignment_class": "PAIRED_DECLARED_BY_SOURCE",
       "alignment_statement": "The source describes a CSV row with speaker ID, audio path, transcription and slots for the same utterance; local ID/file verification has not yet been run.",
       "download_status": {
         "audio": "not_downloaded",
-        "csv": "not_downloaded"
+        "csv": "not_downloaded",
+        "historical_official_endpoint": "redirected_to_homepage",
+        "package_checksum": "not_available"
       },
       "local_files": [],
       "herus_label_mapping": {
@@ -155,7 +268,7 @@
         "reason": "External smart-home intents are retained as benchmark labels; no lexical or semantic automatic mapping to HERUS is allowed."
       },
       "can_prove": [
-        "Potential real audio–transcript–intent convergence in a command-shaped benchmark after a permitted local sample and same-ID checks"
+        "Declared audio–transcript–intent alignment as a research benchmark, pending local package and same-ID checks"
       ],
       "cannot_prove": [
         "HERUS event convergence without independent mapping annotation",

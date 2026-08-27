@@ -1,4 +1,4 @@
-.PHONY: test real-corpus real-corpus-sanitizers real-corpus-audit demo
+.PHONY: test real-corpus real-corpus-sanitizers real-corpus-audit paired-audio-audit slurp-text-audit slurp-text-sanitizers demo
 
 PYTHON ?= python3
 CC ?= cc
@@ -7,7 +7,7 @@ CFLAGS ?= -O2 -Wall -Wextra -Werror -std=c11
 # Host-only research track. This target is intentionally not part of the
 # firmware proof ledger until its semantics and resource costs are reviewed.
 test:
-	$(PYTHON) -m unittest -v test_finite_reasoner.py test_semantic_ir.py test_semantic_ir_fuzz.py test_semantic_ir_corpus.py test_convergence.py test_datasets_manifest.py
+	$(PYTHON) -m unittest -v test_finite_reasoner.py test_semantic_ir.py test_semantic_ir_fuzz.py test_semantic_ir_corpus.py test_convergence.py test_datasets_manifest.py test_paired_audio_audit.py test_source_audit.py test_probe_remote_zip.py test_benchmark_ir.py test_slurp_text.py
 
 real-corpus:
 	@test -f source_data/MIntRec/metadata/train.tsv
@@ -23,8 +23,35 @@ real-corpus-sanitizers:
 	ASAN_OPTIONS=detect_leaks=1 /tmp/herus-real-corpus-runner-san source_data/MIntRec/metadata/train.tsv source_data/MIntRec/metadata/test.tsv | tee evidence/wide_cycle_04/real_corpus_runner_sanitizers_raw.txt
 	rm -f /tmp/herus-real-corpus-runner-san
 
+paired-audio-audit:
+	@test -n "$(FSC_ROOT)" || (echo "missing FSC_ROOT; no Fluent package was downloaded" >&2; exit 2)
+	@test -n "$(FSC_CSV)" || (echo "missing FSC_CSV; no Fluent metadata file was selected" >&2; exit 2)
+	$(PYTHON) paired_audio_audit.py --manifest datasets_manifest.json --dataset fluent_speech_commands --csv "$(FSC_CSV)" --data-root "$(FSC_ROOT)" $(if $(FSC_LIMIT),--limit $(FSC_LIMIT),)
+
 real-corpus-audit:
 	$(PYTHON) analyze_mintrec_metadata.py
+
+slurp-text-audit:
+	@test -n "$(SLURP_ROOT)" || (echo "missing SLURP_ROOT; no SLURP repository was provided" >&2; exit 2)
+	@test -f "$(SLURP_ROOT)/dataset/slurp/train.jsonl"
+	@test -f "$(SLURP_ROOT)/dataset/slurp/devel.jsonl"
+	@test -f "$(SLURP_ROOT)/dataset/slurp/test.jsonl"
+	@test -f "$(SLURP_METADATA)" || (echo "missing SLURP_METADATA; metadata member was not extracted by bounded probe" >&2; exit 2)
+	$(CC) $(CFLAGS) -I../firmware/core ../firmware/core/voice.c real_jsonl_voice_runner.c -o /tmp/herus-slurp-voice-runner
+	$(PYTHON) run_slurp_voice.py --runner /tmp/herus-slurp-voice-runner --output evidence/wide_cycle_05/slurp_voice_parser_audit.json "$(SLURP_ROOT)/dataset/slurp/train.jsonl" "$(SLURP_ROOT)/dataset/slurp/devel.jsonl" "$(SLURP_ROOT)/dataset/slurp/test.jsonl"
+	$(PYTHON) analyze_slurp_text.py --train "$(SLURP_ROOT)/dataset/slurp/train.jsonl" --devel "$(SLURP_ROOT)/dataset/slurp/devel.jsonl" --test "$(SLURP_ROOT)/dataset/slurp/test.jsonl" --metadata "$(SLURP_METADATA)" --output evidence/wide_cycle_05/slurp_text_audit.json
+	rm -f /tmp/herus-slurp-voice-runner
+
+slurp-text-sanitizers:
+	@test -n "$(SLURP_ROOT)" || (echo "missing SLURP_ROOT; no SLURP repository was provided" >&2; exit 2)
+	@test -f "$(SLURP_ROOT)/dataset/slurp/train.jsonl"
+	@test -f "$(SLURP_ROOT)/dataset/slurp/devel.jsonl"
+	@test -f "$(SLURP_ROOT)/dataset/slurp/test.jsonl"
+	$(CC) -fsanitize=address,undefined -fno-omit-frame-pointer -O1 -g -Wall -Wextra -Werror -std=c11 -I../firmware/core ../firmware/core/voice.c real_jsonl_voice_runner.c -o /tmp/herus-slurp-voice-runner-san
+					ASAN_OPTIONS=detect_leaks=1 $(PYTHON) run_slurp_voice.py --runner /tmp/herus-slurp-voice-runner-san --output evidence/wide_cycle_05/slurp_voice_parser_sanitizers.json "$(SLURP_ROOT)/dataset/slurp/train.jsonl" "$(SLURP_ROOT)/dataset/slurp/devel.jsonl" "$(SLURP_ROOT)/dataset/slurp/test.jsonl"
+
+	ASAN_OPTIONS=detect_leaks=1 /tmp/herus-slurp-voice-runner-san < /dev/null > /dev/null
+	rm -f /tmp/herus-slurp-voice-runner-san
 
 demo:
 	$(PYTHON) finite_reasoner.py

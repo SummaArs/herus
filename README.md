@@ -96,8 +96,9 @@ A próxima etapa física é a Fase 0: dois devkits, bancada curta, medição RF,
 | [Protótipo de raciocínio finito](research/FINITE-REASONER-README.md) | Trilha host-only experimental: composição tipada, saturação limitada e hipóteses paraconsistentes, sem autoridade sobre o produto. |
 | [Desafio do raciocínio generativo](docs/49-DESAFIO-RACIOCINIO-GENERATIVO.md) | Tese de pesquisa: generalização combinatória segura, aprendizado local mínimo e limites contra a promessa de raciocínio aberto universal. |
 | [Intent Compiler e Semantic IR](docs/50-INTENT-COMPILER-E-SEMANTIC-IR.md) | Conexão entre compilação de intenção, representação intermediária semântica, percepção multimodal e núcleo cognitivo verificável. |
-| [Manifesto de datasets reais](research/datasets_manifest.json) | Proveniência, licença, alinhamento, hashes, estado de download e limites de alegação para MIntRec, Common Voice, WESAD e Fluent Speech Commands. |
+| [Manifesto de datasets reais](research/datasets_manifest.json) | Proveniência, licença, alinhamento, hashes, estado de download e limites de alegação para MIntRec, Common Voice, WESAD, SLURP e Fluent Speech Commands. |
 | [Evidências Wide Research ciclo 04](research/evidence/wide_cycle_04/) | Logs e auditorias agregadas do primeiro uso local de metadados reais; dados crus permanecem fora do Git. |
+| [Relatório Wide Research ciclo 05](research/evidence/wide_cycle_05/report.md) | Auditoria real do SLURP, probe ZIP por Range, licenças por modalidade, parser C e bloqueios restantes; nenhum áudio ou archive bruto publicado. |
 
 ## Estado de engenharia
 
@@ -109,6 +110,9 @@ make -C firmware watch-memory-frontend
 make -C research test
 # somente com os TSVs MIntRec baixados localmente e ignorados pelo Git:
 make -C research real-corpus-audit real-corpus
+# somente com o repositório textual SLURP e metadata obtidos legitimamente:
+make -C research slurp-text-audit SLURP_ROOT=/caminho/slurp SLURP_METADATA=/caminho/metadata.json
+make -C research slurp-text-sanitizers SLURP_ROOT=/caminho/slurp
 ```
 
 O comando executa as verificações portáveis e o simulador. A análise Atlas_Node inclui ainda a suíte explícita `make -C firmware delivery-plan`. Um resultado positivo confirma contratos de software e autoriza somente o início controlado da bancada; ele **não** constitui evidência de alcance, energia, UX ou desempenho físico.

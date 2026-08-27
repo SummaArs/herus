@@ -1,0 +1,16 @@
+{
+  "member_name": "slurp/dataset/slurp/metadata.json",
+  "range_start": 2845081669,
+  "range_end_requested": 2846620029,
+  "downloaded_bytes": 1538361,
+  "compression_method": 8,
+  "compressed_size": 1472796,
+  "uncompressed_size": 18473896,
+  "crc32": 1112906406,
+  "sha256": "be7943d576c0b79b34ae32796e5c9474bd3d4d123bb35e38f73497f4a429fb83",
+  "archive_downloaded": false,
+  "member_downloaded": true,
+  "executed": false,
+  "output_path": "/tmp/slurp_metadata.json",
+  "verdict": "member_verified"
+}

@@ -47,7 +47,7 @@
     {
       "path": "research/Makefile",
       "kind": "file",
-      "sha256": "ba918868d1ae64c0073bb9201e65a5bc05a619e92aa75883847f455f72b4f38f",
+      "sha256": "12c5dc53f2d0f77249ea7023357c498447f5b3728364bd71cad0353170cc30f4",
       "role": "host-only research test entrypoint"
     },
     {
@@ -119,14 +119,92 @@
     {
       "path": "research/datasets_manifest.json",
       "kind": "file",
-      "sha256": "f9ec4f961a81ab6b39ed1f8f79e4d45cc841bc607109b130cf0d41d67255a3d5",
+      "sha256": "d069edffd6e006d3b5ea772674aa7340c6ff530b2ea6c82b35414d502414c92c",
       "role": "real dataset provenance and alignment manifest"
     },
     {
       "path": "research/test_datasets_manifest.py",
       "kind": "file",
-      "sha256": "395fc7c62ef594409490dce6a7fea2606b410f9d9fa9d27ab280a4ff532ec6b5",
+      "sha256": "7a172a5eb6930a725693c90dc4ae8b00890d568375c7384e3a1808411cea799e",
       "role": "dataset manifest and aggregate audit tests"
+    },
+    {
+      "path": "research/analyze_slurp_metadata.py",
+      "kind": "file",
+      "sha256": "4ec2f31297689bf64ce3c7f8a2d2ade7a746694a867bac94c593354666df76a1",
+      "role": "bounded SLURP metadata aggregate audit"
+    },
+    {
+      "path": "research/analyze_slurp_text.py",
+      "kind": "file",
+      "sha256": "080290dd035a884f04caebae2602662d9f29ce08faa048acbe14b9fc315ca5e1",
+      "role": "official SLURP text and recording metadata join audit"
+    },
+    {
+      "path": "research/benchmark_ir.py",
+      "kind": "file",
+      "sha256": "a4fd86f8488277f9b7a2ef88bc3cfd4cc8f4fd7a2af7d7d6e39ca2eabcfab86e",
+      "role": "finite external benchmark IR without HERUS authority"
+    },
+    {
+      "path": "research/fetch_zip_member.py",
+      "kind": "file",
+      "sha256": "60f4b54b2d79f01991992c72f2a0a97e87c2b5ccf50c3f2cce2be6156833107b",
+      "role": "bounded ZIP member fetch and CRC verification"
+    },
+    {
+      "path": "research/paired_audio_audit.py",
+      "kind": "file",
+      "sha256": "2e44fa847bce3fbf2055c21aa0b2e88bc3f7998a34e17abaa73e81eb1534128c",
+      "role": "fail-closed paired audio package audit"
+    },
+    {
+      "path": "research/probe_remote_zip.py",
+      "kind": "file",
+      "sha256": "52ebc1ebf8838359dd1f340bb6c747e4666d6c08a5bca138a1a04b25232d694f",
+      "role": "bounded remote ZIP structure probe"
+    },
+    {
+      "path": "research/real_jsonl_voice_runner.c",
+      "kind": "file",
+      "sha256": "722e922e50dba7ac2c750bc4c71dd2418f68bc4f13a21cd27de52283f8cb26ea",
+      "role": "host-only C parser runner for JSONL sentences"
+    },
+    {
+      "path": "research/run_slurp_voice.py",
+      "kind": "file",
+      "sha256": "dca3d53b15fd7da5de65ac5fd41d4ae9c4e5c9fe92d81d944206cbc709d2b484",
+      "role": "SLURP JSONL to production C parser adapter"
+    },
+    {
+      "path": "research/test_benchmark_ir.py",
+      "kind": "file",
+      "sha256": "7c02330bc140f2d67036a9a78b2654cd15bfda7b4066b63b41db29346770be3a",
+      "role": "finite benchmark IR tests"
+    },
+    {
+      "path": "research/test_paired_audio_audit.py",
+      "kind": "file",
+      "sha256": "fb5cfdb54514219cc25e8baf559b2a62349866767d9ea0ef2b2da66b8c13d436",
+      "role": "paired audio package gate tests"
+    },
+    {
+      "path": "research/test_probe_remote_zip.py",
+      "kind": "file",
+      "sha256": "cd256dbc3b52e766e52eb484123b36546d14dd0d7b39e7bf0291f45f8ed8ef49",
+      "role": "bounded ZIP probe tests"
+    },
+    {
+      "path": "research/test_slurp_text.py",
+      "kind": "file",
+      "sha256": "66d44dca8cd02dc319bc1bb4c56db43162960f6804ed50e99c5f9beabc380ab7",
+      "role": "SLURP text and filename join regression tests"
+    },
+    {
+      "path": "research/test_source_audit.py",
+      "kind": "file",
+      "sha256": "b18198ae0fddd6724315a133a6d8ffa3cb510791f824730b99188372c52daa13",
+      "role": "source and aggregate evidence gate tests"
     }
   ],
   "components": [

@@ -27,6 +27,7 @@ class DatasetManifestTests(unittest.TestCase):
             "mintrec",
             "common_voice_pt_scripted_v26",
             "wesad",
+            "slurp",
             "fluent_speech_commands",
         })
         for item in self.datasets.values():
@@ -43,6 +44,10 @@ class DatasetManifestTests(unittest.TestCase):
                 "PAIRED_INTERNAL_SENSOR_STREAMS",
             })
             self.assertEqual(item["herus_label_mapping"]["mapping_count"], 0)
+        slurp = self.datasets["slurp"]
+        self.assertEqual(slurp["source_commit"], "8eb16545762be97ace75334109d73824217311f1")
+        self.assertEqual(slurp["download_status"]["audio"], "not_downloaded_due_cc_by_nc_4")
+        self.assertEqual(slurp["herus_label_mapping"]["mapping_count"], 0)
 
     def test_mintrec_metadata_artifact_is_non_promotional(self):
         audit = json.loads(AUDIT_PATH.read_text(encoding="utf-8"))
