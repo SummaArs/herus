@@ -1,0 +1,11 @@
+test_context_hint_has_bounded_confidence_contract (test_evolution_compatibility.EvolutionCompatibilityTests.test_context_hint_has_bounded_confidence_contract) ... ok
+test_core_link_has_fixed_wire_and_rejects_unknown_version (test_evolution_compatibility.EvolutionCompatibilityTests.test_core_link_has_fixed_wire_and_rejects_unknown_version) ... ok
+test_hcp_keeps_forward_compatibility_rule_explicit (test_evolution_compatibility.EvolutionCompatibilityTests.test_hcp_keeps_forward_compatibility_rule_explicit) ... ok
+test_interaction_preserves_physical_confirmation_boundary (test_evolution_compatibility.EvolutionCompatibilityTests.test_interaction_preserves_physical_confirmation_boundary) ... ok
+test_memory_is_versioned_and_rollback_is_blocking (test_evolution_compatibility.EvolutionCompatibilityTests.test_memory_is_versioned_and_rollback_is_blocking) ... ok
+test_semantic_ir_is_closed_and_proposal_only (test_evolution_compatibility.EvolutionCompatibilityTests.test_semantic_ir_is_closed_and_proposal_only) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.001s
+
+OK

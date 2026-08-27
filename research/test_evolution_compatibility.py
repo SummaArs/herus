@@ -42,6 +42,12 @@ class EvolutionCompatibilityTests(unittest.TestCase):
         self.assertRegex(source, r"state = MEMORY_COLLECTION_BLOCKED")
         self.assertIn("committed.generation != floor", source)
 
+    def test_context_hint_has_bounded_confidence_contract(self):
+        header = (FIRMWARE / "core" / "intent_gate.h").read_text(encoding="utf-8")
+        source = (FIRMWARE / "core" / "intent_gate.c").read_text(encoding="utf-8")
+        self.assertIn("confidence_pct;   /* support / all retained context observations, 0..100 */", header)
+        self.assertIn("hint->confidence_pct <= 100u", source)
+
     def test_interaction_preserves_physical_confirmation_boundary(self):
         header = (FIRMWARE / "core" / "interaction.h").read_text(encoding="utf-8")
         source = (FIRMWARE / "core" / "interaction.c").read_text(encoding="utf-8")

@@ -226,6 +226,22 @@ O ciclo também fixou os estados `OTHER`, `AMBIGUOUS` e `CONFLICT` como abstenç
 
 A política, matriz, inventário, ensaios e métricas estão em `research/evidence/wide_cycle_07/`. O projeto continua pré-hardware; nenhum resultado de RF, energia, UX, ASR embarcado ou longevidade real foi alegado.
 
+## Resultado Wide Research — ciclo 08: correção incremental de um gate
+
+A caça paralela do ciclo 08 encontrou uma lacuna real no `intent_gate`: a observação primária tinha limites de confiança, mas `intent_context_hint_t.confidence_pct` só exigia o piso `70`; não exigia o teto canônico `100`. Um valor `255`, possível no tipo `uint8_t`, podia promover uma observação ambígua a `INTENT_GATE_ACCEPT_CONTEXT`. A regressão foi executada antes da correção e falhou exatamente nesse caso.
+
+O patch acrescentou uma única condição, `hint->confidence_pct <= 100u`, e documentou o domínio `0..100` no header. A mesma regressão passou depois do patch, junto com o caso de `available` não canônico. O gateway continua sem criar mensagem, enviar, confirmar ou acessar rádio/armazenamento; a falha era uma promoção semântica indevida, mas ainda violava o fail-closed.
+
+| Medida | Antes | Depois |
+|---|---:|---:|
+| Hint com `confidence_pct=255` | Promovia contexto ambíguo | `AMBIGUOUS`, sem `context_used` |
+| Hint com `available=2` | Rejeitado | Rejeitado |
+| Alteração de runtime | 0 linhas | 1 condição |
+| Nova autoridade | 0 | 0 |
+| Mudança de wire/schema | 0 | 0 |
+
+Este resultado materializa o princípio do relógio suíço na forma correta: não preservar uma implementação vulnerável por nostalgia, mas preservar o contrato seguro e mudar apenas o ponto demonstrado. A evidência redigida está em `research/evidence/wide_cycle_08/breach_report.md`; nenhum dado de corpus, frase individual, credencial ou mídia foi publicado. O projeto continua pré-hardware e não alega cobertura universal de linguagem ou migração persistente entre formatos.
+
 ### Referências
 
 [1]: https://huggingface.co/datasets/PolyAI/minds14 "PolyAI/MInDS-14 — ficha do dataset no Hugging Face"

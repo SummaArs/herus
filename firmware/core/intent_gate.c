@@ -13,6 +13,7 @@ static int hint_qualifies(const intent_context_hint_t *hint, voice_command_t com
 {
     return hint && hint->available == 1u && hint->command == command &&
            hint->support >= INTENT_GATE_CONTEXT_MIN_SUPPORT &&
+           hint->confidence_pct <= 100u &&
            hint->confidence_pct >= INTENT_GATE_CONTEXT_MIN_CONF_PCT;
 }
 

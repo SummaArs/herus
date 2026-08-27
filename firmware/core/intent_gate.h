@@ -33,7 +33,7 @@ typedef struct {
     uint8_t         available;        /* 1 only after local authorized-message evidence */
     voice_command_t command;          /* predicted intent; must equal ASR primary */
     uint16_t        support;          /* retained observations behind the hint */
-    uint8_t         confidence_pct;   /* support / all retained context observations */
+    uint8_t         confidence_pct;   /* support / all retained context observations, 0..100 */
 } intent_context_hint_t;
 
 typedef enum {

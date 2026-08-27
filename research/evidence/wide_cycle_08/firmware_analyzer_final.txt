@@ -1,0 +1,7 @@
+make: Entering directory '/home/ubuntu/herus/firmware'
+--- static analysis: voice parser and Semantic IR bridge ---
+cc -fanalyzer -O0 -Wall -Wextra -Werror -std=c11 -Icore -Inet -Iport -Itest -c core/voice.c -o build/analyzer_voice.o
+cc -fanalyzer -O0 -Wall -Wextra -Werror -std=c11 -Icore -Inet -Iport -Itest -c core/test_semantic_ir_bridge.c -o build/analyzer_semantic_ir_bridge.o
+rm -f build/analyzer_voice.o build/analyzer_semantic_ir_bridge.o
+    ok — GCC analyzer found no defect in the changed path
+make: Leaving directory '/home/ubuntu/herus/firmware'

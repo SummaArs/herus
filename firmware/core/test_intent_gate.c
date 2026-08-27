@@ -43,6 +43,15 @@ int main(void)
     ok(intent_gate_evaluate(&o, 7, &hint, &out) == INTENT_GATE_ACCEPT_CONTEXT && out.context_used,
        "G1 qualified local context can only disambiguate the same strong command");
 
+    hint.available = 2;
+    ok(intent_gate_evaluate(&o, 7, &hint, &out) == INTENT_GATE_AMBIGUOUS && !out.context_used,
+       "G1 noncanonical context availability cannot promote an ambiguous command");
+    hint.available = 1;
+    hint.confidence_pct = 255;
+    ok(intent_gate_evaluate(&o, 7, &hint, &out) == INTENT_GATE_AMBIGUOUS && !out.context_used,
+       "G1 out-of-range context confidence cannot promote an ambiguous command");
+    hint.confidence_pct = 95;
+
     hint.command = VOICE_COMMAND_HELP;
     ok(intent_gate_evaluate(&o, 7, &hint, &out) == INTENT_GATE_AMBIGUOUS && !out.context_used,
        "G1 a different context hint cannot replace the ASR primary command");

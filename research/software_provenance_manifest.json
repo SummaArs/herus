@@ -23,7 +23,7 @@
     {
       "path": "firmware",
       "kind": "tree",
-      "sha256": "ac45a3f665688ec0a4acde6b19fb4f7e238e991bfe4a5e5568fc31becfcfb9cf",
+      "sha256": "df205c67982dd6d66f3661caaef853701a2c9b2d71623b45dcda95a1fab81f48",
       "role": "portable firmware and proof sources"
     },
     {
@@ -251,13 +251,13 @@
     {
       "path": "README.md",
       "kind": "file",
-      "sha256": "3eb0c386f3fcbea5c6a53dde1bda0b6ad3914dfbb6e490534789e07a4a13574f",
+      "sha256": "fd8c4b358dd5de032be37e901b55713b44cc79ca7bfcadf119ba111e92e092b5",
       "role": "public project state and verification documentation"
     },
     {
       "path": "docs/50-INTENT-COMPILER-E-SEMANTIC-IR.md",
       "kind": "file",
-      "sha256": "d9ded5072e5290e45ff740d21dc0f4c41f6b89e93e99fe2bd45c05ae72b597b2",
+      "sha256": "f90b79d1b670c495aa1207a8712b53d0e418652b91972406ad1f00af66a71bc3",
       "role": "intent compiler and semantic IR research record"
     },
     {
@@ -281,7 +281,7 @@
     {
       "path": "research/test_evolution_compatibility.py",
       "kind": "file",
-      "sha256": "ea101db8eb7e4ac644b601cdac1398578394c716893a28e332576721c5c0f3ec",
+      "sha256": "99a425eb771062c9c474adabf373efef43b6f002c93235fecfadcaf78f7c3af2",
       "role": "contract compatibility boundary tests"
     }
   ],

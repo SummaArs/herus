@@ -1,0 +1,16 @@
+make: Entering directory '/home/ubuntu/herus/firmware'
+--- intent gateway: session, confidence, ambiguity and bounded context ---
+cc -O2 -Wall -Wextra -std=c11 -Icore -Inet -Iport -Itest core/intent_gate.c core/test_intent_gate.c -o build/test_intent_gate
+./build/test_intent_gate
+
+== G1  session-bound confidence and bounded context ==
+  PASS G1 a high-confidence, wide-margin local command is accepted directly
+  PASS G1 context cannot promote a command below the confidence floor
+  PASS G1 qualified local context can only disambiguate the same strong command
+  PASS G1 noncanonical context availability cannot promote an ambiguous command
+  PASS G1 out-of-range context confidence cannot promote an ambiguous command
+  PASS G1 a different context hint cannot replace the ASR primary command
+  PASS G1 a stale session result is ignored before command or confidence is trusted
+  PASS G1 malformed command parameters fail closed
+INTENT GATE INVARIANTS HOLD — confidence, context and session never authorize a send.
+make: Leaving directory '/home/ubuntu/herus/firmware'
