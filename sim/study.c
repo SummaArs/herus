@@ -169,14 +169,12 @@ void scenario_study(sim_score *s, int argc, char **argv)
      * not a preference — so it is read off the two distributions rather than
      * chosen. If they overlap, no threshold works and that overlap IS the
      * operating limit of the device, which is worth knowing precisely. */
-    double worst_true = thresh[NSLOT], best_false = 0;
-
     printf("   query                                      certo  sugestao  recusa  ERRADO\n");
     int total_wrong = 0, exact_ok = 0, partial_ok = 0, novel_refused = 0, reorder_ok = 0;
 
     for (int t = 0; t < nt; t++) {
         int ok = 0, refused = 0, wrong = 0, sug = 0, sug_right = 0;
-        int by[5] = {0,0,0,0,0};
+        int by[LEX_VERDICT_COUNT] = {0};
         for (int i = 0; i < NFACT; i++) {
             fact_t q = F[i];
             if (T[t].novel)   for (int k = 0; k < NSLOT; k++) q.fill[k] = (uint16_t)(500 + k + i);
@@ -191,6 +189,11 @@ void scenario_study(sim_score *s, int argc, char **argv)
             lex_resolution r;
             proto_resolve(&P, &v, thresh[T[t].nslot], sugg[T[t].nslot],
                           MARGIN_SIGMA, NULL, 0, &r);
+            if (r.verdict < 0 || r.verdict >= LEX_VERDICT_COUNT) {
+                fprintf(stderr, "invalid lexicon verdict %d\n", (int)r.verdict);
+                total_wrong++;
+                continue;
+            }
             by[r.verdict]++;
             if (r.verdict == LEX_OK) {
                 /* A corrupted query that lands on the fact it came from is the

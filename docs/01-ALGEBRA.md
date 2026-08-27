@@ -13,6 +13,12 @@ them makes the system meaningfully better than the draft's own target.
 
 ## 1. The foundation, sharpened
 
+### Escopo normativo do VSA/HDC
+
+No HERUS, VSA/HDC é uma álgebra de representação **finita e tipada**. `bind`, `unbind` e `bundle` operam exclusivamente sobre símbolos do vocabulário finito dos cartões de contexto, seus papéis e seus fillers. A álgebra não é um mecanismo de compreensão de linguagem natural aberta, geração livre, ontologia geral ou recuperação de uma vida inteira. A decisão completa está em [48-ARQUITETURA-FINITA-E-LINGUAGEM.md](48-ARQUITETURA-FINITA-E-LINGUAGEM.md).
+
+AMR, CCG, OWL2/SROIQ, ProbLog, ASP e TAG estão fora do roadmap do HERUS. A memória seletiva utiliza política tipada, máquina de estados e regras/solver sobre domínio finito, com razões observáveis e falha fechada. Uma LLM local futura, se aprovada por medições reais no Núcleo, poderá somente realizar a camada linguística e emitir propostas tipadas; ela não substitui a política, a autorização, o cofre, a recuperação ou o rádio.
+
 The draft's core observation is correct: in high dimension, almost all random
 vectors are almost orthogonal. Hamming distance between random binary vectors
 concentrates at D/2 with σ = √D/2.

@@ -119,7 +119,8 @@ typedef enum {
      * quiet, but to ask: "voce quis dizer X?"
      *
      * Both edges of the band are measured from the codex, not chosen. */
-    LEX_V0_SUGGEST
+    LEX_V0_SUGGEST,
+    LEX_VERDICT_COUNT
 } lex_verdict_t;
 
 typedef struct {

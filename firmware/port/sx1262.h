@@ -115,7 +115,7 @@ int sx1262_init(sx1262_t *r, const sx_bus_t *bus, const sx_cfg_t *cfg);
 int sx1262_set_mode(sx1262_t *r, uint8_t sf, uint8_t implicit_header,
                     uint8_t crc_on, uint8_t payload_len);
 
-int sx1262_tx(sx1262_t *r, const uint8_t *data, uint8_t len, uint32_t timeout_ms);
+int sx1262_tx(sx1262_t *r, const uint8_t *data, size_t len, uint32_t timeout_ms);
 int sx1262_rx_continuous(sx1262_t *r);
 
 /* Autonomous duty-cycled receive: the radio alternates RX and sleep by itself and

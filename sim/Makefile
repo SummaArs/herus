@@ -25,12 +25,21 @@ NET     := $(FW)/net/crypto.c $(FW)/net/session.c $(FW)/net/region.c \
            $(FW)/net/weave.c $(FW)/net/beat.c $(FW)/net/link.c
 SIM     := world.c channel.c render.c node.c scenarios.c stress.c compose.c study.c learn.c main.c
 
-.PHONY: all run clean
+.PHONY: all run sanitizers clean
 
 all: run
 
 run: build/herus-sim
 	./build/herus-sim
+
+# Diagnostic build: the default proof remains portable, while this target makes
+# undefined behavior and memory corruption release-blocking in CI.
+sanitizers:
+	$(MAKE) clean
+	$(MAKE) CC='$(CC) -fsanitize=address,undefined -fno-omit-frame-pointer -g' \
+		CFLAGS='-O1 -Wall -Wextra -Werror=return-type -Werror=implicit-function-declaration -std=c11' \
+		build/herus-sim
+	ASAN_OPTIONS=detect_leaks=1 ./build/herus-sim
 
 build/herus-sim: $(SIM) sim.h $(CORE) $(NET) | build
 	$(CC) $(CFLAGS) -DHV_LUT_POPCOUNT $(INC) $(SIM) $(CORE) $(NET) \

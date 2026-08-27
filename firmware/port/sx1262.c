@@ -277,9 +277,10 @@ int sx1262_set_mode(sx1262_t *r, uint8_t sf, uint8_t implicit_header,
     return apply_packet_params(r);
 }
 
-int sx1262_tx(sx1262_t *r, const uint8_t *data, uint8_t len, uint32_t timeout_ms)
+int sx1262_tx(sx1262_t *r, const uint8_t *data, size_t len, uint32_t timeout_ms)
 {
     int rc;
+    if (!r || !data || len > 255u) return SX_E_ARG;
     if ((rc = set_standby_rc(r))) return rc;
 
     /* In implicit-header mode the length is not on air, so the packet params must
@@ -290,7 +291,6 @@ int sx1262_tx(sx1262_t *r, const uint8_t *data, uint8_t len, uint32_t timeout_ms
     }
 
     uint8_t buf[1 + 1 + 255];
-    if (len > 255) return SX_E_ARG;
     buf[0] = OP_WRITE_BUFFER;
     buf[1] = 0x00;                               /* offset */
     memcpy(buf + 2, data, len);

@@ -17,13 +17,13 @@
     {
       "path": ".github/workflows/prove.yml",
       "kind": "file",
-      "sha256": "7c3352420028a78ec677582c93ac7aacf60dd0bd175322a459f0b022e9041b8b",
+      "sha256": "93267ba5b9e17b8ad317b4a81c1e4d51d427928bd28f9ca7b90aef397c16d6ce",
       "role": "host proof workflow"
     },
     {
       "path": "firmware",
       "kind": "tree",
-      "sha256": "576d6bd46e22c3b72fdf73abe7ebc19489ac57d6eb93a3dfae2444e2d9b9bc3d",
+      "sha256": "38203529ab9c255a69e4bf2ce55b63d605f75b2ce7633323354d08c07ffb594c",
       "role": "portable firmware and proof sources"
     },
     {
@@ -31,6 +31,24 @@
       "kind": "tree",
       "sha256": "1c78d65698cf23d6199fafa0b006b94954853c400721ecf6bd42b30f506667ec",
       "role": "host proof and provenance tools"
+    },
+    {
+      "path": "research/finite_reasoner.py",
+      "kind": "file",
+      "sha256": "7c5a15d71919797f1edb1fd7767bdc04e54f6d7f034f086ec31f91a099e34300",
+      "role": "host-only finite reasoner prototype"
+    },
+    {
+      "path": "research/test_finite_reasoner.py",
+      "kind": "file",
+      "sha256": "6c8020d15436fcfca3e13d5f81880d81f3ed5d223806c70d5b5e50d95c237230",
+      "role": "host-only finite reasoner tests"
+    },
+    {
+      "path": "research/Makefile",
+      "kind": "file",
+      "sha256": "45ac0ddaf357d163122f311d44104e39ff34d8121cca75b7f3d143403ee1263c",
+      "role": "host-only research test entrypoint"
     },
     {
       "path": "research/hardware_readiness_manifest.json",

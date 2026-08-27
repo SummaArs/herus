@@ -1,0 +1,1903 @@
+
+Compilador de Intenção
+para a OonCore
+Como fazer o custo de IA por Central cair a cada Central criada — em vez de subir
+Proposta técnica com protótipo medido
+De: Gustavo
+Para: Fábio — OonDemand / OonCore
+14 de agosto de 2026
+Versão 2 — com protótipo medido e código-fonte completo
+Sumário
+TOC \h \o "1-3"
+Antes de tudo
+Fábio, li o que você escreveu sobre os R$ 500 a 800 por mês e sobre as duas horas por dia. Fiquei pensando nisso o dia inteiro, e em vez de te responder com opinião resolvi ir atrás de evidência. Baixei o oon-core-back@0.4.2 e o create-central-oon@0.4.2 do npm, li o código dos validadores, medi os arquivos de uma Central sua que está em produção, e no fim escrevi um compilador para ver se a ideia que eu tinha na cabeça se sustentava em número.
+Sustentou melhor do que eu esperava, e por um caminho um pouco diferente do que eu imaginava. Este documento é o que saiu disso: o diagnóstico, o experimento, os resultados (inclusive os que me desmentiram), a arquitetura que eu proponho, e no fim o código inteiro para você rodar e conferir.
+Duas observações sobre a leitura. A primeira: todo número aqui foi medido; onde há estimativa, ela está marcada como estimativa, e onde a medição contrariou o que eu tinha escrito na primeira versão, eu deixei a correção visível em vez de apagar. A segunda: a Parte VI é escrita para a sua IA, não para você. Você pode colar aquela parte inteira no ChatGPT junto com o contexto da OonCore e ela vira briefing de trabalho, com tarefas e critério de aceite.
+PARTE I — O diagnóstico
+1. A premissa que eu acho que está errada
+Você escreveu: "não vai ter como evitar". Sobre duas das suas conclusões eu concordo inteiramente — para Central, modelo barato atende; para infra e arquitetura, precisa do inteligente; e o gargalo verdadeiro não é dinheiro, são as duas horas.
+Mas o "não tem como evitar" tem, e a saída não é cortar gasto. É mudar onde o gasto acontece.
+O motivo é uma propriedade da OonCore que quase nenhum framework tem. Uma Central inteira é descrita por manifesto, e esse manifesto obedece a uma gramática fechada e pequena. Contei, lendo o código da 0.4.2:
+Dimensão
+Quantidade
+Tipos de campo (SUPPORTED_FIELD_KINDS)
+9
+Tipos de binding (BINDING_KINDS)
+3
+Operadores de agregação (AGGREGATE_OPERATORS)
+4
+Operadores de expressão (EXPRESSION_OPERATORS)
+23
+Seções de regra de processo
+4
+Dimensões do manifesto de app
+7
+E, mais importante que o tamanho: o Core traz os validadores como biblioteca. validateDomainManifest, validateProcessManifest, validateAppManifest, validateRbac — todos rodam fora de uma Central, sem Mongo, sem servidor, sem rede.
+Isso quer dizer que existe um oráculo. Dado um manifesto candidato, existe uma função que responde "isto é válido?" com sim ou não, em milissegundos, de graça.
+Quem tem oráculo grátis não precisa de modelo caro. Precisa de compilador.
+2. Para onde vai o dinheiro hoje
+Antes de propor qualquer coisa eu quis saber onde o custo mora. Medi as três fontes.
+2.1 O contexto que é reenviado a cada turno
+O pacote de documentação que acompanha uma Central:
+Arquivo
+Bytes
+context.generated.md
+78.255
+docs/DETAIL_MODAL_AND_RELATED_GRIDS.md
+12.821
+docs/BACKEND_DOMAIN_MANIFEST.md
+11.123
+docs/FRONTEND_MANIFEST_REFERENCE.md
+10.767
+docs/BACKEND_PROCESS_MANIFEST.md
+7.636
+outros 12 arquivos
+~36.000
+total
+157.362
+São 157 KB, o que dá algo entre 40 e 45 mil tokens de input em português. Numa conversa de chat isso volta para o modelo a cada turno, e ainda cresce com o histórico da conversa. Uma sessão de 40 turnos para construir uma Central custa, só de contexto, na casa de 1,6 a 2,4 milhões de tokens de entrada.
+Traduzindo: a maior parte da sua fatura é o modelo relendo a mesma documentação, centenas de vezes, para depois escrever coisa que ele já sabia escrever no turno anterior.
+2.2 O que o modelo escreve
+Token de saída custa tipicamente de três a cinco vezes o de entrada. Fui medir o que uma Central real obriga o modelo a produzir, e escolhi a tazay-cte-contaspagar porque ela está em produção e não é brinquedo:
+Artefato
+Bytes
+Fatia
+frontend/central.ui.json
+20.541
+94,8%
+central.app.json
+746
+3,4%
+backend/central.manifest.json (config de deploy)
+382
+1,8%
+Praticamente toda a massa está num arquivo só. Fui olhar por dentro dele — 731 linhas — e contei as chaves:
+label: 76 value: 40 type: 21 field: 20 columns: 15
+title: 12 id: 11 description: 11 icon: 9 options: 9
+Setenta e seis rótulos. Quarenta valores. Quinze listas de coluna. Dos 76 rótulos, 41 são rótulo de filtro e rótulo de opção de filtro — e opção de filtro é, literalmente, a lista de valores de um enum que já está declarada no domínio, repetida uma vez como label e outra como value.
+Isso não é texto autoral. É expansão mecânica de um modelo de domínio que já existe. Está sendo pago em token de saída, produzido por um modelo que pode errar, quando deveria ser uma função de JavaScript rodando em três milissegundos e sempre certa.
+2.3 O retrabalho, que é o custo que não aparece na fatura
+Aqui eu tropecei no achado que reordenou a minha própria proposta. Procurei o validador do UI manifest:
+grep -rln "central.ui.json\|uiManifest" src/ # nenhum resultado
+O Core não valida central.ui.json. Existe validador para app, para domínio, para processo e para RBAC. Para o arquivo que responde por 95% do que a IA escreve, não existe nenhum.
+Na prática, o único jeito de descobrir que o UI manifest saiu errado é abrir o navegador e olhar. Ou seja: você, com as suas duas horas, é o compilador. Cada erro custa mais um ciclo de conversa (mais contexto reenviado, mais token) e um pedaço do seu dia.
+Junte as três medições e o quadro fica assim:
+O artefato que consome mais token é o mesmo que tem menos verificação automática e é o mais mecanicamente derivável dos três. As três coisas ao mesmo tempo, no mesmo arquivo.
+É por isso que dá para cortar muito, e rápido.
+3. Os templates estão vazios
+Uma última medição, e essa me incomodou porque a solução é barata demais para o problema continuar existindo.
+O create-central-oon traz sete templates com nomes ótimos: omie-sidecar, pedidos-marketplace, servicos-prestados, servicos-tomados, documentos-fiscais, multi-moedas, basic. Medi cada um:
+170 B templates/_base/frontend/central.ui.json
+210 B templates/basic/frontend/central.ui.json
+234 B templates/omie-sidecar/frontend/central.ui.json
+333 B templates/documentos-fiscais/frontend/central.ui.json
+333 B templates/pedidos-marketplace/frontend/central.ui.json
+353 B templates/servicos-prestados/frontend/central.ui.json
+380 B templates/servicos-tomados/frontend/central.ui.json
+O omie-sidecar inteiro, na íntegra:
+{
+ "schemaVersion": 2,
+ "backend": { "metadataUrl": "/core/metadata" },
+ "navigation": { "mode": "auto" },
+ "collections": [{ "model": "Pessoa", "mode": "dynamic", "section": "Cadastros" }],
+ "pipelines": [], "documents": []
+}
+São stubs. Nenhum carrega manifesto de domínio, nenhum carrega manifesto de processo. O nome do padrão existe; o conhecimento do padrão, não.
+O efeito disso é que toda Central nasce do zero na cabeça do modelo, incluindo a décima Central de contas a pagar, que é oitenta e cinco por cento igual à primeira. Você tem oito apps registrados no control plane e o oitavo custou o mesmo que o primeiro custou.
+Encher esses sete templates é o item de melhor retorno por hora sua neste documento inteiro, e não usa uma linha de IA.
+PARTE II — A prova
+Teoria é barata. Então eu parei de escrever e fui construir.
+4. Como o experimento foi montado
+O alvo. tazay-cte-contaspagar, em produção: 5 modelos, 96 campos, 731 linhas de UI manifest, com ações customizadas em linha, modal de detalhe com abas, grade relacionada, filtros de referência e uma página de configurações com cartões de navegação. Escolhi de propósito a mais complicada que eu tinha à mão.
+O método.
+Escrevi a spec da tazay numa linguagem compacta de minha autoria, com 197 linhas. É o papel que o LLM faria na arquitetura que estou propondo: só a especificação, nada de manifesto. Depois escrevi compile.js, que transforma essa spec nos quatro manifestos. Comparei o central.ui.json gerado com o de produção, folha por folha. Validei os manifestos gerados com os validadores reais da 0.4.2, carregados como biblioteca. E por fim ataquei o portão com 44 mutações inválidas, para ver se ele deixa passar coisa errada.
+Uma nota sobre a comparação, porque ela quase me enganou. Na primeira rodada eu comparei os arquivos posicionalmente e o resultado deu 14% de acerto. Fui olhar: eu tinha declarado as coleções em ordem de dependência (CategoriaOmie primeiro) e o arquivo de produção tem Compra primeiro. Um deslocamento de índice zerou a medição inteira. Reescrevi o medidor para canonizar as listas — reordenar por chave semântica (model, field, id, label, value) antes de comparar — e medir a ordem separadamente. Fica o registro de que o primeiro número que aparece na tela costuma ser o do medidor errado.
+5. Resultados
+5.1 Fidelidade
+folhas no central.ui.json de produção .... 399
+ iguais ................................ 391 (98,0%)
+ divergentes ........................... 8 ( 2,0%)
+ ausentes .............................. 0 ( 0,0%)
+folhas extra (geradas a mais) ........... 4
+ordem das listas preservada ............. 10/13 famílias
+Quebrado por seção do manifesto:
+Seção do UI manifest
+Acerto
+list.rowActions
+84/84 — 100%
+detailModal.groups
+60/60 — 100%
+list.columns
+36/36 — 100%
+collections (cabeçalho)
+28/28 — 100%
+pages (cartões de navegação)
+26/26 — 100%
+detailModal (esqueleto)
+25/25 — 100%
+form (widgets, filtros de referência)
+8/8 — 100%
+detailModal (grade relacionada)
+8/8 — 100%
+list.builtInActions
+6/6 — 100%
+navigation
+6/6 — 100%
+relations
+3/3 — 100%
+list.filters (selects e opções)
+99/107 — 92,5%
+O número que eu acho mais forte não é o 98%. É o zero ausências: não ficou nada de fora. Tudo que existe no arquivo de produção, o compilador produziu.
+5.2 As oito divergências
+Vale abrir uma a uma, porque a análise diz mais que o número.
+As oito estão em dois filtros. No filtro statusAprovacao, o enum tem três valores (Pendente, Aprovada, Recusada) e o filtro em produção lista dois: alguém decidiu, à mão, não oferecer Recusada como opção de busca. O compilador gerou os três. No filtro statusIntegracao acontece o mesmo: o enum tem quatro valores, o filtro mostra três, escondendo Não sincronizado.
+Isso é curadoria legítima, e resolve com uma linha na spec (sem-filtro, que o compilador já suporta).
+Sobra uma divergência, e ela é de outra natureza. A opção "todos" de um filtro tem gênero. No arquivo de produção, o filtro rotulado "Aprovação" usa "Todas" e o rotulado "Integração" usa "Todos". São duas palavras femininas terminadas em -ção, tratadas de forma diferente na mesma tela. O compilador aplicou a regra de concordância e escreveu "Todas" nas duas.
+Ou seja: das oito divergências, sete são escolha humana que o compilador não tinha como adivinhar e que a spec expressa numa linha, e uma é o compilador sendo mais consistente que o autor original. Nenhuma é erro de geração.
+Eu levaria isso como argumento a favor, não contra. O compilador não tem dia ruim. Ele aplica a mesma convenção na Central número 1 e na número 40, às duas da manhã, depois de um dia inteiro de suporte.
+5.3 Compressão: o que o modelo deixa de escrever
+gerado central.ui.json 20.771 B 739 linhas
+gerado central.manifest.json 17.142 B 644 linhas
+gerado central.app.json 799 B 37 linhas
+---------------------------------------------------------
+TOTAL GERADO 38.712 B 1.420 linhas
+SPEC (o que o LLM escreve) 12.972 B 197 linhas
+---------------------------------------------------------
+razão de bytes .................... 2,98x
+razão de linhas ................... 7,21x
+Aqui eu preciso me corrigir publicamente. Na primeira versão deste documento eu tinha estimado que a spec cortaria o output em cerca de dez vezes. Medido, numa Central real com 96 campos: 2,98 vezes em bytes, 7,21 em linhas. Bem menos do que eu tinha afirmado.
+O motivo é honesto e interessa ao projeto: metade da spec são as declarações de campo. São 96 linhas, 47,1% das linhas e 52,5% dos bytes, quase tudo rótulo em português com acento. Isso não comprime porque não é redundância — é informação de domínio, e informação de domínio tem que entrar em algum lugar.
+Duas coisas mudam a leitura desse número.
+A primeira é que Central nova comprime muito mais. Escrevi uma segunda spec, de títulos a pagar, com fluxo, campos derivados e invariante: 45 linhas de spec viraram 484 linhas de manifesto — 10,8 vezes em linhas, 5,87 em bytes.
+A segunda é a que vale dinheiro. Aquelas 96 linhas de campo são exatamente o que a inferência de planilha produz sem IA nenhuma. Tipo por coluna, obrigatoriedade por taxa de nulo, enum e valores pela contagem de distintos, candidata a chave estrangeira por subconjunto: tudo isso sai de estatística sobre a planilha que o cliente já tem. Se metade da spec vem de graça, o que o modelo de fato escreve cai para uns 6.100 bytes, e a razão projetada vai para cerca de seis vezes. Marco como projeção porque não implementei a inferência; o que está medido é o compilador.
+5.4 O portão
+OK manifesto de domínio
+OK manifesto de app
+OK manifesto de processo
+OK referências cruzadas (camada da Central)
+(4,6 ms, 0 token)
+Os validadores do Core rodam como biblioteca, fora de uma Central, sem servidor:
+const { validateDomainManifest } = require(".../src/manifest/domainManifest.js");
+const { validateProcessManifest } = require(".../src/manifest/processManifest.js");
+const { validateAppManifest } = require(".../src/manifest/appManifest.js");
+E o portão provou o próprio valor na primeira execução, contra mim. O meu compilador tinha esquecido o bloco compatibility do central.app.json. Resposta:
+FALHA manifesto de app — central.app.json inválido.
+ compatibility: deve ser um objeto.
+Defeito pego em 3,9 milissegundos, sem token, sem subir servidor, sem eu abrir uma tela. É esse laço que faz um modelo barato ser suficiente: ele erra, o portão diz onde ele errou, ele conserta. O issues[] que o Core devolve vem com path e message, então o conserto é dirigido e não adivinhado — e isso é a diferença entre uma retentativa que converge e uma que gira em falso.
+5.5 Invariante, fluxo e derivados
+A tazay não usa manifesto de processo (a lógica dela mora em serviços customizados), então escrevi a segunda spec para exercitar essa parte. Estas três linhas:
+campo valorPago moeda = soma(Baixa.valor por titulo) "Valor pago"
+campo saldo moeda = valor - valorPago "Saldo"
+invariante soma(Baixa.valor por titulo) <= valor "A soma das baixas não pode ultrapassar o valor do título."
+produzem, sozinhas, um central.process.json que passa no validador oficial: um binding de agregação com operator: sum, um binding de expressão com a árvore {op:"subtract", args:[{field:"valor"},{field:"valorPago"}]} e watchFields calculado a partir da própria expressão, e um atomicInvariants do tipo relatedSumLteParentField colocado na model filha.
+Esse último detalhe merece atenção. O Core exige que a regra viva na filha (é lá que assertOwnField procura parentLocalField e sourceField), mas o jeito natural de um humano falar é a partir do pai: "a soma das baixas não pode passar do valor do título". O compilador faz essa transposição. Um LLM escrevendo manifesto direto erraria isso com frequência, e erraria de um jeito que só aparece no boot.
+Junto vai uma regra da casa que o compilador garante por construção e que eu só descobri lendo o domainManifest.js: campo alvo de binding nunca pode ser `readonly`. A linha responsável transforma readonly && !computed em immutable: true no schema do Mongoose, o que travaria a escrita do próprio Core no recálculo. A suposição natural — "campo calculado é só leitura" — é justamente a errada, e a documentação não avisa. Quem descobre isso, descobre em produção.
+5.6 O arnês adversarial
+O invariante sob teste é simples de enunciar: manifesto inválido nunca passa. Para testar, parti dos manifestos válidos e apliquei 44 mutações que deveriam ser rejeitadas — tipo de campo inexistente, enum vazio, enum com valor duplicado, min maior que max, ciclo entre campos computados, nome de model minúsculo, faixa de versão invertida, chave extra em compatibility.core, operador de expressão que não existe, invariante sem mensagem, match com operador proibido, transição de workflow sem destino, e assim por diante.
+Com os validadores do Core sozinhos: 38 de 44, ou 86,4%.
+As seis que passaram:
+PASSOU ref para model inexistente
+PASSOU opção de campo desconhecida
+PASSOU binding para model inexistente
+PASSOU invariante sobre campo inexistente
+PASSOU binding sobre campo inexistente
+PASSOU regra de processo em model inexistente
+Olhe a lista com atenção: as seis são a mesma classe. Os validadores conferem a gramática dentro de cada documento, mas não conferem referência entre documentos e modelos. Isso faz todo sentido no desenho atual — o registerProcessManifest confere essas referências no registro, contra o registry já montado. Mas quem gera precisa saber antes de subir servidor, e estaticamente não dá.
+Escrevi crossref.js, 96 linhas, cobrindo a classe inteira: ref apontando para model existente; sourceModel, sourceField e foreignField de binding; campos citados dentro de expressão e em watchFields; parentModel, parentField e parentLocalField de invariante; sourceModel e foreignField de deleteProtection; stageField de workflow; chaves de opção de campo fora da lista aceita; e a regra do readonly acima.
+Placar final: 44 de 44, em 14 milissegundos, zero token.
+E o controle, que é o que impede o número de ser enganoso: os dois conjuntos de manifestos válidos continuam passando. Se a camada nova reprovasse o correto, o 44/44 não valeria nada — seria só um validador que diz não para tudo.
+Isso, para mim, é a tese inteira condensada num experimento. Noventa e seis linhas de camada fina compraram a diferença entre 86% e 100% de garantia. É a proporção que eu esperava encontrar: a verificação custa uma fração ínfima do que custa a plataforma, e compra quase toda a independência.
+6. O que a prova não mostra
+Faço questão de listar, porque proposta que só promete não serve para decidir.
+A tazay põe a lógica de negócio em serviços customizados, e não em manifesto de processo. Então o teste de fidelidade não exercita bindings e invariantes contra produção — para isso usei uma spec sintética. Pela política que proponho na §12, esse código customizado é sinal de lacuna de gramática, mas é uma lacuna que eu não medi.
+A spec da tazay fui eu que escrevi, a partir do domínio que já existia. Eu não medi um LLM produzindo a spec a partir do português do cliente. Medi o compilador, que é a metade determinística da cadeia. A outra metade precisa da sua chave de API para ser testada, e é o primeiro experimento que eu faria depois deste.
+A ordem difere em três famílias de lista: a das coleções, a de um filtro e a das opções de um filtro. Ordem de exibição importa numa tela, então ou a spec declara, ou o compilador precisa de uma convenção. Está em aberto.
+E das 391 folhas corretas, 65 (16,6%) têm valor que não aparece em lugar nenhum da spec: são derivação pura. As outras 326 vieram da spec, transformadas e reposicionadas. O ganho real não é o compilador "adivinhar conteúdo" — é não precisar escrever estrutura.
+PARTE III — A arquitetura
+7. A tese, em uma linha
+Neural compreende. Símbolo garante.
+O modelo entra só onde a entrada é suja e ambígua, que é o cliente falando em português o que ele faz. O modelo nunca entra onde precisa haver garantia. Ele não decide se a Central está correta; ele palpita, e o símbolo aceita ou rejeita.
+O que muda com isso é a economia, de um jeito que não é óbvio. Se a verificação é grátis e total, N tentativas de um modelo barato batem uma tentativa de um modelo caro, porque a tentativa errada custa quase nada e é descartada com certeza, não com desconfiança. A razão de preço entre um modelo mini e um de raciocínio de fronteira anda entre 20 e 40 vezes por token (confira a tabela vigente antes de usar como orçamento). Cinco tentativas do barato saem de quatro a oito vezes mais baratas que uma do caro, e com mais garantia, não menos, porque cada uma passou pelo portão de 44/44.
+A ressalva honesta é que isso só vale onde o oráculo é total. Decisão de arquitetura não tem oráculo. Ali o modelo caro continua sendo o certo, e a Parte V trata de como fazer essas horas caras renderem.
+8. As seis camadas
+ descrição do cliente (português sujo) + planilha que ele já tem
+ │
+ ┌────▼──────────────────────────────────────────────┐
+ │ C1 INFERÊNCIA determinística da planilha │ 0 token
+ │ tipos, enums, obrigatoriedade, chaves │
+ ├───────────────────────────────────────────────────┤
+ │ C2 CATÁLOGO de padrões (os 7 templates cheios) │ 0 token
+ │ casamento por palavra-chave / vizinho próximo │
+ ├───────────────────────────────────────────────────┤
+ │ C3 MODELO BARATO → escreve só a SPEC │ ~1-3k tokens
+ │ structured outputs, strict, contra o schema │
+ ├───────────────────────────────────────────────────┤
+ │ C4 COMPILADOR determinístico spec → manifestos │ 0 token PROVADO
+ │ é aqui que nascem os 20,5 KB de UI │ 98,0%
+ ├───────────────────────────────────────────────────┤
+ │ C5 PORTÃO: validadores do Core + camada própria │ 0 token PROVADO
+ │ reprovou? volta pro C3 com os issues[] │ 44/44
+ └────┬──────────────────────────────────────────────┘
+ │ passou
+ ┌────▼──────────────────────────────────────────────┐
+ │ C6 CORPUS: (intenção → spec → manifestos) │
+ │ realimenta C2 e C3. É o que faz o custo cair. │
+ └───────────────────────────────────────────────────┘
+ 
+ MODELO CARO: nunca produz Central. Produz gramática, template,
+ regra de compilador ou validador — ou seja, produz CAPACIDADE.
+As duas camadas marcadas como PROVADO são as que estão medidas na Parte II e cujo código está no Anexo D. As outras quatro são projeto.
+9. A spec, que é a peça que segura tudo
+Hoje o modelo escreve manifesto. A proposta é que ele escreva só uma especificação curta, e que um compilador determinístico faça a expansão.
+Os motivos, em ordem de importância:
+Corta o output. Medido: 197 linhas no lugar de 1.420.
+Torna classes inteiras de erro impossíveis. O modelo não pode errar um rótulo de filtro, uma lista de coluna, um relatedGrid ou a ordem de um form.groups, porque ele não escreve mais essas coisas. Não é erro validado depois; é erro inexprimível.
+Fixa o estilo da casa de uma vez. Todo o DO_AND_DONT.md vira código do compilador, inclusive as armadilhas que a documentação não conta (o readonly da §5.5 é o exemplo). O modelo não tem como esquecer a convenção porque ele não participa dela.
+É revisável em dois minutos, por quem não é programador. O cliente aprova a spec. Ninguém revisa 731 linhas de JSON de verdade; todo mundo revisa sessenta linhas de português estruturado. Isso muda o processo comercial, não só o técnico: dá para levar a spec para a reunião.
+É a interface estável contra a evolução do Core. Quando você mudar a gramática na 0.5.0, muda o compilador e todo o corpus acumulado continua valendo. Sem essa camada, cada release sua invalida os exemplos que a IA usa para aprender. Esse ponto sozinho já pagaria a spec.
+9.1 Como a linguagem ficou
+Este é um trecho literal da spec que eu compilei:
+entidade Titulo
+ rotulo Títulos a pagar
+ rota /titulos
+ secao Financeiro
+ titulo numero
+ campo numero texto obrig unico busca "Número"
+ campo fornecedor ref(Fornecedor) obrig idx "Fornecedor"
+ campo vencimento data obrig idx "Vencimento"
+ campo valor moeda obrig "Valor do título"
+ campo valorPago moeda = soma(Baixa.valor por titulo) "Valor pago"
+ campo saldo moeda = valor - valorPago "Saldo"
+ campo situacao fluxo [Aberto -> Parcial -> Quitado] obrig pad=Aberto "Situação"
+ colunas numero fornecedor vencimento valor valorPago saldo situacao
+ grupo Título: numero fornecedor vencimento valor situacao
+ grupo Valores 1col: valorPago saldo
+ relacao baixas <- Baixa.titulo "Baixas do título"
+ invariante soma(Baixa.valor por titulo) <= valor "A soma das baixas não pode ultrapassar o valor do título."
+ protege-exclusao Baixa.titulo "Não é possível excluir um título que já tem baixa lançada."
+Quarenta e cinco linhas dessas viraram 484 linhas de manifesto válido.
+9.2 O mapa de tradução
+Construção na spec
+Destino no manifesto (0.4.2)
+campo com os 9 tipos
+models[].fields{} com kind, required, unique, index, label, default
+= soma(X.y por fk)
+bindings[] com kind: aggregate, operator: sum
+= a - b
+bindings[] com kind: expression e watchFields derivado da árvore
+fluxo [a -> b -> c]
+campo enum mais workflow.stageField e transições
+invariante
+atomicInvariants[], transposto para a model filha
+protege-exclusao
+deleteProtection[]
+tenancy, modulos
+central.app.json com as sete dimensões e compatibility travada
+tudo acima, junto
+`central.ui.json` inteiro
+10. As regras de derivação do UI
+Esta seção é a mais técnica do documento e é, na prática, a especificação para quem for implementar. Cada regra abaixo foi validada contra o arquivo de produção, e ao lado está quanto ela acertou.
+Filtros — 99 de 107. Todo campo enum que aparece nas colunas do grid vira um select. O rótulo do filtro é o rótulo do campo (a spec sobrescreve quando o autor quer encurtar). As opções são a lista de valores do enum, cada valor virando label e value idênticos, precedida de uma opção "todos" com value vazio.
+Essa regra — "filtro é enum que está nas colunas" — eu não inventei: descobri comparando com o arquivo de produção. Na Compra ela acerta os cinco filtros exatos. Na ContaPagarAgrupada ela gera dois a mais do que o autor quis, e por isso existe a diretiva sem-filtro.
+Concordância do "todos". O gênero sai da primeira palavra do rótulo do filtro. Termina em -ção, -agem, -ade, -ência ou -a? Então é "Todas". Caso contrário, "Todos". Acerta nove dos dez casos do arquivo real, e o décimo é uma inconsistência do próprio arquivo.
+`builtInActions` — 6 de 6. A diretiva somente-leitura na spec vira {create:false, edit:false, delete:false}.
+Esqueleto do `detailModal` — 25 de 25. enabled, size, defaultTab, o id e o rótulo da aba, columns: 2 nos grupos: tudo convenção da casa. O titleField a spec declara em uma palavra.
+`relations` e grade relacionada — 3 de 3 e 8 de 8. Deriváveis do grafo de referências. Todo model que tem um ref apontando para X pode virar uma aba de grade na tela de detalhe de X. Hoje isso é escrito à mão, com 12,8 KB de documentação explicando como; é informação que já está inteira no manifesto de domínio.
+`form` — 8 de 8. Campo booleano vira widget: checkbox. Campo ref cujo modelo-alvo tem um status do tipo enum contendo "Ativo" ganha referenceFilters: {status: "Ativo"} — porque ninguém quer escolher categoria inativa num formulário. Regra da casa, aplicada sempre, sem depender de alguém lembrar.
+Ações de linha — 84 de 84. A prosa do confirm é conteúdo de negócio e vem da spec. Toda a estrutura em volta é convenção: type: apiAction, refresh: ["self","all"], prefixo do endpoint vindo da raiz da API declarada uma vez no topo, formato de hiddenWhen e disabledWhen.
+Uma correção à primeira versão deste documento. Eu tinha escrito que o rótulo do campo é derivável do nome em mais de noventa por cento dos casos. Não é. Em português, com acento e com sufixos como ...Em e ...Id, transformar ultimaSincronizacaoEm em "Última sincronização" não sai de title case. No protótipo os rótulos são declarados na spec, e é exatamente por isso que a compressão ficou em três vezes e não em dez. Preferi medir e corrigir a manter a frase bonita.
+11. O portão, degrau por degrau
+1. Schema da spec. JSON Schema, e é ele que amarra o strict da OpenAI.
+2. Compilador. Falha fechado: construção que ele não sabe expandir vira erro, nunca manifesto vazio.
+3. Validadores do Core como biblioteca. validateDomainManifest, validateProcessManifest, validateAppManifest, validateRbac.
+4. Camada da Central. Referências cruzadas (as seis lacunas da §5.6) e o lint do UI manifest, que o Core não tem.
+5. Boot efêmero e invariantes por HTTP. É o degrau que ainda não liguei aqui; já existe no meu oon-prove, que sobe backend em porta livre com banco temporário, descobre os models pela /core/metadata e ataca o que um servidor ligado não deixaria.
+O laço de conserto é o que faz o modelo barato bastar: reprovou, volta para o modelo com o issues[] em mãos. Só depois de N falhas seguidas (eu usaria três) escala para o modelo caro. E essa escalada tem que ser registrada, porque ela é o sinal mais valioso que o sistema inteiro produz — cada escalada é uma lacuna de gramática pedindo para ser fechada.
+12. Duas políticas que valem mais que código
+Perguntar em vez de chutar. Quando a descrição do cliente é ambígua, o modelo emite uma pergunta, não um palpite. Pergunta custa cinquenta tokens; Central errada custa uma sessão sua. E tem um efeito colateral bom: as perguntas que o sistema faz repetidamente são, literalmente, o roteiro de entrevista que falta na documentação. Depois de vinte Centrais você tem um questionário de elicitação escrito pelo próprio uso.
+Código custom é bug report contra a gramática. Se, para atender um pedido, o modelo precisou escrever JavaScript em src/services, isso não é sucesso. É sinal de que a gramática não cobre o caso. Registre como tarefa de gramática para o modelo caro. O efeito ao longo do tempo é que a expressividade da plataforma cresce exatamente ao longo da demanda real, e não ao longo do que a gente imagina que os clientes vão pedir. E a cobertura do oráculo se mantém perto de cem por cento, porque toda linha de código custom é uma linha fora do portão.
+A tazay é exatamente esse caso, e por isso ela escapa parcialmente da minha prova.
+PARTE IV — Caminhos de produto
+Esta parte não é sobre reduzir custo. É sobre o que a arquitetura acima destrava e que eu acho que vale mais do que a economia.
+13. Multi-tenant: o teto real do "mais barato por Central"
+O appManifest.js da 0.4.2 valida estas dimensões:
+SUPPORTED_TENANCY_MODELS = ["none", "single_tenant", "multi_tenant"]
+SUPPORTED_DEPLOYMENT_MODES = ["singleton", "shared", "dedicated", "hybrid"]
+SUPPORTED_AVAILABILITIES = ["system", "common", "licensed"]
+SUPPORTED_ACCESS_MODES = ["tenant_members", "explicit_users"]
+No seu control plane, dos oito apps registrados, seis são single_tenant. Só "Meus Apps" é multi_tenant.
+Isso me leva a uma pergunta que reenquadra o problema:
+O custo não está em criar uma Central. Está em criar a enésima variação da mesma Central.
+Dez clientes com contas a pagar não deveriam ser dez Centrais. Deveriam ser uma Central multi_tenant e dez perfis de tenant. O custo de IA passa a ser por forma de processo, amortizado entre todos os tenants, e o custo por Central tende a zero por construção — porque você para de criar Centrais.
+Todo o resto deste documento reduz o custo por Central. Esta seção reduz o número de Centrais. É outra ordem de grandeza.
+13.1 O mecanismo
+Um overlay validado, por tenant, com variabilidade restrita. A restrição é o que impede o overlay de virar um fork disfarçado:
+Permitido no perfil de tenant
+Proibido (é forma nova)
+rótulos e vocabulário do cliente
+modelo novo
+grupos de campos opcionais ligados ou desligados
+invariante diferente
+valores extras de enum
+fluxo com estados diferentes
+escolha de ramo entre pipelines já declarados
+binding novo
+credenciais e mapeamento de integração
+operação de agregação nova
+parâmetros numéricos: prazos, limites, alçadas
+13.2 A regra de fronteira
+Precisa ser decidível em dez segundos, senão na prática ninguém aplica:
+Mexeu nos invariantes, é forma nova: Central nova. Mexeu só em vocabulário, opcionalidade ou parâmetro: perfil de tenant.
+Invariante é o que define a identidade do processo. Rótulo é roupa.
+13.3 O que isso faz do negócio
+O catálogo de formas vira o produto. Tenant vira configuração. Em vez de "a OonDemand constrói Centrais sob medida", que escala com as suas horas e você tem duas por dia, passa a ser "a OonDemand tem quinze formas de processo provadas, e você se conecta a uma", que escala com o catálogo — e catálogo só cresce.
+E o parceiro de implantação, que é o meu papel, passa a vender elicitação e configuração. Que é onde está o valor, e não compete com você.
+14. Estender a gramática: onde eu gastaria o modelo caro
+Descobri uma coisa lendo o processManifest.js que eu acho que é a maior oportunidade de produto escondida no Core hoje.
+O atomicInvariants aceita um único kind: relatedSumLteParentField. O mecanismo existe, está no runtime (assertAtomicInvariants), funciona dentro de transação — e o vocabulário tem um item só. É como ter um motor de regras que só sabe dizer "a soma dos filhos não passa do campo do pai".
+Essa é a lista que eu levaria para a sessão com o modelo caro, em ordem de quanto cada uma aparece na vida real de um BPO:
+`relatedSumEqParentField` — a soma tem que bater exatamente, não só ser menor. É rateio: as parcelas somam o título, os itens somam o pedido, o rateio de categorias soma cem por cento. Hoje isso é serviço customizado em toda Central que faz rateio.
+`relatedCountLte` / `relatedCountEq` — no máximo uma baixa por título por dia; exatamente um responsável por processo. Cardinalidade é regra de negócio o tempo todo e hoje não tem onde declarar.
+`uniqueAmongSiblings` — dentro de um mesmo pai, tal campo não repete. Número de parcela dentro do título, código de item dentro do pedido.
+`sumWithinWindow` — soma dentro de uma janela de tempo não passa de um limite. Alçada de aprovação diária, teto mensal por fornecedor. Este é o que mais aparece em cliente de BPO e é sempre feito no braço.
+`monotonic` — campo que só pode crescer. Revisão, número sequencial, saldo acumulado. Barato de implementar e mata uma classe inteira de bug de concorrência.
+`requiredWhen` — campo obrigatório condicionado a uma expressão. Já existe gramática de expressão pronta (EXPRESSION_OPERATORS); é reaproveitamento quase direto.
+Cada kind novo é uma sessão sua com o modelo caro que rende capacidade permanente da plataforma inteira, para todos os clientes de todos os parceiros, para sempre. Compare com gastar a mesma sessão depurando o UI manifest da Central do cliente da vez.
+15. Central que nasce com prova
+Junte duas coisas que já existem: a spec declara invariante, e o Core tem assertAtomicInvariants. O compilador pode, a partir do invariante declarado, gerar a suíte adversarial — uma busca cuja função objetivo é violar aquele invariante. Custo: zero token, porque é código.
+O que sai do outro lado é um relatório: "14.000 tentativas de violar `soma(baixas) <= valor` sob concorrência, zero violações".
+Isso é duas coisas ao mesmo tempo. Para mim, é entregável cobrável — é o que eu vendo hoje como diferencial. Para a OonDemand, é posicionamento de plataforma: toda Central nasce com prova. Eu não conheço concorrente low-code que ofereça isso, e não é marketing: é consequência técnica de ter gramática fechada com invariante declarável. A maioria das plataformas não pode fazer isso nem que queira, porque não tem onde declarar o invariante.
+16. O corpus e a curva de custo
+Cada Central aprovada pelo portão vira um par verificado: (intenção em português → spec → manifestos → versão do Core). Quatro usos, em ordem de retorno:
+Primeiro, exemplares few-shot escolhidos por vizinhança. Dois exemplos reais e validados no prompt ensinam mais que quarenta mil tokens de prosa, e custam cem vezes menos.
+Segundo, padrões novos para o catálogo. A segunda Central de um tipo custa perto de zero.
+Terceiro, e é o que eu acho mais subestimado: o log de reprovações, agrupado por classe. Cada classe recorrente de reprovação é um defeito de gramática, de compilador ou de documentação. Conserta uma vez, elimina aquele retrabalho para sempre, para todo mundo. As seis lacunas da §5.6 são um exemplo real: uma classe só, fechada com 96 linhas, que nunca mais vai custar retentativa a ninguém.
+Quarto, fine-tuning de um modelo mini sobre pares (intenção → spec), quando houver volume. O fine-tune substitui o contexto: mata o maior item da fatura, que é o §2.1. Precisa de cinquenta a cem pares e precisa ser refeito a cada mudança de gramática, e por isso é o último passo e não o primeiro.
+PARTE V — Execução
+17. Sequenciamento para duas horas por dia
+O plano tem que respeitar a restrição real, então cada etapa abaixo é independentemente útil: se você parar depois de qualquer uma, o que foi feito continua pagando. Estão em ordem de retorno por hora sua.
+S0 — Higiene de contexto · uma sessão
+Duas coisas, sem mexer em arquitetura.
+Primeiro, fixar o prefixo para o cache pegar. O cache de prompt da OpenAI casa prefixo idêntico, byte a byte. A ordem tem que ser sempre [bloco invariante] → [parte variável], e o bloco invariante tem que ser arquivo versionado, não texto colado à mão, porque qualquer edição zera o cache.
+Segundo, parar de mandar prosa e mandar gramática. Um oon-context --grammar que emite uma folha de quatro a seis mil tokens com os enums reais (Anexo A), o central.app.schema.json e o DO_AND_DONT destilado em regras curtas. Substitui os 157 KB. É corte da ordem de 85 a 90 por cento no input, na primeira sessão de trabalho.
+Documentação em prosa é para humano. Para o modelo, gramática e exemplo valem mais e custam dez vezes menos.
+S1 — A spec e o compilador · três a quatro sessões
+O protótipo do Anexo D é o ponto de partida, e ele já cobre o que uma Central real usa. Falta cobrir o que a tazay não usa (pipelines, documentos, cockpit), resolver a ordem das listas, e escrever o schema JSON da spec no subconjunto que o modo strict aceita.
+Critério de aceite: rodar contra outra Central real — a ss-eventos-v2, por exemplo — e chegar perto dos 98%. O que não reproduzir é a lista exata do que falta na gramática, medida em Central de verdade e não em suposição.
+S2 — O portão · duas sessões
+Um oon-gate <central> que encadeia schema, compilador, validadores do Core, camada de referências cruzadas, lint de UI, boot efêmero e invariantes. Saída em JSON com issues[] e código de saída não-zero, amarrado no CI e no npm run check.
+Os degraus um a quatro já estão construídos e medidos. Falta ligar o boot efêmero.
+Sem este passo, usar modelo barato é aposta. Com ele, é engenharia.
+S3 — Encher o catálogo · duas a três sessões
+Transformar os sete stubs de 170 a 380 bytes em exemplares completos, com os três manifestos, extraídos das Centrais que já rodam: tazay-cte-contaspagar, ss-eventos-v2, taca-nfse-omie, pedidos-marketplace. Mais um casador simples por palavra-chave.
+Nenhuma linha de IA. É a etapa mais barata do plano e provavelmente a de maior efeito no custo por Central, porque ataca diretamente o motivo pelo qual a décima Central de um tipo custa o mesmo que a primeira.
+S4 — Corpus e telemetria · duas sessões
+Gravar cada Central aprovada como par verificado, marcada com a versão do Core. Registrar toda reprovação e toda escalada para modelo caro. Um painel com um número só: custo médio por Central, por mês.
+Sem isso você não sabe se está melhorando, e a tese inteira deste documento é falsificável só com esse número.
+S5 — Depois, com volume
+Perfis de tenant e fine-tune do mini. Ambos precisam de massa; antes disso é congelar uma gramática que ainda vai mudar.
+O princípio que faz duas horas por dia compor
+Sessão com modelo caro nunca entrega Central. Entrega capacidade.
+Toda hora sua no modelo inteligente precisa sair de lá com uma destas quatro coisas: uma construção nova na spec, um template novo no catálogo, uma regra nova no compilador, ou um validador novo. Nenhuma das quatro é consumida — todas reduzem o custo de todas as Centrais futuras.
+É o contrário de gastar as duas horas depurando o UI manifest do cliente da vez. Com duas horas por dia, é a diferença entre juros compostos e trabalho braçal.
+18. Como medir
+Quatro números, uma vez por mês:
+Métrica
+Comportamento esperado se a tese estiver certa
+custo em reais por Central
+cai mês a mês
+percentual de Centrais criadas sem tocar em modelo caro
+sobe, rumo a mais de 80%
+retentativas por Central
+cai, porque cada classe consertada some para sempre
+tokens de output por Central
+despenca no S1 e fica baixo
+E o teste de falseamento, explícito:
+Se o custo por Central for constante ao longo de três meses, a arquitetura está errada, e eu quero saber.
+Constante significa que se construiu um chat em volta de um LLM. Decrescente significa que se construiu um sistema. O primeiro número já dá para levantar hoje: histórico da conta OpenAI dividido pelas Centrais criadas no período. É a linha de base contra a qual tudo isso se mede.
+19. Riscos e limites
+O `strict` da OpenAI é restrito. Palavras-chave limitadas, todas as propriedades obrigatórias com null para opcional, limites de aninhamento e de contagem de propriedades. A spec precisa ser desenhada para caber desde a primeira linha. Os manifestos completos quase certamente não cabem, o que aliás reforça a necessidade da spec.
+O oráculo prova validade, não acerto de negócio. Um manifesto perfeitamente válido pode modelar o processo errado. Os 98% da §5.1 dizem que o compilador reproduz a Central certa dada a spec certa; não dizem que a spec está certa. A mitigação é o humano revisar a spec de sessenta linhas em vez de 731 de JSON — revisão de spec é viável, revisão de manifesto na prática ninguém faz.
+Regra tácita não se gera. Estrutura de produção que é receita dividida por rendimento, a pegadinha do combo no DRE, "esse boleto é do mesmo pagamento daquele comprovante": isso sai de entrevista com o especialista da empresa e não tem atalho. O compilador entrega o esqueleto. E é bom que seja assim, porque é justamente o que o parceiro de implantação vende — o que significa que esta proposta não compete com quem implanta, ela tira dele os setenta por cento chatos.
+Deriva de versão. O corpus precisa ser marcado com a versão do Core, senão exemplar da 0.3.x envenena geração na 0.4.x. A spec como interface estável é o que segura isso, mas só se for tratada como contrato, com versionamento próprio.
+Fine-tune por último. Precisa de volume e congela a gramática vigente nos pesos. Antecipar é comprar dívida.
+O custo do arnês é o seu tempo. S0 a S4 somam de dez a doze sessões, umas três semanas no seu ritmo — e menos, porque S1 e S2 já têm protótipo. Cada etapa paga sozinha e nenhuma depende da seguinte para valer a pena.
+E o protótipo é protótipo. São 547 linhas de compilador, tratamento de erro mínimo, cobrindo o que a tazay usa. Não é produto, e eu não venderia como produto. É prova de que o caminho existe e de quanto ele rende.
+PARTE VI — Briefing para a sua IA
+Fábio, esta parte não é para você ler; é para você colar. Ela foi escrita no formato que um modelo de linguagem aproveita melhor: fatos verificados primeiro, decisões já tomadas em seguida, armadilhas conhecidas, e por último um backlog em que cada tarefa tem critério de aceite que a própria máquina consegue checar.
+Cole a Parte VI inteira no seu ChatGPT, junto com o contexto da OonCore que você já usa. Ela substitui a conversa de contextualização que hoje você refaz toda vez.
+20. Contexto compactado
+Você é assistente de engenharia da OonCore, plataforma low-code de Centrais operacionais. Uma Central é descrita por manifestos declarativos. Os fatos abaixo foram lidos do código da versão 0.4.2 e medidos; trate-os como verdade, não como suposição.
+A gramática é fechada e pequena. Nove tipos de campo: string, number, boolean, date, ref, enum, currency, currencyCode, currencyConverted. Três tipos de binding: lookup, aggregate, expression. Quatro operadores de agregação: sum, count, min, max. Vinte e três operadores de expressão. Quatro seções de regra de processo por model: workflow, bindings, deleteProtection, atomicInvariants.
+Existe oráculo. Os validadores do Core rodam como biblioteca, sem servidor e sem banco: validateDomainManifest, validateProcessManifest, validateAppManifest, validateRbac. Devolvem issues[] com path e message. Isso significa que verificar um manifesto custa milissegundos e zero token. Toda proposta sua deve tirar proveito disso: prefira gerar-e-verificar a gerar-e-torcer.
+A massa está no UI manifest e ele não é validado. Numa Central real em produção, central.ui.json tem 20.541 bytes contra 746 do central.app.json. É 94,8% do total. E grep -rln "uiManifest" src/ não retorna nada: o Core não valida esse arquivo.
+A maior parte do UI é derivável. Um protótipo de compilador determinístico reproduziu 391 das 399 folhas do UI manifest de produção (98,0%), sem nenhuma ausência, a partir de uma especificação de 197 linhas. As oito divergências foram curadoria manual (esconder valores de enum em filtros) e uma questão de concordância de gênero em que o compilador ficou mais consistente que o autor humano.
+Os validadores não conferem referência cruzada. Num arnês de 44 mutações inválidas, os validadores do Core rejeitaram 38. As seis que passaram são todas da mesma classe: referência a model ou campo que não existe, e opção de campo com chave desconhecida. Uma camada de 96 linhas fechou a classe e levou o placar a 44/44.
+Os sete templates do gerador estão vazios, com 170 a 380 bytes cada, contendo só um stub de central.ui.json e nenhum manifesto de domínio ou processo.
+21. Decisões já tomadas — não reabrir
+Quando eu pedir alguma coisa, parta destas decisões. Se você discordar de alguma, diga em uma linha e siga mesmo assim; não gaste a resposta reargumentando.
+1. A IA não escreve manifesto. Ela escreve uma spec compacta, e um compilador determinístico expande a spec nos manifestos. Toda a estrutura repetitiva do UI (rótulos de filtro, opções, colunas, grupos, grades relacionadas, esqueleto de modal) é derivada por código, nunca gerada por modelo.
+2. Nada sai sem passar pelo portão. A ordem é: schema da spec, compilador, validadores do Core, camada de referências cruzadas, lint de UI, boot efêmero com invariantes.
+3. Modelo barato para Central, modelo caro só para gramática. Sessão com modelo caro tem que produzir capacidade reaproveitável — construção nova da spec, template, regra de compilador, validador — e nunca uma Central específica.
+4. A spec é a interface estável. Quando a gramática do Core mudar, muda o compilador; o corpus de specs acumulado continua válido.
+5. Código customizado em `src/services` é bug report contra a gramática, não solução. Sempre que uma demanda exigir código custom, registre qual construção faltou.
+6. Fail-closed. Compilador que não sabe expandir uma construção emite erro; nunca emite manifesto parcial ou vazio.
+7. Perguntar em vez de chutar. Diante de descrição ambígua, produza a pergunta específica em vez de um palpite plausível.
+22. Armadilhas verificadas no código
+Estas custam horas quando descobertas em produção. Todas foram confirmadas lendo a 0.4.2.
+`readonly` vira `immutable`. Em domainManifest.js, field.readonly && !field.computed produz immutable: true no schema Mongoose. Portanto campo que é alvo de `binding` não pode ser `readonly` — travaria a escrita do próprio Core no recálculo. A intuição natural ("campo calculado é só leitura") leva ao erro. Só use readonly junto com computed.
+`atomicInvariants` vive na model filha. O validador exige que parentLocalField e sourceField sejam campos da model que declara a regra, e parentModel/parentField apontem para o pai. O humano descreve a regra a partir do pai ("a soma das baixas não passa do valor do título"); a regra tem que ser gravada na filha (Baixa). Quem gera precisa fazer essa transposição.
+`atomicInvariants` só aceita `kind: "relatedSumLteParentField"`. Qualquer outro valor é rejeitado. Não invente kind; se a regra do cliente não couber nesse formato, isso é uma lacuna de gramática a registrar.
+`compatibility` é obrigatório no `central.app.json`, e compatibility.core só aceita as chaves minVersion e maxVersionExclusive. Qualquer outra chave é erro. Prefira faixa apertada — semver 0.x deixa o chão se mover.
+Opção de campo desconhecida passa silenciosamente. O validador de domínio ignora chaves fora da lista aceita. Escrever obrigatorio em vez de required não dá erro: o campo simplesmente não fica obrigatório. Isso precisa ser pego pela camada da Central.
+O gerador cria `.gitkeep` que o conformance do mesmo pacote reprova (src/render.js:19,26). Vale conferir se ainda é assim; se for, Central recém-gerada falha no próprio npm run check.
+Expressão tem forma canônica. É {op, args:[...]} onde cada argumento é {field}, {value} ou outro {op, args}. Exatamente um discriminador por nó; dois é erro.
+23. Backlog, em ordem, com critério de aceite
+Cada tarefa abaixo é fechada por um teste que roda sem intervenção humana. Quando eu te pedir uma delas, entregue o código e o comando que prova que passou.
+T1 — Folha de gramática. Gerar um oon-context --grammar que emita, a partir do próprio código do Core, uma folha de quatro a seis mil tokens com os enums reais, o central.app.schema.json e as regras do DO_AND_DONT em forma imperativa curta.
+Aceite: a folha é gerada por script (não escrita à mão), é byte-idêntica entre execuções com o mesmo Core, e cabe em menos de 6.000 tokens.
+T2 — Schema JSON da spec. Escrever o JSON Schema da linguagem de spec, no subconjunto que o modo strict da OpenAI aceita: sem $ref externo, todas as propriedades listadas em required com null para opcional, respeitando os limites de aninhamento e de contagem.
+Aceite: uma chamada real com response_format: {type:"json_schema", strict:true} é aceita pela API, e a spec da tazay valida contra o schema.
+T3 — Cobrir o resto da gramática no compilador. O protótipo cobre coleções, campos, filtros, grupos, ações, relações, formulário, páginas com cartões, workflow, bindings, invariantes e proteção de exclusão. Falta pipelines, documents, portal/cockpit e rbac.
+Aceite: compilar a ss-eventos-v2 e a taca-nfse-omie e medir a fidelidade com o mesmo compare.js. Meta: acima de 95% em ambas, zero ausências.
+T4 — Ordem de exibição. Resolver as três famílias de lista em que a ordem gerada difere da de produção: coleções, filtros e opções de filtro.
+Aceite: ordem das listas preservada chega a 13/13 na tazay.
+T5 — Lint do UI manifest. Validador estático de central.ui.json contra os models declarados: campo citado em columns, filters, groups, form e relatedGrid existe; titleField existe; relation aponta para relação declarada; model existe; widget compatível com o tipo do campo.
+Aceite: plantar vinte defeitos conhecidos, pegar os vinte, com zero falso positivo num manifesto válido.
+T6 — Boot efêmero no portão. Ligar o quinto degrau: subir backend em porta livre com banco temporário, descobrir os models pela /core/metadata e rodar os invariantes por HTTP.
+Aceite: o portão inteiro roda em CI, sem configuração por Central, e falha com código de saída não-zero em uma Central com defeito plantado.
+T7 — Encher os sete templates. Cada template passa a trazer os três manifestos completos, extraídos de Centrais reais.
+Aceite: cada template compila, passa no portão e sobe com npm run dev sem edição manual.
+T8 — Inferência de planilha. Dado um .xlsx ou .csv, produzir o bloco de campo da spec: tipo por coluna, required por taxa de nulo, enum e valores por contagem de distintos, unique por razão de distintos, candidata a ref por subconjunto.
+Aceite: numa planilha real de cliente, mais de 80% dos campos inferidos batem com o que um humano declararia, e nenhum tipo é inferido errado de forma silenciosa (na dúvida, o inferidor marca como incerto).
+T9 — Laço de conserto. Implementar o ciclo modelo barato → portão → issues[] → modelo barato, com no máximo três tentativas antes de escalar, registrando toda escalada.
+Aceite: em dez Centrais de teste, mais de 80% fecham sem escalar, e o log de escaladas é agrupável por classe.
+T10 — Telemetria de custo. Registrar por Central: tokens de entrada, de saída, número de retentativas, se escalou, versão do Core, tempo de parede.
+Aceite: um comando devolve custo médio por Central por mês, e a série temporal mostra tendência.
+T11 — Novos `kind` de invariante. Implementar, em ordem: relatedSumEqParentField, sumWithinWindow, relatedCountLte, uniqueAmongSiblings, monotonic, requiredWhen.
+Aceite: cada kind novo entra com validador, runtime dentro da transação existente, e um teste adversarial que tenta violá-lo por concorrência.
+T12 — Perfil de tenant. Overlay validado por tenant, restrito a rótulo, opcionalidade, valores extras de enum, escolha de ramo de pipeline, credenciais e parâmetros numéricos.
+Aceite: uma mesma Central multi_tenant serve dois tenants com vocabulários e parâmetros diferentes, sem duplicar manifesto, e o portão rejeita overlay que tente alterar invariante.
+24. Perguntas em aberto — proponha, não decida
+Nestes pontos eu quero opções com trade-off explícito, e não uma resposta afirmativa.
+Onde deve morar a ordem de exibição: na spec, como declaração, ou no compilador, como convenção derivada de tipo de campo? A primeira é explícita e verbosa; a segunda é implícita e some da revisão.
+O casador de padrões do catálogo deve ser palavra-chave, embedding local ou uma chamada barata ao modelo? Qual erra menos quando o cliente descreve o processo com vocabulário próprio?
+A spec deve ser uma linguagem própria, como no protótipo, ou YAML/JSON com schema? A linguagem própria é mais densa em token e mais legível para o cliente; o JSON casa direto com strict e não precisa de parser.
+Quando o cliente pede algo que a gramática não cobre, qual é o comportamento correto: recusar e registrar a lacuna, ou gerar código customizado marcado como dívida? Existe caso em que a segunda opção é aceitável?
+Quanto do central.ui.json deveria migrar para dentro do Core como convenção, em vez de ficar no compilador? Se o Core derivasse sozinho colunas, filtros e grades a partir do manifesto de domínio, o UI manifest encolheria para as exceções — e talvez essa seja a mudança de maior alcance de todas.
+25. Protocolo de resposta
+Quando eu pedir implementação, responda nesta ordem, sem introdução:
+Primeiro, o que você entendeu do pedido em duas linhas, incluindo o que você não vai fazer.
+Segundo, o código completo, pronto para colar, sem trechos elididos com reticências.
+Terceiro, o comando exato que prova que funcionou.
+Quarto, o que ficou de fora e por quê.
+Se faltar informação para decidir, faça a pergunta antes de escrever código. Uma pergunta específica vale mais que trezentas linhas que eu vou jogar fora.
+Não me devolva explicação de conceito que já está neste briefing. Não reescreva o que já está funcionando para "melhorar o estilo". Se a mudança que eu pedi implicar mexer em contrato público do Core, avise antes na primeira linha.
+26. Prompts prontos
+Para colar depois do briefing, conforme a sessão.
+Sessão de gramática (modelo caro). Com base na Parte VI, implemente o kind de invariante relatedSumEqParentField: validador em processManifest.js, runtime em processRuntime.js dentro da transação existente, e um teste adversarial que tente violar a regra com escritas concorrentes. Siga exatamente o padrão do relatedSumLteParentField já existente. Antes de escrever, liste as diferenças de comportamento entre "menor ou igual" e "igual" quando o pai ainda não tem filhos.
+Sessão de compilador (modelo barato). Estenda o compilador para a construção pipeline, seguindo as convenções já usadas para entidade. Não invente sintaxe nova sem antes mostrar duas alternativas com prós e contras.
+Sessão de diagnóstico. Aqui está o issues[] que o portão devolveu. Agrupe por classe, identifique qual é defeito de compilador, qual é defeito de spec e qual é lacuna de gramática, e proponha a correção de menor alcance para cada classe.
+Sessão de catálogo. A partir destes três manifestos de uma Central real, extraia o padrão genérico: o que é essencial à forma do processo, o que é específico do cliente, e o que deve virar parâmetro de tenant. Devolva o template pronto.
+ANEXO A — A gramática medida da 0.4.2
+Tudo lido do código, não da documentação.
+`domainManifest.js` — `SUPPORTED_FIELD_KINDS`, nove:
+string, number, boolean, date, ref, enum, currency, currencyCode, currencyConverted
+Opções aceitas por campo, fechadas: label, description; booleanos required, readonly, searchable, unique, index; numéricos min, max, minLength, maxLength; default; ref, obrigatório em kind: ref; values, obrigatório e sem duplicatas em kind: enum; base, com três letras, em currencyConverted; e computed. O validador ainda checa min <= max, minLength <= maxLength, nome de campo como identificador JavaScript válido, e ciclos entre campos computados (validateComputedCycles).
+`processManifest.js`: BINDING_KINDS = lookup, aggregate, expression. AGGREGATE_OPERATORS = sum, count, min, max. RECALCULATION_MODES = immediate, async. Seções por model: workflow, bindings, deleteProtection, atomicInvariants.
+`domainRules.js` — `EXPRESSION_OPERATORS`, vinte e três:
+add, subtract, multiply, divide, min, max, abs, negate, coalesce, eq, neq, gt, gte, lt, lte, and, or, not, present, in, if, concat, formatCurrency
+`appManifest.js`: APP_KINDS = root-central, member-central, portal-cockpit. MODULES = collections, documents, pipelines, integrations, omie, assistants, currencies. TENANCY_MODELS = none, single_tenant, multi_tenant. AVAILABILITIES = system, common, licensed. ACCESS_MODES = tenant_members, explicit_users. AUTHORIZATION_MODES = none, rbac. DEPLOYMENT_MODES = singleton, shared, dedicated, hybrid.
+Exportado e chamável como biblioteca: validateAppManifest, validateDomainManifest, validateProcessManifest, validateRbac, validateDomainRecord, assertAtomicInvariants, assertDeleteAllowed, assertReferencePolicies, domainManifestToDefinitions.
+Um espaço definido por nove tipos de campo, três bindings e quatro tipos de regra de processo é um espaço compilável. É por isso que esta proposta se aplica à OonCore e não se aplicaria a um framework de código livre.
+ANEXO B — Achados de engenharia
+Coisas que encontrei lendo o código e rodando o arnês. Todas são suas, sem contrapartida.
+1. Não existe validador de `central.ui.json`. É 94,8% da massa gerada e sai sem nenhuma verificação automática. Meu oon-lint faz isso hoje contra os models do backend; foi testado com vinte e três defeitos plantados, pegou os vinte e três, com zero falso positivo. É seu se quiser.
+2. Os validadores não conferem referência entre modelos. Seis mutações inválidas passaram: ref para model inexistente, sourceModel de binding inexistente, campo de expressão inexistente, parentField de invariante inexistente, regra de processo em model inexistente, e opção de campo com chave desconhecida silenciosamente ignorada. O registerProcessManifest cobre parte disso no registro, mas quem gera precisa saber antes do boot. O crossref.js do Anexo D fecha a classe.
+3. `atomicInvariants` tem um `kind` só. O mecanismo de invariante existe, roda dentro de transação, e o vocabulário tem um item. Na minha leitura é a maior oportunidade de produto escondida no Core hoje, e está detalhada na §14.
+4. Armadilha do `readonly`. readonly && !computed vira immutable: true. Campo alvo de binding não pode ser readonly. A suposição natural é a errada e a documentação não avisa.
+5. O `.gitkeep` do gerador segue presente na 0.4.2 (src/render.js:19,26). Vale reconferir se o conformance.js do mesmo pacote ainda os reprova.
+6. Achado anterior, da 0.3.75, que vale confirmar se persiste. Em crudService.js, new Model(data) recebe req.body sem filtro. Como _id, createdAt e updatedAt são do schema, o cliente escolhe o createdAt e antedata lançamento. Confirmei na época lendo o Mongo direto. É trilha de auditoria, então eu olharia com carinho.
+ANEXO C — Como rodar a prova
+O pacote tem sete arquivos de código e duas specs. Não precisa de nada além do próprio Core, que ele instala como dependência.
+cd forge
+npm i @oondemand/oon-core-back@0.4.2
+./prove.sh
+O que acontece: compila a spec da tazay e valida os manifestos gerados com os validadores reais do Core; mede a fidelidade folha a folha contra o central.ui.json de produção; compila a segunda spec, com fluxo, derivados e invariante, e valida também; e por fim dispara as 44 mutações inválidas contra o portão.
+Leva menos de um segundo e não faz nenhuma chamada de rede. A saída esperada termina em TUDO VERDE.
+Para ver as divergências uma a uma:
+DETALHE=1 node compare.js \
+ ../referencias/tazay-cte-contaspagar/frontend/central.ui.json \
+ out/central.ui.json spec/tazay.spec
+E para ver quais folhas o compilador derivou sem que o valor existisse na spec:
+DERIVADAS=1 node compare.js ... (mesmos argumentos)
+ANEXO D — Código-fonte completo
+Este anexo é montado por script a partir dos arquivos reais: o código impresso aqui é, por construção, exatamente o que rodou para produzir os números da Parte II. Não tem como divergir.
+Fica de fora só o md2docx.js, que converte este documento em Word e não tem nada a ver com a OonCore. Vai no pacote junto.
+D.1 — A prova, em um comando
+`forge/prove.sh` — 28 linhas
+#!/usr/bin/env bash
+# Roda a prova inteira do oon-forge. Nenhuma chamada de IA, nenhum token.
+set -u
+cd "$(dirname "$0")"
+falhas=0
+linha() { printf '\n%s\n' "$(printf '=%.0s' {1..70})"; }
+ 
+linha; echo "1. COMPILA a Central real (tazay-cte-contaspagar, em produção)"; linha
+node compile.js spec/tazay.spec out || falhas=$((falhas+1))
+ 
+linha; echo "2. PORTÃO — validadores reais do Core 0.4.2 + camada da Central"; linha
+node gate.js out || falhas=$((falhas+1))
+ 
+linha; echo "3. FIDELIDADE — gerado x central.ui.json de produção"; linha
+node compare.js ../referencias/tazay-cte-contaspagar/frontend/central.ui.json \
+ out/central.ui.json spec/tazay.spec medir.json || falhas=$((falhas+1))
+ 
+linha; echo "4. COMPILA a Central com invariante, fluxo e derivados"; linha
+node compile.js spec/titulos.spec out-titulos || falhas=$((falhas+1))
+node gate.js out-titulos || falhas=$((falhas+1))
+ 
+linha; echo "5. ARNÊS ADVERSARIAL — manifesto inválido nunca passa"; linha
+node adversarial.js out-titulos || falhas=$((falhas+1))
+ 
+linha
+if [ "$falhas" -eq 0 ]; then echo "TUDO VERDE"; else echo "FALHAS: $falhas"; fi
+linha
+exit "$falhas"
+D.2 — O compilador
+O coração do protótipo. A primeira metade é o parser da linguagem de spec, escrito à mão porque a linguagem é pequena e eu queria medir o custo real em token da forma compacta. A segunda metade é a compilação propriamente dita, dividida em quatro emissores: domínio, processo, app e UI.
+Vale ler três pontos específicos. A função todos() é a regra de concordância de gênero, que acerta nove dos dez casos do arquivo de produção. A derivarFiltros() implementa a regra "filtro é enum que aparece nas colunas", que foi descoberta comparando com produção e não inventada. E, dentro de compilarDominio(), está a regra da casa que impede campo alvo de binding de ser marcado readonly — três linhas que evitam um bug que só apareceria em produção.
+`forge/compile.js` — 547 linhas
+#!/usr/bin/env node
+"use strict";
+/**
+ * oon-forge — protótipo de compilador de intenção para OonCore.
+ *
+ * Entrada: central.spec (linguagem compacta; é o que um LLM escreveria)
+ * Saída: central.app.json, central.manifest.json (domínio), central.ui.json
+ *
+ * Regra do projeto: tudo que for DERIVÁVEL do domínio é derivado aqui e não
+ * aparece na spec. O que sobra na spec é decisão de negócio.
+ */
+ 
+const fs = require("fs");
+const path = require("path");
+ 
+/* ------------------------------------------------------------------ parser */
+ 
+const TIPOS = {
+ texto: "string", numero: "number", bool: "boolean", data: "date",
+ moeda: "currency", codigoMoeda: "currencyCode", moedaConvertida: "currencyConverted",
+};
+ 
+function parse(src) {
+ const spec = { central: null, entidades: [], paginas: [], navExtra: [] };
+ let ctxEnt = null, ctxAcao = null, ctxPagina = null, ctxCartoes = null, ctxGrupo = null, ctxNav = null;
+ 
+ const linhas = src.split("\n");
+ for (let n = 0; n < linhas.length; n++) {
+ const bruta = linhas[n];
+ if (!bruta.trim() || bruta.trim().startsWith("#")) continue;
+ const ind = bruta.length - bruta.replace(/^ +/, "").length;
+ const l = bruta.trim();
+ const [chave, ...resto] = l.split(/\s+/);
+ const arg = resto.join(" ");
+ 
+ // nível 0
+ if (ind === 0) {
+ ctxAcao = ctxGrupo = ctxCartoes = null;
+ if (chave === "central") { spec.central = { slug: arg, modulos: [] }; ctxEnt = ctxPagina = ctxNav = null; continue; }
+ if (chave === "entidade") {
+ ctxEnt = {
+ nome: arg, campos: [], colunas: [], grupos: [], acoes: [], relacoes: [],
+ gradesRelacionadas: [], semFiltro: [], filtroRotulo: {}, formulario: null,
+ somenteLeitura: false, oculta: false, invariantes: [], protecoes: [],
+ };
+ spec.entidades.push(ctxEnt); ctxPagina = ctxNav = null; continue;
+ }
+ if (chave === "pagina") {
+ const m = l.match(/^pagina\s+(\S+)\s+(\S+)\s+"([^"]*)"/);
+ ctxPagina = { id: m[1], path: m[2], label: m[3], blocks: [] };
+ spec.paginas.push(ctxPagina); ctxEnt = ctxNav = null; continue;
+ }
+ if (chave === "navegacao-extra") {
+ const m = l.match(/^navegacao-extra\s+"([^"]*)"\s+(\S+)/);
+ ctxNav = { label: m[1], href: m[2] };
+ spec.navExtra.push(ctxNav); ctxEnt = ctxPagina = null; continue;
+ }
+ throw new Error(`linha ${n + 1}: diretiva desconhecida "${chave}"`);
+ }
+ 
+ // dentro de central
+ if (spec.central && !ctxEnt && !ctxPagina && !ctxNav) {
+ if (chave === "tenancy") spec.central.tenancy = arg;
+ else if (chave === "modulos") spec.central.modulos = resto;
+ else if (chave === "api") spec.central.api = arg;
+ else throw new Error(`linha ${n + 1}: "${chave}" não vale dentro de central`);
+ continue;
+ }
+ 
+ // dentro de navegacao-extra
+ if (ctxNav) {
+ if (chave === "icone") ctxNav.icon = arg;
+ else if (chave === "secao") ctxNav.section = arg;
+ else if (chave === "ordem") ctxNav.order = Number(arg);
+ else throw new Error(`linha ${n + 1}: "${chave}" não vale em navegacao-extra`);
+ continue;
+ }
+ 
+ // dentro de pagina
+ if (ctxPagina) {
+ if (chave === "cartao") {
+ const m = l.match(/^cartao\s+"([^"]*)"\s+(\S+)\s+"([^"]*)"\s+"([^"]*)"/);
+ ctxCartoes.cards.push({ title: m[1], description: m[4], href: m[2], actionLabel: m[3] });
+ continue;
+ }
+ if (chave === "cartoes") {
+ const m = l.match(/^cartoes\s+(\d+)\s+"([^"]*)"/);
+ ctxCartoes = { type: "navigation.cards", title: m[2], columns: Number(m[1]), cards: [] };
+ ctxPagina.blocks.push(ctxCartoes); continue;
+ }
+ if (chave === "secao") { ctxPagina.section = arg; continue; }
+ if (chave === "icone") { ctxPagina.icon = arg; continue; }
+ if (chave === "ordem") { ctxPagina.order = Number(arg); continue; }
+ throw new Error(`linha ${n + 1}: "${chave}" não vale em pagina`);
+ }
+ 
+ // dentro de acao (indentação 4)
+ if (ctxAcao && ind >= 4) {
+ if (chave === "icone") {
+ ctxAcao.icon = resto[0];
+ if (resto.includes("so-icone")) ctxAcao.iconOnly = true;
+ } else if (chave === "oculta-se") {
+ ctxAcao.hiddenWhen = { field: resto[0], equals: resto[2] === "true" };
+ } else if (chave === "desativa-se") {
+ const m = l.match(/^desativa-se\s+(\S+)\s+em\s+(.+)$/);
+ ctxAcao.disabledWhen = { field: m[1], in: m[2].split("|") };
+ } else if (chave === "confirma") {
+ const m = l.match(/^confirma\s+"([^"]*)"\s+"([^"]*)"/);
+ ctxAcao.confirm = { title: m[1], description: m[2] };
+ } else if (chave === "atualiza") {
+ ctxAcao.refresh = resto;
+ } else throw new Error(`linha ${n + 1}: "${chave}" não vale em acao`);
+ continue;
+ }
+ 
+ // descrição de grupo (indentação 4)
+ if (ctxGrupo && ind >= 4 && chave === "descricao") {
+ ctxGrupo.description = l.match(/^descricao\s+"([^"]*)"/)[1];
+ continue;
+ }
+ 
+ // dentro de entidade
+ if (!ctxEnt) throw new Error(`linha ${n + 1}: fora de contexto`);
+ ctxAcao = null; ctxGrupo = null;
+ 
+ switch (chave) {
+ case "rotulo": ctxEnt.rotulo = arg; break;
+ case "singular": ctxEnt.singular = arg; break;
+ case "rota": ctxEnt.rota = arg; break;
+ case "secao": ctxEnt.secao = arg; break;
+ case "oculta": ctxEnt.oculta = true; break;
+ case "somente-leitura": ctxEnt.somenteLeitura = true; break;
+ case "titulo": ctxEnt.titulo = arg; break;
+ case "escrita": ctxEnt.escrita = resto; break;
+ case "modal-tamanho": ctxEnt.modalTamanho = arg; break;
+ case "aba-padrao": ctxEnt.abaPadrao = arg; break;
+ case "colunas": ctxEnt.colunas = resto; break;
+ case "formulario": ctxEnt.formulario = resto; break;
+ case "sem-filtro": ctxEnt.semFiltro.push(...resto); break;
+ case "filtro-rotulo": {
+ const m = l.match(/^filtro-rotulo\s+(\S+)\s+"([^"]*)"/);
+ ctxEnt.filtroRotulo[m[1]] = m[2]; break;
+ }
+ case "campo": ctxEnt.campos.push(parseCampo(l, n + 1)); break;
+ case "invariante": {
+ // invariante soma(Model.campo por fk) <= campoDoPai "mensagem"
+ const m = l.match(/^invariante\s+soma\((\w+)\.(\w+)\s+por\s+(\w+)\)\s*<=\s*(\w+)\s+"([^"]*)"/);
+ if (!m) throw new Error(`linha ${n + 1}: invariante só suporta soma(Model.campo por fk) <= campo`);
+ ctxEnt.invariantes.push({
+ sourceModel: m[1], sourceField: m[2], parentLocalField: m[3],
+ parentField: m[4], message: m[5],
+ });
+ break;
+ }
+ case "protege-exclusao": {
+ const m = l.match(/^protege-exclusao\s+(\w+)\.(\w+)\s+"([^"]*)"/);
+ ctxEnt.protecoes.push({ sourceModel: m[1], foreignField: m[2], message: m[3] });
+ break;
+ }
+ case "grupo": {
+ const m = l.match(/^grupo\s+(.+?)(\s+1col)?:\s*(.*)$/);
+ ctxGrupo = { label: m[1].trim(), columns: m[2] ? 1 : 2, fields: m[3].trim().split(/\s+/) };
+ ctxEnt.grupos.push(ctxGrupo); break;
+ }
+ case "relacao": {
+ const m = l.match(/^relacao\s+(\S+)\s+<-\s+(\w+)\.(\w+)\s+"([^"]*)"/);
+ ctxEnt.relacoes.push({ nome: m[1], model: m[2], foreignKey: m[3], label: m[4] }); break;
+ }
+ case "grade-relacionada": {
+ const m = l.match(/^grade-relacionada\s+(\S+):\s*(.*)$/);
+ ctxEnt.gradesRelacionadas.push({ nome: m[1], columns: m[2].trim().split(/\s+/) }); break;
+ }
+ case "acao": {
+ const m = l.match(/^acao\s+(\S+)\s+"([^"]*)"\s+(\S+)\s+(\S+)/);
+ ctxAcao = { id: m[1], type: "apiAction", label: m[2], method: m[3], endpoint: m[4] };
+ ctxEnt.acoes.push(ctxAcao); break;
+ }
+ case "acao-abrir-modal": {
+ const m = l.match(/^acao-abrir-modal\s+"([^"]*)"\s+(\S+)/);
+ ctxEnt.acoes.push({ type: "openDetailModal", label: m[1], icon: "edit", initialTab: m[2] });
+ break;
+ }
+ default: throw new Error(`linha ${n + 1}: "${chave}" não vale em entidade`);
+ }
+ }
+ return spec;
+}
+ 
+function parseCampo(l, nl) {
+ const m = l.match(/^campo\s+(\w+)\s+(\w+(?:\([^)]*\))?)\s*(.*)$/);
+ if (!m) throw new Error(`linha ${nl}: campo mal formado`);
+ const campo = { nome: m[1] };
+ let rest = m[3] || "";
+ 
+ const rot = rest.match(/"([^"]*)"\s*$/);
+ if (rot) { campo.label = rot[1]; rest = rest.slice(0, rot.index); }
+ 
+ const tipo = m[2];
+ 
+ // fluxo [a -> b -> c] ==> enum + workflow com transições
+ if (tipo === "fluxo") {
+ const f = rest.match(/^\s*\[([^\]]*)\]\s*/);
+ if (!f) throw new Error(`linha ${nl}: fluxo exige [estado -> estado]`);
+ campo.kind = "enum";
+ campo.values = f[1].split("->").map((s) => s.trim());
+ campo.fluxo = true;
+ rest = rest.slice(f[0].length);
+ }
+ 
+ // derivado: = soma(Model.campo por fk) | = a - b
+ // "= expr" exige espaço em volta do sinal, para não colidir com "pad=valor"
+ const der = rest.match(/(?:^|\s)=\s+(.+?)\s*$/);
+ if (der && !tipo.startsWith("enum")) {
+ const ag = der[1].match(/^(soma|contagem|menor|maior)\((\w+)\.(\w+)\s+por\s+(\w+)\)$/);
+ if (ag) {
+ const OP = { soma: "sum", contagem: "count", menor: "min", maior: "max" };
+ campo.derivado = {
+ kind: "aggregate", sourceModel: ag[2], sourceField: ag[3],
+ foreignField: ag[4], operator: OP[ag[1]],
+ };
+ } else {
+ campo.derivado = { kind: "expression", expression: parseInfixo(der[1], nl) };
+ }
+ rest = rest.slice(0, der.index);
+ }
+ 
+ const par = tipo.match(/^(\w+)\(([^)]*)\)$/);
+ if (campo.kind) { /* já resolvido acima (fluxo) */ }
+ else if (par) {
+ if (par[1] === "enum") { campo.kind = "enum"; campo.values = par[2].split("|"); }
+ else if (par[1] === "ref") { campo.kind = "ref"; campo.ref = par[2]; }
+ else throw new Error(`linha ${nl}: tipo "${par[1]}" desconhecido`);
+ } else {
+ campo.kind = TIPOS[tipo];
+ if (!campo.kind) throw new Error(`linha ${nl}: tipo "${tipo}" desconhecido`);
+ }
+ 
+ const toks = rest.trim().split(/\s+/).filter(Boolean);
+ for (let i = 0; i < toks.length; i++) {
+ const t = toks[i];
+ if (t === "obrig") campo.required = true;
+ else if (t === "unico") campo.unique = true;
+ else if (t === "idx") campo.index = true;
+ else if (t === "busca") campo.searchable = true;
+ else if (t === "esparso") campo.esparso = true; // não existe no manifesto: só marca
+ else if (t.startsWith("pad=")) {
+ const cru = [t.slice(4), ...toks.slice(i + 1)].join(" ");
+ campo.default = cru === "true" ? true : cru === "false" ? false
+ : /^-?\d+(\.\d+)?$/.test(cru) ? Number(cru) : cru;
+ break;
+ } else throw new Error(`linha ${nl}: flag "${t}" desconhecida`);
+ }
+ return campo;
+}
+ 
+/** expressão infixa -> AST do Core ({op, args:[{field}|{value}]}) */
+function parseInfixo(txt, nl) {
+ const OPS = [[/\s([+-])\s/, { "+": "add", "-": "subtract" }],
+ [/\s([*\/])\s/, { "*": "multiply", "/": "divide" }]];
+ for (const [re, mapa] of OPS) {
+ let corte = -1, sinal = null, m;
+ const g = new RegExp(re.source, "g");
+ while ((m = g.exec(txt))) { corte = m.index; sinal = m[1]; } // último = menor precedência
+ if (corte >= 0) {
+ return {
+ op: mapa[sinal],
+ args: [parseInfixo(txt.slice(0, corte).trim(), nl),
+ parseInfixo(txt.slice(corte + sinal.length + 2).trim(), nl)],
+ };
+ }
+ }
+ const t = txt.trim();
+ if (/^-?\d+(\.\d+)?$/.test(t)) return { value: Number(t) };
+ if (/^[A-Za-z_]\w*$/.test(t)) return { field: t };
+ throw new Error(`linha ${nl}: expressão não reconhecida: "${t}"`);
+}
+ 
+/* ------------------------------------------------- manifesto de processo */
+ 
+function compilarProcesso(spec) {
+ const models = {};
+ const garante = (n) => (models[n] = models[n] || {});
+ 
+ for (const ent of spec.entidades) {
+ // derivados -> bindings (no próprio model)
+ for (const c of ent.campos.filter((x) => x.derivado)) {
+ const b = { field: c.nome, kind: c.derivado.kind, recalculate: "immediate" };
+ if (c.derivado.kind === "aggregate") {
+ Object.assign(b, {
+ sourceModel: c.derivado.sourceModel, foreignField: c.derivado.foreignField,
+ operator: c.derivado.operator,
+ });
+ if (c.derivado.operator !== "count") b.sourceField = c.derivado.sourceField;
+ } else {
+ b.expression = c.derivado.expression;
+ b.watchFields = [...colherCampos(c.derivado.expression)];
+ }
+ const m = garante(ent.nome);
+ (m.bindings = m.bindings || []).push(b);
+ }
+ 
+ // fluxo -> workflow
+ const fluxo = ent.campos.find((c) => c.fluxo);
+ if (fluxo) {
+ const t = [];
+ for (let i = 0; i < fluxo.values.length - 1; i++) {
+ t.push({ from: fluxo.values[i], to: fluxo.values[i + 1] });
+ }
+ garante(ent.nome).workflow = { stageField: fluxo.nome, transitions: t };
+ }
+ 
+ // invariante declarado no PAI -> regra vai para o FILHO (é lá que o Core exige)
+ for (const inv of ent.invariantes) {
+ const m = garante(inv.sourceModel);
+ (m.atomicInvariants = m.atomicInvariants || []).push({
+ name: `${inv.sourceModel}_${inv.sourceField}_lte_${ent.nome}_${inv.parentField}`,
+ kind: "relatedSumLteParentField",
+ parentModel: ent.nome,
+ parentLocalField: inv.parentLocalField,
+ sourceField: inv.sourceField,
+ parentField: inv.parentField,
+ message: inv.message,
+ });
+ }
+ 
+ for (const p of ent.protecoes) {
+ const m = garante(ent.nome);
+ (m.deleteProtection = m.deleteProtection || []).push(p);
+ }
+ }
+ return Object.keys(models).length ? { schemaVersion: 1, models } : null;
+}
+ 
+function colherCampos(e, acc = new Set()) {
+ if (!e || typeof e !== "object") return acc;
+ if (typeof e.field === "string") acc.add(e.field);
+ (e.args || []).forEach((a) => colherCampos(a, acc));
+ return acc;
+}
+ 
+/* ------------------------------------------------------- derivações do UI */
+ 
+// gênero pela primeira palavra do rótulo: usado só para "Todos" x "Todas".
+const FEMININO = /(ão|ade|agem|ência|ância|ção|são)$/i;
+function todos(label) {
+ const p = label.split(/\s+/)[0];
+ const fem = FEMININO.test(p) || (/a$/i.test(p) && !/^(dia|mapa|sistema|problema|tema)$/i.test(p));
+ return fem ? "Todas" : "Todos";
+}
+ 
+function derivarFiltros(ent) {
+ const enums = ent.campos.filter((c) => c.kind === "enum");
+ return ent.colunas
+ .map((col) => enums.find((c) => c.nome === col))
+ .filter((c) => c && !ent.semFiltro.includes(c.nome))
+ .map((c) => {
+ const label = ent.filtroRotulo[c.nome] || c.label || c.nome;
+ return {
+ field: c.nome, label, type: "select",
+ options: [{ label: todos(label), value: "" },
+ ...c.values.map((v) => ({ label: v, value: v }))],
+ };
+ });
+}
+ 
+const ROTULO_ABA = { dados: "Dados e parâmetros", parametros: "Parâmetros" };
+ 
+function derivarFormulario(ent, porNome) {
+ if (!ent.formulario) return undefined;
+ return ent.formulario.map((nome) => {
+ const c = porNome.get(nome);
+ const item = { field: nome };
+ if (c.kind === "boolean") item.widget = "checkbox"; // derivado
+ if (c.kind === "ref") {
+ const alvo = porNome.alvos.get(c.ref);
+ const st = alvo && alvo.campos.find((f) => f.nome === "status"
+ && f.kind === "enum" && f.values.includes("Ativo"));
+ if (st) item.referenceFilters = { status: "Ativo" }; // derivado do alvo
+ }
+ return item;
+ });
+}
+ 
+function compilarUI(spec) {
+ const porEntidade = new Map(spec.entidades.map((e) => [e.nome, e]));
+ const api = (spec.central.api || "").replace(/\/$/, "");
+ 
+ const ui = { schemaVersion: 2, backend: { metadataUrl: "/core/metadata" } };
+ 
+ ui.navigation = spec.navExtra.length
+ ? { mode: "mixed", items: spec.navExtra }
+ : { mode: "auto" };
+ 
+ if (spec.paginas.length) {
+ ui.pages = spec.paginas.map((p) => ({
+ id: p.id, path: p.path, label: p.label, title: p.label, // title derivado do label
+ section: p.section, icon: p.icon, order: p.order, blocks: p.blocks,
+ }));
+ }
+ 
+ ui.collections = spec.entidades.map((ent) => {
+ const porNome = new Map(ent.campos.map((c) => [c.nome, c]));
+ porNome.alvos = porEntidade;
+ 
+ const col = { model: ent.nome, mode: "dynamic", path: ent.rota, label: ent.rotulo, section: ent.secao };
+ if (ent.oculta) col.hidden = true;
+ 
+ const form = derivarFormulario(ent, porNome);
+ if (form) col.form = form;
+ 
+ const list = {};
+ const filtros = derivarFiltros(ent);
+ if (filtros.length) list.filters = filtros;
+ list.columns = ent.colunas;
+ 
+ if (ent.acoes.length) {
+ list.rowActions = ent.acoes.map((a) => {
+ if (a.type === "openDetailModal") return a;
+ const out = {
+ id: a.id, type: "apiAction", label: a.label, icon: a.icon,
+ method: a.method,
+ endpoint: a.endpoint.startsWith("/") ? a.endpoint : `${api}/${a.endpoint}`,
+ confirm: a.confirm,
+ };
+ if (a.hiddenWhen) out.hiddenWhen = a.hiddenWhen;
+ if (a.disabledWhen) out.disabledWhen = a.disabledWhen;
+ out.refresh = a.refresh || ["self", "all"]; // convenção
+ if (a.iconOnly) { delete out.icon; out.icon = a.icon; out.iconOnly = true; }
+ return out;
+ });
+ }
+ // derivado de somente-leitura
+ if (ent.somenteLeitura) list.builtInActions = { create: false, edit: false, delete: false };
+ col.list = list;
+ 
+ if (ent.grupos.length) {
+ const aba = ent.abaPadrao || "dados";
+ const tabs = [{
+ id: aba, label: ROTULO_ABA[aba] || aba, type: "form",
+ groups: ent.grupos.map((g) => {
+ const grupo = { label: g.label };
+ if (g.description) grupo.description = g.description;
+ grupo.fields = g.fields; grupo.columns = g.columns;
+ return grupo;
+ }),
+ }];
+ for (const gr of ent.gradesRelacionadas) {
+ const rel = ent.relacoes.find((r) => r.nome === gr.nome);
+ tabs.push({ id: gr.nome, label: rel.label, type: "readonlyGrid", relation: gr.nome, columns: gr.columns });
+ }
+ col.detailModal = {
+ enabled: true,
+ titleField: ent.titulo,
+ size: ent.modalTamanho || "xl", // convenção
+ defaultTab: aba,
+ tabs,
+ };
+ }
+ 
+ if (ent.relacoes.length) {
+ col.relations = {};
+ for (const r of ent.relacoes) {
+ col.relations[r.nome] = { model: r.model, foreignKey: r.foreignKey, label: r.label };
+ }
+ }
+ return col;
+ });
+ 
+ ui.pipelines = [];
+ ui.documents = [];
+ return ui;
+}
+ 
+/* --------------------------------------------- manifesto de domínio / app */
+ 
+function compilarDominio(spec) {
+ return {
+ schemaVersion: 1,
+ name: spec.central.slug,
+ slug: spec.central.slug,
+ models: spec.entidades.map((ent) => {
+ const fields = {};
+ for (const c of ent.campos) {
+ const f = { kind: c.kind };
+ if (c.label) f.label = c.label;
+ for (const k of ["required", "unique", "index", "searchable"]) if (c[k]) f[k] = true;
+ // REGRA DA CASA: campo alvo de binding NUNCA pode ser readonly.
+ // domainManifest.js: readonly && !computed => immutable no Mongoose,
+ // o que travaria a própria escrita do Core no recálculo.
+ if (c.readonly && !c.derivado) f.readonly = true;
+ if (c.kind === "enum") f.values = c.values;
+ if (c.kind === "ref") f.ref = c.ref;
+ if (c.default !== undefined) f.default = c.default;
+ fields[c.nome] = f;
+ }
+ const model = { name: ent.nome, fields };
+ if (ent.singular) model.singular = ent.singular;
+ if (ent.rota) model.basePath = ent.rota;
+ model.crud = { enabled: true, populateRefs: true };
+ if (ent.escrita) model.crud.roles = { write: ent.escrita };
+ return model;
+ }),
+ };
+}
+ 
+function compilarApp(spec) {
+ const mods = {};
+ for (const m of ["collections", "documents", "pipelines", "integrations", "omie", "assistants", "currencies"]) {
+ mods[m] = spec.central.modulos.includes(m);
+ }
+ return {
+ schemaVersion: 1,
+ id: spec.central.slug,
+ name: spec.central.slug.split("-").map((p) => p[0].toUpperCase() + p.slice(1)).join(" "),
+ slug: spec.central.slug,
+ appKind: "member-central",
+ tenancyModel: spec.central.tenancy || "single_tenant",
+ availability: "licensed",
+ accessMode: "tenant_members",
+ authorizationMode: "rbac",
+ deploymentMode: "dedicated",
+ modules: mods,
+ capabilities: spec.central.modulos.map((m) => `core.${m}`),
+ // travar versão EXATA da faixa: semver 0.x deixa o chão se mover
+ compatibility: { core: { minVersion: spec.central.core || "0.4.2", maxVersionExclusive: "0.5.0" } },
+ activation: { enabled: true, configurationVersion: 1, fields: [] },
+ };
+}
+ 
+/* ------------------------------------------------------------------- main */
+ 
+if (require.main === module) {
+ const entrada = process.argv[2];
+ const saida = process.argv[3] || path.join(path.dirname(entrada), "out");
+ const spec = parse(fs.readFileSync(entrada, "utf8"));
+ fs.mkdirSync(saida, { recursive: true });
+ const escrever = (n, o) => fs.writeFileSync(path.join(saida, n), JSON.stringify(o, null, 2) + "\n");
+ escrever("central.ui.json", compilarUI(spec));
+ escrever("central.manifest.json", compilarDominio(spec));
+ escrever("central.app.json", compilarApp(spec));
+ const proc = compilarProcesso(spec);
+ if (proc) escrever("central.process.json", proc);
+ const nc = spec.entidades.reduce((a, e) => a + e.campos.length, 0);
+ console.log(`ok — ${spec.entidades.length} entidades, ${nc} campos → ${saida}`);
+}
+ 
+module.exports = { parse, compilarUI, compilarDominio, compilarApp };
+D.3 — A camada da Central
+Noventa e seis linhas que levaram o arnês de 86,4% para 100%. Cobrem exatamente a classe que os validadores do Core não cobrem: referência entre modelos, chave de opção desconhecida, e a armadilha do readonly.
+Esta é a peça que eu levaria para qualquer Central, independente do resto da proposta. É barata e paga sozinha.
+`forge/crossref.js` — 96 linhas
+"use strict";
+/**
+ * Camada da Central — o que os validadores do Core não cobrem.
+ *
+ * Os validadores do Core conferem a gramática DENTRO de cada documento.
+ * Nenhum deles confere REFERÊNCIA ENTRE modelos antes do boot. Isto aqui
+ * fecha essa classe inteira, estaticamente, sem subir servidor.
+ */
+ 
+// opções aceitas por campo, lidas de domainManifest.js (0.4.2)
+const OPCOES = new Set(["kind", "label", "description", "required", "readonly",
+ "searchable", "unique", "index", "min", "max", "minLength", "maxLength",
+ "default", "ref", "values", "base", "computed"]);
+ 
+function checar(dominio, processo) {
+ const issues = [];
+ const add = (path, message) => issues.push({ path, message });
+ const models = new Map((dominio.models || []).map((m) => [m.name, m]));
+ 
+ for (const m of dominio.models || []) {
+ for (const [nome, f] of Object.entries(m.fields || {})) {
+ const p = `models.${m.name}.fields.${nome}`;
+ for (const k of Object.keys(f)) {
+ if (!OPCOES.has(k)) add(`${p}.${k}`, `opção de campo desconhecida: ${k}.`);
+ }
+ if (f.kind === "ref" && f.ref && !models.has(f.ref)) {
+ add(`${p}.ref`, `aponta para model inexistente: ${f.ref}.`);
+ }
+ // regra da casa: alvo de binding não pode ser readonly (viraria immutable)
+ if (f.readonly && !f.computed) {
+ const alvo = processo && processo.models && processo.models[m.name];
+ if (alvo && (alvo.bindings || []).some((b) => b.field === nome)) {
+ add(`${p}.readonly`, "campo alvo de binding não pode ser readonly: o Core não conseguiria recalcular.");
+ }
+ }
+ }
+ }
+ 
+ if (!processo) return issues;
+ 
+ const campos = (nome) => new Set(Object.keys((models.get(nome) || { fields: {} }).fields));
+ for (const [nomeModel, regras] of Object.entries(processo.models || {})) {
+ const p0 = `models.${nomeModel}`;
+ if (!models.has(nomeModel)) { add(p0, `regra de processo em model inexistente: ${nomeModel}.`); continue; }
+ const meus = campos(nomeModel);
+ 
+ for (const [i, b] of (regras.bindings || []).entries()) {
+ const p = `${p0}.bindings[${i}]`;
+ if (!meus.has(b.field)) add(`${p}.field`, `campo inexistente em ${nomeModel}: ${b.field}.`);
+ if (b.sourceModel && !models.has(b.sourceModel)) add(`${p}.sourceModel`, `model inexistente: ${b.sourceModel}.`);
+ if (b.sourceModel && models.has(b.sourceModel)) {
+ const outros = campos(b.sourceModel);
+ if (b.sourceField && !outros.has(b.sourceField)) add(`${p}.sourceField`, `campo inexistente em ${b.sourceModel}: ${b.sourceField}.`);
+ if (b.foreignField && !outros.has(b.foreignField)) add(`${p}.foreignField`, `campo inexistente em ${b.sourceModel}: ${b.foreignField}.`);
+ }
+ for (const c of colher(b.expression)) {
+ if (!meus.has(c)) add(`${p}.expression`, `campo inexistente em ${nomeModel}: ${c}.`);
+ }
+ for (const c of b.watchFields || []) {
+ if (!meus.has(c)) add(`${p}.watchFields`, `campo inexistente em ${nomeModel}: ${c}.`);
+ }
+ }
+ 
+ for (const [i, r] of (regras.atomicInvariants || []).entries()) {
+ const p = `${p0}.atomicInvariants[${i}]`;
+ if (!meus.has(r.sourceField)) add(`${p}.sourceField`, `campo inexistente em ${nomeModel}: ${r.sourceField}.`);
+ if (!meus.has(r.parentLocalField)) add(`${p}.parentLocalField`, `campo inexistente em ${nomeModel}: ${r.parentLocalField}.`);
+ if (!models.has(r.parentModel)) add(`${p}.parentModel`, `model inexistente: ${r.parentModel}.`);
+ else if (!campos(r.parentModel).has(r.parentField)) {
+ add(`${p}.parentField`, `campo inexistente em ${r.parentModel}: ${r.parentField}.`);
+ }
+ }
+ 
+ for (const [i, d] of (regras.deleteProtection || []).entries()) {
+ const p = `${p0}.deleteProtection[${i}]`;
+ if (!models.has(d.sourceModel)) add(`${p}.sourceModel`, `model inexistente: ${d.sourceModel}.`);
+ else if (!campos(d.sourceModel).has(d.foreignField)) {
+ add(`${p}.foreignField`, `campo inexistente em ${d.sourceModel}: ${d.foreignField}.`);
+ }
+ }
+ 
+ if (regras.workflow && !meus.has(regras.workflow.stageField)) {
+ add(`${p0}.workflow.stageField`, `campo inexistente em ${nomeModel}: ${regras.workflow.stageField}.`);
+ }
+ }
+ return issues;
+}
+ 
+function colher(e, acc = new Set()) {
+ if (!e || typeof e !== "object") return acc;
+ if (typeof e.field === "string") acc.add(e.field.split(".")[0]);
+ (e.args || []).forEach((a) => colher(a, acc));
+ return acc;
+}
+ 
+module.exports = { checar };
+D.4 — O portão
+Encadeia os validadores reais do Core com a camada da Central. Roda em menos de cinco milissegundos e devolve código de saída não-zero quando reprova, então serve direto em CI.
+`forge/gate.js` — 47 linhas
+#!/usr/bin/env node
+"use strict";
+/**
+ * PORTÃO — valida os manifestos gerados com os validadores REAIS do
+ * @oondemand/oon-core-back 0.4.2, usados como biblioteca. Custo: 0 token.
+ */
+const path = require("path");
+const fs = require("fs");
+const M = path.join(__dirname, "node_modules/@oondemand/oon-core-back/src/manifest");
+const { validateDomainManifest } = require(path.join(M, "domainManifest.js"));
+const { validateAppManifest } = require(path.join(M, "appManifest.js"));
+const { validateProcessManifest } = require(path.join(M, "processManifest.js"));
+const { checar: checarRefs } = require("./crossref.js");
+ 
+const dir = process.argv[2] || "out";
+const ler = (f) => JSON.parse(fs.readFileSync(path.join(dir, f), "utf8"));
+const checar = [
+ ["manifesto de domínio", validateDomainManifest, "central.manifest.json"],
+ ["manifesto de app", validateAppManifest, "central.app.json"],
+ ["manifesto de processo", validateProcessManifest, "central.process.json"],
+];
+ 
+let falhas = 0, t0 = process.hrtime.bigint();
+for (const [nome, fn, arq] of checar) {
+ if (!fs.existsSync(path.join(dir, arq))) { console.log(` -- ${nome} (ausente, ignorado)`); continue; }
+ try { fn(ler(arq)); console.log(` OK ${nome}`); }
+ catch (e) {
+ falhas++;
+ console.log(` FALHA ${nome} — ${e.message}`);
+ for (const i of (e.details && e.details.issues) || []) console.log(` ${i.path}: ${i.message}`);
+ }
+}
+// camada da Central: referências cruzadas (o Core não cobre)
+{
+ const dom = fs.existsSync(path.join(dir, "central.manifest.json")) ? ler("central.manifest.json") : null;
+ const proc = fs.existsSync(path.join(dir, "central.process.json")) ? ler("central.process.json") : null;
+ const issues = dom ? checarRefs(dom, proc) : [];
+ if (!issues.length) console.log(" OK referências cruzadas (camada da Central)");
+ else {
+ falhas++;
+ console.log(` FALHA referências cruzadas — ${issues.length} problema(s)`);
+ for (const i of issues) console.log(` ${i.path}: ${i.message}`);
+ }
+}
+const ms = Number(process.hrtime.bigint() - t0) / 1e6;
+console.log(` (${ms.toFixed(1)} ms, 0 token)`);
+process.exit(falhas ? 1 : 0);
+D.5 — O medidor de fidelidade
+É o arquivo mais sutil do pacote, e o que me deu mais trabalho para acertar. O ponto delicado é a canonização: antes de comparar, toda lista de objetos é reordenada por chave semântica, porque ordem de declaração não é conteúdo. Sem isso, uma coleção declarada em ordem diferente desloca todos os índices e a medição desaba de 98% para 14% — que foi exatamente o que aconteceu na minha primeira rodada.
+A métrica de procedência é deliberadamente conservadora: só conta como "derivada pelo compilador" a folha cujo valor não aparece em lugar nenhum do texto da spec. É um limite inferior, não um número inflado.
+`forge/compare.js` — 193 linhas
+#!/usr/bin/env node
+"use strict";
+/**
+ * Mede o compilador contra o artefato real de produção.
+ *
+ * Antes de comparar, as listas são CANONIZADAS: cada lista de objetos é
+ * reordenada por uma chave semântica (model, field, id, label...), porque a
+ * ordem de declaração não é conteúdo. A ordem é medida à parte.
+ *
+ * Métrica principal: FOLHAS (caminho canônico → valor escalar) do
+ * central.ui.json real, classificadas em igual / divergente / ausente.
+ * Folhas geradas que não existem no real entram como "extra".
+ *
+ * Procedência (limite inferior de derivação): folha correta cujo valor não
+ * aparece no texto da spec só pode ter vindo do compilador.
+ */
+ 
+const fs = require("fs");
+ 
+/* --------------------------------------------------------- canonicalização */
+ 
+const CHAVE = ["model", "field", "id", "title", "label", "value"];
+ 
+function chaveDe(obj) {
+ if (obj === null || typeof obj !== "object" || Array.isArray(obj)) return null;
+ for (const k of CHAVE) if (typeof obj[k] === "string") return `${k}=${obj[k]}`;
+ return null;
+}
+ 
+/** ordena listas de objetos por chave semântica; devolve {no, ordemOriginal} */
+function canonizar(o, ordens = [], caminho = "$") {
+ if (Array.isArray(o)) {
+ const filhos = o.map((v, i) => canonizar(v, ordens, `${caminho}[]`).no);
+ const chaves = o.map(chaveDe);
+ if (chaves.every((c) => c !== null) && new Set(chaves).size === chaves.length) {
+ const idx = chaves.map((c, i) => [c, i]).sort((a, b) => (a[0] < b[0] ? -1 : 1));
+ ordens.push({ caminho: caminho.replace(/\[\d+\]/g, "[]"), chaves });
+ return { no: idx.map(([, i]) => filhos[i]), chavesOrdenadas: idx.map(([c]) => c) };
+ }
+ return { no: filhos };
+ }
+ if (o === null || typeof o !== "object") return { no: o };
+ const out = {};
+ for (const k of Object.keys(o).sort()) out[k] = canonizar(o[k], ordens, `${caminho}.${k}`).no;
+ return { no: out };
+}
+ 
+function folhas(o, base = "$", acc = new Map()) {
+ if (o === null || typeof o !== "object") { acc.set(base, o); return acc; }
+ if (Array.isArray(o)) { o.forEach((v, i) => folhas(v, `${base}[${i}]`, acc)); return acc; }
+ for (const k of Object.keys(o)) folhas(o[k], `${base}.${k}`, acc); return acc;
+}
+ 
+/* --------- rotula cada folha com a seção do UI a que pertence (para relatório) */
+ 
+function secao(p) {
+ if (/^\$\.collections\[\d+\]\.list\.filters/.test(p)) return "list.filters (select + opções)";
+ if (/^\$\.collections\[\d+\]\.list\.rowActions/.test(p)) return "list.rowActions";
+ if (/^\$\.collections\[\d+\]\.list\.columns/.test(p)) return "list.columns";
+ if (/^\$\.collections\[\d+\]\.list\.builtInActions/.test(p)) return "list.builtInActions";
+ if (/^\$\.collections\[\d+\]\.detailModal\.tabs\[\d+\]\.groups/.test(p)) return "detailModal.groups";
+ if (/^\$\.collections\[\d+\]\.detailModal\.tabs\[\d+\]\.columns/.test(p)) return "detailModal.gradeRelacionada";
+ if (/^\$\.collections\[\d+\]\.detailModal/.test(p)) return "detailModal (esqueleto)";
+ if (/^\$\.collections\[\d+\]\.relations/.test(p)) return "relations";
+ if (/^\$\.collections\[\d+\]\.form/.test(p)) return "form";
+ if (/^\$\.collections\[\d+\]\.(model|mode|path|label|section|hidden)/.test(p)) return "collections (cabeçalho)";
+ if (/^\$\.pages/.test(p)) return "pages";
+ if (/^\$\.navigation/.test(p)) return "navigation";
+ return "raiz";
+}
+ 
+/* ------------------------------------------------------------------ medida */
+ 
+const real = JSON.parse(fs.readFileSync(process.argv[2], "utf8"));
+const ger = JSON.parse(fs.readFileSync(process.argv[3], "utf8"));
+const specSrc = fs.readFileSync(process.argv[4], "utf8");
+ 
+const ordR = [], ordG = [];
+const cr = canonizar(real, ordR).no;
+const cg = canonizar(ger, ordG).no;
+ 
+const fr = folhas(cr), fg = folhas(cg);
+const classe = new Map(), porSecao = new Map();
+const bump = (s, c) => {
+ if (!porSecao.has(s)) porSecao.set(s, { igual: 0, divergente: 0, ausente: 0, extra: 0 });
+ porSecao.get(s)[c]++;
+};
+ 
+for (const [p, v] of fr) {
+ const c = !fg.has(p) ? "ausente"
+ : JSON.stringify(fg.get(p)) === JSON.stringify(v) ? "igual" : "divergente";
+ classe.set(p, c); bump(secao(p), c);
+}
+for (const p of fg.keys()) if (!fr.has(p)) { classe.set(p, "extra"); bump(secao(p), "extra"); }
+ 
+const cont = { igual: 0, divergente: 0, ausente: 0, extra: 0 };
+for (const c of classe.values()) cont[c]++;
+const totalReal = fr.size;
+ 
+let derivadas = 0, copiadas = 0;
+const listaDerivadas = [];
+for (const [p, c] of classe) {
+ if (c !== "igual") continue;
+ const v = fr.get(p);
+ const s = String(v);
+ const naSpec = (typeof v === "string" && v.length > 1 && specSrc.includes(v))
+ || (typeof v !== "string" && s.length > 3 && specSrc.includes(s));
+ if (naSpec) copiadas++; else { derivadas++; listaDerivadas.push([p, v]); }
+}
+ 
+/* ordem das listas: compara a sequência de chaves onde as duas têm a mesma lista */
+// dedup por família de caminho: uma entrada por tipo de lista
+const fam = (arr) => {
+ const m = new Map();
+ for (const o of arr) if (!m.has(o.caminho)) m.set(o.caminho, o.chaves.join("|"));
+ return m;
+};
+const famR = fam(ordR), famG = fam(ordG);
+let listasIguais = 0, listasTotal = 0;
+const ordDif = [];
+for (const [c, v] of famR) {
+ if (!famG.has(c)) continue;
+ listasTotal++;
+ if (famG.get(c) === v) listasIguais++; else ordDif.push(c);
+}
+ 
+const pct = (n, d) => (d ? ((100 * n) / d).toFixed(1) : "0.0") + "%";
+const bytes = (f) => fs.statSync(f).size;
+const linhas = (f) => fs.readFileSync(f, "utf8").split("\n").filter((l) => l.trim()).length;
+ 
+console.log("=".repeat(70));
+console.log("FIDELIDADE — central.ui.json gerado x real (tazay, em produção)");
+console.log("=".repeat(70));
+console.log(`folhas no real ................ ${totalReal}`);
+console.log(` iguais ...................... ${cont.igual} (${pct(cont.igual, totalReal)})`);
+console.log(` divergentes ................. ${cont.divergente} (${pct(cont.divergente, totalReal)})`);
+console.log(` ausentes .................... ${cont.ausente} (${pct(cont.ausente, totalReal)})`);
+console.log(`folhas extra (geradas a mais) . ${cont.extra}`);
+console.log(`ordem das listas preservada ... ${listasIguais}/${listasTotal}` +
+ (ordDif.length ? ` (difere em: ${ordDif.join(", ")})` : ""));
+console.log("");
+console.log(`procedência das ${cont.igual} folhas corretas:`);
+console.log(` DERIVADAS pelo compilador ... ${derivadas} (${pct(derivadas, cont.igual)}) [valor ausente da spec]`);
+console.log(` copiadas da spec ............ ${copiadas} (${pct(copiadas, cont.igual)})`);
+console.log("");
+console.log("por seção do UI manifest:");
+const ord = [...porSecao.entries()].sort((a, b) => {
+ const t = (x) => x.igual + x.divergente + x.ausente;
+ return t(b[1]) - t(a[1]);
+});
+for (const [s, c] of ord) {
+ const t = c.igual + c.divergente + c.ausente;
+ console.log(` ${s.padEnd(32)} ${String(c.igual).padStart(3)}/${String(t).padEnd(3)} ${pct(c.igual, t).padStart(6)}` +
+ ` div ${String(c.divergente).padStart(2)} aus ${String(c.ausente).padStart(2)} extra ${c.extra}`);
+}
+ 
+if (process.env.DETALHE) {
+ console.log("\n" + "=".repeat(70) + "\nDIVERGÊNCIAS E AUSÊNCIAS\n" + "=".repeat(70));
+ for (const [p, c] of classe) {
+ if (c === "divergente") console.log(`div ${p}\n real: ${JSON.stringify(fr.get(p))}\n ger : ${JSON.stringify(fg.get(p))}`);
+ if (c === "ausente") console.log(`aus ${p} = ${JSON.stringify(fr.get(p))}`);
+ }
+ const ex = [...classe].filter(([, c]) => c === "extra");
+ if (ex.length) { console.log(`\nEXTRAS (${ex.length}):`); for (const [p] of ex) console.log(`ext ${p} = ${JSON.stringify(fg.get(p))}`); }
+}
+if (process.env.DERIVADAS) {
+ console.log("\n" + "=".repeat(70) + `\nAMOSTRA DAS ${derivadas} FOLHAS DERIVADAS\n` + "=".repeat(70));
+ for (const [p, v] of listaDerivadas.slice(0, 40)) console.log(` ${p} = ${JSON.stringify(v)}`);
+}
+ 
+if (process.argv[5]) {
+ const arq = JSON.parse(fs.readFileSync(process.argv[5], "utf8"));
+ console.log("\n" + "=".repeat(70) + "\nCOMPRESSÃO — o que o modelo precisa escrever\n" + "=".repeat(70));
+ let totB = 0, totL = 0;
+ for (const [rot, f] of Object.entries(arq.gerado)) {
+ totB += bytes(f); totL += linhas(f);
+ console.log(` gerado ${rot.padEnd(24)} ${String(bytes(f)).padStart(6)} B ${String(linhas(f)).padStart(4)} linhas`);
+ }
+ const sb = bytes(arq.spec), sl = linhas(arq.spec);
+ console.log(" " + "-".repeat(60));
+ console.log(` TOTAL GERADO ${String(totB).padStart(6)} B ${String(totL).padStart(4)} linhas`);
+ console.log(` SPEC (o que o LLM escreve) ${String(sb).padStart(6)} B ${String(sl).padStart(4)} linhas`);
+ console.log(" " + "-".repeat(60));
+ console.log(` razão de bytes .................. ${(totB / sb).toFixed(2)}x`);
+ console.log(` razão de linhas ................. ${(totL / sl).toFixed(2)}x`);
+ console.log(` tokens aprox. (bytes/3,5) ....... gerado ~${Math.round(totB / 3.5)} spec ~${Math.round(sb / 3.5)}`);
+ if (arq.referencia) {
+ let rb = 0, rl = 0;
+ for (const f of arq.referencia) { rb += bytes(f); rl += linhas(f); }
+ console.log(` artefatos reais equivalentes .... ${rb} B ${rl} linhas (ui.json + app.json + 5 models .js)`);
+ console.log(` razão contra o real ............. ${(rb / sb).toFixed(2)}x`);
+ }
+}
+D.6 — O arnês adversarial
+Quarenta e quatro mutações que deveriam ser rejeitadas. O que importa aqui não é o número de acertos, é o que a lista das que passam ensina: quando as seis falhas caem todas na mesma classe, você não tem seis bugs, tem um buraco de desenho. E buraco de desenho se fecha uma vez.
+O controle está no gate.js: os manifestos válidos continuam passando. Sem esse controle, um validador que diz não para tudo marcaria 44/44.
+`forge/adversarial.js` — 129 linhas
+#!/usr/bin/env node
+"use strict";
+/**
+ * Arnês adversarial do PORTÃO.
+ *
+ * Invariante sob teste: manifesto inválido NUNCA passa.
+ * Método: partir dos manifestos válidos gerados e aplicar mutações que
+ * deveriam ser rejeitadas. Toda mutação que PASSA é uma lacuna do validador
+ * — e é justamente o que a camada de verificação da Central precisa cobrir.
+ */
+ 
+const path = require("path");
+const fs = require("fs");
+const M = path.join(__dirname, "node_modules/@oondemand/oon-core-back/src/manifest");
+const { validateDomainManifest } = require(M + "/domainManifest.js");
+const { validateAppManifest } = require(M + "/appManifest.js");
+const { validateProcessManifest } = require(M + "/processManifest.js");
+const { checar } = require("./crossref.js");
+ 
+/** o PORTÃO completo: validadores do Core + camada da Central */
+function portao({ dom, app, proc }) {
+ validateDomainManifest(dom);
+ validateAppManifest(app);
+ if (proc) validateProcessManifest(proc);
+ const issues = checar(dom, proc);
+ if (issues.length) throw new Error(`camada da Central: ${issues.length} problema(s)`);
+}
+ 
+const dir = process.argv[2] || "out-titulos";
+const ler = (f) => JSON.parse(fs.readFileSync(path.join(dir, f), "utf8"));
+const clone = (o) => JSON.parse(JSON.stringify(o));
+const DOM = ler("central.manifest.json");
+const APP = ler("central.app.json");
+const PROC = ler("central.process.json");
+const c0 = (d) => d.models[0].fields;
+ 
+/* [rótulo, validador, mutação] — todas devem ser REJEITADAS */
+const MUTACOES = [
+ // ---- domínio: gramática de campo
+ ["tipo de campo inexistente", "dom", () => { const d = clone(DOM); c0(d).nome.kind = "texto"; return d; }],
+ ["enum sem values", "dom", () => { const d = clone(DOM); c0(d).situacao = { kind: "enum" }; return d; }],
+ ["enum com values duplicados", "dom", () => { const d = clone(DOM); c0(d).situacao.values = ["Ativo", "Ativo"]; return d; }],
+ ["enum com values vazio", "dom", () => { const d = clone(DOM); c0(d).situacao.values = []; return d; }],
+ ["ref sem alvo", "dom", () => { const d = clone(DOM); c0(d).nome = { kind: "ref" }; return d; }],
+ ["min maior que max", "dom", () => { const d = clone(DOM); c0(d).nome.min = 10; c0(d).nome.max = 2; return d; }],
+ ["minLength maior que maxLength", "dom", () => { const d = clone(DOM); c0(d).nome.minLength = 9; c0(d).nome.maxLength = 3; return d; }],
+ ["required não booleano", "dom", () => { const d = clone(DOM); c0(d).nome.required = "sim"; return d; }],
+ ["nome de campo inválido", "dom", () => { const d = clone(DOM); c0(d)["2-nome"] = { kind: "string" }; return d; }],
+ ["label não texto", "dom", () => { const d = clone(DOM); c0(d).nome.label = 42; return d; }],
+ // ---- domínio: estrutura
+ ["model com nome minúsculo", "dom", () => { const d = clone(DOM); d.models[0].name = "fornecedor"; return d; }],
+ ["model duplicada", "dom", () => { const d = clone(DOM); d.models.push(clone(d.models[0])); return d; }],
+ ["model sem campos", "dom", () => { const d = clone(DOM); d.models[0].fields = {}; return d; }],
+ ["basePath sem barra", "dom", () => { const d = clone(DOM); d.models[0].basePath = "fornecedores"; return d; }],
+ ["schemaVersion errado", "dom", () => { const d = clone(DOM); d.schemaVersion = 2; return d; }],
+ ["lista de models vazia", "dom", () => { const d = clone(DOM); d.models = []; return d; }],
+ ["ciclo entre campos computados", "dom", () => {
+ const d = clone(DOM);
+ c0(d).a = { kind: "number", computed: { op: "add", args: [{ field: "b" }, { value: 1 }] } };
+ c0(d).b = { kind: "number", computed: { op: "add", args: [{ field: "a" }, { value: 1 }] } };
+ return d;
+ }],
+ ["computed com operador inexistente", "dom", () => {
+ const d = clone(DOM);
+ c0(d).a = { kind: "number", computed: { op: "exponenciar", args: [{ value: 2 }] } };
+ return d;
+ }],
+ // ---- app
+ ["tenancyModel inválido", "app", () => { const a = clone(APP); a.tenancyModel = "multi"; return a; }],
+ ["appKind inválido", "app", () => { const a = clone(APP); a.appKind = "central"; return a; }],
+ ["availability inválida", "app", () => { const a = clone(APP); a.availability = "gratis"; return a; }],
+ ["compatibility ausente", "app", () => { const a = clone(APP); delete a.compatibility; return a; }],
+ ["minVersion não semver", "app", () => { const a = clone(APP); a.compatibility.core.minVersion = "recente"; return a; }],
+ ["faixa de versão invertida", "app", () => {
+ const a = clone(APP); a.compatibility.core = { minVersion: "0.9.0", maxVersionExclusive: "0.5.0" }; return a;
+ }],
+ ["chave extra em compatibility.core", "app", () => {
+ const a = clone(APP); a.compatibility.core.exato = "0.4.2"; return a;
+ }],
+ // ---- processo
+ ["binding kind inválido", "proc", () => { const p = clone(PROC); p.models.Titulo.bindings[0].kind = "somatorio"; return p; }],
+ ["operador de agregação inválido", "proc", () => { const p = clone(PROC); p.models.Titulo.bindings[0].operator = "media"; return p; }],
+ ["aggregate sem sourceModel", "proc", () => { const p = clone(PROC); delete p.models.Titulo.bindings[0].sourceModel; return p; }],
+ ["recalculate inválido", "proc", () => { const p = clone(PROC); p.models.Titulo.bindings[0].recalculate = "depois"; return p; }],
+ ["operador de expressão inexistente", "proc", () => { const p = clone(PROC); p.models.Titulo.bindings[1].expression.op = "potencia"; return p; }],
+ ["expressão com dois discriminadores", "proc", () => {
+ const p = clone(PROC); p.models.Titulo.bindings[1].expression = { field: "valor", value: 1 }; return p;
+ }],
+ ["invariante com kind desconhecido", "proc", () => { const p = clone(PROC); p.models.Baixa.atomicInvariants[0].kind = "somaMenorQue"; return p; }],
+ ["invariante sem mensagem", "proc", () => { const p = clone(PROC); delete p.models.Baixa.atomicInvariants[0].message; return p; }],
+ ["tolerance negativa", "proc", () => { const p = clone(PROC); p.models.Baixa.atomicInvariants[0].tolerance = -1; return p; }],
+ ["deleteProtection sem mensagem", "proc", () => { const p = clone(PROC); delete p.models.Titulo.deleteProtection[0].message; return p; }],
+ ["workflow sem stageField", "proc", () => { const p = clone(PROC); delete p.models.Titulo.workflow.stageField; return p; }],
+ ["transição sem destino", "proc", () => { const p = clone(PROC); delete p.models.Titulo.workflow.transitions[0].to; return p; }],
+ ["match com operador proibido", "proc", () => {
+ const p = clone(PROC); p.models.Titulo.deleteProtection[0].match = { situacao: { gt: "Aberto" } }; return p;
+ }],
+ // ---- suspeitas de lacuna (referências cruzadas): também devem ser rejeitadas
+ ["ref para model inexistente", "dom", () => { const d = clone(DOM); d.models[1].fields.fornecedor.ref = "Inexistente"; return d; }],
+ ["opção de campo desconhecida", "dom", () => { const d = clone(DOM); c0(d).nome.obrigatorio = true; return d; }],
+ ["binding para model inexistente", "proc", () => { const p = clone(PROC); p.models.Titulo.bindings[0].sourceModel = "Inexistente"; return p; }],
+ ["invariante sobre campo inexistente", "proc", () => { const p = clone(PROC); p.models.Baixa.atomicInvariants[0].parentField = "naoExiste"; return p; }],
+ ["binding sobre campo inexistente", "proc", () => { const p = clone(PROC); p.models.Titulo.bindings[1].expression.args[0].field = "naoExiste"; return p; }],
+ ["regra de processo em model inexistente", "proc", () => { const p = clone(PROC); p.models.Fantasma = clone(p.models.Titulo); return p; }],
+];
+ 
+let rejeitadas = 0;
+const passaram = [];
+console.log("=".repeat(70));
+console.log(`ARNÊS ADVERSARIAL DO PORTÃO — ${MUTACOES.length} mutações inválidas`);
+console.log("=".repeat(70));
+const t0 = process.hrtime.bigint();
+for (const [rotulo, alvo, mut] of MUTACOES) {
+ let passou = false;
+ const tripe = { dom: DOM, app: APP, proc: PROC };
+ tripe[alvo] = mut();
+ try { portao(tripe); passou = true; } catch { /* rejeitado: correto */ }
+ if (passou) { passaram.push(rotulo); console.log(` PASSOU ${rotulo} <-- lacuna`); }
+ else { rejeitadas++; }
+}
+const ms = Number(process.hrtime.bigint() - t0) / 1e6;
+console.log("-".repeat(70));
+console.log(`rejeitadas: ${rejeitadas}/${MUTACOES.length} (${((100 * rejeitadas) / MUTACOES.length).toFixed(1)}%)`);
+console.log(`lacunas : ${passaram.length}`);
+console.log(`tempo : ${ms.toFixed(1)} ms | custo: 0 token`);
+if (passaram.length) {
+ console.log("\nLacunas do validador do Core (a camada da Central precisa cobrir):");
+ for (const p of passaram) console.log(` - ${p}`);
+}
+D.7 — As duas specs
+A primeira é a Central real, com 96 campos, cinco modelos e todas as construções complicadas. É a que produziu os 98%.
+`forge/spec/tazay.spec` — 204 linhas
+central tazay-cte-contaspagar
+ tenancy single_tenant
+ modulos collections pipelines omie
+ api /api/tazay/contas-pagar
+ 
+entidade CategoriaOmie
+ rotulo Categorias Omie
+ singular categoriaOmie
+ rota /categorias-omie
+ secao Configurações
+ oculta
+ campo codigoCategoriaOmie texto obrig unico "Código da categoria Omie"
+ campo nome texto obrig idx "Categoria"
+ campo descricao texto "Descrição"
+ campo status enum(Ativo|Inativo) obrig idx pad=Ativo "Status"
+ campo ultimaSincronizacaoEm data "Última sincronização"
+ colunas codigoCategoriaOmie nome status ultimaSincronizacaoEm
+ 
+entidade ContaCorrenteOmie
+ rotulo Contas correntes Omie
+ singular contaCorrenteOmie
+ rota /contas-correntes-omie
+ secao Configurações
+ oculta
+ campo codigoContaCorrenteOmie numero obrig unico "Código da conta corrente Omie"
+ campo nome texto obrig idx "Conta corrente"
+ campo tipo texto "Tipo"
+ campo codigoIntegracao texto "Código de integração"
+ campo status enum(Ativo|Inativo) obrig idx pad=Ativo "Status"
+ campo ultimaSincronizacaoEm data "Última sincronização"
+ colunas codigoContaCorrenteOmie nome tipo status ultimaSincronizacaoEm
+ 
+entidade Compra
+ rotulo Documentos fiscais
+ singular documentoFiscal
+ rota /compras
+ secao Operação
+ somente-leitura
+ titulo numeroDocumentoFiscal
+ escrita integracao-sistema
+ campo chaveExterna texto obrig unico "Chave externa"
+ campo instanceId texto obrig idx pad=default "Instância Omie"
+ campo codigoRecebimentoOmie numero obrig idx "Código do recebimento Omie"
+ campo chaveDocumentoFiscal texto idx "Chave do documento fiscal"
+ campo tipoDocumentoFiscal enum(NF-e|CT-e) obrig idx "Tipo de documento"
+ campo modeloDocumentoFiscal texto idx "Modelo fiscal"
+ campo numeroDocumentoFiscal texto obrig idx "Número do documento"
+ campo serieDocumentoFiscal texto "Série"
+ campo dataEmissaoDocumentoFiscal texto idx "Data de emissão"
+ campo codigoEtapaRecebimentoOmie texto idx "Código da etapa no Omie"
+ campo statusDocumentoOmie enum(Pendente|Recebido|Cancelado|Devolvido|Denegado) obrig idx pad=Pendente "Status no Omie"
+ campo codigoPedidoOmie numero idx "Código do pedido de compra vinculado"
+ campo codigoPedidoIntegracao texto "Código de integração do pedido"
+ campo numeroPedido texto "Número do pedido de compra vinculado"
+ campo codigoFornecedorOmie numero obrig idx "Código do fornecedor Omie"
+ campo codigoFornecedorIntegracao texto "Código de integração do fornecedor"
+ campo nomeFornecedor texto idx "Fornecedor"
+ campo codigoCategoriaOmie texto idx "Categoria original do documento"
+ campo rateioCategoriasJson texto "Rateio original de categorias"
+ campo codigoContaCorrenteOmie numero "Conta corrente original do documento"
+ campo valorFaturado moeda obrig pad=0 "Valor do documento"
+ campo situacaoPedidoOmieOrigem enum(Pendente|Faturado|Recebido|Cancelado|Encerrado|Recebido parcialmente|Faturado parcialmente) idx pad=Pendente "Situação no Omie"
+ campo etapa enum(Faturado pelo fornecedor|Recebido|Pago|Concluído) obrig idx pad=Faturado pelo fornecedor "Etapa operacional"
+ campo statusAprovacao enum(Pendente|Aprovada|Recusada) obrig idx pad=Pendente "Processamento automático"
+ campo aprovadaEm data "Processada em"
+ campo aprovadaPor texto "Processada por"
+ campo recusadaEm data "Recusada em"
+ campo recusadaPor texto "Recusada por"
+ campo recusaOmieRevisao numero pad=0 "Revisão da recusa no Omie"
+ campo recusaOmiePendente bool pad=false "Recusa pendente no Omie"
+ campo acaoAprovacaoManualDisponivel bool pad=false "Ações manuais de aprovação disponíveis"
+ campo categoriaFinanceiraId ref(CategoriaOmie) "Categoria aplicada"
+ campo codigoCategoriaFinanceiraOmie texto idx "Código da categoria aplicada"
+ campo nomeCategoriaFinanceira texto "Categoria aplicada"
+ campo contaCorrenteFinanceiraId ref(ContaCorrenteOmie) "Conta corrente aplicada"
+ campo codigoContaCorrenteFinanceiraOmie numero "Código da conta corrente aplicada"
+ campo nomeContaCorrenteFinanceira texto "Conta corrente aplicada"
+ campo entradaFaturadoEm data "Entrada em faturado pelo fornecedor"
+ campo dataVencimento texto idx "Vencimento calculado"
+ campo contaPagarId ref(ContaPagarAgrupada) "Conta a pagar agrupada"
+ campo origem enum(Omie) pad=Omie "Origem"
+ campo statusConclusaoOmie enum(Não enviado|Pendente|Concluído|Erro) idx pad=Não enviado "Conclusão no Omie"
+ campo conclusaoOmieRevisao numero pad=0 "Revisão da conclusão no Omie"
+ campo concluidaNoOmieEm data "Concluída no Omie em"
+ campo canceladaEm data "Cancelada no Omie em"
+ campo canceladaAposPagamento bool pad=false "Cancelada após pagamento"
+ campo observacaoOperacional texto "Observação operacional"
+ campo statusIntegracao enum(Não sincronizado|Sincronizado|Pendente|Erro) idx pad=Não sincronizado "Status da integração"
+ campo ultimaSincronizacaoEm data "Última sincronização"
+ campo ultimoErro texto "Último erro"
+ colunas numeroDocumentoFiscal tipoDocumentoFiscal nomeFornecedor valorFaturado statusDocumentoOmie etapa statusAprovacao nomeCategoriaFinanceira nomeContaCorrenteFinanceira dataVencimento statusIntegracao
+ filtro-rotulo statusAprovacao "Aprovação"
+ filtro-rotulo statusIntegracao "Integração"
+ grupo Documento fiscal: numeroDocumentoFiscal tipoDocumentoFiscal modeloDocumentoFiscal serieDocumentoFiscal dataEmissaoDocumentoFiscal chaveDocumentoFiscal nomeFornecedor valorFaturado statusDocumentoOmie codigoEtapaRecebimentoOmie etapa statusAprovacao dataVencimento
+ grupo Pedido de compra relacionado: codigoPedidoOmie numeroPedido
+ grupo Integração: codigoRecebimentoOmie statusConclusaoOmie ultimaSincronizacaoEm ultimoErro canceladaEm canceladaAposPagamento observacaoOperacional
+ acao aprovarDocumentoFiscal "Aprovar" POST compras/:id/aprovar
+ icone check
+ oculta-se acaoAprovacaoManualDisponivel = false
+ confirma "Aprovar documento fiscal" "O documento será aprovado e criará ou atualizará a conta a pagar agrupada na Central."
+ acao recusarDocumentoFiscal "Recusar" POST compras/:id/recusar
+ icone close
+ oculta-se acaoAprovacaoManualDisponivel = false
+ confirma "Recusar documento fiscal" "O recebimento fiscal será excluído no Omie e o documento será marcado como recusado e cancelado na Central."
+ 
+entidade ContaPagarAgrupada
+ rotulo Contas a pagar agrupadas
+ singular contaPagarAgrupada
+ rota /contas-pagar-agrupadas
+ secao Financeiro
+ somente-leitura
+ titulo nomeFornecedor
+ escrita integracao-sistema
+ campo chaveAgrupamento texto obrig unico "Chave do agrupamento"
+ campo chaveAtiva texto unico esparso "Chave ativa"
+ campo instanceId texto obrig idx pad=default "Instância Omie"
+ campo codigoFornecedorOmie numero obrig idx "Código do fornecedor Omie"
+ campo nomeFornecedor texto idx "Fornecedor"
+ campo tipoDocumentoFiscal enum(NF-e|CT-e) obrig idx "Tipo de documento"
+ campo dataVencimento texto obrig idx "Vencimento"
+ campo geracao numero obrig pad=1 "Geração"
+ campo codigoLancamentoIntegracao texto obrig unico "Código de integração"
+ campo codigoLancamentoOmie numero idx "Código do lançamento Omie"
+ campo quantidadeCompras numero pad=0 "Quantidade de documentos"
+ campo valorTotal moeda pad=0 "Valor total"
+ campo categoriaOmieId ref(CategoriaOmie) "Categoria aplicada"
+ campo codigoCategoriaOmie texto idx "Código da categoria aplicada"
+ campo nomeCategoriaOmie texto "Categoria aplicada"
+ campo contaCorrenteOmieId ref(ContaCorrenteOmie) "Conta corrente aplicada"
+ campo codigoContaCorrenteOmie numero "Código da conta corrente aplicada"
+ campo nomeContaCorrenteOmie texto "Conta corrente aplicada"
+ campo status enum(Pendente envio|Pendente sincronização|Aberta|Paga|Pagamento cancelado|Exclusão pendente|Excluída|Erro) obrig idx pad=Pendente envio "Status"
+ campo statusEnvioOmie enum(Não enviado|Pendente|Enviado|Erro) obrig idx pad=Não enviado "Envio para o Omie"
+ campo statusPagamentoOmie enum(Não consultado|Consultando|Pendente|Parcial|Pago|Cancelado|Erro) obrig idx pad=Não consultado "Pagamento no Omie"
+ campo acaoSincronizacaoManualDisponivel bool pad=false "Ações manuais de sincronização disponíveis"
+ campo statusTituloOmie texto "Status original do título no Omie"
+ campo valorPagarOmie moeda "Valor pendente no Omie"
+ campo revisao numero pad=0 "Revisão"
+ campo exclusaoOmieRevisao numero pad=0 "Revisão da exclusão no Omie"
+ campo consultaPagamentoRevisao numero pad=0 "Revisão da consulta de pagamento"
+ campo ultimaConsultaPagamentoEm data "Última consulta do pagamento"
+ campo ultimaSincronizacaoEm data "Última sincronização"
+ campo ultimoErro texto "Último erro"
+ colunas nomeFornecedor tipoDocumentoFiscal dataVencimento geracao quantidadeCompras valorTotal categoriaOmieId contaCorrenteOmieId statusEnvioOmie statusPagamentoOmie status codigoLancamentoIntegracao
+ sem-filtro tipoDocumentoFiscal status
+ relacao documentos <- Compra.contaPagarId "NF-es e CT-es relacionadas"
+ grade-relacionada documentos: numeroDocumentoFiscal tipoDocumentoFiscal nomeFornecedor valorFaturado statusDocumentoOmie statusAprovacao dataVencimento statusIntegracao
+ grupo Conta agrupada: nomeFornecedor tipoDocumentoFiscal dataVencimento quantidadeCompras valorTotal status codigoLancamentoIntegracao codigoLancamentoOmie
+ grupo Situação no Omie: statusEnvioOmie statusPagamentoOmie statusTituloOmie valorPagarOmie ultimaConsultaPagamentoEm
+ grupo Integração 1col: revisao consultaPagamentoRevisao ultimaSincronizacaoEm ultimoErro
+ acao enviarContaPagar "Enviar para Omie" POST contas/:id/enviar
+ icone send
+ oculta-se acaoSincronizacaoManualDisponivel = false
+ desativa-se status em Paga|Excluída|Exclusão pendente
+ confirma "Enviar conta a pagar para o Omie" "A conta agrupada será criada ou atualizada no Omie."
+ acao verificarPagamentoContaPagar "Verificar pagamento" POST contas/:id/consultar-pagamento
+ icone refresh
+ oculta-se acaoSincronizacaoManualDisponivel = false
+ desativa-se statusEnvioOmie em Não enviado|Pendente|Erro
+ confirma "Verificar pagamento no Omie" "Será feita uma única consulta ao título no Omie para atualizar a situação do pagamento na Central."
+ acao excluirContaOmie "Excluir conta" DELETE contas/:id
+ icone trash so-icone
+ desativa-se status em Paga|Excluída|Exclusão pendente
+ confirma "Excluir e regenerar conta a pagar" "A conta será excluída no Omie. A Central criará automaticamente uma nova conta e atualizará as referências dos documentos elegíveis."
+ 
+entidade ConfiguracaoContasPagar
+ rotulo Parâmetros da operação
+ singular configuracaoContasPagar
+ rota /configuracoes-contas-pagar
+ secao Configurações
+ oculta
+ titulo chave
+ modal-tamanho lg
+ aba-padrao parametros
+ campo chave texto obrig unico pad=default "Configuração"
+ campo aprovarCompraAutomatico bool pad=true "Aprovar automático documento fiscal e gerar contas a pagar agrupado"
+ campo enviarContaPagarOmieAutomatico bool pad=true "Sincronizar automático o Contas a Pagar com o Omie"
+ campo categoriaPadraoId ref(CategoriaOmie) "Categoria padrão"
+ campo contaCorrentePadraoId ref(ContaCorrenteOmie) "Conta corrente padrão"
+ colunas categoriaPadraoId contaCorrentePadraoId aprovarCompraAutomatico enviarContaPagarOmieAutomatico
+ formulario aprovarCompraAutomatico enviarContaPagarOmieAutomatico categoriaPadraoId contaCorrentePadraoId
+ grupo Automação: aprovarCompraAutomatico enviarContaPagarOmieAutomatico
+ descricao "Quando uma automação estiver desabilitada, a Central exibirá as ações manuais correspondentes nos documentos fiscais ou nas contas a pagar agrupadas."
+ grupo Padrões financeiros: categoriaPadraoId contaCorrentePadraoId
+ acao-abrir-modal "Configurar" parametros
+ acao resetarBaseDados "Resetar base de dados" POST configuracao/resetar-base
+ icone trash
+ atualiza all
+ confirma "Resetar toda a base de dados" "Todos os dados da Central serão apagados, incluindo configurações e acessos. A aplicação voltará ao primeiro acesso. Esta ação não pode ser desfeita."
+ 
+pagina configuracoes /configuracoes "Configurações"
+ secao Sistema
+ icone ⚙
+ ordem 900
+ cartoes 2 "Configurações da Central"
+ cartao "Integração Omie" /configuracoes/integracao-omie "Abrir integração" "Credenciais, sincronização, webhooks, gatilhos, parâmetros enviados e histórico organizados em abas."
+ cartao "Parâmetros da operação" /configuracoes-contas-pagar "Configurar" "Conta corrente, categoria padrão e automações aplicadas às NF-es e CT-es pendentes."
+ cartao "Categorias Omie" /categorias-omie "Ver categorias" "Consulte as categorias financeiras carregadas pela lista Omie."
+ cartao "Contas correntes Omie" /contas-correntes-omie "Ver contas correntes" "Consulte as contas correntes carregadas pela lista Omie."
+ 
+navegacao-extra "Tickets de Integração" /configuracoes/integracao-omie/tickets
+ icone ↔
+ secao Sistema
+ ordem 850
+A segunda é sintética e curta, feita para exercitar o que a tazay não usa: fluxo de estados, campos derivados por agregação e por expressão, invariante atômico e proteção de exclusão.
+`forge/spec/titulos.spec` — 48 linhas
+central titulos-a-pagar
+ tenancy multi_tenant
+ modulos collections pipelines
+ api /api/titulos
+ 
+entidade Fornecedor
+ rotulo Fornecedores
+ rota /fornecedores
+ secao Cadastros
+ titulo nome
+ campo nome texto obrig busca "Fornecedor"
+ campo cnpj texto obrig unico "CNPJ"
+ campo situacao enum(Ativo|Inativo) obrig pad=Ativo "Situação"
+ colunas nome cnpj situacao
+ grupo Identificação: nome cnpj situacao
+ protege-exclusao Titulo.fornecedor "Não é possível excluir um fornecedor com títulos lançados."
+ 
+entidade Titulo
+ rotulo Títulos a pagar
+ rota /titulos
+ secao Financeiro
+ titulo numero
+ campo numero texto obrig unico busca "Número"
+ campo fornecedor ref(Fornecedor) obrig idx "Fornecedor"
+ campo vencimento data obrig idx "Vencimento"
+ campo valor moeda obrig "Valor do título"
+ campo valorPago moeda = soma(Baixa.valor por titulo) "Valor pago"
+ campo saldo moeda = valor - valorPago "Saldo"
+ campo situacao fluxo [Aberto -> Parcial -> Quitado] obrig idx pad=Aberto "Situação"
+ colunas numero fornecedor vencimento valor valorPago saldo situacao
+ grupo Título: numero fornecedor vencimento valor situacao
+ grupo Valores 1col: valorPago saldo
+ relacao baixas <- Baixa.titulo "Baixas do título"
+ grade-relacionada baixas: data valor meio
+ invariante soma(Baixa.valor por titulo) <= valor "A soma das baixas não pode ultrapassar o valor do título."
+ protege-exclusao Baixa.titulo "Não é possível excluir um título que já tem baixa lançada."
+ 
+entidade Baixa
+ rotulo Baixas
+ rota /baixas
+ secao Financeiro
+ titulo data
+ campo titulo ref(Titulo) obrig idx "Título"
+ campo data data obrig "Data da baixa"
+ campo valor moeda obrig "Valor pago"
+ campo meio enum(PIX|Boleto|TED|Dinheiro) obrig "Meio de pagamento"
+ colunas titulo data valor meio
+ grupo Baixa: titulo data valor meio
+D.8 — O montador deste documento
+Por consistência com o que eu prego no documento: o próprio documento é compilado. Este script injeta os arquivos de código lendo o disco, então o que você acabou de ler é o código que roda.
+`forge/build-doc.js` — 39 linhas
+#!/usr/bin/env node
+"use strict";
+/**
+ * Monta o documento final a partir das partes em doc/ e injeta o código-fonte
+ * lendo os arquivos de verdade. O código impresso no documento é, por
+ * construção, exatamente o que roda — não tem como divergir.
+ *
+ * Marcador aceito na fonte: <!--CODIGO caminho/arquivo.js-->
+ */
+ 
+const fs = require("fs");
+const path = require("path");
+ 
+const RAIZ = path.join(__dirname, "..");
+const PARTES = ["doc/01-proposta.md", "doc/02-briefing.md"];
+const SAIDA = path.join(RAIZ, "PROPOSTA-COMPILADOR-DE-INTENCAO.md");
+ 
+let total = 0, arquivos = 0;
+ 
+function injetar(md) {
+ return md.replace(/<!--CODIGO\s+([^\s>]+)\s*-->/g, (_, rel) => {
+ const abs = path.join(RAIZ, rel);
+ const src = fs.readFileSync(abs, "utf8").replace(/\s+$/, "");
+ const n = src.split("\n").length;
+ total += n; arquivos++;
+ const lang = rel.endsWith(".js") ? "javascript"
+ : rel.endsWith(".sh") ? "bash"
+ : rel.endsWith(".json") ? "json" : "text";
+ return `**\`${rel}\`** — ${n} linhas\n\n\`\`\`${lang}\n${src}\n\`\`\``;
+ });
+}
+ 
+const partes = PARTES.map((p) => injetar(fs.readFileSync(path.join(RAIZ, p), "utf8").replace(/\s+$/, "")));
+fs.writeFileSync(SAIDA, partes.join("\n\n") + "\n");
+ 
+const bytes = fs.statSync(SAIDA).size;
+const linhas = fs.readFileSync(SAIDA, "utf8").split("\n").length;
+console.log(`ok — ${path.basename(SAIDA)}: ${linhas} linhas, ${(bytes / 1024).toFixed(0)} KB`);
+console.log(` ${arquivos} arquivos de código injetados, ${total} linhas`);
+Fecho
+Você já construiu a parte difícil, e eu acho que sem enxergar assim.
+Manifesto com gramática fechada, validadores expostos como biblioteca, erros estruturados com caminho, compilador de manifesto para definição de model, e atomicInvariants com verificação dentro da transação: isso é infraestrutura de compilador. É o que quase ninguém tem, e é o que separa "a IA gera CRUD e alguém reza" de "a IA propõe, o símbolo garante, e sai relatório de prova junto".
+O que falta não é IA melhor. É a camada determinística entre a IA e os seus manifestos, para que a IA escreva 197 linhas em vez de 1.420 — e para que as outras 1.223 nasçam certas por construção. Eu escrevi essa camada em um dia, em modo protótipo, e ela reproduziu 98% de uma Central sua que está em produção. Não porque eu seja rápido: porque o terreno que você preparou é bom.
+Aí a conta muda de sinal. Cada Central criada deixa o sistema mais barato, não mais caro. Você não vai precisar dos seiscentos reais por mês para sempre — vai precisar deles por umas três semanas, enquanto constrói o compilador.
+Qualquer parte disto que você quiser, é sua: o protótipo inteiro, o oon-lint, o crossref.js, o arnês. Estou construindo Central em cima da OonCore para os meus clientes, então o que faz a sua plataforma mais barata de operar me serve direto. E eu prefiro construir isso com você do que ao lado.
+— Gustavo

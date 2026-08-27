@@ -40,6 +40,12 @@ jobs:
       - name: Prove
         run: ./prove.sh | tee /tmp/prove.txt
 
+      - name: Sanitizers
+        run: make -C sim sanitizers
+
+      - name: Research prototype
+        run: make -C research test
+
       # prove.sh exits non-zero on regression, so reaching this step means the
       # verdict line is there. Publish the ledger where it can be read without
       # opening the log.

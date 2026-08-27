@@ -92,6 +92,10 @@ A próxima etapa física é a Fase 0: dois devkits, bancada curta, medição RF,
 | [HERUS indispensável e inteligência própria](docs/47-HERUS-INDISPENSAVEL-E-INTELIGENCIA-PROPRIA.md) | Revisão de produto, mercado, Watch, Paper-Core, conhecimento local e tecnologia sem LLM hospedada. |
 | [Segurança](SECURITY.md) | O que a criptografia protege hoje e o que ainda depende de integração física. |
 | [Aprendizados do Atlas_Node](docs/44-ATLAS-NODE-APRENDIZADOS.md) | Comparação auditável com um sistema ESP32/BLE/rádio e adaptação de transporte limitada. |
+| [Arquitetura finita e linguagem](docs/48-ARQUITETURA-FINITA-E-LINGUAGEM.md) | VSA/HDC limitado a vocabulário finito; memória por regras; LLM local futura apenas como camada linguística medida no hardware. |
+| [Protótipo de raciocínio finito](research/FINITE-REASONER-README.md) | Trilha host-only experimental: composição tipada, saturação limitada e hipóteses paraconsistentes, sem autoridade sobre o produto. |
+| [Desafio do raciocínio generativo](docs/49-DESAFIO-RACIOCINIO-GENERATIVO.md) | Tese de pesquisa: generalização combinatória segura, aprendizado local mínimo e limites contra a promessa de raciocínio aberto universal. |
+| [Intent Compiler e Semantic IR](docs/50-INTENT-COMPILER-E-SEMANTIC-IR.md) | Conexão entre compilação de intenção, representação intermediária semântica, percepção multimodal e núcleo cognitivo verificável. |
 
 ## Estado de engenharia
 
@@ -103,6 +107,8 @@ make -C firmware watch-memory-frontend
 ```
 
 O comando executa as verificações portáveis e o simulador. A análise Atlas_Node inclui ainda a suíte explícita `make -C firmware delivery-plan`. Um resultado positivo confirma contratos de software e autoriza somente o início controlado da bancada; ele **não** constitui evidência de alcance, energia, UX ou desempenho físico.
+
+O HERUS não resolve NLU/NLG aberto: VSA/HDC opera somente sobre o vocabulário finito dos cartões de contexto, e a memória seletiva é governada por regras e estados tipados. A decisão normativa está em [Arquitetura finita e linguagem](docs/48-ARQUITETURA-FINITA-E-LINGUAGEM.md). Uma LLM local futura poderá atuar apenas como camada linguística no Núcleo depois de orçamento medido em hardware real, sem autoridade sobre memória, rádio ou confirmação física.
 
 A fronteira entre uma proposta de modelo e um candidato de memória pode ser exercitada com `make -C firmware memory-proposal`. O sizing grosseiro da demonstração de LLM em ESP32-S3 pode ser reproduzido separadamente com `make -C firmware llm-budget-check`. Esses alvos validam somente contratos e comparações C11/Python host-only; persistência, HCP, comunicação, inferência, qualidade, autonomia e desempenho continuam exigindo os gates humanos e físicos existentes.
 
