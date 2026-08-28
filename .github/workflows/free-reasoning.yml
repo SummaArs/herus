@@ -17,4 +17,6 @@ jobs:
       - name: Python
         run: python3 --version
       - name: Free reasoning tests
-        run: make -C research free-reasoning
+        run: |
+          python3 -m unittest -v free_reasoner.test_free_reasoner
+          python3 -m free_reasoner.benchmark
