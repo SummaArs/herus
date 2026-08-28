@@ -1,0 +1,66 @@
+{
+  "all_passed": true,
+  "authority": "none",
+  "cases": [
+    {
+      "expected": "OK",
+      "metric": 3,
+      "name": "typed_build",
+      "observed": "OK",
+      "passed": true
+    },
+    {
+      "expected": "UNKNOWN_SYMBOL",
+      "metric": 0,
+      "name": "unknown_symbol",
+      "observed": "UNKNOWN_SYMBOL",
+      "passed": true
+    },
+    {
+      "expected": "ARITY_ERROR",
+      "metric": 0,
+      "name": "wrong_arity",
+      "observed": "ARITY_ERROR",
+      "passed": true
+    },
+    {
+      "expected": "OK",
+      "metric": 25,
+      "name": "bounded_generation",
+      "observed": "OK",
+      "passed": true
+    },
+    {
+      "expected": "OK",
+      "metric": 1,
+      "name": "declared_derivation",
+      "observed": "OK",
+      "passed": true
+    },
+    {
+      "expected": "CONFLICT",
+      "metric": 1,
+      "name": "local_conflict",
+      "observed": "CONFLICT",
+      "passed": true
+    },
+    {
+      "expected": "OK",
+      "metric": 2,
+      "name": "bounded_equivalence",
+      "observed": "OK",
+      "passed": true
+    },
+    {
+      "expected": "BUDGET_EXCEEDED",
+      "metric": 2,
+      "name": "step_budget",
+      "observed": "BUDGET_EXCEEDED",
+      "passed": true
+    }
+  ],
+  "passed": 8,
+  "schema": "herus.generative_lab.benchmark",
+  "total": 8,
+  "version": 1
+}

@@ -47,7 +47,7 @@
     {
       "path": "research/Makefile",
       "kind": "file",
-      "sha256": "1b8908f88a3fcc9a745e0b7d9a2c80903c01339b877e3e2242dc25c379e86bb4",
+      "sha256": "4b7bea613e1d1fc8af4cacf7597d04abf1873a4c1446da6776e33764445559c0",
       "role": "host-only research test entrypoint"
     },
     {
@@ -251,7 +251,7 @@
     {
       "path": "README.md",
       "kind": "file",
-      "sha256": "fd8c4b358dd5de032be37e901b55713b44cc79ca7bfcadf119ba111e92e092b5",
+      "sha256": "f141ca8db48ac838b36a568097cb9cc19036381b600f601610d68063bcdd1512",
       "role": "public project state and verification documentation"
     },
     {
@@ -283,6 +283,24 @@
       "kind": "file",
       "sha256": "99a425eb771062c9c474adabf373efef43b6f002c93235fecfadcaf78f7c3af2",
       "role": "contract compatibility boundary tests"
+    },
+    {
+      "path": "research/generative_lab",
+      "kind": "tree",
+      "sha256": "b36b1143aa5306a81db8723025ccd6d32d7a36a19f58cfb3205cd8d6c6562acf",
+      "role": "host-only typed symbolic generative laboratory"
+    },
+    {
+      "path": "research/test_generative_lab.py",
+      "kind": "file",
+      "sha256": "30f3a271f813acd3421719b00bf75fe91e3344459a993f8877fb200d10bc7215",
+      "role": "generative laboratory adversarial tests"
+    },
+    {
+      "path": "docs/49-DESAFIO-RACIOCINIO-GENERATIVO.md",
+      "kind": "file",
+      "sha256": "189b6b6839dd01f3ab78a24c1c138de696b655b73b7ea756e3f5feb148301a0b",
+      "role": "generative reasoning research record"
     }
   ],
   "components": [

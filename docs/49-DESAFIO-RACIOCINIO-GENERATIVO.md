@@ -81,6 +81,24 @@ make -C research test
 make -C research demo
 ```
 
+### Laboratório generativo v1
+
+O primeiro laboratório executável foi criado em [`research/generative_lab/`](../research/generative_lab/). Ele é host-only, fechado por assinatura, sem parsing de linguagem natural, sem execução de código gerado e sem autoridade sobre o firmware. O núcleo contém termos imutáveis tipados, geração bottom-up limitada, regras declaradas, contextos de hipótese, isolamento de contradições e saturação de equivalência limitada.
+
+O benchmark formal v1 passou em 8/8 casos: construção tipada, símbolo desconhecido, aridade errada, geração composicional, derivação declarada, conflito local, equivalência e estouro de orçamento. A fixture gerou 25 termos em profundidade máxima 3. Na medição de escala da assinatura fixa, o número de termos foi 3, 13, 17, 25, 41, 73 e 137 para profundidades máximas de 0 a 6; o tempo observado cresceu de 0,056 ms para 2,172 ms no host da execução. Esses números são propriedades de uma fixture pequena, não uma previsão de desempenho em chip.
+
+| Resultado | Estado |
+|---|---|
+| Geração de estruturas novas | Demonstrada dentro de assinatura finita |
+| Tipagem e rejeição | Demonstrada para símbolo, aridade, tipo e orçamento |
+| Hipótese conflitante | Mantida localmente como `CONFLICT` sem explosão |
+| Igualdade | Demonstrada por saturação limitada e classes explícitas |
+| Linguagem natural aberta | Não implementada |
+| Grounding e conhecimento de mundo | Não resolvidos |
+| Sucessor geral de LLM | Não demonstrado |
+
+A evidência detalhada está em [`research/evidence/generative_lab_v1/limits.md`](../research/evidence/generative_lab_v1/limits.md) e [`benchmark.json`](../research/evidence/generative_lab_v1/benchmark.json). O resultado atual valida a primeira tese — composição simbólica finita executável — e não valida ainda a tese forte de raciocínio livre universal. O próximo teste necessário é generalização composicional com combinações de operadores ocultadas, custo de busca, taxa de abstenção e comparação contra baselines declarados.
+
 ## Critérios de falsificação
 
 A tese de pesquisa será rejeitada se qualquer uma das condições abaixo ocorrer:

@@ -103,10 +103,17 @@ A próxima etapa física é a Fase 0: dois devkits, bancada curta, medição RF,
 | [Evidências Wide Research ciclo 06](research/evidence/wide_cycle_06/) | Auditoria MInDS-14 por API `/rows`, quatro WAVs estruturais temporários, split pt-PT completo sem download de áudio, correção de falso HELP e identidade SLURP ainda ambígua. |
 | [Evidências Wide Research ciclo 07](research/evidence/wide_cycle_07/) | Política de evolução incremental, inventário de contratos, ensaios de Core-Link/HCP/Semantic IR/coleção e decisão de mudança mínima; sem migração persistente alegada. |
 | [Evidências Wide Research ciclo 08](research/evidence/wide_cycle_08/) | Brecha reproduzida no limite de confiança do hint contextual, regressão antes/depois e correção fail-closed de uma condição; nenhum novo caminho de autoridade. |
+| [Laboratório generativo v1](research/generative_lab/) | Núcleo host-only de termos tipados, geração limitada, regras, hipóteses, conflitos locais e saturação; não é linguagem aberta nem possui autoridade. |
 
 ## Evolução incremental
 
 O HERUS adota o princípio **construir, estabilizar, observar, melhorar pontualmente e preservar** como política de contratos e invariantes, não como proibição absoluta de mudança interna. HCP tem uma extensão forward-compatible específica para papéis desconhecidos; Semantic IR, Core-Link e persistência exigem versão/migração quando a estrutura fechada muda. Uma correção de segurança pode exigir quebra controlada. O ciclo 07 não adicionou autoridade ao núcleo: adicionou regressões de versão/tamanho do Core-Link, testes host-only e documentação verificável. No ciclo 08, uma regressão real mostrou que `intent_context_hint_t.confidence_pct=255` podia promover uma observação ambígua; o gate passou a exigir `0..100`, com teste antes/depois. A correção alterou uma condição, sem nova autoridade ou mudança de wire. Veja a [política de evolução](research/evidence/wide_cycle_07/evolution_policy.md), a [decisão de complexidade](research/evidence/wide_cycle_07/complexity_report.md) e o [relatório da brecha](research/evidence/wide_cycle_08/breach_report.md).
+
+## Laboratório generativo simbólico
+
+O diretório [`research/generative_lab/`](research/generative_lab/) é a primeira implementação executável da vertente paradigmática do HERUS. Ele gera e compõe termos tipados, deriva consequências por regras declaradas, isola conflitos por contexto e agrupa equivalências sob orçamento finito. O benchmark formal v1 passou 8/8 casos e gerou 25 termos na fixture de profundidade 3. A medição por profundidade chegou a 137 termos na profundidade 6, com custo observado de 2,172 ms no host da execução.
+
+Esses números demonstram somente composição simbólica finita. Não demonstram compreensão de linguagem, grounding, conhecimento aberto, aprendizagem ou substituição de modelos de linguagem. O laboratório não importa firmware, não executa código gerado, não aceita rótulos externos e não possui ponte de autoridade. Os comandos são `make -C research generative-lab` e `make -C research generative-lab-scale`. Os limites e resultados estão em [`research/evidence/generative_lab_v1/limits.md`](research/evidence/generative_lab_v1/limits.md).
 
 ## Estado de engenharia
 

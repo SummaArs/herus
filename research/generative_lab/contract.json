@@ -1,0 +1,33 @@
+{
+  "schema": "herus.generative_lab.contract",
+  "version": 1,
+  "host_only": true,
+  "authority": "none",
+  "input": "typed_terms_only",
+  "forbidden": [
+    "natural_language_parsing",
+    "dynamic_symbol_lookup",
+    "implicit_type_coercion",
+    "generated_code_execution",
+    "external_label_mapping",
+    "firmware_import",
+    "radio_or_storage_access"
+  ],
+  "budgets": {
+    "max_depth": 8,
+    "max_nodes": 128,
+    "max_steps": 256,
+    "max_terms": 512
+  },
+  "statuses": [
+    "OK",
+    "TYPE_ERROR",
+    "UNKNOWN_SYMBOL",
+    "ARITY_ERROR",
+    "CONFLICT",
+    "UNKNOWN",
+    "BUDGET_EXCEEDED"
+  ],
+  "contexts": ["BASE", "HYPOTHESIS"],
+  "authority_bridge": null
+}

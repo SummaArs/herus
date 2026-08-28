@@ -7,7 +7,7 @@ CFLAGS ?= -O2 -Wall -Wextra -Werror -std=c11
 # Host-only research track. This target is intentionally not part of the
 # firmware proof ledger until its semantics and resource costs are reviewed.
 test:
-	$(PYTHON) -m unittest -v test_finite_reasoner.py test_semantic_ir.py test_semantic_ir_fuzz.py test_semantic_ir_corpus.py test_convergence.py test_annotation_protocol.py test_evolution_policy.py test_evolution_compatibility.py test_datasets_manifest.py test_paired_audio_audit.py test_source_audit.py test_probe_remote_zip.py test_benchmark_ir.py test_slurp_text.py test_minds14_sample.py test_minds14_batch.py test_identity_audit.py
+	$(PYTHON) -m unittest -v test_finite_reasoner.py test_semantic_ir.py test_semantic_ir_fuzz.py test_semantic_ir_corpus.py test_convergence.py test_annotation_protocol.py test_evolution_policy.py test_evolution_compatibility.py test_generative_lab.py test_datasets_manifest.py test_paired_audio_audit.py test_source_audit.py test_probe_remote_zip.py test_benchmark_ir.py test_slurp_text.py test_minds14_sample.py test_minds14_batch.py test_identity_audit.py
 
 real-corpus:
 	@test -f source_data/MIntRec/metadata/train.tsv
@@ -71,5 +71,11 @@ minds14-batch-sanitizers:
 	ASAN_OPTIONS=detect_leaks=1 $(PYTHON) fetch_minds14_batch.py --c-runner /tmp/herus-minds14-parser-san --offsets "$${MIND14_OFFSETS:-0,100,500,600}" --output evidence/wide_cycle_06/minds14_batch_sanitizers.json
 	rm -f /tmp/herus-minds14-parser-san
 
+generative-lab:
+		$(PYTHON) -m generative_lab.benchmark
+
+generative-lab-scale:
+		$(PYTHON) -m generative_lab.measure
+
 demo:
-	$(PYTHON) finite_reasoner.py
+		$(PYTHON) finite_reasoner.py
