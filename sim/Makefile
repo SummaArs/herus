@@ -32,14 +32,22 @@ all: run
 run: build/herus-sim
 	./build/herus-sim
 
-# Diagnostic build: the default proof remains portable, while this target makes
-# undefined behavior and memory corruption release-blocking in CI.
+# Diagnostic build: undefined behavior and memory corruption are release-blocking.
+# LeakSanitizer is not available in the default Apple clang runtime, so disable
+# leak reporting on macOS while keeping ASan/UBSan active on every platform.
+UNAME_S := $(shell uname -s)
+ifeq ($(UNAME_S),Darwin)
+SAN_ENV := ASAN_OPTIONS=detect_leaks=0
+else
+SAN_ENV := ASAN_OPTIONS=detect_leaks=1
+endif
+
 sanitizers:
 	$(MAKE) clean
 	$(MAKE) CC='$(CC) -fsanitize=address,undefined -fno-omit-frame-pointer -g' \
 		CFLAGS='-O1 -Wall -Wextra -Werror=return-type -Werror=implicit-function-declaration -std=c11' \
 		build/herus-sim
-	ASAN_OPTIONS=detect_leaks=1 ./build/herus-sim
+	$(SAN_ENV) ./build/herus-sim
 
 build/herus-sim: $(SIM) sim.h $(CORE) $(NET) | build
 	$(CC) $(CFLAGS) -DHV_LUT_POPCOUNT $(INC) $(SIM) $(CORE) $(NET) \
