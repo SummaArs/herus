@@ -69,9 +69,12 @@ jobs:
   codeql:
     name: CodeQL (C/C++)
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - uses: github/codeql-action/init@b1bff81932f5cdfc8695c7752dcee935dcd061c8 # v4.33.0
+      - uses: github/codeql-action/init@24ea975727876cf496b1eb0c5b36e96e01600b51 # v4.37.0
         with:
           languages: c-cpp
           build-mode: manual
@@ -79,6 +82,14 @@ jobs:
         run: |
           make -C firmware all
           make -C sim build/herus-sim
-      - uses: github/codeql-action/analyze@b1bff81932f5cdfc8695c7752dcee935dcd061c8 # v4.33.0
+      - uses: github/codeql-action/analyze@24ea975727876cf496b1eb0c5b36e96e01600b51 # v4.37.0
         with:
           category: /language:c-cpp
+          upload: never
+          output: /tmp/codeql-results
+      - name: Upload CodeQL SARIF artifact
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: codeql-sarif
+          path: /tmp/codeql-results
+          if-no-files-found: error
