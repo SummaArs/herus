@@ -1,7 +1,7 @@
 import unittest
 from fractions import Fraction
 
-from free_reasoner import (
+from .free_reasoner import (
     V, Mul, normalize, parse_simple, polynomial_string,
     Prover, SearchBudget, NotProved,
     discover_conjectures, DiscoveryBudget,
