@@ -23,7 +23,7 @@
     {
       "path": ".github/workflows/free-reasoning.yml",
       "kind": "file",
-      "sha256": "cef767ce42304067bc2c9a16225d4410814a973b542841c93b0a3037142eadfc",
+      "sha256": "5bb7dee8e327ddf260934c283ff1f22ad95773a1afc7d1fe77ad8455eb2bcb2a",
       "role": "dedicated bounded free reasoning research gate"
     },
     {
@@ -257,7 +257,7 @@
     {
       "path": "README.md",
       "kind": "file",
-      "sha256": "c0c4ab751f8ffc42271820a344212097ac8329ddbf282868e989412947c18702",
+      "sha256": "cf21fe12af4546be86aabb6ffcc273134cda84900584345f2d35f5785a863a24",
       "role": "public project state and verification documentation"
     },
     {
@@ -299,7 +299,7 @@
     {
       "path": "research/free_reasoner",
       "kind": "tree",
-      "sha256": "2d9d976efb8588f721c69fea981b6b63b0909edb3283fa2089317d069ffd5054",
+      "sha256": "9bff34ecf6df8904e48fff148fd2d6345f23178abea66c90dcb430df2285dce9",
       "role": "host-only bounded exact algebraic reasoning laboratory"
     },
     {
