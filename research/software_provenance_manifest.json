@@ -53,7 +53,7 @@
     {
       "path": "research/Makefile",
       "kind": "file",
-      "sha256": "4b7bea613e1d1fc8af4cacf7597d04abf1873a4c1446da6776e33764445559c0",
+      "sha256": "12c7860a5542303c49eb02cdd0ec22754e10811bd0650be9b744d134b58ef125",
       "role": "host-only research test entrypoint"
     },
     {
@@ -257,7 +257,7 @@
     {
       "path": "README.md",
       "kind": "file",
-      "sha256": "cb37ceae07b8150b502638ae762e5a750b70635f82df822d51257a6fec456f08",
+      "sha256": "c0c4ab751f8ffc42271820a344212097ac8329ddbf282868e989412947c18702",
       "role": "public project state and verification documentation"
     },
     {
@@ -299,7 +299,7 @@
     {
       "path": "research/free_reasoner",
       "kind": "tree",
-      "sha256": "8b607f54146bd5c513e37fd5249554027f6bf6a89935486e714e5f485be67138",
+      "sha256": "2d9d976efb8588f721c69fea981b6b63b0909edb3283fa2089317d069ffd5054",
       "role": "host-only bounded exact algebraic reasoning laboratory"
     },
     {
@@ -329,7 +329,7 @@
     {
       "path": "docs/52-RACIOCINIO-LIVRE-SIMBOLICO.md",
       "kind": "file",
-      "sha256": "f5a68a3dd59645c052f8bd24759dc2505d7a9fce66701d8953a00a281fa63e68",
+      "sha256": "e537b48b24f7ab01fe512fda3681089bb4792bd432efd738b267b1c280d14811",
       "role": "free symbolic reasoning research record"
     }
   ],

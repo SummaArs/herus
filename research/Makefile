@@ -77,5 +77,10 @@ generative-lab:
 generative-lab-scale:
 		$(PYTHON) -m generative_lab.measure
 
+free-reasoning-embedded-profile:
+		$(CC) $(CFLAGS) free_reasoner/embedded_profile.c -o /tmp/herus-free-reasoning-profile
+		/tmp/herus-free-reasoning-profile
+		rm -f /tmp/herus-free-reasoning-profile
+
 demo:
 		$(PYTHON) finite_reasoner.py

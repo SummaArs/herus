@@ -150,3 +150,15 @@ Esta etapa move o HERUS de “composição simbólica finita” para um protóti
 Ainda não há base para dizer que o problema de raciocínio livre universal foi resolvido. A reivindicação adequada neste estágio é muito mais forte e testável:
 
 > **O HERUS agora possui um substrato experimental em que novas estruturas podem ser geradas e somente então promovidas após verificação simbólica exata.**
+
+## 9. Otimização estocástica e reforço discreto
+
+`research/free_reasoner/optimizer.py` adiciona uma política discreta de busca sobre o espaço de termos. Ela escolhe operações finitas (`add`, `mul` e `neg`), constrói candidatos sob orçamento de episódios, passos e tamanho, mede erro exato sobre exemplos declarados e atualiza valores de ação por uma regra de reforço simples. A aleatoriedade é usada para explorar; não é usada para declarar verdade.
+
+O resultado da política é sempre um `OptimizationResult` não confiável. Mesmo quando o erro nos exemplos é zero, isso significa somente ajuste à amostra. A promoção exige uma verificação independente com o kernel exato e, quando aplicável, uma prova contra um alvo formal. Exemplos inconsistentes permanecem sem solução; timeout, orçamento esgotado e candidato sem certificado não são convertidos em sucesso.
+
+A primeira implementação também contém `embedded_profile.c`, um perfil C11 sem heap e com arrays fixos. Ele não é o kernel racional completo e não é uma medição de ESP32. Serve para verificar se a política mínima pode ser expressa com memória estática e para produzir um primeiro orçamento compilável no host. Nesta execução, o perfil encontrou `x²` em 4 episódios, 19 avaliações e 32 bytes de estado estático (`sizeof` de termo e política), sob o benchmark reduzido. O alvo pode ser executado com `make -C research free-reasoning-embedded-profile`.
+
+A próxima medição válida deverá compilar o mesmo perfil em um ESP32-S3 real ou em toolchain correspondente, registrar RAM/flash, ciclos, energia e temperatura, e comparar esses valores com os limites previamente definidos. O host x86-64 não será tratado como substituto do hardware.
+
+O objetivo de pesquisa continua ambicioso: usar otimização para navegar em espaços simbólicos maiores que a enumeração ingênua. O contrato não muda: **a política pode aprender onde procurar; somente o verificador pode afirmar o que foi provado; somente a pessoa pode autorizar efeitos externos**.
