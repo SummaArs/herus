@@ -17,8 +17,14 @@
     {
       "path": ".github/workflows/prove.yml",
       "kind": "file",
-      "sha256": "1cdfe71ea5e13920ac09e792e3774eb02e9f7a2acd677d9899492cc6f96489f9",
+      "sha256": "6fd4430923734320535c2ba5ca20c1056b5f9eefbf2be53c9c2f4bd42c2a9d5f",
       "role": "host proof workflow"
+    },
+    {
+      "path": ".github/workflows/free-reasoning.yml",
+      "kind": "file",
+      "sha256": "cef767ce42304067bc2c9a16225d4410814a973b542841c93b0a3037142eadfc",
+      "role": "dedicated bounded free reasoning research gate"
     },
     {
       "path": "firmware",
@@ -251,7 +257,7 @@
     {
       "path": "README.md",
       "kind": "file",
-      "sha256": "f141ca8db48ac838b36a568097cb9cc19036381b600f601610d68063bcdd1512",
+      "sha256": "cb37ceae07b8150b502638ae762e5a750b70635f82df822d51257a6fec456f08",
       "role": "public project state and verification documentation"
     },
     {
@@ -291,6 +297,18 @@
       "role": "host-only typed symbolic generative laboratory"
     },
     {
+      "path": "research/free_reasoner",
+      "kind": "tree",
+      "sha256": "8b607f54146bd5c513e37fd5249554027f6bf6a89935486e714e5f485be67138",
+      "role": "host-only bounded exact algebraic reasoning laboratory"
+    },
+    {
+      "path": "research/README_FREE_REASONING.md",
+      "kind": "file",
+      "sha256": "47349a0aafc7b8a014d0eba19f9fc5c2835a92a8d33dc5ec8d2ebbb7a9e03c6d",
+      "role": "free reasoning laboratory boundary documentation"
+    },
+    {
       "path": "research/test_generative_lab.py",
       "kind": "file",
       "sha256": "30f3a271f813acd3421719b00bf75fe91e3344459a993f8877fb200d10bc7215",
@@ -301,6 +319,18 @@
       "kind": "file",
       "sha256": "189b6b6839dd01f3ab78a24c1c138de696b655b73b7ea756e3f5feb148301a0b",
       "role": "generative reasoning research record"
+    },
+    {
+      "path": "docs/51-HARDENING-CI-E-VALIDACAO.md",
+      "kind": "file",
+      "sha256": "5cd53a52b23154d72a83d66135581c9bd92304a12f8aedb5e4720ed08bc0c3c1",
+      "role": "CI and sanitizer hardening research record"
+    },
+    {
+      "path": "docs/52-RACIOCINIO-LIVRE-SIMBOLICO.md",
+      "kind": "file",
+      "sha256": "f5a68a3dd59645c052f8bd24759dc2505d7a9fce66701d8953a00a281fa63e68",
+      "role": "free symbolic reasoning research record"
     }
   ],
   "components": [
