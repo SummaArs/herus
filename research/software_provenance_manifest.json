@@ -299,7 +299,7 @@
     {
       "path": "research/free_reasoner",
       "kind": "tree",
-      "sha256": "679163e784e5c9d2140389a5f28e054433db41b1a7ac48a9879bd1f807c88194",
+      "sha256": "5e4e58e5b4bc19354519c143779c34251adee76edb77f64d35cc9dd68f183683",
       "role": "host-only bounded exact algebraic reasoning laboratory"
     },
     {
@@ -343,6 +343,18 @@
       "kind": "file",
       "sha256": "a35a92057b071a85e7ea3cbf857ee087f170dc7a10279890ceedffdcf8f149c9",
       "role": "train validation proof protocol"
+    },
+    {
+      "path": "research/evidence/free_reasoner_optimizer/compositional_protocol.md",
+      "kind": "file",
+      "sha256": "4c94a993f9d8aeb99789af15d30de24ca003add957c72e715c7895f23855f32a",
+      "role": "compositional search protocol"
+    },
+    {
+      "path": "research/evidence/free_reasoner_optimizer/compositional_report.md",
+      "kind": "file",
+      "sha256": "b544b30755c3600ed5ae72c08f76787eb98e649b7e68965e21e86f5f903d8130",
+      "role": "compositional search evidence"
     }
   ],
   "components": [

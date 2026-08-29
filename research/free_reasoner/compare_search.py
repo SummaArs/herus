@@ -78,6 +78,9 @@ def tasks() -> tuple[Task, ...]:
         ("square", "x*x"),
         ("square_plus_x", "x*x+x"),
         ("square_minus_x", "x*x-x"),
+        ("cube_plus_x", "x*x*x+x"),
+        ("cube_plus_square", "x*x*x+x*x"),
+        ("nested_difference", "(x*x-x)*(x+x)"),
     )
     from .free_reasoner import parse_simple
 
