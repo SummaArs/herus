@@ -299,7 +299,7 @@
     {
       "path": "research/free_reasoner",
       "kind": "tree",
-      "sha256": "9bff34ecf6df8904e48fff148fd2d6345f23178abea66c90dcb430df2285dce9",
+      "sha256": "679163e784e5c9d2140389a5f28e054433db41b1a7ac48a9879bd1f807c88194",
       "role": "host-only bounded exact algebraic reasoning laboratory"
     },
     {
@@ -331,6 +331,18 @@
       "kind": "file",
       "sha256": "e537b48b24f7ab01fe512fda3681089bb4792bd432efd738b267b1c280d14811",
       "role": "free symbolic reasoning research record"
+    },
+    {
+      "path": "research/evidence/free_reasoner_optimizer/comparison_report.md",
+      "kind": "file",
+      "sha256": "b13f1da6a5b3c4512f13c1a94a723f2ff16a65ef5f85d99c5db0eb1e9eff57da",
+      "role": "search strategy comparison evidence"
+    },
+    {
+      "path": "research/evidence/free_reasoner_optimizer/search_protocol.md",
+      "kind": "file",
+      "sha256": "a35a92057b071a85e7ea3cbf857ee087f170dc7a10279890ceedffdcf8f149c9",
+      "role": "train validation proof protocol"
     }
   ],
   "components": [

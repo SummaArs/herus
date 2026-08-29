@@ -14,6 +14,7 @@ from typing import Callable, Sequence
 
 from .free_reasoner import Term, Prover, enumerate_terms, normalize, variables
 from .optimizer import Example, OptimizationBudget, optimize_examples
+from .search_methods import beam_search, mcts_search
 
 
 @dataclass(frozen=True)
@@ -119,6 +120,27 @@ def run() -> list[Row]:
             candidate = result.candidate
             rows.append(Row(
                 task.name, "stochastic_bandit", seed, result.evaluations,
+                str(candidate) if candidate else None,
+                str(error(candidate, task.train)) if candidate else None,
+                str(error(candidate, task.holdout)) if candidate else None,
+                prove_candidate(candidate, task.target), (time.perf_counter() - start) * 1000,
+            ))
+        start = time.perf_counter()
+        result = beam_search(task.train, beam_width=24, max_evaluations=768)
+        candidate = result.candidate
+        rows.append(Row(
+            task.name, "beam", None, result.evaluations,
+            str(candidate) if candidate else None,
+            str(error(candidate, task.train)) if candidate else None,
+            str(error(candidate, task.holdout)) if candidate else None,
+            prove_candidate(candidate, task.target), (time.perf_counter() - start) * 1000,
+        ))
+        for seed in (0, 1, 2, 3, 4):
+            start = time.perf_counter()
+            result = mcts_search(task.train, simulations=128, seed=seed)
+            candidate = result.candidate
+            rows.append(Row(
+                task.name, "mcts", seed, result.evaluations,
                 str(candidate) if candidate else None,
                 str(error(candidate, task.train)) if candidate else None,
                 str(error(candidate, task.holdout)) if candidate else None,

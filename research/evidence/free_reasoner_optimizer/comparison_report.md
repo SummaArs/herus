@@ -1,44 +1,53 @@
-# Comparação de busca simbólica: enumeração versus política estocástica
+# Comparação de busca simbólica: enumeração, política estocástica, beam e MCTS
 
 **Status:** evidência host-only, determinística por seed, sem autoridade operacional.
 
 ## Objetivo
 
-Comparar uma enumeração limitada com a política estocástica discreta do HERUS sob tarefas algébricas declaradas. A métrica de sucesso não é apenas erro zero no treino: o candidato também é avaliado em holdout e confrontado com o alvo formal conhecido somente pelo benchmark.
+Comparar quatro estratégias limitadas sobre o mesmo espaço algébrico: enumeração, política estocástica com atualização de valores de ação, beam search e MCTS. A métrica de sucesso não é apenas erro zero no treino. Cada candidato é avaliado em holdout e, no benchmark, confrontado com o alvo formal conhecido somente para avaliação externa.
 
 ## Configuração
 
-A enumeração usa `enumerate_terms()` com profundidade máxima 5 e limite de 768 termos. A política estocástica usa 128 episódios, 6 passos por episódio, tamanho máximo 13, exploração `epsilon=0.18`, atualização de valores de ação e seeds `0..4`. Ambos operam sobre o vocabulário explícito `x` e as operações `add`, `mul` e `neg`.
+A enumeração usa `enumerate_terms()` com profundidade máxima 5 e limite de 768 termos. A política estocástica usa 128 episódios, 6 passos por episódio, tamanho máximo 13, `epsilon=0.18` e seeds `0..4`. Beam usa largura 24 e limite de 768 avaliações. MCTS usa 128 simulações, profundidade máxima 6 e seeds `0..4`. Todos operam sobre o vocabulário explícito `x` e as operações `add`, `mul` e `neg`.
 
-As tarefas principais usam treino em `x ∈ {-2,-1,0,1,2}` e holdout em `x ∈ {-7,3,4,9}` para `x²`, `x²+x` e `x²−x`. A tarefa `underdetermined_square` usa apenas `0 → 0` no treino e `x²` em holdout. Ela existe para testar a diferença entre ajuste amostral e generalização.
+As tarefas principais usam treino em `x ∈ {-2,-1,0,1,2}` e holdout em `x ∈ {-7,3,4,9}` para `x²`, `x²+x` e `x²−x`. A tarefa `underdetermined_square` usa apenas `0 → 0` no treino e avalia contra `x²` no holdout. Ela existe para separar ajuste amostral de generalização.
 
-## Resultados
+## Resultados agregados
 
 | Tarefa | Método | Treino sem erro | Holdout sem erro | Prova contra alvo | Avaliações |
 |---|---|---:|---:|---:|---|
 | `square` | enumeração | 1/1 | 1/1 | 1/1 | 3 |
 | `square` | estocástico | 5/5 | 5/5 | 5/5 | 1, 13, 7, 7, 7 |
+| `square` | beam | 1/1 | 1/1 | 1/1 | 1 |
+| `square` | MCTS | 5/5 | 5/5 | 5/5 | 138, 145, 149, 138, 141 |
 | `square_plus_x` | enumeração | 1/1 | 1/1 | 1/1 | 14 |
 | `square_plus_x` | estocástico | 5/5 | 5/5 | 5/5 | 72, 104, 12, 128, 258 |
+| `square_plus_x` | beam | 1/1 | 1/1 | 1/1 | 5 |
+| `square_plus_x` | MCTS | 5/5 | 5/5 | 5/5 | 768, 272, 534, 278, 762 |
 | `square_minus_x` | enumeração | 1/1 | 1/1 | 1/1 | 40 |
 | `square_minus_x` | estocástico | 4/5 | 4/5 | 4/5 | 660, 768, 502, 670, 604 |
+| `square_minus_x` | beam | 1/1 | 1/1 | 1/1 | 94 |
+| `square_minus_x` | MCTS | 1/5 | 1/5 | 1/5 | 768, 768, 530, 768, 768 |
 | `underdetermined_square` | enumeração | 1/1 | 0/1 | 0/1 | 1 |
 | `underdetermined_square` | estocástico | 5/5 | 1/5 | 1/5 | 1, 1, 1, 1, 1 |
+| `underdetermined_square` | beam | 1/1 | 1/1 | 1/1 | 1 |
+| `underdetermined_square` | MCTS | 5/5 | 0/5 | 0/5 | 128, 128, 128, 128, 128 |
 
-## Brecha encontrada
+## Interpretação
 
-Na tarefa subdeterminada, todos os métodos conseguem obter erro zero no único exemplo de treino, mas somente uma das cinco seeds produz o alvo correto. As demais produzem candidatos que ajustam `0 → 0` e falham no holdout. Isto confirma uma regra central do HERUS: **erro zero em exemplos não é prova e não autoriza promoção**.
+Neste fragmento e nestes orçamentos, beam search foi o método mais eficiente para as três tarefas suficientemente observadas. Isso não demonstra superioridade geral: o espaço é pequeno, o vocabulário é explícito e a função de avaliação é exata. MCTS encontrou `x²−x` apenas em uma de cinco seeds e consumiu o limite em várias execuções. A política estocástica também não superou a enumeração de modo consistente.
 
-Também fica claro que a política estocástica não supera a enumeração neste primeiro benchmark. Para as três tarefas suficientemente observadas, a enumeração encontra os alvos em 3, 14 e 40 avaliações; a política usa de 1 a 768 avaliações e falha em uma de cinco seeds para `x²−x`. O ganho potencial da política ainda não foi demonstrado.
+O caso subdeterminado continua essencial. A enumeração e o MCTS falham no holdout; o estocástico acerta apenas uma seed; beam acerta por acaso neste benchmark porque o alvo externo é `x²` e a expressão aparece imediatamente na ordenação da fronteira. Isso não transforma uma única observação `0 → 0` em evidência suficiente. Na operação real, quando não houver alvo formal, o HERUS deve reportar ajuste e validação, nunca `proved`.
 
 ## Conclusão
 
-A política estocástica é uma camada válida de exploração e reforço, mas nesta versão não deve substituir a enumeração como baseline nem ser usada como verificador. O próximo ciclo deve melhorar a função de recompensa, penalizar complexidade, reservar exemplos de validação durante a busca, comparar MCTS/beam search e medir custo sob o mesmo número de avaliações. O verificador formal continua obrigatório e independente.
+O próximo ganho não virá de simplesmente adicionar mais aleatoriedade. A prioridade é uma política de seleção que use validação interna sem acessar o conjunto de prova, penalize complexidade e registre abstenção. Beam search é um baseline forte para o fragmento atual; MCTS precisa de uma função de valor melhor ou de um espaço de ações mais informativo. Nenhum método deve substituir o kernel exato.
 
-O experimento é host-only. Nenhum resultado aqui mede ESP32, energia, latência de hardware ou generalização para linguagem natural.
+O experimento é host-only. Nenhum resultado mede ESP32, energia, latência de hardware ou generalização para linguagem natural.
 
 ## Reprodução
 
 ```bash
 PYTHONPATH=research python3 -m free_reasoner.compare_search
+PYTHONPATH=research python3 -m unittest -v free_reasoner.test_search_methods
 ```
