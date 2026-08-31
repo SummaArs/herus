@@ -53,7 +53,7 @@
     {
       "path": "research/Makefile",
       "kind": "file",
-      "sha256": "0cee7021a5fed1e684a19260e35a5032d9e2b0b51c3ead40e81f8b235769b409",
+      "sha256": "6e9cf25a7e491fcde0b886459b9e902482f0989d696274312b9d79ef2ad85c4f",
       "role": "host-only research test entrypoint"
     },
     {
@@ -403,6 +403,18 @@
       "kind": "file",
       "sha256": "598267e8cac31c15fb877d1696dd596ef91a13fdbaa30364e13b1683d8a1fb9a",
       "role": "critical-system degradation research record"
+    },
+    {
+      "path": "research/causal_surprise.py",
+      "kind": "file",
+      "sha256": "92e2addb8d2086a8f53d1784b01640693f8fb94f09913eff4cef795c2f860fca",
+      "role": "finite causal surprise monitor"
+    },
+    {
+      "path": "research/test_causal_surprise.py",
+      "kind": "file",
+      "sha256": "f33b16baa343d2f7342c0c6d8bebeb826d99123b1025c893981b226b373097f2",
+      "role": "causal surprise fail-closed tests"
     }
   ],
   "components": [
