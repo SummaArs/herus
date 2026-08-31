@@ -53,7 +53,7 @@
     {
       "path": "research/Makefile",
       "kind": "file",
-      "sha256": "12c7860a5542303c49eb02cdd0ec22754e10811bd0650be9b744d134b58ef125",
+      "sha256": "f1ad9c0d0d9d4db193eac0f095dbc86052d2a44cc76f464a6203d8c8946e6c2b",
       "role": "host-only research test entrypoint"
     },
     {
@@ -299,7 +299,7 @@
     {
       "path": "research/free_reasoner",
       "kind": "tree",
-      "sha256": "5e4e58e5b4bc19354519c143779c34251adee76edb77f64d35cc9dd68f183683",
+      "sha256": "5c482e932af7e7ce1c1af7f3081c575e0280c07ea2529c05760c1fc463f710cd",
       "role": "host-only bounded exact algebraic reasoning laboratory"
     },
     {
@@ -355,6 +355,36 @@
       "kind": "file",
       "sha256": "b544b30755c3600ed5ae72c08f76787eb98e649b7e68965e21e86f5f903d8130",
       "role": "compositional search evidence"
+    },
+    {
+      "path": "research/free_reasoner/structured_terms.py",
+      "kind": "file",
+      "sha256": "61cfb5e429953f6cc5be95cc06ed6bbe90d0565a940db4f8fc2cf3b41fbada4d",
+      "role": "bounded reusable structural term representation"
+    },
+    {
+      "path": "research/free_reasoner/test_structured_terms.py",
+      "kind": "file",
+      "sha256": "80f1c18f22d063de3ed2670e1c848d8ee283d6f54ef444f3d770acddd2fbe9aa",
+      "role": "structural representation invariant tests"
+    },
+    {
+      "path": "research/free_reasoner/structured_search.py",
+      "kind": "file",
+      "sha256": "d02294806b8361c9a0ce2ed213078d14163c6c6ea675451d769fc80b4c3ae68d",
+      "role": "bounded reusable-subterm search"
+    },
+    {
+      "path": "research/free_reasoner/test_structured_search.py",
+      "kind": "file",
+      "sha256": "5695961c77d88da464468829299958ed89f8854096f3e80a4bc7b3af56a796ee",
+      "role": "structural search safety tests"
+    },
+    {
+      "path": "research/free_reasoner/structured_embedded_profile.c",
+      "kind": "file",
+      "sha256": "d5e096e76b0806efc8b9d3ed7e2bc01cd87b7483e5f4cb64d5783faae91fdf9b",
+      "role": "fixed-memory C11 structural profile"
     }
   ],
   "components": [
