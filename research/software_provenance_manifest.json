@@ -53,7 +53,7 @@
     {
       "path": "research/Makefile",
       "kind": "file",
-      "sha256": "6e9cf25a7e491fcde0b886459b9e902482f0989d696274312b9d79ef2ad85c4f",
+      "sha256": "a91b6f90d344234e195c3875b0fc0df1eabdbe269075fc62e38b5bf11dcc1da6",
       "role": "host-only research test entrypoint"
     },
     {
@@ -415,6 +415,36 @@
       "kind": "file",
       "sha256": "f33b16baa343d2f7342c0c6d8bebeb826d99123b1025c893981b226b373097f2",
       "role": "causal surprise fail-closed tests"
+    },
+    {
+      "path": "research/critical_state_verifier.py",
+      "kind": "file",
+      "sha256": "65f47bb049693245572295011715df94f91e8386f7f022f3385f49bf928fc220",
+      "role": "independent finite-state safety verifier"
+    },
+    {
+      "path": "research/test_critical_state_verifier.py",
+      "kind": "file",
+      "sha256": "933140721e42fda887e99c3746c3dbb7f3fd5776d6995cc6010a8009b786714c",
+      "role": "finite-state verifier adversarial tests"
+    },
+    {
+      "path": "research/critical_state_synthesis.py",
+      "kind": "file",
+      "sha256": "7e21c3f1b8deccbcdafdce16bd9fd706bcc330f04d0883b8a7a5e749d0aba8a2",
+      "role": "bounded policy synthesis using independent verifier"
+    },
+    {
+      "path": "research/test_critical_state_synthesis.py",
+      "kind": "file",
+      "sha256": "270f7756a3f8e4a4fbfe676a48b695b571d9c770d8ac74de11a109aff0050810",
+      "role": "bounded synthesis adversarial tests"
+    },
+    {
+      "path": "docs/54-MVP-SINTESE-VERIFICACAO-MAQUINAS-ESTADO.md",
+      "kind": "file",
+      "sha256": "0fbe70e37371aa7f71d182a9f64d0ada33f81d5336b9834137d413cd28099d9a",
+      "role": "MVP synthesis and verification specification"
     }
   ],
   "components": [
