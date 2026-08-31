@@ -53,7 +53,7 @@
     {
       "path": "research/Makefile",
       "kind": "file",
-      "sha256": "f1ad9c0d0d9d4db193eac0f095dbc86052d2a44cc76f464a6203d8c8946e6c2b",
+      "sha256": "0cee7021a5fed1e684a19260e35a5032d9e2b0b51c3ead40e81f8b235769b409",
       "role": "host-only research test entrypoint"
     },
     {
@@ -385,6 +385,24 @@
       "kind": "file",
       "sha256": "d5e096e76b0806efc8b9d3ed7e2bc01cd87b7483e5f4cb64d5783faae91fdf9b",
       "role": "fixed-memory C11 structural profile"
+    },
+    {
+      "path": "research/critical_systems_health.py",
+      "kind": "file",
+      "sha256": "4c110b9fc3da2f26b3180002b16a490f350484a78119f737b08515850c2ca0b0",
+      "role": "finite critical-system health policy prototype"
+    },
+    {
+      "path": "research/test_critical_systems_health.py",
+      "kind": "file",
+      "sha256": "5e87342eba39f5ec0df5480937a13bdf5d8e17c7fcf609817b3decdbaeede93e",
+      "role": "critical-system fail-closed tests"
+    },
+    {
+      "path": "docs/53-PREVISAO-DEGRADACAO-E-SISTEMAS-CRITICOS.md",
+      "kind": "file",
+      "sha256": "598267e8cac31c15fb877d1696dd596ef91a13fdbaa30364e13b1683d8a1fb9a",
+      "role": "critical-system degradation research record"
     }
   ],
   "components": [
