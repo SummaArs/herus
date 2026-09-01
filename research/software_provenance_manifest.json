@@ -419,13 +419,13 @@
     {
       "path": "research/critical_state_verifier.py",
       "kind": "file",
-      "sha256": "65f47bb049693245572295011715df94f91e8386f7f022f3385f49bf928fc220",
+      "sha256": "0777f648592f0c9a3f3c550b1e686880157776720c1e1f655ca536ef1b54fe6e",
       "role": "independent finite-state safety verifier"
     },
     {
       "path": "research/test_critical_state_verifier.py",
       "kind": "file",
-      "sha256": "933140721e42fda887e99c3746c3dbb7f3fd5776d6995cc6010a8009b786714c",
+      "sha256": "1fe0c59b23f77fbc97f699cad6b170ab46fbf0468bf67860fb1294e8be50afa9",
       "role": "finite-state verifier adversarial tests"
     },
     {
@@ -463,6 +463,12 @@
       "kind": "file",
       "sha256": "d91a9544eb000e776010c85617f2f7e3450d39df6a06af6eb9d5d7c56ff20efc",
       "role": "critical-state benchmark reproducibility tests"
+    },
+    {
+      "path": "research/evidence/critical_state_mvp_round.md",
+      "kind": "file",
+      "sha256": "419b431008062068475ad04cf6d0a9fc5d9ce4ac9001f083da29a867373cc092",
+      "role": "MVP critical-state round evidence"
     }
   ],
   "components": [

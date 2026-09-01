@@ -88,12 +88,16 @@ def verify(spec: StateMachineSpec, policy: Iterable[PolicyRule]) -> Certificate:
         return Certificate(Verdict.INVALID_SPEC, 0, (), invalid)
 
     policy_map = {(rule.state, rule.input_symbol): rule.action for rule in rules}
+    for state in spec.states:
+        for input_symbol in spec.inputs:
+            if (state, input_symbol) not in policy_map:
+                return Certificate(Verdict.UNKNOWN, 0, (), "missing_policy_rule")
     transition_map: dict[tuple[str, str, str], Transition] = {
         (item.state, item.input_symbol, item.action): item for item in spec.transitions
     }
     frontier: list[tuple[str, tuple[Transition, ...]]] = [(spec.initial_state, ())]
     explored = 0
-    for _depth in range(spec.max_steps + 1):
+    for _depth in range(spec.max_steps):
         next_frontier: list[tuple[str, tuple[Transition, ...]]] = []
         for state, path in frontier:
             if state in spec.forbidden_states:

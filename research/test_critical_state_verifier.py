@@ -37,6 +37,8 @@ class CriticalStateVerifierTests(unittest.TestCase):
             PolicyRule("nominal", "loss", "safe_hold"),
             PolicyRule("safe_hold", "ok", "safe_hold"),
             PolicyRule("safe_hold", "loss", "safe_hold"),
+            PolicyRule("unsafe", "ok", "safe_hold"),
+            PolicyRule("unsafe", "loss", "safe_hold"),
         )
         result = verify(self.spec, policy)
         self.assertEqual(result.verdict, Verdict.VERIFIED)
@@ -49,6 +51,8 @@ class CriticalStateVerifierTests(unittest.TestCase):
             PolicyRule("nominal", "loss", "safe_hold"),
             PolicyRule("safe_hold", "ok", "safe_hold"),
             PolicyRule("safe_hold", "loss", "safe_hold"),
+            PolicyRule("unsafe", "ok", "safe_hold"),
+            PolicyRule("unsafe", "loss", "safe_hold"),
         )
         result = verify(self.spec, policy)
         self.assertEqual(result.verdict, Verdict.COUNTEREXAMPLE)
@@ -61,6 +65,8 @@ class CriticalStateVerifierTests(unittest.TestCase):
             PolicyRule("nominal", "loss", "safe_hold"),
             PolicyRule("safe_hold", "ok", "hold"),
             PolicyRule("safe_hold", "loss", "safe_hold"),
+            PolicyRule("unsafe", "ok", "safe_hold"),
+            PolicyRule("unsafe", "loss", "safe_hold"),
         )
         result = verify(self.spec, policy)
         self.assertEqual(result.verdict, Verdict.UNKNOWN)
@@ -90,6 +96,22 @@ class CriticalStateVerifierTests(unittest.TestCase):
         result = verify(self.spec, (rule, rule))
         self.assertEqual(result.verdict, Verdict.INVALID_SPEC)
         self.assertEqual(result.reason, "duplicate_policy_rule")
+
+    def test_zero_step_bound_checks_initial_state_only(self) -> None:
+        spec = StateMachineSpec(
+            initial_state="nominal",
+            states=frozenset({"nominal"}),
+            inputs=frozenset({"ok"}),
+            actions=frozenset({"hold"}),
+            transitions=(),
+            forbidden_states=frozenset(),
+            forbidden_actions=frozenset(),
+            max_steps=0,
+        )
+        result = verify(spec, ())
+        self.assertEqual(result.verdict, Verdict.UNKNOWN)
+        self.assertEqual(result.reason, "missing_policy_rule")
+        self.assertEqual(result.explored, 0)
 
     def test_negative_bound_is_rejected(self) -> None:
         invalid = StateMachineSpec(
