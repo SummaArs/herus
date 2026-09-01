@@ -117,6 +117,12 @@ Esses números demonstram somente composição simbólica finita. Não demonstra
 
 O [`research/free_reasoner/`](research/free_reasoner/) acrescenta uma segunda linha experimental: um kernel polinomial exato sobre `Fraction`, descoberta limitada por orçamento, síntese enumerativa sobre exemplos e contraexemplos em uma grade declarada. Ele amplia a investigação de equivalência algébrica, mas continua host-only, inerte, fechado ao fragmento implementado e sem caminho para Semantic IR, firmware, memória, rádio ou autoridade humana. Os testes e o benchmark dedicados podem ser reproduzidos com `PYTHONPATH=research python3 -m unittest -v free_reasoner.test_free_reasoner` e `PYTHONPATH=research python3 -m free_reasoner.benchmark`; o perfil C11 de memória fixa pode ser executado com `make -C research free-reasoning-embedded-profile`. Este perfil é um proxy sem heap para orçamento inicial, não uma medição de ESP32; a compilação no alvo real continua obrigatória antes de qualquer alegação de desempenho. A comparação contra enumeração, incluindo o caso subdeterminado que falha no holdout, está em [`research/evidence/free_reasoner_optimizer/comparison_report.md`](research/evidence/free_reasoner_optimizer/comparison_report.md). Os resultados não constituem prova de raciocínio aberto geral.
 
+## Trilha de verificação e síntese de sistemas críticos
+
+O HERUS mantém uma trilha host-only para síntese e verificação de máquinas de estado finitas. O MVP possui especificação declarada, verificador independente, síntese enumerativa limitada, resultados `VERIFIED`, `COUNTEREXAMPLE`, `UNKNOWN` e `INVALID_SPEC`, benchmark reproduzível e perfil C11 sem heap. A especificação formal está em [`docs/54-MVP-SINTESE-VERIFICACAO-MAQUINAS-ESTADO.md`](docs/54-MVP-SINTESE-VERIFICACAO-MAQUINAS-ESTADO.md).
+
+Esta trilha não é chamada de certificação, segurança absoluta ou estado da arte. Uma prova é relativa ao modelo e à especificação; não garante que requisitos, sensores, compilador ou ambiente físico estejam corretos. O padrão de avanço será benchmark público, baseline comparável, checker independente, contraexemplos, reprodução externa e custos medidos. A evidência da rodada atual está em [`research/evidence/critical_state_mvp_round.md`](research/evidence/critical_state_mvp_round.md).
+
 ## Estado de engenharia
 
 A versão consolidada pode ser verificada localmente com:
