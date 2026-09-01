@@ -53,7 +53,7 @@
     {
       "path": "research/Makefile",
       "kind": "file",
-      "sha256": "a91b6f90d344234e195c3875b0fc0df1eabdbe269075fc62e38b5bf11dcc1da6",
+      "sha256": "49ab1d083ff034553f643cf0185529ea346d7093e5abf97d1b8b9b7d9e16717d",
       "role": "host-only research test entrypoint"
     },
     {
@@ -445,6 +445,24 @@
       "kind": "file",
       "sha256": "0fbe70e37371aa7f71d182a9f64d0ada33f81d5336b9834137d413cd28099d9a",
       "role": "MVP synthesis and verification specification"
+    },
+    {
+      "path": "research/critical_state_embedded_profile.c",
+      "kind": "file",
+      "sha256": "63324b350e8945e3dab74f65bca0229b279942e714224254cc10d558e401da64",
+      "role": "fixed-memory C11 critical-state verifier profile"
+    },
+    {
+      "path": "research/critical_state_benchmark.py",
+      "kind": "file",
+      "sha256": "a47342ff9652dd8334dae8885f72863df056ef0d3055f93045525fa12aef18ba",
+      "role": "finite critical-state synthesis benchmark"
+    },
+    {
+      "path": "research/test_critical_state_benchmark.py",
+      "kind": "file",
+      "sha256": "d91a9544eb000e776010c85617f2f7e3450d39df6a06af6eb9d5d7c56ff20efc",
+      "role": "critical-state benchmark reproducibility tests"
     }
   ],
   "components": [

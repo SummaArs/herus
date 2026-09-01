@@ -1,4 +1,4 @@
-.PHONY: test real-corpus real-corpus-sanitizers real-corpus-audit paired-audio-audit slurp-text-audit slurp-text-sanitizers minds14-sample-audit minds14-batch-audit minds14-batch-sanitizers demo
+.PHONY: test real-corpus real-corpus-sanitizers real-corpus-audit paired-audio-audit slurp-text-audit slurp-text-sanitizers minds14-sample-audit minds14-batch-audit minds14-batch-sanitizers free-reasoning-embedded-profile free-reasoning-structured-profile critical-state-profile demo
 
 PYTHON ?= python3
 CC ?= cc
@@ -7,7 +7,7 @@ CFLAGS ?= -O2 -Wall -Wextra -Werror -std=c11
 # Host-only research track. This target is intentionally not part of the
 # firmware proof ledger until its semantics and resource costs are reviewed.
 test:
-	$(PYTHON) -m unittest -v test_finite_reasoner.py test_semantic_ir.py test_semantic_ir_fuzz.py test_semantic_ir_corpus.py test_convergence.py test_annotation_protocol.py test_evolution_policy.py test_evolution_compatibility.py test_generative_lab.py free_reasoner.test_structured_terms free_reasoner.test_structured_search test_critical_systems_health.py test_causal_surprise.py test_critical_state_verifier.py test_critical_state_synthesis.py test_datasets_manifest.py test_paired_audio_audit.py test_source_audit.py test_probe_remote_zip.py test_benchmark_ir.py test_slurp_text.py test_minds14_sample.py test_minds14_batch.py test_identity_audit.py
+	$(PYTHON) -m unittest -v test_finite_reasoner.py test_semantic_ir.py test_semantic_ir_fuzz.py test_semantic_ir_corpus.py test_convergence.py test_annotation_protocol.py test_evolution_policy.py test_evolution_compatibility.py test_generative_lab.py free_reasoner.test_structured_terms free_reasoner.test_structured_search test_critical_systems_health.py test_causal_surprise.py test_critical_state_verifier.py test_critical_state_synthesis.py test_critical_state_benchmark.py test_datasets_manifest.py test_paired_audio_audit.py test_source_audit.py test_probe_remote_zip.py test_benchmark_ir.py test_slurp_text.py test_minds14_sample.py test_minds14_batch.py test_identity_audit.py
 
 real-corpus:
 	@test -f source_data/MIntRec/metadata/train.tsv
@@ -83,9 +83,14 @@ free-reasoning-embedded-profile:
 			rm -f /tmp/herus-free-reasoning-profile
 
 free-reasoning-structured-profile:
-			$(CC) $(CFLAGS) free_reasoner/structured_embedded_profile.c -o /tmp/herus-free-reasoning-structured-profile
-			/tmp/herus-free-reasoning-structured-profile
-			rm -f /tmp/herus-free-reasoning-structured-profile
+				$(CC) $(CFLAGS) free_reasoner/structured_embedded_profile.c -o /tmp/herus-free-reasoning-structured-profile
+				/tmp/herus-free-reasoning-structured-profile
+				rm -f /tmp/herus-free-reasoning-structured-profile
+
+critical-state-profile:
+				$(CC) $(CFLAGS) critical_state_embedded_profile.c -o /tmp/herus-critical-state-profile
+				/tmp/herus-critical-state-profile
+				rm -f /tmp/herus-critical-state-profile
 
 demo:
 		$(PYTHON) finite_reasoner.py
