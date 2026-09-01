@@ -53,7 +53,7 @@
     {
       "path": "research/Makefile",
       "kind": "file",
-      "sha256": "49ab1d083ff034553f643cf0185529ea346d7093e5abf97d1b8b9b7d9e16717d",
+      "sha256": "12d823f7d226175f160c2cbc453a88e293c5b1fb403d7fec255bd1f0949af418",
       "role": "host-only research test entrypoint"
     },
     {
@@ -469,6 +469,24 @@
       "kind": "file",
       "sha256": "419b431008062068475ad04cf6d0a9fc5d9ce4ac9001f083da29a867373cc092",
       "role": "MVP critical-state round evidence"
+    },
+    {
+      "path": "research/sygus_compatibility.py",
+      "kind": "file",
+      "sha256": "4f9ffa05ca64dbd0fdac9e0ccea93da3f6e0b9fe29673d6e678cbedd30bb50a0",
+      "role": "bounded SyGuS compatibility inventory"
+    },
+    {
+      "path": "research/test_sygus_compatibility.py",
+      "kind": "file",
+      "sha256": "3c078f66f425057c37b8c4feba56831bf3f404413d31b0113447d7cb87e3367f",
+      "role": "SyGuS compatibility fail-closed tests"
+    },
+    {
+      "path": "research/evidence/sygus_compatibility_round.md",
+      "kind": "file",
+      "sha256": "1309b07ff889fe45cd64d70083ee42aa1095dd6b203ea842058c4c4d986d5233",
+      "role": "external benchmark compatibility evidence"
     }
   ],
   "components": [
