@@ -53,7 +53,7 @@
     {
       "path": "research/Makefile",
       "kind": "file",
-      "sha256": "12d823f7d226175f160c2cbc453a88e293c5b1fb403d7fec255bd1f0949af418",
+      "sha256": "8320e6708db955172fec4b0885f1c7fc6ccef1ebf2130e83a185e3df4dbf75b2",
       "role": "host-only research test entrypoint"
     },
     {
@@ -443,7 +443,7 @@
     {
       "path": "docs/54-MVP-SINTESE-VERIFICACAO-MAQUINAS-ESTADO.md",
       "kind": "file",
-      "sha256": "0fbe70e37371aa7f71d182a9f64d0ada33f81d5336b9834137d413cd28099d9a",
+      "sha256": "e6e328b74c7a4b9156be8ffd3a68df55baef423e8d6e0d7d38593ac1fe4456dd",
       "role": "MVP synthesis and verification specification"
     },
     {
@@ -487,6 +487,18 @@
       "kind": "file",
       "sha256": "1309b07ff889fe45cd64d70083ee42aa1095dd6b203ea842058c4c4d986d5233",
       "role": "external benchmark compatibility evidence"
+    },
+    {
+      "path": "research/critical_state_refinement.py",
+      "kind": "file",
+      "sha256": "e572a4bee3551adcfcd0a37f0bc7d2fef3ffeeffff59e13d74c0897659cdd610",
+      "role": "finite abstract-to-concrete refinement checker"
+    },
+    {
+      "path": "research/test_critical_state_refinement.py",
+      "kind": "file",
+      "sha256": "ed96ad00f0651a490a648e47e25a38ab8bc4a90920a91e1920eb0313ccf15a3b",
+      "role": "refinement boundary adversarial tests"
     }
   ],
   "components": [

@@ -41,10 +41,12 @@ A garantia é relativa à especificação. Ela não demonstra que a especificaç
 
 O uso de otimização, reforço, surpresa causal ou síntese estrutural será permitido apenas para gerar e priorizar candidatos. Esses mecanismos não poderão alterar o verificador nem converter `UNKNOWN` em aprovação.
 
+A transferência da garantia do modelo abstrato para uma implementação concreta exige uma relação de refinamento explícita. O mapa de estados deve ser total, o estado inicial concreto deve mapear para o estado inicial abstrato e cada transição concreta deve corresponder a uma transição abstrata com a mesma entrada e ação. Uma prova do modelo sem esse vínculo não é uma prova da implementação.
+
 ## Critério de impacto científico
 
 O resultado terá relevância além de um exercício local somente se for comparado com enumeração ingênua e pelo menos um método de busca guiada sob o mesmo orçamento, com especificações públicas, seeds registradas, contraexemplos publicados e reprodução independente. Ganho de desempenho sem preservação de cobertura e segurança não será considerado avanço.
 
-## Próximo marco
+## Estado do marco
 
-Implementar primeiro um verificador independente e seus testes adversariais. Em seguida, implementar uma síntese enumerativa limitada que consuma o verificador como oráculo externo, e não o contrário. Somente depois comparar otimização estocástica, beam search e MCTS.
+O verificador independente e a síntese enumerativa já foram implementados e testados. A relação abstrato-concreto está disponível em `research/critical_state_refinement.py` e rejeita mapa incompleto, estado inicial incompatível, transição ausente e sucessor não refinado. A comparação externa SyGuS ainda está em fase de triagem; o adaptador atual inventaria compatibilidade, mas não executa nem declara desempenho.
