@@ -449,7 +449,7 @@
     {
       "path": "docs/54-MVP-SINTESE-VERIFICACAO-MAQUINAS-ESTADO.md",
       "kind": "file",
-      "sha256": "509d47e16eb4a1c41493a985a64839e5f3f6c031e254194da8ca09bdde8c168d",
+      "sha256": "d48d07d29bb3c1549535cb545dd297e503dd1d47aa7df289aa02d1ef5cb61bbd",
       "role": "MVP synthesis and verification specification"
     },
     {
@@ -497,13 +497,13 @@
     {
       "path": "research/critical_state_refinement.py",
       "kind": "file",
-      "sha256": "e572a4bee3551adcfcd0a37f0bc7d2fef3ffeeffff59e13d74c0897659cdd610",
+      "sha256": "4b934c1a086a3b56751e13cb3976d99b3adb91e71681435c8faae5f4c5142a31",
       "role": "finite abstract-to-concrete refinement checker"
     },
     {
       "path": "research/test_critical_state_refinement.py",
       "kind": "file",
-      "sha256": "ed96ad00f0651a490a648e47e25a38ab8bc4a90920a91e1920eb0313ccf15a3b",
+      "sha256": "bd8570238918d9cf5b000bcbecbd3eb1e1254c733901b2d5bc0553499d12e57e",
       "role": "refinement boundary adversarial tests"
     },
     {
