@@ -53,7 +53,7 @@
     {
       "path": "research/Makefile",
       "kind": "file",
-      "sha256": "8003d43df07c43a9362137dadd081498ed775f9a1dfefe03f59b7f0b535eea31",
+      "sha256": "446034397806eac2587e8738f2dab61813fc613e15ab1d40226ed1d45b41f276",
       "role": "host-only research test entrypoint"
     },
     {
@@ -263,7 +263,7 @@
     {
       "path": "docs/INDEX.md",
       "kind": "file",
-      "sha256": "4424e2901221bd8370041b8f8d55dc44606af913e4d79f0ad5dfb1c78eabd4c6",
+      "sha256": "640f51b6a40e8df0bc7791f627eaeb493b167bc22f24ff0edf50c5b2c59c88dc",
       "role": "editorial documentation index"
     },
     {
@@ -643,6 +643,24 @@
       "kind": "file",
       "sha256": "db26d4e67e7fee0b6564fa0fff46a935ffa0b96bc1a1f021f31e85a0944370e3",
       "role": "policy refinement contract and limits"
+    },
+    {
+      "path": "research/critical_assurance_certificate.py",
+      "kind": "file",
+      "sha256": "8f10246aded7401c1d2b21281d79fbacadfc859431d177bb8913a325e6ce9a32",
+      "role": "composed finite assurance certificate"
+    },
+    {
+      "path": "research/test_critical_assurance_certificate.py",
+      "kind": "file",
+      "sha256": "70156df22ca69c1ada8de9685d1f0f6e7cf6f826c8463ec4ab393231a040072b",
+      "role": "composed assurance adversarial tests"
+    },
+    {
+      "path": "docs/60-CERTIFICADO-COMPOSTO-ASSURANCE.md",
+      "kind": "file",
+      "sha256": "903eaa31fe040e6ab6d7b7196926944c79cd200b43d3c69c8a65655064529448",
+      "role": "composed assurance certificate contract and limits"
     },
     {
       "path": "docs/58-AUDITORIA-CAMINHOS-CRITICOS.md",
