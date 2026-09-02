@@ -769,6 +769,12 @@
       "kind": "file",
       "sha256": "03ce313a3a1d69da590afa4455ad2fcc11ff49355d9b41c2bf2ddd8e248678e2",
       "role": "structural critical call-path audit evidence and limits"
+    },
+    {
+      "path": "research/evidence/wide_research_pre_hardware_readiness.md",
+      "kind": "file",
+      "sha256": "32108af48dbeb7a26e497ca9a1dcb91ead6ae0b0fa5fc9eb0ac7b921567a3276",
+      "role": "wide research pre-hardware readiness evidence"
     }
   ],
   "components": [
