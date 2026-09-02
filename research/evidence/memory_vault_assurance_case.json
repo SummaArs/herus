@@ -1,0 +1,89 @@
+{
+  "schema": "herus.assurance-case.v1",
+  "name": "memory-vault-real-contract-v1",
+  "source_contract": {
+    "header": "firmware/core/memory_vault.h",
+    "implementation": "firmware/core/memory_vault.c",
+    "scope": "public lifecycle and error contract; cryptographic internals excluded"
+  },
+  "abstract": {
+    "initial_state": "UNINITIALIZED",
+    "states": ["UNINITIALIZED", "READY", "SEALED", "BLOCKED"],
+    "inputs": ["INIT_OK", "STORAGE_FAIL", "VALID_SEAL", "INVALID_SEAL", "ERASE_FAIL"],
+    "actions": ["READY", "SEAL", "STAY", "BLOCK"],
+    "transitions": [
+      {"state":"UNINITIALIZED","input_symbol":"INIT_OK","action":"READY","next_state":"READY"},
+      {"state":"UNINITIALIZED","input_symbol":"STORAGE_FAIL","action":"BLOCK","next_state":"BLOCKED"},
+      {"state":"UNINITIALIZED","input_symbol":"VALID_SEAL","action":"STAY","next_state":"UNINITIALIZED"},
+      {"state":"UNINITIALIZED","input_symbol":"INVALID_SEAL","action":"STAY","next_state":"UNINITIALIZED"},
+      {"state":"UNINITIALIZED","input_symbol":"ERASE_FAIL","action":"BLOCK","next_state":"BLOCKED"},
+      {"state":"READY","input_symbol":"INIT_OK","action":"STAY","next_state":"READY"},
+      {"state":"READY","input_symbol":"STORAGE_FAIL","action":"BLOCK","next_state":"BLOCKED"},
+      {"state":"READY","input_symbol":"VALID_SEAL","action":"SEAL","next_state":"SEALED"},
+      {"state":"READY","input_symbol":"INVALID_SEAL","action":"STAY","next_state":"READY"},
+      {"state":"READY","input_symbol":"ERASE_FAIL","action":"BLOCK","next_state":"BLOCKED"},
+      {"state":"SEALED","input_symbol":"INIT_OK","action":"STAY","next_state":"SEALED"},
+      {"state":"SEALED","input_symbol":"STORAGE_FAIL","action":"BLOCK","next_state":"BLOCKED"},
+      {"state":"SEALED","input_symbol":"VALID_SEAL","action":"SEAL","next_state":"SEALED"},
+      {"state":"SEALED","input_symbol":"INVALID_SEAL","action":"STAY","next_state":"SEALED"},
+      {"state":"SEALED","input_symbol":"ERASE_FAIL","action":"BLOCK","next_state":"BLOCKED"},
+      {"state":"BLOCKED","input_symbol":"INIT_OK","action":"BLOCK","next_state":"BLOCKED"},
+      {"state":"BLOCKED","input_symbol":"STORAGE_FAIL","action":"BLOCK","next_state":"BLOCKED"},
+      {"state":"BLOCKED","input_symbol":"VALID_SEAL","action":"BLOCK","next_state":"BLOCKED"},
+      {"state":"BLOCKED","input_symbol":"INVALID_SEAL","action":"BLOCK","next_state":"BLOCKED"},
+      {"state":"BLOCKED","input_symbol":"ERASE_FAIL","action":"BLOCK","next_state":"BLOCKED"}
+    ],
+    "forbidden_states": [],
+    "forbidden_actions": [],
+    "max_steps": 3
+  },
+  "concrete": {
+    "initial_state": "MEMORY_VAULT_UNINITIALIZED",
+    "states": ["MEMORY_VAULT_UNINITIALIZED", "MEMORY_VAULT_READY", "MEMORY_VAULT_SEALED", "MEMORY_VAULT_BLOCKED"],
+    "inputs": ["CFG_VALID", "BACKEND_LOAD_FAIL", "CARD_AUTH_VALID", "CARD_AUTH_INVALID", "BACKEND_ERASE_FAIL"],
+    "actions": ["INIT_READY", "SEAL_RECORD", "RETAIN_STATE", "BLOCK_VAULT"],
+    "transitions": [
+      {"state":"MEMORY_VAULT_UNINITIALIZED","input_symbol":"CFG_VALID","action":"INIT_READY","next_state":"MEMORY_VAULT_READY"},
+      {"state":"MEMORY_VAULT_UNINITIALIZED","input_symbol":"BACKEND_LOAD_FAIL","action":"BLOCK_VAULT","next_state":"MEMORY_VAULT_BLOCKED"},
+      {"state":"MEMORY_VAULT_UNINITIALIZED","input_symbol":"CARD_AUTH_VALID","action":"RETAIN_STATE","next_state":"MEMORY_VAULT_UNINITIALIZED"},
+      {"state":"MEMORY_VAULT_UNINITIALIZED","input_symbol":"CARD_AUTH_INVALID","action":"RETAIN_STATE","next_state":"MEMORY_VAULT_UNINITIALIZED"},
+      {"state":"MEMORY_VAULT_UNINITIALIZED","input_symbol":"BACKEND_ERASE_FAIL","action":"BLOCK_VAULT","next_state":"MEMORY_VAULT_BLOCKED"},
+      {"state":"MEMORY_VAULT_READY","input_symbol":"CFG_VALID","action":"RETAIN_STATE","next_state":"MEMORY_VAULT_READY"},
+      {"state":"MEMORY_VAULT_READY","input_symbol":"BACKEND_LOAD_FAIL","action":"BLOCK_VAULT","next_state":"MEMORY_VAULT_BLOCKED"},
+      {"state":"MEMORY_VAULT_READY","input_symbol":"CARD_AUTH_VALID","action":"SEAL_RECORD","next_state":"MEMORY_VAULT_SEALED"},
+      {"state":"MEMORY_VAULT_READY","input_symbol":"CARD_AUTH_INVALID","action":"RETAIN_STATE","next_state":"MEMORY_VAULT_READY"},
+      {"state":"MEMORY_VAULT_READY","input_symbol":"BACKEND_ERASE_FAIL","action":"BLOCK_VAULT","next_state":"MEMORY_VAULT_BLOCKED"},
+      {"state":"MEMORY_VAULT_SEALED","input_symbol":"CFG_VALID","action":"RETAIN_STATE","next_state":"MEMORY_VAULT_SEALED"},
+      {"state":"MEMORY_VAULT_SEALED","input_symbol":"BACKEND_LOAD_FAIL","action":"BLOCK_VAULT","next_state":"MEMORY_VAULT_BLOCKED"},
+      {"state":"MEMORY_VAULT_SEALED","input_symbol":"CARD_AUTH_VALID","action":"SEAL_RECORD","next_state":"MEMORY_VAULT_SEALED"},
+      {"state":"MEMORY_VAULT_SEALED","input_symbol":"CARD_AUTH_INVALID","action":"RETAIN_STATE","next_state":"MEMORY_VAULT_SEALED"},
+      {"state":"MEMORY_VAULT_SEALED","input_symbol":"BACKEND_ERASE_FAIL","action":"BLOCK_VAULT","next_state":"MEMORY_VAULT_BLOCKED"},
+      {"state":"MEMORY_VAULT_BLOCKED","input_symbol":"CFG_VALID","action":"BLOCK_VAULT","next_state":"MEMORY_VAULT_BLOCKED"},
+      {"state":"MEMORY_VAULT_BLOCKED","input_symbol":"BACKEND_LOAD_FAIL","action":"BLOCK_VAULT","next_state":"MEMORY_VAULT_BLOCKED"},
+      {"state":"MEMORY_VAULT_BLOCKED","input_symbol":"CARD_AUTH_VALID","action":"BLOCK_VAULT","next_state":"MEMORY_VAULT_BLOCKED"},
+      {"state":"MEMORY_VAULT_BLOCKED","input_symbol":"CARD_AUTH_INVALID","action":"BLOCK_VAULT","next_state":"MEMORY_VAULT_BLOCKED"},
+      {"state":"MEMORY_VAULT_BLOCKED","input_symbol":"BACKEND_ERASE_FAIL","action":"BLOCK_VAULT","next_state":"MEMORY_VAULT_BLOCKED"}
+    ],
+    "forbidden_states": [],
+    "forbidden_actions": [],
+    "max_steps": 3
+  },
+  "abstract_policy": [
+    {"state":"UNINITIALIZED","input_symbol":"INIT_OK","action":"READY"},{"state":"UNINITIALIZED","input_symbol":"STORAGE_FAIL","action":"BLOCK"},{"state":"UNINITIALIZED","input_symbol":"VALID_SEAL","action":"STAY"},{"state":"UNINITIALIZED","input_symbol":"INVALID_SEAL","action":"STAY"},{"state":"UNINITIALIZED","input_symbol":"ERASE_FAIL","action":"BLOCK"},
+    {"state":"READY","input_symbol":"INIT_OK","action":"STAY"},{"state":"READY","input_symbol":"STORAGE_FAIL","action":"BLOCK"},{"state":"READY","input_symbol":"VALID_SEAL","action":"SEAL"},{"state":"READY","input_symbol":"INVALID_SEAL","action":"STAY"},{"state":"READY","input_symbol":"ERASE_FAIL","action":"BLOCK"},
+    {"state":"SEALED","input_symbol":"INIT_OK","action":"STAY"},{"state":"SEALED","input_symbol":"STORAGE_FAIL","action":"BLOCK"},{"state":"SEALED","input_symbol":"VALID_SEAL","action":"SEAL"},{"state":"SEALED","input_symbol":"INVALID_SEAL","action":"STAY"},{"state":"SEALED","input_symbol":"ERASE_FAIL","action":"BLOCK"},
+    {"state":"BLOCKED","input_symbol":"INIT_OK","action":"BLOCK"},{"state":"BLOCKED","input_symbol":"STORAGE_FAIL","action":"BLOCK"},{"state":"BLOCKED","input_symbol":"VALID_SEAL","action":"BLOCK"},{"state":"BLOCKED","input_symbol":"INVALID_SEAL","action":"BLOCK"},{"state":"BLOCKED","input_symbol":"ERASE_FAIL","action":"BLOCK"}
+  ],
+  "concrete_policy": [
+    {"state":"MEMORY_VAULT_UNINITIALIZED","input_symbol":"CFG_VALID","action":"INIT_READY"},{"state":"MEMORY_VAULT_UNINITIALIZED","input_symbol":"BACKEND_LOAD_FAIL","action":"BLOCK_VAULT"},{"state":"MEMORY_VAULT_UNINITIALIZED","input_symbol":"CARD_AUTH_VALID","action":"RETAIN_STATE"},{"state":"MEMORY_VAULT_UNINITIALIZED","input_symbol":"CARD_AUTH_INVALID","action":"RETAIN_STATE"},{"state":"MEMORY_VAULT_UNINITIALIZED","input_symbol":"BACKEND_ERASE_FAIL","action":"BLOCK_VAULT"},
+    {"state":"MEMORY_VAULT_READY","input_symbol":"CFG_VALID","action":"RETAIN_STATE"},{"state":"MEMORY_VAULT_READY","input_symbol":"BACKEND_LOAD_FAIL","action":"BLOCK_VAULT"},{"state":"MEMORY_VAULT_READY","input_symbol":"CARD_AUTH_VALID","action":"SEAL_RECORD"},{"state":"MEMORY_VAULT_READY","input_symbol":"CARD_AUTH_INVALID","action":"RETAIN_STATE"},{"state":"MEMORY_VAULT_READY","input_symbol":"BACKEND_ERASE_FAIL","action":"BLOCK_VAULT"},
+    {"state":"MEMORY_VAULT_SEALED","input_symbol":"CFG_VALID","action":"RETAIN_STATE"},{"state":"MEMORY_VAULT_SEALED","input_symbol":"BACKEND_LOAD_FAIL","action":"BLOCK_VAULT"},{"state":"MEMORY_VAULT_SEALED","input_symbol":"CARD_AUTH_VALID","action":"SEAL_RECORD"},{"state":"MEMORY_VAULT_SEALED","input_symbol":"CARD_AUTH_INVALID","action":"RETAIN_STATE"},{"state":"MEMORY_VAULT_SEALED","input_symbol":"BACKEND_ERASE_FAIL","action":"BLOCK_VAULT"},
+    {"state":"MEMORY_VAULT_BLOCKED","input_symbol":"CFG_VALID","action":"BLOCK_VAULT"},{"state":"MEMORY_VAULT_BLOCKED","input_symbol":"BACKEND_LOAD_FAIL","action":"BLOCK_VAULT"},{"state":"MEMORY_VAULT_BLOCKED","input_symbol":"CARD_AUTH_VALID","action":"BLOCK_VAULT"},{"state":"MEMORY_VAULT_BLOCKED","input_symbol":"CARD_AUTH_INVALID","action":"BLOCK_VAULT"},{"state":"MEMORY_VAULT_BLOCKED","input_symbol":"BACKEND_ERASE_FAIL","action":"BLOCK_VAULT"}
+  ],
+  "state_map": {"MEMORY_VAULT_UNINITIALIZED":"UNINITIALIZED","MEMORY_VAULT_READY":"READY","MEMORY_VAULT_SEALED":"SEALED","MEMORY_VAULT_BLOCKED":"BLOCKED"},
+  "input_map": {"CFG_VALID":"INIT_OK","BACKEND_LOAD_FAIL":"STORAGE_FAIL","CARD_AUTH_VALID":"VALID_SEAL","CARD_AUTH_INVALID":"INVALID_SEAL","BACKEND_ERASE_FAIL":"ERASE_FAIL"},
+  "action_map": {"INIT_READY":"READY","SEAL_RECORD":"SEAL","RETAIN_STATE":"STAY","BLOCK_VAULT":"BLOCK"},
+  "call_paths": [
+    {"rule_id":"memory-persist","status":"COVERED","source":"firmware/core/memory_vault.c","caller":"memory_vault_seal","detail":"auth_and_card_guards_precede_persistence"}
+  ]
+}

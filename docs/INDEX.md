@@ -15,6 +15,7 @@ Este índice é a forma recomendada de navegar pela documentação. O [README ra
 | [`59-REFINAMENTO-DE-POLITICAS.md`](59-REFINAMENTO-DE-POLITICAS.md) | Ligação formal entre políticas abstratas e concretas |
 | [`60-CERTIFICADO-COMPOSTO-ASSURANCE.md`](60-CERTIFICADO-COMPOSTO-ASSURANCE.md) | Composição auditável de verificações, refinamentos e caminhos críticos |
 | [`61-CASO-ASSURANCE-REPRODUZIVEL.md`](61-CASO-ASSURANCE-REPRODUZIVEL.md) | Fixture, runner, certificado serializado e mutações reproduzíveis |
+| [`62-ASSURANCE-MEMORY-VAULT-REAL.md`](62-ASSURANCE-MEMORY-VAULT-REAL.md) | Primeiro caso composto derivado de um subsistema real do firmware |
 
 ## 2. Produto e experiência
 

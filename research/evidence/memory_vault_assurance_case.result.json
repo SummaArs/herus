@@ -1,0 +1,18 @@
+{
+  "abstract_verification": "VERIFIED",
+  "call_paths": [
+    {
+      "caller": "memory_vault_seal",
+      "detail": "auth_and_card_guards_precede_persistence",
+      "rule_id": "memory-persist",
+      "source": "firmware/core/memory_vault.c",
+      "status": "COVERED"
+    }
+  ],
+  "concrete_verification": "VERIFIED",
+  "evidence_digest": "a863918520612da9578316642d66889367bb3f08b1b74c2ccd73e44c18530a64",
+  "machine_refinement": "REFINED",
+  "policy_refinement": "REFINED",
+  "reason": "finite_chain_assured",
+  "verdict": "ASSURED"
+}

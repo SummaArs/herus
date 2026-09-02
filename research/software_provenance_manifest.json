@@ -53,7 +53,7 @@
     {
       "path": "research/Makefile",
       "kind": "file",
-      "sha256": "a27c69c915c202ca6d9e757f04c64771752b7225ac1a9df5e6930404bf7ea355",
+      "sha256": "0fe94fbe969c8a4cb2fe2188e42b977a67ac07cf1eccb9e83248eb263f1853f5",
       "role": "host-only research test entrypoint"
     },
     {
@@ -263,7 +263,7 @@
     {
       "path": "docs/INDEX.md",
       "kind": "file",
-      "sha256": "e78cf364b1253224ef5c21f74cee103205a2ed5c7b88ce8e8e152573bc37b1e2",
+      "sha256": "ad42b15738d7d4696e146b83d41accac46ae6f520e260aa17f07fa2e059ad8ae",
       "role": "editorial documentation index"
     },
     {
@@ -691,6 +691,30 @@
       "kind": "file",
       "sha256": "c04b493efe59fa623aedf7943a8d319ef117dfda7804fc18f7689a7cd490c018",
       "role": "reproducible assurance case evidence and limits"
+    },
+    {
+      "path": "research/test_memory_vault_assurance_case.py",
+      "kind": "file",
+      "sha256": "8bd604808ad2eba25f90db7f0c80892714e46d9785b57021e3fba54ee3b5b850",
+      "role": "real memory vault assurance case adversarial tests"
+    },
+    {
+      "path": "research/evidence/memory_vault_assurance_case.json",
+      "kind": "file",
+      "sha256": "b6ed1b23e861a159f481801236500cb94c73de718180fc71e94ba8901f641576",
+      "role": "declarative real memory vault assurance case"
+    },
+    {
+      "path": "research/evidence/memory_vault_assurance_case.result.json",
+      "kind": "file",
+      "sha256": "809e08e37925039a36118945a218032776e94055e0e7a9423d83eb790f651354",
+      "role": "serialized real memory vault assurance result"
+    },
+    {
+      "path": "docs/62-ASSURANCE-MEMORY-VAULT-REAL.md",
+      "kind": "file",
+      "sha256": "2c11f1b49899290452eb2cc459722edbcdb864d35cfa38b2f13cc921da949e8e",
+      "role": "real memory vault assurance evidence and limits"
     },
     {
       "path": "docs/60-CERTIFICADO-COMPOSTO-ASSURANCE.md",
