@@ -257,8 +257,14 @@
     {
       "path": "README.md",
       "kind": "file",
-      "sha256": "47a8848befaadc5d174da764a943a35ba32b6278e6039c86b27d8cc02d4c6a35",
+      "sha256": "7fb0bb495581dcdba7558412296b5cdeeedd9eb586e566cf5aefe292a85fd774",
       "role": "public project state and verification documentation"
+    },
+    {
+      "path": "docs/INDEX.md",
+      "kind": "file",
+      "sha256": "3d18340f6da9c23a4a8346cbd5038f34c1915821e183700d540f3526d01c0c09",
+      "role": "editorial documentation index"
     },
     {
       "path": "docs/50-INTENT-COMPILER-E-SEMANTIC-IR.md",
