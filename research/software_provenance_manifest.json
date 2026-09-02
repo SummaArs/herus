@@ -53,7 +53,7 @@
     {
       "path": "research/Makefile",
       "kind": "file",
-      "sha256": "8320e6708db955172fec4b0885f1c7fc6ccef1ebf2130e83a185e3df4dbf75b2",
+      "sha256": "c9a9d7b7c7f0b2d6dd0d4ae329bac43145f7a276461243852357efc5a1716464",
       "role": "host-only research test entrypoint"
     },
     {
@@ -443,7 +443,7 @@
     {
       "path": "docs/54-MVP-SINTESE-VERIFICACAO-MAQUINAS-ESTADO.md",
       "kind": "file",
-      "sha256": "e6e328b74c7a4b9156be8ffd3a68df55baef423e8d6e0d7d38593ac1fe4456dd",
+      "sha256": "509d47e16eb4a1c41493a985a64839e5f3f6c031e254194da8ca09bdde8c168d",
       "role": "MVP synthesis and verification specification"
     },
     {
@@ -499,6 +499,42 @@
       "kind": "file",
       "sha256": "ed96ad00f0651a490a648e47e25a38ab8bc4a90920a91e1920eb0313ccf15a3b",
       "role": "refinement boundary adversarial tests"
+    },
+    {
+      "path": "research/sygus_lia_subset.py",
+      "kind": "file",
+      "sha256": "10c0caf36efd19ad0f4901c85d918211cb214ec1c6bbe75b212721d524709f21",
+      "role": "fail-closed executable SyGuS LIA subset"
+    },
+    {
+      "path": "research/test_sygus_lia_subset.py",
+      "kind": "file",
+      "sha256": "233bd16a20e6a9212ba983c5ac20aafc26aea48438863859b726129896a7c2b6",
+      "role": "SyGuS subset semantic and budget tests"
+    },
+    {
+      "path": "research/run_sygus_subset_benchmark.py",
+      "kind": "file",
+      "sha256": "3a3fb78f1e01b999d0404da7257d0e73c1f740d06d6f69459ed378d0eab74d66",
+      "role": "reproducible public SyGuS benchmark runner"
+    },
+    {
+      "path": "research/evidence/sygus_subset_benchmark.json",
+      "kind": "file",
+      "sha256": "e62bbb07c4447c18da8af07c291a235076bb396ed021efb902eb8b86f9009f78",
+      "role": "raw bounded SyGuS subset results"
+    },
+    {
+      "path": "research/evidence/sygus_subset_benchmark.md",
+      "kind": "file",
+      "sha256": "27678cbd52f28be8a27afaf4f51aec0f9777e67a594bafcdb48e2a288482b8fe",
+      "role": "bounded SyGuS comparison report"
+    },
+    {
+      "path": "research/evidence/sygus_primary_sources.md",
+      "kind": "file",
+      "sha256": "ef07c9bf0f9af692fd35c0ced02e666a5bf6d1cc72b2887f7703624ff6827b7b",
+      "role": "primary SyGuS source notes"
     }
   ],
   "components": [

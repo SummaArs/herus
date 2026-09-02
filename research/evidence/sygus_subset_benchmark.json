@@ -1,0 +1,3705 @@
+{
+  "corpus": "SyGuS-Org/benchmarks",
+  "domain": [
+    -2,
+    2
+  ],
+  "files": 9719,
+  "lexically_supported": 526,
+  "max_candidates": 500,
+  "max_depth": 2,
+  "rows": [
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/CLIA_Track/fg_VC22_a.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/CLIA_Track/fg_array_search_10.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/CLIA_Track/fg_array_search_11.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/CLIA_Track/fg_array_search_12.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/CLIA_Track/fg_array_search_13.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/CLIA_Track/fg_array_search_14.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/CLIA_Track/fg_array_search_15.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/CLIA_Track/fg_array_search_2.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/CLIA_Track/fg_array_search_3.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/CLIA_Track/fg_array_search_4.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/CLIA_Track/fg_array_search_5.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/CLIA_Track/fg_array_search_6.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/CLIA_Track/fg_array_search_7.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/CLIA_Track/fg_array_search_8.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/CLIA_Track/fg_array_search_9.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/CLIA_Track/fg_array_sum_10_15.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/CLIA_Track/fg_array_sum_10_5.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/CLIA_Track/fg_array_sum_2_15.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/CLIA_Track/fg_array_sum_2_5.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/CLIA_Track/fg_array_sum_3_15.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/CLIA_Track/fg_array_sum_3_5.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/CLIA_Track/fg_array_sum_4_15.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/CLIA_Track/fg_array_sum_5_15.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/CLIA_Track/fg_array_sum_6_15.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/CLIA_Track/fg_array_sum_6_5.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/CLIA_Track/fg_array_sum_7_15.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/CLIA_Track/fg_array_sum_7_5.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/CLIA_Track/fg_array_sum_8_15.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/CLIA_Track/fg_array_sum_8_5.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/CLIA_Track/fg_array_sum_9_15.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/CLIA_Track/fg_array_sum_9_5.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/CLIA_Track/fg_max10.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/CLIA_Track/fg_max11.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/CLIA_Track/fg_max12.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/CLIA_Track/fg_max13.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/CLIA_Track/fg_max14.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/CLIA_Track/fg_max15.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/CLIA_Track/fg_max2.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/CLIA_Track/fg_max3.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/CLIA_Track/fg_max4.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/CLIA_Track/fg_max5.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/CLIA_Track/fg_max6.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/CLIA_Track/fg_max7.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/CLIA_Track/fg_max8.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/CLIA_Track/fg_max9.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 100,
+      "expression": "(+ x y)",
+      "path": "comp/2017/General_Track/commutative.sl",
+      "reason": "finite_domain_only",
+      "status": "BOUNDED_VERIFIED"
+    },
+    {
+      "checked_points": 25,
+      "expression": "0",
+      "path": "comp/2017/General_Track/constant.sl",
+      "reason": "finite_domain_only",
+      "status": "BOUNDED_VERIFIED"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/General_Track/inv_gen_array.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/General_Track/inv_gen_cegar2.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/General_Track/inv_gen_cgr1.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/General_Track/inv_gen_ex14.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/General_Track/inv_gen_ex23.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/General_Track/inv_gen_ex7.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/General_Track/inv_gen_fig1.sl",
+      "reason": "synth_fun_must_return_Int",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/General_Track/inv_gen_fig3.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/General_Track/inv_gen_fig6.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/General_Track/inv_gen_fig8.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/General_Track/inv_gen_fig9.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/General_Track/inv_gen_finf1.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/General_Track/inv_gen_finf2.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/General_Track/inv_gen_n_c11.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/General_Track/inv_gen_sum1.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/General_Track/inv_gen_sum3.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/General_Track/inv_gen_sum4.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/General_Track/inv_gen_tcs.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/General_Track/inv_gen_term2.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/General_Track/inv_gen_term3.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/General_Track/inv_gen_trex1.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/General_Track/inv_gen_trex2.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/General_Track/inv_gen_trex4.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/General_Track/inv_gen_vmail.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/General_Track/inv_gen_w1.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/General_Track/inv_gen_w2.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/General_Track/inv_gen_winf1.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/General_Track/inv_gen_winf2.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/General_Track/seven_c2.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/General_Track/three.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/General_Track/unbdd_inv_gen_array.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/General_Track/unbdd_inv_gen_cegar2.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/General_Track/unbdd_inv_gen_cgr1.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/General_Track/unbdd_inv_gen_ex14.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/General_Track/unbdd_inv_gen_ex23.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/General_Track/unbdd_inv_gen_ex7.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/General_Track/unbdd_inv_gen_fig1.sl",
+      "reason": "synth_fun_must_return_Int",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/General_Track/unbdd_inv_gen_fig3.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/General_Track/unbdd_inv_gen_fig6.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/General_Track/unbdd_inv_gen_fig8.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/General_Track/unbdd_inv_gen_fig9.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/General_Track/unbdd_inv_gen_finf1.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/General_Track/unbdd_inv_gen_finf2.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/General_Track/unbdd_inv_gen_n_c11.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/General_Track/unbdd_inv_gen_sum1.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/General_Track/unbdd_inv_gen_sum3.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/General_Track/unbdd_inv_gen_sum4.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/General_Track/unbdd_inv_gen_tcs.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/General_Track/unbdd_inv_gen_term2.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/General_Track/unbdd_inv_gen_term3.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/General_Track/unbdd_inv_gen_trex1.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/General_Track/unbdd_inv_gen_trex2.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/General_Track/unbdd_inv_gen_trex4.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/General_Track/unbdd_inv_gen_vmail.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/General_Track/unbdd_inv_gen_w1.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/General_Track/unbdd_inv_gen_w2.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/General_Track/unbdd_inv_gen_winf1.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2017/General_Track/unbdd_inv_gen_winf2.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/CLIA_Track/arraysearch16.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/CLIA_Track/arraysearch17.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/CLIA_Track/arraysearch18.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/CLIA_Track/arraysearch19.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/CLIA_Track/arraysearch20.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/CLIA_Track/diff.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/CLIA_Track/jmbl_fg_VC22_a.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/CLIA_Track/jmbl_fg_array_search_10.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/CLIA_Track/jmbl_fg_array_search_11.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/CLIA_Track/jmbl_fg_array_search_12.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/CLIA_Track/jmbl_fg_array_search_13.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/CLIA_Track/jmbl_fg_array_search_14.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/CLIA_Track/jmbl_fg_array_search_15.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/CLIA_Track/jmbl_fg_array_search_2.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/CLIA_Track/jmbl_fg_array_search_3.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/CLIA_Track/jmbl_fg_array_search_4.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/CLIA_Track/jmbl_fg_array_search_5.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/CLIA_Track/jmbl_fg_array_search_6.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/CLIA_Track/jmbl_fg_array_search_7.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/CLIA_Track/jmbl_fg_array_search_8.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/CLIA_Track/jmbl_fg_array_search_9.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/CLIA_Track/jmbl_fg_array_sum_10_15.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/CLIA_Track/jmbl_fg_array_sum_10_5.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/CLIA_Track/jmbl_fg_array_sum_2_15.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/CLIA_Track/jmbl_fg_array_sum_2_5.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/CLIA_Track/jmbl_fg_array_sum_3_15.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/CLIA_Track/jmbl_fg_array_sum_3_5.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/CLIA_Track/jmbl_fg_array_sum_4_15.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/CLIA_Track/jmbl_fg_array_sum_5_15.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/CLIA_Track/jmbl_fg_array_sum_6_15.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/CLIA_Track/jmbl_fg_array_sum_6_5.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/CLIA_Track/jmbl_fg_array_sum_7_15.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/CLIA_Track/jmbl_fg_array_sum_7_5.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/CLIA_Track/jmbl_fg_array_sum_8_15.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/CLIA_Track/jmbl_fg_array_sum_8_5.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/CLIA_Track/jmbl_fg_array_sum_9_15.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/CLIA_Track/jmbl_fg_array_sum_9_5.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/CLIA_Track/jmbl_fg_max10.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/CLIA_Track/jmbl_fg_max11.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/CLIA_Track/jmbl_fg_max12.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/CLIA_Track/jmbl_fg_max13.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/CLIA_Track/jmbl_fg_max14.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/CLIA_Track/jmbl_fg_max15.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/CLIA_Track/jmbl_fg_max2.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/CLIA_Track/jmbl_fg_max3.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/CLIA_Track/jmbl_fg_max4.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/CLIA_Track/jmbl_fg_max5.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/CLIA_Track/jmbl_fg_max6.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/CLIA_Track/jmbl_fg_max7.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/CLIA_Track/jmbl_fg_max8.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/CLIA_Track/jmbl_fg_max9.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/CLIA_Track/jmbl_fg_mpg_example1.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/CLIA_Track/large.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/CLIA_Track/large_linear_func.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/CLIA_Track/max16.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/CLIA_Track/max17.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/CLIA_Track/max18.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/CLIA_Track/max19.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/CLIA_Track/max20.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/CLIA_Track/small.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/CLIA_Track/small_linear_func.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 100,
+      "expression": "(+ x y)",
+      "path": "comp/2018/General_Track/commutative.sl",
+      "reason": "finite_domain_only",
+      "status": "BOUNDED_VERIFIED"
+    },
+    {
+      "checked_points": 25,
+      "expression": "0",
+      "path": "comp/2018/General_Track/constant.sl",
+      "reason": "finite_domain_only",
+      "status": "BOUNDED_VERIFIED"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/General_Track/inv_gen_array.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/General_Track/inv_gen_cegar2.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/General_Track/inv_gen_cgr1.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/General_Track/inv_gen_ex14.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/General_Track/inv_gen_ex23.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/General_Track/inv_gen_ex7.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/General_Track/inv_gen_fig1.sl",
+      "reason": "synth_fun_must_return_Int",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/General_Track/inv_gen_fig3.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/General_Track/inv_gen_fig6.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/General_Track/inv_gen_fig8.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/General_Track/inv_gen_fig9.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/General_Track/inv_gen_finf1.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/General_Track/inv_gen_finf2.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/General_Track/inv_gen_n_c11.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/General_Track/inv_gen_sum1.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/General_Track/inv_gen_sum3.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/General_Track/inv_gen_sum4.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/General_Track/inv_gen_tcs.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/General_Track/inv_gen_term2.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/General_Track/inv_gen_term3.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/General_Track/inv_gen_trex1.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/General_Track/inv_gen_trex2.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/General_Track/inv_gen_trex4.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/General_Track/inv_gen_vmail.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/General_Track/inv_gen_w1.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/General_Track/inv_gen_w2.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/General_Track/inv_gen_winf1.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/General_Track/inv_gen_winf2.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/General_Track/seven_c2.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/General_Track/three.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/General_Track/unbdd_inv_gen_array.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/General_Track/unbdd_inv_gen_cegar2.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/General_Track/unbdd_inv_gen_cgr1.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/General_Track/unbdd_inv_gen_ex14.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/General_Track/unbdd_inv_gen_ex23.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/General_Track/unbdd_inv_gen_ex7.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/General_Track/unbdd_inv_gen_fig1.sl",
+      "reason": "synth_fun_must_return_Int",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/General_Track/unbdd_inv_gen_fig3.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/General_Track/unbdd_inv_gen_fig6.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/General_Track/unbdd_inv_gen_fig8.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/General_Track/unbdd_inv_gen_fig9.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/General_Track/unbdd_inv_gen_finf1.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/General_Track/unbdd_inv_gen_finf2.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/General_Track/unbdd_inv_gen_n_c11.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/General_Track/unbdd_inv_gen_sum1.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/General_Track/unbdd_inv_gen_sum3.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/General_Track/unbdd_inv_gen_sum4.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/General_Track/unbdd_inv_gen_tcs.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/General_Track/unbdd_inv_gen_term2.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/General_Track/unbdd_inv_gen_term3.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/General_Track/unbdd_inv_gen_trex1.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/General_Track/unbdd_inv_gen_trex2.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/General_Track/unbdd_inv_gen_trex4.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/General_Track/unbdd_inv_gen_vmail.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/General_Track/unbdd_inv_gen_w1.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/General_Track/unbdd_inv_gen_w2.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/General_Track/unbdd_inv_gen_winf1.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2018/General_Track/unbdd_inv_gen_winf2.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/CLIA_Track/from_2018/arraysearch16.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/CLIA_Track/from_2018/arraysearch17.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/CLIA_Track/from_2018/arraysearch18.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/CLIA_Track/from_2018/arraysearch19.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/CLIA_Track/from_2018/arraysearch20.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/CLIA_Track/from_2018/diff.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/CLIA_Track/from_2018/jmbl_fg_VC22_a.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/CLIA_Track/from_2018/jmbl_fg_array_search_10.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/CLIA_Track/from_2018/jmbl_fg_array_search_11.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/CLIA_Track/from_2018/jmbl_fg_array_search_12.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/CLIA_Track/from_2018/jmbl_fg_array_search_13.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/CLIA_Track/from_2018/jmbl_fg_array_search_14.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/CLIA_Track/from_2018/jmbl_fg_array_search_15.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/CLIA_Track/from_2018/jmbl_fg_array_search_2.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/CLIA_Track/from_2018/jmbl_fg_array_search_3.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/CLIA_Track/from_2018/jmbl_fg_array_search_4.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/CLIA_Track/from_2018/jmbl_fg_array_search_5.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/CLIA_Track/from_2018/jmbl_fg_array_search_6.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/CLIA_Track/from_2018/jmbl_fg_array_search_7.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/CLIA_Track/from_2018/jmbl_fg_array_search_8.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/CLIA_Track/from_2018/jmbl_fg_array_search_9.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/CLIA_Track/from_2018/jmbl_fg_array_sum_10_15.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/CLIA_Track/from_2018/jmbl_fg_array_sum_10_5.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/CLIA_Track/from_2018/jmbl_fg_array_sum_2_15.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/CLIA_Track/from_2018/jmbl_fg_array_sum_2_5.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/CLIA_Track/from_2018/jmbl_fg_array_sum_3_15.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/CLIA_Track/from_2018/jmbl_fg_array_sum_3_5.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/CLIA_Track/from_2018/jmbl_fg_array_sum_4_15.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/CLIA_Track/from_2018/jmbl_fg_array_sum_4_5.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/CLIA_Track/from_2018/jmbl_fg_array_sum_5_15.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/CLIA_Track/from_2018/jmbl_fg_array_sum_6_15.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/CLIA_Track/from_2018/jmbl_fg_array_sum_6_5.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/CLIA_Track/from_2018/jmbl_fg_array_sum_7_15.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/CLIA_Track/from_2018/jmbl_fg_array_sum_7_5.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/CLIA_Track/from_2018/jmbl_fg_array_sum_8_15.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/CLIA_Track/from_2018/jmbl_fg_array_sum_8_5.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/CLIA_Track/from_2018/jmbl_fg_array_sum_9_15.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/CLIA_Track/from_2018/jmbl_fg_array_sum_9_5.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/CLIA_Track/from_2018/jmbl_fg_max10.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/CLIA_Track/from_2018/jmbl_fg_max11.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/CLIA_Track/from_2018/jmbl_fg_max12.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/CLIA_Track/from_2018/jmbl_fg_max13.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/CLIA_Track/from_2018/jmbl_fg_max14.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/CLIA_Track/from_2018/jmbl_fg_max15.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/CLIA_Track/from_2018/jmbl_fg_max2.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/CLIA_Track/from_2018/jmbl_fg_max3.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/CLIA_Track/from_2018/jmbl_fg_max4.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/CLIA_Track/from_2018/jmbl_fg_max5.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/CLIA_Track/from_2018/jmbl_fg_max6.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/CLIA_Track/from_2018/jmbl_fg_max7.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/CLIA_Track/from_2018/jmbl_fg_max8.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/CLIA_Track/from_2018/jmbl_fg_max9.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/CLIA_Track/from_2018/jmbl_fg_mpg_example1.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/CLIA_Track/from_2018/jmbl_fg_mpg_example2.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/CLIA_Track/from_2018/jmbl_fg_mpg_example3.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/CLIA_Track/from_2018/jmbl_fg_mpg_example4.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/CLIA_Track/from_2018/jmbl_fg_mpg_guard1.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/CLIA_Track/from_2018/jmbl_fg_mpg_guard2.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/CLIA_Track/from_2018/jmbl_fg_mpg_guard3.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/CLIA_Track/from_2018/jmbl_fg_mpg_guard4.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/CLIA_Track/from_2018/jmbl_fg_mpg_ite1.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/CLIA_Track/from_2018/jmbl_fg_mpg_ite2.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/CLIA_Track/from_2018/jmbl_fg_mpg_plane1.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/CLIA_Track/from_2018/jmbl_fg_mpg_plane2.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/CLIA_Track/from_2018/jmbl_fg_mpg_plane3.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/CLIA_Track/from_2018/large.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/CLIA_Track/from_2018/large_linear_func.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/CLIA_Track/from_2018/max16.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/CLIA_Track/from_2018/max17.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/CLIA_Track/from_2018/max18.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/CLIA_Track/from_2018/max19.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/CLIA_Track/from_2018/max20.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/CLIA_Track/from_2018/small.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/CLIA_Track/from_2018/small_linear_func.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 100,
+      "expression": "(+ x y)",
+      "path": "comp/2019/General_Track/from_2018/commutative.sl",
+      "reason": "finite_domain_only",
+      "status": "BOUNDED_VERIFIED"
+    },
+    {
+      "checked_points": 25,
+      "expression": "0",
+      "path": "comp/2019/General_Track/from_2018/constant.sl",
+      "reason": "finite_domain_only",
+      "status": "BOUNDED_VERIFIED"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/General_Track/from_2018/inv_gen_array.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/General_Track/from_2018/inv_gen_cegar2.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/General_Track/from_2018/inv_gen_cgr1.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/General_Track/from_2018/inv_gen_ex14.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/General_Track/from_2018/inv_gen_ex23.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/General_Track/from_2018/inv_gen_ex7.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/General_Track/from_2018/inv_gen_fig1.sl",
+      "reason": "synth_fun_must_return_Int",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/General_Track/from_2018/inv_gen_fig3.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/General_Track/from_2018/inv_gen_fig6.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/General_Track/from_2018/inv_gen_fig8.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/General_Track/from_2018/inv_gen_fig9.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/General_Track/from_2018/inv_gen_finf1.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/General_Track/from_2018/inv_gen_finf2.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/General_Track/from_2018/inv_gen_n_c11.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/General_Track/from_2018/inv_gen_sum1.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/General_Track/from_2018/inv_gen_sum3.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/General_Track/from_2018/inv_gen_sum4.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/General_Track/from_2018/inv_gen_tcs.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/General_Track/from_2018/inv_gen_term2.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/General_Track/from_2018/inv_gen_term3.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/General_Track/from_2018/inv_gen_trex1.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/General_Track/from_2018/inv_gen_trex2.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/General_Track/from_2018/inv_gen_trex4.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/General_Track/from_2018/inv_gen_vmail.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/General_Track/from_2018/inv_gen_w1.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/General_Track/from_2018/inv_gen_w2.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/General_Track/from_2018/inv_gen_winf1.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/General_Track/from_2018/inv_gen_winf2.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/General_Track/from_2018/t1.sl",
+      "reason": "synth_fun_must_return_Int",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/General_Track/from_2018/t10.sl",
+      "reason": "synth_fun_must_return_Int",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/General_Track/from_2018/t11.sl",
+      "reason": "synth_fun_must_return_Int",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/General_Track/from_2018/t12.sl",
+      "reason": "synth_fun_must_return_Int",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/General_Track/from_2018/t14.sl",
+      "reason": "synth_fun_must_return_Int",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/General_Track/from_2018/t15.sl",
+      "reason": "synth_fun_must_return_Int",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/General_Track/from_2018/t17.sl",
+      "reason": "synth_fun_must_return_Int",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/General_Track/from_2018/t18.sl",
+      "reason": "synth_fun_must_return_Int",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/General_Track/from_2018/t2.sl",
+      "reason": "synth_fun_must_return_Int",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/General_Track/from_2018/t20.sl",
+      "reason": "synth_fun_must_return_Int",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/General_Track/from_2018/t3.sl",
+      "reason": "synth_fun_must_return_Int",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/General_Track/from_2018/t4.sl",
+      "reason": "synth_fun_must_return_Int",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/General_Track/from_2018/t5.sl",
+      "reason": "synth_fun_must_return_Int",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/General_Track/from_2018/t6.sl",
+      "reason": "synth_fun_must_return_Int",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/General_Track/from_2018/t7.sl",
+      "reason": "synth_fun_must_return_Int",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/General_Track/from_2018/t8.sl",
+      "reason": "synth_fun_must_return_Int",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/General_Track/from_2018/t9.sl",
+      "reason": "synth_fun_must_return_Int",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/General_Track/from_2018/unbdd_inv_gen_array.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/General_Track/from_2018/unbdd_inv_gen_cegar2.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/General_Track/from_2018/unbdd_inv_gen_cgr1.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/General_Track/from_2018/unbdd_inv_gen_ex14.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/General_Track/from_2018/unbdd_inv_gen_ex23.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/General_Track/from_2018/unbdd_inv_gen_ex7.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/General_Track/from_2018/unbdd_inv_gen_fig1.sl",
+      "reason": "synth_fun_must_return_Int",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/General_Track/from_2018/unbdd_inv_gen_fig3.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/General_Track/from_2018/unbdd_inv_gen_fig6.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/General_Track/from_2018/unbdd_inv_gen_fig8.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/General_Track/from_2018/unbdd_inv_gen_fig9.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/General_Track/from_2018/unbdd_inv_gen_finf1.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/General_Track/from_2018/unbdd_inv_gen_finf2.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/General_Track/from_2018/unbdd_inv_gen_n_c11.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/General_Track/from_2018/unbdd_inv_gen_sum1.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/General_Track/from_2018/unbdd_inv_gen_sum3.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/General_Track/from_2018/unbdd_inv_gen_sum4.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/General_Track/from_2018/unbdd_inv_gen_tcs.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/General_Track/from_2018/unbdd_inv_gen_term2.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/General_Track/from_2018/unbdd_inv_gen_term3.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/General_Track/from_2018/unbdd_inv_gen_trex1.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/General_Track/from_2018/unbdd_inv_gen_trex2.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/General_Track/from_2018/unbdd_inv_gen_trex4.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/General_Track/from_2018/unbdd_inv_gen_vmail.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/General_Track/from_2018/unbdd_inv_gen_w1.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/General_Track/from_2018/unbdd_inv_gen_w2.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/General_Track/from_2018/unbdd_inv_gen_winf1.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "comp/2019/General_Track/from_2018/unbdd_inv_gen_winf2.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/CLIA_Track/from_2018/arraysearch16.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/CLIA_Track/from_2018/arraysearch17.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/CLIA_Track/from_2018/arraysearch18.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/CLIA_Track/from_2018/arraysearch19.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/CLIA_Track/from_2018/arraysearch20.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/CLIA_Track/from_2018/diff.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/CLIA_Track/from_2018/jmbl_fg_VC22_a.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/CLIA_Track/from_2018/jmbl_fg_array_search_10.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/CLIA_Track/from_2018/jmbl_fg_array_search_11.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/CLIA_Track/from_2018/jmbl_fg_array_search_12.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/CLIA_Track/from_2018/jmbl_fg_array_search_13.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/CLIA_Track/from_2018/jmbl_fg_array_search_14.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/CLIA_Track/from_2018/jmbl_fg_array_search_15.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/CLIA_Track/from_2018/jmbl_fg_array_search_2.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/CLIA_Track/from_2018/jmbl_fg_array_search_3.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/CLIA_Track/from_2018/jmbl_fg_array_search_4.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/CLIA_Track/from_2018/jmbl_fg_array_search_5.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/CLIA_Track/from_2018/jmbl_fg_array_search_6.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/CLIA_Track/from_2018/jmbl_fg_array_search_7.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/CLIA_Track/from_2018/jmbl_fg_array_search_8.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/CLIA_Track/from_2018/jmbl_fg_array_search_9.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/CLIA_Track/from_2018/jmbl_fg_array_sum_10_15.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/CLIA_Track/from_2018/jmbl_fg_array_sum_10_5.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/CLIA_Track/from_2018/jmbl_fg_array_sum_2_15.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/CLIA_Track/from_2018/jmbl_fg_array_sum_2_5.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/CLIA_Track/from_2018/jmbl_fg_array_sum_3_15.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/CLIA_Track/from_2018/jmbl_fg_array_sum_3_5.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/CLIA_Track/from_2018/jmbl_fg_array_sum_4_15.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/CLIA_Track/from_2018/jmbl_fg_array_sum_4_5.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/CLIA_Track/from_2018/jmbl_fg_array_sum_5_15.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/CLIA_Track/from_2018/jmbl_fg_array_sum_6_15.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/CLIA_Track/from_2018/jmbl_fg_array_sum_6_5.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/CLIA_Track/from_2018/jmbl_fg_array_sum_7_15.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/CLIA_Track/from_2018/jmbl_fg_array_sum_7_5.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/CLIA_Track/from_2018/jmbl_fg_array_sum_8_15.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/CLIA_Track/from_2018/jmbl_fg_array_sum_8_5.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/CLIA_Track/from_2018/jmbl_fg_array_sum_9_15.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/CLIA_Track/from_2018/jmbl_fg_array_sum_9_5.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/CLIA_Track/from_2018/jmbl_fg_max10.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/CLIA_Track/from_2018/jmbl_fg_max11.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/CLIA_Track/from_2018/jmbl_fg_max12.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/CLIA_Track/from_2018/jmbl_fg_max13.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/CLIA_Track/from_2018/jmbl_fg_max14.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/CLIA_Track/from_2018/jmbl_fg_max15.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/CLIA_Track/from_2018/jmbl_fg_max2.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/CLIA_Track/from_2018/jmbl_fg_max3.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/CLIA_Track/from_2018/jmbl_fg_max4.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/CLIA_Track/from_2018/jmbl_fg_max5.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/CLIA_Track/from_2018/jmbl_fg_max6.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/CLIA_Track/from_2018/jmbl_fg_max7.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/CLIA_Track/from_2018/jmbl_fg_max8.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/CLIA_Track/from_2018/jmbl_fg_max9.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/CLIA_Track/from_2018/jmbl_fg_mpg_example1.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/CLIA_Track/from_2018/jmbl_fg_mpg_example2.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/CLIA_Track/from_2018/jmbl_fg_mpg_example3.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/CLIA_Track/from_2018/jmbl_fg_mpg_example4.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/CLIA_Track/from_2018/jmbl_fg_mpg_guard1.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/CLIA_Track/from_2018/jmbl_fg_mpg_guard2.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/CLIA_Track/from_2018/jmbl_fg_mpg_guard3.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/CLIA_Track/from_2018/jmbl_fg_mpg_guard4.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/CLIA_Track/from_2018/jmbl_fg_mpg_ite1.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/CLIA_Track/from_2018/jmbl_fg_mpg_ite2.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/CLIA_Track/from_2018/jmbl_fg_mpg_plane1.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/CLIA_Track/from_2018/jmbl_fg_mpg_plane2.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/CLIA_Track/from_2018/jmbl_fg_mpg_plane3.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/CLIA_Track/from_2018/large.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/CLIA_Track/from_2018/large_linear_func.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/CLIA_Track/from_2018/max16.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/CLIA_Track/from_2018/max17.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/CLIA_Track/from_2018/max18.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/CLIA_Track/from_2018/max19.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/CLIA_Track/from_2018/max20.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/CLIA_Track/from_2018/small.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/CLIA_Track/from_2018/small_linear_func.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 100,
+      "expression": "(+ x y)",
+      "path": "lib/General_Track/from_2018/commutative.sl",
+      "reason": "finite_domain_only",
+      "status": "BOUNDED_VERIFIED"
+    },
+    {
+      "checked_points": 25,
+      "expression": "0",
+      "path": "lib/General_Track/from_2018/constant.sl",
+      "reason": "finite_domain_only",
+      "status": "BOUNDED_VERIFIED"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/General_Track/from_2018/inv_gen_array.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/General_Track/from_2018/inv_gen_cegar2.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/General_Track/from_2018/inv_gen_cgr1.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/General_Track/from_2018/inv_gen_ex14.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/General_Track/from_2018/inv_gen_ex23.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/General_Track/from_2018/inv_gen_ex7.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/General_Track/from_2018/inv_gen_fig1.sl",
+      "reason": "synth_fun_must_return_Int",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/General_Track/from_2018/inv_gen_fig3.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/General_Track/from_2018/inv_gen_fig6.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/General_Track/from_2018/inv_gen_fig8.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/General_Track/from_2018/inv_gen_fig9.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/General_Track/from_2018/inv_gen_finf1.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/General_Track/from_2018/inv_gen_finf2.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/General_Track/from_2018/inv_gen_n_c11.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/General_Track/from_2018/inv_gen_sum1.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/General_Track/from_2018/inv_gen_sum3.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/General_Track/from_2018/inv_gen_sum4.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/General_Track/from_2018/inv_gen_tcs.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/General_Track/from_2018/inv_gen_term2.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/General_Track/from_2018/inv_gen_term3.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/General_Track/from_2018/inv_gen_trex1.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/General_Track/from_2018/inv_gen_trex2.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/General_Track/from_2018/inv_gen_trex4.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/General_Track/from_2018/inv_gen_vmail.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/General_Track/from_2018/inv_gen_w1.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/General_Track/from_2018/inv_gen_w2.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/General_Track/from_2018/inv_gen_winf1.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/General_Track/from_2018/inv_gen_winf2.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/General_Track/from_2018/t1.sl",
+      "reason": "synth_fun_must_return_Int",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/General_Track/from_2018/t10.sl",
+      "reason": "synth_fun_must_return_Int",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/General_Track/from_2018/t11.sl",
+      "reason": "synth_fun_must_return_Int",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/General_Track/from_2018/t12.sl",
+      "reason": "synth_fun_must_return_Int",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/General_Track/from_2018/t14.sl",
+      "reason": "synth_fun_must_return_Int",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/General_Track/from_2018/t15.sl",
+      "reason": "synth_fun_must_return_Int",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/General_Track/from_2018/t17.sl",
+      "reason": "synth_fun_must_return_Int",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/General_Track/from_2018/t18.sl",
+      "reason": "synth_fun_must_return_Int",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/General_Track/from_2018/t2.sl",
+      "reason": "synth_fun_must_return_Int",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/General_Track/from_2018/t20.sl",
+      "reason": "synth_fun_must_return_Int",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/General_Track/from_2018/t3.sl",
+      "reason": "synth_fun_must_return_Int",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/General_Track/from_2018/t4.sl",
+      "reason": "synth_fun_must_return_Int",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/General_Track/from_2018/t5.sl",
+      "reason": "synth_fun_must_return_Int",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/General_Track/from_2018/t6.sl",
+      "reason": "synth_fun_must_return_Int",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/General_Track/from_2018/t7.sl",
+      "reason": "synth_fun_must_return_Int",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/General_Track/from_2018/t8.sl",
+      "reason": "synth_fun_must_return_Int",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/General_Track/from_2018/t9.sl",
+      "reason": "synth_fun_must_return_Int",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/General_Track/from_2018/unbdd_inv_gen_array.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/General_Track/from_2018/unbdd_inv_gen_cegar2.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/General_Track/from_2018/unbdd_inv_gen_cgr1.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/General_Track/from_2018/unbdd_inv_gen_ex14.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/General_Track/from_2018/unbdd_inv_gen_ex23.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/General_Track/from_2018/unbdd_inv_gen_ex7.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/General_Track/from_2018/unbdd_inv_gen_fig1.sl",
+      "reason": "synth_fun_must_return_Int",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/General_Track/from_2018/unbdd_inv_gen_fig3.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/General_Track/from_2018/unbdd_inv_gen_fig6.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/General_Track/from_2018/unbdd_inv_gen_fig8.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/General_Track/from_2018/unbdd_inv_gen_fig9.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/General_Track/from_2018/unbdd_inv_gen_finf1.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/General_Track/from_2018/unbdd_inv_gen_finf2.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/General_Track/from_2018/unbdd_inv_gen_n_c11.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/General_Track/from_2018/unbdd_inv_gen_sum1.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/General_Track/from_2018/unbdd_inv_gen_sum3.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/General_Track/from_2018/unbdd_inv_gen_sum4.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/General_Track/from_2018/unbdd_inv_gen_tcs.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/General_Track/from_2018/unbdd_inv_gen_term2.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/General_Track/from_2018/unbdd_inv_gen_term3.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/General_Track/from_2018/unbdd_inv_gen_trex1.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/General_Track/from_2018/unbdd_inv_gen_trex2.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/General_Track/from_2018/unbdd_inv_gen_trex4.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/General_Track/from_2018/unbdd_inv_gen_vmail.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/General_Track/from_2018/unbdd_inv_gen_w1.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/General_Track/from_2018/unbdd_inv_gen_w2.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/General_Track/from_2018/unbdd_inv_gen_winf1.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib/General_Track/from_2018/unbdd_inv_gen_winf2.sl",
+      "reason": "unsupported_command",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib-nonconforming/General_Track/from_2018/seven_c2.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    },
+    {
+      "checked_points": 0,
+      "expression": null,
+      "path": "lib-nonconforming/General_Track/from_2018/three.sl",
+      "reason": "explicit_single_sort_grammar_required",
+      "status": "UNKNOWN"
+    }
+  ],
+  "semantic_status": {
+    "BOUNDED_VERIFIED": 8,
+    "UNKNOWN": 518
+  },
+  "top_reasons": {
+    "explicit_single_sort_grammar_required": 223,
+    "finite_domain_only": 8,
+    "synth_fun_must_return_Int": 42,
+    "unsupported_command": 253
+  }
+}
