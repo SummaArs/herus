@@ -83,6 +83,7 @@
   "state_map": {"MEMORY_VAULT_UNINITIALIZED":"UNINITIALIZED","MEMORY_VAULT_READY":"READY","MEMORY_VAULT_SEALED":"SEALED","MEMORY_VAULT_BLOCKED":"BLOCKED"},
   "input_map": {"CFG_VALID":"INIT_OK","BACKEND_LOAD_FAIL":"STORAGE_FAIL","CARD_AUTH_VALID":"VALID_SEAL","CARD_AUTH_INVALID":"INVALID_SEAL","BACKEND_ERASE_FAIL":"ERASE_FAIL"},
   "action_map": {"INIT_READY":"READY","SEAL_RECORD":"SEAL","RETAIN_STATE":"STAY","BLOCK_VAULT":"BLOCK"},
+  "source_obligations": ["failure:decrypt_authenticity_failure_blocks"],
   "call_paths": [
     {"rule_id":"memory-persist","status":"COVERED","source":"firmware/core/memory_vault.c","caller":"memory_vault_seal","detail":"auth_and_card_guards_precede_persistence"}
   ]

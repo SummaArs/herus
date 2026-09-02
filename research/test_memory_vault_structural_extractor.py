@@ -41,6 +41,14 @@ class MemoryVaultStructuralExtractorTests(unittest.TestCase):
         self.assertEqual(result.verdict, ExtractionVerdict.DIVERGENCE)
         self.assertEqual(result.reason, "guard_after_persistence_sink")
 
+    def test_authenticity_failure_without_block_is_divergence(self):
+        def mutate(source):
+            old = "        v->state = MEMORY_VAULT_BLOCKED;\n        secure_zero(plain, sizeof(plain));\n        memset(out, 0, sizeof(*out));\n        return MEMORY_VAULT_E_AUTHENTICITY;"
+            return source.replace(old, "        secure_zero(plain, sizeof(plain));\n        memset(out, 0, sizeof(*out));\n        return MEMORY_VAULT_E_AUTHENTICITY;", 1)
+        result = self._mutant(mutate)
+        self.assertEqual(result.verdict, ExtractionVerdict.DIVERGENCE)
+        self.assertIn("failure:decrypt_authenticity_failure_blocks", result.missing)
+
     def test_missing_function_is_divergence(self):
         result = self._mutant(lambda source: source.replace("int memory_vault_open(", "int removed_memory_vault_open(", 1))
         self.assertEqual(result.verdict, ExtractionVerdict.DIVERGENCE)

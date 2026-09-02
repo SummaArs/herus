@@ -50,6 +50,8 @@ class AssuranceCertificate:
     policy_refinement: PolicyRefinementCertificate
     call_path_results: tuple[CallPathResult, ...]
     evidence_digest: str
+    structural_verdict: str | None = None
+    structural_reason: str | None = None
 
 
 def _canonical_digest(value: Any) -> str:
@@ -83,6 +85,8 @@ def compose_assurance(
     input_map: dict[str, str],
     action_map: dict[str, str],
     call_path_results: tuple[CallPathResult, ...],
+    structural_verdict: str | None = None,
+    structural_reason: str | None = None,
 ) -> AssuranceCertificate:
     abstract_verification = verify(abstract, abstract_policy)
     concrete_verification = verify(concrete, concrete_policy)
@@ -102,6 +106,8 @@ def compose_assurance(
         "input_map": input_map,
         "action_map": action_map,
         "call_paths": [result.__dict__ for result in call_path_results],
+        "structural_verdict": structural_verdict,
+        "structural_reason": structural_reason,
     })
 
     if abstract_verification.verdict == Verdict.COUNTEREXAMPLE or concrete_verification.verdict == Verdict.COUNTEREXAMPLE:
@@ -120,5 +126,7 @@ def compose_assurance(
     if machine_refinement.verdict != RefinementVerdict.REFINED or policy_refinement.verdict != PolicyRefinementVerdict.REFINED:
         return AssuranceCertificate(AssuranceVerdict.UNKNOWN, "refinement_not_complete", abstract_verification, concrete_verification, machine_refinement, policy_refinement, call_path_results, evidence_digest)
     if not call_path_results or any(result.status != "COVERED" for result in call_path_results):
-        return AssuranceCertificate(AssuranceVerdict.BLOCKED, "critical_call_path_not_covered", abstract_verification, concrete_verification, machine_refinement, policy_refinement, call_path_results, evidence_digest)
-    return AssuranceCertificate(AssuranceVerdict.ASSURED, "finite_chain_assured", abstract_verification, concrete_verification, machine_refinement, policy_refinement, call_path_results, evidence_digest)
+        return AssuranceCertificate(AssuranceVerdict.BLOCKED, "critical_call_path_not_covered", abstract_verification, concrete_verification, machine_refinement, policy_refinement, call_path_results, evidence_digest, structural_verdict, structural_reason)
+    if structural_verdict is not None and structural_verdict != "EXTRACTED_MATCH":
+        return AssuranceCertificate(AssuranceVerdict.BLOCKED, "structural_extraction_not_promoted", abstract_verification, concrete_verification, machine_refinement, policy_refinement, call_path_results, evidence_digest, structural_verdict, structural_reason)
+    return AssuranceCertificate(AssuranceVerdict.ASSURED, "finite_chain_assured", abstract_verification, concrete_verification, machine_refinement, policy_refinement, call_path_results, evidence_digest, structural_verdict, structural_reason)

@@ -219,6 +219,12 @@
     },
     {
       "function": "memory_vault_open",
+      "kind": "failure_guard",
+      "line": 290,
+      "value": "decrypt_authenticity_failure_blocks"
+    },
+    {
+      "function": "memory_vault_open",
       "kind": "state_assignment",
       "line": 290,
       "value": "MEMORY_VAULT_BLOCKED"

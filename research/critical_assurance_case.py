@@ -7,6 +7,7 @@ from typing import Any
 
 from critical_assurance_certificate import AssuranceCertificate, compose_assurance
 from critical_call_path_audit import CallPathResult
+from memory_vault_structural_extractor import compare_source
 from critical_state_verifier import PolicyRule, StateMachineSpec, Transition
 
 
@@ -39,6 +40,14 @@ def run_case(path: Path) -> AssuranceCertificate:
     abstract = _spec(data["abstract"])
     concrete = _spec(data["concrete"])
     paths = tuple(CallPathResult(**item) for item in data["call_paths"])
+    structural_verdict = None
+    structural_reason = None
+    implementation = data.get("source_contract", {}).get("implementation")
+    if implementation:
+        source_path = Path(__file__).parents[1] / implementation
+        extracted = compare_source(source_path, path)
+        structural_verdict = extracted.verdict.value
+        structural_reason = extracted.reason
     return compose_assurance(
         abstract,
         concrete,
@@ -48,4 +57,6 @@ def run_case(path: Path) -> AssuranceCertificate:
         data["input_map"],
         data["action_map"],
         paths,
+        structural_verdict,
+        structural_reason,
     )

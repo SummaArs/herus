@@ -98,6 +98,12 @@ def _observe_function(source: str, name: str, start: int, body: str) -> list[Obs
         position = body.find(token)
         if position >= 0:
             observations.append(Observation("guard", token, _line_number(source, start + position), name))
+    if name == "memory_vault_open":
+        decrypt_failure = body.find("if (rc != 0 || !unpack_card")
+        authenticity = body.find("MEMORY_VAULT_E_AUTHENTICITY", decrypt_failure)
+        blocked = body.find("v->state = MEMORY_VAULT_BLOCKED", decrypt_failure)
+        if decrypt_failure >= 0 and authenticity >= 0 and blocked >= 0 and blocked < authenticity:
+            observations.append(Observation("failure_guard", "decrypt_authenticity_failure_blocks", _line_number(source, start + blocked), name))
     return observations
 
 
@@ -127,6 +133,7 @@ def _expected(source_case: dict[str, Any]) -> tuple[set[str], set[str]]:
         "storage:store_sealed", "storage:commit_generation_floor",
         "guard:auth_valid", "guard:card_valid",
     }
+    required |= set(source_case.get("source_obligations", []))
     return expected, required
 
 
@@ -145,6 +152,7 @@ def compare_source(source_path: Path, case_path: Path) -> ExtractionResult:
     observed |= {f"action:{item.value}" for item in observations if item.kind == "return"}
     observed |= {f"storage:{item.value}" for item in observations if item.kind == "storage_call"}
     observed |= {f"guard:{item.value}" for item in observations if item.kind == "guard"}
+    observed |= {f"failure:{item.value}" for item in observations if item.kind == "failure_guard"}
     _, required = _expected(case)
     missing = tuple(sorted(required - observed))
     seal_guards = [item for item in observations if item.function == "memory_vault_seal" and item.kind == "guard"]
