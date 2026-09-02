@@ -53,7 +53,7 @@
     {
       "path": "research/Makefile",
       "kind": "file",
-      "sha256": "ab815a0430e3c45c85b86b6e294d69e5ba6334c740bbcf7ef16634e5a3eb1725",
+      "sha256": "79fd8a2b2f03c8d6c66aa8f748863489a6515c5fb7e13258d1e2de1b6eaf1b9c",
       "role": "host-only research test entrypoint"
     },
     {
@@ -559,6 +559,24 @@
       "kind": "file",
       "sha256": "37479f2dcab11fcc237ef1e65d5c15937f0a930c8de4667c4ba58201c0429625",
       "role": "V5 critical assurance audit and limits"
+    },
+    {
+      "path": "research/critical_runtime_guardian.py",
+      "kind": "file",
+      "sha256": "5fa247f915dbf54a8cd83581c9301d99e5de93244670136e2126aa845d73bd25",
+      "role": "bounded deterministic runtime guardian model"
+    },
+    {
+      "path": "research/test_critical_runtime_guardian.py",
+      "kind": "file",
+      "sha256": "aba5c714372e1f5e5592727357dd0e66b3d52a8eb3b6e4c7d5f8bc81bc7b1c63",
+      "role": "guardian fail-closed and human boundary tests"
+    },
+    {
+      "path": "docs/56-GUARDIAN-INTERFACE-HUMANA.md",
+      "kind": "file",
+      "sha256": "bdcca19d8914f859b818e31362246a51cb0f6d867de15aac4d71a69bf017dba9",
+      "role": "human assurance interface audit and limits"
     }
   ],
   "components": [
