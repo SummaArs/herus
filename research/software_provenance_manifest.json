@@ -653,7 +653,7 @@
     {
       "path": "research/test_critical_assurance_certificate.py",
       "kind": "file",
-      "sha256": "70156df22ca69c1ada8de9685d1f0f6e7cf6f826c8463ec4ab393231a040072b",
+      "sha256": "5884e8d1844abdf88c932520dbc1a2826f47272e936a8facbffebfe3c45ef225",
       "role": "composed assurance adversarial tests"
     },
     {

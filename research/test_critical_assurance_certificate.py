@@ -53,6 +53,16 @@ class CriticalAssuranceCertificateTests(unittest.TestCase):
         self.assertEqual(result.verdict, AssuranceVerdict.ASSURED)
         self.assertEqual(len(result.evidence_digest), 64)
 
+    def test_structural_extraction_failure_blocks_promotion(self) -> None:
+        result = compose_assurance(
+            self.abstract, self.concrete, self.abstract_policy, self.concrete_policy,
+            *self.maps, self.covered,
+            structural_verdict="DIVERGENCE",
+            structural_reason="required_observation_missing",
+        )
+        self.assertEqual(result.verdict, AssuranceVerdict.BLOCKED)
+        self.assertEqual(result.reason, "structural_extraction_not_promoted")
+
     def test_uncovered_call_path_blocks(self) -> None:
         result = compose_assurance(self.abstract, self.concrete, self.abstract_policy, self.concrete_policy, *self.maps, (CallPathResult("send", "UNCOVERED", "interaction.c", "bypass", "bad"),))
         self.assertEqual(result.verdict, AssuranceVerdict.BLOCKED)
