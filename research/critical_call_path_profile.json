@@ -1,0 +1,11 @@
+{
+  "schema": "hcae.call-path.v1",
+  "scope": "restricted firmware C11 subset; direct calls only",
+  "protected_calls": {
+    "interaction-send": {
+      "source": "firmware/core/interaction.c",
+      "callee": "interaction_take_send",
+      "allowed_callers": ["interaction_take_send_assured"]
+    }
+  }
+}

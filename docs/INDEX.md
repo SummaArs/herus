@@ -11,6 +11,7 @@ Este índice é a forma recomendada de navegar pela documentação. O [README ra
 | [`54-MVP-SINTESE-VERIFICACAO-MAQUINAS-ESTADO.md`](54-MVP-SINTESE-VERIFICACAO-MAQUINAS-ESTADO.md) | Especificação do MVP de síntese, verificação e refinamento |
 | [`55-AUDITORIA-HCAE-V5.md`](55-AUDITORIA-HCAE-V5.md) | Auditoria e integração da proposta Critical Assurance Engine V5 |
 | [`56-GUARDIAN-INTERFACE-HUMANA.md`](56-GUARDIAN-INTERFACE-HUMANA.md) | Guardian, risco determinístico, alertas e fronteira humana |
+| [`58-AUDITORIA-CAMINHOS-CRITICOS.md`](58-AUDITORIA-CAMINHOS-CRITICOS.md) | Auditoria estrutural limitada de callers e handoffs críticos |
 
 ## 2. Produto e experiência
 

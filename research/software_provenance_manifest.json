@@ -53,7 +53,7 @@
     {
       "path": "research/Makefile",
       "kind": "file",
-      "sha256": "79fd8a2b2f03c8d6c66aa8f748863489a6515c5fb7e13258d1e2de1b6eaf1b9c",
+      "sha256": "5113857f544604df315de72487f505ab18b452b418f326a629c09bf4e63b29c2",
       "role": "host-only research test entrypoint"
     },
     {
@@ -263,7 +263,7 @@
     {
       "path": "docs/INDEX.md",
       "kind": "file",
-      "sha256": "70651429b0004a72766d312844732937cfef84470304478f7f3f994f4506e62b",
+      "sha256": "b2dea79c1818616bdc521af3161a62a4e083e558d2ea7bd6ff0e29129609e437",
       "role": "editorial documentation index"
     },
     {
@@ -607,6 +607,30 @@
       "kind": "file",
       "sha256": "a6873e15986dbf286cc5cfe3ceee74c7ad6704a3dac7f736b517ad048ae1d1a7",
       "role": "central finite coordination and assurance contract"
+    },
+    {
+      "path": "research/critical_call_path_audit.py",
+      "kind": "file",
+      "sha256": "9f79871bfb100d4168958f7a1dad26d12d2253f18ac1ca8dfe8aee70289d0cf3",
+      "role": "conservative structural critical call-path audit"
+    },
+    {
+      "path": "research/critical_call_path_profile.json",
+      "kind": "file",
+      "sha256": "e4fba129dfa7e2f486f414ed8a6f53e54b2deaf75fb8e4f25c15a35632e44408",
+      "role": "declared protected caller boundary"
+    },
+    {
+      "path": "research/test_critical_call_path_audit.py",
+      "kind": "file",
+      "sha256": "4b3968e8dd4ec4c4823bab944d9930b47ceec25eeaa38bb4395c8c8564163b0e",
+      "role": "critical call-path adversarial tests"
+    },
+    {
+      "path": "docs/58-AUDITORIA-CAMINHOS-CRITICOS.md",
+      "kind": "file",
+      "sha256": "03ce313a3a1d69da590afa4455ad2fcc11ff49355d9b41c2bf2ddd8e248678e2",
+      "role": "structural critical call-path audit evidence and limits"
     }
   ],
   "components": [
