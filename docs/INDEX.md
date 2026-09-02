@@ -17,6 +17,7 @@ Este índice é a forma recomendada de navegar pela documentação. O [README ra
 | [`61-CASO-ASSURANCE-REPRODUZIVEL.md`](61-CASO-ASSURANCE-REPRODUZIVEL.md) | Fixture, runner, certificado serializado e mutações reproduzíveis |
 | [`62-ASSURANCE-MEMORY-VAULT-REAL.md`](62-ASSURANCE-MEMORY-VAULT-REAL.md) | Primeiro caso composto derivado de um subsistema real do firmware |
 | [`63-EXTRACAO-ESTRUTURAL-MEMORY-VAULT.md`](63-EXTRACAO-ESTRUTURAL-MEMORY-VAULT.md) | Comparação automática limitada entre C11 real e caso declarativo |
+| [`64-PORTABILIDADE-CI-MACOS.md`](64-PORTABILIDADE-CI-MACOS.md) | Diagnóstico e correção do backend de análise no macOS |
 
 ## 2. Produto e experiência
 

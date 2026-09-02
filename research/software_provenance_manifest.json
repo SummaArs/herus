@@ -29,7 +29,7 @@
     {
       "path": "firmware",
       "kind": "tree",
-      "sha256": "2e9f94273b55f633f88a1234d5409884983138e07e9cdaddf44bcde2b0d6c1a5",
+      "sha256": "d5f0054d9f69c675e7de2812bf0a85fdaafdd6d281f2c55872065794317db4bb",
       "role": "portable firmware and proof sources"
     },
     {
@@ -263,7 +263,7 @@
     {
       "path": "docs/INDEX.md",
       "kind": "file",
-      "sha256": "5799dbbd67b72fb2710bc2a03d576b2e81d6b321b56dfc8ae8fa51845e3dcfd0",
+      "sha256": "faaf97ed4d2e3e7912e94770d62c4b332b1ed2cc54e9d72387b0cc6235e6b8ef",
       "role": "editorial documentation index"
     },
     {
@@ -709,6 +709,18 @@
       "kind": "file",
       "sha256": "809e08e37925039a36118945a218032776e94055e0e7a9423d83eb790f651354",
       "role": "serialized real memory vault assurance result"
+    },
+    {
+      "path": "firmware/Makefile",
+      "kind": "file",
+      "sha256": "d14314cc61a808a27480dbe9232c02a3e18c9588c8931dc97b709c9b71483ca4",
+      "role": "portable GCC and Clang static-analysis entrypoint"
+    },
+    {
+      "path": "docs/64-PORTABILIDADE-CI-MACOS.md",
+      "kind": "file",
+      "sha256": "bcc0ba07d7743ed94f76307a792704f3ae09c294865e540b812565c4448e919a",
+      "role": "macOS CI failure diagnosis and portability correction"
     },
     {
       "path": "research/memory_vault_structural_extractor.py",
