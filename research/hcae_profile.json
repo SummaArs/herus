@@ -1,0 +1,31 @@
+{
+  "schema": "hcae.profile.v1",
+  "name": "herus-critical-surface-v1",
+  "analysis": "lexical_guard_order_only",
+  "critical_sinks": {
+    "interaction-send": {
+      "source": "firmware/core/interaction.c",
+      "function": "interaction_take_send_assured",
+      "operation": "interaction_take_send(",
+      "guards": ["assurance_decide("]
+    },
+    "memory-persist": {
+      "source": "firmware/core/memory_vault.c",
+      "function": "memory_vault_seal",
+      "operation": "store_sealed(",
+      "guards": ["auth_valid(", "card_valid("]
+    },
+    "memory-review-persist": {
+      "source": "firmware/core/memory_consolidation.c",
+      "function": "memory_consolidation_confirm_store",
+      "operation": "memory_vault_seal(",
+      "guards": ["access_valid(", "physical_session_id != c->active_physical_session_id"]
+    },
+    "nucleus-seal": {
+      "source": "firmware/net/trust.c",
+      "function": "trust_seal_nucleus_intent",
+      "operation": "core_link_seal_nucleus_intent(",
+      "guards": ["active_control_key("]
+    }
+  }
+}

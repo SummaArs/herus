@@ -53,7 +53,7 @@
     {
       "path": "research/Makefile",
       "kind": "file",
-      "sha256": "c9a9d7b7c7f0b2d6dd0d4ae329bac43145f7a276461243852357efc5a1716464",
+      "sha256": "ab815a0430e3c45c85b86b6e294d69e5ba6334c740bbcf7ef16634e5a3eb1725",
       "role": "host-only research test entrypoint"
     },
     {
@@ -535,6 +535,30 @@
       "kind": "file",
       "sha256": "ef07c9bf0f9af692fd35c0ced02e666a5bf6d1cc72b2887f7703624ff6827b7b",
       "role": "primary SyGuS source notes"
+    },
+    {
+      "path": "research/critical_sink_audit.py",
+      "kind": "file",
+      "sha256": "dadd31c7147d00801905bb8ff50ee27191371a78cb003bbf6f71146530503b67",
+      "role": "fail-closed lexical critical sink auditor"
+    },
+    {
+      "path": "research/test_critical_sink_audit.py",
+      "kind": "file",
+      "sha256": "1fc4a6360881c99193eb6e88c7f42861aa3efdb1ea7e5b26f3f9d5427130128e",
+      "role": "critical sink auditor adversarial tests"
+    },
+    {
+      "path": "research/hcae_profile.json",
+      "kind": "file",
+      "sha256": "e7ae476fa6b1e9e20d1830eefce565792d52551ca3f4f2693198938f996ff53a",
+      "role": "real HERUS critical surface profile"
+    },
+    {
+      "path": "docs/55-AUDITORIA-HCAE-V5.md",
+      "kind": "file",
+      "sha256": "37479f2dcab11fcc237ef1e65d5c15937f0a930c8de4667c4ba58201c0429625",
+      "role": "V5 critical assurance audit and limits"
     }
   ],
   "components": [
