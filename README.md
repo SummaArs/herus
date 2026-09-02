@@ -1,14 +1,16 @@
 # HERUS
 
-## Sistema finito de coordenação e assurance para sistemas críticos
+## Comunicador semântico pessoal; pesquisa em assurance crítico
 
-> **HERUS é um sistema finito de coordenação e assurance que transforma estados críticos em decisões verificáveis, bloqueios seguros e solicitações explícitas de intervenção humana.**
+> **HERUS é um comunicador pessoal privado, offline e orientado a significado, cuja arquitetura está sendo expandida para coordenação e assurance de sistemas críticos.**
 
-O HERUS começou como uma arquitetura de comunicação semântica privada e evoluiu para uma plataforma experimental de coordenação verificável. O repositório hoje reúne um núcleo embarcado de estados e autoridade, uma linha de pesquisa de raciocínio simbólico finito e uma camada de assurance para verificar a superfície crítica do sistema.
+O produto principal continua sendo o comunicador: wearable, Núcleo/Dock, interação push-to-talk, linguagem semântica finita, memória seletiva e autoridade física humana. A vertente de sistemas críticos é a expansão de pesquisa desenvolvida na branch de integração; ela não substitui a identidade original do HERUS.
 
 O projeto **não é apresentado como uma LLM, agente autônomo, certificação regulatória ou sistema de segurança completo**. As alegações são limitadas ao que código, testes, modelos, hashes e evidências reproduzíveis sustentam.
 
 ## O sistema atual
+
+A leitura correta separa **produto principal** de **vertente de pesquisa**. O comunicador, a documentação de produto, o Núcleo/Dock e o Paper-Core continuam sendo a identidade original do HERUS. A pesquisa de assurance procura estender essa arquitetura para sistemas em que estados, riscos e autoridade precisam ser demonstráveis.
 
 | Camada | Responsabilidade | Estado |
 |---|---|---|
@@ -83,11 +85,11 @@ O laboratório generativo evoluiu de composição tipada para DAGs estruturais, 
 
 O centro científico mudou para síntese e verificação de máquinas de estado. O HERUS passou a usar um verificador independente, síntese limitada guiada por esse verificador, contraexemplos, perfil C11 sem heap, monitoramento de surpresa causal e refinamento abstrato-concreto. Uma prova do modelo não é transferida à implementação sem uma relação de refinamento verificada.
 
-### 5. Assurance operacional
+### 5. Vertente de pesquisa: assurance operacional
 
 A comparação SyGuS foi executada contra um corpus público com limites explícitos. O resultado foi pequeno e honesto: 9.719 arquivos examinados, 526 lexicalmente compatíveis, 8 `BOUNDED_VERIFIED` e 518 `UNKNOWN`. Em seguida, a V5 de Critical Assurance foi adaptada aos quatro sinks reais do firmware, com auditoria fail-closed e distinção explícita entre cobertura lexical e dominância interprocedural.
 
-A camada Guardian acrescentou observação, classificação determinística, latch de bloqueio, alerta humano e snapshot de evidência. Um ACK não libera uma ação crítica. O contrato central consolidou essas fronteiras em um único modelo de sistema.
+A camada Guardian acrescentou observação, classificação determinística, latch de bloqueio, alerta humano e snapshot de evidência. Um ACK não libera uma ação crítica. O contrato central consolidou essas fronteiras em um único modelo de pesquisa; isso ainda não transforma o comunicador em uma plataforma certificada de segurança.
 
 ## O que está comprovado e o que não está
 
@@ -154,13 +156,12 @@ O índice completo separa documentos normativos, produto, firmware, pesquisa par
 
 ## Próximo marco
 
-O próximo marco não é adicionar mais funcionalidades. É fechar a ponte entre intenção crítica e implementação real: substituir a auditoria lexical por AST/grafo de chamadas/dominância, ligar sinks a claims e evidências frescas, medir custo em um perfil C11 próximo do ESP32-S3 e somente então avaliar a integração embarcada do Guardian e da interface humana.
+Há duas linhas de evolução. No produto, o próximo marco é hardware real para medir RF, energia, interação, armazenamento e experiência do comunicador. Na pesquisa crítica, é fechar a ponte entre intenção e implementação: substituir a auditoria lexical por AST/grafo de chamadas/dominância, ligar sinks a claims e evidências frescas, medir custo em um perfil C11 próximo do ESP32-S3 e somente então avaliar a integração embarcada do Guardian e da interface humana.
 
 O objetivo de impacto continua ambicioso. O método permanece incremental: **construir, estabilizar, observar, encontrar a brecha, corrigir, medir e preservar**.
 
 ## Status
-
-Desenvolvimento ativo na branch `integration/herus-symbolic-hardening-2026-08`, acompanhada pelo [PR #46](https://github.com/SummaArs/herus/pull/46). O repositório está em pesquisa aplicada e engenharia pré-hardware. Cada resultado positivo é local ao contrato e ao ambiente que o produziu.
+O estado de referência do produto permanece em `main`: comunicador semântico pessoal, memória soberana e documentação de produto. A branch `integration/herus-symbolic-hardening-2026-08`, acompanhada pelo [PR #46](https://github.com/SummaArs/herus/pull/46), contém a expansão de pesquisa em verificação e assurance crítico. O projeto continua pré-hardware para as alegações físicas, e cada resultado positivo é local ao contrato e ao ambiente que o produziu.
 
 ## Licença
 

@@ -257,13 +257,13 @@
     {
       "path": "README.md",
       "kind": "file",
-      "sha256": "7fb0bb495581dcdba7558412296b5cdeeedd9eb586e566cf5aefe292a85fd774",
+      "sha256": "c3202247f1f0b3f4eac2a3da072254dfdf279614f5348f7dd81eb9f334c57fc5",
       "role": "public project state and verification documentation"
     },
     {
       "path": "docs/INDEX.md",
       "kind": "file",
-      "sha256": "3d18340f6da9c23a4a8346cbd5038f34c1915821e183700d540f3526d01c0c09",
+      "sha256": "70651429b0004a72766d312844732937cfef84470304478f7f3f994f4506e62b",
       "role": "editorial documentation index"
     },
     {

@@ -1,8 +1,8 @@
 # Índice editorial do HERUS
 
-Este índice é a forma recomendada de navegar pela documentação. O [README raiz](../README.md) é o ponto de entrada para entender o sistema atual. Os documentos antigos continuam preservados para rastreabilidade, mas não têm todos o mesmo status normativo.
+Este índice é a forma recomendada de navegar pela documentação. O [README raiz](../README.md) é o ponto de entrada para entender o HERUS como produto comunicador e como pesquisa em expansão. O estado de referência do produto permanece em `main`; a camada de assurance crítico pertence à branch de integração e ao PR #46. Os documentos antigos continuam preservados para rastreabilidade, mas não têm todos o mesmo status normativo.
 
-## 1. Contrato atual e direção crítica
+## 1. Direção atual e pesquisa crítica
 
 | Documento | Papel |
 |---|---|
@@ -89,7 +89,7 @@ O código correspondente está em [`research/`](../research/), especialmente `fr
 
 ## 7. Como ler
 
-Para entender o HERUS atual, leia `README.md`, depois `57-CONTRATO-CENTRAL-HERUS.md`, `53-PREVISAO-DEGRADACAO-E-SISTEMAS-CRITICOS.md`, `54-MVP-SINTESE-VERIFICACAO-MAQUINAS-ESTADO.md`, `55-AUDITORIA-HCAE-V5.md` e `56-GUARDIAN-INTERFACE-HUMANA.md`.
+Para entender o HERUS como produto, leia primeiro `README.md`, `04-PRODUCT.md`, `38-PRODUTO-DESEJAVEL-E-ADOCAO.md`, `06-NUCLEO.md` e `05-FIRMWARE.md`. Para entender a expansão de pesquisa da branch de integração, leia depois `57-CONTRATO-CENTRAL-HERUS.md`, `53-PREVISAO-DEGRADACAO-E-SISTEMAS-CRITICOS.md`, `54-MVP-SINTESE-VERIFICACAO-MAQUINAS-ESTADO.md`, `55-AUDITORIA-HCAE-V5.md` e `56-GUARDIAN-INTERFACE-HUMANA.md`.
 
 Para entender o produto, leia `04-PRODUCT.md` e `38-PRODUTO-DESEJAVEL-E-ADOCAO.md`. Para entender o firmware, leia `05-FIRMWARE.md`, `02-PROTOCOL.md`, `51-HARDENING-CI-E-VALIDACAO.md` e `SECURITY.md`. Para reproduzir a pesquisa, use o `Makefile` em `research/` e os comandos do README.
 
