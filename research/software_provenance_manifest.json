@@ -659,7 +659,7 @@
     {
       "path": "research/critical_assurance_case.py",
       "kind": "file",
-      "sha256": "04ff86cf88cb876c33f3ca86d7660ae298af08fd08e87549f41776e1a1f25137",
+      "sha256": "82cfa803aa1d6cb349f86c3d7024710ad0146ed7193bcdb98685e62b0c2583d2",
       "role": "declarative finite assurance case loader"
     },
     {
@@ -701,13 +701,13 @@
     {
       "path": "research/evidence/memory_vault_assurance_case.json",
       "kind": "file",
-      "sha256": "e9c25700fc926a07123278461bc0cc8935659fee5a5f7a3186ad212e8643931a",
+      "sha256": "9c0ac72893035330919646ffad1c5dc94c3ffa3d16e48245a74cac5eb29c4a29",
       "role": "declarative real memory vault assurance case"
     },
     {
       "path": "research/evidence/memory_vault_assurance_case.result.json",
       "kind": "file",
-      "sha256": "012d22914909a9afb4f1870a83d74c68f50b20ad51dcba273131c3bfcb324dd7",
+      "sha256": "d6d07777f8c857b6ccdca1b1d0e8f213df1659fe726e9bf740e4a78cf1be9587",
       "role": "serialized real memory vault assurance result"
     },
     {

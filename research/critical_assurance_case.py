@@ -6,7 +6,7 @@ from pathlib import Path
 from typing import Any
 
 from critical_assurance_certificate import AssuranceCertificate, compose_assurance
-from critical_call_path_audit import CallPathResult
+from critical_call_path_audit import CallPathResult, audit as audit_call_paths, load_profile
 from memory_vault_structural_extractor import compare_source
 from critical_state_verifier import PolicyRule, StateMachineSpec, Transition
 
@@ -39,7 +39,15 @@ def run_case(path: Path) -> AssuranceCertificate:
     data = load_case(path)
     abstract = _spec(data["abstract"])
     concrete = _spec(data["concrete"])
-    paths = tuple(CallPathResult(**item) for item in data["call_paths"])
+    declared_paths = tuple(CallPathResult(**item) for item in data["call_paths"])
+    paths = declared_paths
+    profile_name = data.get("call_path_profile")
+    if profile_name:
+        repo_root = Path(__file__).parents[1]
+        profile = load_profile(repo_root / profile_name)
+        audited_paths = audit_call_paths(profile, repo_root)
+        declared_failures = tuple(item for item in declared_paths if item.status != "COVERED")
+        paths = audited_paths + declared_failures
     structural_verdict = None
     structural_reason = None
     implementation = data.get("source_contract", {}).get("implementation")

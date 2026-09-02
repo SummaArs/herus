@@ -3,14 +3,14 @@
   "call_paths": [
     {
       "caller": "memory_vault_seal",
-      "detail": "auth_and_card_guards_precede_persistence",
+      "detail": "direct_calls_restricted_to_declared_wrapper_and_guards_before_sink",
       "rule_id": "memory-persist",
       "source": "firmware/core/memory_vault.c",
       "status": "COVERED"
     }
   ],
   "concrete_verification": "VERIFIED",
-  "evidence_digest": "3f3c04fa61eb3be8d7d6f2af1a85eebdb118422d94d7e8846d7abb07fb82b9a4",
+  "evidence_digest": "6a146af6619cb0f1c0ef3852afeee6d63300d295a4f02b202a6adafb0543741d",
   "machine_refinement": "REFINED",
   "policy_refinement": "REFINED",
   "reason": "finite_chain_assured",
