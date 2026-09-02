@@ -16,6 +16,7 @@ Este índice é a forma recomendada de navegar pela documentação. O [README ra
 | [`60-CERTIFICADO-COMPOSTO-ASSURANCE.md`](60-CERTIFICADO-COMPOSTO-ASSURANCE.md) | Composição auditável de verificações, refinamentos e caminhos críticos |
 | [`61-CASO-ASSURANCE-REPRODUZIVEL.md`](61-CASO-ASSURANCE-REPRODUZIVEL.md) | Fixture, runner, certificado serializado e mutações reproduzíveis |
 | [`62-ASSURANCE-MEMORY-VAULT-REAL.md`](62-ASSURANCE-MEMORY-VAULT-REAL.md) | Primeiro caso composto derivado de um subsistema real do firmware |
+| [`63-EXTRACAO-ESTRUTURAL-MEMORY-VAULT.md`](63-EXTRACAO-ESTRUTURAL-MEMORY-VAULT.md) | Comparação automática limitada entre C11 real e caso declarativo |
 
 ## 2. Produto e experiência
 

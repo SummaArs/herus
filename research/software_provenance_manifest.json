@@ -53,7 +53,7 @@
     {
       "path": "research/Makefile",
       "kind": "file",
-      "sha256": "0fe94fbe969c8a4cb2fe2188e42b977a67ac07cf1eccb9e83248eb263f1853f5",
+      "sha256": "6d0473b6ca953caa717b72aef06ab73c092d1f6ccef0a2cb734d9c3917206130",
       "role": "host-only research test entrypoint"
     },
     {
@@ -263,7 +263,7 @@
     {
       "path": "docs/INDEX.md",
       "kind": "file",
-      "sha256": "ad42b15738d7d4696e146b83d41accac46ae6f520e260aa17f07fa2e059ad8ae",
+      "sha256": "5799dbbd67b72fb2710bc2a03d576b2e81d6b321b56dfc8ae8fa51845e3dcfd0",
       "role": "editorial documentation index"
     },
     {
@@ -709,6 +709,36 @@
       "kind": "file",
       "sha256": "809e08e37925039a36118945a218032776e94055e0e7a9423d83eb790f651354",
       "role": "serialized real memory vault assurance result"
+    },
+    {
+      "path": "research/memory_vault_structural_extractor.py",
+      "kind": "file",
+      "sha256": "31b43416d5f0782860c7f8027c8133366f0dc5ab961a0ad69a7d6329ab2662da",
+      "role": "conservative memory vault C11 structural extractor"
+    },
+    {
+      "path": "research/test_memory_vault_structural_extractor.py",
+      "kind": "file",
+      "sha256": "fc259793da196455b955519a62d2d72354943e617dff9256323a0288727bb71b",
+      "role": "memory vault extractor adversarial tests"
+    },
+    {
+      "path": "research/run_memory_vault_extraction.py",
+      "kind": "file",
+      "sha256": "39f86de0b45407c010b25b83bc6afe897feb2858c868d9d6586154fe0f2966b8",
+      "role": "reproducible memory vault extraction runner"
+    },
+    {
+      "path": "research/evidence/memory_vault_structural_extraction.result.json",
+      "kind": "file",
+      "sha256": "c2a2b35b4702b8ec93e0d3626dc0e1c25f9a94b9456bdbbb151149d7c4f8f8de",
+      "role": "serialized memory vault structural extraction evidence"
+    },
+    {
+      "path": "docs/63-EXTRACAO-ESTRUTURAL-MEMORY-VAULT.md",
+      "kind": "file",
+      "sha256": "c6767d37b175b9b1c45c7f86784da51fc7768224d98bfbc68c5bc3139e7d03af",
+      "role": "memory vault structural extraction scope and limits"
     },
     {
       "path": "docs/62-ASSURANCE-MEMORY-VAULT-REAL.md",
