@@ -56,6 +56,8 @@ def _valid_rule(rule: Any) -> bool:
         and isinstance(rule.get("callee"), str)
         and isinstance(rule.get("allowed_callers"), list)
         and all(isinstance(item, str) and item for item in rule["allowed_callers"])
+        and isinstance(rule.get("required_guards", []), list)
+        and all(isinstance(item, str) and item for item in rule.get("required_guards", []))
     )
 
 
@@ -89,7 +91,24 @@ def audit(profile: dict[str, Any], root: Path) -> tuple[CallPathResult, ...]:
         elif forbidden:
             results.append(CallPathResult(rule_id, "UNCOVERED", source, forbidden[0], "direct_call_outside_wrapper"))
         else:
-            results.append(CallPathResult(rule_id, "COVERED", source, ",".join(sorted(caller for caller, _ in calls)), "direct_calls_restricted_to_declared_wrapper"))
+            guard_names = rule.get("required_guards", [])
+            guard_failures = []
+            sink_pattern = re.compile(r"\b" + re.escape(rule["callee"]) + r"\s*\(")
+            for caller, body in calls:
+                sink = sink_pattern.search(body)
+                if sink is None:
+                    continue
+                for guard in guard_names:
+                    guard_match = re.search(r"\b" + re.escape(guard) + r"\s*\(", body)
+                    if guard_match is None:
+                        guard_failures.append((caller, "guard_missing:" + guard))
+                    elif guard_match.start() > sink.start():
+                        guard_failures.append((caller, "guard_after_sink:" + guard))
+            if guard_failures:
+                caller, detail = guard_failures[0]
+                results.append(CallPathResult(rule_id, "UNCOVERED", source, caller, detail))
+            else:
+                results.append(CallPathResult(rule_id, "COVERED", source, ",".join(sorted(caller for caller, _ in calls)), "direct_calls_restricted_to_declared_wrapper_and_guards_before_sink"))
     return tuple(results)
 
 

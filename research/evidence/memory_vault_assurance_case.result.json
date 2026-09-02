@@ -14,5 +14,7 @@
   "machine_refinement": "REFINED",
   "policy_refinement": "REFINED",
   "reason": "finite_chain_assured",
+  "structural_reason": "declared_obligations_observed",
+  "structural_verdict": "EXTRACTED_MATCH",
   "verdict": "ASSURED"
 }

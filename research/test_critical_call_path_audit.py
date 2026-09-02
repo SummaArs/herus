@@ -32,6 +32,40 @@ class CriticalCallPathAuditTests(unittest.TestCase):
         )
         self.assertEqual(results[0].status, "COVERED")
 
+    def test_required_guard_is_checked_before_sink(self):
+        profile = self._profile()
+        profile["protected_calls"]["send"]["required_guards"] = ["authorize"]
+        results = self._run(
+            "int send_raw(void) { return 0; }\n"
+            "int authorize(void) { return 0; }\n"
+            "int send_assured(void) { authorize(); return send_raw(); }\n",
+            profile,
+        )
+        self.assertEqual(results[0].status, "COVERED")
+
+    def test_missing_required_guard_is_uncovered(self):
+        profile = self._profile()
+        profile["protected_calls"]["send"]["required_guards"] = ["authorize"]
+        results = self._run(
+            "int send_raw(void) { return 0; }\n"
+            "int send_assured(void) { return send_raw(); }\n",
+            profile,
+        )
+        self.assertEqual(results[0].status, "UNCOVERED")
+        self.assertEqual(results[0].detail, "guard_missing:authorize")
+
+    def test_guard_after_sink_is_uncovered(self):
+        profile = self._profile()
+        profile["protected_calls"]["send"]["required_guards"] = ["authorize"]
+        results = self._run(
+            "int send_raw(void) { return 0; }\n"
+            "int authorize(void) { return 0; }\n"
+            "int send_assured(void) { int rc = send_raw(); authorize(); return rc; }\n",
+            profile,
+        )
+        self.assertEqual(results[0].status, "UNCOVERED")
+        self.assertEqual(results[0].detail, "guard_after_sink:authorize")
+
     def test_direct_caller_is_uncovered(self):
         results = self._run(
             "int send_raw(void) { return 0; }\n"

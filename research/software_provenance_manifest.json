@@ -611,19 +611,19 @@
     {
       "path": "research/critical_call_path_audit.py",
       "kind": "file",
-      "sha256": "9f79871bfb100d4168958f7a1dad26d12d2253f18ac1ca8dfe8aee70289d0cf3",
+      "sha256": "3ac0a2258bc151d00f2c4bd1d4f8dd408b61d159710a1d562e46625a5d540c65",
       "role": "conservative structural critical call-path audit"
     },
     {
       "path": "research/critical_call_path_profile.json",
       "kind": "file",
-      "sha256": "e4fba129dfa7e2f486f414ed8a6f53e54b2deaf75fb8e4f25c15a35632e44408",
+      "sha256": "4478ca202dd78b529573a19bff75e30e9e20d995a1b1940c95ac83c8da191526",
       "role": "declared protected caller boundary"
     },
     {
       "path": "research/test_critical_call_path_audit.py",
       "kind": "file",
-      "sha256": "4b3968e8dd4ec4c4823bab944d9930b47ceec25eeaa38bb4395c8c8564163b0e",
+      "sha256": "9433e997559459cedfbd07d644d1e7bdcd7023a97dce1e83f9bba49debdda80c",
       "role": "critical call-path adversarial tests"
     },
     {
@@ -665,7 +665,7 @@
     {
       "path": "research/run_assurance_case.py",
       "kind": "file",
-      "sha256": "d0c5391250c4173bb9578381f2035e3c1e7ae752e14d36a4e631e39d255cb694",
+      "sha256": "fce8a891fd293502402e0f63283f5b91fc59ca1b625df298daba3ab99bd90169",
       "role": "reproducible assurance certificate runner"
     },
     {
@@ -707,7 +707,7 @@
     {
       "path": "research/evidence/memory_vault_assurance_case.result.json",
       "kind": "file",
-      "sha256": "fe94b6dd574e40b26122f11a84aa291440c0625c50f48d2563f3307fb9bad973",
+      "sha256": "012d22914909a9afb4f1870a83d74c68f50b20ad51dcba273131c3bfcb324dd7",
       "role": "serialized real memory vault assurance result"
     },
     {
