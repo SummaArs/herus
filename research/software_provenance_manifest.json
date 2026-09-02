@@ -577,6 +577,12 @@
       "kind": "file",
       "sha256": "bdcca19d8914f859b818e31362246a51cb0f6d867de15aac4d71a69bf017dba9",
       "role": "human assurance interface audit and limits"
+    },
+    {
+      "path": "docs/57-CONTRATO-CENTRAL-HERUS.md",
+      "kind": "file",
+      "sha256": "1e91c3ba03594a1490c1ea1b88098ddd3a3c94f93a295462d9ad0f0be9bc4509",
+      "role": "central finite coordination and assurance contract"
     }
   ],
   "components": [
