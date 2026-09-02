@@ -251,7 +251,7 @@
     {
       "path": "research/test_minds14_sample.py",
       "kind": "file",
-      "sha256": "ec59bdc2c9f529a0114a4f58dc38324066bf2b4c791e2b296ffd3a0ef3e95e7c",
+      "sha256": "45da2e4408fb5577662c72f4eff3d147eacda5f729d63efd80b2fb7e6458df51",
       "role": "MInDS-14 WAV and wrapper regression tests"
     },
     {

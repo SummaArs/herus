@@ -69,7 +69,7 @@ class Minds14SampleTests(unittest.TestCase):
 
     def test_embedded_newline_is_rejected_before_runner(self):
         with self.assertRaisesRegex(ValueError, "sentence_contains_line_break"):
-            run_c_parser(Path("/bin/true"), "ajuda\npara pagar")
+            run_c_parser(Path(sys.executable), "ajuda\npara pagar")
 
     def test_non_official_audio_host_is_rejected(self):
         payload = {
