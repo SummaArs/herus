@@ -29,7 +29,7 @@
     {
       "path": "firmware",
       "kind": "tree",
-      "sha256": "df205c67982dd6d66f3661caaef853701a2c9b2d71623b45dcda95a1fab81f48",
+      "sha256": "2e9f94273b55f633f88a1234d5409884983138e07e9cdaddf44bcde2b0d6c1a5",
       "role": "portable firmware and proof sources"
     },
     {
@@ -585,9 +585,27 @@
       "role": "human assurance interface audit and limits"
     },
     {
+      "path": "firmware/core/interaction_rig.h",
+      "kind": "file",
+      "sha256": "aea034766658ac4872b2d5f4fdab7a888dfe8de1c2333720c33b03b7e1e3fbff",
+      "role": "assurance-gated interaction rig API"
+    },
+    {
+      "path": "firmware/core/interaction_rig.c",
+      "kind": "file",
+      "sha256": "c7be292a32793b6cf63bb492d0893313ac1cc65b20d548b4def4fd50707973a5",
+      "role": "fail-closed interaction rig adapter"
+    },
+    {
+      "path": "firmware/core/test_interaction_rig.c",
+      "kind": "file",
+      "sha256": "c592781461cb62bc4a4146269454bdb03d91238956b44fccce17089417c06eb0",
+      "role": "interaction rig assurance boundary regression tests"
+    },
+    {
       "path": "docs/57-CONTRATO-CENTRAL-HERUS.md",
       "kind": "file",
-      "sha256": "1e91c3ba03594a1490c1ea1b88098ddd3a3c94f93a295462d9ad0f0be9bc4509",
+      "sha256": "a6873e15986dbf286cc5cfe3ceee74c7ad6704a3dac7f736b517ad048ae1d1a7",
       "role": "central finite coordination and assurance contract"
     }
   ],

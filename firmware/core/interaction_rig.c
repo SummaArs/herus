@@ -74,9 +74,19 @@ void interaction_rig_set_source(interaction_rig_t *rig, int available, uint32_t 
 
 int interaction_rig_take_send(interaction_rig_t *rig, hcp_msg_t *out)
 {
+    if (!rig || !out) return INTERACTION_E_ARG;
+    /* A raw adapter handoff has no assurance snapshot. Reject it rather than
+     * allowing callers to bypass the composed gate. */
+    return INTERACTION_E_UNTRUSTED;
+}
+
+int interaction_rig_take_send_assured(interaction_rig_t *rig,
+                                      const assurance_snapshot_t *snapshot,
+                                      hcp_msg_t *out)
+{
     int rc;
-    if (!rig) return INTERACTION_E_ARG;
-    rc = interaction_take_send(&rig->runtime, out);
+    if (!rig || !snapshot || !out) return INTERACTION_E_ARG;
+    rc = interaction_take_send_assured(&rig->runtime, snapshot, out);
     apply_actions(rig);
     if (rc == INTERACTION_OK) rig->rig.handoffs++;
     return rc;

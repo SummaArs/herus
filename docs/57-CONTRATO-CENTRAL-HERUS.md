@@ -69,6 +69,12 @@ O HERUS possui três tipos de saída, com semânticas distintas:
 
 “Prevenção automática” significa, no contrato mínimo, **impedir uma operação insegura**. Não significa executar uma ação física ou liberar um caminho alternativo sem autoridade explícita.
 
+## Fronteira de handoff do adaptador
+
+O caminho de laboratório `interaction_rig_take_send()` não possui snapshot de assurance e agora é fail-closed: retorna rejeição sem consumir, criar ou transmitir uma mensagem. O adaptador deve usar `interaction_rig_take_send_assured()` e fornecer o mesmo snapshot não secreto exigido pelo caminho de integração. Isso evita que um rig de teste ou uma camada de adaptação introduza um handoff não coberto enquanto o wrapper de produção permanece assegurado.
+
+Essa correção não transforma o snapshot em autorização de transporte. O snapshot apenas permite solicitar o handoff local de uso único; sequência, TTL, prioridade, autenticação e envio permanecem responsabilidades separadas.
+
 ## Critérios de evolução
 
 Uma extensão somente entra no núcleo se demonstrar simultaneamente:
