@@ -53,7 +53,7 @@
     {
       "path": "research/Makefile",
       "kind": "file",
-      "sha256": "5113857f544604df315de72487f505ab18b452b418f326a629c09bf4e63b29c2",
+      "sha256": "8003d43df07c43a9362137dadd081498ed775f9a1dfefe03f59b7f0b535eea31",
       "role": "host-only research test entrypoint"
     },
     {
@@ -263,7 +263,7 @@
     {
       "path": "docs/INDEX.md",
       "kind": "file",
-      "sha256": "b2dea79c1818616bdc521af3161a62a4e083e558d2ea7bd6ff0e29129609e437",
+      "sha256": "4424e2901221bd8370041b8f8d55dc44606af913e4d79f0ad5dfb1c78eabd4c6",
       "role": "editorial documentation index"
     },
     {
@@ -625,6 +625,24 @@
       "kind": "file",
       "sha256": "4b3968e8dd4ec4c4823bab944d9930b47ceec25eeaa38bb4395c8c8564163b0e",
       "role": "critical call-path adversarial tests"
+    },
+    {
+      "path": "research/critical_policy_refinement.py",
+      "kind": "file",
+      "sha256": "f8a83de4733f24fbe04894afcfa8bd4d4f0cd49fcb9872c915efdeaa6c9659c1",
+      "role": "finite abstract-to-concrete policy refinement checker"
+    },
+    {
+      "path": "research/test_critical_policy_refinement.py",
+      "kind": "file",
+      "sha256": "1dcb0e0f2fa51a14a05a67a2fad83a20c8dc486952a561b753e19f564cb686ef",
+      "role": "policy refinement adversarial tests"
+    },
+    {
+      "path": "docs/59-REFINAMENTO-DE-POLITICAS.md",
+      "kind": "file",
+      "sha256": "db26d4e67e7fee0b6564fa0fff46a935ffa0b96bc1a1f021f31e85a0944370e3",
+      "role": "policy refinement contract and limits"
     },
     {
       "path": "docs/58-AUDITORIA-CAMINHOS-CRITICOS.md",

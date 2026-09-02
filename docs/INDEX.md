@@ -12,6 +12,7 @@ Este índice é a forma recomendada de navegar pela documentação. O [README ra
 | [`55-AUDITORIA-HCAE-V5.md`](55-AUDITORIA-HCAE-V5.md) | Auditoria e integração da proposta Critical Assurance Engine V5 |
 | [`56-GUARDIAN-INTERFACE-HUMANA.md`](56-GUARDIAN-INTERFACE-HUMANA.md) | Guardian, risco determinístico, alertas e fronteira humana |
 | [`58-AUDITORIA-CAMINHOS-CRITICOS.md`](58-AUDITORIA-CAMINHOS-CRITICOS.md) | Auditoria estrutural limitada de callers e handoffs críticos |
+| [`59-REFINAMENTO-DE-POLITICAS.md`](59-REFINAMENTO-DE-POLITICAS.md) | Ligação formal entre políticas abstratas e concretas |
 
 ## 2. Produto e experiência
 
