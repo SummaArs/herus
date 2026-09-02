@@ -53,7 +53,7 @@
     {
       "path": "research/Makefile",
       "kind": "file",
-      "sha256": "446034397806eac2587e8738f2dab61813fc613e15ab1d40226ed1d45b41f276",
+      "sha256": "a27c69c915c202ca6d9e757f04c64771752b7225ac1a9df5e6930404bf7ea355",
       "role": "host-only research test entrypoint"
     },
     {
@@ -263,7 +263,7 @@
     {
       "path": "docs/INDEX.md",
       "kind": "file",
-      "sha256": "640f51b6a40e8df0bc7791f627eaeb493b167bc22f24ff0edf50c5b2c59c88dc",
+      "sha256": "e78cf364b1253224ef5c21f74cee103205a2ed5c7b88ce8e8e152573bc37b1e2",
       "role": "editorial documentation index"
     },
     {
@@ -655,6 +655,42 @@
       "kind": "file",
       "sha256": "70156df22ca69c1ada8de9685d1f0f6e7cf6f826c8463ec4ab393231a040072b",
       "role": "composed assurance adversarial tests"
+    },
+    {
+      "path": "research/critical_assurance_case.py",
+      "kind": "file",
+      "sha256": "6ad6be18cde99d6a582be9b7483c0f305943f7c7ad10e83e40b674372d079268",
+      "role": "declarative finite assurance case loader"
+    },
+    {
+      "path": "research/run_assurance_case.py",
+      "kind": "file",
+      "sha256": "d0c5391250c4173bb9578381f2035e3c1e7ae752e14d36a4e631e39d255cb694",
+      "role": "reproducible assurance certificate runner"
+    },
+    {
+      "path": "research/test_critical_assurance_case.py",
+      "kind": "file",
+      "sha256": "ad7062e809ec172c58b78ff3c917bd3bc93b9c2b38173d8d796c10187452ac47",
+      "role": "declarative assurance case mutation tests"
+    },
+    {
+      "path": "research/evidence/reference_assurance_case.json",
+      "kind": "file",
+      "sha256": "2dff1e55e142f9d44b443f53e49115b6a65631e1bc93e03f4c8b4d981c5494ba",
+      "role": "declarative finite assurance reference case"
+    },
+    {
+      "path": "research/evidence/reference_assurance_case.result.json",
+      "kind": "file",
+      "sha256": "d464bedfe4fde56e1577eddcca70c7f7d4283ea919dc0f1567ce9fcf8781a9b3",
+      "role": "serialized reference assurance result"
+    },
+    {
+      "path": "docs/61-CASO-ASSURANCE-REPRODUZIVEL.md",
+      "kind": "file",
+      "sha256": "c04b493efe59fa623aedf7943a8d319ef117dfda7804fc18f7689a7cd490c018",
+      "role": "reproducible assurance case evidence and limits"
     },
     {
       "path": "docs/60-CERTIFICADO-COMPOSTO-ASSURANCE.md",
