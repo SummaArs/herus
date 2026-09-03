@@ -48,7 +48,9 @@
 #  36  study        preregistered plan, statistical gates and unsafe-send rejection
 #  37  protocol     crypto vs OpenSSL, ratchet, framing, Weave, Beat, canonicality
 #  38  radio        SX1262 command sequences against a recording mock bus
-#  39  physical     RF, energy and the frame ledger, from tools/budget.py
+#   39  physical     RF, energy and the frame ledger, from tools/budget.py
+#   40  sink inventory known critical operations are profile-complete
+
 #
 # The Nucleus suite is intentionally separate: privacy and non-autonomy are
 # properties that must fail a build when regressed, not promises in a document.
@@ -238,22 +240,27 @@ banner "35/39 local provenance manifest (unsigned inputs and pending supply-chai
 [ "$QUIET" = 0 ] && cat /tmp/herus_pv.log
 grep -q "FAIL" /tmp/herus_pv.log && FAIL=1 || true
 
-banner "36/39 preregistered study (frozen plan, gates and unsafe-send rejection)"
+banner "36/40 critical sink inventory (known operations profile-complete)"
+( cd research && make sink-inventory ) > /tmp/herus_si.log 2>&1 || FAIL=1
+[ "$QUIET" = 0 ] && cat /tmp/herus_si.log
+grep -q "FAIL\|BLOCKED" /tmp/herus_si.log && FAIL=1 || true
+
+banner "37/40 preregistered study (frozen plan, gates and unsafe-send rejection)"
 python3 tools/test_interactionstudy.py > /tmp/herus_s.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_s.log
 grep -q "FAIL" /tmp/herus_s.log && FAIL=1 || true
 
-banner "37/39 protocol (crypto, ratchet, framing, Weave, Beat)"
+banner "38/40 protocol (crypto, ratchet, framing, Weave, Beat)"
 ( cd firmware && make net ) > /tmp/herus_b.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_b.log
 grep -q "FAIL" /tmp/herus_b.log && FAIL=1 || true
 
-banner "38/39 radio driver (SX1262 command sequences, no hardware)"
+banner "39/40 radio driver (SX1262 command sequences, no hardware)"
 ( cd firmware && make radio && make syntax ) > /tmp/herus_r.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_r.log
 grep -q "FAIL" /tmp/herus_r.log && FAIL=1 || true
 
-banner "39/39 physical layer, energy and frame ledger"
+banner "40/40 physical layer, energy and frame ledger"
 python3 tools/budget.py > /tmp/herus_c.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_c.log
 
@@ -401,6 +408,7 @@ check "Hardware readiness manifest keeps evidence pending and private" "READINES
 # --- local software provenance -------------------------------------------
 check "Local provenance manifest validates only declared unsigned inputs" "PROVENANCE MANIFEST VALID" /tmp/herus_pv.log
 check "Local provenance rejects tampered inputs, secrets and trust escalation" "PROVENANCE AUDIT INVARIANTS HOLD" /tmp/herus_pv.log
+check "Critical sink inventory covers known operations" "SINK_INVENTORY=PASS" /tmp/herus_si.log
 
 # --- preregistered study -------------------------------------------------
 check "Preregistered study keeps gates and rejects unsafe send" "PREREGISTRATION INVARIANTS HOLD" /tmp/herus_s.log

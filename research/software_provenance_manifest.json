@@ -11,7 +11,7 @@
     {
       "path": "prove.sh",
       "kind": "file",
-      "sha256": "b525be29ede94517ac93f35e8dff97141142a4930c4a0232172c4ae1723f1c68",
+      "sha256": "5023e68630843a2e534d9d6df682722aef07ee405d4495f7a1bd42fcfbd46c36",
       "role": "global proof ledger"
     },
     {
