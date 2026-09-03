@@ -38,9 +38,22 @@ def _profile_operations(profile: dict[str, Any]) -> set[tuple[str, str]]:
 
 def inventory(profile: dict[str, Any], root: Path) -> tuple[InventoryResult, ...]:
     declared = _profile_operations(profile)
+    sinks = profile.get("critical_sinks", {})
+    declared_ids = set(sinks) if isinstance(sinks, dict) else set()
     results: list[InventoryResult] = []
     for source in sorted({str(p.relative_to(root)) for p in (root / "firmware").rglob("*.c") if "test_" not in p.name}):
         text = (root / source).read_text(encoding="utf-8")
+        for annotation in re.finditer(
+            r"HERUS_CRITICAL_SINK:\s*(?P<id>[A-Za-z0-9_.-]+)\s+operation=(?P<operation>[A-Za-z0-9_]+\()",
+            text,
+        ):
+            sink_id = annotation.group("id")
+            operation = annotation.group("operation")
+            entry = sinks.get(sink_id) if isinstance(sinks, dict) else None
+            if sink_id not in declared_ids or not isinstance(entry, dict) or entry.get("source") != source or entry.get("operation") != operation:
+                results.append(InventoryResult(operation, source, "UNPROFILED", "critical_annotation_missing_or_mismatched"))
+            else:
+                results.append(InventoryResult(operation, source, "PROFILED", "critical_annotation_matches_profile"))
         for operation in KNOWN_OPERATIONS:
             # Ignore the function definition itself; calls are the inventory target.
             matches = []

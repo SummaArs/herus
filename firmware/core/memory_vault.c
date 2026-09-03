@@ -156,6 +156,7 @@ int memory_vault_init(memory_vault_t *v, const memory_vault_config_t *cfg)
     return MEMORY_VAULT_OK;
 }
 
+/* HERUS_CRITICAL_SINK: memory-persist operation=store_sealed( */
 int memory_vault_seal(memory_vault_t *v, const memory_vault_write_authorization_t *auth,
                       const memory_vault_card_t *card)
 {

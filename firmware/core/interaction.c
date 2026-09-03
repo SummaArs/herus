@@ -238,6 +238,7 @@ int interaction_take_send(interaction_t *it, hcp_msg_t *out)
     return INTERACTION_OK;
 }
 
+/* HERUS_CRITICAL_SINK: interaction-send operation=interaction_take_send( */
 int interaction_take_send_assured(interaction_t *it,
                                   const assurance_snapshot_t *snapshot,
                                   hcp_msg_t *out)

@@ -17,6 +17,24 @@ class CriticalSinkInventoryTests(unittest.TestCase):
         self.assertTrue(results, "known operation inventory must not be empty")
         self.assertTrue(all(item.status == "PROFILED" for item in results), results)
 
+    def test_unprofiled_critical_annotation_is_detected(self) -> None:
+        with self.root.joinpath("firmware/core/interaction.c").open(encoding="utf-8") as handle:
+            original = handle.read()
+        mutated_root = self.root / "research" / ".tmp_inventory_mutant"
+        source = mutated_root / "firmware/core/interaction.c"
+        source.parent.mkdir(parents=True, exist_ok=True)
+        source.write_text(original.replace(
+            "/* HERUS_CRITICAL_SINK: interaction-send operation=interaction_take_send( */",
+            "/* HERUS_CRITICAL_SINK: unprofiled-new-sink operation=new_critical_sink( */\n/* HERUS_CRITICAL_SINK: interaction-send operation=interaction_take_send( */",
+            1,
+        ), encoding="utf-8")
+        try:
+            results = inventory(self.profile, mutated_root)
+            self.assertTrue(any(item.status == "UNPROFILED" and item.detail == "critical_annotation_missing_or_mismatched" for item in results), results)
+        finally:
+            import shutil
+            shutil.rmtree(mutated_root)
+
     def test_omitted_sink_is_unprofiled(self) -> None:
         profile = copy.deepcopy(self.profile)
         del profile["critical_sinks"]["nucleus-seal"]

@@ -200,6 +200,7 @@ static int active_control_key(const trust_t *t, core_link_key_t *out)
     return TRUST_OK;
 }
 
+/* HERUS_CRITICAL_SINK: nucleus-seal operation=core_link_seal_nucleus_intent( */
 int trust_seal_nucleus_intent(const trust_t *t, core_link_tx_t *tx,
                               uint32_t now_ms, uint32_t session_id,
                               uint32_t expires_ms,

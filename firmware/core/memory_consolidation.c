@@ -123,6 +123,7 @@ int memory_consolidation_mark_conflict(memory_consolidation_t *c,
     return MEMORY_CONSOLIDATION_OK;
 }
 
+/* HERUS_CRITICAL_SINK: memory-review-persist operation=memory_vault_seal( */
 int memory_consolidation_confirm_store(memory_consolidation_t *c,
                                        memory_vault_t *vault,
                                        const memory_consolidation_access_t *access,
