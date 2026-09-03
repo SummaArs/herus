@@ -53,7 +53,7 @@
     {
       "path": "research/Makefile",
       "kind": "file",
-      "sha256": "6d0473b6ca953caa717b72aef06ab73c092d1f6ccef0a2cb734d9c3917206130",
+      "sha256": "e7086479b882b0cc5cfdd04dc9928d77b3b317c83c907d150d7e4a582b3093f5",
       "role": "host-only research test entrypoint"
     },
     {
