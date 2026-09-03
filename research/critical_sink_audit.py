@@ -41,6 +41,17 @@ def _function_body(text: str, function: str) -> str | None:
 
 
 def _valid_entry(entry: Any) -> bool:
+    semantic_guards = entry.get("semantic_guards", []) if isinstance(entry, dict) else []
+    valid_semantic = (
+        isinstance(semantic_guards, list)
+        and all(
+            isinstance(item, dict)
+            and item.get("kind") == "rejects_mismatch"
+            and isinstance(item.get("expression"), str)
+            and bool(item["expression"])
+            for item in semantic_guards
+        )
+    )
     return (
         isinstance(entry, dict)
         and isinstance(entry.get("source"), str)
@@ -49,6 +60,7 @@ def _valid_entry(entry: Any) -> bool:
         and isinstance(entry.get("guards"), list)
         and bool(entry["guards"])
         and all(isinstance(item, str) and item for item in entry["guards"])
+        and valid_semantic
     )
 
 
@@ -77,8 +89,23 @@ def audit(profile: dict[str, Any], root: Path) -> tuple[SinkResult, ...]:
             continue
         missing = [guard for guard in entry["guards"] if body.find(guard) < 0]
         late = [guard for guard in entry["guards"] if 0 <= body.find(guard) > operation_position]
-        if missing or late:
-            detail = "missing_guard:" + ",".join(missing) if missing else "guard_after_operation:" + ",".join(late)
+        semantic_missing = [
+            item["expression"] for item in entry.get("semantic_guards", [])
+            if body.find(item["expression"]) < 0
+        ]
+        semantic_late = [
+            item["expression"] for item in entry.get("semantic_guards", [])
+            if 0 <= body.find(item["expression"]) > operation_position
+        ]
+        if missing or late or semantic_missing or semantic_late:
+            if missing:
+                detail = "missing_guard:" + ",".join(missing)
+            elif late:
+                detail = "guard_after_operation:" + ",".join(late)
+            elif semantic_missing:
+                detail = "missing_semantic_guard:" + ",".join(semantic_missing)
+            else:
+                detail = "semantic_guard_after_operation:" + ",".join(semantic_late)
             results.append(SinkResult(sink_id, "UNCOVERED", source, entry["function"], detail))
             continue
         results.append(SinkResult(sink_id, "COVERED", source, entry["function"], "lexical_guard_before_operation"))

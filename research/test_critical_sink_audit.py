@@ -30,6 +30,36 @@ class CriticalSinkAuditTests(unittest.TestCase):
             self.assertEqual(result.status, "UNCOVERED")
             self.assertEqual(result.detail, "missing_guard:guard(")
 
+    def test_semantic_mismatch_guard_is_required(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "x.c").write_text(
+                "int f(void) { if (access->id != c->id) return 1; return sink(); }\n",
+                encoding="utf-8",
+            )
+            profile = {"critical_sinks": {"x": {
+                "source": "x.c", "function": "f", "operation": "sink(",
+                "guards": ["return 1;"],
+                "semantic_guards": [{"kind": "rejects_mismatch", "expression": "access->id != c->id"}],
+            }}}
+            self.assertEqual(audit(profile, root)[0].status, "COVERED")
+
+    def test_inverted_semantic_mismatch_guard_is_uncovered(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "x.c").write_text(
+                "int f(void) { if (access->id == c->id) return 1; return sink(); }\n",
+                encoding="utf-8",
+            )
+            profile = {"critical_sinks": {"x": {
+                "source": "x.c", "function": "f", "operation": "sink(",
+                "guards": ["return 1;"],
+                "semantic_guards": [{"kind": "rejects_mismatch", "expression": "access->id != c->id"}],
+            }}}
+            result = audit(profile, root)[0]
+            self.assertEqual(result.status, "UNCOVERED")
+            self.assertIn("missing_semantic_guard", result.detail)
+
     def test_guard_after_operation_is_uncovered(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)

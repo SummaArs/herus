@@ -545,19 +545,19 @@
     {
       "path": "research/critical_sink_audit.py",
       "kind": "file",
-      "sha256": "dadd31c7147d00801905bb8ff50ee27191371a78cb003bbf6f71146530503b67",
+      "sha256": "784523daf72a03f63030376b78a39fb55da56599db282483d34f0046aaa89b11",
       "role": "fail-closed lexical critical sink auditor"
     },
     {
       "path": "research/test_critical_sink_audit.py",
       "kind": "file",
-      "sha256": "1fc4a6360881c99193eb6e88c7f42861aa3efdb1ea7e5b26f3f9d5427130128e",
+      "sha256": "ca728d03b3e03746b19c94ee5669e6a0e50b5e56e05f1638b01dd2b97a52c9e2",
       "role": "critical sink auditor adversarial tests"
     },
     {
       "path": "research/hcae_profile.json",
       "kind": "file",
-      "sha256": "e7ae476fa6b1e9e20d1830eefce565792d52551ca3f4f2693198938f996ff53a",
+      "sha256": "e050a0e7e65aa351bdfba5d094859a58be4fb4dc4d0e06b109e808d9bb6b24dc",
       "role": "real HERUS critical surface profile"
     },
     {

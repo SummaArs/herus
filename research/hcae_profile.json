@@ -19,7 +19,11 @@
       "source": "firmware/core/memory_consolidation.c",
       "function": "memory_consolidation_confirm_store",
       "operation": "memory_vault_seal(",
-      "guards": ["access_valid(", "physical_session_id != c->active_physical_session_id"]
+      "guards": ["access_valid("],
+      "semantic_guards": [{
+        "kind": "rejects_mismatch",
+        "expression": "access->physical_session_id != c->active_physical_session_id"
+      }]
     },
     "nucleus-seal": {
       "source": "firmware/net/trust.c",
