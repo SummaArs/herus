@@ -20,6 +20,8 @@ def main() -> int:
         "evidence_digest": certificate.evidence_digest,
         "structural_verdict": certificate.structural_verdict,
         "structural_reason": certificate.structural_reason,
+        "inventory_verdict": certificate.inventory_verdict,
+        "inventory_reason": certificate.inventory_reason,
         "abstract_verification": certificate.abstract_verification.verdict.value,
         "concrete_verification": certificate.concrete_verification.verdict.value,
         "machine_refinement": certificate.machine_refinement.verdict.value,

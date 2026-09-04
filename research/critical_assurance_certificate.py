@@ -52,6 +52,8 @@ class AssuranceCertificate:
     evidence_digest: str
     structural_verdict: str | None = None
     structural_reason: str | None = None
+    inventory_verdict: str | None = None
+    inventory_reason: str | None = None
 
 
 def _canonical_digest(value: Any) -> str:
@@ -87,6 +89,8 @@ def compose_assurance(
     call_path_results: tuple[CallPathResult, ...],
     structural_verdict: str | None = None,
     structural_reason: str | None = None,
+    inventory_verdict: str | None = None,
+    inventory_reason: str | None = None,
 ) -> AssuranceCertificate:
     abstract_verification = verify(abstract, abstract_policy)
     concrete_verification = verify(concrete, concrete_policy)
@@ -108,6 +112,8 @@ def compose_assurance(
         "call_paths": [result.__dict__ for result in call_path_results],
         "structural_verdict": structural_verdict,
         "structural_reason": structural_reason,
+        "inventory_verdict": inventory_verdict,
+        "inventory_reason": inventory_reason,
     })
 
     if abstract_verification.verdict == Verdict.COUNTEREXAMPLE or concrete_verification.verdict == Verdict.COUNTEREXAMPLE:
@@ -128,5 +134,7 @@ def compose_assurance(
     if not call_path_results or any(result.status != "COVERED" for result in call_path_results):
         return AssuranceCertificate(AssuranceVerdict.BLOCKED, "critical_call_path_not_covered", abstract_verification, concrete_verification, machine_refinement, policy_refinement, call_path_results, evidence_digest, structural_verdict, structural_reason)
     if structural_verdict is not None and structural_verdict != "EXTRACTED_MATCH":
-        return AssuranceCertificate(AssuranceVerdict.BLOCKED, "structural_extraction_not_promoted", abstract_verification, concrete_verification, machine_refinement, policy_refinement, call_path_results, evidence_digest, structural_verdict, structural_reason)
-    return AssuranceCertificate(AssuranceVerdict.ASSURED, "finite_chain_assured", abstract_verification, concrete_verification, machine_refinement, policy_refinement, call_path_results, evidence_digest, structural_verdict, structural_reason)
+        return AssuranceCertificate(AssuranceVerdict.BLOCKED, "structural_extraction_not_promoted", abstract_verification, concrete_verification, machine_refinement, policy_refinement, call_path_results, evidence_digest, structural_verdict, structural_reason, inventory_verdict, inventory_reason)
+    if inventory_verdict is not None and inventory_verdict != "PASS":
+        return AssuranceCertificate(AssuranceVerdict.BLOCKED, "critical_sink_inventory_not_promoted", abstract_verification, concrete_verification, machine_refinement, policy_refinement, call_path_results, evidence_digest, structural_verdict, structural_reason, inventory_verdict, inventory_reason)
+    return AssuranceCertificate(AssuranceVerdict.ASSURED, "finite_chain_assured", abstract_verification, concrete_verification, machine_refinement, policy_refinement, call_path_results, evidence_digest, structural_verdict, structural_reason, inventory_verdict, inventory_reason)

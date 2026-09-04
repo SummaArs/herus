@@ -8,6 +8,7 @@ from typing import Any
 from critical_assurance_certificate import AssuranceCertificate, compose_assurance
 from critical_call_path_audit import CallPathResult, audit as audit_call_paths, load_profile
 from memory_vault_structural_extractor import compare_source
+from critical_sink_inventory import inventory as inventory_sinks, load_profile as load_hcae_profile
 from critical_state_verifier import PolicyRule, StateMachineSpec, Transition
 
 
@@ -50,6 +51,14 @@ def run_case(path: Path) -> AssuranceCertificate:
         paths = audited_paths + declared_failures
     structural_verdict = None
     structural_reason = None
+    inventory_verdict = None
+    inventory_reason = None
+    hcae_profile_name = data.get("hcae_profile")
+    if hcae_profile_name:
+        repo_root = Path(__file__).parents[1]
+        inventory_results = inventory_sinks(load_hcae_profile(repo_root / hcae_profile_name), repo_root)
+        inventory_verdict = "PASS" if inventory_results and all(item.status == "PROFILED" for item in inventory_results) else "BLOCKED"
+        inventory_reason = "all_known_and_annotated_sinks_profiled" if inventory_verdict == "PASS" else ";".join(item.detail for item in inventory_results if item.status != "PROFILED")
     implementation = data.get("source_contract", {}).get("implementation")
     if implementation:
         source_path = Path(__file__).parents[1] / implementation
@@ -67,4 +76,6 @@ def run_case(path: Path) -> AssuranceCertificate:
         paths,
         structural_verdict,
         structural_reason,
+        inventory_verdict,
+        inventory_reason,
     )

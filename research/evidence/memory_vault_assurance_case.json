@@ -85,6 +85,7 @@
   "action_map": {"INIT_READY":"READY","SEAL_RECORD":"SEAL","RETAIN_STATE":"STAY","BLOCK_VAULT":"BLOCK"},
   "source_obligations": ["failure:decrypt_authenticity_failure_blocks"],
   "call_path_profile": "research/memory_vault_call_path_profile.json",
+  "hcae_profile": "research/hcae_profile.json",
   "call_paths": [
     {"rule_id":"memory-persist","status":"COVERED","source":"firmware/core/memory_vault.c","caller":"memory_vault_seal","detail":"auth_and_card_guards_precede_persistence"}
   ]

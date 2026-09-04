@@ -10,7 +10,9 @@
     }
   ],
   "concrete_verification": "VERIFIED",
-  "evidence_digest": "6a146af6619cb0f1c0ef3852afeee6d63300d295a4f02b202a6adafb0543741d",
+  "evidence_digest": "50bb378d5dab193eb24a149406ca0ac0d4899b892a7a54a75fe0642a566490f0",
+  "inventory_reason": "all_known_and_annotated_sinks_profiled",
+  "inventory_verdict": "PASS",
   "machine_refinement": "REFINED",
   "policy_refinement": "REFINED",
   "reason": "finite_chain_assured",

@@ -647,7 +647,7 @@
     {
       "path": "research/critical_assurance_certificate.py",
       "kind": "file",
-      "sha256": "11146fec3284ae7f1cbcdd307a1bd14ce15c8b7be20f4d58289a8bb7b7a1b574",
+      "sha256": "4fa084a2727f14f41317174eb5ca35a507571b978496ca754de9a579571b1e46",
       "role": "composed finite assurance certificate"
     },
     {
@@ -659,13 +659,13 @@
     {
       "path": "research/critical_assurance_case.py",
       "kind": "file",
-      "sha256": "82cfa803aa1d6cb349f86c3d7024710ad0146ed7193bcdb98685e62b0c2583d2",
+      "sha256": "aca1e02a5d624beb886ca0b0a5dcce09a6101ad7855397f637780c2533f27bb8",
       "role": "declarative finite assurance case loader"
     },
     {
       "path": "research/run_assurance_case.py",
       "kind": "file",
-      "sha256": "fce8a891fd293502402e0f63283f5b91fc59ca1b625df298daba3ab99bd90169",
+      "sha256": "0d4ba46b28a5373104744c037404e312131980afed21b767835101fe8999cf2d",
       "role": "reproducible assurance certificate runner"
     },
     {
@@ -695,19 +695,19 @@
     {
       "path": "research/test_memory_vault_assurance_case.py",
       "kind": "file",
-      "sha256": "8bd604808ad2eba25f90db7f0c80892714e46d9785b57021e3fba54ee3b5b850",
+      "sha256": "2df0f579b8b77a81c1943391c900faf89cc094407e10400a76731a6d97d313ff",
       "role": "real memory vault assurance case adversarial tests"
     },
     {
       "path": "research/evidence/memory_vault_assurance_case.json",
       "kind": "file",
-      "sha256": "9c0ac72893035330919646ffad1c5dc94c3ffa3d16e48245a74cac5eb29c4a29",
+      "sha256": "de9967002690a49c35f1df810cec80410726f21cf6f4b14e1451b72a2b2c568f",
       "role": "declarative real memory vault assurance case"
     },
     {
       "path": "research/evidence/memory_vault_assurance_case.result.json",
       "kind": "file",
-      "sha256": "d6d07777f8c857b6ccdca1b1d0e8f213df1659fe726e9bf740e4a78cf1be9587",
+      "sha256": "aa818f9ea43c4fa4941d18d3b25e0fb1566517ddab704828f662c035ef187ef1",
       "role": "serialized real memory vault assurance result"
     },
     {
