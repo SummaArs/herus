@@ -31,7 +31,14 @@ int interaction_rig_transcript(interaction_rig_t *rig, const char *text, uint32_
 int interaction_rig_confirm(interaction_rig_t *rig, int accepted, uint32_t now_ms);
 int interaction_rig_tick(interaction_rig_t *rig, uint32_t now_ms);
 void interaction_rig_set_source(interaction_rig_t *rig, int available, uint32_t now_ms);
+/* Legacy raw handoff is fail-closed and always rejects. */
 int interaction_rig_take_send(interaction_rig_t *rig, hcp_msg_t *out);
+/* The lab adapter must receive the same nonsecret assurance snapshot used by
+ * the production integration path. Assurance may only block the one-time
+ * handoff; it cannot create a draft or authorize transport. */
+int interaction_rig_take_send_assured(interaction_rig_t *rig,
+                                      const assurance_snapshot_t *snapshot,
+                                      hcp_msg_t *out);
 void interaction_rig_note_energy_uj(interaction_rig_t *rig, uint32_t energy_uj);
 
 const interaction_rig_metrics_t *interaction_rig_metrics(const interaction_rig_t *rig);

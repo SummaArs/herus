@@ -1,0 +1,12 @@
+{
+  "schema": "hcae.call-path.v1",
+  "scope": "restricted firmware C11 subset; memory vault persistence sink",
+  "protected_calls": {
+    "memory-persist": {
+      "source": "firmware/core/memory_vault.c",
+      "callee": "store_sealed",
+      "allowed_callers": ["memory_vault_seal"],
+      "required_guards": ["auth_valid", "card_valid"]
+    }
+  }
+}

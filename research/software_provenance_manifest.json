@@ -11,19 +11,25 @@
     {
       "path": "prove.sh",
       "kind": "file",
-      "sha256": "b525be29ede94517ac93f35e8dff97141142a4930c4a0232172c4ae1723f1c68",
+      "sha256": "720a0eee94a0e88d21aabdabc7a9145c3fb933007022ce5f20c1361e5c888232",
       "role": "global proof ledger"
     },
     {
       "path": ".github/workflows/prove.yml",
       "kind": "file",
-      "sha256": "1cdfe71ea5e13920ac09e792e3774eb02e9f7a2acd677d9899492cc6f96489f9",
+      "sha256": "6fd4430923734320535c2ba5ca20c1056b5f9eefbf2be53c9c2f4bd42c2a9d5f",
       "role": "host proof workflow"
+    },
+    {
+      "path": ".github/workflows/free-reasoning.yml",
+      "kind": "file",
+      "sha256": "5bb7dee8e327ddf260934c283ff1f22ad95773a1afc7d1fe77ad8455eb2bcb2a",
+      "role": "dedicated bounded free reasoning research gate"
     },
     {
       "path": "firmware",
       "kind": "tree",
-      "sha256": "df205c67982dd6d66f3661caaef853701a2c9b2d71623b45dcda95a1fab81f48",
+      "sha256": "bff5f5e2c1d2412e4ea9781e08002ef84ff970ff0cbe8545677b7e722a38bc1c",
       "role": "portable firmware and proof sources"
     },
     {
@@ -47,7 +53,7 @@
     {
       "path": "research/Makefile",
       "kind": "file",
-      "sha256": "4b7bea613e1d1fc8af4cacf7597d04abf1873a4c1446da6776e33764445559c0",
+      "sha256": "97012c8f07d58f5eb273b46665042efb3bd1ef2d82081b98183b7a46600b53fb",
       "role": "host-only research test entrypoint"
     },
     {
@@ -245,14 +251,20 @@
     {
       "path": "research/test_minds14_sample.py",
       "kind": "file",
-      "sha256": "ec59bdc2c9f529a0114a4f58dc38324066bf2b4c791e2b296ffd3a0ef3e95e7c",
+      "sha256": "45da2e4408fb5577662c72f4eff3d147eacda5f729d63efd80b2fb7e6458df51",
       "role": "MInDS-14 WAV and wrapper regression tests"
     },
     {
       "path": "README.md",
       "kind": "file",
-      "sha256": "f141ca8db48ac838b36a568097cb9cc19036381b600f601610d68063bcdd1512",
+      "sha256": "c3202247f1f0b3f4eac2a3da072254dfdf279614f5348f7dd81eb9f334c57fc5",
       "role": "public project state and verification documentation"
+    },
+    {
+      "path": "docs/INDEX.md",
+      "kind": "file",
+      "sha256": "faaf97ed4d2e3e7912e94770d62c4b332b1ed2cc54e9d72387b0cc6235e6b8ef",
+      "role": "editorial documentation index"
     },
     {
       "path": "docs/50-INTENT-COMPILER-E-SEMANTIC-IR.md",
@@ -291,6 +303,18 @@
       "role": "host-only typed symbolic generative laboratory"
     },
     {
+      "path": "research/free_reasoner",
+      "kind": "tree",
+      "sha256": "5c482e932af7e7ce1c1af7f3081c575e0280c07ea2529c05760c1fc463f710cd",
+      "role": "host-only bounded exact algebraic reasoning laboratory"
+    },
+    {
+      "path": "research/README_FREE_REASONING.md",
+      "kind": "file",
+      "sha256": "47349a0aafc7b8a014d0eba19f9fc5c2835a92a8d33dc5ec8d2ebbb7a9e03c6d",
+      "role": "free reasoning laboratory boundary documentation"
+    },
+    {
       "path": "research/test_generative_lab.py",
       "kind": "file",
       "sha256": "30f3a271f813acd3421719b00bf75fe91e3344459a993f8877fb200d10bc7215",
@@ -301,6 +325,456 @@
       "kind": "file",
       "sha256": "189b6b6839dd01f3ab78a24c1c138de696b655b73b7ea756e3f5feb148301a0b",
       "role": "generative reasoning research record"
+    },
+    {
+      "path": "docs/51-HARDENING-CI-E-VALIDACAO.md",
+      "kind": "file",
+      "sha256": "5cd53a52b23154d72a83d66135581c9bd92304a12f8aedb5e4720ed08bc0c3c1",
+      "role": "CI and sanitizer hardening research record"
+    },
+    {
+      "path": "docs/52-RACIOCINIO-LIVRE-SIMBOLICO.md",
+      "kind": "file",
+      "sha256": "e537b48b24f7ab01fe512fda3681089bb4792bd432efd738b267b1c280d14811",
+      "role": "free symbolic reasoning research record"
+    },
+    {
+      "path": "research/evidence/free_reasoner_optimizer/comparison_report.md",
+      "kind": "file",
+      "sha256": "b13f1da6a5b3c4512f13c1a94a723f2ff16a65ef5f85d99c5db0eb1e9eff57da",
+      "role": "search strategy comparison evidence"
+    },
+    {
+      "path": "research/evidence/free_reasoner_optimizer/search_protocol.md",
+      "kind": "file",
+      "sha256": "a35a92057b071a85e7ea3cbf857ee087f170dc7a10279890ceedffdcf8f149c9",
+      "role": "train validation proof protocol"
+    },
+    {
+      "path": "research/evidence/free_reasoner_optimizer/compositional_protocol.md",
+      "kind": "file",
+      "sha256": "4c94a993f9d8aeb99789af15d30de24ca003add957c72e715c7895f23855f32a",
+      "role": "compositional search protocol"
+    },
+    {
+      "path": "research/evidence/free_reasoner_optimizer/compositional_report.md",
+      "kind": "file",
+      "sha256": "b544b30755c3600ed5ae72c08f76787eb98e649b7e68965e21e86f5f903d8130",
+      "role": "compositional search evidence"
+    },
+    {
+      "path": "research/free_reasoner/structured_terms.py",
+      "kind": "file",
+      "sha256": "61cfb5e429953f6cc5be95cc06ed6bbe90d0565a940db4f8fc2cf3b41fbada4d",
+      "role": "bounded reusable structural term representation"
+    },
+    {
+      "path": "research/free_reasoner/test_structured_terms.py",
+      "kind": "file",
+      "sha256": "80f1c18f22d063de3ed2670e1c848d8ee283d6f54ef444f3d770acddd2fbe9aa",
+      "role": "structural representation invariant tests"
+    },
+    {
+      "path": "research/free_reasoner/structured_search.py",
+      "kind": "file",
+      "sha256": "d02294806b8361c9a0ce2ed213078d14163c6c6ea675451d769fc80b4c3ae68d",
+      "role": "bounded reusable-subterm search"
+    },
+    {
+      "path": "research/free_reasoner/test_structured_search.py",
+      "kind": "file",
+      "sha256": "5695961c77d88da464468829299958ed89f8854096f3e80a4bc7b3af56a796ee",
+      "role": "structural search safety tests"
+    },
+    {
+      "path": "research/free_reasoner/structured_embedded_profile.c",
+      "kind": "file",
+      "sha256": "d5e096e76b0806efc8b9d3ed7e2bc01cd87b7483e5f4cb64d5783faae91fdf9b",
+      "role": "fixed-memory C11 structural profile"
+    },
+    {
+      "path": "research/critical_systems_health.py",
+      "kind": "file",
+      "sha256": "4c110b9fc3da2f26b3180002b16a490f350484a78119f737b08515850c2ca0b0",
+      "role": "finite critical-system health policy prototype"
+    },
+    {
+      "path": "research/test_critical_systems_health.py",
+      "kind": "file",
+      "sha256": "5e87342eba39f5ec0df5480937a13bdf5d8e17c7fcf609817b3decdbaeede93e",
+      "role": "critical-system fail-closed tests"
+    },
+    {
+      "path": "docs/53-PREVISAO-DEGRADACAO-E-SISTEMAS-CRITICOS.md",
+      "kind": "file",
+      "sha256": "598267e8cac31c15fb877d1696dd596ef91a13fdbaa30364e13b1683d8a1fb9a",
+      "role": "critical-system degradation research record"
+    },
+    {
+      "path": "research/causal_surprise.py",
+      "kind": "file",
+      "sha256": "92e2addb8d2086a8f53d1784b01640693f8fb94f09913eff4cef795c2f860fca",
+      "role": "finite causal surprise monitor"
+    },
+    {
+      "path": "research/test_causal_surprise.py",
+      "kind": "file",
+      "sha256": "f33b16baa343d2f7342c0c6d8bebeb826d99123b1025c893981b226b373097f2",
+      "role": "causal surprise fail-closed tests"
+    },
+    {
+      "path": "research/critical_state_verifier.py",
+      "kind": "file",
+      "sha256": "0777f648592f0c9a3f3c550b1e686880157776720c1e1f655ca536ef1b54fe6e",
+      "role": "independent finite-state safety verifier"
+    },
+    {
+      "path": "research/test_critical_state_verifier.py",
+      "kind": "file",
+      "sha256": "1fe0c59b23f77fbc97f699cad6b170ab46fbf0468bf67860fb1294e8be50afa9",
+      "role": "finite-state verifier adversarial tests"
+    },
+    {
+      "path": "research/critical_state_synthesis.py",
+      "kind": "file",
+      "sha256": "7e21c3f1b8deccbcdafdce16bd9fd706bcc330f04d0883b8a7a5e749d0aba8a2",
+      "role": "bounded policy synthesis using independent verifier"
+    },
+    {
+      "path": "research/test_critical_state_synthesis.py",
+      "kind": "file",
+      "sha256": "270f7756a3f8e4a4fbfe676a48b695b571d9c770d8ac74de11a109aff0050810",
+      "role": "bounded synthesis adversarial tests"
+    },
+    {
+      "path": "docs/54-MVP-SINTESE-VERIFICACAO-MAQUINAS-ESTADO.md",
+      "kind": "file",
+      "sha256": "d48d07d29bb3c1549535cb545dd297e503dd1d47aa7df289aa02d1ef5cb61bbd",
+      "role": "MVP synthesis and verification specification"
+    },
+    {
+      "path": "research/critical_state_embedded_profile.c",
+      "kind": "file",
+      "sha256": "63324b350e8945e3dab74f65bca0229b279942e714224254cc10d558e401da64",
+      "role": "fixed-memory C11 critical-state verifier profile"
+    },
+    {
+      "path": "research/critical_state_benchmark.py",
+      "kind": "file",
+      "sha256": "a47342ff9652dd8334dae8885f72863df056ef0d3055f93045525fa12aef18ba",
+      "role": "finite critical-state synthesis benchmark"
+    },
+    {
+      "path": "research/test_critical_state_benchmark.py",
+      "kind": "file",
+      "sha256": "d91a9544eb000e776010c85617f2f7e3450d39df6a06af6eb9d5d7c56ff20efc",
+      "role": "critical-state benchmark reproducibility tests"
+    },
+    {
+      "path": "research/evidence/critical_state_mvp_round.md",
+      "kind": "file",
+      "sha256": "419b431008062068475ad04cf6d0a9fc5d9ce4ac9001f083da29a867373cc092",
+      "role": "MVP critical-state round evidence"
+    },
+    {
+      "path": "research/sygus_compatibility.py",
+      "kind": "file",
+      "sha256": "4f9ffa05ca64dbd0fdac9e0ccea93da3f6e0b9fe29673d6e678cbedd30bb50a0",
+      "role": "bounded SyGuS compatibility inventory"
+    },
+    {
+      "path": "research/test_sygus_compatibility.py",
+      "kind": "file",
+      "sha256": "3c078f66f425057c37b8c4feba56831bf3f404413d31b0113447d7cb87e3367f",
+      "role": "SyGuS compatibility fail-closed tests"
+    },
+    {
+      "path": "research/evidence/sygus_compatibility_round.md",
+      "kind": "file",
+      "sha256": "1309b07ff889fe45cd64d70083ee42aa1095dd6b203ea842058c4c4d986d5233",
+      "role": "external benchmark compatibility evidence"
+    },
+    {
+      "path": "research/critical_state_refinement.py",
+      "kind": "file",
+      "sha256": "4b934c1a086a3b56751e13cb3976d99b3adb91e71681435c8faae5f4c5142a31",
+      "role": "finite abstract-to-concrete refinement checker"
+    },
+    {
+      "path": "research/test_critical_state_refinement.py",
+      "kind": "file",
+      "sha256": "bd8570238918d9cf5b000bcbecbd3eb1e1254c733901b2d5bc0553499d12e57e",
+      "role": "refinement boundary adversarial tests"
+    },
+    {
+      "path": "research/sygus_lia_subset.py",
+      "kind": "file",
+      "sha256": "10c0caf36efd19ad0f4901c85d918211cb214ec1c6bbe75b212721d524709f21",
+      "role": "fail-closed executable SyGuS LIA subset"
+    },
+    {
+      "path": "research/test_sygus_lia_subset.py",
+      "kind": "file",
+      "sha256": "233bd16a20e6a9212ba983c5ac20aafc26aea48438863859b726129896a7c2b6",
+      "role": "SyGuS subset semantic and budget tests"
+    },
+    {
+      "path": "research/run_sygus_subset_benchmark.py",
+      "kind": "file",
+      "sha256": "3a3fb78f1e01b999d0404da7257d0e73c1f740d06d6f69459ed378d0eab74d66",
+      "role": "reproducible public SyGuS benchmark runner"
+    },
+    {
+      "path": "research/evidence/sygus_subset_benchmark.json",
+      "kind": "file",
+      "sha256": "e62bbb07c4447c18da8af07c291a235076bb396ed021efb902eb8b86f9009f78",
+      "role": "raw bounded SyGuS subset results"
+    },
+    {
+      "path": "research/evidence/sygus_subset_benchmark.md",
+      "kind": "file",
+      "sha256": "27678cbd52f28be8a27afaf4f51aec0f9777e67a594bafcdb48e2a288482b8fe",
+      "role": "bounded SyGuS comparison report"
+    },
+    {
+      "path": "research/evidence/sygus_primary_sources.md",
+      "kind": "file",
+      "sha256": "ef07c9bf0f9af692fd35c0ced02e666a5bf6d1cc72b2887f7703624ff6827b7b",
+      "role": "primary SyGuS source notes"
+    },
+    {
+      "path": "research/critical_sink_audit.py",
+      "kind": "file",
+      "sha256": "784523daf72a03f63030376b78a39fb55da56599db282483d34f0046aaa89b11",
+      "role": "fail-closed lexical critical sink auditor"
+    },
+    {
+      "path": "research/test_critical_sink_audit.py",
+      "kind": "file",
+      "sha256": "d1b7fa3a53a96ac79f840397816b4f764a1eb077d1ced337d0c96e15fae713ea",
+      "role": "critical sink auditor adversarial tests"
+    },
+    {
+      "path": "research/hcae_profile.json",
+      "kind": "file",
+      "sha256": "6545c4a76e3c5a0575bd20546a7371e0740647cd35c74cd2cfbe5f24aeeb391d",
+      "role": "real HERUS critical surface profile"
+    },
+    {
+      "path": "docs/55-AUDITORIA-HCAE-V5.md",
+      "kind": "file",
+      "sha256": "37479f2dcab11fcc237ef1e65d5c15937f0a930c8de4667c4ba58201c0429625",
+      "role": "V5 critical assurance audit and limits"
+    },
+    {
+      "path": "research/critical_runtime_guardian.py",
+      "kind": "file",
+      "sha256": "5fa247f915dbf54a8cd83581c9301d99e5de93244670136e2126aa845d73bd25",
+      "role": "bounded deterministic runtime guardian model"
+    },
+    {
+      "path": "research/test_critical_runtime_guardian.py",
+      "kind": "file",
+      "sha256": "aba5c714372e1f5e5592727357dd0e66b3d52a8eb3b6e4c7d5f8bc81bc7b1c63",
+      "role": "guardian fail-closed and human boundary tests"
+    },
+    {
+      "path": "docs/56-GUARDIAN-INTERFACE-HUMANA.md",
+      "kind": "file",
+      "sha256": "bdcca19d8914f859b818e31362246a51cb0f6d867de15aac4d71a69bf017dba9",
+      "role": "human assurance interface audit and limits"
+    },
+    {
+      "path": "firmware/core/interaction_rig.h",
+      "kind": "file",
+      "sha256": "aea034766658ac4872b2d5f4fdab7a888dfe8de1c2333720c33b03b7e1e3fbff",
+      "role": "assurance-gated interaction rig API"
+    },
+    {
+      "path": "firmware/core/interaction_rig.c",
+      "kind": "file",
+      "sha256": "c7be292a32793b6cf63bb492d0893313ac1cc65b20d548b4def4fd50707973a5",
+      "role": "fail-closed interaction rig adapter"
+    },
+    {
+      "path": "firmware/core/test_interaction_rig.c",
+      "kind": "file",
+      "sha256": "c592781461cb62bc4a4146269454bdb03d91238956b44fccce17089417c06eb0",
+      "role": "interaction rig assurance boundary regression tests"
+    },
+    {
+      "path": "docs/57-CONTRATO-CENTRAL-HERUS.md",
+      "kind": "file",
+      "sha256": "a6873e15986dbf286cc5cfe3ceee74c7ad6704a3dac7f736b517ad048ae1d1a7",
+      "role": "central finite coordination and assurance contract"
+    },
+    {
+      "path": "research/critical_call_path_audit.py",
+      "kind": "file",
+      "sha256": "3ac0a2258bc151d00f2c4bd1d4f8dd408b61d159710a1d562e46625a5d540c65",
+      "role": "conservative structural critical call-path audit"
+    },
+    {
+      "path": "research/critical_call_path_profile.json",
+      "kind": "file",
+      "sha256": "4478ca202dd78b529573a19bff75e30e9e20d995a1b1940c95ac83c8da191526",
+      "role": "declared protected caller boundary"
+    },
+    {
+      "path": "research/test_critical_call_path_audit.py",
+      "kind": "file",
+      "sha256": "9433e997559459cedfbd07d644d1e7bdcd7023a97dce1e83f9bba49debdda80c",
+      "role": "critical call-path adversarial tests"
+    },
+    {
+      "path": "research/critical_policy_refinement.py",
+      "kind": "file",
+      "sha256": "f8a83de4733f24fbe04894afcfa8bd4d4f0cd49fcb9872c915efdeaa6c9659c1",
+      "role": "finite abstract-to-concrete policy refinement checker"
+    },
+    {
+      "path": "research/test_critical_policy_refinement.py",
+      "kind": "file",
+      "sha256": "1dcb0e0f2fa51a14a05a67a2fad83a20c8dc486952a561b753e19f564cb686ef",
+      "role": "policy refinement adversarial tests"
+    },
+    {
+      "path": "docs/59-REFINAMENTO-DE-POLITICAS.md",
+      "kind": "file",
+      "sha256": "db26d4e67e7fee0b6564fa0fff46a935ffa0b96bc1a1f021f31e85a0944370e3",
+      "role": "policy refinement contract and limits"
+    },
+    {
+      "path": "research/critical_assurance_certificate.py",
+      "kind": "file",
+      "sha256": "2916af3c9a4646498e8450ff61630b32fa98af6d71f3a654f85b04a6a1f679f2",
+      "role": "composed finite assurance certificate"
+    },
+    {
+      "path": "research/test_critical_assurance_certificate.py",
+      "kind": "file",
+      "sha256": "5884e8d1844abdf88c932520dbc1a2826f47272e936a8facbffebfe3c45ef225",
+      "role": "composed assurance adversarial tests"
+    },
+    {
+      "path": "research/critical_assurance_case.py",
+      "kind": "file",
+      "sha256": "345bf1db7341de14dd176306a768f9f4a6dc83ef21dfbeb496239982961d4a11",
+      "role": "declarative finite assurance case loader"
+    },
+    {
+      "path": "research/run_assurance_case.py",
+      "kind": "file",
+      "sha256": "80b38ef01874a6a1e0d925a024cb94ac06fc11ea5d2423041a0167d6a860d802",
+      "role": "reproducible assurance certificate runner"
+    },
+    {
+      "path": "research/test_critical_assurance_case.py",
+      "kind": "file",
+      "sha256": "16d525feca9474d606868b884e7f71ce827a6174b639a53a7d1fb86dce93ca3c",
+      "role": "declarative assurance case mutation tests"
+    },
+    {
+      "path": "research/evidence/reference_assurance_case.json",
+      "kind": "file",
+      "sha256": "90409c469f42f16e119b01c6ce34215cf8a65931b4a4be0c8041e7ec3adc1988",
+      "role": "declarative finite assurance reference case"
+    },
+    {
+      "path": "research/evidence/reference_assurance_case.result.json",
+      "kind": "file",
+      "sha256": "d464bedfe4fde56e1577eddcca70c7f7d4283ea919dc0f1567ce9fcf8781a9b3",
+      "role": "serialized reference assurance result"
+    },
+    {
+      "path": "docs/61-CASO-ASSURANCE-REPRODUZIVEL.md",
+      "kind": "file",
+      "sha256": "c04b493efe59fa623aedf7943a8d319ef117dfda7804fc18f7689a7cd490c018",
+      "role": "reproducible assurance case evidence and limits"
+    },
+    {
+      "path": "research/test_memory_vault_assurance_case.py",
+      "kind": "file",
+      "sha256": "20aedcdf43a11991cda2f8388044a40296f60b4cd640b5d1029b2ee53052786b",
+      "role": "real memory vault assurance case adversarial tests"
+    },
+    {
+      "path": "research/evidence/memory_vault_assurance_case.json",
+      "kind": "file",
+      "sha256": "9ee992dd894667c012c624d05cdea78ab31265f4cd161b98bdca2577112010af",
+      "role": "declarative real memory vault assurance case"
+    },
+    {
+      "path": "research/evidence/memory_vault_assurance_case.result.json",
+      "kind": "file",
+      "sha256": "aa818f9ea43c4fa4941d18d3b25e0fb1566517ddab704828f662c035ef187ef1",
+      "role": "serialized real memory vault assurance result"
+    },
+    {
+      "path": "firmware/Makefile",
+      "kind": "file",
+      "sha256": "d14314cc61a808a27480dbe9232c02a3e18c9588c8931dc97b709c9b71483ca4",
+      "role": "portable GCC and Clang static-analysis entrypoint"
+    },
+    {
+      "path": "docs/64-PORTABILIDADE-CI-MACOS.md",
+      "kind": "file",
+      "sha256": "bcc0ba07d7743ed94f76307a792704f3ae09c294865e540b812565c4448e919a",
+      "role": "macOS CI failure diagnosis and portability correction"
+    },
+    {
+      "path": "research/memory_vault_structural_extractor.py",
+      "kind": "file",
+      "sha256": "94b45985cad3551763194d3d5897912bfcdbf767c852b02b14b4e9b5f654eb48",
+      "role": "conservative memory vault C11 structural extractor"
+    },
+    {
+      "path": "research/test_memory_vault_structural_extractor.py",
+      "kind": "file",
+      "sha256": "c2bb91c03b75dc3dca7a3cec7163e55531ddf6f314289567cf68652174f9f641",
+      "role": "memory vault extractor adversarial tests"
+    },
+    {
+      "path": "research/run_memory_vault_extraction.py",
+      "kind": "file",
+      "sha256": "39f86de0b45407c010b25b83bc6afe897feb2858c868d9d6586154fe0f2966b8",
+      "role": "reproducible memory vault extraction runner"
+    },
+    {
+      "path": "research/evidence/memory_vault_structural_extraction.result.json",
+      "kind": "file",
+      "sha256": "e37a08b3d8a5d52fa87b943353b698b69a064b2596e0728be8a160c37a27817a",
+      "role": "serialized memory vault structural extraction evidence"
+    },
+    {
+      "path": "docs/63-EXTRACAO-ESTRUTURAL-MEMORY-VAULT.md",
+      "kind": "file",
+      "sha256": "c6767d37b175b9b1c45c7f86784da51fc7768224d98bfbc68c5bc3139e7d03af",
+      "role": "memory vault structural extraction scope and limits"
+    },
+    {
+      "path": "docs/62-ASSURANCE-MEMORY-VAULT-REAL.md",
+      "kind": "file",
+      "sha256": "2c11f1b49899290452eb2cc459722edbcdb864d35cfa38b2f13cc921da949e8e",
+      "role": "real memory vault assurance evidence and limits"
+    },
+    {
+      "path": "docs/60-CERTIFICADO-COMPOSTO-ASSURANCE.md",
+      "kind": "file",
+      "sha256": "903eaa31fe040e6ab6d7b7196926944c79cd200b43d3c69c8a65655064529448",
+      "role": "composed assurance certificate contract and limits"
+    },
+    {
+      "path": "docs/58-AUDITORIA-CAMINHOS-CRITICOS.md",
+      "kind": "file",
+      "sha256": "03ce313a3a1d69da590afa4455ad2fcc11ff49355d9b41c2bf2ddd8e248678e2",
+      "role": "structural critical call-path audit evidence and limits"
+    },
+    {
+      "path": "research/evidence/wide_research_pre_hardware_readiness.md",
+      "kind": "file",
+      "sha256": "32108af48dbeb7a26e497ca9a1dcb91ead6ae0b0fa5fc9eb0ac7b921567a3276",
+      "role": "wide research pre-hardware readiness evidence"
     }
   ],
   "components": [
@@ -356,29 +830,51 @@
       "id": "local-source-input-digest",
       "status": "active",
       "question": "Do the declared host-proof inputs match the reviewed local SHA-256 references?",
-      "evidence_required": ["manifest schema", "canonical digest algorithm", "adversarial fixture suite"],
+      "evidence_required": [
+        "manifest schema",
+        "canonical digest algorithm",
+        "adversarial fixture suite"
+      ],
       "claim_if_pass": "Only the listed local inputs match this unsigned manifest at audit time.",
-      "evidence_files": ["tools/provenance_audit.py", "research/software_provenance_manifest.json"]
+      "evidence_files": [
+        "tools/provenance_audit.py",
+        "research/software_provenance_manifest.json"
+      ]
     },
     {
       "id": "signed-build-provenance",
       "status": "pending",
       "question": "Can a verifier authenticate a provenance statement for a released artifact and trace it to a protected builder?",
-      "evidence_required": ["signed attestation", "builder trust boundary", "artifact digest", "verification procedure"],
+      "evidence_required": [
+        "signed attestation",
+        "builder trust boundary",
+        "artifact digest",
+        "verification procedure"
+      ],
       "claim_if_pass": "A separately reviewed release artifact has authenticated provenance for its declared builder boundary."
     },
     {
       "id": "complete-component-inventory",
       "status": "pending",
       "question": "Does a machine-readable inventory cover the release artifact and its resolved direct and transitive components?",
-      "evidence_required": ["artifact inventory", "coverage method", "component identities", "review record"],
+      "evidence_required": [
+        "artifact inventory",
+        "coverage method",
+        "component identities",
+        "review record"
+      ],
       "claim_if_pass": "The declared release inventory has the documented coverage, not an inferred absence of vulnerabilities."
     },
     {
       "id": "reproducible-target-build",
       "status": "pending",
       "question": "Can independent controlled environments reproduce the selected target artifact from the declared inputs?",
-      "evidence_required": ["pinned toolchain", "build recipe", "independent digest comparison", "target artifact"],
+      "evidence_required": [
+        "pinned toolchain",
+        "build recipe",
+        "independent digest comparison",
+        "target artifact"
+      ],
       "claim_if_pass": "Only the tested target artifact and declared environments reproduced the recorded digest."
     }
   ]

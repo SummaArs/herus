@@ -1,4 +1,4 @@
-.PHONY: test real-corpus real-corpus-sanitizers real-corpus-audit paired-audio-audit slurp-text-audit slurp-text-sanitizers minds14-sample-audit minds14-batch-audit minds14-batch-sanitizers demo
+.PHONY: test hcae-sink-audit sink-inventory critical-effect-candidates c11-structural-audit call-path-audit policy-refinement assurance-certificate assurance-case memory-vault-assurance memory-vault-extraction guardian-model sygus-subset-benchmark real-corpus real-corpus-sanitizers real-corpus-audit paired-audio-audit slurp-text-audit slurp-text-sanitizers minds14-sample-audit minds14-batch-audit minds14-batch-sanitizers free-reasoning-embedded-profile free-reasoning-structured-profile critical-state-profile demo
 
 PYTHON ?= python3
 CC ?= cc
@@ -7,7 +7,44 @@ CFLAGS ?= -O2 -Wall -Wextra -Werror -std=c11
 # Host-only research track. This target is intentionally not part of the
 # firmware proof ledger until its semantics and resource costs are reviewed.
 test:
-	$(PYTHON) -m unittest -v test_finite_reasoner.py test_semantic_ir.py test_semantic_ir_fuzz.py test_semantic_ir_corpus.py test_convergence.py test_annotation_protocol.py test_evolution_policy.py test_evolution_compatibility.py test_generative_lab.py test_datasets_manifest.py test_paired_audio_audit.py test_source_audit.py test_probe_remote_zip.py test_benchmark_ir.py test_slurp_text.py test_minds14_sample.py test_minds14_batch.py test_identity_audit.py
+		$(PYTHON) -m unittest -v test_finite_reasoner.py test_semantic_ir.py test_semantic_ir_fuzz.py test_semantic_ir_corpus.py test_convergence.py test_annotation_protocol.py test_evolution_policy.py test_evolution_compatibility.py test_generative_lab.py free_reasoner.test_structured_terms free_reasoner.test_structured_search test_critical_systems_health.py test_causal_surprise.py test_critical_state_verifier.py test_critical_state_synthesis.py test_critical_state_benchmark.py test_critical_state_refinement.py test_critical_policy_refinement.py test_critical_assurance_certificate.py test_critical_assurance_case.py test_memory_vault_assurance_case.py test_memory_vault_structural_extractor.py test_sygus_compatibility.py test_sygus_lia_subset.py test_critical_sink_audit.py test_critical_sink_inventory.py test_critical_effect_candidate_audit.py test_critical_c11_structural_audit.py test_critical_transport_bypass.py test_critical_runtime_guardian.py test_critical_call_path_audit.py test_datasets_manifest.py test_paired_audio_audit.py test_source_audit.py test_probe_remote_zip.py test_benchmark_ir.py test_slurp_text.py test_minds14_sample.py test_minds14_batch.py test_identity_audit.py
+
+hcae-sink-audit:
+			$(PYTHON) critical_sink_audit.py hcae_profile.json --root ..
+
+sink-inventory:
+			$(PYTHON) critical_sink_inventory.py hcae_profile.json --root ..
+
+critical-effect-candidates:
+			$(PYTHON) critical_effect_candidate_audit.py hcae_profile.json critical_effect_dispositions.json --root ..
+
+c11-structural-audit:
+			$(PYTHON) critical_c11_structural_audit.py hcae_profile.json --root ..
+
+call-path-audit:
+		$(PYTHON) critical_call_path_audit.py critical_call_path_profile.json --root ..
+
+policy-refinement:
+		$(PYTHON) -m unittest -v test_critical_policy_refinement.py
+
+assurance-certificate:
+		$(PYTHON) -m unittest -v test_critical_assurance_certificate.py
+
+assurance-case:
+		$(PYTHON) run_assurance_case.py evidence/reference_assurance_case.json --output evidence/reference_assurance_case.result.json
+
+memory-vault-assurance:
+		$(PYTHON) run_assurance_case.py evidence/memory_vault_assurance_case.json --output evidence/memory_vault_assurance_case.result.json
+
+memory-vault-extraction:
+		$(PYTHON) run_memory_vault_extraction.py ../firmware/core/memory_vault.c evidence/memory_vault_assurance_case.json --output evidence/memory_vault_structural_extraction.result.json
+
+guardian-model:
+		$(PYTHON) -m unittest -v test_critical_runtime_guardian.py
+
+sygus-subset-benchmark:
+		@test -d "$(SYGUS_ROOT)" || (echo "missing SYGUS_ROOT; clone SyGuS-Org/benchmarks separately" >&2; exit 2)
+		$(PYTHON) run_sygus_subset_benchmark.py
 
 real-corpus:
 	@test -f source_data/MIntRec/metadata/train.tsv
@@ -76,6 +113,21 @@ generative-lab:
 
 generative-lab-scale:
 		$(PYTHON) -m generative_lab.measure
+
+free-reasoning-embedded-profile:
+			$(CC) $(CFLAGS) free_reasoner/embedded_profile.c -o /tmp/herus-free-reasoning-profile
+			/tmp/herus-free-reasoning-profile
+			rm -f /tmp/herus-free-reasoning-profile
+
+free-reasoning-structured-profile:
+				$(CC) $(CFLAGS) free_reasoner/structured_embedded_profile.c -o /tmp/herus-free-reasoning-structured-profile
+				/tmp/herus-free-reasoning-structured-profile
+				rm -f /tmp/herus-free-reasoning-structured-profile
+
+critical-state-profile:
+				$(CC) $(CFLAGS) critical_state_embedded_profile.c -o /tmp/herus-critical-state-profile
+				/tmp/herus-critical-state-profile
+				rm -f /tmp/herus-critical-state-profile
 
 demo:
 		$(PYTHON) finite_reasoner.py

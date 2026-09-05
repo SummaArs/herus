@@ -1,8 +1,21 @@
 /* test_interaction_rig.c — deterministic adapter/lab scenarios for Advance 3. */
 #include "interaction_rig.h"
 #include <stdio.h>
+#include <string.h>
 
 static int FAILED = 0;
+static assurance_snapshot_t safe_snapshot(void)
+{
+    assurance_snapshot_t s;
+    memset(&s, 0, sizeof(s));
+    s.source = ASSURANCE_SOURCE_CORE;
+    s.physical_session_current = 1u;
+    s.intent_accepted = 1u;
+    s.physical_confirmation = 1u;
+    s.handoff_unused = 1u;
+    s.model_reply_display_only = 1u;
+    return s;
+}
 static void ok(int cond, const char *what)
 {
     printf("  %-4s %s\n", cond ? "PASS" : "FAIL", what);
@@ -13,10 +26,13 @@ static void test_nominal_lab_path(void)
 {
     interaction_rig_t rig;
     hcp_msg_t out;
+    assurance_snapshot_t assurance = safe_snapshot();
     const interaction_rig_metrics_t *m;
 
     printf("\n== R1  deterministic Core/Nucleus adapter path ==\n");
     interaction_rig_init(&rig, NULL);
+    ok(interaction_rig_take_send(&rig, &out) == INTERACTION_E_UNTRUSTED,
+       "R1 raw adapter handoff is fail-closed without an assurance snapshot");
     ok(interaction_rig_push(&rig, 1000) == INTERACTION_OK &&
        interaction_rig_metrics(&rig)->capture_started == 1,
        "R1 physical push creates exactly one adapter capture request");
@@ -27,11 +43,11 @@ static void test_nominal_lab_path(void)
        interaction_rig_metrics(&rig)->last_haptic_safe,
        "R1 local ASR result stops capture, presents a draft and emits a safe haptic plan");
     ok(interaction_rig_confirm(&rig, 1, 1700) == INTERACTION_OK &&
-       interaction_rig_take_send(&rig, &out) == INTERACTION_OK &&
+       interaction_rig_take_send_assured(&rig, &assurance, &out) == INTERACTION_OK &&
        out.intent == rig.runtime.cfg.lexicon.intent_arrive &&
        interaction_rig_metrics(&rig)->handoffs == 1,
        "R1 one explicit confirmation yields exactly one application hand-off");
-    ok(interaction_rig_take_send(&rig, &out) == INTERACTION_E_STATE,
+    ok(interaction_rig_take_send_assured(&rig, &assurance, &out) == INTERACTION_E_STATE,
        "R1 the rig cannot hand the same meaning to the link twice");
 
     interaction_rig_note_energy_uj(&rig, 12400);
@@ -45,6 +61,7 @@ static void test_terminal_adapter_paths(void)
 {
     interaction_rig_t rig;
     hcp_msg_t out;
+    assurance_snapshot_t assurance = safe_snapshot();
 
     printf("\n== R2  adapter failure paths cannot retain or send a draft ==\n");
     interaction_rig_init(&rig, NULL);
@@ -52,7 +69,7 @@ static void test_terminal_adapter_paths(void)
     interaction_rig_set_source(&rig, 0, 50);
     ok(rig.runtime.state == INTERACTION_LINK_LOST &&
        interaction_rig_metrics(&rig)->capture_stopped == 1 &&
-       interaction_rig_take_send(&rig, &out) == INTERACTION_E_STATE,
+       interaction_rig_take_send_assured(&rig, &assurance, &out) == INTERACTION_E_STATE,
        "R2 loss of Core/Nucleus ASR stops capture and rejects any hand-off");
 
     interaction_rig_set_source(&rig, 1, 100);
@@ -67,7 +84,7 @@ static void test_terminal_adapter_paths(void)
     interaction_rig_tick(&rig, 9000 + INTERACTION_DEFAULT_LISTEN_MS);
     ok(rig.runtime.state == INTERACTION_TIMED_OUT &&
        interaction_rig_metrics(&rig)->capture_stopped >= 2 &&
-       interaction_rig_take_send(&rig, &out) == INTERACTION_E_STATE,
+       interaction_rig_take_send_assured(&rig, &assurance, &out) == INTERACTION_E_STATE,
        "R2 listen timeout ends the adapter session before any transcript or send");
 }
 

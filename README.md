@@ -1,147 +1,168 @@
 # HERUS
 
-**Memória pessoal soberana, conversa local e comunicação essencial — com significado antes de mensagem.**
+## Comunicador semântico pessoal; pesquisa em assurance crítico
 
-O HERUS é um sistema pessoal de memória, conversa e comunicação para o cotidiano e para momentos em que telefone, rede móvel e interfaces densas não são a ferramenta certa. No relógio, ele ajuda a pessoa a perguntar, guardar e reencontrar o essencial. No Paper-Core, concentra escrita, estudo, conhecimento local e memória. Em vez de depender de uma LLM hospedada ou transmitir áudio e longas mensagens, ele trabalha com **significados essenciais**, cartões de contexto e autoridade física.
+> **HERUS é um comunicador pessoal privado, offline e orientado a significado, cuja arquitetura está sendo expandida para coordenação e assurance de sistemas críticos.**
 
-O produto foi pensado para trilhas, áreas rurais, deslocamentos, equipes de apoio, eventos externos e qualquer situação em que coordenação clara importa mais que uma conversa longa.
+O produto principal continua sendo o comunicador: wearable, Núcleo/Dock, interação push-to-talk, linguagem semântica finita, memória seletiva e autoridade física humana. A vertente de sistemas críticos é a expansão de pesquisa desenvolvida na branch de integração; ela não substitui a identidade original do HERUS.
 
-> O HERUS não tenta substituir o telefone. Ele existe para preservar comunicação humana essencial quando conectividade, atenção ou privacidade falham.
+O projeto **não é apresentado como uma LLM, agente autônomo, certificação regulatória ou sistema de segurança completo**. As alegações são limitadas ao que código, testes, modelos, hashes e evidências reproduzíveis sustentam.
 
-## A experiência HERUS
+## O sistema atual
 
-A pessoa usa um vestível simples. Ela inicia uma interação por um gesto físico, expressa uma intenção curta e recebe confirmação clara por voz local, interface mínima ou vibração. Nada é transmitido sem confirmação física.
+A leitura correta separa **produto principal** de **vertente de pesquisa**. O comunicador, a documentação de produto, o Núcleo/Dock e o Paper-Core continuam sendo a identidade original do HERUS. A pesquisa de assurance procura estender essa arquitetura para sistemas em que estados, riscos e autoridade precisam ser demonstráveis.
 
-| Princípio | O que significa na prática |
-|---|---|
-| **Significado primeiro** | O rádio carrega uma intenção estruturada, não áudio ou uma transcrição literal. |
-| **Privado por padrão** | O produto não depende de conta, nuvem, identidade transmitida, localização ou histórico de conversa para operar. |
-| **Pessoa no comando** | Inteligência pode sugerir, resumir ou perguntar; ela nunca envia, publica, compra ou altera algo por conta própria. |
-| **Offline de verdade** | O funcionamento essencial é local e continua útil sem sinal de celular ou internet. |
-| **Falhar fechado** | Ambiguidade, confiança insuficiente, replay, expiração ou vínculo revogado bloqueiam a ação em vez de “tentar mesmo assim”. |
+| Camada | Responsabilidade | Estado |
+|---|---|---|
+| **Coordenação finita** | Intenção, sessão física, confirmação, confiança, revogação e handoff | Implementada em C11 e testada no host/simulador |
+| **Protocolo e enlace** | Composição semântica, autenticação, replay, expiração e limites de transporte | Implementados com invariantes e testes adversariais |
+| **Verificação crítica** | Verificador independente e síntese limitada de máquinas de estado | Implementada em Python, com contraexemplos e estados `UNKNOWN` |
+| **Refinamento** | Relação entre modelos abstratos e concretos | Implementado para o domínio finito atual |
+| **Assurance de sinks** | Auditoria de guardas em operações críticas reais | Implementada lexicalmente; análise AST/interprocedural ainda pendente |
+| **Guardian de runtime** | Observação, risco, bloqueio, alerta e registro | Modelo host-only determinístico; ainda não é firmware de produção |
+| **Interface humana** | Tela, voz ou pulso como canais de alerta e resposta tipada | Contrato arquitetural; codec e hardware ainda pendentes |
 
-## Evolução para produto de massa
+## Princípio de autoridade
 
-A direção de produto passa a priorizar valor individual antes do efeito de rede. O **HERUS One** é a porta de entrada: um wearable discreto, com botão físico, háptica, estado de privacidade e memória seletiva confirmada. O **Núcleo/Dock** é a expansão de bolso que acrescenta bateria, antena, armazenamento controlado e computação local. A comunicação LoRa, a linguagem privada e o Anchor continuam como multiplicadores, não como requisito para o primeiro valor.
+O HERUS pode **observar, verificar, classificar, registrar, solicitar intervenção e bloquear**. Ele não pode converter um modelo, uma interface, um ACK, uma heurística ou uma evidência incompleta em autoridade automática.
 
-Essa mudança não reduz a autoridade humana. Nenhuma camada pode persistir memória, enviar significado ou criar HCP sem confirmação física. O objetivo é tornar a experiência mais simples e desejável sem transformar a inteligência em autonomia.
+Para qualquer ação crítica `a`:
 
-## O sistema: HERUS One + Núcleo/Dock
+```text
+ALLOW(a) =>
+  estado_válido(a)
+  ∧ autoridade_válida(a)
+  ∧ confirmação_exigida(a)
+  ∧ não_expirada(a)
+  ∧ não_revogada(a)
+  ∧ não_repetida(a)
+  ∧ evidência_fresca(a)
+```
 
-O HERUS é composto por duas presenças complementares.
+Se uma relação necessária não puder ser demonstrada, o resultado correto é `UNKNOWN`, `BLOCKED`, `STALE`, `INCONCLUSIVE` ou `FAIL`; nunca `PASS` por conveniência.
 
-| Elemento | Papel |
-|---|---|
-| **HERUS One** | A interface pessoal e imediata: gesto, confirmação física, vibração, estado de privacidade e memória seletiva. Entrada inicial sem tela obrigatória e sem captura contínua. |
-| **Núcleo/Dock** | Um dispositivo circular de bolso que amplia bateria, antena, armazenamento controlado e capacidade de computação local. Ele atua como estação-base pessoal para o One. |
-| **Anchor/Field** | Expansões para cobertura ciphertext-only, grupos e equipes de campo; não são pré-requisitos para o primeiro valor individual. |
+## Arquitetura
 
-O Núcleo é também a base para a próxima evolução do HERUS: um **complemento seletivo de memória pessoal**. A visão não é gravar toda a vida da pessoa. É identificar, com consentimento, ideias, decisões, compromissos e contexto que valem recuperar no futuro, descartando o restante.
+```text
+estado observado
+      ↓
+modelo finito e invariantes
+      ↓
+verificação · síntese · refinamento
+      ↓
+auditoria de sinks · proveniência · mutação
+      ↓
+Guardian de runtime
+      ↓
+classificação determinística de risco
+      ↓
+bloqueio fail-closed
+      ↓
+alerta humano tipado: tela · voz · pulso
+      ↓
+decisão humana registrada
+      ↓
+revalidação pelo runtime HERUS
+```
 
-Uma futura LLM local poderá ajudar o Núcleo a organizar e explicar essa memória. Ela será uma camada de raciocínio e recuperação, não uma fonte de autonomia: qualquer uso de comunicação, armazenamento sensível ou ação externa continuará sob controle da pessoa.
+A camada de assurance observa o runtime real. Ela não cria uma autoridade paralela. A decisão operacional continua pertencendo aos contratos do núcleo, incluindo confirmação física, trust, revogação, persistência autorizada e handoff.
 
-## Para quem é
+## Como o projeto evoluiu
 
-| Cenário | Valor do HERUS |
-|---|---|
-| **Trilhas, campo e estrada** | Coordenação curta entre pessoas sem depender de cobertura móvel. |
-| **Equipes de apoio** | Estados e intenções rápidos, sem a fricção de rádio de voz contínuo. |
-| **Família e grupos pequenos** | Confirmação de chegada, espera, encontro, mudança de plano ou ajuda. |
-| **Rotinas com baixa atenção visual** | Interação por gesto, fala curta e háptica em vez de telas e menus. |
-| **Memória pessoal diária** | Recuperação privada de ideias, decisões e compromissos que a pessoa autorizou lembrar. |
-| **Relógio e Paper-Core** | Conversa local no pulso, estudo e escrita em uma estação pessoal soberana. |
+### 1. Comunicação semântica privada
 
-## Estado atual
+A primeira tese foi transmitir significado estruturado em vez de áudio ou texto aberto. HCP, HDC/VSA limitado, Echo, Weave, Beat, Vault e a escada de mensagens foram especificados com limites de airtime, energia, replay e compatibilidade. Essa linha continua documentada como produto e firmware, mas não é mais a única definição do projeto.
 
-O HERUS está em **release candidate pré-hardware**. A arquitetura, os contratos de privacidade, a confirmação física, a inteligência local limitada, o vínculo entre vestível e Núcleo, as barreiras de modelo, o cofre cifrado de cartão mínimo, a consolidação humana limitada, a recuperação tipada controlada, sua apresentação simbólica de status, a composição Grand Finale da cadeia de memória, uma coleção multi-cartão transacional limitada, seu índice privado abstencionista, sua composição multi-cartão com confirmação humana e sem fallback, seu oráculo de recuperação por interrupção, sua sessão de coleção vinculada a propósito com expiração e consumo, seu oráculo de recuperação durável de reservas que nunca reativa sessão após reboot, sua quarentena de boot que importa somente o piso e apaga evidência transitória, seu Gran Finale host que compõe boot, coleção e TM-04 sem reativar sessão, sua primeira prova de fogo determinística de recuperação/quarentena que encontrou e bloqueou piso terminal, sua referência local de integridade de build e um modelo de ameaças executável para controles host, lacunas de alvo e escopo residual foram implementados e verificados em host.
+### 2. Produto e memória soberana
 
-Ainda não há resultados de campo. Alcance, consumo, ergonomia, reconhecimento de fala, comportamento háptico, integração BLE, armazenamento protegido e desempenho de uma LLM local precisam ser medidos no hardware real antes de se tornarem alegações de produto.
+O HERUS One, o Núcleo/Dock, a memória seletiva e os cartões de contexto estabeleceram a regra de que inteligência pode sugerir, mas não pode persistir, transmitir ou executar ações sem autoridade humana. O produto permanece uma direção válida, porém os resultados físicos ainda dependem de hardware real.
 
-A próxima etapa física é a Fase 0: dois devkits, bancada curta, medição RF, energia e interação, com critérios de interrupção definidos antes da coleta.
+### 3. Raciocínio simbólico finito
 
-## Documentação principal
+O laboratório generativo evoluiu de composição tipada para DAGs estruturais, saturação limitada, hipóteses locais, kernel polinomial exato, busca enumerativa, bandits, beam search e MCTS. O resultado demonstrado é sistematicidade dentro de vocabulário e domínio finitos. Isso **não** constitui raciocínio aberto geral nem substituição de LLM.
 
-| Documento | Para quê serve |
-|---|---|
-| [Visão do produto](docs/04-PRODUCT.md) | Propósito, proposta de valor e direção de produto. |
-| [Produto desejável e adoção](docs/38-PRODUTO-DESEJAVEL-E-ADOCAO.md) | Reposicionamento para valor individual, HERUS One, Dock, portfólio, UX e hipóteses de adoção. |
-| [Núcleo](docs/06-NUCLEO.md) | Papel do dispositivo circular de bolso, privacidade e caminho de inteligência local. |
-| [LLM local em ESP32](docs/40-LLM-LOCAL-ESP32-E-HERUS.md) | Avaliação da demonstração ESP32-S3, orçamento de memória e workload correto para o HERUS. |
-| [Proposta tipada e invariantes](docs/41-PROPOSTA-TIPADA-E-INVARIANTES.md) | Fronteira fail-closed entre modelo local, candidato de memória e autoridade humana. |
-| [Memória seletiva](docs/17-MEMORIA-SELETIVA.md) | Política inicial para lembrar ideias, decisões e contexto útil sem gravar a vida inteira. |
-| [Captura consentida](docs/18-SESSAO-CAPTURA-MEMORIA.md) | Sessão física, limitada e transitória que antecede qualquer memória pessoal. |
-| [Extração de candidatos](docs/19-EXTRACAO-CANDIDATOS.md) | Interpretação local e conservadora que cria sinais tipados sem guardar a fala. |
-| [Cofre de memória](docs/20-COFRE-MEMORIA.md) | Cartão mínimo cifrado, autorização humana separada, geração anti-rollback e apagamento fail-closed. |
-| [Consolidação humana](docs/21-CONSOLIDACAO-HUMANA.md) | Revisão física limitada, expiração sem retenção, conflito não automático, recuperação por identificador e remoção controlada. |
-| [Recuperação controlada](docs/22-RECUPERACAO-SEMANTICA.md) | Matching local de cartões tipados com limiar, razões e ambiguidade explícita; sem busca livre, escrita ou autoridade de modelo. |
-| [Interface de recuperação](docs/23-INTERFACE-RECUPERACAO-HUMANA.md) | Status simbólico one-shot para correspondência, ausência e ambiguidade; sem conteúdo livre, desempate, escrita, envio ou ação. |
-| [Grand Finale de memória](docs/24-GRAND-FINALE-MEMORIA.md) | Prova composta da cadeia de captura ao status humano, com conflito/modelo bloqueantes e gates explícitos para hardware e avaliação. |
-| [Modelo de ameaças executável](docs/25-MODELO-AMEACAS-EXECUTAVEL.md) | Evidência rastreável para riscos de rádio, trust, memória, telemetria e modelo; lacunas físicas e supply chain continuam explícitas. |
-| [Coleção de memória](docs/26-COLECAO-MEMORIA.md) | Até oito cartões mínimos autorizados em uma transação cifrada; recuperação, exclusão e compactação lógicas sem alegação de mídia física. |
-| [Índice privado da coleção](docs/27-INDICE-PRIVADO-COLECAO.md) | Consulta tipada, física e limitada que retorna apenas match inequívoco, ausência ou ambiguidade; sem listagem, abertura automática, texto ou modelo. |
-| [Recuperação transacional](docs/28-RECUPERACAO-TRANSACIONAL.md) | Oráculo C11 de estados pós-interrupção: promove somente sucessor autenticado ancorado no piso, descarta preparação pré-piso e bloqueia contradições; sem alegação de power-loss físico. |
-| [Proveniência local de build](docs/29-PROVENIENCIA-LOCAL-BUILD.md) | Inventário direto e digests locais fail-closed para insumos de prova; não é SBOM completo, atestação assinada, SLSA, build reproduzível ou garantia de supply chain. |
-| [Grand Finale da coleção](docs/30-GRAND-FINALE-COLECAO.md) | Cadeia multi-cartão de consentimento à apresentação abstencionista; sem abertura automática, fallback unitário, autoridade de modelo ou alegação de backend/hardware físico. |
-| [Sessão física vinculada a propósito](docs/31-SESSAO-FISICA-PROPOSITO.md) | Gate transitório para inserir, abrir, remover, compactar ou consultar a coleção com propósito, validade e consumo explícitos; não prova gesto, pessoa, biometria ou hardware. |
-| [Recuperação de reserva de sessão](docs/32-RECUPERACAO-RESERVA-SESSAO.md) | Oráculo pós-reboot para marcadores autenticados e piso durável declarado: avança apenas ID queimado, bloqueia contradições e nunca reativa uma sessão. |
-| [Quarentena de boot da sessão](docs/33-QUARENTENA-BOOT-SESSAO.md) | Costura C11 que reconstrói o gate em `IDLE`, importa somente o piso recuperado e exige novo evento para toda sessão posterior. |
-| [Gran Finale pré-hardware](docs/34-GRAN-FINALE-PRE-HARDWARE.md) | Composição final host de bootstrap, M14 e TM-04: qualquer divergência bloqueia; o único sucesso permanece `IDLE` e pede sessão nova. |
-| [Prova de fogo host](docs/35-PROVA-DE-FOGO-HOST.md) | Campanha F1 determinística: snapshots hostis atravessam recuperação e bootstrap; corrigiu o piso terminal `UINT32_MAX` antes de atingir hardware. |
-| [Especificação do sistema](docs/00-HERUS-MASTER.md) | Arquitetura geral, protocolo, segurança, energia e limites conhecidos. |
-| [Guia de construção](docs/03-BUILD-GUIDE.md) | Próximos passos de hardware e critérios para interromper ou prosseguir. |
-| [HERUS indispensável e inteligência própria](docs/47-HERUS-INDISPENSAVEL-E-INTELIGENCIA-PROPRIA.md) | Revisão de produto, mercado, Watch, Paper-Core, conhecimento local e tecnologia sem LLM hospedada. |
-| [Segurança](SECURITY.md) | O que a criptografia protege hoje e o que ainda depende de integração física. |
-| [Aprendizados do Atlas_Node](docs/44-ATLAS-NODE-APRENDIZADOS.md) | Comparação auditável com um sistema ESP32/BLE/rádio e adaptação de transporte limitada. |
-| [Arquitetura finita e linguagem](docs/48-ARQUITETURA-FINITA-E-LINGUAGEM.md) | VSA/HDC limitado a vocabulário finito; memória por regras; LLM local futura apenas como camada linguística medida no hardware. |
-| [Protótipo de raciocínio finito](research/FINITE-REASONER-README.md) | Trilha host-only experimental: composição tipada, saturação limitada e hipóteses paraconsistentes, sem autoridade sobre o produto. |
-| [Desafio do raciocínio generativo](docs/49-DESAFIO-RACIOCINIO-GENERATIVO.md) | Tese de pesquisa: generalização combinatória segura, aprendizado local mínimo e limites contra a promessa de raciocínio aberto universal. |
-| [Intent Compiler e Semantic IR](docs/50-INTENT-COMPILER-E-SEMANTIC-IR.md) | Conexão entre compilação de intenção, representação intermediária semântica, percepção multimodal e núcleo cognitivo verificável. |
-| [Manifesto de datasets reais](research/datasets_manifest.json) | Proveniência, licença, alinhamento, hashes, estado de download e limites de alegação para MIntRec, Common Voice, WESAD, SLURP, Fluent Speech Commands e MInDS-14. |
-| [Protocolo de anotação independente](research/annotation_protocol.py) | Vocabulário finito de anotação HERUS; `OTHER`, `AMBIGUOUS` e `CONFLICT` não têm autoridade operacional e rótulos externos não são convertidos. |
-| [Evidências Wide Research ciclo 04](research/evidence/wide_cycle_04/) | Logs e auditorias agregadas do primeiro uso local de metadados reais; dados crus permanecem fora do Git. |
-| [Relatório Wide Research ciclo 05](research/evidence/wide_cycle_05/report.md) | Auditoria real do SLURP, probe ZIP por Range, licenças por modalidade, parser C e bloqueios restantes; nenhum áudio ou archive bruto publicado. |
-| [Evidências Wide Research ciclo 06](research/evidence/wide_cycle_06/) | Auditoria MInDS-14 por API `/rows`, quatro WAVs estruturais temporários, split pt-PT completo sem download de áudio, correção de falso HELP e identidade SLURP ainda ambígua. |
-| [Evidências Wide Research ciclo 07](research/evidence/wide_cycle_07/) | Política de evolução incremental, inventário de contratos, ensaios de Core-Link/HCP/Semantic IR/coleção e decisão de mudança mínima; sem migração persistente alegada. |
-| [Evidências Wide Research ciclo 08](research/evidence/wide_cycle_08/) | Brecha reproduzida no limite de confiança do hint contextual, regressão antes/depois e correção fail-closed de uma condição; nenhum novo caminho de autoridade. |
-| [Laboratório generativo v1](research/generative_lab/) | Núcleo host-only de termos tipados, geração limitada, regras, hipóteses, conflitos locais e saturação; não é linguagem aberta nem possui autoridade. |
+### 4. Sistemas críticos
 
-## Evolução incremental
+O centro científico mudou para síntese e verificação de máquinas de estado. O HERUS passou a usar um verificador independente, síntese limitada guiada por esse verificador, contraexemplos, perfil C11 sem heap, monitoramento de surpresa causal e refinamento abstrato-concreto. Uma prova do modelo não é transferida à implementação sem uma relação de refinamento verificada.
 
-O HERUS adota o princípio **construir, estabilizar, observar, melhorar pontualmente e preservar** como política de contratos e invariantes, não como proibição absoluta de mudança interna. HCP tem uma extensão forward-compatible específica para papéis desconhecidos; Semantic IR, Core-Link e persistência exigem versão/migração quando a estrutura fechada muda. Uma correção de segurança pode exigir quebra controlada. O ciclo 07 não adicionou autoridade ao núcleo: adicionou regressões de versão/tamanho do Core-Link, testes host-only e documentação verificável. No ciclo 08, uma regressão real mostrou que `intent_context_hint_t.confidence_pct=255` podia promover uma observação ambígua; o gate passou a exigir `0..100`, com teste antes/depois. A correção alterou uma condição, sem nova autoridade ou mudança de wire. Veja a [política de evolução](research/evidence/wide_cycle_07/evolution_policy.md), a [decisão de complexidade](research/evidence/wide_cycle_07/complexity_report.md) e o [relatório da brecha](research/evidence/wide_cycle_08/breach_report.md).
+### 5. Vertente de pesquisa: assurance operacional
 
-## Laboratório generativo simbólico
+A comparação SyGuS foi executada contra um corpus público com limites explícitos. O resultado foi pequeno e honesto: 9.719 arquivos examinados, 526 lexicalmente compatíveis, 8 `BOUNDED_VERIFIED` e 518 `UNKNOWN`. Em seguida, a V5 de Critical Assurance foi adaptada aos quatro sinks reais do firmware, com auditoria fail-closed e distinção explícita entre cobertura lexical e dominância interprocedural.
 
-O diretório [`research/generative_lab/`](research/generative_lab/) é a primeira implementação executável da vertente paradigmática do HERUS. Ele gera e compõe termos tipados, deriva consequências por regras declaradas, isola conflitos por contexto e agrupa equivalências sob orçamento finito. O benchmark formal v1 passou 8/8 casos e gerou 25 termos na fixture de profundidade 3. A medição por profundidade chegou a 137 termos na profundidade 6, com custo observado de 2,172 ms no host da execução.
+A camada Guardian acrescentou observação, classificação determinística, latch de bloqueio, alerta humano e snapshot de evidência. Um ACK não libera uma ação crítica. O contrato central consolidou essas fronteiras em um único modelo de pesquisa; isso ainda não transforma o comunicador em uma plataforma certificada de segurança.
 
-Esses números demonstram somente composição simbólica finita. Não demonstram compreensão de linguagem, grounding, conhecimento aberto, aprendizagem ou substituição de modelos de linguagem. O laboratório não importa firmware, não executa código gerado, não aceita rótulos externos e não possui ponte de autoridade. Os comandos são `make -C research generative-lab` e `make -C research generative-lab-scale`. Os limites e resultados estão em [`research/evidence/generative_lab_v1/limits.md`](research/evidence/generative_lab_v1/limits.md).
+## O que está comprovado e o que não está
 
-## Estado de engenharia
+| Categoria | Evidência atual | Limite da alegação |
+|---|---|---|
+| Núcleo C11 | Testes host, sanitizers e invariantes de integração | Não equivale a prova do hardware físico |
+| Criptografia e enlace | Testes independentes de autenticação, replay, expiração e corrupção | Não cobre toda a cadeia de provisionamento físico |
+| Máquinas de estado | Verificador independente, síntese limitada e contraexemplos | Resultado relativo ao modelo e à especificação |
+| Refinamento | Inclusão finita de traços e rejeição de mapas incompatíveis | Não é refinamento geral de programas |
+| Sinks críticos | Quatro sinks reais classificados `COVERED` lexicalmente | Regex não prova dominância interprocedural completa |
+| Guardian | Modelo determinístico com 7 testes adversariais | Ainda não é componente embarcado integrado |
+| SyGuS | Benchmark público reproduzível e limitado | Cobertura semântica baixa; sem alegação de superioridade |
+| Hardware | Perfis C11 e simulador | Alcance, energia, latência, secure boot e ergonomia ainda precisam de bancada |
 
-A versão consolidada pode ser verificada localmente com:
+## Reproduzir
+
+Na raiz do repositório:
 
 ```bash
 ./prove.sh --quiet
-make -C firmware watch-memory-frontend
 make -C research test
-# somente com os TSVs MIntRec baixados localmente e ignorados pelo Git:
-make -C research real-corpus-audit real-corpus
-# somente com o repositório textual SLURP e metadata obtidos legitimamente:
-make -C research slurp-text-audit SLURP_ROOT=/caminho/slurp SLURP_METADATA=/caminho/metadata.json
-make -C research slurp-text-sanitizers SLURP_ROOT=/caminho/slurp
-# somente com autorização local explícita para baixar WAVs temporários:
-make -C research minds14-sample-audit MINDS14_ALLOW_AUDIO=1
-make -C research minds14-batch-audit MINDS14_ALLOW_AUDIO=1
-make -C research minds14-batch-sanitizers MINDS14_ALLOW_AUDIO=1
+make -C research hcae-sink-audit
+make -C research guardian-model
 ```
 
-O comando executa as verificações portáveis e o simulador. A análise Atlas_Node inclui ainda a suíte explícita `make -C firmware delivery-plan`. Um resultado positivo confirma contratos de software e autoriza somente o início controlado da bancada; ele **não** constitui evidência de alcance, energia, UX ou desempenho físico.
+Para o benchmark externo SyGuS, é necessário possuir localmente o corpus oficial:
 
-O HERUS não resolve NLU/NLG aberto: VSA/HDC opera somente sobre o vocabulário finito dos cartões de contexto, e a memória seletiva é governada por regras e estados tipados. A decisão normativa está em [Arquitetura finita e linguagem](docs/48-ARQUITETURA-FINITA-E-LINGUAGEM.md). Uma LLM local futura poderá atuar apenas como camada linguística no Núcleo depois de orçamento medido em hardware real, sem autoridade sobre memória, rádio ou confirmação física.
+```bash
+SYGUS_ROOT=/caminho/SyGuS-Org/benchmarks \
+  make -C research sygus-subset-benchmark
+```
 
-A fronteira entre uma proposta de modelo e um candidato de memória pode ser exercitada com `make -C firmware memory-proposal`. O sizing grosseiro da demonstração de LLM em ESP32-S3 pode ser reproduzido separadamente com `make -C firmware llm-budget-check`. Esses alvos validam somente contratos e comparações C11/Python host-only; persistência, HCP, comunicação, inferência, qualidade, autonomia e desempenho continuam exigindo os gates humanos e físicos existentes.
+O manifesto [`research/software_provenance_manifest.json`](research/software_provenance_manifest.json) registra hashes dos artefatos declarados. Trata-se de proveniência local e não assinada; não é atestação SLSA, certificação ou garantia completa de supply chain.
 
-A história detalhada de experimentação, provas e decisões de implementação é preservada no ramo [`internal/engineering-archive`](https://github.com/SummaArs/herus/tree/internal/engineering-archive). Ela existe para rastreabilidade de engenharia, sem ocupar a apresentação principal do produto.
+## Mapa do repositório
+
+| Área | Conteúdo |
+|---|---|
+| [`firmware/`](firmware/) | Núcleo C11, trust, memória, interação, protocolo e perfis embarcados |
+| [`sim/`](sim/) | Simulador e cenários de comunicação/adversários |
+| [`research/`](research/) | Raciocínio simbólico, verificação, síntese, benchmarks e assurance |
+| [`tools/`](tools/) | Gates, proveniência, orçamento, mutação e auditorias |
+| [`docs/`](docs/) | Especificações, decisões, limites e evidências narrativas |
+| [`CONTRIBUTING.md`](CONTRIBUTING.md) | Fluxo de mudança, comandos e disciplina de evidência |
+| [`SECURITY.md`](SECURITY.md) | Modelo de segurança, limites e reporte |
+| [`docs/INDEX.md`](docs/INDEX.md) | Índice editorial por tema e fase |
+
+## Documentos essenciais
+
+| Tema | Documento |
+|---|---|
+| Contrato central atual | [`docs/57-CONTRATO-CENTRAL-HERUS.md`](docs/57-CONTRATO-CENTRAL-HERUS.md) |
+| Sistemas críticos | [`docs/53-PREVISAO-DEGRADACAO-E-SISTEMAS-CRITICOS.md`](docs/53-PREVISAO-DEGRADACAO-E-SISTEMAS-CRITICOS.md) |
+| Síntese e verificação | [`docs/54-MVP-SINTESE-VERIFICACAO-MAQUINAS-ESTADO.md`](docs/54-MVP-SINTESE-VERIFICACAO-MAQUINAS-ESTADO.md) |
+| Assurance V5 | [`docs/55-AUDITORIA-HCAE-V5.md`](docs/55-AUDITORIA-HCAE-V5.md) |
+| Guardian e interface humana | [`docs/56-GUARDIAN-INTERFACE-HUMANA.md`](docs/56-GUARDIAN-INTERFACE-HUMANA.md) |
+| Álgebra e protocolo | [`docs/01-ALGEBRA.md`](docs/01-ALGEBRA.md) · [`docs/02-PROTOCOL.md`](docs/02-PROTOCOL.md) |
+| Firmware e construção | [`docs/05-FIRMWARE.md`](docs/05-FIRMWARE.md) · [`docs/03-BUILD-GUIDE.md`](docs/03-BUILD-GUIDE.md) |
+| Produto | [`docs/38-PRODUTO-DESEJAVEL-E-ADOCAO.md`](docs/38-PRODUTO-DESEJAVEL-E-ADOCAO.md) |
+| Arquitetura finita | [`docs/48-ARQUITETURA-FINITA-E-LINGUAGEM.md`](docs/48-ARQUITETURA-FINITA-E-LINGUAGEM.md) |
+| Intent Compiler | [`docs/50-INTENT-COMPILER-E-SEMANTIC-IR.md`](docs/50-INTENT-COMPILER-E-SEMANTIC-IR.md) |
+
+O índice completo separa documentos normativos, produto, firmware, pesquisa paradigmática, sistemas críticos e arquivo histórico. Documentos antigos permanecem disponíveis para rastreabilidade, mas não competem com o contrato central nesta página.
+
+## Próximo marco
+
+Há duas linhas de evolução. No produto, o próximo marco é hardware real para medir RF, energia, interação, armazenamento e experiência do comunicador. Na pesquisa crítica, é fechar a ponte entre intenção e implementação: substituir a auditoria lexical por AST/grafo de chamadas/dominância, ligar sinks a claims e evidências frescas, medir custo em um perfil C11 próximo do ESP32-S3 e somente então avaliar a integração embarcada do Guardian e da interface humana.
+
+O objetivo de impacto continua ambicioso. O método permanece incremental: **construir, estabilizar, observar, encontrar a brecha, corrigir, medir e preservar**.
+
+## Status
+O estado de referência do produto permanece em `main`: comunicador semântico pessoal, memória soberana e documentação de produto. A branch `integration/herus-symbolic-hardening-2026-08`, acompanhada pelo [PR #46](https://github.com/SummaArs/herus/pull/46), contém a expansão de pesquisa em verificação e assurance crítico. O projeto continua pré-hardware para as alegações físicas, e cada resultado positivo é local ao contrato e ao ambiente que o produziu.
 
 ## Licença
 
-Proprietary. Copyright © 2026 Gustavo Gonçalves. Todos os direitos reservados — veja [LICENSE](LICENSE).
+Proprietary. Copyright © 2026 Gustavo Gonçalves. Todos os direitos reservados — veja [`LICENSE`](LICENSE).

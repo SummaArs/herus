@@ -1,0 +1,18 @@
+{
+  "abstract_verification": "VERIFIED",
+  "call_paths": [
+    {
+      "caller": "interaction_take_send_assured",
+      "detail": "direct_calls_restricted_to_declared_wrapper",
+      "rule_id": "interaction-send",
+      "source": "firmware/core/interaction.c",
+      "status": "COVERED"
+    }
+  ],
+  "concrete_verification": "VERIFIED",
+  "evidence_digest": "e636c2ee9fc475626b8f99e7cea779ca5f4fbc262cde4912177484d5dbc76034",
+  "machine_refinement": "REFINED",
+  "policy_refinement": "REFINED",
+  "reason": "finite_chain_assured",
+  "verdict": "ASSURED"
+}

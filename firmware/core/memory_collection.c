@@ -581,6 +581,7 @@ int memory_collection_init(memory_collection_t *c,
     return MEMORY_COLLECTION_OK;
 }
 
+/* HERUS_CRITICAL_SINK: collection-insert class=collection-insert-persistence operation=commit_record( */
 int memory_collection_insert(memory_collection_t *c,
                              const memory_vault_write_authorization_t *auth,
                              const memory_vault_card_t *card,
@@ -676,6 +677,7 @@ int memory_collection_copy_cards_for_index(
     return MEMORY_COLLECTION_OK;
 }
 
+/* HERUS_CRITICAL_SINK: collection-remove class=collection-remove-persistence operation=commit_record( */
 int memory_collection_remove(memory_collection_t *c, uint32_t card_id,
                              const memory_collection_access_t *access)
 {
@@ -711,6 +713,7 @@ int memory_collection_remove(memory_collection_t *c, uint32_t card_id,
     return MEMORY_COLLECTION_OK;
 }
 
+/* HERUS_CRITICAL_SINK: collection-compact class=collection-compact-persistence operation=commit_record( */
 int memory_collection_compact(memory_collection_t *c,
                               const memory_collection_access_t *access)
 {

@@ -1,0 +1,53 @@
+{
+  "schema": "herus.assurance-case.v1",
+  "name": "finite-safe-handoff-reference",
+  "assurance_scope": "formal-only",
+  "abstract": {
+    "initial_state": "safe",
+    "states": ["safe", "hold"],
+    "inputs": ["ok", "loss"],
+    "actions": ["hold", "safe_hold"],
+    "transitions": [
+      {"state":"safe","input_symbol":"ok","action":"hold","next_state":"safe"},
+      {"state":"safe","input_symbol":"loss","action":"safe_hold","next_state":"hold"},
+      {"state":"hold","input_symbol":"ok","action":"safe_hold","next_state":"hold"},
+      {"state":"hold","input_symbol":"loss","action":"safe_hold","next_state":"hold"}
+    ],
+    "forbidden_states": [],
+    "forbidden_actions": [],
+    "max_steps": 2
+  },
+  "concrete": {
+    "initial_state": "c_safe",
+    "states": ["c_safe", "c_hold"],
+    "inputs": ["packet_ok", "packet_loss"],
+    "actions": ["retain", "safe_retain"],
+    "transitions": [
+      {"state":"c_safe","input_symbol":"packet_ok","action":"retain","next_state":"c_safe"},
+      {"state":"c_safe","input_symbol":"packet_loss","action":"safe_retain","next_state":"c_hold"},
+      {"state":"c_hold","input_symbol":"packet_ok","action":"safe_retain","next_state":"c_hold"},
+      {"state":"c_hold","input_symbol":"packet_loss","action":"safe_retain","next_state":"c_hold"}
+    ],
+    "forbidden_states": [],
+    "forbidden_actions": [],
+    "max_steps": 2
+  },
+  "abstract_policy": [
+    {"state":"safe","input_symbol":"ok","action":"hold"},
+    {"state":"safe","input_symbol":"loss","action":"safe_hold"},
+    {"state":"hold","input_symbol":"ok","action":"safe_hold"},
+    {"state":"hold","input_symbol":"loss","action":"safe_hold"}
+  ],
+  "concrete_policy": [
+    {"state":"c_safe","input_symbol":"packet_ok","action":"retain"},
+    {"state":"c_safe","input_symbol":"packet_loss","action":"safe_retain"},
+    {"state":"c_hold","input_symbol":"packet_ok","action":"safe_retain"},
+    {"state":"c_hold","input_symbol":"packet_loss","action":"safe_retain"}
+  ],
+  "state_map": {"c_safe":"safe","c_hold":"hold"},
+  "input_map": {"packet_ok":"ok","packet_loss":"loss"},
+  "action_map": {"retain":"hold","safe_retain":"safe_hold"},
+  "call_paths": [
+    {"rule_id":"interaction-send","status":"COVERED","source":"firmware/core/interaction.c","caller":"interaction_take_send_assured","detail":"direct_calls_restricted_to_declared_wrapper"}
+  ]
+}

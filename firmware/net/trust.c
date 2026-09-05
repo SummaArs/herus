@@ -155,6 +155,7 @@ int trust_tick(trust_t *t, uint32_t now_ms)
     return TRUST_E_TIMEOUT;
 }
 
+/* HERUS_CRITICAL_SINK: trust-activate class=trust-activation-persistence operation=store_active( */
 int trust_confirm(trust_t *t, int core_confirmed, uint32_t core_sas,
                   int nucleus_confirmed, uint32_t nucleus_sas,
                   uint32_t now_ms, const trust_storage_t *storage)
@@ -200,6 +201,7 @@ static int active_control_key(const trust_t *t, core_link_key_t *out)
     return TRUST_OK;
 }
 
+/* HERUS_CRITICAL_SINK: nucleus-seal class=nucleus-sealing operation=core_link_seal_nucleus_intent( */
 int trust_seal_nucleus_intent(const trust_t *t, core_link_tx_t *tx,
                               uint32_t now_ms, uint32_t session_id,
                               uint32_t expires_ms,
@@ -230,11 +232,22 @@ int trust_open_nucleus_intent(const trust_t *t, core_link_rx_t *rx,
     return rc;
 }
 
-int trust_revoke(trust_t *t, core_link_tx_t *tx, core_link_rx_t *rx,
-                 const trust_storage_t *storage)
+static int revoke_auth_valid(const trust_t *t,
+                             const trust_revoke_authorization_t *auth)
 {
-    if (!t || !tx || !rx || !storage || !storage->erase) return TRUST_E_ARG;
-    if (t->state != TRUST_ACTIVE && t->state != TRUST_REVOKED) return TRUST_E_STATE;
+    return t && auth && auth->physical_session_id != 0u &&
+           auth->active_generation == t->generation &&
+           auth->core_confirmed == 1u && auth->nucleus_confirmed == 1u;
+}
+
+/* HERUS_CRITICAL_SINK: trust-revoke class=trust-erasure operation=erase( */
+int trust_revoke(trust_t *t, core_link_tx_t *tx, core_link_rx_t *rx,
+                 const trust_storage_t *storage,
+                 const trust_revoke_authorization_t *auth)
+{
+    if (!t || !tx || !rx || !storage || !storage->erase || !auth) return TRUST_E_ARG;
+    if (t->state != TRUST_ACTIVE) return TRUST_E_STATE;
+    if (!revoke_auth_valid(t, auth)) return TRUST_E_PHYSICAL;
     active_zero(t);
     provisional_zero(t);
     core_link_tx_init(tx);
@@ -245,6 +258,7 @@ int trust_revoke(trust_t *t, core_link_tx_t *tx, core_link_rx_t *rx,
     return TRUST_OK;
 }
 
+/* HERUS_CRITICAL_SINK: trust-retry-erase class=trust-erasure-retry operation=erase( */
 int trust_retry_erase(trust_t *t, const trust_storage_t *storage)
 {
     if (!t || !storage || !storage->erase) return TRUST_E_ARG;

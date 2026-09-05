@@ -1,0 +1,24 @@
+name: free-symbolic-reasoning
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  research:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Python
+        run: python3 --version
+      - name: Free reasoning tests
+        run: |
+          PYTHONPATH=research python3 -m unittest -v free_reasoner.test_free_reasoner free_reasoner.test_optimizer free_reasoner.test_compare_search
+          PYTHONPATH=research python3 -m free_reasoner.benchmark
+          PYTHONPATH=research python3 -m free_reasoner.compare_search > /tmp/free-reasoning-comparison.json
+          test -s /tmp/free-reasoning-comparison.json

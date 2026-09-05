@@ -43,7 +43,7 @@
 #   make interaction-rig deterministic adapter and validation-lab scenarios
 #   make net        the protocol suite (crypto, session, weave, beat, framing)
 #   make radio      the SX1262 command sequences, against a recording mock bus
-#   make analyzer   run GCC static analysis on the production voice parser and IR bridge
+#   make analyzer   run compiler-native static analysis on the production voice parser and IR bridge
 #   make sanitizers run ASan/UBSan on voice, Semantic IR bridge and memory collection
 #   make syntax     type-check the ESP32-S3 app without an ESP32 present
 #   make vectors    regenerate crypto vectors from an independent implementation
@@ -297,11 +297,18 @@ sanitizers: build
 	@echo "    ok — ASan/UBSan found no defect in the changed paths"
 
 analyzer: build
-	@echo "--- static analysis: voice parser and Semantic IR bridge ---"
-	$(CC) -fanalyzer -O0 -Wall -Wextra -Werror -std=c11 $(INC) -c core/voice.c -o build/analyzer_voice.o
-	$(CC) -fanalyzer -O0 -Wall -Wextra -Werror -std=c11 $(INC) -c core/test_semantic_ir_bridge.c -o build/analyzer_semantic_ir_bridge.o
-	rm -f build/analyzer_voice.o build/analyzer_semantic_ir_bridge.o
-	@echo "    ok — GCC analyzer found no defect in the changed path"
+		@echo "--- static analysis: voice parser and Semantic IR bridge ---"
+		@if $(CC) --version 2>&1 | grep -qi clang; then \
+			echo "    analyzer backend: clang --analyze"; \
+			$(CC) --analyze -O0 -Wall -Wextra -Werror -std=c11 $(INC) core/voice.c; \
+			$(CC) --analyze -O0 -Wall -Wextra -Werror -std=c11 $(INC) core/test_semantic_ir_bridge.c; \
+		else \
+			echo "    analyzer backend: GCC -fanalyzer"; \
+			$(CC) -fanalyzer -O0 -Wall -Wextra -Werror -std=c11 $(INC) -c core/voice.c -o build/analyzer_voice.o; \
+			$(CC) -fanalyzer -O0 -Wall -Wextra -Werror -std=c11 $(INC) -c core/test_semantic_ir_bridge.c -o build/analyzer_semantic_ir_bridge.o; \
+			rm -f build/analyzer_voice.o build/analyzer_semantic_ir_bridge.o; \
+		fi
+		@echo "    ok — compiler static analyzer found no defect in the changed path"
 
 # Catches what would otherwise be twenty minutes of bench time: name collisions
 # with newlib (mode_t, link), wrong types, missing includes. It does NOT catch an

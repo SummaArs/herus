@@ -26,6 +26,13 @@ typedef enum {
 } trust_state_t;
 
 typedef struct {
+    uint32_t physical_session_id;
+    uint32_t active_generation;
+    uint8_t core_confirmed;    /* exactly 1 is true */
+    uint8_t nucleus_confirmed; /* exactly 1 is true */
+} trust_revoke_authorization_t;
+
+typedef struct {
     trust_state_t state;
     uint32_t      generation;
     uint8_t       active_blob[TRUST_STORE_BLOB_LEN];
@@ -82,10 +89,12 @@ int trust_open_nucleus_intent(const trust_t *t, core_link_rx_t *rx,
                               const uint8_t *wire, uint32_t wire_len,
                               uint32_t now_ms, core_link_intent_t *out);
 
-/* Immediately stop export and scrub the active key plus A6 anti-replay state.
- * If erase fails the object remains REVOKED (not re-pairable) until retry succeeds. */
+/* Immediately stop export only under dual, generation-bound physical authority,
+ * then scrub the active key plus A6 anti-replay state. If erase fails the object
+ * remains REVOKED (not re-pairable) until retry succeeds. */
 int trust_revoke(trust_t *t, core_link_tx_t *tx, core_link_rx_t *rx,
-                 const trust_storage_t *storage);
+                 const trust_storage_t *storage,
+                 const trust_revoke_authorization_t *auth);
 int trust_retry_erase(trust_t *t, const trust_storage_t *storage);
 
 /* Restore only a structurally valid ACTIVE record supplied by protected storage. */

@@ -1,0 +1,297 @@
+{
+  "missing": [],
+  "observations": [
+    {
+      "function": "memory_vault_init",
+      "kind": "return",
+      "line": 143,
+      "value": "MEMORY_VAULT_E_ARG"
+    },
+    {
+      "function": "memory_vault_init",
+      "kind": "return",
+      "line": 145,
+      "value": "MEMORY_VAULT_E_CONFIG"
+    },
+    {
+      "function": "memory_vault_init",
+      "kind": "storage_call",
+      "line": 147,
+      "value": "load_generation_floor"
+    },
+    {
+      "function": "memory_vault_init",
+      "kind": "state_assignment",
+      "line": 150,
+      "value": "MEMORY_VAULT_BLOCKED"
+    },
+    {
+      "function": "memory_vault_init",
+      "kind": "return",
+      "line": 151,
+      "value": "MEMORY_VAULT_E_STORAGE"
+    },
+    {
+      "function": "memory_vault_init",
+      "kind": "state_assignment",
+      "line": 152,
+      "value": "MEMORY_VAULT_READY"
+    },
+    {
+      "function": "memory_vault_init",
+      "kind": "return",
+      "line": 153,
+      "value": "MEMORY_VAULT_OK"
+    },
+    {
+      "function": "memory_vault_seal",
+      "kind": "return",
+      "line": 163,
+      "value": "MEMORY_VAULT_E_ARG"
+    },
+    {
+      "function": "memory_vault_seal",
+      "kind": "return",
+      "line": 167,
+      "value": "MEMORY_VAULT_E_STATE"
+    },
+    {
+      "function": "memory_vault_seal",
+      "kind": "guard",
+      "line": 169,
+      "value": "auth_valid"
+    },
+    {
+      "function": "memory_vault_seal",
+      "kind": "return",
+      "line": 170,
+      "value": "MEMORY_VAULT_E_AUTH"
+    },
+    {
+      "function": "memory_vault_seal",
+      "kind": "guard",
+      "line": 171,
+      "value": "card_valid"
+    },
+    {
+      "function": "memory_vault_seal",
+      "kind": "return",
+      "line": 173,
+      "value": "MEMORY_VAULT_E_CARD"
+    },
+    {
+      "function": "memory_vault_seal",
+      "kind": "state_assignment",
+      "line": 176,
+      "value": "MEMORY_VAULT_BLOCKED"
+    },
+    {
+      "function": "memory_vault_seal",
+      "kind": "return",
+      "line": 177,
+      "value": "MEMORY_VAULT_E_STATE"
+    },
+    {
+      "function": "memory_vault_seal",
+      "kind": "state_assignment",
+      "line": 181,
+      "value": "MEMORY_VAULT_BLOCKED"
+    },
+    {
+      "function": "memory_vault_seal",
+      "kind": "return",
+      "line": 182,
+      "value": "MEMORY_VAULT_E_STATE"
+    },
+    {
+      "function": "memory_vault_seal",
+      "kind": "state_assignment",
+      "line": 199,
+      "value": "MEMORY_VAULT_BLOCKED"
+    },
+    {
+      "function": "memory_vault_seal",
+      "kind": "storage_call",
+      "line": 210,
+      "value": "store_sealed"
+    },
+    {
+      "function": "memory_vault_seal",
+      "kind": "storage_call",
+      "line": 214,
+      "value": "commit_generation_floor"
+    },
+    {
+      "function": "memory_vault_seal",
+      "kind": "state_assignment",
+      "line": 217,
+      "value": "MEMORY_VAULT_BLOCKED"
+    },
+    {
+      "function": "memory_vault_seal",
+      "kind": "return",
+      "line": 218,
+      "value": "MEMORY_VAULT_E_STORAGE"
+    },
+    {
+      "function": "memory_vault_seal",
+      "kind": "state_assignment",
+      "line": 219,
+      "value": "MEMORY_VAULT_SEALED"
+    },
+    {
+      "function": "memory_vault_seal",
+      "kind": "return",
+      "line": 221,
+      "value": "MEMORY_VAULT_OK"
+    },
+    {
+      "function": "memory_vault_open",
+      "kind": "return",
+      "line": 236,
+      "value": "MEMORY_VAULT_E_ARG"
+    },
+    {
+      "function": "memory_vault_open",
+      "kind": "return",
+      "line": 242,
+      "value": "MEMORY_VAULT_E_STATE"
+    },
+    {
+      "function": "memory_vault_open",
+      "kind": "storage_call",
+      "line": 245,
+      "value": "load_sealed"
+    },
+    {
+      "function": "memory_vault_open",
+      "kind": "state_assignment",
+      "line": 248,
+      "value": "MEMORY_VAULT_BLOCKED"
+    },
+    {
+      "function": "memory_vault_open",
+      "kind": "return",
+      "line": 249,
+      "value": "MEMORY_VAULT_E_STORAGE"
+    },
+    {
+      "function": "memory_vault_open",
+      "kind": "state_assignment",
+      "line": 258,
+      "value": "MEMORY_VAULT_BLOCKED"
+    },
+    {
+      "function": "memory_vault_open",
+      "kind": "return",
+      "line": 260,
+      "value": "MEMORY_VAULT_E_AUTHENTICITY"
+    },
+    {
+      "function": "memory_vault_open",
+      "kind": "state_assignment",
+      "line": 263,
+      "value": "MEMORY_VAULT_BLOCKED"
+    },
+    {
+      "function": "memory_vault_open",
+      "kind": "return",
+      "line": 266,
+      "value": "MEMORY_VAULT_E_ROLLBACK"
+    },
+    {
+      "function": "memory_vault_open",
+      "kind": "state_assignment",
+      "line": 271,
+      "value": "MEMORY_VAULT_BLOCKED"
+    },
+    {
+      "function": "memory_vault_open",
+      "kind": "return",
+      "line": 273,
+      "value": "MEMORY_VAULT_E_AUTHENTICITY"
+    },
+    {
+      "function": "memory_vault_open",
+      "kind": "state_assignment",
+      "line": 278,
+      "value": "MEMORY_VAULT_BLOCKED"
+    },
+    {
+      "function": "memory_vault_open",
+      "kind": "failure_guard",
+      "line": 290,
+      "value": "decrypt_authenticity_failure_blocks"
+    },
+    {
+      "function": "memory_vault_open",
+      "kind": "state_assignment",
+      "line": 290,
+      "value": "MEMORY_VAULT_BLOCKED"
+    },
+    {
+      "function": "memory_vault_open",
+      "kind": "return",
+      "line": 293,
+      "value": "MEMORY_VAULT_E_AUTHENTICITY"
+    },
+    {
+      "function": "memory_vault_open",
+      "kind": "state_assignment",
+      "line": 296,
+      "value": "MEMORY_VAULT_SEALED"
+    },
+    {
+      "function": "memory_vault_open",
+      "kind": "return",
+      "line": 298,
+      "value": "MEMORY_VAULT_OK"
+    },
+    {
+      "function": "memory_vault_erase",
+      "kind": "return",
+      "line": 305,
+      "value": "MEMORY_VAULT_E_ARG"
+    },
+    {
+      "function": "memory_vault_erase",
+      "kind": "return",
+      "line": 308,
+      "value": "MEMORY_VAULT_E_STATE"
+    },
+    {
+      "function": "memory_vault_erase",
+      "kind": "storage_call",
+      "line": 308,
+      "value": "erase_sealed"
+    },
+    {
+      "function": "memory_vault_erase",
+      "kind": "state_assignment",
+      "line": 310,
+      "value": "MEMORY_VAULT_BLOCKED"
+    },
+    {
+      "function": "memory_vault_erase",
+      "kind": "return",
+      "line": 311,
+      "value": "MEMORY_VAULT_E_ERASE"
+    },
+    {
+      "function": "memory_vault_erase",
+      "kind": "state_assignment",
+      "line": 312,
+      "value": "MEMORY_VAULT_READY"
+    },
+    {
+      "function": "memory_vault_erase",
+      "kind": "return",
+      "line": 314,
+      "value": "MEMORY_VAULT_OK"
+    }
+  ],
+  "reason": "declared_obligations_observed",
+  "source_digest": "3fe1eaaa189ad01b2d0eac6ce383940ab1de189b412cc8526a1b91b3d81d1807",
+  "unsupported": [],
+  "verdict": "EXTRACTED_MATCH"
+}

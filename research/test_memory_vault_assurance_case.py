@@ -1,0 +1,101 @@
+import json
+import tempfile
+import unittest
+from pathlib import Path
+
+from critical_assurance_case import load_case, run_case
+from critical_assurance_certificate import AssuranceVerdict
+
+
+CASE = Path(__file__).parent / "evidence" / "memory_vault_assurance_case.json"
+
+
+class MemoryVaultAssuranceCaseTests(unittest.TestCase):
+    def test_real_memory_vault_contract_is_assured(self) -> None:
+        certificate = run_case(CASE)
+        self.assertEqual(certificate.verdict, AssuranceVerdict.ASSURED)
+        self.assertEqual(certificate.abstract_verification.verdict.value, "VERIFIED")
+        self.assertEqual(certificate.concrete_verification.verdict.value, "VERIFIED")
+        self.assertEqual(certificate.machine_refinement.verdict.value, "REFINED")
+        self.assertEqual(certificate.policy_refinement.verdict.value, "REFINED")
+
+    def test_sink_audit_divergence_blocks_promotion(self) -> None:
+        data = load_case(CASE)
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "case.json"
+            path.write_text(json.dumps(data), encoding="utf-8")
+            profile = CASE.parents[1] / "hcae_profile.json"
+            original = profile.read_text(encoding="utf-8")
+            try:
+                profile.write_text(original.replace('"guards": ["auth_valid(", "card_valid("]', '"guards": ["auth_valid(", "missing_authority_guard("]', 1), encoding="utf-8")
+                certificate = run_case(path)
+            finally:
+                profile.write_text(original, encoding="utf-8")
+        self.assertEqual(certificate.inventory_verdict, "PASS")
+        self.assertEqual(certificate.sink_audit_verdict, "BLOCKED")
+        self.assertEqual(certificate.verdict, AssuranceVerdict.BLOCKED)
+        self.assertEqual(certificate.reason, "critical_sink_audit_not_promoted")
+
+    def test_inventory_divergence_blocks_promotion(self) -> None:
+        data = load_case(CASE)
+        data["hcae_profile"] = "research/hcae_profile.json"
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "case.json"
+            path.write_text(json.dumps(data), encoding="utf-8")
+            profile = CASE.parents[1] / "hcae_profile.json"
+            original = profile.read_text(encoding="utf-8")
+            try:
+                profile.write_text(original.replace('"memory-persist": {', '"memory-persist-removed": {', 1), encoding="utf-8")
+                certificate = run_case(path)
+            finally:
+                profile.write_text(original, encoding="utf-8")
+        self.assertEqual(certificate.verdict, AssuranceVerdict.BLOCKED)
+        self.assertEqual(certificate.reason, "critical_sink_inventory_not_promoted")
+
+    def test_unreviewed_effect_candidate_blocks_promotion(self) -> None:
+        data = load_case(CASE)
+        dispositions = CASE.parents[1] / "critical_effect_dispositions.json"
+        original = dispositions.read_text(encoding="utf-8")
+        parsed = json.loads(original)
+        parsed["reviewed_internal"] = parsed["reviewed_internal"][1:]
+        try:
+            dispositions.write_text(json.dumps(parsed), encoding="utf-8")
+            certificate = run_case(CASE)
+        finally:
+            dispositions.write_text(original, encoding="utf-8")
+        self.assertEqual(certificate.candidate_verdict, "BLOCKED")
+        self.assertEqual(certificate.verdict, AssuranceVerdict.BLOCKED)
+        self.assertEqual(certificate.reason, "critical_effect_candidates_not_promoted")
+
+    def test_removed_persistence_coverage_blocks(self) -> None:
+        data = load_case(CASE)
+        data["call_paths"][0]["status"] = "UNCOVERED"
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "case.json"
+            path.write_text(json.dumps(data), encoding="utf-8")
+            certificate = run_case(path)
+        self.assertEqual(certificate.verdict, AssuranceVerdict.BLOCKED)
+
+    def test_concrete_block_action_mutation_is_counterexample(self) -> None:
+        data = load_case(CASE)
+        data["concrete_policy"][1]["action"] = "RETAIN_STATE"
+        data["concrete"]["transitions"].append({
+            "state": "MEMORY_VAULT_UNINITIALIZED",
+            "input_symbol": "BACKEND_LOAD_FAIL",
+            "action": "RETAIN_STATE",
+            "next_state": "MEMORY_VAULT_UNINITIALIZED",
+        })
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "case.json"
+            path.write_text(json.dumps(data), encoding="utf-8")
+            certificate = run_case(path)
+        self.assertEqual(certificate.verdict, AssuranceVerdict.COUNTEREXAMPLE)
+
+    def test_source_scope_is_explicit(self) -> None:
+        data = load_case(CASE)
+        self.assertEqual(data["source_contract"]["header"], "firmware/core/memory_vault.h")
+        self.assertEqual(data["source_contract"]["implementation"], "firmware/core/memory_vault.c")
+
+
+if __name__ == "__main__":
+    unittest.main()
