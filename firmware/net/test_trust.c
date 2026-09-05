@@ -84,6 +84,7 @@ int main(void)
     core_link_intent_t opened;
     uint8_t wire[CORE_LINK_WIRE_LEN];
     uint32_t sas;
+    trust_revoke_authorization_t revoke_auth;
 
     memset(&v, 0, sizeof(v));
     s = storage(&v);
@@ -141,9 +142,17 @@ int main(void)
     ok(trust_begin(&t, 1, 1, secret, core, nucleus, 700) == TRUST_E_STATE,
        "T1 an active link cannot be silently replaced by a new offer");
 
+    revoke_auth.physical_session_id = 7001u;
+    revoke_auth.active_generation = t.generation;
+    revoke_auth.core_confirmed = 1u;
+    revoke_auth.nucleus_confirmed = 0u;
+    ok(trust_revoke(&t, &tx, &rx, &s, &revoke_auth) == TRUST_E_PHYSICAL &&
+       t.state == TRUST_ACTIVE && v.present && tx.next_seq == 2 && rx.last_seq == 1,
+       "T1 one-sided revocation authority cannot erase trust or reset replay state");
+    revoke_auth.nucleus_confirmed = 1u;
     v.fail_erase = 1;
     ok(tx.next_seq == 2 && rx.last_seq == 1 &&
-       trust_revoke(&t, &tx, &rx, &s) == TRUST_E_STORAGE && t.state == TRUST_REVOKED &&
+       trust_revoke(&t, &tx, &rx, &s, &revoke_auth) == TRUST_E_STORAGE && t.state == TRUST_REVOKED &&
        zeroed(t.active_blob, sizeof(t.active_blob)) && zeroed(t.transport_secret, sizeof(t.transport_secret)) &&
        zeroed(t.core_nonce, sizeof(t.core_nonce)) && zeroed(t.nucleus_nonce, sizeof(t.nucleus_nonce)) &&
        tx.next_seq == 1 && rx.last_seq == 0 &&

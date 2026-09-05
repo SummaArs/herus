@@ -1,0 +1,58 @@
+{
+  "schema": "herus.critical-effects.v1",
+  "name": "herus-finite-critical-effect-boundary-v1",
+  "classes": {
+    "external-transmission": {
+      "operation": "interaction_take_send(",
+      "description": "Release of an assured interaction message to an external transport boundary"
+    },
+    "sealed-persistence": {
+      "operation": "store_sealed(",
+      "description": "Durable storage of an authenticated sealed memory record"
+    },
+    "reviewed-persistence": {
+      "operation": "memory_vault_seal(",
+      "description": "Human-reviewed promotion of a candidate into the memory vault"
+    },
+    "sealed-erasure": {
+      "operation": "erase_sealed(",
+      "description": "Destructive erasure of the sealed vault record under explicit vault-bound authority"
+    },
+    "reviewed-erasure": {
+      "operation": "memory_vault_erase(",
+      "description": "Human-reviewed issuance of authority for destructive vault erasure"
+    },
+    "collection-insert-persistence": {
+      "operation": "commit_record(",
+      "description": "Transactional persistence of an explicitly authorized card insertion"
+    },
+    "collection-remove-persistence": {
+      "operation": "commit_record(",
+      "description": "Transactional persistence of a physically authorized logical removal"
+    },
+    "collection-compact-persistence": {
+      "operation": "commit_record(",
+      "description": "Transactional persistence of a physically authorized canonical compaction"
+    },
+    "vault-generation-commit": {
+      "operation": "commit_generation_floor(",
+      "description": "Durable advancement of the vault anti-rollback generation floor after sealed storage"
+    },
+    "trust-activation-persistence": {
+      "operation": "store_active(",
+      "description": "Persistence of a dual-confirmed, non-expired active trust record"
+    },
+    "trust-erasure": {
+      "operation": "erase(",
+      "description": "Dual-confirmed, generation-bound revocation and erasure of active trust"
+    },
+    "trust-erasure-retry": {
+      "operation": "erase(",
+      "description": "Fail-closed continuation of an already-authorized trust erasure from REVOKED state"
+    },
+    "nucleus-sealing": {
+      "operation": "core_link_seal_nucleus_intent(",
+      "description": "Cryptographic sealing of a nucleus intent for the trusted core link"
+    }
+  }
+}

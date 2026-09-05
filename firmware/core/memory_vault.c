@@ -72,6 +72,13 @@ static int auth_valid(const memory_vault_write_authorization_t *auth,
            auth->human_confirmed == 1u;
 }
 
+static int erase_auth_valid(const memory_vault_t *v,
+                            const memory_vault_erase_authorization_t *auth)
+{
+    return v && auth && auth->vault_id == v->cfg.vault_id &&
+           auth->physical_session_id != 0u && auth->human_confirmed == 1u;
+}
+
 static void pack_card(const memory_vault_card_t *card, uint8_t out[VAULT_CARD_LEN])
 {
     memset(out, 0, VAULT_CARD_LEN);
@@ -156,7 +163,8 @@ int memory_vault_init(memory_vault_t *v, const memory_vault_config_t *cfg)
     return MEMORY_VAULT_OK;
 }
 
-/* HERUS_CRITICAL_SINK: memory-persist operation=store_sealed( */
+/* HERUS_CRITICAL_SINK: memory-persist class=sealed-persistence operation=store_sealed( */
+/* HERUS_CRITICAL_SINK: memory-generation-commit class=vault-generation-commit operation=commit_generation_floor( */
 int memory_vault_seal(memory_vault_t *v, const memory_vault_write_authorization_t *auth,
                       const memory_vault_card_t *card)
 {
@@ -303,10 +311,16 @@ int memory_vault_open(memory_vault_t *v, uint32_t expected_card_id,
     return MEMORY_VAULT_OK;
 }
 
-int memory_vault_erase(memory_vault_t *v)
+/* HERUS_CRITICAL_SINK: memory-erase class=sealed-erasure operation=erase_sealed( */
+int memory_vault_erase(memory_vault_t *v,
+                       const memory_vault_erase_authorization_t *auth)
 {
-    if (!v) return MEMORY_VAULT_E_ARG;
+    if (!v || !auth) return MEMORY_VAULT_E_ARG;
     if (v->state == MEMORY_VAULT_UNINITIALIZED) return MEMORY_VAULT_E_STATE;
+    if (!erase_auth_valid(v, auth)) {
+        v->metrics.rejected_authorization++;
+        return MEMORY_VAULT_E_AUTH;
+    }
     if (v->cfg.storage.erase_sealed(v->cfg.storage.ctx) != 0) {
         v->metrics.backend_failures++;
         v->state = MEMORY_VAULT_BLOCKED;

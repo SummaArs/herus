@@ -22,6 +22,28 @@ def main() -> int:
         "structural_reason": certificate.structural_reason,
         "inventory_verdict": certificate.inventory_verdict,
         "inventory_reason": certificate.inventory_reason,
+        "assurance_scope": certificate.assurance_scope,
+        "sink_audit_verdict": certificate.sink_audit_verdict,
+        "sink_audit_reason": certificate.sink_audit_reason,
+        "sink_audit_results": [
+            {"sink_id": item.sink_id, "status": item.status, "source": item.source,
+             "function": item.function, "detail": item.detail}
+            for item in certificate.sink_audit_results
+        ],
+        "c11_structural_verdict": certificate.c11_structural_verdict,
+        "c11_structural_reason": certificate.c11_structural_reason,
+        "c11_structural_results": [
+            {"sink_id": item.sink_id, "status": item.status, "source": item.source,
+             "function": item.function, "detail": item.detail}
+            for item in certificate.c11_structural_results
+        ],
+        "candidate_verdict": certificate.candidate_verdict,
+        "candidate_reason": certificate.candidate_reason,
+        "candidate_results": [
+            {"source": item.source, "function": item.function, "operation": item.operation,
+             "status": item.status, "detail": item.detail}
+            for item in certificate.candidate_results
+        ],
         "abstract_verification": certificate.abstract_verification.verdict.value,
         "concrete_verification": certificate.concrete_verification.verdict.value,
         "machine_refinement": certificate.machine_refinement.verdict.value,

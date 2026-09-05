@@ -43,6 +43,14 @@ typedef struct {
     uint8_t  human_confirmed; /* exactly 1 is true */
 } memory_vault_write_authorization_t;
 
+/* Destructive erasure has a separate, vault-bound authority. It cannot be
+ * synthesized from write authority or vault state alone. */
+typedef struct {
+    uint32_t vault_id;
+    uint32_t physical_session_id;
+    uint8_t  human_confirmed; /* exactly 1 is true */
+} memory_vault_erase_authorization_t;
+
 typedef struct {
     uint32_t vault_id;       /* non-secret local partition/context identifier */
     memory_vault_storage_t storage;
@@ -99,9 +107,11 @@ int memory_vault_seal(memory_vault_t *v, const memory_vault_write_authorization_
 int memory_vault_open(memory_vault_t *v, uint32_t expected_card_id,
                       memory_vault_card_t *out);
 
-/* Erase persistent record and local operating state. If the backend erase fails,
- * the vault becomes BLOCKED; no later open or seal may use possibly stale state. */
-int memory_vault_erase(memory_vault_t *v);
+/* Erase persistent record only under explicit, vault-bound human authority. If
+ * the backend erase fails, the vault becomes BLOCKED; no later open or seal may
+ * use possibly stale state. */
+int memory_vault_erase(memory_vault_t *v,
+                       const memory_vault_erase_authorization_t *auth);
 
 const memory_vault_metrics_t *memory_vault_metrics(const memory_vault_t *v);
 

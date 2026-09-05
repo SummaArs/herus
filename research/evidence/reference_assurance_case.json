@@ -1,6 +1,7 @@
 {
   "schema": "herus.assurance-case.v1",
   "name": "finite-safe-handoff-reference",
+  "assurance_scope": "formal-only",
   "abstract": {
     "initial_state": "safe",
     "states": ["safe", "hold"],

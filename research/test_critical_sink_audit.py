@@ -12,7 +12,7 @@ class CriticalSinkAuditTests(unittest.TestCase):
         root = Path(__file__).resolve().parents[1]
         profile = load_profile(root / "research" / "hcae_profile.json")
         results = audit(profile, root)
-        self.assertEqual(len(results), 4)
+        self.assertEqual(len(results), 13)
         self.assertTrue(all(item.status == "COVERED" for item in results), results)
 
     def test_missing_source_is_unknown(self) -> None:

@@ -11,7 +11,7 @@
     {
       "path": "prove.sh",
       "kind": "file",
-      "sha256": "5023e68630843a2e534d9d6df682722aef07ee405d4495f7a1bd42fcfbd46c36",
+      "sha256": "720a0eee94a0e88d21aabdabc7a9145c3fb933007022ce5f20c1361e5c888232",
       "role": "global proof ledger"
     },
     {
@@ -29,7 +29,7 @@
     {
       "path": "firmware",
       "kind": "tree",
-      "sha256": "24c9319652c1784420aa64610849d6237d6b4c41f17931dbb7c93253dfabf496",
+      "sha256": "bff5f5e2c1d2412e4ea9781e08002ef84ff970ff0cbe8545677b7e722a38bc1c",
       "role": "portable firmware and proof sources"
     },
     {
@@ -53,7 +53,7 @@
     {
       "path": "research/Makefile",
       "kind": "file",
-      "sha256": "e7086479b882b0cc5cfdd04dc9928d77b3b317c83c907d150d7e4a582b3093f5",
+      "sha256": "97012c8f07d58f5eb273b46665042efb3bd1ef2d82081b98183b7a46600b53fb",
       "role": "host-only research test entrypoint"
     },
     {
@@ -551,13 +551,13 @@
     {
       "path": "research/test_critical_sink_audit.py",
       "kind": "file",
-      "sha256": "ca728d03b3e03746b19c94ee5669e6a0e50b5e56e05f1638b01dd2b97a52c9e2",
+      "sha256": "d1b7fa3a53a96ac79f840397816b4f764a1eb077d1ced337d0c96e15fae713ea",
       "role": "critical sink auditor adversarial tests"
     },
     {
       "path": "research/hcae_profile.json",
       "kind": "file",
-      "sha256": "e050a0e7e65aa351bdfba5d094859a58be4fb4dc4d0e06b109e808d9bb6b24dc",
+      "sha256": "6545c4a76e3c5a0575bd20546a7371e0740647cd35c74cd2cfbe5f24aeeb391d",
       "role": "real HERUS critical surface profile"
     },
     {
@@ -647,7 +647,7 @@
     {
       "path": "research/critical_assurance_certificate.py",
       "kind": "file",
-      "sha256": "4fa084a2727f14f41317174eb5ca35a507571b978496ca754de9a579571b1e46",
+      "sha256": "2916af3c9a4646498e8450ff61630b32fa98af6d71f3a654f85b04a6a1f679f2",
       "role": "composed finite assurance certificate"
     },
     {
@@ -659,25 +659,25 @@
     {
       "path": "research/critical_assurance_case.py",
       "kind": "file",
-      "sha256": "aca1e02a5d624beb886ca0b0a5dcce09a6101ad7855397f637780c2533f27bb8",
+      "sha256": "345bf1db7341de14dd176306a768f9f4a6dc83ef21dfbeb496239982961d4a11",
       "role": "declarative finite assurance case loader"
     },
     {
       "path": "research/run_assurance_case.py",
       "kind": "file",
-      "sha256": "0d4ba46b28a5373104744c037404e312131980afed21b767835101fe8999cf2d",
+      "sha256": "80b38ef01874a6a1e0d925a024cb94ac06fc11ea5d2423041a0167d6a860d802",
       "role": "reproducible assurance certificate runner"
     },
     {
       "path": "research/test_critical_assurance_case.py",
       "kind": "file",
-      "sha256": "ad7062e809ec172c58b78ff3c917bd3bc93b9c2b38173d8d796c10187452ac47",
+      "sha256": "16d525feca9474d606868b884e7f71ce827a6174b639a53a7d1fb86dce93ca3c",
       "role": "declarative assurance case mutation tests"
     },
     {
       "path": "research/evidence/reference_assurance_case.json",
       "kind": "file",
-      "sha256": "2dff1e55e142f9d44b443f53e49115b6a65631e1bc93e03f4c8b4d981c5494ba",
+      "sha256": "90409c469f42f16e119b01c6ce34215cf8a65931b4a4be0c8041e7ec3adc1988",
       "role": "declarative finite assurance reference case"
     },
     {
@@ -695,13 +695,13 @@
     {
       "path": "research/test_memory_vault_assurance_case.py",
       "kind": "file",
-      "sha256": "2df0f579b8b77a81c1943391c900faf89cc094407e10400a76731a6d97d313ff",
+      "sha256": "20aedcdf43a11991cda2f8388044a40296f60b4cd640b5d1029b2ee53052786b",
       "role": "real memory vault assurance case adversarial tests"
     },
     {
       "path": "research/evidence/memory_vault_assurance_case.json",
       "kind": "file",
-      "sha256": "de9967002690a49c35f1df810cec80410726f21cf6f4b14e1451b72a2b2c568f",
+      "sha256": "9ee992dd894667c012c624d05cdea78ab31265f4cd161b98bdca2577112010af",
       "role": "declarative real memory vault assurance case"
     },
     {
@@ -725,7 +725,7 @@
     {
       "path": "research/memory_vault_structural_extractor.py",
       "kind": "file",
-      "sha256": "fe194439abbb9b1aab7339aca09379d893e43cf1a69ff6dd0f0adff899026e0e",
+      "sha256": "94b45985cad3551763194d3d5897912bfcdbf767c852b02b14b4e9b5f654eb48",
       "role": "conservative memory vault C11 structural extractor"
     },
     {

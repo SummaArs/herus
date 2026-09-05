@@ -95,9 +95,9 @@ def _observe_function(source: str, name: str, start: int, body: str) -> list[Obs
         if call in {"store_sealed", "commit_generation_floor", "erase_sealed", "load_generation_floor", "load_sealed"}:
             observations.append(Observation("storage_call", call, _line_number(source, start + match.start()), name))
     for token in ("auth_valid", "card_valid"):
-        position = body.find(token)
-        if position >= 0:
-            observations.append(Observation("guard", token, _line_number(source, start + position), name))
+        match = re.search(r"\b" + re.escape(token) + r"\b", body)
+        if match is not None:
+            observations.append(Observation("guard", token, _line_number(source, start + match.start()), name))
     if name == "memory_vault_open":
         decrypt_failure = body.find("if (rc != 0 || !unpack_card")
         authenticity = body.find("MEMORY_VAULT_E_AUTHENTICITY", decrypt_failure)

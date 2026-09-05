@@ -23,14 +23,17 @@ class CriticalSinkInventoryTests(unittest.TestCase):
         mutated_root = self.root / "research" / ".tmp_inventory_mutant"
         source = mutated_root / "firmware/core/interaction.c"
         source.parent.mkdir(parents=True, exist_ok=True)
+        registry = mutated_root / "research/critical_effect_registry.json"
+        registry.parent.mkdir(parents=True, exist_ok=True)
+        registry.write_text((self.root / "research/critical_effect_registry.json").read_text(encoding="utf-8"), encoding="utf-8")
         source.write_text(original.replace(
-            "/* HERUS_CRITICAL_SINK: interaction-send operation=interaction_take_send( */",
-            "/* HERUS_CRITICAL_SINK: unprofiled-new-sink operation=new_critical_sink( */\n/* HERUS_CRITICAL_SINK: interaction-send operation=interaction_take_send( */",
+            "/* HERUS_CRITICAL_SINK: interaction-send class=external-transmission operation=interaction_take_send( */",
+            "/* HERUS_CRITICAL_SINK: unprofiled-new-sink class=external-transmission operation=interaction_take_send( */\n/* HERUS_CRITICAL_SINK: interaction-send class=external-transmission operation=interaction_take_send( */",
             1,
         ), encoding="utf-8")
         try:
             results = inventory(self.profile, mutated_root)
-            self.assertTrue(any(item.status == "UNPROFILED" and item.detail == "critical_annotation_missing_or_mismatched" for item in results), results)
+            self.assertTrue(any(item.status == "UNPROFILED" and item.detail == "critical_annotation_profile_registry_mismatch" for item in results), results)
         finally:
             import shutil
             shutil.rmtree(mutated_root)

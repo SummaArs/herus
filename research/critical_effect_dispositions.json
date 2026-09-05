@@ -1,0 +1,95 @@
+{
+  "schema": "herus.critical-effect-dispositions.v1",
+  "reviewed_internal": [
+    {
+      "source": "firmware/core/interaction_rig.c",
+      "function": "interaction_rig_take_send_assured",
+      "operation": "interaction_take_send_assured",
+      "reason": "delegates_to_hcae_profiled_assured_handoff"
+    },
+    {
+      "source": "firmware/core/memory_collection.c",
+      "function": "commit_record",
+      "operation": "commit_generation_floor",
+      "reason": "internal_transaction_primitive_reachable_from_profiled_mutation_wrappers"
+    },
+    {
+      "source": "firmware/core/memory_collection.c",
+      "function": "commit_record",
+      "operation": "erase_prepared",
+      "reason": "internal_transaction_cleanup_reachable_from_profiled_mutation_wrappers"
+    },
+    {
+      "source": "firmware/core/memory_collection.c",
+      "function": "commit_record",
+      "operation": "store_committed",
+      "reason": "internal_transaction_primitive_reachable_from_profiled_mutation_wrappers"
+    },
+    {
+      "source": "firmware/core/memory_collection.c",
+      "function": "commit_record",
+      "operation": "store_prepared",
+      "reason": "internal_transaction_primitive_reachable_from_profiled_mutation_wrappers"
+    },
+    {
+      "source": "firmware/core/memory_collection.c",
+      "function": "load_current",
+      "operation": "load_committed",
+      "reason": "read_only_authenticated_collection_load"
+    },
+    {
+      "source": "firmware/core/memory_collection.c",
+      "function": "memory_collection_init",
+      "operation": "erase_prepared",
+      "reason": "finite_recovery_cleanup_selected_after_authenticated_recovery_assessment"
+    },
+    {
+      "source": "firmware/core/memory_collection.c",
+      "function": "memory_collection_init",
+      "operation": "load_committed",
+      "reason": "read_only_recovery_input"
+    },
+    {
+      "source": "firmware/core/memory_collection.c",
+      "function": "recover_prepared",
+      "operation": "erase_prepared",
+      "reason": "finite_recovery_action_selected_by_authenticated_recovery_assessment"
+    },
+    {
+      "source": "firmware/core/memory_collection.c",
+      "function": "recover_prepared",
+      "operation": "store_committed",
+      "reason": "finite_recovery_promotion_selected_by_authenticated_recovery_assessment"
+    },
+    {
+      "source": "firmware/core/memory_physical_session_recovery.c",
+      "function": "snapshot_is_canonical",
+      "operation": "absent_committed_is_zero",
+      "reason": "pure_predicate_name_contains_commit_but_has_no_external_effect"
+    },
+    {
+      "source": "firmware/core/memory_vault.c",
+      "function": "memory_vault_erase",
+      "operation": "erase_auth_valid",
+      "reason": "pure_authority_predicate_precedes_profiled_erasure"
+    },
+    {
+      "source": "firmware/core/memory_vault.c",
+      "function": "memory_vault_open",
+      "operation": "load_sealed",
+      "reason": "read_only_authenticated_vault_load"
+    },
+    {
+      "source": "firmware/net/link.c",
+      "function": "link_send",
+      "operation": "session_seal",
+      "reason": "pure_frame_sealing_without_transport_io_in_host_core"
+    },
+    {
+      "source": "firmware/net/session.c",
+      "function": "session_open",
+      "operation": "skip_store",
+      "reason": "bounded_in_memory_ratchet_cache_update"
+    }
+  ]
+}

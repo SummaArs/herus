@@ -142,6 +142,7 @@ int main(void)
     uint8_t secret[SHA256_LEN], core_nonce[TRUST_NONCE_LEN], nucleus_nonce[TRUST_NONCE_LEN];
     uint8_t wire[CORE_LINK_WIRE_LEN];
     uint32_t sas;
+    trust_revoke_authorization_t revoke_auth;
 
     printf("\n== C10  Grand Finale chain: dialogue -> model -> intent -> trust ==\n");
     accepted_model(&profile, &budget, &model_decision);
@@ -190,8 +191,12 @@ int main(void)
     ok(trust_confirm(&trust, 1, sas, 1, sas, 31, &store) == TRUST_OK &&
        trust.state == TRUST_ACTIVE,
        "C10 a Nucleus path becomes eligible only after the real paired trust ceremony");
+    revoke_auth.physical_session_id = 9001u;
+    revoke_auth.active_generation = trust.generation;
+    revoke_auth.core_confirmed = 1u;
+    revoke_auth.nucleus_confirmed = 1u;
     vault.fail_erase = 1;
-    ok(trust_revoke(&trust, &tx, &rx, &store) == TRUST_E_STORAGE &&
+    ok(trust_revoke(&trust, &tx, &rx, &store, &revoke_auth) == TRUST_E_STORAGE &&
        trust.state == TRUST_REVOKED &&
        trust_seal_nucleus_intent(&trust, &tx, 32, 1, 33, &obs, wire) == TRUST_E_STATE,
        "C10 erase failure leaves trust revoked and forbids future authenticated envelopes");

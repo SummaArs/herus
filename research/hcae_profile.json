@@ -1,21 +1,43 @@
 {
   "schema": "hcae.profile.v1",
   "name": "herus-critical-surface-v1",
-  "analysis": "lexical_guard_order_only",
+  "analysis": "lexical_and_clang_ast_conservative",
+  "effect_registry": "research/critical_effect_registry.json",
   "critical_sinks": {
     "interaction-send": {
+      "effect_class": "external-transmission",
       "source": "firmware/core/interaction.c",
       "function": "interaction_take_send_assured",
       "operation": "interaction_take_send(",
-      "guards": ["assurance_decide("]
+      "guards": ["assurance_decide("],
+      "structural_guards": [{"id":"assurance-authority","call":"assurance_decide","reject_if":"not_equal","expected":"ASSURANCE_OK"}]
     },
     "memory-persist": {
+      "effect_class": "sealed-persistence",
       "source": "firmware/core/memory_vault.c",
       "function": "memory_vault_seal",
       "operation": "store_sealed(",
-      "guards": ["auth_valid(", "card_valid("]
+      "sink_call_kind": "member-function-pointer",
+      "guards": ["auth_valid(", "card_valid("],
+      "structural_guards": [
+        {"id":"write-authorization","call":"auth_valid","reject_if":"falsy"},
+        {"id":"card-authorization","call":"card_valid","reject_if":"falsy"}
+      ]
+    },
+    "memory-generation-commit": {
+      "effect_class": "vault-generation-commit",
+      "source": "firmware/core/memory_vault.c",
+      "function": "memory_vault_seal",
+      "operation": "commit_generation_floor(",
+      "sink_call_kind": "member-function-pointer",
+      "guards": ["auth_valid(", "card_valid("],
+      "structural_guards": [
+        {"id":"write-authorization","call":"auth_valid","reject_if":"falsy"},
+        {"id":"card-authorization","call":"card_valid","reject_if":"falsy"}
+      ]
     },
     "memory-review-persist": {
+      "effect_class": "reviewed-persistence",
       "source": "firmware/core/memory_consolidation.c",
       "function": "memory_consolidation_confirm_store",
       "operation": "memory_vault_seal(",
@@ -23,13 +45,103 @@
       "semantic_guards": [{
         "kind": "rejects_mismatch",
         "expression": "access->physical_session_id != c->active_physical_session_id"
-      }]
+      }],
+      "structural_guards": [
+        {"id":"review-access","call":"access_valid","reject_if":"falsy"},
+        {"id":"physical-session","expression":"access->physical_session_id != c->active_physical_session_id","reject_if":"truthy_expression"}
+      ]
+    },
+    "memory-erase": {
+      "effect_class": "sealed-erasure",
+      "source": "firmware/core/memory_vault.c",
+      "function": "memory_vault_erase",
+      "operation": "erase_sealed(",
+      "sink_call_kind": "member-function-pointer",
+      "guards": ["erase_auth_valid("],
+      "structural_guards": [{"id":"erase-authority","call":"erase_auth_valid","reject_if":"falsy"}]
+    },
+    "memory-review-erase": {
+      "effect_class": "reviewed-erasure",
+      "source": "firmware/core/memory_consolidation.c",
+      "function": "memory_consolidation_erase",
+      "operation": "memory_vault_erase(",
+      "guards": ["access_valid("],
+      "structural_guards": [{"id":"erase-review-access","call":"access_valid","reject_if":"falsy"}]
+    },
+    "collection-insert": {
+      "effect_class": "collection-insert-persistence",
+      "source": "firmware/core/memory_collection.c",
+      "function": "memory_collection_insert",
+      "operation": "commit_record(",
+      "guards": ["access_valid(", "auth_valid(", "card_valid(", "access_consume("],
+      "structural_guards": [
+        {"id":"collection-access","call":"access_valid","reject_if":"falsy"},
+        {"id":"collection-write-authority","call":"auth_valid","reject_if":"falsy"},
+        {"id":"collection-card-validity","call":"card_valid","reject_if":"falsy"},
+        {"id":"collection-insert-purpose","call":"access_consume","reject_if":"falsy","expected_argument":"MEMORY_PHYSICAL_PURPOSE_COLLECTION_INSERT"}
+      ]
+    },
+    "collection-remove": {
+      "effect_class": "collection-remove-persistence",
+      "source": "firmware/core/memory_collection.c",
+      "function": "memory_collection_remove",
+      "operation": "commit_record(",
+      "allow_local_loops_before_sink": true,
+      "guards": ["access_valid(", "access_consume("],
+      "structural_guards": [
+        {"id":"collection-access","call":"access_valid","reject_if":"falsy"},
+        {"id":"collection-remove-purpose","call":"access_consume","reject_if":"falsy","expected_argument":"MEMORY_PHYSICAL_PURPOSE_COLLECTION_REMOVE"}
+      ]
+    },
+    "collection-compact": {
+      "effect_class": "collection-compact-persistence",
+      "source": "firmware/core/memory_collection.c",
+      "function": "memory_collection_compact",
+      "operation": "commit_record(",
+      "allow_local_loops_before_sink": true,
+      "guards": ["access_valid(", "access_consume("],
+      "structural_guards": [
+        {"id":"collection-access","call":"access_valid","reject_if":"falsy"},
+        {"id":"collection-compact-purpose","call":"access_consume","reject_if":"falsy","expected_argument":"MEMORY_PHYSICAL_PURPOSE_COLLECTION_COMPACT"}
+      ]
+    },
+    "trust-activate": {
+      "effect_class": "trust-activation-persistence",
+      "source": "firmware/net/trust.c",
+      "function": "trust_confirm",
+      "operation": "store_active(",
+      "sink_call_kind": "member-function-pointer",
+      "guards": ["elapsed(", "!core_confirmed", "!nucleus_confirmed", "core_sas != t->sas", "nucleus_sas != t->sas"],
+      "structural_guards": [
+        {"id":"pairing-not-expired","expression":"elapsed(now_ms, t->offer_started_ms) >= TRUST_OFFER_TTL_MS","reject_if":"truthy_expression"},
+        {"id":"dual-sas-confirmation","expression":"!core_confirmed || !nucleus_confirmed || core_sas != t->sas || nucleus_sas != t->sas","reject_if":"truthy_expression"}
+      ]
+    },
+    "trust-revoke": {
+      "effect_class": "trust-erasure",
+      "source": "firmware/net/trust.c",
+      "function": "trust_revoke",
+      "operation": "erase(",
+      "sink_call_kind": "member-function-pointer",
+      "guards": ["revoke_auth_valid("],
+      "structural_guards": [{"id":"dual-revoke-authority","call":"revoke_auth_valid","reject_if":"falsy"}]
+    },
+    "trust-retry-erase": {
+      "effect_class": "trust-erasure-retry",
+      "source": "firmware/net/trust.c",
+      "function": "trust_retry_erase",
+      "operation": "erase(",
+      "sink_call_kind": "member-function-pointer",
+      "guards": ["t->state != TRUST_REVOKED"],
+      "structural_guards": [{"id":"revoked-state","expression":"t->state != TRUST_REVOKED","reject_if":"truthy_expression"}]
     },
     "nucleus-seal": {
+      "effect_class": "nucleus-sealing",
       "source": "firmware/net/trust.c",
       "function": "trust_seal_nucleus_intent",
       "operation": "core_link_seal_nucleus_intent(",
-      "guards": ["active_control_key("]
+      "guards": ["active_control_key("],
+      "structural_guards": [{"id":"active-control-key","call":"active_control_key","reject_if":"nonzero"}]
     }
   }
 }

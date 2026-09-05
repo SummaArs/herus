@@ -123,7 +123,7 @@ int memory_consolidation_mark_conflict(memory_consolidation_t *c,
     return MEMORY_CONSOLIDATION_OK;
 }
 
-/* HERUS_CRITICAL_SINK: memory-review-persist operation=memory_vault_seal( */
+/* HERUS_CRITICAL_SINK: memory-review-persist class=reviewed-persistence operation=memory_vault_seal( */
 int memory_consolidation_confirm_store(memory_consolidation_t *c,
                                        memory_vault_t *vault,
                                        const memory_consolidation_access_t *access,
@@ -211,9 +211,11 @@ int memory_consolidation_recall(memory_consolidation_t *c, memory_vault_t *vault
     return MEMORY_CONSOLIDATION_OK;
 }
 
+/* HERUS_CRITICAL_SINK: memory-review-erase class=reviewed-erasure operation=memory_vault_erase( */
 int memory_consolidation_erase(memory_consolidation_t *c, memory_vault_t *vault,
                                const memory_consolidation_access_t *access)
 {
+    memory_vault_erase_authorization_t auth;
     int rc;
     if (!c || !vault || !access) return MEMORY_CONSOLIDATION_E_ARG;
     if (c->state != MEMORY_CONSOLIDATION_IDLE) return MEMORY_CONSOLIDATION_E_STATE;
@@ -221,7 +223,11 @@ int memory_consolidation_erase(memory_consolidation_t *c, memory_vault_t *vault,
         c->metrics.rejected_access++;
         return MEMORY_CONSOLIDATION_E_ACCESS;
     }
-    rc = memory_vault_erase(vault);
+    auth.vault_id = vault->cfg.vault_id;
+    auth.physical_session_id = access->physical_session_id;
+    auth.human_confirmed = 1u;
+    rc = memory_vault_erase(vault, &auth);
+    secure_zero(&auth, sizeof(auth));
     if (rc != MEMORY_VAULT_OK) {
         c->metrics.vault_failures++;
         c->state = MEMORY_CONSOLIDATION_FAILED;

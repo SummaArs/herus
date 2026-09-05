@@ -19,6 +19,23 @@ class MemoryVaultAssuranceCaseTests(unittest.TestCase):
         self.assertEqual(certificate.machine_refinement.verdict.value, "REFINED")
         self.assertEqual(certificate.policy_refinement.verdict.value, "REFINED")
 
+    def test_sink_audit_divergence_blocks_promotion(self) -> None:
+        data = load_case(CASE)
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "case.json"
+            path.write_text(json.dumps(data), encoding="utf-8")
+            profile = CASE.parents[1] / "hcae_profile.json"
+            original = profile.read_text(encoding="utf-8")
+            try:
+                profile.write_text(original.replace('"guards": ["auth_valid(", "card_valid("]', '"guards": ["auth_valid(", "missing_authority_guard("]', 1), encoding="utf-8")
+                certificate = run_case(path)
+            finally:
+                profile.write_text(original, encoding="utf-8")
+        self.assertEqual(certificate.inventory_verdict, "PASS")
+        self.assertEqual(certificate.sink_audit_verdict, "BLOCKED")
+        self.assertEqual(certificate.verdict, AssuranceVerdict.BLOCKED)
+        self.assertEqual(certificate.reason, "critical_sink_audit_not_promoted")
+
     def test_inventory_divergence_blocks_promotion(self) -> None:
         data = load_case(CASE)
         data["hcae_profile"] = "research/hcae_profile.json"
@@ -34,6 +51,21 @@ class MemoryVaultAssuranceCaseTests(unittest.TestCase):
                 profile.write_text(original, encoding="utf-8")
         self.assertEqual(certificate.verdict, AssuranceVerdict.BLOCKED)
         self.assertEqual(certificate.reason, "critical_sink_inventory_not_promoted")
+
+    def test_unreviewed_effect_candidate_blocks_promotion(self) -> None:
+        data = load_case(CASE)
+        dispositions = CASE.parents[1] / "critical_effect_dispositions.json"
+        original = dispositions.read_text(encoding="utf-8")
+        parsed = json.loads(original)
+        parsed["reviewed_internal"] = parsed["reviewed_internal"][1:]
+        try:
+            dispositions.write_text(json.dumps(parsed), encoding="utf-8")
+            certificate = run_case(CASE)
+        finally:
+            dispositions.write_text(original, encoding="utf-8")
+        self.assertEqual(certificate.candidate_verdict, "BLOCKED")
+        self.assertEqual(certificate.verdict, AssuranceVerdict.BLOCKED)
+        self.assertEqual(certificate.reason, "critical_effect_candidates_not_promoted")
 
     def test_removed_persistence_coverage_blocks(self) -> None:
         data = load_case(CASE)

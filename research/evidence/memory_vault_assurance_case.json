@@ -1,6 +1,8 @@
 {
   "schema": "herus.assurance-case.v1",
   "name": "memory-vault-real-contract-v1",
+  "assurance_scope": "c11-bound",
+  "effect_dispositions": "research/critical_effect_dispositions.json",
   "source_contract": {
     "header": "firmware/core/memory_vault.h",
     "implementation": "firmware/core/memory_vault.c",

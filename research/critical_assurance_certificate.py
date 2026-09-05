@@ -13,6 +13,9 @@ import json
 from typing import Any, Iterable
 
 from critical_call_path_audit import CallPathResult
+from critical_sink_audit import SinkResult
+from critical_c11_structural_audit import StructuralSinkResult
+from critical_effect_candidate_audit import CandidateResult
 from critical_state_refinement import (
     RefinementCertificate,
     RefinementVerdict,
@@ -54,6 +57,16 @@ class AssuranceCertificate:
     structural_reason: str | None = None
     inventory_verdict: str | None = None
     inventory_reason: str | None = None
+    assurance_scope: str = "formal-only"
+    sink_audit_results: tuple[SinkResult, ...] = ()
+    sink_audit_verdict: str | None = None
+    sink_audit_reason: str | None = None
+    c11_structural_results: tuple[StructuralSinkResult, ...] = ()
+    c11_structural_verdict: str | None = None
+    c11_structural_reason: str | None = None
+    candidate_results: tuple[CandidateResult, ...] = ()
+    candidate_verdict: str | None = None
+    candidate_reason: str | None = None
 
 
 def _canonical_digest(value: Any) -> str:
@@ -91,6 +104,16 @@ def compose_assurance(
     structural_reason: str | None = None,
     inventory_verdict: str | None = None,
     inventory_reason: str | None = None,
+    assurance_scope: str = "formal-only",
+    sink_audit_results: tuple[SinkResult, ...] = (),
+    sink_audit_verdict: str | None = None,
+    sink_audit_reason: str | None = None,
+    c11_structural_results: tuple[StructuralSinkResult, ...] = (),
+    c11_structural_verdict: str | None = None,
+    c11_structural_reason: str | None = None,
+    candidate_results: tuple[CandidateResult, ...] = (),
+    candidate_verdict: str | None = None,
+    candidate_reason: str | None = None,
 ) -> AssuranceCertificate:
     abstract_verification = verify(abstract, abstract_policy)
     concrete_verification = verify(concrete, concrete_policy)
@@ -114,27 +137,53 @@ def compose_assurance(
         "structural_reason": structural_reason,
         "inventory_verdict": inventory_verdict,
         "inventory_reason": inventory_reason,
+        "assurance_scope": assurance_scope,
+        "sink_audit_results": [result.__dict__ for result in sink_audit_results],
+        "sink_audit_verdict": sink_audit_verdict,
+        "sink_audit_reason": sink_audit_reason,
+        "c11_structural_results": [result.__dict__ for result in c11_structural_results],
+        "c11_structural_verdict": c11_structural_verdict,
+        "c11_structural_reason": c11_structural_reason,
+        "candidate_results": [result.__dict__ for result in candidate_results],
+        "candidate_verdict": candidate_verdict,
+        "candidate_reason": candidate_reason,
     })
+
+    def finish(verdict: AssuranceVerdict, reason: str) -> AssuranceCertificate:
+        return AssuranceCertificate(
+            verdict, reason, abstract_verification, concrete_verification,
+            machine_refinement, policy_refinement, call_path_results, evidence_digest,
+            structural_verdict, structural_reason, inventory_verdict, inventory_reason,
+            assurance_scope, sink_audit_results, sink_audit_verdict, sink_audit_reason,
+            c11_structural_results, c11_structural_verdict, c11_structural_reason,
+            candidate_results, candidate_verdict, candidate_reason,
+        )
 
     if abstract_verification.verdict == Verdict.COUNTEREXAMPLE or concrete_verification.verdict == Verdict.COUNTEREXAMPLE:
         reason = "concrete_policy_counterexample" if concrete_verification.verdict == Verdict.COUNTEREXAMPLE else "abstract_policy_counterexample"
-        return AssuranceCertificate(AssuranceVerdict.COUNTEREXAMPLE, reason, abstract_verification, concrete_verification, machine_refinement, policy_refinement, call_path_results, evidence_digest)
+        return finish(AssuranceVerdict.COUNTEREXAMPLE, reason)
     if abstract_verification.verdict in (Verdict.INVALID_SPEC,) or concrete_verification.verdict in (Verdict.INVALID_SPEC,):
-        return AssuranceCertificate(AssuranceVerdict.INVALID, "invalid_machine_or_policy_spec", abstract_verification, concrete_verification, machine_refinement, policy_refinement, call_path_results, evidence_digest)
+        return finish(AssuranceVerdict.INVALID, "invalid_machine_or_policy_spec")
     if abstract_verification.verdict != Verdict.VERIFIED or concrete_verification.verdict != Verdict.VERIFIED:
-        return AssuranceCertificate(AssuranceVerdict.UNKNOWN, "verification_not_complete", abstract_verification, concrete_verification, machine_refinement, policy_refinement, call_path_results, evidence_digest)
+        return finish(AssuranceVerdict.UNKNOWN, "verification_not_complete")
     if policy_refinement.verdict == PolicyRefinementVerdict.COUNTEREXAMPLE:
-        return AssuranceCertificate(AssuranceVerdict.COUNTEREXAMPLE, "policy_refinement_counterexample", abstract_verification, concrete_verification, machine_refinement, policy_refinement, call_path_results, evidence_digest)
+        return finish(AssuranceVerdict.COUNTEREXAMPLE, "policy_refinement_counterexample")
     if machine_refinement.verdict == RefinementVerdict.COUNTEREXAMPLE:
-        return AssuranceCertificate(AssuranceVerdict.COUNTEREXAMPLE, "machine_refinement_counterexample", abstract_verification, concrete_verification, machine_refinement, policy_refinement, call_path_results, evidence_digest)
+        return finish(AssuranceVerdict.COUNTEREXAMPLE, "machine_refinement_counterexample")
     if machine_refinement.verdict == RefinementVerdict.INVALID or policy_refinement.verdict == PolicyRefinementVerdict.INVALID:
-        return AssuranceCertificate(AssuranceVerdict.INVALID, "invalid_refinement_contract", abstract_verification, concrete_verification, machine_refinement, policy_refinement, call_path_results, evidence_digest)
+        return finish(AssuranceVerdict.INVALID, "invalid_refinement_contract")
     if machine_refinement.verdict != RefinementVerdict.REFINED or policy_refinement.verdict != PolicyRefinementVerdict.REFINED:
-        return AssuranceCertificate(AssuranceVerdict.UNKNOWN, "refinement_not_complete", abstract_verification, concrete_verification, machine_refinement, policy_refinement, call_path_results, evidence_digest)
+        return finish(AssuranceVerdict.UNKNOWN, "refinement_not_complete")
     if not call_path_results or any(result.status != "COVERED" for result in call_path_results):
-        return AssuranceCertificate(AssuranceVerdict.BLOCKED, "critical_call_path_not_covered", abstract_verification, concrete_verification, machine_refinement, policy_refinement, call_path_results, evidence_digest, structural_verdict, structural_reason)
+        return finish(AssuranceVerdict.BLOCKED, "critical_call_path_not_covered")
     if structural_verdict is not None and structural_verdict != "EXTRACTED_MATCH":
-        return AssuranceCertificate(AssuranceVerdict.BLOCKED, "structural_extraction_not_promoted", abstract_verification, concrete_verification, machine_refinement, policy_refinement, call_path_results, evidence_digest, structural_verdict, structural_reason, inventory_verdict, inventory_reason)
+        return finish(AssuranceVerdict.BLOCKED, "structural_extraction_not_promoted")
     if inventory_verdict is not None and inventory_verdict != "PASS":
-        return AssuranceCertificate(AssuranceVerdict.BLOCKED, "critical_sink_inventory_not_promoted", abstract_verification, concrete_verification, machine_refinement, policy_refinement, call_path_results, evidence_digest, structural_verdict, structural_reason, inventory_verdict, inventory_reason)
-    return AssuranceCertificate(AssuranceVerdict.ASSURED, "finite_chain_assured", abstract_verification, concrete_verification, machine_refinement, policy_refinement, call_path_results, evidence_digest, structural_verdict, structural_reason, inventory_verdict, inventory_reason)
+        return finish(AssuranceVerdict.BLOCKED, "critical_sink_inventory_not_promoted")
+    if assurance_scope == "c11-bound" and (not sink_audit_results or sink_audit_verdict != "PASS"):
+        return finish(AssuranceVerdict.BLOCKED, "critical_sink_audit_not_promoted")
+    if assurance_scope == "c11-bound" and (not c11_structural_results or c11_structural_verdict != "PASS"):
+        return finish(AssuranceVerdict.BLOCKED, "c11_structural_audit_not_promoted")
+    if assurance_scope == "c11-bound" and (not candidate_results or candidate_verdict != "PASS"):
+        return finish(AssuranceVerdict.BLOCKED, "critical_effect_candidates_not_promoted")
+    return finish(AssuranceVerdict.ASSURED, "finite_chain_assured")

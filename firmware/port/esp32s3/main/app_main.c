@@ -299,39 +299,10 @@ static int cmd_pair(int argc, char **argv)
 
 static int cmd_send(int argc, char **argv)
 {
-    if (!paired) { say("run `pair demo a` (and `pair demo b` on the other board) first"); return 1; }
-    if (argc < 2) {
-        say("usage: send <intent> [role:filler ...]");
-        say("  roles: 1=who 2=what 3=where 4=when 5=how");
-        say("  e.g.   send 41 1:7 3:300 4:10       (intent 41, who 7, where 300, when 10)");
-        return 1;
-    }
-    hcp_msg_t m = {0};
-    m.tier   = HCP_TIER_COMPOSED;
-    m.intent = (uint16_t)strtoul(argv[1], NULL, 0);
-    static uint16_t seq = 0;
-    m.seq = seq++;
-    for (int i = 2; i < argc && m.nslot < HCP_MAX_SLOT; i++) {
-        char *colon = strchr(argv[i], ':');
-        if (!colon) { printf("bad slot '%s', want role:filler\n", argv[i]); return 1; }
-        *colon = 0;
-        m.slot[m.nslot].role   = (uint8_t)strtoul(argv[i], NULL, 0);
-        m.slot[m.nslot].filler = (uint16_t)strtoul(colon + 1, NULL, 0);
-        m.nslot++;
-    }
-    if (m.nslot == 0) m.tier = HCP_TIER_GLYPH;
-
-    txreq_t req;
-    int r = link_send(&s_link, &m, 3, req.frame);
-    if (r != LINK_OK) {
-        printf("refused: %d (%s)\n", r,
-               r == LINK_E_ILLEGAL ? "the region profile forbids this transmission"
-             : r == LINK_E_ENCODE  ? "a field does not fit its bit budget" : "session");
-        return 1;
-    }
-    req.len = LINK_FRAME_LEN;
-    xQueueSend(txq, &req, 0);
-    return 0;
+    (void)argc;
+    (void)argv;
+    say("raw console send is disabled: no assurance snapshot is available");
+    return 1;
 }
 
 static int cmd_listen(int argc, char **argv)

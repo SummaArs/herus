@@ -129,6 +129,16 @@ static memory_vault_write_authorization_t authorization_for(const memory_vault_c
     return auth;
 }
 
+static memory_vault_erase_authorization_t erase_authorization_for(
+    const memory_vault_t *vault, uint32_t session_id)
+{
+    memory_vault_erase_authorization_t auth;
+    auth.vault_id = vault->cfg.vault_id;
+    auth.physical_session_id = session_id;
+    auth.human_confirmed = 1u;
+    return auth;
+}
+
 int main(void)
 {
     fake_vault_backend_t f;
@@ -140,6 +150,7 @@ int main(void)
     memory_vault_card_t card2;
     memory_vault_card_t out;
     memory_vault_write_authorization_t auth;
+    memory_vault_erase_authorization_t erase_auth;
     uint8_t prior[MEMORY_VAULT_BLOB_LEN];
 
     printf("\n== M4 encrypted memory vault is authorised, authenticated and fail-closed ==\n");
@@ -223,12 +234,19 @@ int main(void)
        memory_vault_seal(&v, &auth, &card2) == MEMORY_VAULT_OK && f.floor == 3u,
        "M4 a later seal derives a new generation-specific key rather than reusing erased state");
 
+    erase_auth = erase_authorization_for(&v, 7001u);
+    erase_auth.human_confirmed = 0u;
+    ok(memory_vault_erase(&v, &erase_auth) == MEMORY_VAULT_E_AUTH && f.have_blob &&
+       v.state == MEMORY_VAULT_SEALED,
+       "M4 destructive erase is rejected without canonical explicit human authority");
+    erase_auth = erase_authorization_for(&v, 7001u);
     f.fail_erase = 1;
-    ok(memory_vault_erase(&v) == MEMORY_VAULT_E_ERASE && v.state == MEMORY_VAULT_BLOCKED &&
+    ok(memory_vault_erase(&v, &erase_auth) == MEMORY_VAULT_E_ERASE && v.state == MEMORY_VAULT_BLOCKED &&
        memory_vault_seal(&v, &auth, &card2) == MEMORY_VAULT_E_STATE,
        "M4 erase failure blocks both reading and writing instead of assuming deletion");
     f.fail_erase = 0;
-    ok(memory_vault_init(&v, &cfg) == MEMORY_VAULT_OK && memory_vault_erase(&v) == MEMORY_VAULT_OK &&
+    erase_auth = erase_authorization_for(&v, 7002u);
+    ok(memory_vault_init(&v, &cfg) == MEMORY_VAULT_OK && memory_vault_erase(&v, &erase_auth) == MEMORY_VAULT_OK &&
        v.state == MEMORY_VAULT_READY && v.current_generation == 3u && !f.have_blob,
        "M4 successful erase removes the record but never lowers the anti-rollback floor");
 

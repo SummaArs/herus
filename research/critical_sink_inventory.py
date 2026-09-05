@@ -20,7 +20,12 @@ class InventoryResult:
 KNOWN_OPERATIONS = (
     "interaction_take_send(",
     "store_sealed(",
+    "store_active(",
     "memory_vault_seal(",
+    "memory_vault_erase(",
+    "erase_sealed(",
+    "erase(",
+    "commit_record(",
     "core_link_seal_nucleus_intent(",
 )
 
@@ -41,19 +46,38 @@ def inventory(profile: dict[str, Any], root: Path) -> tuple[InventoryResult, ...
     sinks = profile.get("critical_sinks", {})
     declared_ids = set(sinks) if isinstance(sinks, dict) else set()
     results: list[InventoryResult] = []
+    registry_name = profile.get("effect_registry")
+    if not isinstance(registry_name, str) or not registry_name:
+        return (InventoryResult("<registry>", "", "UNPROFILED", "missing_effect_registry"),)
+    registry_path = root / registry_name
+    try:
+        registry = json.loads(registry_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return (InventoryResult("<registry>", registry_name, "UNPROFILED", "invalid_effect_registry"),)
+    classes = registry.get("classes") if isinstance(registry, dict) and registry.get("schema") == "herus.critical-effects.v1" else None
+    if not isinstance(classes, dict) or not classes:
+        return (InventoryResult("<registry>", registry_name, "UNPROFILED", "invalid_effect_registry_schema"),)
     for source in sorted({str(p.relative_to(root)) for p in (root / "firmware").rglob("*.c") if "test_" not in p.name}):
         text = (root / source).read_text(encoding="utf-8")
         for annotation in re.finditer(
-            r"HERUS_CRITICAL_SINK:\s*(?P<id>[A-Za-z0-9_.-]+)\s+operation=(?P<operation>[A-Za-z0-9_]+\()",
+            r"HERUS_CRITICAL_SINK:\s*(?P<id>[A-Za-z0-9_.-]+)\s+class=(?P<class>[A-Za-z0-9_.-]+)\s+operation=(?P<operation>[A-Za-z0-9_]+\()",
             text,
         ):
             sink_id = annotation.group("id")
+            effect_class = annotation.group("class")
             operation = annotation.group("operation")
             entry = sinks.get(sink_id) if isinstance(sinks, dict) else None
-            if sink_id not in declared_ids or not isinstance(entry, dict) or entry.get("source") != source or entry.get("operation") != operation:
-                results.append(InventoryResult(operation, source, "UNPROFILED", "critical_annotation_missing_or_mismatched"))
+            registry_entry = classes.get(effect_class)
+            matches = (
+                sink_id in declared_ids and isinstance(entry, dict)
+                and entry.get("source") == source and entry.get("operation") == operation
+                and entry.get("effect_class") == effect_class
+                and isinstance(registry_entry, dict) and registry_entry.get("operation") == operation
+            )
+            if not matches:
+                results.append(InventoryResult(operation, source, "UNPROFILED", "critical_annotation_profile_registry_mismatch"))
             else:
-                results.append(InventoryResult(operation, source, "PROFILED", "critical_annotation_matches_profile"))
+                results.append(InventoryResult(operation, source, "PROFILED", "critical_annotation_matches_profile_and_registry"))
         for operation in KNOWN_OPERATIONS:
             # Ignore the function definition itself; calls are the inventory target.
             matches = []
