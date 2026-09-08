@@ -45,7 +45,7 @@
 
 /* ------------------------------------------------------------------ physics
  * Every constant below is copied from tools/budget.py, which is the single
- * source for every hardware figure in docs/00-HERUS-MASTER.md. They are
+ * source for every hardware figure in docs/10-arquitetura/00-HERUS-MASTER.md. They are
  * duplicated rather than imported because C cannot import Python — so
  * scenario_selftest() re-derives budget.py's published ranges from them and
  * fails the run if they have drifted apart. Duplication with a check beats a
@@ -79,7 +79,7 @@
 #define SIM_I_BASELINE     0.0212     /* SX1262 retention + ATECC + S3 deep */
 
 /* MCU time actually spent per frame, from test_net X1 measured on host and
- * projected in docs/05-FIRMWARE.md. Deliberately generous. */
+ * projected in docs/10-arquitetura/05-FIRMWARE.md. Deliberately generous. */
 #define SIM_MCU_MS_SEND    5.0
 #define SIM_MCU_MS_RECV    2.0
 

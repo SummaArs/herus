@@ -1,0 +1,40 @@
+{
+  "spec": "hlx/1", "part": "concepts", "ns": "QTY", "pack": "core",
+  "doc": [
+    "Namespace novo: o papel QUANTO existia no HIR desde o inicio e nunca tinha",
+    "simbolo. Os numerais sao renderizados como DIGITOS em todos os oito idiomas:",
+    "o algarismo indo-arabico ja e a unica escrita verdadeiramente universal do",
+    "mundo, e usa-lo elimina de uma vez toda a colisao entre 'um' o numero e",
+    "'um' o artigo."
+  ],
+  "concepts": [
+    { "n": 0,  "id": "N_0",   "gloss": "nenhum",
+      "lex": { "pt": ["0", "nenhum"], "en": ["0", "none"], "es": ["0", "ninguno"], "fr": ["0", "aucun"], "it": ["0", "nessuno"], "de": ["0", "keine"], "ja": ["0"], "zh": ["0"] } },
+    { "n": 1,  "id": "N_1",   "gloss": "um",
+      "lex": { "pt": ["1"], "en": ["1", "one"], "es": ["1"], "fr": ["1"], "it": ["1"], "de": ["1"], "ja": ["1"], "zh": ["1"] } },
+    { "n": 2,  "id": "N_2",   "gloss": "dois",
+      "lex": { "pt": ["2", "dois"], "en": ["2", "two"], "es": ["2", "dos"], "fr": ["2", "deux"], "it": ["2", "due"], "de": ["2", "zwei"], "ja": ["2"], "zh": ["2"] } },
+    { "n": 3,  "id": "N_3",   "gloss": "tres",
+      "lex": { "pt": ["3", "tres"], "en": ["3", "three"], "es": ["3", "tres"], "fr": ["3", "trois"], "it": ["3", "tre"], "de": ["3", "drei"], "ja": ["3"], "zh": ["3"] } },
+    { "n": 4,  "id": "N_4",   "gloss": "quatro",
+      "lex": { "pt": ["4", "quatro"], "en": ["4", "four"], "es": ["4", "cuatro"], "fr": ["4", "quatre"], "it": ["4", "quattro"], "de": ["4", "vier"], "ja": ["4"], "zh": ["4"] } },
+    { "n": 5,  "id": "N_5",   "gloss": "cinco",
+      "lex": { "pt": ["5", "cinco"], "en": ["5", "five"], "es": ["5", "cinco"], "fr": ["5", "cinq"], "it": ["5", "cinque"], "de": ["5", "funf"], "ja": ["5"], "zh": ["5"] } },
+    { "n": 6,  "id": "N_10",  "gloss": "dez",
+      "lex": { "pt": ["10", "dez"], "en": ["10", "ten"], "es": ["10", "diez"], "fr": ["10", "dix"], "it": ["10", "dieci"], "de": ["10", "zehn"], "ja": ["10"], "zh": ["10"] } },
+    { "n": 7,  "id": "N_20",  "gloss": "vinte",
+      "lex": { "pt": ["20", "vinte"], "en": ["20", "twenty"], "es": ["20", "veinte"], "fr": ["20", "vingt"], "it": ["20", "venti"], "de": ["20", "zwanzig"], "ja": ["20"], "zh": ["20"] } },
+    { "n": 8,  "id": "N_50",  "gloss": "cinquenta",
+      "lex": { "pt": ["50", "cinquenta"], "en": ["50", "fifty"], "es": ["50"], "fr": ["50"], "it": ["50"], "de": ["50"], "ja": ["50"], "zh": ["50"] } },
+    { "n": 9,  "id": "N_100", "gloss": "cem",
+      "lex": { "pt": ["100", "cem"], "en": ["100", "hundred"], "es": ["100", "cien"], "fr": ["100", "cent"], "it": ["100", "cento"], "de": ["100", "hundert"], "ja": ["100"], "zh": ["100"] } },
+    { "n": 10, "id": "POUCO", "gloss": "pouco, quantidade pequena nao contada",
+      "lex": { "pt": ["pouco"], "en": ["few", "a little"], "es": ["poco"], "fr": ["peu"], "it": ["poco"], "de": ["wenig"], "ja": ["少し"], "zh": ["少"] } },
+    { "n": 11, "id": "MUITO", "gloss": "muito, quantidade grande nao contada",
+      "lex": { "pt": ["muito"], "en": ["many", "a lot"], "es": ["mucho"], "fr": ["beaucoup"], "it": ["molto"], "de": ["viel"], "ja": ["たくさん"], "zh": ["很多"] } },
+    { "n": 12, "id": "METADE", "gloss": "metade",
+      "lex": { "pt": ["metade"], "en": ["half"], "es": ["mitad"], "fr": ["moitie"], "it": ["meta"], "de": ["halfte"], "ja": ["半分"], "zh": ["一半"] } },
+    { "n": 13, "id": "TOTAL", "gloss": "tudo, o conjunto inteiro",
+      "lex": { "pt": ["total"], "en": ["total"], "es": ["total"], "fr": ["total"], "it": ["totale"], "de": ["gesamt"], "ja": ["全部"], "zh": ["全部"] } }
+  ]
+}

@@ -12,7 +12,7 @@ until Phase 4 closes the gaps listed below.
 ## What is implemented and proven
 
 All of the following are checked by `./prove.sh` on every run — see
-[docs/02-PROTOCOL.md](docs/02-PROTOCOL.md) §4 for the normative statements.
+[docs/10-arquitetura/02-PROTOCOL.md](docs/10-arquitetura/02-PROTOCOL.md) §4 for the normative statements.
 
 | Property | How it is proven |
 |---|---|
@@ -26,20 +26,20 @@ All of the following are checked by `./prove.sh` on every run — see
 | Flooding terminates | Weave dedup bounds relay fan-out; the bench floods and the count is bounded |
 | The decrypt path is rate limited | An unauthenticated stranger cannot drain the battery by making the node do work |
 | Constant airtime across meaning tiers (P1) | Traffic analysis cannot read the tier off the air, because every meaning-carrying frame occupies the radio for the same 246.8 ms |
-| Evidence-scoped threat classification | `make threat-model` rejects incomplete/noncanonical control evidence and distinguishes host-mitigated controls from target-pending and out-of-scope vectors; see [docs/25-MODELO-AMEACAS-EXECUTAVEL.md](docs/25-MODELO-AMEACAS-EXECUTAVEL.md) |
-| Bounded multi-card collection in host | `make memory-collection` requires authorization plus physical access, encrypts/authenticates a fixed index and rejects duplicate, capacity, transaction, tag and rollback failures; see [docs/26-COLECAO-MEMORIA.md](docs/26-COLECAO-MEMORIA.md) |
-| Private collection retrieval in host | `make memory-collection-index` permits only bounded typed queries under physical access, preserves abstention/ambiguity and never opens a card automatically; see [docs/27-INDICE-PRIVADO-COLECAO.md](docs/27-INDICE-PRIVADO-COLECAO.md) |
-| Transactional crash-state recovery in host | `make memory-collection-recovery` promotes only an authenticated successor bound to the durable floor, discards pre-floor preparation and blocks contradictory state; see [docs/28-RECUPERACAO-TRANSACIONAL.md](docs/28-RECUPERACAO-TRANSACIONAL.md) |
-| Local build-input integrity in host | `provenance_audit.py` rejects drift in declared source/proof inputs, unsafe paths, secret-like metadata and unsupported trust claims; see [docs/29-PROVENIENCIA-LOCAL-BUILD.md](docs/29-PROVENIENCIA-LOCAL-BUILD.md) |
-| Composed multi-card memory authority in host | `make memory-collection-finale` connects human-authorized admission, authenticated recovery, bounded typed query and one-shot abstention; it fails if an index auto-opens, legacy retrieval fallback or model authority appears; see [docs/30-GRAND-FINALE-COLECAO.md](docs/30-GRAND-FINALE-COLECAO.md) |
-| Purpose-bound collection session in host | `make memory-physical-session` requires closed operation purpose, non-reused RAM session ID, nonzero transient nonce, canonical adapter assertion, bounded time, cancellation and consumption; collection/index reject an unbound session; see [docs/31-SESSAO-FISICA-PROPOSITO.md](docs/31-SESSAO-FISICA-PROPOSITO.md) |
-| Durable session-reservation recovery in host | `make memory-physical-session-recovery` classifies authenticated `PREPARED`/`COMMITTED` markers against an adapter-declared durable floor, advances only an already-burned ID and blocks contradictions; it has no output path that restores a live session; see [docs/32-RECUPERACAO-RESERVA-SESSAO.md](docs/32-RECUPERACAO-RESERVA-SESSAO.md) |
-| Post-reboot session quarantine in host | `make memory-physical-session-bootstrap` reinitializes the gate to `IDLE`, scrubs any active fixture and imports only the classified floor; old/piso IDs cannot validate or consume and every new session requires a new adapter assertion; see [docs/33-QUARENTENA-BOOT-SESSAO.md](docs/33-QUARENTENA-BOOT-SESSAO.md) |
-| Final host memory-chain composition | `make memory-prehardware-finale` composes bootstrap, M14 and TM-04; any mismatch blocks/scrubs the gate and a success remains `IDLE`, never an active collection capability; see [docs/34-GRAN-FINALE-PRE-HARDWARE.md](docs/34-GRAN-FINALE-PRE-HARDWARE.md) |
+| Evidence-scoped threat classification | `make threat-model` rejects incomplete/noncanonical control evidence and distinguishes host-mitigated controls from target-pending and out-of-scope vectors; see [docs/30-memoria/25-MODELO-AMEACAS-EXECUTAVEL.md](docs/30-memoria/25-MODELO-AMEACAS-EXECUTAVEL.md) |
+| Bounded multi-card collection in host | `make memory-collection` requires authorization plus physical access, encrypts/authenticates a fixed index and rejects duplicate, capacity, transaction, tag and rollback failures; see [docs/30-memoria/26-COLECAO-MEMORIA.md](docs/30-memoria/26-COLECAO-MEMORIA.md) |
+| Private collection retrieval in host | `make memory-collection-index` permits only bounded typed queries under physical access, preserves abstention/ambiguity and never opens a card automatically; see [docs/30-memoria/27-INDICE-PRIVADO-COLECAO.md](docs/30-memoria/27-INDICE-PRIVADO-COLECAO.md) |
+| Transactional crash-state recovery in host | `make memory-collection-recovery` promotes only an authenticated successor bound to the durable floor, discards pre-floor preparation and blocks contradictory state; see [docs/30-memoria/28-RECUPERACAO-TRANSACIONAL.md](docs/30-memoria/28-RECUPERACAO-TRANSACIONAL.md) |
+| Local build-input integrity in host | `provenance_audit.py` rejects drift in declared source/proof inputs, unsafe paths, secret-like metadata and unsupported trust claims; see [docs/30-memoria/29-PROVENIENCIA-LOCAL-BUILD.md](docs/30-memoria/29-PROVENIENCIA-LOCAL-BUILD.md) |
+| Composed multi-card memory authority in host | `make memory-collection-finale` connects human-authorized admission, authenticated recovery, bounded typed query and one-shot abstention; it fails if an index auto-opens, legacy retrieval fallback or model authority appears; see [docs/30-memoria/30-GRAND-FINALE-COLECAO.md](docs/30-memoria/30-GRAND-FINALE-COLECAO.md) |
+| Purpose-bound collection session in host | `make memory-physical-session` requires closed operation purpose, non-reused RAM session ID, nonzero transient nonce, canonical adapter assertion, bounded time, cancellation and consumption; collection/index reject an unbound session; see [docs/30-memoria/31-SESSAO-FISICA-PROPOSITO.md](docs/30-memoria/31-SESSAO-FISICA-PROPOSITO.md) |
+| Durable session-reservation recovery in host | `make memory-physical-session-recovery` classifies authenticated `PREPARED`/`COMMITTED` markers against an adapter-declared durable floor, advances only an already-burned ID and blocks contradictions; it has no output path that restores a live session; see [docs/30-memoria/32-RECUPERACAO-RESERVA-SESSAO.md](docs/30-memoria/32-RECUPERACAO-RESERVA-SESSAO.md) |
+| Post-reboot session quarantine in host | `make memory-physical-session-bootstrap` reinitializes the gate to `IDLE`, scrubs any active fixture and imports only the classified floor; old/piso IDs cannot validate or consume and every new session requires a new adapter assertion; see [docs/30-memoria/33-QUARENTENA-BOOT-SESSAO.md](docs/30-memoria/33-QUARENTENA-BOOT-SESSAO.md) |
+| Final host memory-chain composition | `make memory-prehardware-finale` composes bootstrap, M14 and TM-04; any mismatch blocks/scrubs the gate and a success remains `IDLE`, never an active collection capability; see [docs/30-memoria/34-GRAN-FINALE-PRE-HARDWARE.md](docs/30-memoria/34-GRAN-FINALE-PRE-HARDWARE.md) |
 
 ## What is NOT protected yet
 
-From [docs/05-FIRMWARE.md](docs/05-FIRMWARE.md) §4, restated as security
+From [docs/10-arquitetura/05-FIRMWARE.md](docs/10-arquitetura/05-FIRMWARE.md) §4, restated as security
 consequences:
 
 - **No post-compromise security.** Sessions start from a pre-shared root key.

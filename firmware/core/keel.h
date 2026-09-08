@@ -1,7 +1,7 @@
 /*
  * HERUS keel — what keeps the brain on the wrist.
  *
- * docs/64-HERUS-SOBERANIA-ON-WRIST-E-FRONTEIRA-CORE.md states the product rule:
+ * docs/30-memoria/64-HERUS-SOBERANIA-ON-WRIST-E-FRONTEIRA-CORE.md states the product rule:
  * the wearable is the brain and the Core is a support station — charger, antenna
  * and an authorised feeder of new knowledge. A rule that lives only in a
  * document is a preference. Keel makes it a build failure.
@@ -23,7 +23,7 @@
 
 #include <stdint.h>
 
-/* ESP32-S3 internal SRAM, from the silicon table in docs/00-HERUS-MASTER.md. */
+/* ESP32-S3 internal SRAM, from the silicon table in docs/10-arquitetura/00-HERUS-MASTER.md. */
 #define KEEL_WRIST_SRAM_BYTES    524288u
 /* What the whole HSCA cognitive path is allowed to occupy of it. */
 #define KEEL_WRIST_BUDGET_BYTES   65536u

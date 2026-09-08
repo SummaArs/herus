@@ -26,7 +26,7 @@ import sys
 
 PERIOD_MS_DEFAULT = 2000
 
-# Phase 0 kill criteria, from docs/03-BUILD-GUIDE.md
+# Phase 0 kill criteria, from docs/60-hardware/03-BUILD-GUIDE.md
 KILL_RANGE_M = 150.0        # urban range at >= PDR_FLOOR
 PDR_FLOOR = 0.50
 KILL_TIER05_DB = 2.0        # below this, Tier 0.5 is not worth its complexity

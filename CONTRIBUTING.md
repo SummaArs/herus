@@ -93,9 +93,44 @@ on the machine that runs it.
    Grand Finale, `memory-physical-session-recovery`, `memory-physical-session-recovery-stress`, `memory-physical-session-bootstrap` e `memory-prehardware-finale` quando tocar propósito, consumo, janela, piso, IDs/limites numéricos, boot, reboot, recuperação, coleção ou fallback.
 4. **Update the number, not the adjective.** If the change moves a figure in
    `README.md` or `docs/`, move it there too, in the same commit.
-5. `./prove.sh` must end in `ALL INVARIANTS HOLD` before you push. CI runs the
+5. **Se mexeu na documentação**, rode `python3 tools/docs_index.py` e
+   `python3 tools/check_links.py`: o índice é gerado e os links são provados.
+6. `./prove.sh` must end in `ALL INVARIANTS HOLD` before you push. CI runs the
    identical script on Linux and macOS, so a host-specific assumption fails
    there rather than on the bench.
+
+## 2b. Mexer na camada do significado
+
+Três regras, e cada uma existe porque o contrário já custou caro em algum
+projeto.
+
+**Vocabulário é DADO, não código.** Nunca edite `firmware/core/loom_core.{h,c}`
+— eles são gerados. Mexa em `research/loom/core/*.hlx.json` e rode
+`python3 tools/loom.py --emit`. O `prove.sh` verifica que os arquivos gerados
+são exatamente o que o tear gera, então uma edição à mão vira falha na próxima
+rodada.
+
+**Um símbolo nunca muda de significado.** O campo `n` de um conceito é imutável.
+Um pacote v2 pode acrescentar 60, nunca redefinir 7. Redefinir faria dois
+aparelhos com versões diferentes concordarem nos bytes e discordarem no que eles
+querem dizer — a pior falha possível de um protocolo semântico.
+
+**Se a busca adversarial achar uma classe de defeito, a classe vira
+enumeração.** Não conserte só o caso: acrescente o enumerador que cobre a classe
+inteira em `tools/loom.py`, para que a busca fique livre para procurar a próxima
+em vez de reencontrar a mesma. Foi assim que a enumeração de pares cresceu duas
+vezes nesta revisão.
+
+E o de sempre, que aqui aparece com mais força: **a suíte é a autoridade, não o
+espelho.** `tools/babel_ref.py` é referência executável, `firmware/core/babel.c`
+é o artefato que embarca. Quando os dois discordam,
+`tools/test_babel_cross.py` acusa, e a pergunta certa é qual dos dois está
+errado — nunca "ajusta o teste". Nesta revisão o errado foi o espelho.
+
+Ao acrescentar um idioma, espere que o portão acuse coisas que você não previu.
+Ele achou uma ambiguidade genuína do espanhol (*mañana* é manhã e amanhã) e uma
+do japonês (a forma de ESPERA continha a forma de POUCO). Isso é o portão
+funcionando, não o portão sendo chato.
 
 ## 3. Things that are settled, and why
 
@@ -113,6 +148,16 @@ Not rules for their own sake — each of these was paid for once already.
   build, not fail in the field.
 - **`sim/` compiles `firmware/` unmodified.** There is no simulator-only
   variant. If there were, a passing run would mean nothing.
+- **Recusar é capacidade, não modo de falha.** Uma lacuna tipada é um pedido de
+  capacidade com endereço. Um compilador que adivinha não é um compilador, e
+  "quase certo" é pior que "não sei" em todo lugar deste repositório.
+- **O portador chega certo ou não chega.** O Aether nunca entrega um significado
+  diferente do enviado. Não entregar é aceitável — a pessoa repete. Entregar
+  outra coisa faria alguém agir sobre uma frase que ninguém disse.
+- **Registre o resultado negativo.** Se você tentou uma melhoria, mediu, e ela
+  não pagou, deixe o número no comentário. Tolerar um símbolo de preâmbulo
+  errado leva as entregas certas de 1840 para 1841 em 2000 ensaios — e essa
+  linha existe para que a próxima pessoa não gaste a tarde de novo.
 - **Keep the uncomfortable numbers.** The 365 m wrist range, the 10× flooding
   cost, the 93.5 % delivery, the indoor solar trickle. A document that only
   lists its wins is marketing. If a change makes one of them worse, say so in
@@ -127,8 +172,8 @@ number or the invariant that changed.
 
 ## 5. Before touching hardware
 
-Read [docs/05-FIRMWARE.md](docs/05-FIRMWARE.md) §6 end to end, verify the pin
+Read [docs/10-arquitetura/05-FIRMWARE.md](docs/10-arquitetura/05-FIRMWARE.md) §6 end to end, verify the pin
 map with the selftest before the first flash (ninety seconds, saves an
 afternoon), and never burn eFuse on a board you care about. Phase 0 and its two
 pre-committed kill criteria are in
-[docs/03-BUILD-GUIDE.md](docs/03-BUILD-GUIDE.md#phase-0--the-weekend-that-decides-the-project).
+[docs/60-hardware/03-BUILD-GUIDE.md](docs/60-hardware/03-BUILD-GUIDE.md#phase-0--the-weekend-that-decides-the-project).

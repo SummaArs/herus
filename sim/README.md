@@ -257,6 +257,6 @@ decoration — the same rule `prove.sh` runs on.
 Nothing here is evidence about antennas, enclosures, bodies, or streets. The
 propagation model is a model. **Phase 0 is still the gate**: print the
 30×30×10 shell, strap a LilyGO T3-S3 to a wrist, and walk a measured urban
-route — `docs/03-BUILD-GUIDE.md § Phase 0`. The bench exists so that everything
+route — `docs/60-hardware/03-BUILD-GUIDE.md § Phase 0`. The bench exists so that everything
 *above* the antenna is already settled by the time you are standing outside with
 a devkit on your arm.

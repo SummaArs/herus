@@ -291,7 +291,7 @@ static void run_termination(void)
  *   carriers           N mobile nodes, uniform initial position
  *   speed              1.2 to 14.0 m/s, sign alternating, reflecting at the ends
  *   contact radius     650 m — the urban capsule-to-capsule figure from
- *                      docs/00-HERUS-MASTER.md section 6, not a new claim
+ *                      docs/10-arquitetura/00-HERUS-MASTER.md section 6, not a new claim
  *   step               60 s, horizon 12 h
  *   bounds             DRIFT_MAX_HOPS, DRIFT_MAX_FANOUT and a TTL, all enforced
  *

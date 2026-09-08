@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Herus physical-layer and energy budget calculator.  stdlib only.
 
-Every hardware number in docs/00-HERUS-MASTER.md comes from this file. Run it
+Every hardware number in docs/10-arquitetura/00-HERUS-MASTER.md comes from this file. Run it
 and the doc is reproducible; change an assumption and the doc is wrong until it
 is rerun. Assumptions are named constants, never inline magic.
 
@@ -344,7 +344,7 @@ def main():
               % (mah, mah / total, total, 3.0 + mah / 100.0))
     print("  30 days is already far past any real need, so trade capacity for")
     print("  thickness: 150 mAh is the right cell. See the volume ledger in")
-    print("  docs/00-HERUS-MASTER.md section 9.")
+    print("  docs/10-arquitetura/00-HERUS-MASTER.md section 9.")
     print("\n  charge rate: a 150 mAh cell at 1C needs %.0f min to full; the"
           % 60.0)
     print("  draft's '20 minutes' implies 3C, which inflates or kills the cell.")

@@ -1,153 +1,141 @@
 # HERUS
 
-**Memória pessoal soberana, conversa local e comunicação essencial — com significado antes de mensagem.**
+**A camada do significado.** Acima do transporte, abaixo do idioma.
 
-O HERUS é um sistema pessoal de memória, conversa e comunicação para o cotidiano e para momentos em que telefone, rede móvel e interfaces densas não são a ferramenta certa. No relógio, ele ajuda a pessoa a perguntar, guardar e reencontrar o essencial. No Paper-Core, concentra escrita, estudo, conhecimento local e memória. Em vez de depender de uma LLM hospedada ou transmitir áudio e longas mensagens, ele trabalha com **significados essenciais**, cartões de contexto e autoridade física.
+O HERUS transmite **intenção**, não texto. A unidade é um significado canônico
+de **24 bytes** — tipado, fechado e verificável — e essa escolha tem três
+consequências que não são funcionalidades, são propriedades:
 
-O produto foi pensado para trilhas, áreas rurais, deslocamentos, equipes de apoio, eventos externos e qualquer situação em que coordenação clara importa mais que uma conversa longa.
+- **Quem escreve e quem lê não precisam da mesma língua.** Você digita
+  `avisa maria cheguei em casa agora`; do outro lado aparece
+  `マリアに今家で着いたと伝えて`. Ninguém traduziu nada: o que viajou nunca foi
+  texto. Oito idiomas, ~4,3 bilhões de falantes, zero nuvem.
+- **O canal virou escolha, não requisito.** 24 bytes cabem no ar de uma sala
+  como som, na tela como selo, num toque NFC, numa dwell de LoRa, numa rajada de
+  satélite, ou no bolso de quem passa andando na outra direção.
+- **O que não cabe vira lacuna tipada, nunca aproximação.** Um compilador que
+  adivinha não é um compilador. Recusar é a capacidade central.
 
-> O HERUS não tenta substituir o telefone. Ele existe para preservar comunicação humana essencial quando conectividade, atenção ou privacidade falham.
+> **Experimente agora, sem hardware:** [HERUS Aberto](https://claude.ai/code/artifact/1fe7f409-baf4-4c8f-ab17-138469e3a057)
+> — dois telefones, um toca, o outro ouve. Sem internet, sem operadora, sem
+> conta, sem servidor. A página reproduz **1.637 vetores do firmware** na
+> própria carga e diz em vermelho se um único divergir.
 
-## A experiência HERUS
+## Por que isto fecha onde dois campos travaram
 
-A pessoa usa um vestível simples. Ela inicia uma interação por um gesto físico, expressa uma intenção curta e recebe confirmação clara por voz local, interface mínima ou vibração. Nada é transmitido sem confirmação física.
+Não é ideia nova querer transmitir significado em vez de bits. **Comunicação
+semântica** é linha central de pesquisa de 6G, mas quase toda implementação é
+neural: codificador e decodificador aprendidos juntos, que só se entendem se
+compartilharem os mesmos pesos, e cujo comportamento não se verifica.
+**Interlíngua** é mais antiga — UNL, AMR — e o veredito da própria literatura é
+que a interlíngua universal seria o método ideal de tradução, e ninguém
+conseguiu construí-la.
 
-| Princípio | O que significa na prática |
-|---|---|
-| **Significado primeiro** | O rádio carrega uma intenção estruturada, não áudio ou uma transcrição literal. |
-| **Privado por padrão** | O produto não depende de conta, nuvem, identidade transmitida, localização ou histórico de conversa para operar. |
-| **Pessoa no comando** | Inteligência pode sugerir, resumir ou perguntar; ela nunca envia, publica, compra ou altera algo por conta própria. |
-| **Offline de verdade** | O funcionamento essencial é local e continua útil sem sinal de celular ou internet. |
-| **Falhar fechado** | Ambiguidade, confiança insuficiente, replay, expiração ou vínculo revogado bloqueiam a ação em vez de “tentar mesmo assim”. |
+Os dois falham pelo mesmo motivo: **tentaram ser totais.**
 
-## Evolução para produto de massa
+O HERUS é o oposto. Fecha o vocabulário em **143 conceitos essenciais**, prova a
+canonicidade deles, e transforma o que não cabe em pedido de capacidade com
+endereço. **O que faz funcionar é exatamente aquilo que os antecessores se
+recusaram a fazer — recusar.**
 
-A direção de produto passa a priorizar valor individual antes do efeito de rede. O **HERUS One** é a porta de entrada: um wearable discreto, com botão físico, háptica, estado de privacidade e memória seletiva confirmada. O **Núcleo/Dock** é a expansão de bolso que acrescenta bateria, antena, armazenamento controlado e computação local. A comunicação LoRa, a linguagem privada e o Anchor continuam como multiplicadores, não como requisito para o primeiro valor.
+Resultado: 6 KB de código de compilador, roda numa bateria de moeda, e as duas
+pontas precisam do mesmo pacote de 80 KB em vez dos mesmos pesos de rede.
 
-Essa mudança não reduz a autoridade humana. Nenhuma camada pode persistir memória, enviar significado ou criar HCP sem confirmação física. O objetivo é tornar a experiência mais simples e desejável sem transformar a inteligência em autonomia.
+## A pilha
 
-## O sistema: HERUS One + Núcleo/Dock
-
-O HERUS é composto por duas presenças complementares.
-
-| Elemento | Papel |
-|---|---|
-| **HERUS One** | A interface pessoal e imediata: gesto, confirmação física, vibração, estado de privacidade e memória seletiva. Entrada inicial sem tela obrigatória e sem captura contínua. |
-| **Núcleo/Dock** | Um dispositivo circular de bolso que amplia bateria, antena, armazenamento controlado e capacidade de computação local. Ele atua como estação-base pessoal para o One. |
-| **Anchor/Field** | Expansões para cobertura ciphertext-only, grupos e equipes de campo; não são pré-requisitos para o primeiro valor individual. |
-
-O Núcleo é também a base para a próxima evolução do HERUS: um **complemento seletivo de memória pessoal**. A visão não é gravar toda a vida da pessoa. É identificar, com consentimento, ideias, decisões, compromissos e contexto que valem recuperar no futuro, descartando o restante.
-
-Uma futura LLM local poderá ajudar o Núcleo a organizar e explicar essa memória. Ela será uma camada de raciocínio e recuperação, não uma fonte de autonomia: qualquer uso de comunicação, armazenamento sensível ou ação externa continuará sob controle da pessoa.
-
-O HERUS também passa a ser uma plataforma de comunicação multimodo. LoRa permanece disponível para estados essenciais em campo, estrada e lugares remotos; BLE, ESP-NOW e Wi-Fi local podem ser usados em ambiente urbano ou junto ao Paper-Core para maior volume e menor latência. A escolha é feita por um planejador tipado, sem transmissão automática, e trocar de transporte nunca aumenta a autorização.
-
-A telemetria pessoal segue uma fronteira própria. O relógio poderá medir movimento e métricas de bem-estar como um wearable esportivo, mas cada amostra precisa de qualidade, origem, janela e consentimento. Coleta, retenção e compartilhamento são autorizações diferentes; o HERUS não se apresenta como dispositivo médico e não cria valores quando o sensor está indisponível.
-
-## HSCA — a camada semântica cognitiva
-
-O HERUS sempre transmitiu significado. A **HSCA** é a consequência disso levada até o fim: se a unidade de comunicação tem 34 bytes, o canal deixa de ser um requisito e vira uma escolha, e o alcance deixa de ser função da potência para virar função do tempo.
-
-| Camada | O que resolve |
-|---|---|
-| **Herald** | compila a fala curta numa intenção canônica: frases diferentes com o mesmo significado produzem o **mesmo** quadro, byte a byte. O que não é representável vira uma lacuna tipada, nunca uma aproximação. |
-| **Ladder** | onze canais — toque, glifo óptico, som, BLE, BLE-Coded, ESP-NOW, Wi-Fi, LoRa, malha, satélite e custódia. Um significado cabe em **11 de 11**; quatro segundos de fala cabem em 8. |
-| **Drift** | quando não há canal nenhum agora, o significado viaja com quem passa. Custódia sem leitura, com salto, fanout e expiração limitados. |
-| **Aura** | quem está por perto, sem servidor, sem conta, sem localização e sem identificador estável. |
-| **Keel** | mantém tudo isso no pulso: **1.028 bytes** de estado para a via cognitiva inteira, e uma matriz que dá ao Core exatamente quatro ações — carregar, retransmitir cifra, uplink de satélite e propor conhecimento. |
-
-Nada disso invalida os números de RF e energia já orçados: a forma de fio da HSCA são 24 bytes bit-compatíveis com o HCP Tier 1, ou seja, os mesmos 34 bytes de 246,8 ms em SF9.
-
-Evidência host desta revisão: **206 invariantes** em seis suítes, um corpus congelado de 59 pares entrada/saída reproduzido exatamente, e **26 de 26** controles removidos deliberadamente e detectados. Continua sem dado de campo — alcance, energia, ergonomia e fala seguem pendentes da Fase 0.
-
-A tese, o método, os limites e o que foi deliberadamente recusado estão em [Paradigma HSCA](docs/105-HERUS-HSCA-PARADIGMA.md).
-
-## Para quem é
-
-| Cenário | Valor do HERUS |
-|---|---|
-| **Trilhas, campo e estrada** | Coordenação curta entre pessoas sem depender de cobertura móvel. |
-| **Equipes de apoio** | Estados e intenções rápidos, sem a fricção de rádio de voz contínuo. |
-| **Família e grupos pequenos** | Confirmação de chegada, espera, encontro, mudança de plano ou ajuda. |
-| **Rotinas com baixa atenção visual** | Interação por gesto, fala curta e háptica em vez de telas e menus. |
-| **Memória pessoal diária** | Recuperação privada de ideias, decisões e compromissos que a pessoa autorizou lembrar. |
-| **Relógio e Paper-Core** | Conversa local no pulso, estudo e escrita em uma estação pessoal soberana. |
-
-## Estado atual
-
-O HERUS está em **release candidate pré-hardware**. A arquitetura, os contratos de privacidade, a confirmação física, a inteligência local limitada, o vínculo entre vestível e Núcleo, as barreiras de modelo, o cofre cifrado de cartão mínimo, a consolidação humana limitada, a recuperação tipada controlada, sua apresentação simbólica de status, a composição Grand Finale da cadeia de memória, uma coleção multi-cartão transacional limitada, seu índice privado abstencionista, sua composição multi-cartão com confirmação humana e sem fallback, seu oráculo de recuperação por interrupção, sua sessão de coleção vinculada a propósito com expiração e consumo, seu oráculo de recuperação durável de reservas que nunca reativa sessão após reboot, sua quarentena de boot que importa somente o piso e apaga evidência transitória, seu Gran Finale host que compõe boot, coleção e TM-04 sem reativar sessão, sua primeira prova de fogo determinística de recuperação/quarentena que encontrou e bloqueou piso terminal, sua referência local de integridade de build e um modelo de ameaças executável para controles host, lacunas de alvo e escopo residual foram implementados e verificados em host.
-
-Ainda não há resultados de campo. Alcance, consumo, ergonomia, reconhecimento de fala, comportamento háptico, integração BLE, armazenamento protegido e desempenho de uma LLM local precisam ser medidos no hardware real antes de se tornarem alegações de produto.
-
-A próxima etapa física é a Fase 0: dois devkits, bancada curta, medição RF, energia e interação, com critérios de interrupção definidos antes da coleta.
-
-## Documentação principal
-
-| Documento | Para quê serve |
-|---|---|
-| [Visão do produto](docs/04-PRODUCT.md) | Propósito, proposta de valor e direção de produto. |
-| [Produto desejável e adoção](docs/38-PRODUTO-DESEJAVEL-E-ADOCAO.md) | Reposicionamento para valor individual, HERUS One, Dock, portfólio, UX e hipóteses de adoção. |
-| [Núcleo](docs/06-NUCLEO.md) | Papel do dispositivo circular de bolso, privacidade e caminho de inteligência local. |
-| [LLM local em ESP32](docs/40-LLM-LOCAL-ESP32-E-HERUS.md) | Avaliação da demonstração ESP32-S3, orçamento de memória e workload correto para o HERUS. |
-| [Proposta tipada e invariantes](docs/41-PROPOSTA-TIPADA-E-INVARIANTES.md) | Fronteira fail-closed entre modelo local, candidato de memória e autoridade humana. |
-| [Memória seletiva](docs/17-MEMORIA-SELETIVA.md) | Política inicial para lembrar ideias, decisões e contexto útil sem gravar a vida inteira. |
-| [Captura consentida](docs/18-SESSAO-CAPTURA-MEMORIA.md) | Sessão física, limitada e transitória que antecede qualquer memória pessoal. |
-| [Extração de candidatos](docs/19-EXTRACAO-CANDIDATOS.md) | Interpretação local e conservadora que cria sinais tipados sem guardar a fala. |
-| [Cofre de memória](docs/20-COFRE-MEMORIA.md) | Cartão mínimo cifrado, autorização humana separada, geração anti-rollback e apagamento fail-closed. |
-| [Consolidação humana](docs/21-CONSOLIDACAO-HUMANA.md) | Revisão física limitada, expiração sem retenção, conflito não automático, recuperação por identificador e remoção controlada. |
-| [Recuperação controlada](docs/22-RECUPERACAO-SEMANTICA.md) | Matching local de cartões tipados com limiar, razões e ambiguidade explícita; sem busca livre, escrita ou autoridade de modelo. |
-| [Interface de recuperação](docs/23-INTERFACE-RECUPERACAO-HUMANA.md) | Status simbólico one-shot para correspondência, ausência e ambiguidade; sem conteúdo livre, desempate, escrita, envio ou ação. |
-| [Grand Finale de memória](docs/24-GRAND-FINALE-MEMORIA.md) | Prova composta da cadeia de captura ao status humano, com conflito/modelo bloqueantes e gates explícitos para hardware e avaliação. |
-| [Modelo de ameaças executável](docs/25-MODELO-AMEACAS-EXECUTAVEL.md) | Evidência rastreável para riscos de rádio, trust, memória, telemetria e modelo; lacunas físicas e supply chain continuam explícitas. |
-| [Coleção de memória](docs/26-COLECAO-MEMORIA.md) | Até oito cartões mínimos autorizados em uma transação cifrada; recuperação, exclusão e compactação lógicas sem alegação de mídia física. |
-| [Índice privado da coleção](docs/27-INDICE-PRIVADO-COLECAO.md) | Consulta tipada, física e limitada que retorna apenas match inequívoco, ausência ou ambiguidade; sem listagem, abertura automática, texto ou modelo. |
-| [Recuperação transacional](docs/28-RECUPERACAO-TRANSACIONAL.md) | Oráculo C11 de estados pós-interrupção: promove somente sucessor autenticado ancorado no piso, descarta preparação pré-piso e bloqueia contradições; sem alegação de power-loss físico. |
-| [Proveniência local de build](docs/29-PROVENIENCIA-LOCAL-BUILD.md) | Inventário direto e digests locais fail-closed para insumos de prova; não é SBOM completo, atestação assinada, SLSA, build reproduzível ou garantia de supply chain. |
-| [Grand Finale da coleção](docs/30-GRAND-FINALE-COLECAO.md) | Cadeia multi-cartão de consentimento à apresentação abstencionista; sem abertura automática, fallback unitário, autoridade de modelo ou alegação de backend/hardware físico. |
-| [Sessão física vinculada a propósito](docs/31-SESSAO-FISICA-PROPOSITO.md) | Gate transitório para inserir, abrir, remover, compactar ou consultar a coleção com propósito, validade e consumo explícitos; não prova gesto, pessoa, biometria ou hardware. |
-| [Recuperação de reserva de sessão](docs/32-RECUPERACAO-RESERVA-SESSAO.md) | Oráculo pós-reboot para marcadores autenticados e piso durável declarado: avança apenas ID queimado, bloqueia contradições e nunca reativa uma sessão. |
-| [Quarentena de boot da sessão](docs/33-QUARENTENA-BOOT-SESSAO.md) | Costura C11 que reconstrói o gate em `IDLE`, importa somente o piso recuperado e exige novo evento para toda sessão posterior. |
-| [Gran Finale pré-hardware](docs/34-GRAN-FINALE-PRE-HARDWARE.md) | Composição final host de bootstrap, M14 e TM-04: qualquer divergência bloqueia; o único sucesso permanece `IDLE` e pede sessão nova. |
-| [Prova de fogo host](docs/35-PROVA-DE-FOGO-HOST.md) | Campanha F1 determinística: snapshots hostis atravessam recuperação e bootstrap; corrigiu o piso terminal `UINT32_MAX` antes de atingir hardware. |
-| [Especificação do sistema](docs/00-HERUS-MASTER.md) | Arquitetura geral, protocolo, segurança, energia e limites conhecidos. |
-| [Guia de construção](docs/03-BUILD-GUIDE.md) | Próximos passos de hardware e critérios para interromper ou prosseguir. |
-| [HERUS indispensável e inteligência própria](docs/47-HERUS-INDISPENSAVEL-E-INTELIGENCIA-PROPRIA.md) | Revisão de produto, mercado, Watch, Paper-Core, conhecimento local e tecnologia sem LLM hospedada. |
-| [Comunicação multimodo e métricas pessoais](docs/48-HERUS-COMUNICACAO-MULTIMODO-E-METRICAS-PESSOAIS.md) | LoRa remoto, ESP-NOW/BLE/Wi-Fi local, seleção soberana de transporte e telemetria pessoal não médica. |
-| [Ambiente virtual pré-hardware](docs/49-AMBIENTE-VIRTUAL-PRE-HARDWARE.md) | Bancada determinística que compõe Watch, Paper-Core, sensores, bateria, transportes e LoRa antes da bancada física. |
-| [Resonator, VSA e raciocínio](docs/51-HERUS-RESONATOR-VSA-E-RACIOCINIO.md) | Fatoração vetorial, ponte VSA→reasoner, margens, ambiguidade e limites honestos de generalização. |
-| [Segurança](SECURITY.md) | O que a criptografia protege hoje e o que ainda depende de integração física. |
-| [Aprendizados do Atlas_Node](docs/44-ATLAS-NODE-APRENDIZADOS.md) | Comparação auditável com um sistema ESP32/BLE/rádio e adaptação de transporte limitada. |
-| [Paradigma HSCA](docs/105-HERUS-HSCA-PARADIGMA.md) | Significado de 34 bytes, as cinco camadas, o que foi recusado e por quê. |
-| [Herald](docs/106-HERUS-HERALD-COMPILADOR-DE-INTENCAO.md) | Compilador de intenção: convergência de paráfrase, cobertura total e lacunas tipadas. |
-| [Ladder](docs/107-HERUS-LADDER-ESCADA-DE-PORTADORES.md) | Os onze degraus, elegibilidade, ordenação e a fronteira de autoridade. |
-| [Drift](docs/108-HERUS-DRIFT-ALCANCE-NO-TEMPO.md) | Custódia sem leitura, limites duros e alcance medido como função do tempo. |
-| [Aura](docs/109-HERUS-AURA-PRESENCA-PRIVADA.md) | Presença sem servidor: ratchet de época, revogação e limites honestos. |
-| [Keel](docs/110-HERUS-KEEL-SOBERANIA-MEDIDA.md) | Orçamento medido no pulso e a matriz de papéis do Core. |
-
-## Estado de engenharia
-
-A versão consolidada pode ser verificada localmente com:
-
-```bash
-./prove.sh --quiet
-make -C firmware watch-memory-frontend
-make -C firmware transport-selector
-make -C firmware personal-telemetry
-make -C firmware symbolic-reasoner
-make -C firmware resonator
-make -C firmware hsca
-python3 tools/test_hsca_corpus.py
-python3 tools/test_hsca_redteam.py
-make -C sim virtual
-make -C sim virtual-mutation
+```
+   pessoa                     (qualquer língua: fala, toque, glifo)
+      |  Babel.compile         143 conceitos × 8 idiomas, recusa tipada
+   HIR — 24 bytes canônicos de SIGNIFICADO
+      |  Aether / Ladder       som, luz, BLE, LoRa, malha, satélite, custódia
+   HIR — os mesmos 24 bytes
+      |  Babel.render          telegráfico, natural, e reconhecível de volta
+   pessoa                     (outra língua: voz, háptica, glifo)
 ```
 
-O comando executa as verificações portáveis, o simulador e o gate de mutação. `make -C firmware hsca` exercita a camada semântica cognitiva — compilador de intenção, escada de portadores, custódia, presença privada e o orçamento do pulso — e a composição final com o Core desligado; `tools/test_hsca_corpus.py` reexecuta o corpus congelado de intenção e `tools/test_hsca_redteam.py` remove um controle da HSCA por vez e exige que a suíte perceba. `make -C firmware symbolic-reasoner` exercita o núcleo generativo simbólico local, com composição, planejamento, diálogo, prova e abstention; `make -C firmware resonator` exercita a fatoração VSA, a ponte VSA→reasoner e o stress de codebook; `make -C sim virtual` executa a bancada pré-hardware de Watch, Paper-Core, transportes, telemetria, bateria abstrata e um enlace LoRa real dentro do modelo; `make -C sim virtual-mutation` recompila sete remoções deliberadamente inseguras e exige que todas sejam detectadas. A análise Atlas_Node inclui ainda a suíte explícita `make -C firmware delivery-plan`. Um resultado positivo confirma contratos de software e autoriza somente o início controlado da bancada; ele **não** constitui evidência de alcance, energia, UX, fluência universal ou desempenho físico.
+| camada | o que resolve |
+|---|---|
+| **[Loom](docs/25-significado/201-HERUS-LOOM-O-TEAR.md)** | o tear: uma especificação `.hlx.json`, quatro artefatos gerados, dez invariantes de portão. Acrescentar um idioma ou um domínio é escrever dado, não editar firmware. |
+| **[Babel](docs/25-significado/202-HERUS-BABEL-INTERLINGUA-FECHADA.md)** | a interlíngua fechada. Frases diferentes, línguas diferentes, o **mesmo** digest byte a byte. |
+| **[Aether](docs/25-significado/203-HERUS-AETHER-SOM-E-LUZ.md)** | 33 bytes que atravessam o ar como 16-FSK e a tela como selo 18×18. Reed-Solomon conserta dois bytes; o CRC-32 é a última palavra. |
+| **[Herald](docs/25-significado/106-HERUS-HERALD-COMPILADOR-DE-INTENCAO.md)** | o compilador de intenção original, congelado, cujo corpus Babel reproduz idêntico. |
+| **[Ladder](docs/25-significado/107-HERUS-LADDER-ESCADA-DE-PORTADORES.md)** | onze portadores; um significado cabe em 11 de 11, quatro segundos de fala cabem em 8. |
+| **[Drift](docs/25-significado/108-HERUS-DRIFT-ALCANCE-NO-TEMPO.md)** | quando não há canal agora, o significado viaja com quem passa. Custódia sem leitura. |
+| **[Aura](docs/25-significado/109-HERUS-AURA-PRESENCA-PRIVADA.md)** | quem está por perto, sem servidor, sem conta, sem localização, sem identificador estável. |
+| **[Keel](docs/25-significado/110-HERUS-KEEL-SOBERANIA-MEDIDA.md)** | 1.028 bytes de estado para a via cognitiva inteira, e exatamente quatro ações para o Core. |
 
-O núcleo generativo simbólico e sua definição de equivalência funcional estão documentados em [`docs/50-HERUS-NUCLEO-GENERATIVO-SIMBOLICO.md`](docs/50-HERUS-NUCLEO-GENERATIVO-SIMBOLICO.md). O Resonator VSA, a ponte de autoridade e os limites de generalização estão em [`docs/51-HERUS-RESONATOR-VSA-E-RACIOCINIO.md`](docs/51-HERUS-RESONATOR-VSA-E-RACIOCINIO.md). A fronteira entre uma proposta de modelo e um candidato de memória pode ser exercitada com `make -C firmware memory-proposal`. A política multimodo pode ser exercitada com `make -C firmware transport-selector`, e a telemetria pessoal consentida com `make -C firmware personal-telemetry`. O sizing grosseiro da demonstração de LLM em ESP32-S3 pode ser reproduzido separadamente com `make -C firmware llm-budget-check`. Esses alvos validam somente contratos e comparações C11/Python host-only; persistência, HCP, comunicação, inferência, qualidade, autonomia e desempenho continuam exigindo os gates humanos e físicos existentes.
+**A pessoa continua no comando.** Nenhuma camada pode persistir memória, enviar
+significado ou criar HCP sem confirmação física. Isso valia antes e continua
+valendo palavra por palavra depois de tudo o que foi acrescentado.
 
-A história detalhada de experimentação, provas e decisões de implementação é preservada no ramo [`internal/engineering-archive`](https://github.com/SummaArs/herus/tree/internal/engineering-archive). Ela existe para rastreabilidade de engenharia, sem ocupar a apresentação principal do produto.
+## O balanço
 
-## Licença
+**Provado, com o número ao lado:**
 
-Proprietary. Copyright © 2026 Gustavo Gonçalves. Todos os direitos reservados — veja [LICENSE](LICENSE).
+| evidência | número |
+|---|---|
+| ida-e-volta: todo significado alcançável × todo idioma | **340.728** |
+| C do firmware × referência executável | **681.530** comparações, 0 divergências |
+| busca adversarial, 11 invariantes, semente reproduzível | **350.000** tentativas |
+| invariantes em C (Babel + Aether) | **59 + 23** |
+| mutantes mortos (Babel + Aether) | **16/16 + 12/12** |
+| erros de 1 e 2 bytes, exaustivo | **8.415 + 4.224**, todos corrigidos |
+| quadros com 3 a 8 bytes errados | **40.000** recusados, **0** entregues errados |
+| canal adversarial (ruído, ganho, recorte, deriva, eco, tom) | **2.000** ensaios, **0** entregas erradas |
+| vetores do firmware reproduzidos no navegador | **1.637**, 0 divergências |
+| extensão de terceiro: um pacote de domínio no mesmo portão | **19** invariantes, 6 recusas tipadas |
+| suítes independentemente falsificáveis no `prove.sh` | **99** |
+
+**Não provado, e não vou dizer que foi:**
+
+- **Canal simulado não é ar.** Alcance real, reverberação de sala, resposta de
+  alto-falante e AGC de microfone seguem pendentes da Fase 0.
+- **O perfil aberto da página não é cifrado nem autenticado** — escolha
+  declarada. Sigilo é o perfil de rádio, com sessão e chave.
+- **Achar o selo numa foto** é outro problema: está provado o codec, não a câmera.
+- **143 conceitos** cobrem coordenação essencial, não toda fala humana.
+- **Fala, háptica em hardware e bateria** são medições que ninguém fez.
+- **A qualidade dos oito idiomas** foi escrita e revisada por uma pessoa. Um
+  falante nativo vai achar coisa a corrigir, e o `.hlx.json` existe para que
+  isso seja um *pull request* de dados.
+
+## Rodar
+
+```
+./prove.sh                 as 99 suítes; sai 1 se qualquer número regredir
+./prove.sh --quiet         só os veredictos
+
+python3 tools/loom.py --check          o portão do pacote semântico (L1-L10)
+cd firmware && make babel aether       invariantes em C
+python3 tools/test_babel_cross.py      o C e a referência são a mesma função
+python3 tools/build_web.py             monta a página do navegador
+```
+
+**Um número asserido é rumor; um número medido ao lado da sua forma fechada é
+resultado.** Rode `prove.sh` antes de confiar em qualquer figura deste
+repositório — inclusive nas de cima.
+
+## Onde está o quê
+
+| | |
+|---|---|
+| [**docs/INDEX.md**](docs/INDEX.md) | 110 documentos em 8 seções, com índice gerado e links provados |
+| [a camada do significado](docs/25-significado/200-HERUS-A-CAMADA-DO-SIGNIFICADO.md) | a redefinição, a comparação com o estado da arte, e os onze defeitos que o portão encontrou |
+| [especificação do sistema](docs/10-arquitetura/00-HERUS-MASTER.md) | arquitetura geral, protocolo, segurança, energia e limites conhecidos |
+| [visão do produto](docs/20-produto/04-PRODUCT.md) | propósito, proposta de valor e direção |
+| [guia de construção](docs/60-hardware/03-BUILD-GUIDE.md) | próximos passos de hardware e critérios para interromper ou prosseguir |
+| [segurança](SECURITY.md) | o que a criptografia protege hoje e o que depende de integração física |
+| [contribuir](CONTRIBUTING.md) | como acrescentar sem quebrar as garantias |
+
+## Estado
+
+**Release candidate pré-hardware.** A arquitetura, os contratos de privacidade,
+a confirmação física, a interlíngua fechada, os portadores acústico e óptico, a
+memória seletiva cifrada e o modelo de ameaças executável estão implementados e
+verificados em host.
+
+A próxima etapa física é a Fase 0, e ela tem **duas** frentes: rádio e energia
+em bancada, e a curva de entrega acústica medida em sala contra a curva simulada.
+A segunda é nova, e é a que muda o risco do projeto — até aqui toda alegação de
+campo dependia de fabricar algo; agora existe um caminho em que a primeira
+evidência de campo custa dois telefones e uma tarde.

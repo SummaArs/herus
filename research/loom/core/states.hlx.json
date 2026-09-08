@@ -1,0 +1,29 @@
+{
+  "spec": "hlx/1", "part": "concepts", "ns": "ST", "pack": "core",
+  "concepts": [
+    { "n": 0, "id": "BEM", "gloss": "estado bom", "frozen": true,
+      "lex": { "pt": ["bem"], "en": ["well", "fine"], "es": ["bien"], "fr": ["bien"], "it": ["bene"], "de": ["gut"], "ja": ["元気"], "zh": ["良好"] } },
+    { "n": 1, "id": "MAL", "gloss": "estado ruim", "frozen": true,
+      "lex": { "pt": ["mal"], "en": ["unwell", "bad"], "es": ["mal"], "fr": ["mal"], "it": ["male"], "de": ["schlecht"], "ja": ["体調が悪い"], "zh": ["不好"] } },
+    { "n": 2, "id": "SEGURO", "gloss": "fora de risco", "frozen": true,
+      "lex": { "pt": ["seguro"], "en": ["safe"], "es": ["a salvo"], "fr": ["en securite"], "it": ["al sicuro"], "de": ["sicher"], "ja": ["安全"], "zh": ["安全"] } },
+    { "n": 3, "id": "EM_PERIGO", "gloss": "em risco imediato", "frozen": true,
+      "lex": { "pt": ["em perigo"], "en": ["in danger"], "es": ["en peligro"], "fr": ["en danger"], "it": ["in pericolo"], "de": ["in gefahr"], "ja": ["危険"], "zh": ["危险"] } },
+    { "n": 4, "id": "FERIDO", "gloss": "com ferimento",
+      "lex": { "pt": ["ferido"], "en": ["injured", "hurt"], "es": ["herido"], "fr": ["blesse"], "it": ["ferito"], "de": ["verletzt"], "ja": ["けが"], "zh": ["受伤"] } },
+    { "n": 5, "id": "GRAVE", "gloss": "estado critico",
+      "lex": { "pt": ["grave"], "en": ["critical", "serious"], "es": ["grave"], "fr": ["grave"], "it": ["grave"], "de": ["kritisch"], "ja": ["重症"], "zh": ["严重"] } },
+    { "n": 6, "id": "ESTAVEL", "gloss": "sem piora",
+      "lex": { "pt": ["estavel"], "en": ["stable"], "es": ["estable"], "fr": ["stable"], "it": ["stabile"], "de": ["stabil"], "ja": ["安定"], "zh": ["稳定"] } },
+    { "n": 7, "id": "SOZINHO_ST", "gloss": "sem ninguem por perto",
+      "lex": { "pt": ["so"], "en": ["alone"], "es": ["solo"], "fr": ["seul"], "it": ["solo"], "de": ["allein"], "ja": ["一人"], "zh": ["独自"] } },
+    { "n": 8, "id": "ACOMPANHADO", "gloss": "com outras pessoas",
+      "lex": { "pt": ["acompanhado"], "en": ["accompanied", "with others"], "es": ["acompanado"], "fr": ["accompagne"], "it": ["accompagnato"], "de": ["begleitet"], "ja": ["同行あり"], "zh": ["有人陪"] } },
+    { "n": 9, "id": "PRESO", "gloss": "sem poder se mover do lugar",
+      "lex": { "pt": ["preso"], "en": ["trapped", "stuck"], "es": ["atrapado"], "fr": ["coince"], "it": ["bloccato"], "de": ["eingeschlossen"], "ja": ["閉じ込められた"], "zh": ["被困"] } },
+    { "n": 10, "id": "CALMO", "gloss": "tranquilo, sem pressa",
+      "lex": { "pt": ["calmo"], "en": ["calm"], "es": ["tranquilo"], "fr": ["calme"], "it": ["calmo"], "de": ["ruhig"], "ja": ["落ち着いている"], "zh": ["平静"] } },
+    { "n": 11, "id": "COM_MEDO", "gloss": "com medo",
+      "lex": { "pt": ["com medo"], "en": ["afraid", "scared"], "es": ["con miedo"], "fr": ["effraye"], "it": ["spaventato"], "de": ["angst"], "ja": ["怖い"], "zh": ["害怕"] } }
+  ]
+}

@@ -50,7 +50,7 @@
 
 /* A private network. Nomenclature trap worth knowing about, because the two
  * numbers appear in different places in this repository and both are correct:
- * docs/02-PROTOCOL.md §3.1 and firmware/ranger/ranger.ino say "sync word 0x12",
+ * docs/10-arquitetura/02-PROTOCOL.md §3.1 and firmware/ranger/ranger.ino say "sync word 0x12",
  * which is the SX1276 single-byte value and also what RadioLib's
  * setSyncWord(0x12) takes — RadioLib expands it to the 16-bit register pair
  * 0x1424. Writing to the registers directly, as this driver does, means writing

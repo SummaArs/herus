@@ -3,13 +3,13 @@
  * Weave is deliberately not a routing protocol. It is flooding with duplicate
  * suppression and an energy-aware decision about who bothers to listen. Routing
  * tables need topology knowledge that a wrist device sleeping 99% of the time
- * cannot maintain, and docs/03-BUILD-GUIDE.md Phase 1 is explicit that
+ * cannot maintain, and docs/60-hardware/03-BUILD-GUIDE.md Phase 1 is explicit that
  * reinventing mesh routing is a six-month detour that teaches nothing about
  * Herus. Benchmark against Meshtastic instead.
  *
  * THE DEDUP KEY, CORRECTED (erratum E-P2, see session.h)
  * -----------------------------------------------------
- * docs/02-PROTOCOL.md §5.2 says dedup on (ephemeral_addr, seq). A relay cannot
+ * docs/10-arquitetura/02-PROTOCOL.md §5.2 says dedup on (ephemeral_addr, seq). A relay cannot
  * do that: `seq` lives in the plaintext, inside the end-to-end AEAD. What a relay
  * CAN see is the 14-bit address, the ciphertext and the tag — and the tag is a
  * 64-bit function of the whole message under a key the relay does not have,
@@ -62,7 +62,7 @@
 #define WEAVE_QUEUE_N       8      /* store-and-forward depth */
 #define WEAVE_FRAME_MAX    38      /* the largest frame Weave relays */
 
-/* Energy-aware roles (docs/02-PROTOCOL.md §5.1). The role is advertised in the
+/* Energy-aware roles (docs/10-arquitetura/02-PROTOCOL.md §5.1). The role is advertised in the
  * beacon so routing follows energy rather than a configuration flag: a Band with
  * 20 cm2 of cell makes a node relay-capable, a leather Band makes it a leaf. The
  * user's strap choice is a routing decision. */

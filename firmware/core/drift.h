@@ -3,7 +3,7 @@
  *
  * Every off-grid communicator answers "how far?" with a number in metres, and
  * that number is bounded by regulation long before it is bounded by physics
- * (docs/00-HERUS-MASTER.md sec.6: SF9 is the ceiling, not SF12). Drift answers a
+ * (docs/10-arquitetura/00-HERUS-MASTER.md sec.6: SF9 is the ceiling, not SF12). Drift answers a
  * different question. A meaning is 34 bytes; 34 bytes are cheap enough to hand
  * to a stranger's device, which walks away, and hands them on. Reach stops being
  * a function of transmit power and becomes a function of elapsed time.

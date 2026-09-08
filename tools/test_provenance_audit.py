@@ -32,6 +32,8 @@ def manifest_for(root):
     os.mkdir(os.path.join(root, "source", "build"))
     with open(os.path.join(root, "source", "build", "ignored.o"), "w", encoding="utf-8") as handle:
         handle.write("ephemeral\n")
+    with open(os.path.join(root, "page.html"), "w", encoding="utf-8") as handle:
+        handle.write("<p>gerado</p>\n")
     return {
         "schema": audit.SCHEMA,
         "trust_state": audit.TRUST_STATE,
@@ -53,6 +55,15 @@ def manifest_for(root):
                 "kind": "tree",
                 "sha256": audit.sha256_tree(os.path.join(root, "source")),
                 "role": "fixture tree",
+            },
+        ],
+        "derived_artifacts": [
+            {
+                "path": "page.html",
+                "kind": "file",
+                "derived_from": ["input.txt", "source/module.c"],
+                "builder": "source/module.c",
+                "role": "fixture derived artifact",
             },
         ],
         "components": [
@@ -160,6 +171,41 @@ def main():
         errors = audit.validate(wrong_kind, root)
         ok(has(errors, "kind must be file or tree"),
            "T13 unsupported input representation fails closed")
+
+        # --- artefato derivado: a secao nova tem de ter os proprios dentes ---
+        # A pagina publicada e gerada. Declarar o digest dela seria alegar uma
+        # atestacao que ninguem produziu: o que da garantia e os INSUMOS
+        # estarem declarados e o construtor ser deterministico. Entao a regra e
+        # o inverso do instinto, e estes casos provam que ela morde.
+        ok(bool(manifest.get("derived_artifacts")),
+           "T14 a fixture traz um artefato derivado (senao os casos abaixo se pulariam calados)")
+        if True:
+            self_digest = copy.deepcopy(manifest)
+            self_digest["derived_artifacts"][0]["sha256"] = "0" * 64
+            errors = audit.validate(self_digest, root)
+            ok(has(errors, "unsupported fields"),
+               "T14 artefato derivado nao pode declarar digest proprio")
+
+            undeclared = copy.deepcopy(manifest)
+            undeclared["derived_artifacts"][0]["derived_from"] = ["research/nao_declarado.json"]
+            errors = audit.validate(undeclared, root)
+            ok(has(errors, "not a declared protected input"),
+               "T14 artefato derivado nao pode vir de insumo nao declarado")
+
+            no_builder = copy.deepcopy(manifest)
+            no_builder["derived_artifacts"][0]["builder"] = "scripts/fantasma.py"
+            errors = audit.validate(no_builder, root)
+            ok(has(errors, "not covered by a declared"),
+               "T14 o construtor tem de estar sob um insumo declarado")
+
+            gone = copy.deepcopy(manifest)
+            gone["derived_artifacts"][0]["path"] = "web/nao_existe.html"
+            errors = audit.validate(gone, root)
+            ok(has(errors, "derived artifact is missing"),
+               "T14 artefato derivado declarado tem de existir")
+
+            ok(audit.validate(copy.deepcopy(manifest), root) == [],
+               "T14 o manifesto real, com artefato derivado, continua valido")
 
     if FAILED:
         print("PROVENANCE AUDIT TESTS FAILED")

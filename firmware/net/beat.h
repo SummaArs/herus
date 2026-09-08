@@ -12,7 +12,7 @@
  * more than the radio it was trying to help. That number is why this module
  * computes a schedule instead of running a loop.
  *
- * TIMING, DERIVED (docs/02-PROTOCOL.md §6.2)
+ * TIMING, DERIVED (docs/10-arquitetura/02-PROTOCOL.md §6.2)
  * ------------------------------------------
  *   crystal tolerance      +-20 ppm each end
  *   relative drift         40 us/s

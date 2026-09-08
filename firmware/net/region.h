@@ -14,7 +14,7 @@
  *                               / (4*(SF - 2*DE))) * (CR + 4))
  *   Tair      = Tpreamble + n_payload * Tsym
  *
- * Cross-checked three ways against docs/02-PROTOCOL.md §2, which was produced
+ * Cross-checked three ways against docs/10-arquitetura/02-PROTOCOL.md §2, which was produced
  * independently by tools/budget.py:
  *   34 B, SF9, CR4/5, CRC on, explicit header -> 246.8 ms   (matches)
  *   178 B, SF7                                -> 287.0 ms   (matches)
@@ -169,7 +169,7 @@ uint32_t hz_airtime_us(uint8_t sf, uint16_t payload_len, int crc_on,
 int hz_tx_permitted(hz_region_t r, uint8_t sf, uint16_t payload_len, int crc_on,
                     int implicit_header, uint8_t cr, uint8_t dbm);
 
-/* Prints the ledger that docs/02-PROTOCOL.md §2 asserts. Used by test_net. */
+/* Prints the ledger that docs/10-arquitetura/02-PROTOCOL.md §2 asserts. Used by test_net. */
 void hz_print_ledger(void);
 
 #endif /* HERUS_REGION_H */
