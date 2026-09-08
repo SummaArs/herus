@@ -10,7 +10,7 @@
  *   ESPNOW     Espressif ESP-NOW, 250-byte connectionless frame
  *   WIFI       802.11 local link to Core / Paper-Core
  *   LORA       SX1262 SF9, 246.8 ms airtime, inside the 400 ms dwell rule
- *   LORA_MESH  Weave, three hops, Band antennas (docs/00-HERUS-MASTER.md sec.6)
+ *   LORA_MESH  Weave, three hops, Band antennas (docs/10-arquitetura/00-HERUS-MASTER.md sec.6)
  *   SAT        short-burst uplink; needs the Core antenna, never the wrist
  *   DRIFT      custody handed to a passing device; reach grows with time
  *

@@ -8,7 +8,7 @@ transcripts, embeddings, identity, location, keys or wire frames.
     python3 tools/interactionlog.py --csv lab.csv --strict
 
 A strict run fails when a row violates state ordering or a product gate fails.
-Use the CSV contract in docs/09-VALIDACAO-FISICA.md; do not edit failed rows.
+Use the CSV contract in docs/60-hardware/09-VALIDACAO-FISICA.md; do not edit failed rows.
 """
 import argparse
 import csv

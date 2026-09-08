@@ -1,6 +1,6 @@
 /* session.h — the symmetric ratchet, ephemeral addresses, replay defence.
  *
- * This is the half of docs/02-PROTOCOL.md §4 that runs in MCU RAM. The other
+ * This is the half of docs/10-arquitetura/02-PROTOCOL.md §4 that runs in MCU RAM. The other
  * half — the P-256 identity key and ECDH — lives in the ATECC608A and is
  * deliberately not here (see crypto.h).
  *
@@ -32,7 +32,7 @@
  *
  * REPLAY, AND A BITMAP THIS FILE DELIBERATELY DOES NOT HAVE
  * --------------------------------------------------------
- * docs/02-PROTOCOL.md §5.3 lists a receiver-side sequence window as one of three
+ * docs/10-arquitetura/02-PROTOCOL.md §5.3 lists a receiver-side sequence window as one of three
  * replay defences. For the AEAD tiers it is redundant, and shipping redundant
  * security machinery is worse than shipping none: it never executes, so it is
  * never tested, and it invites the belief that it is doing something.
@@ -126,7 +126,7 @@
 
 /* ---------------- ERRATUM E-P2: where the hop counter lives ----------------
  *
- * docs/02-PROTOCOL.md §3.2 puts `ttl` in the plaintext header and §5.2 has each
+ * docs/10-arquitetura/02-PROTOCOL.md §3.2 puts `ttl` in the plaintext header and §5.2 has each
  * relay decrement it. Those two sentences cannot both be true: the plaintext is
  * inside the end-to-end AEAD, so a relay can neither read nor modify ttl, and
  * §5.2's dedup key (ephemeral_addr, seq) is likewise unreadable — seq is

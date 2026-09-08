@@ -1,0 +1,352 @@
+<title>HERUS Aberto</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&family=Public+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;700&display=swap">
+<style>
+:root{
+  --ground:#eef1f6; --surface:#ffffff; --raised:#e3e8f1; --line:#c9d2e1;
+  --ink:#111726; --ink-dim:#57617a; --ink-faint:#8b95ac;
+  --send:#a2540a; --send-soft:rgba(196,116,26,.14);
+  --recv:#0a6070; --recv-soft:rgba(16,124,142,.13);
+  --refuse:#a5342b; --refuse-soft:rgba(176,58,48,.12);
+  --ok:#1d6b46;
+  --shadow:0 1px 2px rgba(17,23,38,.06),0 8px 24px -16px rgba(17,23,38,.28);
+  --r:3px;
+  --display:'Familjen Grotesk','Helvetica Neue',Arial,sans-serif;
+  --body:'Public Sans','Helvetica Neue',Arial,sans-serif;
+  --mono:'JetBrains Mono','SFMono-Regular',Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ground:#0c0f16; --surface:#141926; --raised:#1c2231; --line:#2a3143;
+    --ink:#e9ecf4; --ink-dim:#8f98af; --ink-faint:#646d84;
+    --send:#f0a850; --send-soft:rgba(240,168,80,.13);
+    --recv:#56c8d8; --recv-soft:rgba(86,200,216,.12);
+    --refuse:#e2685f; --refuse-soft:rgba(226,104,95,.13);
+    --ok:#5fd39a;
+    --shadow:0 1px 0 rgba(255,255,255,.03),0 20px 40px -28px rgba(0,0,0,.8);
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#0c0f16; --surface:#141926; --raised:#1c2231; --line:#2a3143;
+  --ink:#e9ecf4; --ink-dim:#8f98af; --ink-faint:#646d84;
+  --send:#f0a850; --send-soft:rgba(240,168,80,.13);
+  --recv:#56c8d8; --recv-soft:rgba(86,200,216,.12);
+  --refuse:#e2685f; --refuse-soft:rgba(226,104,95,.13);
+  --ok:#5fd39a;
+  --shadow:0 1px 0 rgba(255,255,255,.03),0 20px 40px -28px rgba(0,0,0,.8);
+}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font-family:var(--body);
+  font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased;
+  padding:0;margin:0}
+.wrap{max-width:1180px;margin:0 auto;padding:32px 20px 80px;
+  display:flex;flex-direction:column;gap:34px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.12}
+h1{font-size:clamp(30px,4.6vw,50px);font-weight:700;letter-spacing:-.022em}
+h2{font-size:20px;font-weight:600;letter-spacing:-.01em}
+h3{font-size:13px;font-weight:600}
+p{margin:0}
+.eyebrow{font-family:var(--mono);font-size:10.5px;letter-spacing:.20em;
+  text-transform:uppercase;color:var(--ink-faint)}
+.lead{max-width:62ch;color:var(--ink-dim);font-size:16.5px}
+.lead b{color:var(--ink);font-weight:600}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+
+/* -------------------------------------------------------------- cabecalho */
+header{display:flex;flex-direction:column;gap:14px;
+  border-bottom:1px solid var(--line);padding-bottom:26px}
+.headrow{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;
+  flex-wrap:wrap}
+.badge{font-family:var(--mono);font-size:11.5px;line-height:1.5;padding:9px 13px;
+  border:1px solid var(--line);background:var(--surface);border-radius:var(--r);
+  white-space:nowrap;color:var(--ink-dim)}
+.badge b{color:var(--ok);font-weight:700}
+.badge.bad b{color:var(--refuse)}
+.themebtn{font-family:var(--mono);font-size:11px;letter-spacing:.08em;
+  background:none;border:1px solid var(--line);color:var(--ink-dim);
+  padding:8px 11px;border-radius:var(--r);cursor:pointer}
+.themebtn:hover{color:var(--ink);border-color:var(--ink-faint)}
+
+/* --------------------------------------------------------------- console */
+.console{display:grid;gap:1px;background:var(--line);
+  grid-template-columns:1fr minmax(258px,.82fr) 1fr;
+  border:1px solid var(--line);border-radius:var(--r);overflow:hidden;
+  box-shadow:var(--shadow)}
+.pane{background:var(--surface);padding:20px;display:flex;flex-direction:column;gap:16px;
+  min-width:0}
+.pane.core{background:var(--raised)}
+.panehead{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+.panehead .eyebrow{color:var(--ink-faint)}
+.pane.send .panehead .eyebrow{color:var(--send)}
+.pane.recv .panehead .eyebrow{color:var(--recv)}
+
+.langs{display:flex;flex-wrap:wrap;gap:5px}
+.chip{font-family:var(--body);font-size:13px;padding:5px 9px;border-radius:var(--r);
+  border:1px solid var(--line);background:transparent;color:var(--ink-dim);
+  cursor:pointer;line-height:1.3}
+.chip:hover{color:var(--ink);border-color:var(--ink-faint)}
+.chip[aria-pressed="true"]{color:var(--ink);font-weight:600}
+.send .chip[aria-pressed="true"]{background:var(--send-soft);border-color:var(--send)}
+.recv .chip[aria-pressed="true"]{background:var(--recv-soft);border-color:var(--recv)}
+.chip:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--send);
+  outline-offset:1px}
+
+.group{display:flex;flex-direction:column;gap:6px}
+.grouphead{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.grouphead .eyebrow{font-size:10px}
+.grouphead .clear{font-family:var(--mono);font-size:10px;background:none;border:0;
+  color:var(--ink-faint);cursor:pointer;padding:0}
+.grouphead .clear:hover{color:var(--refuse)}
+.words{display:flex;flex-wrap:wrap;gap:4px;max-height:104px;overflow-y:auto;
+  padding-right:2px}
+.words .chip{font-size:12.5px;padding:4px 8px}
+.words .chip[aria-pressed="true"]{background:var(--send-soft);border-color:var(--send);
+  color:var(--ink)}
+.ops{display:flex;flex-wrap:wrap;gap:4px}
+.ops .chip{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;
+  text-transform:uppercase;padding:5px 8px}
+.toggles{display:flex;gap:6px;flex-wrap:wrap}
+
+.said{font-family:var(--display);font-size:clamp(19px,2.6vw,26px);font-weight:600;
+  line-height:1.22;letter-spacing:-.014em;min-height:1.3em;word-break:break-word}
+.send .said{color:var(--send)}
+.recv .said{color:var(--recv)}
+.recv .said[dir="rtl"]{text-align:right}
+.gloss{font-size:13px;color:var(--ink-dim);min-height:1.3em}
+.field{display:flex;flex-direction:column;gap:6px}
+input[type=text]{font-family:var(--body);font-size:14px;padding:9px 11px;
+  border:1px solid var(--line);background:var(--ground);color:var(--ink);
+  border-radius:var(--r);width:100%}
+.status{font-family:var(--mono);font-size:11.5px;line-height:1.5;min-height:2.6em}
+.status .tag{font-weight:700;letter-spacing:.05em}
+.status.ok .tag{color:var(--ok)}
+.status.no .tag{color:var(--refuse)}
+.status .why{color:var(--ink-dim);display:block}
+
+/* ------------------------------------------------------------ os 24 bytes */
+.bytes{display:grid;grid-template-columns:repeat(12,1fr);gap:2px}
+.by{font-family:var(--mono);font-size:11.5px;text-align:center;padding:6px 0 4px;
+  border:1px solid var(--line);border-radius:2px;background:var(--surface);
+  color:var(--ink-faint);position:relative;transition:background .18s,color .18s}
+.by.hot{background:var(--send-soft);color:var(--ink);border-color:var(--send);
+  font-weight:700}
+.by .tick{display:block;font-size:7.5px;letter-spacing:.04em;color:var(--ink-faint);
+  margin-top:2px;height:1em;text-transform:uppercase}
+.by.hot .tick{color:var(--send)}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:3px 12px;font-family:var(--mono);
+  font-size:11px;align-items:baseline}
+.kv dt{color:var(--ink-faint);text-transform:uppercase;letter-spacing:.09em;
+  font-size:9.5px}
+.kv dd{margin:0;color:var(--ink);overflow-wrap:break-word}
+.kv dd.hexline{word-break:break-all;line-height:1.4}
+
+/* ---------------------------------------------------------------- portador */
+.carrier{display:grid;grid-template-columns:1fr auto;gap:1px;background:var(--line);
+  border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.carrier>div{background:var(--surface);padding:20px;display:flex;
+  flex-direction:column;gap:14px;min-width:0}
+.acts{display:flex;flex-wrap:wrap;gap:8px}
+.btn{font-family:var(--display);font-size:14px;font-weight:600;letter-spacing:-.005em;
+  padding:11px 17px;border-radius:var(--r);border:1px solid var(--send);
+  background:var(--send-soft);color:var(--ink);cursor:pointer}
+.btn:hover{background:var(--send);color:var(--ground)}
+.btn.alt{border-color:var(--recv);background:var(--recv-soft)}
+.btn.alt:hover{background:var(--recv);color:var(--ground)}
+.btn.ghost{border-color:var(--line);background:transparent;color:var(--ink-dim)}
+.btn.ghost:hover{border-color:var(--ink-faint);color:var(--ink);background:transparent}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.btn[disabled]:hover{background:var(--send-soft);color:var(--ink)}
+canvas{display:block;image-rendering:pixelated;border-radius:2px}
+.ladder{width:100%;height:96px;border:1px solid var(--line);background:var(--ground)}
+.seal{border:1px solid var(--line);background:var(--ground)}
+.note{font-size:12.5px;color:var(--ink-dim);max-width:56ch}
+
+/* ------------------------------------------------------------------ recusa */
+.lab{border:1px solid var(--line);border-radius:var(--r);background:var(--surface);
+  padding:20px;display:flex;flex-direction:column;gap:14px}
+.refusals{display:grid;grid-template-columns:repeat(auto-fill,minmax(232px,1fr));gap:8px}
+.rcard{border:1px solid var(--line);border-left:2px solid var(--refuse);
+  border-radius:2px;padding:10px 12px;display:flex;flex-direction:column;gap:5px;
+  background:var(--refuse-soft)}
+.rcard .said{font-family:var(--mono);font-size:12px;font-weight:400;color:var(--ink);
+  min-height:0;line-height:1.45}
+.rcard .tag{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;
+  color:var(--refuse);font-weight:700}
+.rcard .why{font-size:12px;color:var(--ink-dim);line-height:1.45}
+
+/* ----------------------------------------------------------------- balanco */
+.ledger{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.ledger section{display:flex;flex-direction:column;gap:9px}
+.ledger ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:7px}
+.ledger li{font-size:13.5px;color:var(--ink-dim);padding-left:16px;position:relative;
+  line-height:1.5}
+.ledger li::before{position:absolute;left:0;top:0;font-family:var(--mono);font-size:11px}
+.proven li::before{content:"+";color:var(--ok)}
+.pending li::before{content:"?";color:var(--refuse)}
+.ledger li b{color:var(--ink);font-weight:600;font-family:var(--mono);font-size:12.5px}
+footer{border-top:1px solid var(--line);padding-top:20px;font-size:12.5px;
+  color:var(--ink-faint);display:flex;flex-direction:column;gap:6px}
+footer code{font-family:var(--mono);font-size:11.5px;color:var(--ink-dim)}
+
+@media (max-width:1000px){
+  .console{grid-template-columns:1fr}
+  .carrier{grid-template-columns:1fr}
+  .ledger{grid-template-columns:1fr}
+  .bytes{grid-template-columns:repeat(8,1fr)}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<div class="wrap">
+<header>
+  <div class="headrow">
+    <div style="display:flex;flex-direction:column;gap:11px">
+      <p class="eyebrow">HERUS · a camada do significado</p>
+      <h1>Vinte e quatro bytes atravessam a língua</h1>
+    </div>
+    <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+      <div class="badge" id="parity">verificando o pacote…</div>
+      <button class="themebtn" id="theme" type="button">tema</button>
+    </div>
+  </div>
+  <p class="lead">Você escreve em português. Quem recebe lê em japonês. Não houve
+  tradução: o que viajou nunca foi texto. <b>O significado é a unidade de
+  transmissão</b> — 24 bytes canônicos que oito idiomas leem como a mesma coisa,
+  byte a byte. E porque 24 bytes cabem em qualquer canal, eles atravessam o ar
+  de uma sala como <b>som</b> ou a tela como <b>selo</b>, sem internet, sem
+  operadora, sem conta e sem servidor.</p>
+</header>
+
+<div class="console">
+  <div class="pane send" id="paneSend">
+    <div class="panehead"><h2>Eu digo</h2><span class="eyebrow" id="sendTag">pt</span></div>
+    <div class="langs" id="sendLangs"></div>
+    <p class="said" id="sendSaid">—</p>
+    <div class="ops" id="opRow"></div>
+    <div class="toggles" id="modRow"></div>
+    <div id="palette" style="display:flex;flex-direction:column;gap:11px"></div>
+    <div class="field">
+      <p class="eyebrow">ou fale do seu jeito</p>
+      <input type="text" id="free" placeholder="avisa maria cheguei em casa agora" autocomplete="off" spellcheck="false">
+      <p class="status" id="freeStatus"></p>
+    </div>
+  </div>
+
+  <div class="pane core">
+    <div class="panehead"><h2>O significado</h2><span class="eyebrow">24 bytes</span></div>
+    <div class="bytes" id="byteGrid"></div>
+    <dl class="kv">
+      <dt>digest</dt><dd class="hexline" id="kDigest">—</dd>
+      <dt>operação</dt><dd id="kOp">—</dd>
+      <dt>papéis</dt><dd id="kSlots">—</dd>
+      <dt>quadro aether</dt><dd class="hexline" id="kFrame">—</dd>
+    </dl>
+    <p class="note">Os 24 bytes não carregam texto, áudio, identidade,
+    coordenada nem chave. Carregam uma operação, uma polaridade, uma urgência e
+    até nove pares papel/símbolo. É por isso que o mesmo conteúdo pode sair em
+    qualquer idioma: o idioma nunca entrou.</p>
+  </div>
+
+  <div class="pane recv" id="paneRecv">
+    <div class="panehead"><h2>Quem recebe lê</h2><span class="eyebrow" id="recvTag">ja</span></div>
+    <div class="langs" id="recvLangs"></div>
+    <p class="said" id="recvSaid">—</p>
+    <p class="eyebrow" style="margin-top:2px">o que cada papel carrega</p>
+    <p class="gloss" id="recvGloss"></p>
+    <p class="status" id="recvStatus"></p>
+    <div class="acts">
+      <button class="btn alt" id="vibrate" type="button">sentir no pulso</button>
+    </div>
+    <p class="note">A volta é provada aqui, ao vivo: a frase que aparece acima é
+    recompilada no idioma de quem recebe e tem de dar os mesmos 24 bytes. Se um
+    byte mudasse, esta linha diria.</p>
+  </div>
+</div>
+
+<div class="carrier">
+  <div>
+    <div class="panehead"><h2>O portador</h2><span class="eyebrow">33 bytes · 16-fsk · 1,49 s</span></div>
+    <canvas class="ladder" id="ladder" width="840" height="192"></canvas>
+    <div class="acts">
+      <button class="btn" id="play" type="button">tocar o significado</button>
+      <button class="btn alt" id="listen" type="button">ouvir</button>
+      <button class="btn ghost" id="loop" type="button">provar aqui</button>
+    </div>
+    <p class="status" id="airStatus"></p>
+    <p class="note">Setenta símbolos, dezesseis tons entre 1875 e 2578 Hz, cada
+    um numa raia inteira da transformada — ortogonais na janela, então o
+    detector é um Goertzel, não uma FFT. Reed–Solomon conserta dois bytes
+    errados; o CRC-32 é a última palavra. Um quadro que não fecha o CRC nunca
+    vira significado: chega certo ou não chega.</p>
+  </div>
+  <div>
+    <div class="panehead"><h2>O selo</h2><span class="eyebrow">18 × 18</span></div>
+    <canvas class="seal" id="seal" width="288" height="288"></canvas>
+    <p class="note">O mesmo quadro como luz. Três cantos cheios e um vazio dão a
+    orientação, então ele lê de cabeça para baixo.</p>
+  </div>
+</div>
+
+<div class="lab">
+  <div class="panehead"><h2>O que ele recusa</h2><span class="eyebrow">recusa tipada</span></div>
+  <p class="note" style="max-width:74ch">Um compilador que adivinha não é um
+  compilador. Cada frase abaixo é recusada por um motivo diferente, e o motivo
+  é um tipo, não uma mensagem de erro. A lacuna é o caso mais interessante: ela
+  não é falha, é um <em>pedido de capacidade</em> — o vocabulário ainda não tem
+  aquela palavra, e o quadro diz exatamente qual.</p>
+  <div class="refusals" id="refusals"></div>
+</div>
+
+<div class="ledger">
+  <section class="proven">
+    <p class="eyebrow">provado, e o número está aqui</p>
+    <ul>
+      <li><b>340.728</b> idas-e-voltas: para todo significado alcançável e todo
+      idioma, compilar o que foi renderizado devolve o mesmo significado.</li>
+      <li><b>681.530</b> comparações entre o C do firmware e a referência
+      executável, zero divergências.</li>
+      <li><b>350.000</b> tentativas adversariais sobre 11 invariantes: ruído
+      nunca muda o significado, só pode recusar.</li>
+      <li><b>1.637</b> vetores do firmware reproduzidos nesta página, na sua
+      frente, na carga.</li>
+      <li><b>59 + 23</b> invariantes em C e <b>16/16 + 12/12</b> mutantes mortos:
+      cada controle é carregador, não decoração.</li>
+      <li><b>19</b> invariantes de extensão, <b>6</b> deles recusas: um pacote de
+      domínio de terceiro passa no mesmo portão, e um mal-comportado é barrado.</li>
+      <li><b>2.000</b> ensaios de canal com ruído, ganho, recorte, deriva de
+      relógio, eco e tom interferente: <b>0</b> entregas erradas.</li>
+    </ul>
+  </section>
+  <section class="pending">
+    <p class="eyebrow">não provado, e não vou dizer que foi</p>
+    <ul>
+      <li>Canal simulado não é ar. Alcance real, reverberação de sala, resposta
+      de alto-falante de telefone e AGC de microfone seguem pendentes.</li>
+      <li>O perfil aberto desta página <b>não é cifrado nem autenticado</b> — é
+      uma escolha declarada. Sigilo é o perfil de rádio, com sessão e chave.</li>
+      <li>Achar o selo numa foto — perspectiva, iluminação, foco — é outro
+      problema. Aqui está provado o codec, não a câmera.</li>
+      <li>143 conceitos cobrem coordenação essencial, não toda fala humana. O
+      que não cabe vira lacuna tipada, nunca aproximação.</li>
+      <li>O espaço de símbolos tem 11 bits: cabem <b>dois</b> pacotes de domínio
+      além do núcleo, e não há negociação de pacote na versão 1.</li>
+      <li>Reconhecimento de fala, háptica em hardware e consumo de bateria são
+      medições que ninguém fez ainda.</li>
+    </ul>
+  </section>
+</div>
+
+<footer>
+  <p>Pacote semântico <code id="fPack">core</code> · gerado por
+  <code>tools/loom.py</code> a partir de <code>research/loom/core/*.hlx.json</code>
+  · Babel e Aether portados de <code>firmware/core/babel.c</code> e
+  <code>firmware/core/aether.c</code>.</p>
+  <p>Nada nesta página sai do seu aparelho. Não há requisição de rede depois da
+  carga, não há conta, não há armazenamento e não há identificador.</p>
+</footer>
+</div>
+
+<script>/*__HERUS_JS__*/</script>
+<script>window.__PACK__=/*__PACK__*/;window.__VEC__=/*__VEC__*/;</script>
+<script>/*__APP_JS__*/</script>

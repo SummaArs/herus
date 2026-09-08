@@ -11,7 +11,7 @@
     {
       "path": "prove.sh",
       "kind": "file",
-      "sha256": "b6268f0ebedc7b19f7ddcadc9400310f4bd402717062404d6b911219f0c6857d",
+      "sha256": "c502a5efed0d45b54b69b9caa46a763bced16792d3e3a0c4cf16ebd7c380ca05",
       "role": "global proof ledger"
     },
     {
@@ -23,19 +23,19 @@
     {
       "path": "firmware",
       "kind": "tree",
-      "sha256": "bb054a867bcf07eeba88f730acf85e75133a40f43582a68526826ac45072d850",
+      "sha256": "7034f38963a0a2432358750aed11135ec5e8c62071971ca0d3b0fb824c414f35",
       "role": "portable firmware and proof sources"
     },
     {
       "path": "tools",
       "kind": "tree",
-      "sha256": "8055a761fe53cdb9be3581ace0c1fee457e38617c50b3d1112f21958035361be",
+      "sha256": "888d548dfbf2802952f1680c99b63348c9bf8317f0f4d983354b8a402fdade65",
       "role": "host proof and provenance tools"
     },
     {
       "path": "sim",
       "kind": "tree",
-      "sha256": "f5c50abbd987c3ace2f8d97f6f65c459a011f24e8d4b403702acd3c8bdced6bc",
+      "sha256": "40fe43d249894ffca0a9a5d12ec9e9cf80ea4eeb1cab6a713c9b02f3b15de6b0",
       "role": "deterministic host substitute for physical world"
     },
     {
@@ -129,9 +129,9 @@
       "role": "offline comparison result with explicit baseline absence"
     },
     {
-      "path": "docs/104-HERUS-COMPARACAO-COM-LLM-PROTOCOLO-E-RESULTADOS.md",
+      "path": "docs/25-significado/104-HERUS-COMPARACAO-COM-LLM-PROTOCOLO-E-RESULTADOS.md",
       "kind": "file",
-      "sha256": "a5949e361e58bfb803ad3aa44847470e978a329d28ac07ff58cdfea1e44a575f",
+      "sha256": "05e457caf7370d8a92791285b13becf9d7172b92a1a49582f1bd79c4ac8fb41b",
       "role": "comparison protocol, measured result and non-equivalence conclusion"
     },
     {
@@ -145,6 +145,48 @@
       "kind": "file",
       "sha256": "70240abbeb42b7f335c05ecc2e157c64d3386ff61599d1921e585a851af87a89",
       "role": "deterministic OOD composition cases"
+    },
+    {
+      "path": "research/loom/core",
+      "kind": "tree",
+      "sha256": "42303bbc2023e33a0e515ba8934eef31fce7734025e03141e209c0181a11bf6d",
+      "role": "fonte da verdade do espaco semantico: o pacote que o Loom compila"
+    },
+    {
+      "path": "research/loom/core.compiled.json",
+      "kind": "file",
+      "sha256": "7482baab2f63be599ef64215e65429efafd25b4cf69cbe73118f7dc26bfa0305",
+      "role": "pacote compilado do navegador, gerado por tools/loom.py --emit"
+    },
+    {
+      "path": "research/loom/web_vectors.json",
+      "kind": "file",
+      "sha256": "a563d1e1800fc423e3b313a4b8ece972d331db4ad54dde9bc1dd7ac4cf935c1a",
+      "role": "vetores de paridade exportados pelas sondas C do firmware"
+    },
+    {
+      "path": "web/herus.js",
+      "kind": "file",
+      "sha256": "82d22c64248448c3d1d3af5c3ee9df02d7758fb79735ac2e96f7f20dac4e959d",
+      "role": "porta de Babel e Aether para o navegador"
+    },
+    {
+      "path": "web/app.js",
+      "kind": "file",
+      "sha256": "b44008e24dc0d229c0ff105729d92f14cb8f9fc13d87166c9b77fbf0585c5c20",
+      "role": "interface do HERUS Aberto"
+    },
+    {
+      "path": "web/template.html",
+      "kind": "file",
+      "sha256": "74432d85c34bb35d6068030697de857a33adbeb59d2cf5b28120e651aa1a0f67",
+      "role": "estrutura e identidade visual do HERUS Aberto"
+    },
+    {
+      "path": "research/loom/campo",
+      "kind": "tree",
+      "sha256": "340d96e1db567ec600c228c4318101ac1df05c152da35f162af588c9b1127c2a",
+      "role": "pacote de dominio de terceiro: prova a extensibilidade e a lacuna tipada por idioma"
     }
   ],
   "components": [
@@ -246,6 +288,21 @@
         "target artifact"
       ],
       "claim_if_pass": "Only the tested target artifact and declared environments reproduced the recorded digest."
+    }
+  ],
+  "derived_artifacts": [
+    {
+      "path": "web/herus-aberto.html",
+      "kind": "file",
+      "derived_from": [
+        "web/template.html",
+        "web/herus.js",
+        "web/app.js",
+        "research/loom/core.compiled.json",
+        "research/loom/web_vectors.json"
+      ],
+      "builder": "tools/build_web.py",
+      "role": "pagina publicada; nao tem digest proprio declarado de proposito, porque e reproduzivel a partir dos insumos acima por um construtor deterministico"
     }
   ]
 }

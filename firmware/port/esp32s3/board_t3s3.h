@@ -7,7 +7,7 @@
  *
  * LilyGO has shipped several T3-S3 pinouts under the same name. A wrong BUSY or
  * DIO1 gives a silent failure that looks EXACTLY like a dead radio, and it will
- * cost you an afternoon — docs/03-BUILD-GUIDE.md warns about this and it is worth
+ * cost you an afternoon — docs/60-hardware/03-BUILD-GUIDE.md warns about this and it is worth
  * repeating here, at the point of use.
  *
  * So do not trust this table. Verify it, in ninety seconds:

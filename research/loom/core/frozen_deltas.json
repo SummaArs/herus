@@ -1,0 +1,32 @@
+{
+  "schema": "herus.loom.frozen-deltas/1",
+  "about": [
+    "O corpus research/hsca_intent_corpus_v1.json esta congelado e diz, na propria",
+    "capa, que mudar um status ou um digest e uma mudanca semantica que precisa ser",
+    "ARGUMENTADA, nunca absorvida. Ampliar o vocabulario do nucleo muda o status de",
+    "algumas linhas — nao porque o compilador ficou pior, mas porque a lacuna que a",
+    "linha registrava deixou de existir.",
+    "",
+    "Este arquivo e o argumento. Cada delta tem de estar aqui, com o status antigo,",
+    "o novo e o motivo. O portao L8 falha de tres formas: divergencia nao declarada,",
+    "delta declarado que nao se confirma, e delta declarado que nao acontece mais",
+    "(entrada morta). Ou seja: nao da para esconder regressao aqui dentro."
+  ],
+  "corpus": "research/hsca_intent_corpus_v1.json",
+  "deltas": [
+    {
+      "text": "avisa o joao que cheguei no aeroporto",
+      "was": "GAP",
+      "now": "OK",
+      "reason": "A linha registrava a AUSENCIA de 'aeroporto' no lexico, nao uma recusa desejada. O nucleo do Loom traz LOC.AEROPORTO, entao a frase virou significado representavel. A lacuna tipada cumpriu o papel dela: era um pedido de capacidade, e a capacidade chegou.",
+      "kind": "lacuna preenchida"
+    },
+    {
+      "text": "cheguei ontem",
+      "was": "GAP",
+      "now": "INCOMPLETE",
+      "reason": "Antes 'ontem' era palavra desconhecida (GAP). Agora TIME.ONTEM existe, entao a frase e composta de palavras conhecidas e a recusa muda de natureza: nao falta vocabulario, falta destinatario. COMUNICAR exige QUEM. A frase continua recusada — e por um motivo mais preciso.",
+      "kind": "recusa mais precisa"
+    }
+  ]
+}

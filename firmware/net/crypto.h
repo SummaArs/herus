@@ -18,7 +18,7 @@
  * ---------------------------
  * No public-key code. P-256 ECDH/ECDSA lives in the ATECC608A (identity), which
  * is the only place a long-term secret is allowed to exist. This file is the
- * symmetric half of the ratchet, exactly as docs/02-PROTOCOL.md §4.1 describes.
+ * symmetric half of the ratchet, exactly as docs/10-arquitetura/02-PROTOCOL.md §4.1 describes.
  * Do not add a software P-256 here: a scalar in MCU RAM is the whole thing the
  * secure element exists to prevent.
  */

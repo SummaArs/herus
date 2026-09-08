@@ -22,7 +22,8 @@ ASSURANCE_KEYS = {
     "external_attestation", "sbom_coverage", "reproducible_build", "build_isolation"
 }
 GATE_KEYS = {"id", "status", "question", "evidence_required", "claim_if_pass", "evidence_files"}
-ROOT_KEYS = {"schema", "trust_state", "release", "protected_inputs", "components", "assurance", "gates"}
+DERIVED_KEYS = {"path", "kind", "derived_from", "builder", "role"}
+ROOT_KEYS = {"schema", "trust_state", "release", "protected_inputs", "components", "assurance", "gates", "derived_artifacts"}
 STATUSES = {"active", "pending", "rejected"}
 HEX64 = re.compile(r"^[0-9a-f]{64}$")
 FORBIDDEN = {
@@ -167,6 +168,60 @@ def validate_inputs(inputs, base_dir, errors):
             continue
         if actual != expected:
             fail(errors, f"{label} digest mismatch: {path}")
+    return paths
+
+
+def validate_derived(derived, base_dir, declared, errors):
+    """Artefato DERIVADO: existe, e reproduzivel, e NAO carrega digest proprio.
+
+    A tentacao aqui e declarar o sha256 do arquivo gerado e chamar isso de
+    proveniencia. Nao e: um digest de arquivo gerado atesta que aquele arquivo
+    nao mudou, e nunca que ele veio dos insumos que a gente diz que ele veio.
+    O que da garantia de verdade e outra coisa — os INSUMOS estarem declarados
+    e o CONSTRUTOR ser deterministico. Entao a regra e o inverso do instinto:
+    um artefato derivado que traz sha256 e RECUSADO, porque estaria alegando
+    uma atestacao que ninguem produziu.
+    """
+    if derived is None:
+        return
+    if not isinstance(derived, list):
+        fail(errors, "derived_artifacts must be a list")
+        return
+    for index, item in enumerate(derived):
+        label = f"derived_artifacts[{index}]"
+        if not isinstance(item, dict):
+            fail(errors, f"{label} must be an object")
+            continue
+        extra = set(item) - DERIVED_KEYS
+        if extra:
+            fail(errors, f"{label} has unsupported fields: {','.join(sorted(extra))}")
+        path = item.get("path")
+        if not safe_relative_path(path):
+            fail(errors, f"{label}.path must be a safe repository-relative path")
+            continue
+        if item.get("kind") not in {"file", "tree"}:
+            fail(errors, f"{label}.kind must be file or tree")
+        if not isinstance(item.get("role"), str) or not item["role"]:
+            fail(errors, f"{label}.role must be a nonempty string")
+        if not os.path.exists(os.path.join(base_dir, path)):
+            fail(errors, f"{label} derived artifact is missing: {path}")
+        sources = item.get("derived_from")
+        string_list(sources, f"{label}.derived_from", errors)
+        if isinstance(sources, list):
+            for src in sources:
+                if not isinstance(src, str):
+                    continue
+                if not any(src == d or src.startswith(d.rstrip("/") + "/")
+                           for d in declared):
+                    fail(errors, f"{label}.derived_from is not a declared "
+                                 f"protected input: {src}")
+        builder = item.get("builder")
+        if not safe_relative_path(builder):
+            fail(errors, f"{label}.builder must be a safe repository-relative path")
+        elif not any(builder == d or builder.startswith(d.rstrip("/") + "/")
+                     for d in declared):
+            fail(errors, f"{label}.builder is not covered by a declared "
+                         f"protected input: {builder}")
 
 
 def validate_components(components, errors):
@@ -265,7 +320,8 @@ def validate(manifest, base_dir):
     if manifest.get("trust_state") != TRUST_STATE:
         fail(errors, "trust_state must remain local_unattested until external evidence exists")
     validate_release(manifest.get("release"), errors)
-    validate_inputs(manifest.get("protected_inputs"), base_dir, errors)
+    declared = validate_inputs(manifest.get("protected_inputs"), base_dir, errors) or set()
+    validate_derived(manifest.get("derived_artifacts"), base_dir, declared, errors)
     validate_components(manifest.get("components"), errors)
     validate_assurance(manifest.get("assurance"), errors)
     validate_gates(manifest.get("gates"), base_dir, errors)

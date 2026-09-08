@@ -2,7 +2,7 @@
 #include "beat.h"
 #include "region.h"
 
-/* The claim in docs/02-PROTOCOL.md §6.2 that no long preamble is needed, turned
+/* The claim in docs/10-arquitetura/02-PROTOCOL.md §6.2 that no long preamble is needed, turned
  * into a build failure if it ever stops being true. An 8-symbol preamble at SF9
  * is 32.8 ms and must cover the +-10 ms guard window, i.e. 2 x 10 ms. Change the
  * spreading factor and this line, not the comment, is what tells you. */

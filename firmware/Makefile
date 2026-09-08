@@ -91,9 +91,9 @@ INC     := -Icore -Inet -Iport -Itest
 CORE    := core/hv.c core/sbc.c core/lexicon.c core/hcp.c
 NET     := net/crypto.c net/session.c net/region.c net/weave.c net/beat.c net/link.c
 
-.PHONY: all algebra nucleus voice intent intent-router dialogue model-lab memory-policy memory-capture memory-extract watch-memory-frontend memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale memory-collection memory-collection-index memory-collection-recovery memory-collection-recovery-stress memory-collection-finale bench-evidence-validate bench-interruption-sim memory-proposal llm-budget-check memory-physical-session memory-physical-session-recovery memory-physical-session-recovery-stress memory-physical-session-bootstrap memory-reboot-boundary memory-reboot-redteam memory-post-reboot-reindex memory-post-reboot-reindex-redteam memory-prehardware-finale threat-model threat-model-stress proof-fire-mutations assurance capstone trust control-link delivery-plan transport-selector personal-telemetry symbolic-reasoner generative-core generative-core-redteam personal-adapter personal-adapter-redteam generative-core-budget generative-haptic generative-haptic-redteam generative-dialogue-loop generative-dialogue-loop-redteam composed-dialogue composed-dialogue-redteam compositional-ood compositional-ood-redteam resonator semantic-compiler semantic-language-ood semantic-language-ood-redteam semantic-benchmark llm-comparison llm-comparison-redteam knowledge-feed knowledge-feed-cursor memory-semantic-evidence memory-reasoning-bridge magic-anticipation degradation-matrix degradation-redteam magic-trigger magic-dialogue-bridge autonomy-policy autonomy-redteam magic-redteam interaction interaction-rig net radio syntax vectors haptic-language haptic-language-matrix haptic-semantic-bridge haptic-adapter haptic-evidence haptic-target haptic-runner haptic-preflight cross-failure-matrix cross-failure-redteam hsca hsca-herald hsca-ladder hsca-drift hsca-aura hsca-keel hsca-finale hsca-redteam hsca-corpus clean
+.PHONY: all algebra nucleus voice intent intent-router dialogue model-lab memory-policy memory-capture memory-extract watch-memory-frontend memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale memory-collection memory-collection-index memory-collection-recovery memory-collection-recovery-stress memory-collection-finale bench-evidence-validate bench-interruption-sim memory-proposal llm-budget-check memory-physical-session memory-physical-session-recovery memory-physical-session-recovery-stress memory-physical-session-bootstrap memory-reboot-boundary memory-reboot-redteam memory-post-reboot-reindex memory-post-reboot-reindex-redteam memory-prehardware-finale threat-model threat-model-stress proof-fire-mutations assurance capstone trust control-link delivery-plan transport-selector personal-telemetry symbolic-reasoner generative-core generative-core-redteam personal-adapter personal-adapter-redteam generative-core-budget generative-haptic generative-haptic-redteam generative-dialogue-loop generative-dialogue-loop-redteam composed-dialogue composed-dialogue-redteam compositional-ood compositional-ood-redteam resonator semantic-compiler semantic-language-ood semantic-language-ood-redteam semantic-benchmark llm-comparison llm-comparison-redteam knowledge-feed knowledge-feed-cursor memory-semantic-evidence memory-reasoning-bridge magic-anticipation degradation-matrix degradation-redteam magic-trigger magic-dialogue-bridge autonomy-policy autonomy-redteam magic-redteam interaction interaction-rig net radio syntax vectors haptic-language haptic-language-matrix haptic-semantic-bridge haptic-adapter haptic-evidence haptic-target haptic-runner haptic-preflight cross-failure-matrix cross-failure-redteam hsca hsca-herald hsca-ladder hsca-drift hsca-aura hsca-keel hsca-finale hsca-redteam hsca-corpus babel aether aether-channel clean
 
-all: algebra nucleus voice intent intent-router dialogue model-lab memory-policy memory-capture memory-extract memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale memory-collection memory-collection-index memory-collection-recovery memory-collection-recovery-stress memory-collection-finale memory-physical-session memory-physical-session-recovery memory-physical-session-recovery-stress memory-physical-session-bootstrap memory-reboot-boundary memory-reboot-redteam memory-post-reboot-reindex memory-post-reboot-reindex-redteam memory-prehardware-finale threat-model threat-model-stress proof-fire-mutations assurance capstone trust control-link interaction interaction-rig net radio syntax vectors haptic-language haptic-language-matrix haptic-semantic-bridge haptic-adapter haptic-evidence haptic-target haptic-runner haptic-preflight personal-adapter generative-core hsca
+all: algebra nucleus voice intent intent-router dialogue model-lab memory-policy memory-capture memory-extract memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale memory-collection memory-collection-index memory-collection-recovery memory-collection-recovery-stress memory-collection-finale memory-physical-session memory-physical-session-recovery memory-physical-session-recovery-stress memory-physical-session-bootstrap memory-reboot-boundary memory-reboot-redteam memory-post-reboot-reindex memory-post-reboot-reindex-redteam memory-prehardware-finale threat-model threat-model-stress proof-fire-mutations assurance capstone trust control-link interaction interaction-rig net radio syntax vectors haptic-language haptic-language-matrix haptic-semantic-bridge haptic-adapter haptic-evidence haptic-target haptic-runner haptic-preflight personal-adapter generative-core hsca babel aether
 	@echo ""
 	@echo "=================================================="
 	@echo "ALL FIRMWARE SUITES PASS"
@@ -675,6 +675,35 @@ hsca-corpus:
 	@echo "--- hsca/corpus: replay the frozen intent corpus ---"
 	python3 ../tools/test_hsca_corpus.py
 
+
+# ---------------------------------------------------------------- Babel ---
+# A interlingua fechada. As tabelas de loom_core.c sao GERADAS por
+# tools/loom.py; se elas estiverem desatualizadas em relacao ao pacote, o
+# portao do Loom acusa antes de qualquer teste rodar.
+babel: build
+	@echo "--- babel: interlingua fechada, oito idiomas, um significado ---"
+	$(CC) $(CFLAGS) $(INC) core/babel.c core/loom_core.c core/hir.c \
+	    net/crypto.c core/test_babel.c -o build/test_babel $(LDLIBS)
+	./build/test_babel
+	@echo "--- babel: sonda de linha para as provas diferenciais ---"
+	$(CC) $(CFLAGS) $(INC) core/babel.c core/loom_core.c core/hir.c \
+	    net/crypto.c core/babel_probe.c -o build/babel_probe $(LDLIBS)
+
+# --------------------------------------------------------------- Aether ---
+aether: build
+	@echo "--- aether: som e luz, com falha fechada ---"
+	$(CC) $(CFLAGS) $(INC) core/aether.c core/test_aether.c \
+	    -o build/test_aether $(LDLIBS)
+	./build/test_aether
+	@echo "--- aether: sonda de linha para os vetores do navegador ---"
+	$(CC) $(CFLAGS) $(INC) core/aether.c core/aether_probe.c \
+	    -o build/aether_probe $(LDLIBS)
+
+aether-channel: build
+	@echo "--- aether: canal adversarial (simulado, NAO e ar) ---"
+	$(CC) $(CFLAGS) $(INC) core/aether.c core/test_aether_channel.c \
+	    -o build/test_aether_channel $(LDLIBS)
+	./build/test_aether_channel
 
 clean:
 	rm -rf build test_herus test_algebra

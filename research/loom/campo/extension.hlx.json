@@ -1,0 +1,29 @@
+{
+  "spec": "hlx/1", "part": "extension", "pack": "campo", "version": 1,
+  "extends": "core",
+  "doc": [
+    "Pacote de DOMINIO: equipe de campo e resgate. Existe para provar duas coisas",
+    "que o nucleo apenas afirmava.",
+    "",
+    "PRIMEIRA: que um terceiro estende a plataforma sem tocar em firmware. Este",
+    "pacote nao acrescenta uma linha de C. Ele declara um namespace proprio e",
+    "conceitos, e passa no MESMO portao de dez invariantes que o nucleo passa:",
+    "  python3 tools/loom.py --pack research/loom/core --pack research/loom/campo --check",
+    "",
+    "SEGUNDA: que a lacuna por IDIOMA e tipada. Este pacote existe em quatro",
+    "idiomas, nao em oito, e diz isso — em vez de inventar vocabulario tecnico de",
+    "resgate em japones que ninguem revisou. Quando um aparelho recebe um",
+    "significado que ele nao consegue vestir na propria lingua, ele mostra a",
+    "LACUNA com o identificador do simbolo, e nunca uma aproximacao.",
+    "",
+    "LIMITE DECLARADO: o espaco de simbolos e de 11 bits, e o nucleo ja ocupa as",
+    "faixas de 1 a 1535. A faixa 1536-2047 e a faixa de DOMINIO, e cabem dois",
+    "namespaces de 256. Nao ha negociacao de pacote na versao 1: dois aparelhos",
+    "que trocam simbolo de dominio precisam estar rodando o MESMO pacote de",
+    "dominio. Isso e uma limitacao, nao um recurso, e esta escrita aqui em vez de",
+    "ser descoberta em campo."
+  ],
+  "namespaces": {
+    "CAMPO": { "base": 1536, "role": "O_QUE", "cap": 255 }
+  }
+}

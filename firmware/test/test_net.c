@@ -1,7 +1,7 @@
 /* test_net.c — the protocol proof suite.
  *
  * Doctrine, same as the algebra suites: an asserted property is a rumour, a
- * property a test can FAIL is a result. Every rule P1-P7 in docs/02-PROTOCOL.md
+ * property a test can FAIL is a result. Every rule P1-P7 in docs/10-arquitetura/02-PROTOCOL.md
  * and every footgun in §8 is either exercised here or it is not claimed.
  *
  *   V1-V6  crypto against an independent implementation (OpenSSL via Python)
@@ -691,7 +691,7 @@ static void c_canonical(void)
 
 static void x_cost(void)
 {
-    hdr("X1  cost per frame, measured (host; MCU projection in docs/05-FIRMWARE.md)");
+    hdr("X1  cost per frame, measured (host; MCU projection in docs/10-arquitetura/05-FIRMWARE.md)");
 
     uint8_t root[32];
     fill_random(root, 32);

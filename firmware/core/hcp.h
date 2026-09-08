@@ -1,4 +1,4 @@
-/* hcp.h — Herus Composition Protocol, revision 0.2 (normative: docs/02-PROTOCOL.md).
+/* hcp.h — Herus Composition Protocol, revision 0.2 (normative: docs/10-arquitetura/02-PROTOCOL.md).
  *
  * The unit of communication is a MEANING, not a signal. A message is an intent
  * plus role/filler bindings, carried as 24 bytes of symbol ids and rendered into
@@ -78,7 +78,7 @@
 enum { HCP_TIER_GLYPH = 0, HCP_TIER_COMPOSED = 1, HCP_TIER_VOICE = 2,
        HCP_TIER_SKETCH = 3, HCP_TIER_SOS = 4 };
 
-/* Slot packing (docs/02-PROTOCOL.md §3.3). A slot of 0x0000 means ABSENT — it is
+/* Slot packing (docs/10-arquitetura/02-PROTOCOL.md §3.3). A slot of 0x0000 means ABSENT — it is
  * not "role 0, filler 0", and hcp_encode refuses to emit that combination rather
  * than letting it become a message that round-trips wrong (footgun #5). */
 #define HCP_ROLE_BITS      5
@@ -172,7 +172,7 @@ void hcp_to_hv(hv_t *out, hv_acc_t *scratch, const lex_t *L, const hcp_msg_t *m)
  * absent is a hypothesis test, not a lookup: an absent role unbinds to noise
  * whose nearest neighbour still sits a few sigma from D/2, while a present one
  * lands tens of sigma below it. sigma=12 is the tested default and is derived,
- * not chosen — see test_herus T11 and docs/01-ALGEBRA.md §5.
+ * not chosen — see test_herus T11 and docs/10-arquitetura/01-ALGEBRA.md §5.
  *
  * `slot_index` is the slot's ON-AIR position — pass m->pos[i], not i, or the
  * rotation will not match what the sender bound. */
