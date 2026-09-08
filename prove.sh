@@ -9,7 +9,7 @@
 #   ./prove.sh            full run
 #   ./prove.sh --quiet    verdict lines only
 #
-# Ninety-nine suites, each independently falsifiable:
+# One hundred suites, each independently falsifiable:
 #   1  algebra      quasi-orthogonality, bundling, resonator, learning, HCP
 #   2  nucleus      bounded, opt-in local semantic intelligence
 #   3  voice        controlled local language and bounded haptic feedback
@@ -113,21 +113,22 @@
 #  92  aether    quadro de 33 bytes: RS(33,29), CRC-32, 16-FSK e selo optico
 #  93  aether-channel canal adversarial: ruido, ganho, recorte, deriva, eco, tom
 #  94  aether-redteam uma barreira do Aether desligada por vez
-#  95  web       o pacote do navegador reproduz os vetores do firmware
+#  95  intent-envelope-and-transport contrato mínimo e console sem bypass
+#  96  web       o pacote do navegador reproduz os vetores do firmware
 #
 # DOCUMENTACAO — cento e dez documentos numa hierarquia de oito secoes so
 # continuam navegaveis se os links continuarem certos, e link quebrado e o tipo
 # de defeito que ninguem ve enquanto nao precisa da informacao. Entao vira
 # invariante:
-#  96  docs-index  docs/INDEX.md e exatamente o que o gerador produz
-#  97  docs-links  nenhum link aponta para o vazio, nenhum documento e orfao
+#  97  docs-index  docs/INDEX.md e exatamente o que o gerador produz
+#  98  docs-links  nenhum link aponta para o vazio, nenhum documento e orfao
 #
 # PLATAFORMA — a extensibilidade deixou de ser afirmacao. Um pacote de dominio
 # de terceiro passa no MESMO portao, e uma extensao mal-comportada e recusada
 # por motivo tipado. A metade negativa e a que importa: mecanismo de extensao
 # que aceita tudo nao e plataforma, e buraco.
-#  98  loom-extension  extensao de pacote: 19 invariantes, positiva e negativa
-#  99  loom-campo      o portao completo sobre nucleo + dominio
+#  99  loom-extension  extensao de pacote: 19 invariantes, positiva e negativa
+# 100  loom-campo      o portao completo sobre nucleo + dominio
 #
 # The Nucleus suite is intentionally separate: privacy and non-autonomy are
 # properties that must fail a build when regressed, not promises in a document.
@@ -1083,7 +1084,43 @@ else
     FAIL=1
 fi
 
-banner "95/99 web (o navegador reproduz os vetores do firmware)"
+banner "95/100 intent-envelope-and-transport (contrato e console sem bypass)"
+if python3 research/test_intent_envelope_schema.py > /tmp/herus_intent_envelope_schema.log 2>&1; then
+    cat /tmp/herus_intent_envelope_schema.log
+else
+    echo "  FAIL  o contrato mínimo de intenção mudou sem validação — see /tmp/herus_intent_envelope_schema.log"
+    cat /tmp/herus_intent_envelope_schema.log
+    FAIL=1
+fi
+if python3 research/test_meaning_transport_bypass.py > /tmp/herus_meaning_transport_bypass.log 2>&1; then
+    cat /tmp/herus_meaning_transport_bypass.log
+else
+    echo "  FAIL  o console ESP32 reintroduziu um bypass de transporte — see /tmp/herus_meaning_transport_bypass.log"
+    cat /tmp/herus_meaning_transport_bypass.log
+    FAIL=1
+fi
+if ( cd firmware && make -s meaning-pipeline ) > /tmp/herus_meaning_pipeline.log 2>&1; then
+    grep "MEANING PIPELINE" /tmp/herus_meaning_pipeline.log
+else
+    echo "  FAIL  a cadeia Babel-HIR-Aether-HIR-Babel divergiu — see /tmp/herus_meaning_pipeline.log"
+    tail -20 /tmp/herus_meaning_pipeline.log
+    FAIL=1
+fi
+if python3 research/test_meaning_interoperability.py > /tmp/herus_meaning_interop.log 2>&1; then
+    cat /tmp/herus_meaning_interop.log
+else
+    echo "  FAIL  a referência Python divergiu do frame/HIR/render C — see /tmp/herus_meaning_interop.log"
+    cat /tmp/herus_meaning_interop.log
+    FAIL=1
+fi
+if python3 tools/demo_meaning_pipeline.py --check > /tmp/herus_meaning_demo.log 2>&1; then
+    grep -E "HERUS —|Adulteração deliberada|REJEITADO" /tmp/herus_meaning_demo.log
+else
+    echo "  FAIL  a demonstração host-only não fechou aceitação e recusa — see /tmp/herus_meaning_demo.log"
+    cat /tmp/herus_meaning_demo.log
+    FAIL=1
+fi
+banner "96/100 web (o navegador reproduz os vetores do firmware)"
 # Node nao e dependencia deste repositorio: e uma ferramenta de verificacao
 # opcional. Quando ele falta, a suite e PULADA de forma VISIVEL — nunca
 # silenciosa, porque uma suite que desaparece sem aviso e pior que uma que
@@ -1126,7 +1163,7 @@ JSCHK
     fi
 fi
 
-banner "96/99 docs-index (o indice bate com a hierarquia em disco)"
+banner "97/100 docs-index (o indice bate com a hierarquia em disco)"
 if python3 tools/docs_index.py --check > /tmp/herus_docs_index.log 2>&1; then
     grep "DOC INDEX" /tmp/herus_docs_index.log
 else
@@ -1134,7 +1171,7 @@ else
     FAIL=1
 fi
 
-banner "97/99 docs-links (nenhum link aponta para o vazio)"
+banner "98/100 docs-links (nenhum link aponta para o vazio)"
 if python3 tools/check_links.py > /tmp/herus_docs_links.log 2>&1; then
     grep -E "DOC LINKS|nota:" /tmp/herus_docs_links.log
 else
@@ -1143,7 +1180,7 @@ else
     FAIL=1
 fi
 
-banner "98/99 loom-extension (extensao de terceiro: positiva e negativa)"
+banner "99/100 loom-extension (extensao de terceiro: positiva e negativa)"
 if python3 tools/test_loom_extension.py > /tmp/herus_loom_ext.log 2>&1; then
     grep "LOOM EXTENSION" /tmp/herus_loom_ext.log
 else
@@ -1152,7 +1189,14 @@ else
     FAIL=1
 fi
 
-banner "99/99 loom-campo (o portao completo sobre nucleo + dominio)"
+banner "100/100 loom-campo (o portao completo sobre nucleo + dominio)"
+if python3 tools/test_loom_envelope.py > /tmp/herus_loom_envelope.log 2>&1; then
+    cat /tmp/herus_loom_envelope.log
+else
+    echo "  FAIL  o envelope textual do Loom nao rejeita tabela acima do orçamento — see /tmp/herus_loom_envelope.log"
+    cat /tmp/herus_loom_envelope.log
+    FAIL=1
+fi
 if python3 tools/loom.py --pack research/loom/core --pack research/loom/campo \
         --check > /tmp/herus_loom_campo.log 2>&1; then
     grep "LOOM core+campo" /tmp/herus_loom_campo.log

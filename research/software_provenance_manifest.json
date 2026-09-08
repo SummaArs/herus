@@ -11,25 +11,25 @@
     {
       "path": "prove.sh",
       "kind": "file",
-      "sha256": "c502a5efed0d45b54b69b9caa46a763bced16792d3e3a0c4cf16ebd7c380ca05",
+      "sha256": "41a93f80a2eafcf620caeeee2c00ca429650905917371a78711078173c21e7af",
       "role": "global proof ledger"
     },
     {
       "path": ".github/workflows/prove.yml",
       "kind": "file",
-      "sha256": "7c3352420028a78ec677582c93ac7aacf60dd0bd175322a459f0b022e9041b8b",
+      "sha256": "1abe862a9a1af42bf6bb65f5c58de1235e3f60f1d8828f55468d47ecf1eccfac",
       "role": "host proof workflow"
     },
     {
       "path": "firmware",
       "kind": "tree",
-      "sha256": "7034f38963a0a2432358750aed11135ec5e8c62071971ca0d3b0fb824c414f35",
+      "sha256": "2abd7facee44d8f11ca1b18c1f8d6a74695733c81b14d61026bedb6d93f649b6",
       "role": "portable firmware and proof sources"
     },
     {
       "path": "tools",
       "kind": "tree",
-      "sha256": "888d548dfbf2802952f1680c99b63348c9bf8317f0f4d983354b8a402fdade65",
+      "sha256": "b2e9f87ada66637aae4332cd0df8496a94bf2fa1d9162b4267a74de65b3ce74c",
       "role": "host proof and provenance tools"
     },
     {
@@ -187,6 +187,48 @@
       "kind": "tree",
       "sha256": "340d96e1db567ec600c228c4318101ac1df05c152da35f162af588c9b1127c2a",
       "role": "pacote de dominio de terceiro: prova a extensibilidade e a lacuna tipada por idioma"
+    },
+    {
+      "path": "docs/25-significado/201-HERUS-CONTRATO-MINIMO-DE-INTENCAO.md",
+      "kind": "file",
+      "sha256": "8d2279966f523c1cc2a6bd6022572e7978a5926b2a2c6226b95d24db80084c02",
+      "role": "contrato mínimo de intenção e coordenação verificável"
+    },
+    {
+      "path": "research/intent_envelope_v0.schema.json",
+      "kind": "file",
+      "sha256": "a85620ad5dbb55a58040daed6745f115091e92fccf88d613ee2e4740cb2c9d9e",
+      "role": "schema canônico do envelope de intenção v0"
+    },
+    {
+      "path": "research/test_meaning_transport_bypass.py",
+      "kind": "file",
+      "sha256": "9c7d6e0f0d45ab64c25107a4bd8e8b6d162915548fc5ee0e1a6777dc7eec3ce1",
+      "role": "contraprova de bypass do transporte bruto no console ESP32"
+    },
+    {
+      "path": "research/test_intent_envelope_schema.py",
+      "kind": "file",
+      "sha256": "98a97eaee8c17a6828b6073d8824897eb87c2758e237d81c5c9921c0a4e31cce",
+      "role": "validador estrutural do contrato mínimo de intenção"
+    },
+    {
+      "path": "research/test_meaning_interoperability.py",
+      "kind": "file",
+      "sha256": "e0388ec7abedf06d0724df6a1a97b9e26e1f2b03f2f85ecfe7842d21ce28523e",
+      "role": "paridade independente C/Python de frame, HIR e render"
+    },
+    {
+      "path": "tools/demo_meaning_pipeline.py",
+      "kind": "file",
+      "sha256": "e673bb32cb82da6cb9bc65a97ab1e851a9452cdf030f373f8250a5cd25751c26",
+      "role": "demonstração host-only de significado e recusa de adulteração"
+    },
+    {
+      "path": "research/evidence/wide_cycle_08_meaning_release_candidate.md",
+      "kind": "file",
+      "sha256": "1a8bd8a4fa0a845e56353ec573ad2b6350ab0ae645ee4816fb145822604542a7",
+      "role": "evidência do release candidate host-only de significado verificável"
     }
   ],
   "components": [

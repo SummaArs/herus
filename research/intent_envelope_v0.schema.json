@@ -1,0 +1,246 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://herus.local/schema/intent-envelope/v0",
+  "title": "HERUS Intent Envelope v0",
+  "description": "Envelope finito para proposta, autoridade, condições, efeitos, delegação e evidência. O schema valida forma; o HCAE valida semântica e autoridade.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "identity",
+    "domain",
+    "proposal",
+    "purpose",
+    "authority",
+    "context",
+    "conditions",
+    "effects",
+    "delegation",
+    "evidence"
+  ],
+  "properties": {
+    "schema": {
+      "const": "herus-intent-envelope-v0"
+    },
+    "identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["intent_id", "issuer_id", "issued_at", "version"],
+      "properties": {
+        "intent_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9._:-]{1,96}$"
+        },
+        "issuer_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9._:-]{1,96}$"
+        },
+        "issued_at": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "version": {
+          "type": "integer",
+          "const": 0
+        }
+      }
+    },
+    "domain": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "version"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9._-]{0,47}$"
+        },
+        "version": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 65535
+        }
+      }
+    },
+    "proposal": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["action", "arguments"],
+      "properties": {
+        "action": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9._:-]{0,63}$"
+        },
+        "arguments": {
+          "type": "array",
+          "maxItems": 16,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["name", "type", "value"],
+            "properties": {
+              "name": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9._-]{0,31}$"
+              },
+              "type": {
+                "enum": ["bool", "enum", "id", "u16", "u32", "text-token"]
+              },
+              "value": {
+                "type": ["boolean", "integer", "string"],
+                "maxLength": 64
+              }
+            }
+          }
+        }
+      }
+    },
+    "purpose": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9._:-]{0,63}$"
+    },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["principal_id", "role", "scope", "grant_id"],
+      "properties": {
+        "principal_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9._:-]{1,96}$"
+        },
+        "role": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9._:-]{0,47}$"
+        },
+        "scope": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 16,
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9._:-]{0,63}$"
+          },
+          "uniqueItems": true
+        },
+        "grant_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9._:-]{1,96}$"
+        }
+      }
+    },
+    "context": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["subject_id", "session_id", "nonce", "not_before", "expires_at"],
+      "properties": {
+        "subject_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9._:-]{1,96}$"
+        },
+        "session_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9._:-]{1,96}$"
+        },
+        "nonce": {
+          "type": "string",
+          "pattern": "^[A-Fa-f0-9]{16,64}$"
+        },
+        "not_before": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "expires_at": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "conditions": {
+      "type": "array",
+      "maxItems": 16,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "kind", "required"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9._:-]{0,63}$"
+          },
+          "kind": {
+            "enum": ["session", "confirmation", "integrity", "capability", "evidence", "domain"]
+          },
+          "required": {
+            "type": "boolean",
+            "const": true
+          }
+        }
+      },
+      "uniqueItems": true
+    },
+    "effects": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["allowed_sinks", "forbidden_sinks"],
+      "properties": {
+        "allowed_sinks": {
+          "type": "array",
+          "maxItems": 16,
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9._:-]{0,63}$"
+          },
+          "uniqueItems": true
+        },
+        "forbidden_sinks": {
+          "type": "array",
+          "maxItems": 16,
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9._:-]{0,63}$"
+          },
+          "uniqueItems": true
+        }
+      }
+    },
+    "delegation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mode", "parent_grant_id", "max_depth", "consumable"],
+      "properties": {
+        "mode": {
+          "enum": ["none", "delegated"]
+        },
+        "parent_grant_id": {
+          "type": ["string", "null"],
+          "pattern": "^[A-Za-z0-9._:-]{1,96}$"
+        },
+        "max_depth": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 16
+        },
+        "consumable": {
+          "type": "boolean"
+        }
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["required_kinds", "completion_status"],
+      "properties": {
+        "required_kinds": {
+          "type": "array",
+          "maxItems": 16,
+          "items": {
+            "enum": ["interpretation", "authority", "condition", "transport", "effect", "persistence", "human-confirmation"]
+          },
+          "uniqueItems": true
+        },
+        "completion_status": {
+          "enum": ["UNPROVEN", "PROVEN"]
+        }
+      }
+    }
+  }
+}
