@@ -3,7 +3,7 @@
 Gerado por `tools/docs_index.py`. `tools/check_links.py` prova que
 nenhum link aqui aponta para o vazio e que nenhum documento da
 hierarquia ficou órfão.
-São 110 documentos em 8 seções.
+São 111 documentos em 8 seções.
 
 
 ## Comece por aqui
@@ -40,7 +40,7 @@ São 110 documentos em 8 seções.
 
 ## A camada do significado: interlíngua, compilador, portadores
 
-`docs/25-significado/` — 18 documentos
+`docs/25-significado/` — 19 documentos
 
 - [HERUS — Ciclo de Diálogo Multietapa e Continuidade Local](25-significado/100-HERUS-CICLO-DE-DIALOGO-MULTIETAPA-E-CONTINUIDADE.md)
 - [HERUS — Continuidade Semântica em Diálogo Composto](25-significado/101-HERUS-CONTINUIDADE-SEMANTICA-DIALOGO-COMPOSTO.md)
@@ -54,6 +54,7 @@ São 110 documentos em 8 seções.
 - [HERUS — Aura: presença privada, sem servidor e sem identidade](25-significado/109-HERUS-AURA-PRESENCA-PRIVADA.md)
 - [HERUS — Keel: soberania medida, não prometida](25-significado/110-HERUS-KEEL-SOBERANIA-MEDIDA.md)
 - [HERUS — a camada do significado](25-significado/200-HERUS-A-CAMADA-DO-SIGNIFICADO.md)
+- [HERUS — Contrato Mínimo de Intenção](25-significado/201-HERUS-CONTRATO-MINIMO-DE-INTENCAO.md)
 - [Loom — o tear do espaço semântico](25-significado/201-HERUS-LOOM-O-TEAR.md)
 - [Babel — o significado atravessa a língua](25-significado/202-HERUS-BABEL-INTERLINGUA-FECHADA.md)
 - [Aether — som e luz](25-significado/203-HERUS-AETHER-SOM-E-LUZ.md)

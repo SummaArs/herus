@@ -38,7 +38,9 @@ jobs:
           python3 --version
 
       - name: Prove
-        run: ./prove.sh | tee /tmp/prove.txt
+        run: |
+          set -o pipefail
+          ./prove.sh | tee /tmp/prove.txt
 
       # prove.sh exits non-zero on regression, so reaching this step means the
       # verdict line is there. Publish the ledger where it can be read without

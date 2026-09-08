@@ -4,6 +4,8 @@
 > **camada** onde o significado existe. O relógio é o primeiro corpo dela, não a
 > definição dela.
 
+A definição normativa mínima dessa camada está em [201 — Contrato Mínimo de Intenção](201-HERUS-CONTRATO-MINIMO-DE-INTENCAO.md). O documento separa o envelope universal de coordenação dos vocabulários finitos de cada domínio e ainda não reivindica interoperabilidade universal demonstrada.
+
 ## 1. O que estava pequeno
 
 O HERUS chegou a este ponto com uma catedral de provas em cima de um vocabulário

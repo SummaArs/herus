@@ -19,8 +19,8 @@ os proprios dados, que:
   L2  toda forma esta na forma dobrada canonica (nada de acento perdido depois)
   L3  todo simbolo e unico e cabe no seu namespace de 11 bits
   L4  todo conceito existe em todo idioma declarado, ou declara a lacuna
-  L5  IDA-E-VOLTA: para todo significado alcancavel h e todo idioma L,
-         compile(render(h, L), L) == h
+  L5  IDA-E-VOLTA: para todo significado h produzido pelos enumeradores
+         finitos do gate e todo idioma L, compile(render(h, L), L) == h
   L6  CONVERGENCIA TRANSLINGUE: renderizar em L1 e em L2 e compilar cada um
       devolve o MESMO h, byte a byte
   L7  os conceitos congelados guardam exatamente as formas pt do herald.c
@@ -28,7 +28,8 @@ os proprios dados, que:
   L9  nenhuma frase renderizada estoura o orcamento de leituras (PATH_MAX)
   L10 as tabelas cabem no envelope declarado
 
-L5 e o teorema. Todo o resto existe para que L5 possa ser verdade.
+L5 e o teorema do subconjunto enumerado. Todo o resto existe para que
+L5 possa ser verdade; fora desse subconjunto, o resultado e desconhecido.
 
 Uso:
     python3 tools/loom.py --check              portao apenas
@@ -88,6 +89,32 @@ def _op_role_shapes(pack: B.Pack):
                   if r != var]
         shapes.append((R.OP_PERGUNTAR, [var], others, var))
     return shapes
+
+
+def _emitted_table_string_bytes(pack: B.Pack) -> int:
+    """Conta os bytes de strings emitidos nas tabelas C do pacote.
+
+    O valor inclui o terminador NUL de cada ocorrência emitida. Não é uma
+    estimativa do tamanho final do firmware: é o envelope explícito de payload
+    textual das tabelas geradas, independente do compilador e da arquitetura.
+    """
+    strings: list[str] = []
+    for lang in pack.langs:
+        strings.extend((lang.tag, lang.endonym))
+    for concept in pack.concepts:
+        for tag in pack.tags:
+            values = concept.get("lex", {}).get(tag) or []
+            strings.extend(values)
+            strings.append((concept.get("neg") or {}).get(tag) or "")
+    for tag in pack.tags:
+        for segments in pack.templates.get(tag, {}).values():
+            strings.extend(segments)
+        for op in range(8):
+            strings.append(pack.op_render.get(tag, {}).get(op) or "")
+        strings.append(pack.neg_render.get(tag) or "")
+        strings.extend((pack.urg_render.get(tag, {}).get(k) or "") for k in range(4))
+        strings.extend((pack.qw_render.get(tag, {}).get(r) or "") for r in range(7))
+    return sum(len(value.encode("utf-8")) + 1 for value in strings)
 
 
 def _make(pack, op, fillers, var_role, polarity, urgency):
@@ -430,6 +457,11 @@ class Gate:
                 if len(segs) > SEG_MAX:
                     self.fail("L10", f"[{tag}] template {B.OP_NAME[op]} tem "
                                      f"{len(segs)} segmentos > {SEG_MAX}")
+        table_bytes = _emitted_table_string_bytes(self.pack)
+        self.counts["table_bytes"] = table_bytes
+        if table_bytes > ENVELOPE["table_bytes"]:
+            self.fail("L10", f"payload textual {table_bytes} B > "
+                             f"{ENVELOPE['table_bytes']} B")
 
     def run(self):
         self.l1_l4_load()
@@ -782,8 +814,8 @@ def main() -> int:
             print(f"  extensoes                  {', '.join(pack.extensions)}")
         for k in ("conceitos", "idiomas", "formas", "congelados",
                   "significados_simbolos", "significados_estruturas",
-                  "significados_pares", "idas_e_voltas", "lacunas", "corpus",
-                  "corpus_total"):
+                  "significados_pares", "idas_e_voltas", "table_bytes", "lacunas",
+                  "corpus", "corpus_total"):
             if k in gate.counts:
                 print(f"  {k:26s} {gate.counts[k]:,}".replace(",", "."))
         for n in gate.notes:
@@ -800,8 +832,9 @@ def main() -> int:
     speakers = sum(l.speakers_m for l in pack.langs)
     print(f"LOOM {name}: PASS L1-L10 — {len(pack.concepts)} conceitos, "
           f"{len(pack.langs)} idiomas (~{speakers/1000:.1f} bi de falantes), "
-          f"{gate.counts['idas_e_voltas']:,} idas-e-voltas, "
-          f"{gate.counts.get('corpus',0)}/{gate.counts.get('corpus_total',0)} "
+               f"{gate.counts['idas_e_voltas']:,} idas-e-voltas, "
+               f"{gate.counts['table_bytes']:,} B de tabelas, "
+               f"{gate.counts.get('corpus',0)}/{gate.counts.get('corpus_total',0)} "
           f"corpus".replace(",", "."))
 
     if args.emit:
