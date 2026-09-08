@@ -229,6 +229,12 @@
       "kind": "file",
       "sha256": "1a8bd8a4fa0a845e56353ec573ad2b6350ab0ae645ee4816fb145822604542a7",
       "role": "evidência do release candidate host-only de significado verificável"
+    },
+    {
+      "path": "research/evidence/hardware_entry_gate_v0.md",
+      "kind": "file",
+      "sha256": "46fa546dba87d1a43648bfd049aa0e36616e407b7c93357423618d1576265609",
+      "role": "gate de entrada em hardware e protocolo físico v0"
     }
   ],
   "components": [
