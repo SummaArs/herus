@@ -1,12 +1,11 @@
-# HERUS — Trajetória de competência geral
+# HERUS — Interface háptica LRA
 
-- [ ] Definir níveis mensuráveis de competência e critérios que não permitam chamar qualquer demo de AGI.
-- [ ] Separar competência, generalização, autonomia, consciência, autoridade e segurança.
-- [ ] Expandir HIR para conceitos, relações, estados, consequências e lacunas.
-- [ ] Implementar memória episódica com proveniência e abstração reutilizável.
-- [ ] Testar aprendizado contínuo sem esquecer invariantes nem aceitar evidência conflitante.
-- [ ] Medir transferência entre aritmética, políticas, dados reais e hospedeiros diferentes.
-- [ ] Adicionar percepção linguística como camada de tradução, não como autoridade.
-- [ ] Validar o primeiro corpo físico de pulso.
-- [ ] Criar tarefas abertas controladas e publicar resultados negativos também.
-- [ ] Declarar o limite alcançado com linguagem científica e não promocional.
+- [ ] Fixar que o atuador nunca concede autoridade nem executa intenção sozinho.
+- [ ] Definir padrões táteis finitos para confirmação, atenção, espera, recusa, bloqueio e emergência.
+- [ ] Definir duração, repetição, intensidade e prioridade de cada padrão.
+- [ ] Selecionar uma LRA e um driver háptico I2C compatível com ESP32-S3.
+- [ ] Definir alimentação, desacoplamento, montagem e limites de consumo.
+- [ ] Implementar simulador proposal-only dos padrões.
+- [ ] Integrar o driver ao firmware somente após B1/B2.
+- [ ] Medir reconhecimento humano, consumo e falhas do atuador.
+- [ ] Publicar o contrato háptico e suas limitações.
