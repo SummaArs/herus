@@ -77,6 +77,18 @@ generative-lab:
 generative-lab-skills:
 			$(PYTHON) -m generative_lab.skill_experiment
 
+generative-lab-compose:
+			$(PYTHON) -m generative_lab.composition_experiment
+
+generative-lab-generalization:
+			$(PYTHON) -m generative_lab.generalization_benchmark
+
+generative-lab-memory:
+			$(PYTHON) -m generative_lab.memory_experiment
+
+generative-lab-wire:
+			$(PYTHON) -m generative_lab.wire_experiment
+
 generative-lab-scale:
 			$(PYTHON) -m generative_lab.measure
 

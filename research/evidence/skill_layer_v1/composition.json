@@ -1,0 +1,36 @@
+{
+  "schema": "herus.generative_lab.composition_experiment",
+  "version": 1,
+  "authority": "none",
+  "seed_skills": ["double", "add-three"],
+  "planner": {
+    "policy": "retrieve-first",
+    "direct_hits": 0,
+    "composition_attempts": 1,
+    "verified_compositions": 1
+  },
+  "composed_skill": {
+    "id": "double-then-add-three",
+    "program": ["INPUT", "CONST:2", "MUL", "CONST:3", "ADD"],
+    "dependencies": ["double@1", "add-three@1"],
+    "allowed_effects": [],
+    "state_before_attestation": "CANDIDATE"
+  },
+  "verification": {
+    "visible_passed": 2,
+    "hidden_passed": 2,
+    "counterexamples": 0,
+    "authority_granted": false
+  },
+  "claims_supported": [
+    "The planner reuses verified skills before new synthesis.",
+    "Typed sequential composition creates a new candidate procedure.",
+    "The composed candidate passes hidden cases without effects or authority."
+  ],
+  "claims_not_supported": [
+    "open-ended reasoning",
+    "language understanding",
+    "unbounded skill evolution",
+    "physical execution"
+  ]
+}

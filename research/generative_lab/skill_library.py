@@ -25,6 +25,12 @@ class SkillLibrary:
     def all(self) -> tuple[Skill, ...]:
         return tuple(self._skills.values())
 
+    def replace_record(self, skill: Skill) -> None:
+        key = (skill.skill_id, skill.version)
+        if key not in self._skills:
+            raise KeyError(key)
+        self._skills[key] = skill
+
     def retrieve(self, input_type: str, output_type: str, minimum: SkillState = SkillState.VERIFIED) -> tuple[Skill, ...]:
         minimum_rank = TRUST_ORDER[minimum]
         return tuple(
@@ -76,11 +82,14 @@ def compose_sequential(first: Skill, second: Skill, *, skill_id: str) -> Skill:
         raise TypeError(f"type mismatch: {first.output_type} != {second.input_type}")
     if first.allowed_effects or second.allowed_effects:
         raise ValueError("effectful skills cannot enter this host-only composer")
+    if second.program.count("INPUT") != 1:
+        raise ValueError("the second skill must consume exactly one input")
+    composed_program = first.program + tuple(token for token in second.program if token != "INPUT")
     return candidate_skill(
         skill_id=skill_id,
         input_type=first.input_type,
         output_type=second.output_type,
-        program=first.program + ("COMPOSE",) + second.program,
+        program=composed_program,
         dependencies=(f"{first.skill_id}@{first.version}", f"{second.skill_id}@{second.version}"),
         preconditions=first.preconditions + second.preconditions,
         postconditions=first.postconditions + second.postconditions,

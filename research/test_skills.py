@@ -1,9 +1,15 @@
 from __future__ import annotations
 
 import unittest
+from dataclasses import replace
 
+from generative_lab.generalization_benchmark import run as run_generalization
+from generative_lab.skill_ir_bridge import skill_to_proposal
+from generative_lab.skill_memory import SkillMemory, utility_score
 from generative_lab.skill_library import SkillLibrary, compose_sequential
+from generative_lab.skill_planner import retrieve_or_compose
 from generative_lab.skill_verifier import ArithmeticCase, verify_arithmetic_skill
+from generative_lab.skill_wire import decode_skill_program, encode_verified_skill
 from generative_lab.skill_synthesis import synthesize_arithmetic_skill
 from generative_lab.skills import SkillState, candidate_skill
 
@@ -37,6 +43,78 @@ class SkillContractTests(unittest.TestCase):
         self.assertEqual(composed.input_type, "Int")
         self.assertEqual(composed.output_type, "Int")
         self.assertEqual(composed.state, SkillState.CANDIDATE)
+
+    def test_composition_is_verifiable(self) -> None:
+        double = candidate_skill(skill_id="double", input_type="Int", output_type="Int", program=("INPUT", "CONST:2", "MUL"), provenance={"kind": "test"}).with_state(SkillState.VERIFIED)
+        add_three = candidate_skill(skill_id="add-three", input_type="Int", output_type="Int", program=("INPUT", "CONST:3", "ADD"), provenance={"kind": "test"}).with_state(SkillState.VERIFIED)
+        composed = compose_sequential(double, add_three, skill_id="double-then-add-three")
+        result = verify_arithmetic_skill(composed, [ArithmeticCase(0, 3), ArithmeticCase(2, 7)], [ArithmeticCase(-4, -5)])
+        self.assertTrue(result.passed)
+        self.assertEqual(composed.program, ("INPUT", "CONST:2", "MUL", "CONST:3", "ADD"))
+
+    def test_embedded_wire_round_trip_and_refusal(self) -> None:
+        skill = candidate_skill(skill_id="wire", input_type="Int", output_type="Int", program=("INPUT", "CONST:2", "MUL"), provenance={"kind": "test"}).with_state(SkillState.VERIFIED)
+        wire = encode_verified_skill(skill)
+        self.assertEqual(decode_skill_program(wire), skill.program)
+        with self.assertRaises(ValueError):
+            decode_skill_program(wire[:4] + bytes([2]) + wire[5:])
+        effectful = replace(skill, allowed_effects=("EXECUTE_ACTUATOR",))
+        with self.assertRaises(ValueError):
+            encode_verified_skill(effectful)
+
+    def test_skill_ir_bridge_is_proposal_only(self) -> None:
+        proposal_skill = candidate_skill(skill_id="intent-proposal", input_type="HIR", output_type="IntentProposal", program=("PROPOSAL",), provenance={"kind": "test"}).with_state(SkillState.VERIFIED)
+        proposal_skill = replace(proposal_skill, evidence_hash="evidence-bound")
+        proposal, issues = skill_to_proposal(proposal_skill, event_kind="HELP")
+        self.assertIsNotNone(proposal)
+        self.assertFalse(issues)
+        self.assertTrue(proposal.proposal_only)
+        refused = candidate_skill(skill_id="raw-int", input_type="Int", output_type="Int", program=("INPUT",), provenance={"kind": "test"}).with_state(SkillState.VERIFIED)
+        proposal, issues = skill_to_proposal(refused, event_kind="HELP")
+        self.assertIsNone(proposal)
+        self.assertIn("output_type_not_proposal", issues)
+        unverified = candidate_skill(skill_id="unverified", input_type="HIR", output_type="IntentProposal", program=("PROPOSAL",), provenance={"kind": "test"})
+        proposal, issues = skill_to_proposal(unverified, event_kind="HELP")
+        self.assertIsNone(proposal)
+        self.assertIn("skill_not_verified", issues)
+
+    def test_skill_memory_records_use_and_archives_redundancy(self) -> None:
+        library = SkillLibrary()
+        first = replace(candidate_skill(skill_id="memory-a", input_type="Int", output_type="Int", program=("INPUT",), provenance={"kind": "test"}).with_state(SkillState.VERIFIED), reliability=1.0, generalization_score=1.0)
+        second = replace(candidate_skill(skill_id="memory-b", input_type="Int", output_type="Int", program=("INPUT",), provenance={"kind": "test"}).with_state(SkillState.VERIFIED), reliability=1.0, generalization_score=1.0)
+        library.add(first)
+        library.add(second)
+        memory = SkillMemory(library)
+        memory.record_use("memory-a")
+        self.assertGreater(utility_score(library.get("memory-a")), utility_score(library.get("memory-b")))
+        archived = memory.archive_redundant()
+        self.assertEqual(archived, ("memory-b@1",))
+        self.assertEqual(library.get("memory-a").state, SkillState.VERIFIED)
+        self.assertEqual(library.get("memory-b").state, SkillState.ARCHIVED)
+
+    def test_multi_task_generalization_benchmark(self) -> None:
+        result = run_generalization()
+        self.assertTrue(result["all_tasks_verified"])
+        self.assertEqual(len(result["tasks"]), 3)
+        self.assertTrue(all(row["hidden_passed"] == 3 for row in result["tasks"]))
+
+    def test_retrieve_first_composes_verified_skills(self) -> None:
+        library = SkillLibrary()
+        double = candidate_skill(skill_id="double-plan", input_type="Int", output_type="Int", program=("INPUT", "CONST:2", "MUL"), provenance={"kind": "test"}).with_state(SkillState.VERIFIED)
+        add_three = candidate_skill(skill_id="add-three-plan", input_type="Int", output_type="Int", program=("INPUT", "CONST:3", "ADD"), provenance={"kind": "test"}).with_state(SkillState.VERIFIED)
+        library.add(double)
+        library.add(add_three)
+        skill, metrics = retrieve_or_compose(
+            library,
+            input_type="Int",
+            output_type="Token",
+            visible=(ArithmeticCase(0, 3), ArithmeticCase(2, 7)),
+            hidden=(ArithmeticCase(-4, -5),),
+            composed_id="planned-affine",
+        )
+        self.assertIsNotNone(skill)
+        self.assertEqual(metrics["verified_compositions"], 1)
+        self.assertEqual(skill.program, ("INPUT", "CONST:2", "MUL", "CONST:3", "ADD"))
 
     def test_attestation_is_bound_to_skill_content(self) -> None:
         skill = candidate_skill(skill_id="bound", input_type="Int", output_type="Int", program=("INPUT",), provenance={"kind": "test"})
