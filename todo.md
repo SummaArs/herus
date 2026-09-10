@@ -1,10 +1,11 @@
-# HERUS — Gate físico
+# HERUS — Adaptive Symbiotic Architecture
 
-- [ ] Congelar o contrato do wire format, estados de Skill e autoridade zero.
-- [ ] Revisar o documento hardware_entry_gate_v0.md e alinhar B1–B10.
-- [ ] Definir a lista mínima de placas, cabos, alimentação e instrumentos.
-- [ ] Definir o firmware de recepção e recusa de frames inválidos.
-- [ ] Preparar matriz de ensaios, métricas, logs e condições de aborto.
-- [ ] Executar primeiro ensaio físico somente após hardware estar disponível.
-- [ ] Registrar evidência bruta, hashes, falhas e resultados negativos.
-- [ ] Publicar o relatório físico sem promover alegações não medidas.
+- [ ] Formalizar o núcleo fixo e as propriedades que nunca podem ser adaptadas.
+- [ ] Definir `HostProfile` com recursos, restrições, interfaces, orçamento e origem da evidência.
+- [ ] Definir descoberta limitada e fail-closed de capacidades do hospedeiro.
+- [ ] Implementar negociação de representação, memória, energia e efeitos permitidos.
+- [ ] Conectar o perfil do hospedeiro à recuperação, composição e síntese de Skills.
+- [ ] Simular hospedeiros com recursos ausentes, contraditórios ou hostis.
+- [ ] Demonstrar que adaptação não concede autoridade nem executa código arbitrário.
+- [ ] Integrar o pulso como primeiro hospedeiro físico após B1/B2.
+- [ ] Publicar a tese, a evidência e os limites sem chamar isso de AGI comprovada.
