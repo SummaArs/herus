@@ -1,11 +1,12 @@
-# HERUS — Critérios de resolução
+# HERUS — Trajetória de competência geral
 
-- [ ] Auditar lacunas restantes e marcar cada uma como aberta, bloqueada por hardware ou resolvida.
-- [ ] Demonstrar adaptação com dados reais em pelo menos dois domínios além do pulso.
-- [ ] Demonstrar recuperação, composição e síntese sem autoridade implícita.
-- [ ] Executar ataques de replay, deriva, conflito, distribuição e hospedeiro desconhecido.
-- [ ] Medir generalização oculta, custo, tamanho e limites do wire.
-- [ ] Validar o primeiro hospedeiro físico com B1–B10 e registrar evidência bruta.
-- [ ] Repetir a adaptação em hospedeiro distinto ou declarar a lacuna cross-host.
-- [ ] Definir prontidão controlada por domínio, com shadow/canary/rollback.
-- [ ] Publicar a declaração final: resolvido, pendente ou não demonstrado.
+- [ ] Definir níveis mensuráveis de competência e critérios que não permitam chamar qualquer demo de AGI.
+- [ ] Separar competência, generalização, autonomia, consciência, autoridade e segurança.
+- [ ] Expandir HIR para conceitos, relações, estados, consequências e lacunas.
+- [ ] Implementar memória episódica com proveniência e abstração reutilizável.
+- [ ] Testar aprendizado contínuo sem esquecer invariantes nem aceitar evidência conflitante.
+- [ ] Medir transferência entre aritmética, políticas, dados reais e hospedeiros diferentes.
+- [ ] Adicionar percepção linguística como camada de tradução, não como autoridade.
+- [ ] Validar o primeiro corpo físico de pulso.
+- [ ] Criar tarefas abertas controladas e publicar resultados negativos também.
+- [ ] Declarar o limite alcançado com linguagem científica e não promocional.
