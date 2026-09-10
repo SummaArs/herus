@@ -10,6 +10,7 @@ from generative_lab.skill_library import SkillLibrary, compose_sequential
 from generative_lab.skill_planner import retrieve_or_compose
 from generative_lab.skill_verifier import ArithmeticCase, verify_arithmetic_skill
 from generative_lab.skill_wire import decode_skill_program, encode_verified_skill
+from generative_lab.strategy_benchmark import run as run_strategy_benchmark
 from generative_lab.skill_synthesis import synthesize_arithmetic_skill
 from generative_lab.skills import SkillState, candidate_skill
 
@@ -51,6 +52,14 @@ class SkillContractTests(unittest.TestCase):
         result = verify_arithmetic_skill(composed, [ArithmeticCase(0, 3), ArithmeticCase(2, 7)], [ArithmeticCase(-4, -5)])
         self.assertTrue(result.passed)
         self.assertEqual(composed.program, ("INPUT", "CONST:2", "MUL", "CONST:3", "ADD"))
+
+    def test_strategy_benchmark_prefers_reuse_when_available(self) -> None:
+        result = run_strategy_benchmark()
+        synthesis = result["strategies"]["bounded_synthesis"]
+        reuse = result["strategies"]["retrieve_first_composition"]
+        self.assertEqual(synthesis["hidden_passed"], 3)
+        self.assertEqual(reuse["hidden_passed"], 3)
+        self.assertGreater(synthesis["candidates"], reuse["composition_attempts"])
 
     def test_embedded_wire_round_trip_and_refusal(self) -> None:
         skill = candidate_skill(skill_id="wire", input_type="Int", output_type="Int", program=("INPUT", "CONST:2", "MUL"), provenance={"kind": "test"}).with_state(SkillState.VERIFIED)

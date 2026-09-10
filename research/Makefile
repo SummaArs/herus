@@ -89,6 +89,9 @@ generative-lab-memory:
 generative-lab-wire:
 			$(PYTHON) -m generative_lab.wire_experiment
 
+generative-lab-strategy:
+			$(PYTHON) -m generative_lab.strategy_benchmark
+
 generative-lab-scale:
 			$(PYTHON) -m generative_lab.measure
 
