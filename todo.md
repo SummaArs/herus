@@ -1,9 +1,10 @@
-# HERUS — Políticas compostas e gate físico
+# HERUS — Gate físico
 
-- [ ] Definir composição de políticas e invariantes de segurança.
-- [ ] Implementar dependências entre Skills de política sem efeitos físicos.
-- [ ] Testar conflitos, regras incompletas, ciclos e contexto desconhecido.
-- [ ] Separar síntese, validação, teste oculto e contraexemplos.
-- [ ] Medir tamanho do programa, passos e custo do wire format.
-- [ ] Definir critérios de promoção e recusa para o primeiro hardware.
-- [ ] Registrar evidência e atualizar o PR #49.
+- [ ] Congelar o contrato do wire format, estados de Skill e autoridade zero.
+- [ ] Revisar o documento hardware_entry_gate_v0.md e alinhar B1–B10.
+- [ ] Definir a lista mínima de placas, cabos, alimentação e instrumentos.
+- [ ] Definir o firmware de recepção e recusa de frames inválidos.
+- [ ] Preparar matriz de ensaios, métricas, logs e condições de aborto.
+- [ ] Executar primeiro ensaio físico somente após hardware estar disponível.
+- [ ] Registrar evidência bruta, hashes, falhas e resultados negativos.
+- [ ] Publicar o relatório físico sem promover alegações não medidas.
