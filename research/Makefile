@@ -95,6 +95,9 @@ generative-lab-strategy:
 generative-lab-policy:
 			$(PYTHON) -m generative_lab.policy_experiment
 
+generative-lab-domains:
+			$(PYTHON) -m generative_lab.domain_comparison
+
 generative-lab-scale:
 			$(PYTHON) -m generative_lab.measure
 
