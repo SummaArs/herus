@@ -1,12 +1,11 @@
-# HERUS — Infraestrutura adaptativa multi-hospedeiro
+# HERUS — Critérios de resolução
 
-- [ ] Definir o núcleo universal e sua taxonomia de hospedeiros.
-- [ ] Classificar domínios: pulso, robótica, finanças em sandbox, servidores e sistemas críticos.
-- [ ] Definir contratos de intenção, observação, Skill, efeito e autoridade por domínio.
-- [ ] Definir níveis de risco e gates de promoção para proposta, simulação, shadow e produção.
-- [ ] Selecionar dados reais auditáveis e registrar fonte, licença, versão, divisão e digest.
-- [ ] Construir ambientes de simulação que não concedam efeitos reais.
-- [ ] Implementar adaptação cross-domain baseada em HostProfile e crenças finitas.
-- [ ] Testar deriva, falha, distribuição, contradição, replay e hospedeiros desconhecidos.
-- [ ] Validar o pulso fisicamente e preparar adaptadores para outros hospedeiros.
-- [ ] Publicar critérios de prontidão por domínio e não declarar universalidade sem evidência.
+- [ ] Auditar lacunas restantes e marcar cada uma como aberta, bloqueada por hardware ou resolvida.
+- [ ] Demonstrar adaptação com dados reais em pelo menos dois domínios além do pulso.
+- [ ] Demonstrar recuperação, composição e síntese sem autoridade implícita.
+- [ ] Executar ataques de replay, deriva, conflito, distribuição e hospedeiro desconhecido.
+- [ ] Medir generalização oculta, custo, tamanho e limites do wire.
+- [ ] Validar o primeiro hospedeiro físico com B1–B10 e registrar evidência bruta.
+- [ ] Repetir a adaptação em hospedeiro distinto ou declarar a lacuna cross-host.
+- [ ] Definir prontidão controlada por domínio, com shadow/canary/rollback.
+- [ ] Publicar a declaração final: resolvido, pendente ou não demonstrado.
