@@ -39,6 +39,8 @@ def run_action_policy(program: tuple[str, ...], action: str) -> tuple[str | None
 def compose_policy_skills(first: Skill, second: Skill, *, skill_id: str) -> Skill:
     if first.state != SkillState.VERIFIED or second.state != SkillState.VERIFIED:
         raise ValueError("both dependencies must be VERIFIED")
+    if first.allowed_effects or second.allowed_effects:
+        raise ValueError("effectful dependencies cannot be composed")
     if first.input_type != "Context" or first.output_type != "Action":
         raise TypeError("first Skill must be Context -> Action")
     if second.input_type != "Action" or second.output_type != "Decision":

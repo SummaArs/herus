@@ -68,6 +68,21 @@ class PolicyCompositionTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             compose_policy_skills(unverified, self.second, skill_id="refused")
 
+    def test_effectful_dependency_is_refused(self) -> None:
+        effectful = Skill(**{**self.second.__dict__, "allowed_effects": ("EXECUTE_ACTUATOR",)})
+        with self.assertRaises(ValueError):
+            compose_policy_skills(self.first, effectful, skill_id="effectful-refused")
+
+    def test_non_total_intermediate_policy_is_refused(self) -> None:
+        invalid = Skill(**{**self.first.__dict__, "program": ("SIGNAL:OK=>WAIT",)})
+        with self.assertRaises(ValueError):
+            compose_policy_skills(invalid, self.second, skill_id="partial-refused")
+
+    def test_non_total_action_policy_is_refused(self) -> None:
+        invalid = Skill(**{**self.second.__dict__, "program": ("ACTION:WAIT=>WAIT",)})
+        with self.assertRaises(ValueError):
+            compose_policy_skills(self.first, invalid, skill_id="partial-action-refused")
+
 
 if __name__ == "__main__":
     unittest.main()
