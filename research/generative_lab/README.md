@@ -46,12 +46,14 @@ A segunda prova usa a política `retrieve-first`: duas Skills verificadas (`doub
 
 A memória v2 calcula utilidade a partir de confiabilidade, generalização, reutilização e custo. Skills exatamente redundantes podem ser arquivadas, mas não deletadas: o registro e seu hash permanecem disponíveis para auditoria. A fixture arquivou `memory-duplicate@1` e preservou seu hash; a evidência está em [`../evidence/skill_layer_v1/memory.json`](../evidence/skill_layer_v1/memory.json), e a execução é `make -C research generative-lab-memory`.
 
+O segundo domínio usa políticas finitas sobre `SAFE`, `WAIT` e `ALERT`, com sinais `OK`, `TIMEOUT` e `CANCEL`. O sintetizador examinou 28 políticas, rejeitou 27 e encontrou uma política total que passou em dois casos visíveis e dois ocultos. Estado ou sinal fora do vocabulário falha fechado. As ações são rótulos simbólicos; nenhuma delas é chamada de atuador. A evidência está em [`../evidence/skill_layer_v1/policy.json`](../evidence/skill_layer_v1/policy.json), e a execução é `make -C research generative-lab-policy`.
+
 ## Não objetivos
 
 A primeira versão não tenta resolver linguagem natural aberta, ontologia universal, conhecimento do mundo, aprendizagem, consciência, planejamento irrestrito, prova de completude, execução de programas arbitrários ou substituição demonstrada de um modelo de linguagem.
 
 ## Execução
 
-A suíte específica pode ser executada com `python3 -m unittest -v research/test_generative_lab.py` e `PYTHONPATH=research python3 -m unittest -v research.test_skills`. O benchmark pode ser executado com `make -C research generative-lab`, o experimento de síntese com `make -C research generative-lab-skills`, o experimento de composição com `make -C research generative-lab-compose`, o experimento de memória com `make -C research generative-lab-memory`, e a medição de escala com `make -C research generative-lab-scale`. A suíte completa permanece em `make -C research test`.
+A suíte específica pode ser executada com `python3 -m unittest -v research/test_generative_lab.py` e `PYTHONPATH=research python3 -m unittest -v research.test_skills`. O benchmark pode ser executado com `make -C research generative-lab`, o experimento de síntese com `make -C research generative-lab-skills`, o experimento de composição com `make -C research generative-lab-compose`, o experimento de memória com `make -C research generative-lab-memory`, o experimento de políticas com `make -C research generative-lab-policy`, e a medição de escala com `make -C research generative-lab-scale`. A suíte completa permanece em `make -C research test`.
 
 Na primeira execução integrada, a suíte completa passou com 111 testes e o benchmark passou em 8/8 casos. Esses resultados são do host e devem ser repetidos em qualquer mudança do núcleo do laboratório.
