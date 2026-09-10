@@ -1,0 +1,22 @@
+{
+  "schema": "herus-adaptation-observer-v1",
+  "dataset_id": "ofr_tyld_2020_2025_monthly_last",
+  "source_artifact": "ofr_tyld_2020_2025.json",
+  "source_sha256": "2b4f797d0c9d2d811f214aef125eff8825b03ce23d5efdc0ccda3c50da3d8b48",
+  "series_observed": 12,
+  "first_series": {
+    "series_id": "TYLD-TCMR-10Yr-A",
+    "points": 72,
+    "first_date": "2020-01-31",
+    "last_date": "2025-12-31",
+    "first_value": 1.51,
+    "last_value": 4.18,
+    "delta": 2.67,
+    "regime": "RISING"
+  },
+  "adaptation_output": "finite_regime_observation",
+  "authority": "NONE",
+  "forbidden_outputs": ["trade", "transfer", "personalized_advice", "active_financial_effect"],
+  "claim": "The observer converts a real, versioned OFR artifact into bounded observations with provenance.",
+  "does_not_claim": ["forecasting", "investment_quality", "financial_safety", "universal_adaptation"]
+}
