@@ -32,12 +32,22 @@ Nenhum rótulo, classe ou resultado do laboratório pode ser convertido automati
 | Limite | Retornar estado explícito ao exceder orçamento |
 | Segurança | Nenhum módulo importa firmware ou possui função de envio |
 
+## Skill Layer v1
+
+A camada de Skills adiciona um objeto explícito para procedimentos reutilizáveis sobre estados tipados. Uma Skill contém tipos de entrada e saída, pré e pós-condições, programa em DSL fechado, dependências, orçamento de recursos, efeitos permitidos, proveniência, hash de evidência e estado de confiança.
+
+O ciclo de confiança é `CANDIDATE → QUARANTINED → TESTED → VERIFIED`. O sintetizador enumera candidatos; o verificador independente interpreta somente o DSL conhecido; a biblioteca vincula a evidência ao hash de conteúdo antes de promover a Skill. `AUTHORIZED` e `ACTIVE` não podem ser concedidos por esta camada.
+
+O primeiro experimento usa aritmética inteira em RPN. Ele examinou 6.713 candidatos, rejeitou 6.712 e verificou uma transformação `2x + 3` em três casos visíveis e três casos ocultos. O resultado completo está em [`../evidence/skill_layer_v1/limits.md`](../evidence/skill_layer_v1/limits.md). A execução é `make -C research generative-lab-skills`.
+
+A camada ainda não sintetiza código executável, não toca HIR/Babel, não controla hardware e não demonstra raciocínio aberto. Seu papel atual é provar o mecanismo mínimo de crescimento verificável de capacidade.
+
 ## Não objetivos
 
 A primeira versão não tenta resolver linguagem natural aberta, ontologia universal, conhecimento do mundo, aprendizagem, consciência, planejamento irrestrito, prova de completude, execução de programas arbitrários ou substituição demonstrada de um modelo de linguagem.
 
 ## Execução
 
-A suíte específica pode ser executada com `python3 -m unittest -v research/test_generative_lab.py`. O benchmark pode ser executado com `make -C research generative-lab`, e a medição de escala com `make -C research generative-lab-scale`. A suíte completa permanece em `make -C research test`.
+A suíte específica pode ser executada com `python3 -m unittest -v research/test_generative_lab.py` e `PYTHONPATH=research python3 -m unittest -v research.test_skills`. O benchmark pode ser executado com `make -C research generative-lab`, o experimento de Skills com `make -C research generative-lab-skills`, e a medição de escala com `make -C research generative-lab-scale`. A suíte completa permanece em `make -C research test`.
 
 Na primeira execução integrada, a suíte completa passou com 111 testes e o benchmark passou em 8/8 casos. Esses resultados são do host e devem ser repetidos em qualquer mudança do núcleo do laboratório.

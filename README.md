@@ -104,6 +104,11 @@ A próxima etapa física é a Fase 0: dois devkits, bancada curta, medição RF,
 | [Evidências Wide Research ciclo 07](research/evidence/wide_cycle_07/) | Política de evolução incremental, inventário de contratos, ensaios de Core-Link/HCP/Semantic IR/coleção e decisão de mudança mínima; sem migração persistente alegada. |
 | [Evidências Wide Research ciclo 08](research/evidence/wide_cycle_08/) | Brecha reproduzida no limite de confiança do hint contextual, regressão antes/depois e correção fail-closed de uma condição; nenhum novo caminho de autoridade. |
 | [Laboratório generativo v1](research/generative_lab/) | Núcleo host-only de termos tipados, geração limitada, regras, hipóteses, conflitos locais e saturação; não é linguagem aberta nem possui autoridade. |
+| [Skill Layer v1](research/evidence/skill_layer_v1/limits.md) | Síntese enumerativa limitada, biblioteca de habilidades, verificação independente, casos ocultos e ciclo de confiança sem autoridade. |
+
+## Skill Layer v1
+
+A primeira extensão do laboratório generativo permite propor procedimentos em um DSL fechado, rejeitar candidatos por semântica ou orçamento, verificar contra casos visíveis e ocultos e armazenar o resultado sem conceder autoridade. O experimento encontrou 1 habilidade em 6.713 candidatos, com 3/3 casos ocultos aprovados e zero efeitos permitidos. Isso demonstra síntese verificável em domínio fechado; não demonstra raciocínio aberto, compreensão de linguagem ou segurança física. Os detalhes estão em [`research/evidence/skill_layer_v1/limits.md`](research/evidence/skill_layer_v1/limits.md).
 
 ## Evolução incremental
 
