@@ -101,6 +101,9 @@ generative-lab-domains:
 generative-lab-policy-compose:
 			$(PYTHON) -m generative_lab.policy_composition
 
+generative-lab-policy-cost:
+			$(PYTHON) -m generative_lab.policy_composition_benchmark
+
 generative-lab-scale:
 			$(PYTHON) -m generative_lab.measure
 
