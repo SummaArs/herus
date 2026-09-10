@@ -21,9 +21,11 @@ class SkillSelection:
     representation: str = ""
 
 
-def select_for_host(profile: HostProfile, skill: Skill, representation: str) -> SkillSelection:
+def select_for_host(profile: HostProfile, skill: Skill, representation: str, required_interfaces: frozenset[str] = frozenset()) -> SkillSelection:
     if skill.state is not SkillState.VERIFIED:
         return SkillSelection(skill.skill_id, profile.digest(), "BLOCKED", "skill_not_verified")
+    if not required_interfaces.issubset(profile.interfaces):
+        return SkillSelection(skill.skill_id, profile.digest(), "BLOCKED", "interface_unavailable")
     if skill.allowed_effects:
         return SkillSelection(skill.skill_id, profile.digest(), "BLOCKED", "skill_has_effects")
     plan = negotiate(
