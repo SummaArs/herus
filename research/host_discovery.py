@@ -75,6 +75,9 @@ def discover_host(
     unknown_interfaces = set(candidate_interfaces)
     latencies: dict[str, int] = {}
     max_payload: int | None = None
+    seen_values: dict[tuple[str, str], tuple[str, str]] = {}
+    conflicted_formats: set[str] = set()
+    conflicted_interfaces: set[str] = set()
 
     for request in requests:
         if len(observations) >= budget.max_probes:
@@ -95,6 +98,19 @@ def discover_host(
         if used_bytes + encoded_size > budget.max_bytes:
             blocked.append("byte_budget_exhausted")
             break
+        observation_key = (observation.probe, observation.argument)
+        previous = seen_values.get(observation_key)
+        current = (observation.value, observation.unit)
+        if previous is not None and previous != current:
+            blocked.append("observation_conflict")
+            if observation.probe == "supports_format":
+                conflicted_formats.add(observation.argument)
+                proven_formats.discard(observation.argument)
+            elif observation.probe == "has_interface":
+                conflicted_interfaces.add(observation.argument)
+                proven_interfaces.discard(observation.argument)
+            continue
+        seen_values[observation_key] = current
         observations.append(observation)
         used_bytes += encoded_size
         sequence += 1
@@ -120,12 +136,12 @@ def discover_host(
 
     hypothesis = HostHypothesis(
         session_id=oracle.session_id,
-        proven_formats=frozenset(proven_formats),
-        proven_interfaces=frozenset(proven_interfaces),
+        proven_formats=frozenset(proven_formats - conflicted_formats),
+        proven_interfaces=frozenset(proven_interfaces - conflicted_interfaces),
         max_payload_bytes=max_payload,
         latencies_ms=dict(sorted(latencies.items())),
-        unknown_formats=frozenset(unknown_formats),
-        unknown_interfaces=frozenset(unknown_interfaces),
+        unknown_formats=frozenset(unknown_formats | conflicted_formats),
+        unknown_interfaces=frozenset(unknown_interfaces | conflicted_interfaces),
     )
     return DiscoveryResult(
         hypothesis=hypothesis,
