@@ -39,10 +39,14 @@ class DiscoveryResult:
     blocked_reasons: tuple[str, ...] = ()
 
 
-def _valid_observation(observation: ProbeObservation) -> bool:
+def _valid_observation(observation: ProbeObservation, *, session_id: str, sequence: int) -> bool:
     unsigned = ProbeObservation(**observation.to_dict(False), evidence_digest="")
     expected = hashlib.sha256(unsigned.canonical()).hexdigest()
-    return observation.evidence_digest == expected and observation.sequence >= 0
+    return (
+        observation.host_session == session_id
+        and observation.sequence == sequence
+        and observation.evidence_digest == expected
+    )
 
 
 def discover_host(
@@ -83,7 +87,7 @@ def discover_host(
             blocked.append(str(exc))
             sequence += 1
             continue
-        if not _valid_observation(observation):
+        if not _valid_observation(observation, session_id=oracle.session_id, sequence=sequence):
             blocked.append("evidence_digest_invalid")
             sequence += 1
             continue
