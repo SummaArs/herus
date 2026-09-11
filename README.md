@@ -104,6 +104,11 @@ A próxima etapa física é a Fase 0: dois devkits, bancada curta, medição RF,
 | [Evidências Wide Research ciclo 07](research/evidence/wide_cycle_07/) | Política de evolução incremental, inventário de contratos, ensaios de Core-Link/HCP/Semantic IR/coleção e decisão de mudança mínima; sem migração persistente alegada. |
 | [Evidências Wide Research ciclo 08](research/evidence/wide_cycle_08/) | Brecha reproduzida no limite de confiança do hint contextual, regressão antes/depois e correção fail-closed de uma condição; nenhum novo caminho de autoridade. |
 | [Laboratório generativo v1](research/generative_lab/) | Núcleo host-only de termos tipados, geração limitada, regras, hipóteses, conflitos locais e saturação; não é linguagem aberta nem possui autoridade. |
+| [Skill Layer v1](research/evidence/skill_layer_v1/limits.md) | Síntese enumerativa limitada, biblioteca de habilidades, verificação independente, casos ocultos e ciclo de confiança sem autoridade. |
+
+## Skill Layer v1
+
+A primeira extensão do laboratório generativo permite propor procedimentos em um DSL fechado, rejeitar candidatos por semântica ou orçamento, verificar contra casos visíveis e ocultos e armazenar o resultado sem conceder autoridade. O experimento encontrou 1 habilidade em 6.713 candidatos, com 3/3 casos ocultos aprovados e zero efeitos permitidos. A camada evoluiu com `retrieve-first`, composição tipada, generalização em três funções afins, memória com arquivamento conservador, ponte proposal-only para Semantic IR e wire format limitado a 17 bytes. Em seguida, um segundo domínio de políticas finitas encontrou 1 política em 28 candidatos, com 2/2 casos ocultos aprovados e recusa de contexto desconhecido. A suíte de pesquisa passou 129 testes, com 1 skip preexistente. Isso demonstra crescimento verificável em dois domínios fechados; não demonstra raciocínio aberto, compreensão de linguagem ou segurança física. Os detalhes estão em [`research/evidence/skill_layer_v1/limits.md`](research/evidence/skill_layer_v1/limits.md).
 
 ## Evolução incremental
 
@@ -114,6 +119,8 @@ O HERUS adota o princípio **construir, estabilizar, observar, melhorar pontualm
 O diretório [`research/generative_lab/`](research/generative_lab/) é a primeira implementação executável da vertente paradigmática do HERUS. Ele gera e compõe termos tipados, deriva consequências por regras declaradas, isola conflitos por contexto e agrupa equivalências sob orçamento finito. O benchmark formal v1 passou 8/8 casos e gerou 25 termos na fixture de profundidade 3. A medição por profundidade chegou a 137 termos na profundidade 6, com custo observado de 2,172 ms no host da execução.
 
 Esses números demonstram somente composição simbólica finita. Não demonstram compreensão de linguagem, grounding, conhecimento aberto, aprendizagem ou substituição de modelos de linguagem. O laboratório não importa firmware, não executa código gerado, não aceita rótulos externos e não possui ponte de autoridade. Os comandos são `make -C research generative-lab` e `make -C research generative-lab-scale`. Os limites e resultados estão em [`research/evidence/generative_lab_v1/limits.md`](research/evidence/generative_lab_v1/limits.md).
+
+A camada de Skills permanece estritamente separada da autoridade. Uma Skill pode ser criada, composta, testada, verificada, recuperada e arquivada; ela só chega ao Semantic IR como `PROPOSAL_ONLY`. A representação embarcável transporta apenas um DSL fechado e não contém autorização, identidade ou comando de atuador. O próximo gate físico é medir memória, tempo, persistência, rádio e comportamento fail-closed em dispositivos reais. A segunda prova de políticas não muda essa regra: `WAIT`, `ALERT` e `SAFE` são rótulos simbólicos, não ações físicas.
 
 ## Estado de engenharia
 

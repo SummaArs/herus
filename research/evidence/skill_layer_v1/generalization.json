@@ -1,0 +1,41 @@
+{
+  "schema": "herus.generative_lab.generalization_benchmark",
+  "version": 1,
+  "authority": "none",
+  "tasks": [
+    {
+      "task": "affine_2x_plus_3",
+      "candidates": 6713,
+      "rejected": 6712,
+      "program": ["INPUT", "CONST:2", "MUL", "CONST:3", "ADD"],
+      "visible_passed": 3,
+      "hidden_passed": 3,
+      "counterexamples": 0
+    },
+    {
+      "task": "affine_neg_x_plus_1",
+      "candidates": 406,
+      "rejected": 405,
+      "program": ["INPUT", "CONST:-1", "ADD", "NEG"],
+      "visible_passed": 3,
+      "hidden_passed": 3,
+      "counterexamples": 0
+    },
+    {
+      "task": "affine_3x_minus_2",
+      "candidates": 7397,
+      "rejected": 7396,
+      "program": ["INPUT", "CONST:3", "MUL", "CONST:-2", "ADD"],
+      "visible_passed": 3,
+      "hidden_passed": 3,
+      "counterexamples": 0
+    }
+  ],
+  "all_tasks_verified": true,
+  "claims_not_supported": [
+    "open-ended reasoning",
+    "natural-language understanding",
+    "unbounded learning",
+    "physical safety"
+  ]
+}

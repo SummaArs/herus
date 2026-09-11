@@ -1,0 +1,25 @@
+{
+  "schema": "herus.generative_lab.strategy_benchmark",
+  "version": 1,
+  "authority": "none",
+  "strategies": {
+    "bounded_synthesis": {
+      "candidates": 6713,
+      "rejected": 6712,
+      "hidden_passed": 3,
+      "elapsed_ms_observed": 108.847
+    },
+    "retrieve_first_composition": {
+      "composition_attempts": 1,
+      "verified_compositions": 1,
+      "hidden_passed": 3,
+      "elapsed_ms_observed": 0.117
+    }
+  },
+  "interpretation": "When reusable verified primitives exist, retrieve-first reduces search in this closed fixture while preserving hidden-case coverage.",
+  "limits": [
+    "host timing is not hardware timing",
+    "seed skills are finite fixture inputs",
+    "the benchmark does not measure open-ended reasoning"
+  ]
+}
