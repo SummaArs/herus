@@ -1,0 +1,19 @@
+{
+  "claim": "host_only_active_discovery_cost_and_generalization",
+  "rows": [
+    {"host":"session-pulse","budget_bytes":192,"records":2,"observations":1,"abstentions":1,"proven_formats":[],"proven_interfaces":[]},
+    {"host":"session-pulse","budget_bytes":768,"records":7,"observations":6,"abstentions":1,"proven_formats":["HIR16","HIR8"],"proven_interfaces":["serial"]},
+    {"host":"session-pulse","budget_bytes":4096,"records":13,"observations":13,"abstentions":0,"proven_formats":["HIR16","HIR8"],"proven_interfaces":["haptic","radio","serial"]},
+    {"host":"session-server","budget_bytes":192,"records":2,"observations":1,"abstentions":1,"proven_formats":[],"proven_interfaces":[]},
+    {"host":"session-server","budget_bytes":768,"records":7,"observations":6,"abstentions":1,"proven_formats":["HIR16","HIR32","JSON"],"proven_interfaces":["serial"]},
+    {"host":"session-server","budget_bytes":4096,"records":13,"observations":13,"abstentions":0,"proven_formats":["HIR16","HIR32","JSON"],"proven_interfaces":["display","sensor","serial"]},
+    {"host":"session-restricted","budget_bytes":192,"records":2,"observations":1,"abstentions":1,"proven_formats":[],"proven_interfaces":[]},
+    {"host":"session-restricted","budget_bytes":768,"records":7,"observations":6,"abstentions":1,"proven_formats":["HIR8"],"proven_interfaces":["serial"]},
+    {"host":"session-restricted","budget_bytes":4096,"records":13,"observations":13,"abstentions":0,"proven_formats":["HIR8"],"proven_interfaces":["serial"]}
+  ],
+  "limitations": [
+    "hosts are deterministic laboratory oracles",
+    "no physical timing, power, radio or memory claim",
+    "authority is never discovered or granted"
+  ]
+}
