@@ -1,0 +1,102 @@
+{
+  "claim": "partial_discovery_with_bounded_probes",
+  "hosts": [
+    {
+      "allowed_effects": [],
+      "authority": "NONE",
+      "blocked_reasons": [],
+      "bytes_used": 1529,
+      "false_positive_formats": [],
+      "false_positive_interfaces": [],
+      "probes_used": 13,
+      "proven_formats": [
+        "HIR16",
+        "HIR8"
+      ],
+      "proven_interfaces": [
+        "haptic",
+        "radio",
+        "serial"
+      ],
+      "session_id": "session-pulse",
+      "truth_formats": [
+        "HIR16",
+        "HIR8"
+      ],
+      "truth_host_id": "hidden-pulse",
+      "truth_interfaces": [
+        "haptic",
+        "radio",
+        "serial"
+      ],
+      "unknown_formats": [],
+      "unknown_interfaces": []
+    },
+    {
+      "allowed_effects": [],
+      "authority": "NONE",
+      "blocked_reasons": [],
+      "bytes_used": 1542,
+      "false_positive_formats": [],
+      "false_positive_interfaces": [],
+      "probes_used": 13,
+      "proven_formats": [
+        "HIR16",
+        "HIR32",
+        "JSON"
+      ],
+      "proven_interfaces": [
+        "display",
+        "sensor",
+        "serial"
+      ],
+      "session_id": "session-server",
+      "truth_formats": [
+        "HIR16",
+        "HIR32",
+        "JSON"
+      ],
+      "truth_host_id": "hidden-server",
+      "truth_interfaces": [
+        "display",
+        "sensor",
+        "serial"
+      ],
+      "unknown_formats": [],
+      "unknown_interfaces": []
+    },
+    {
+      "allowed_effects": [],
+      "authority": "NONE",
+      "blocked_reasons": [],
+      "bytes_used": 1598,
+      "false_positive_formats": [],
+      "false_positive_interfaces": [],
+      "probes_used": 13,
+      "proven_formats": [
+        "HIR8"
+      ],
+      "proven_interfaces": [
+        "serial"
+      ],
+      "session_id": "session-restricted",
+      "truth_formats": [
+        "HIR8"
+      ],
+      "truth_host_id": "hidden-restricted",
+      "truth_interfaces": [
+        "serial"
+      ],
+      "unknown_formats": [],
+      "unknown_interfaces": []
+    }
+  ],
+  "not_proven": [
+    "arbitrary_new_host",
+    "physical_discovery",
+    "general_adaptation",
+    "authority_inference"
+  ],
+  "protocol": "autonomous_host_discovery_v1",
+  "status": "host_only"
+}
