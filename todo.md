@@ -65,3 +65,14 @@
 - [ ] Integrar feedback LRA real somente depois dos gates de segurança do firmware.
 - [ ] Repetir descoberta e renegociação com o ASA conectado a celular ou notebook.
 - [ ] Publicar o que foi aprendido, o que falhou e o que continua não demonstrado.
+
+# HERUS — Reorganização editorial e narrativa atual
+
+- [ ] Auditar o README antigo e identificar afirmações que já não representam o projeto.
+- [ ] Definir a separação entre produto pessoal, Paper-Core, ASA, firmware e evidência de pesquisa.
+- [ ] Reescrever o README com a proposta de memória pessoal soberana, conversa local e comunicação essencial.
+- [ ] Criar uma linha do tempo verificável das principais evoluções do HERUS.
+- [ ] Consolidar links para documentos normativos, evidências, testes e hardware.
+- [ ] Remover linguagem de AGI ou capacidades não demonstradas da narrativa pública.
+- [ ] Corrigir referências cruzadas antigas e títulos inconsistentes.
+- [ ] Executar a suíte completa e publicar a organização no GitHub.

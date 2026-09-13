@@ -2,152 +2,130 @@
 
 **Memória pessoal soberana, conversa local e comunicação essencial — com significado antes de mensagem.**
 
-O HERUS é um sistema pessoal de memória, conversa e comunicação para o cotidiano e para momentos em que telefone, rede móvel e interfaces densas não são a ferramenta certa. No relógio, ele ajuda a pessoa a perguntar, guardar e reencontrar o essencial. No Paper-Core, concentra escrita, estudo, conhecimento local e memória. Em vez de depender de uma LLM hospedada ou transmitir áudio e longas mensagens, ele trabalha com **significados essenciais**, cartões de contexto e autoridade física.
+O HERUS é um sistema pessoal para **perguntar, guardar, reencontrar e transmitir o essencial** em situações nas quais um telefone, uma rede móvel ou uma interface densa não são a melhor ferramenta. No relógio, ele oferece interação curta, confirmação física e memória seletiva. No Paper-Core, concentra escrita, estudo, conhecimento local e memória. Em vez de depender de uma LLM hospedada ou transmitir áudio e longas mensagens, trabalha com **significados essenciais, cartões de contexto, representações finitas e autoridade humana explícita**.
 
-O produto foi pensado para trilhas, áreas rurais, deslocamentos, equipes de apoio, eventos externos e qualquer situação em que coordenação clara importa mais que uma conversa longa.
+O produto nasce para o cotidiano, para trilhas, áreas rurais, deslocamentos, equipes de apoio e situações de baixa atenção visual. Seu propósito não é substituir o telefone nem prometer uma inteligência autônoma. É preservar comunicação, memória e coordenação humana quando conectividade, privacidade, energia ou atenção são limitadas.
 
-> O HERUS não tenta substituir o telefone. Ele existe para preservar comunicação humana essencial quando conectividade, atenção ou privacidade falham.
+> **O HERUS não confunde uma mensagem com seu significado, uma proposta com uma autorização ou uma conexão com confiança.**
 
-## A experiência HERUS
+## O que o HERUS é agora
 
-A pessoa usa um vestível simples. Ela inicia uma interação por um gesto físico, expressa uma intenção curta e recebe confirmação clara por voz local, interface mínima ou vibração. Nada é transmitido sem confirmação física.
+O HERUS possui duas camadas inseparáveis.
 
-| Princípio | O que significa na prática |
+A primeira é a **experiência pessoal**: um relógio ou outro dispositivo simples que ajuda a pessoa a perguntar, confirmar, lembrar e comunicar estados essenciais. O Paper-Core funciona como uma estação pessoal para escrita, estudo, conhecimento local e memória. A pessoa permanece no comando: uma sugestão pode ser gerada localmente, mas memória, transmissão ou ação externa exigem uma fronteira de confirmação definida pelo sistema.
+
+A segunda é a **Adaptive Symbiotic Architecture (ASA)**. Ela é o núcleo computacional capaz de entrar em um hospedeiro, descobrir suas capacidades e limitações, negociar uma representação finita, aprender dentro de orçamento, propor Skills verificadas e operar somente dentro da autoridade comprovada. O hospedeiro pode ser o relógio, um celular, um notebook, um robô, um servidor, um sensor, uma rede ou um ambiente externo como a Internet.
+
+Os cenários já implementados — memória pessoal, pulso, robótica, rede defensiva, servidores e finanças em sandbox — não são categorias fechadas do ASA. São ambientes de validação. A arquitetura não deve perguntar “qual modo pré-programado estou usando?”, mas sim:
+
+> **Que ambiente encontrei? O que consigo observar? O que ainda não sei? Qual evidência falta? O que posso propor sem ultrapassar autoridade?**
+
+## Princípios
+
+| Princípio | Consequência prática |
 |---|---|
-| **Significado primeiro** | O rádio carrega uma intenção estruturada, não áudio ou uma transcrição literal. |
-| **Privado por padrão** | O produto não depende de conta, nuvem, identidade transmitida, localização ou histórico de conversa para operar. |
-| **Pessoa no comando** | Inteligência pode sugerir, resumir ou perguntar; ela nunca envia, publica, compra ou altera algo por conta própria. |
-| **Offline de verdade** | O funcionamento essencial é local e continua útil sem sinal de celular ou internet. |
-| **Falhar fechado** | Ambiguidade, confiança insuficiente, replay, expiração ou vínculo revogado bloqueiam a ação em vez de “tentar mesmo assim”. |
+| **Significado antes de mensagem** | O núcleo trabalha com intenções, estados e cartões de contexto essenciais, não com áudio bruto por padrão. |
+| **Memória pessoal soberana** | A pessoa decide o que pode ser lembrado, recuperado, removido ou transmitido. |
+| **Local e privado por padrão** | O funcionamento essencial não depende de conta, nuvem ou conectividade contínua. |
+| **Pessoa no comando** | Inteligência pode sugerir, resumir e perguntar; não envia, compra, publica, altera ou aciona algo sozinha. |
+| **Fail-closed** | Ambiguidade, digest inválido, deriva, replay, expiração ou autoridade ausente bloqueiam a progressão. |
+| **Adaptação verificável** | O ASA pode aprender sobre um ambiente, mas precisa registrar evidência, orçamento, hipótese e motivo de abstinência. |
+| **Conectar não significa confiar** | USB, BLE, LoRa, Wi‑Fi ou Internet transportam dados e propostas; nenhum canal concede autoridade automaticamente. |
 
-## Evolução para produto de massa
+## Como a adaptação funciona
 
-A direção de produto passa a priorizar valor individual antes do efeito de rede. O **HERUS One** é a porta de entrada: um wearable discreto, com botão físico, háptica, estado de privacidade e memória seletiva confirmada. O **Núcleo/Dock** é a expansão de bolso que acrescenta bateria, antena, armazenamento controlado e computação local. A comunicação LoRa, a linguagem privada e o Anchor continuam como multiplicadores, não como requisito para o primeiro valor.
+O ciclo do ASA é comum a qualquer hospedeiro observável:
 
-Essa mudança não reduz a autoridade humana. Nenhuma camada pode persistir memória, enviar significado ou criar HCP sem confirmação física. O objetivo é tornar a experiência mais simples e desejável sem transformar a inteligência em autonomia.
+```text
+observar o ambiente
+        ↓
+formular uma lacuna de conhecimento
+        ↓
+sondar ou pedir pesquisa a um hospedeiro auxiliar
+        ↓
+verificar proveniência, integridade e escopo
+        ↓
+negociar uma representação finita
+        ↓
+compor ou sintetizar uma Skill limitada
+        ↓
+verificar em casos visíveis, ocultos ou sandbox
+        ↓
+propor uma ação
+        ↓
+executar somente sob autoridade comprovada
+```
 
-## O sistema: HERUS One + Núcleo/Dock
+Quando o ASA não sabe algo, ele pode usar um celular ou notebook como **hospedeiro auxiliar**. A Internet pode fornecer evidência externa, mas é tratada como ambiente não confiável. O gateway de conhecimento exige HTTPS, proveniência, data, identidade do pesquisador auxiliar, claims explícitos e digest verificável. Ele não executa código baixado, não transforma pesquisa em permissão e não envia segredos ou autoridade silenciosamente.
 
-O HERUS é composto por duas presenças complementares.
+A adaptação não significa reprogramação arbitrária. Significa adquirir evidência, atualizar uma hipótese, sintetizar uma Skill dentro de orçamento e submetê-la a um verificador independente. Quando a prova falha, o resultado correto é pedir ajuda, permanecer em sandbox ou recusar.
 
-| Elemento | Papel |
+## Produto e arquitetura
+
+| Elemento | Papel atual |
 |---|---|
-| **HERUS One** | A interface pessoal e imediata: gesto, confirmação física, vibração, estado de privacidade e memória seletiva. Entrada inicial sem tela obrigatória e sem captura contínua. |
-| **Núcleo/Dock** | Um dispositivo circular de bolso que amplia bateria, antena, armazenamento controlado e capacidade de computação local. Ele atua como estação-base pessoal para o One. |
-| **Anchor/Field** | Expansões para cobertura ciphertext-only, grupos e equipes de campo; não são pré-requisitos para o primeiro valor individual. |
+| **Relógio / wearable** | Interface imediata de gesto, confirmação, estado de privacidade, memória e feedback háptico. |
+| **Paper-Core** | Estação pessoal para escrita, estudo, conhecimento local e memória soberana. |
+| **ASA Core** | Núcleo adaptativo que descobre hospedeiros, negocia representações, seleciona Skills e limita autoridade. |
+| **Celular ou notebook** | Hospedeiro auxiliar para gateway, pesquisa, armazenamento ou computação delegada sob contrato. |
+| **Robô ou dispositivo legado** | Primeiro exemplo de hospedeiro cuja capacidade deve ser descoberta antes de qualquer controle. |
+| **Internet** | Ambiente externo de evidência e comunicação; nunca autoridade implícita. |
 
-O Núcleo é também a base para a próxima evolução do HERUS: um **complemento seletivo de memória pessoal**. A visão não é gravar toda a vida da pessoa. É identificar, com consentimento, ideias, decisões, compromissos e contexto que valem recuperar no futuro, descartando o restante.
+O feedback háptico é deliberadamente limitado. Um LRA pode comunicar confirmação, espera, recusa, bloqueio ou necessidade de atenção. Ele não concede autoridade nem executa uma intenção sozinho. O usuário deve conseguir distinguir “o HERUS detectou”, “o HERUS propôs”, “a ação foi recusada” e “uma confirmação física é necessária”.
 
-Uma futura LLM local poderá ajudar o Núcleo a organizar e explicar essa memória. Ela será uma camada de raciocínio e recuperação, não uma fonte de autonomia: qualquer uso de comunicação, armazenamento sensível ou ação externa continuará sob controle da pessoa.
+## Evidência atual
 
-## Para quem é
+A implementação host-only já contém contratos de memória, intenção, Skills, descoberta de hospedeiros, negociação de representação, deriva, quarentena, canais, guardião defensivo, feedback háptico, sandbox multi-domínio e gateway de conhecimento externo. No estado publicado mais recente, a suíte `make -C research test` passa com **248 testes**, com um skip preexistente.
 
-| Cenário | Valor do HERUS |
+Esses testes provam propriedades do software e cenários finitos. Eles não provam ainda alcance de rádio, consumo, latência física, qualidade de BLE, persistência após perda de energia, comportamento real do LRA, ergonomia, compreensão humana dos padrões, controle seguro de robôs ou desempenho de uma LLM local. Essas alegações dependem do hardware e dos gates de bancada.
+
+## Próximo marco físico
+
+O próximo passo é o primeiro hospedeiro físico, começando de forma deliberadamente restrita:
+
+| Gate | Objetivo |
 |---|---|
-| **Trilhas, campo e estrada** | Coordenação curta entre pessoas sem depender de cobertura móvel. |
-| **Equipes de apoio** | Estados e intenções rápidos, sem a fricção de rádio de voz contínuo. |
-| **Família e grupos pequenos** | Confirmação de chegada, espera, encontro, mudança de plano ou ajuda. |
-| **Rotinas com baixa atenção visual** | Interação por gesto, fala curta e háptica em vez de telas e menus. |
-| **Memória pessoal diária** | Recuperação privada de ideias, decisões e compromissos que a pessoa autorizou lembrar. |
-| **Relógio e Paper-Core** | Conversa local no pulso, estudo e escrita em uma estação pessoal soberana. |
+| **B1 — Identificação** | Confirmar placa, revisão, alimentação, pinagem e componentes sem inferir capacidades não verificadas. |
+| **B2 — Boot** | Gravar o firmware mínimo, confirmar boot serial, reset, identidade e leitura local. |
+| **B3–B5 — Descoberta** | Medir memória, latência, comunicação, perdas e capacidades realmente observáveis. |
+| **B6–B8 — Haptics** | Integrar driver e LRA, testar padrões, consumo e reconhecimento humano. |
+| **B9–B10 — Adaptação** | Repetir descoberta, deriva, renegociação e ponte com celular ou notebook. |
 
-## Estado atual
-
-O HERUS está em **release candidate pré-hardware**. A arquitetura, os contratos de privacidade, a confirmação física, a inteligência local limitada, o vínculo entre vestível e Núcleo, as barreiras de modelo, o cofre cifrado de cartão mínimo, a consolidação humana limitada, a recuperação tipada controlada, sua apresentação simbólica de status, a composição Grand Finale da cadeia de memória, uma coleção multi-cartão transacional limitada, seu índice privado abstencionista, sua composição multi-cartão com confirmação humana e sem fallback, seu oráculo de recuperação por interrupção, sua sessão de coleção vinculada a propósito com expiração e consumo, seu oráculo de recuperação durável de reservas que nunca reativa sessão após reboot, sua quarentena de boot que importa somente o piso e apaga evidência transitória, seu Gran Finale host que compõe boot, coleção e TM-04 sem reativar sessão, sua primeira prova de fogo determinística de recuperação/quarentena que encontrou e bloqueou piso terminal, sua referência local de integridade de build e um modelo de ameaças executável para controles host, lacunas de alvo e escopo residual foram implementados e verificados em host.
-
-Ainda não há resultados de campo. Alcance, consumo, ergonomia, reconhecimento de fala, comportamento háptico, integração BLE, armazenamento protegido e desempenho de uma LLM local precisam ser medidos no hardware real antes de se tornarem alegações de produto.
-
-A próxima etapa física é a Fase 0: dois devkits, bancada curta, medição RF, energia e interação, com critérios de interrupção definidos antes da coleta.
+Motores, ações irreversíveis, contas financeiras e controle de sistemas críticos permanecem fora do primeiro gate. O sucesso não será apenas “conectar”; será recusar corretamente o que não pôde ser provado.
 
 ## Documentação principal
 
-| Documento | Para quê serve |
+| Documento | Conteúdo |
 |---|---|
-| [Visão do produto](docs/04-PRODUCT.md) | Propósito, proposta de valor e direção de produto. |
-| [Produto desejável e adoção](docs/38-PRODUTO-DESEJAVEL-E-ADOCAO.md) | Reposicionamento para valor individual, HERUS One, Dock, portfólio, UX e hipóteses de adoção. |
-| [Núcleo](docs/06-NUCLEO.md) | Papel do dispositivo circular de bolso, privacidade e caminho de inteligência local. |
-| [LLM local em ESP32](docs/40-LLM-LOCAL-ESP32-E-HERUS.md) | Avaliação da demonstração ESP32-S3, orçamento de memória e workload correto para o HERUS. |
-| [Proposta tipada e invariantes](docs/41-PROPOSTA-TIPADA-E-INVARIANTES.md) | Fronteira fail-closed entre modelo local, candidato de memória e autoridade humana. |
-| [Memória seletiva](docs/17-MEMORIA-SELETIVA.md) | Política inicial para lembrar ideias, decisões e contexto útil sem gravar a vida inteira. |
-| [Captura consentida](docs/18-SESSAO-CAPTURA-MEMORIA.md) | Sessão física, limitada e transitória que antecede qualquer memória pessoal. |
-| [Extração de candidatos](docs/19-EXTRACAO-CANDIDATOS.md) | Interpretação local e conservadora que cria sinais tipados sem guardar a fala. |
-| [Cofre de memória](docs/20-COFRE-MEMORIA.md) | Cartão mínimo cifrado, autorização humana separada, geração anti-rollback e apagamento fail-closed. |
-| [Consolidação humana](docs/21-CONSOLIDACAO-HUMANA.md) | Revisão física limitada, expiração sem retenção, conflito não automático, recuperação por identificador e remoção controlada. |
-| [Recuperação controlada](docs/22-RECUPERACAO-SEMANTICA.md) | Matching local de cartões tipados com limiar, razões e ambiguidade explícita; sem busca livre, escrita ou autoridade de modelo. |
-| [Interface de recuperação](docs/23-INTERFACE-RECUPERACAO-HUMANA.md) | Status simbólico one-shot para correspondência, ausência e ambiguidade; sem conteúdo livre, desempate, escrita, envio ou ação. |
-| [Grand Finale de memória](docs/24-GRAND-FINALE-MEMORIA.md) | Prova composta da cadeia de captura ao status humano, com conflito/modelo bloqueantes e gates explícitos para hardware e avaliação. |
-| [Modelo de ameaças executável](docs/25-MODELO-AMEACAS-EXECUTAVEL.md) | Evidência rastreável para riscos de rádio, trust, memória, telemetria e modelo; lacunas físicas e supply chain continuam explícitas. |
-| [Coleção de memória](docs/26-COLECAO-MEMORIA.md) | Até oito cartões mínimos autorizados em uma transação cifrada; recuperação, exclusão e compactação lógicas sem alegação de mídia física. |
-| [Índice privado da coleção](docs/27-INDICE-PRIVADO-COLECAO.md) | Consulta tipada, física e limitada que retorna apenas match inequívoco, ausência ou ambiguidade; sem listagem, abertura automática, texto ou modelo. |
-| [Recuperação transacional](docs/28-RECUPERACAO-TRANSACIONAL.md) | Oráculo C11 de estados pós-interrupção: promove somente sucessor autenticado ancorado no piso, descarta preparação pré-piso e bloqueia contradições; sem alegação de power-loss físico. |
-| [Proveniência local de build](docs/29-PROVENIENCIA-LOCAL-BUILD.md) | Inventário direto e digests locais fail-closed para insumos de prova; não é SBOM completo, atestação assinada, SLSA, build reproduzível ou garantia de supply chain. |
-| [Grand Finale da coleção](docs/30-GRAND-FINALE-COLECAO.md) | Cadeia multi-cartão de consentimento à apresentação abstencionista; sem abertura automática, fallback unitário, autoridade de modelo ou alegação de backend/hardware físico. |
-| [Sessão física vinculada a propósito](docs/31-SESSAO-FISICA-PROPOSITO.md) | Gate transitório para inserir, abrir, remover, compactar ou consultar a coleção com propósito, validade e consumo explícitos; não prova gesto, pessoa, biometria ou hardware. |
-| [Recuperação de reserva de sessão](docs/32-RECUPERACAO-RESERVA-SESSAO.md) | Oráculo pós-reboot para marcadores autenticados e piso durável declarado: avança apenas ID queimado, bloqueia contradições e nunca reativa uma sessão. |
-| [Quarentena de boot da sessão](docs/33-QUARENTENA-BOOT-SESSAO.md) | Costura C11 que reconstrói o gate em `IDLE`, importa somente o piso recuperado e exige novo evento para toda sessão posterior. |
-| [Gran Finale pré-hardware](docs/34-GRAN-FINALE-PRE-HARDWARE.md) | Composição final host de bootstrap, M14 e TM-04: qualquer divergência bloqueia; o único sucesso permanece `IDLE` e pede sessão nova. |
-| [Prova de fogo host](docs/35-PROVA-DE-FOGO-HOST.md) | Campanha F1 determinística: snapshots hostis atravessam recuperação e bootstrap; corrigiu o piso terminal `UINT32_MAX` antes de atingir hardware. |
+| [Linha do tempo](docs/63-LINHA-DO-TEMPO.md) | Evolução do projeto, dos contratos locais à ASA e ao gate físico. |
+| [Arquitetura ASA](docs/62-SYMBIOTIC-ARCHITECTURE.md) | Definição atual da Adaptive Symbiotic Architecture e seus limites. |
 | [Especificação do sistema](docs/00-HERUS-MASTER.md) | Arquitetura geral, protocolo, segurança, energia e limites conhecidos. |
-| [Guia de construção](docs/03-BUILD-GUIDE.md) | Próximos passos de hardware e critérios para interromper ou prosseguir. |
-| [HERUS indispensável e inteligência própria](docs/47-HERUS-INDISPENSAVEL-E-INTELIGENCIA-PROPRIA.md) | Revisão de produto, mercado, Watch, Paper-Core, conhecimento local e tecnologia sem LLM hospedada. |
-| [Segurança](SECURITY.md) | O que a criptografia protege hoje e o que ainda depende de integração física. |
-| [Aprendizados do Atlas_Node](docs/44-ATLAS-NODE-APRENDIZADOS.md) | Comparação auditável com um sistema ESP32/BLE/rádio e adaptação de transporte limitada. |
-| [Arquitetura finita e linguagem](docs/48-ARQUITETURA-FINITA-E-LINGUAGEM.md) | VSA/HDC limitado a vocabulário finito; memória por regras; LLM local futura apenas como camada linguística medida no hardware. |
-| [Protótipo de raciocínio finito](research/FINITE-REASONER-README.md) | Trilha host-only experimental: composição tipada, saturação limitada e hipóteses paraconsistentes, sem autoridade sobre o produto. |
-| [Desafio do raciocínio generativo](docs/49-DESAFIO-RACIOCINIO-GENERATIVO.md) | Tese de pesquisa: generalização combinatória segura, aprendizado local mínimo e limites contra a promessa de raciocínio aberto universal. |
-| [Intent Compiler e Semantic IR](docs/50-INTENT-COMPILER-E-SEMANTIC-IR.md) | Conexão entre compilação de intenção, representação intermediária semântica, percepção multimodal e núcleo cognitivo verificável. |
-| [Manifesto de datasets reais](research/datasets_manifest.json) | Proveniência, licença, alinhamento, hashes, estado de download e limites de alegação para MIntRec, Common Voice, WESAD, SLURP, Fluent Speech Commands e MInDS-14. |
-| [Protocolo de anotação independente](research/annotation_protocol.py) | Vocabulário finito de anotação HERUS; `OTHER`, `AMBIGUOUS` e `CONFLICT` não têm autoridade operacional e rótulos externos não são convertidos. |
-| [Evidências Wide Research ciclo 04](research/evidence/wide_cycle_04/) | Logs e auditorias agregadas do primeiro uso local de metadados reais; dados crus permanecem fora do Git. |
-| [Relatório Wide Research ciclo 05](research/evidence/wide_cycle_05/report.md) | Auditoria real do SLURP, probe ZIP por Range, licenças por modalidade, parser C e bloqueios restantes; nenhum áudio ou archive bruto publicado. |
-| [Evidências Wide Research ciclo 06](research/evidence/wide_cycle_06/) | Auditoria MInDS-14 por API `/rows`, quatro WAVs estruturais temporários, split pt-PT completo sem download de áudio, correção de falso HELP e identidade SLURP ainda ambígua. |
-| [Evidências Wide Research ciclo 07](research/evidence/wide_cycle_07/) | Política de evolução incremental, inventário de contratos, ensaios de Core-Link/HCP/Semantic IR/coleção e decisão de mudança mínima; sem migração persistente alegada. |
-| [Evidências Wide Research ciclo 08](research/evidence/wide_cycle_08/) | Brecha reproduzida no limite de confiança do hint contextual, regressão antes/depois e correção fail-closed de uma condição; nenhum novo caminho de autoridade. |
-| [Laboratório generativo v1](research/generative_lab/) | Núcleo host-only de termos tipados, geração limitada, regras, hipóteses, conflitos locais e saturação; não é linguagem aberta nem possui autoridade. |
-| [Skill Layer v1](research/evidence/skill_layer_v1/limits.md) | Síntese enumerativa limitada, biblioteca de habilidades, verificação independente, casos ocultos e ciclo de confiança sem autoridade. |
+| [Visão do produto](docs/04-PRODUCT.md) | Propósito, proposta de valor e direção de produto. |
+| [Memória seletiva](docs/17-MEMORIA-SELETIVA.md) | Política para lembrar ideias, decisões e contexto sem gravar a vida inteira. |
+| [Arquitetura finita e linguagem](docs/48-ARQUITETURA-FINITA-E-LINGUAGEM.md) | Vocabulário finito, regras e papel futuro de uma LLM local. |
+| [Skill Layer v1](research/evidence/skill_layer_v1/limits.md) | Síntese limitada, verificação independente e limites de autoridade. |
+| [Descoberta de hospedeiros](docs/59-AUTONOMOUS-HOST-DISCOVERY.md) | Protocolo de sondagem sem perfil completo pré-fornecido. |
+| [Teto host-only](docs/61-HOST-ONLY-CEILING.md) | O que foi demonstrado e o que exige hardware físico. |
+| [Contrato háptico](docs/58-HAPTIC-CONTRACT.md) | Estados, padrões e limites da interface LRA. |
+| [Entrada em hardware](research/evidence/hardware_entry_gate_v1.md) | Critérios normativos B1–B10. |
+| [Lista de compra](research/evidence/hardware_purchase_list_v1.md) | Componentes do primeiro hospedeiro físico. |
+| [Segurança](SECURITY.md) | O que os controles protegem hoje e o que depende da integração física. |
 
-## Skill Layer v1
-
-A primeira extensão do laboratório generativo permite propor procedimentos em um DSL fechado, rejeitar candidatos por semântica ou orçamento, verificar contra casos visíveis e ocultos e armazenar o resultado sem conceder autoridade. O experimento encontrou 1 habilidade em 6.713 candidatos, com 3/3 casos ocultos aprovados e zero efeitos permitidos. A camada evoluiu com `retrieve-first`, composição tipada, generalização em três funções afins, memória com arquivamento conservador, ponte proposal-only para Semantic IR e wire format limitado a 17 bytes. Em seguida, um segundo domínio de políticas finitas encontrou 1 política em 28 candidatos, com 2/2 casos ocultos aprovados e recusa de contexto desconhecido. A suíte de pesquisa passou 129 testes, com 1 skip preexistente. Isso demonstra crescimento verificável em dois domínios fechados; não demonstra raciocínio aberto, compreensão de linguagem ou segurança física. Os detalhes estão em [`research/evidence/skill_layer_v1/limits.md`](research/evidence/skill_layer_v1/limits.md).
-
-## Evolução incremental
-
-O HERUS adota o princípio **construir, estabilizar, observar, melhorar pontualmente e preservar** como política de contratos e invariantes, não como proibição absoluta de mudança interna. HCP tem uma extensão forward-compatible específica para papéis desconhecidos; Semantic IR, Core-Link e persistência exigem versão/migração quando a estrutura fechada muda. Uma correção de segurança pode exigir quebra controlada. O ciclo 07 não adicionou autoridade ao núcleo: adicionou regressões de versão/tamanho do Core-Link, testes host-only e documentação verificável. No ciclo 08, uma regressão real mostrou que `intent_context_hint_t.confidence_pct=255` podia promover uma observação ambígua; o gate passou a exigir `0..100`, com teste antes/depois. A correção alterou uma condição, sem nova autoridade ou mudança de wire. Veja a [política de evolução](research/evidence/wide_cycle_07/evolution_policy.md), a [decisão de complexidade](research/evidence/wide_cycle_07/complexity_report.md) e o [relatório da brecha](research/evidence/wide_cycle_08/breach_report.md).
-
-## Laboratório generativo simbólico
-
-O diretório [`research/generative_lab/`](research/generative_lab/) é a primeira implementação executável da vertente paradigmática do HERUS. Ele gera e compõe termos tipados, deriva consequências por regras declaradas, isola conflitos por contexto e agrupa equivalências sob orçamento finito. O benchmark formal v1 passou 8/8 casos e gerou 25 termos na fixture de profundidade 3. A medição por profundidade chegou a 137 termos na profundidade 6, com custo observado de 2,172 ms no host da execução.
-
-Esses números demonstram somente composição simbólica finita. Não demonstram compreensão de linguagem, grounding, conhecimento aberto, aprendizagem ou substituição de modelos de linguagem. O laboratório não importa firmware, não executa código gerado, não aceita rótulos externos e não possui ponte de autoridade. Os comandos são `make -C research generative-lab` e `make -C research generative-lab-scale`. Os limites e resultados estão em [`research/evidence/generative_lab_v1/limits.md`](research/evidence/generative_lab_v1/limits.md).
-
-A camada de Skills permanece estritamente separada da autoridade. Uma Skill pode ser criada, composta, testada, verificada, recuperada e arquivada; ela só chega ao Semantic IR como `PROPOSAL_ONLY`. A representação embarcável transporta apenas um DSL fechado e não contém autorização, identidade ou comando de atuador. O próximo gate físico é medir memória, tempo, persistência, rádio e comportamento fail-closed em dispositivos reais. A segunda prova de políticas não muda essa regra: `WAIT`, `ALERT` e `SAFE` são rótulos simbólicos, não ações físicas.
-
-## Estado de engenharia
-
-A versão consolidada pode ser verificada localmente com:
+## Verificação local
 
 ```bash
 ./prove.sh --quiet
 make -C firmware watch-memory-frontend
 make -C research test
-# somente com os TSVs MIntRec baixados localmente e ignorados pelo Git:
-make -C research real-corpus-audit real-corpus
-# somente com o repositório textual SLURP e metadata obtidos legitimamente:
-make -C research slurp-text-audit SLURP_ROOT=/caminho/slurp SLURP_METADATA=/caminho/metadata.json
-make -C research slurp-text-sanitizers SLURP_ROOT=/caminho/slurp
-# somente com autorização local explícita para baixar WAVs temporários:
-make -C research minds14-sample-audit MINDS14_ALLOW_AUDIO=1
-make -C research minds14-batch-audit MINDS14_ALLOW_AUDIO=1
-make -C research minds14-batch-sanitizers MINDS14_ALLOW_AUDIO=1
 ```
 
-O comando executa as verificações portáveis e o simulador. A análise Atlas_Node inclui ainda a suíte explícita `make -C firmware delivery-plan`. Um resultado positivo confirma contratos de software e autoriza somente o início controlado da bancada; ele **não** constitui evidência de alcance, energia, UX ou desempenho físico.
+Os comandos acima exercitam contratos de software e pesquisa host-only. Um resultado positivo autoriza o início controlado da bancada; não constitui prova de desempenho físico, segurança de rádio, privacidade de sensores ou utilidade do produto em campo.
 
-O HERUS não resolve NLU/NLG aberto: VSA/HDC opera somente sobre o vocabulário finito dos cartões de contexto, e a memória seletiva é governada por regras e estados tipados. A decisão normativa está em [Arquitetura finita e linguagem](docs/48-ARQUITETURA-FINITA-E-LINGUAGEM.md). Uma LLM local futura poderá atuar apenas como camada linguística no Núcleo depois de orçamento medido em hardware real, sem autoridade sobre memória, rádio ou confirmação física.
+## O que o HERUS ainda não é
 
-A fronteira entre uma proposta de modelo e um candidato de memória pode ser exercitada com `make -C firmware memory-proposal`. O sizing grosseiro da demonstração de LLM em ESP32-S3 pode ser reproduzido separadamente com `make -C firmware llm-budget-check`. Esses alvos validam somente contratos e comparações C11/Python host-only; persistência, HCP, comunicação, inferência, qualidade, autonomia e desempenho continuam exigindo os gates humanos e físicos existentes.
+O HERUS ainda não é uma AGI, não resolve NLU/NLG aberto, não substitui modelos de linguagem atuais e não possui adaptação geral comprovada a qualquer dispositivo. VSA/HDC permanece restrito ao vocabulário finito dos cartões de contexto. A memória é governada por regras e estados tipados. Uma LLM local futura pode atuar como camada linguística, mas somente depois de orçamento medido em hardware real e sem autoridade sobre memória, rádio ou confirmação física.
 
-A história detalhada de experimentação, provas e decisões de implementação é preservada no ramo [`internal/engineering-archive`](https://github.com/SummaArs/herus/tree/internal/engineering-archive). Ela existe para rastreabilidade de engenharia, sem ocupar a apresentação principal do produto.
+A ambição é grande; as alegações permanecem proporcionais às evidências. O projeto avançará quando uma nova capacidade puder ser especificada, testada, auditada e, se necessário, recusada.
 
 ## Licença
 

@@ -47,7 +47,7 @@
     {
       "path": "research/Makefile",
       "kind": "file",
-      "sha256": "4b7bea613e1d1fc8af4cacf7597d04abf1873a4c1446da6776e33764445559c0",
+      "sha256": "6b0473317def78d922ca57cbc184757123395c49d5c864ce6f16686d6ec77303",
       "role": "host-only research test entrypoint"
     },
     {
@@ -251,7 +251,7 @@
     {
       "path": "README.md",
       "kind": "file",
-      "sha256": "f141ca8db48ac838b36a568097cb9cc19036381b600f601610d68063bcdd1512",
+      "sha256": "793c8d6768a9c3255b26ea9c8b546040ccae45707865be3f08da58d6251e0175",
       "role": "public project state and verification documentation"
     },
     {
@@ -287,7 +287,7 @@
     {
       "path": "research/generative_lab",
       "kind": "tree",
-      "sha256": "b36b1143aa5306a81db8723025ccd6d32d7a36a19f58cfb3205cd8d6c6562acf",
+      "sha256": "a094e5fead9de6220a0d73583392b1efddd0d1e029c91a12ef0bf511ea39f862",
       "role": "host-only typed symbolic generative laboratory"
     },
     {
