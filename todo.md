@@ -22,3 +22,30 @@
 - [ ] Demonstrar transferência para um hospedeiro não usado durante a síntese.
 - [ ] Repetir o protocolo no hospedeiro físico de pulso após B1/B2.
 - [ ] Publicar resultados, falhas e limites sem declarar adaptação geral prematuramente.
+
+# HERUS — Máximo host-only antes do hardware
+
+- [ ] Auditar o que já é evidência, hipótese, simulação e lacuna física.
+- [ ] Definir critérios para não chamar um ambiente fechado de adaptação geral.
+- [ ] Criar hospedeiros virtuais abertos com interfaces, custos e capacidades desconhecidas.
+- [ ] Implementar descoberta contínua com mudanças durante a sessão.
+- [ ] Implementar memória de experimentos, crenças e contraexemplos.
+- [ ] Fazer o HERUS escolher quais sondagens e experimentos executar sob orçamento.
+- [ ] Compor e sintetizar Skills para objetivos novos em hospedeiros diferentes.
+- [ ] Testar transferência aberta, deriva, conflito, falha e comportamento hostil.
+- [ ] Medir custo, latência, cobertura, abstinência e generalização.
+- [ ] Registrar o ponto exato em que somente hardware físico pode responder.
+
+# HERUS — Simbiose entre humanos, máquinas e ambientes
+
+- [ ] Formalizar os modos: hospedeiro simbiótico, guardião pessoal, rede defensiva e conector de domínio.
+- [ ] Definir o núcleo de permissões: descobrir não autoriza, conectar não confia, proposta não executa.
+- [ ] Definir contratos de USB, BLE, LoRa, Wi-Fi, UART, I2C, SPI, CAN e RS-485.
+- [ ] Implementar descoberta defensiva autorizada de conexões Bluetooth.
+- [ ] Detectar pareamento inesperado, mudança de identidade, deriva e comportamento anômalo.
+- [ ] Definir quarentena, revogação, permitir uma vez e permitir por sessão.
+- [ ] Mapear estados de segurança para padrões LRA proposal-only.
+- [ ] Simular adaptação a robô legado sem acionar motores.
+- [ ] Testar finanças em sandbox e sistemas críticos em shadow mode.
+- [ ] Integrar canais externos somente após o contrato de permissão passar nos testes adversariais.
+- [ ] Publicar a visão de simbiose, resultados e limites de uso real.
