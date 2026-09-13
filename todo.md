@@ -49,3 +49,19 @@
 - [ ] Testar finanças em sandbox e sistemas críticos em shadow mode.
 - [ ] Integrar canais externos somente após o contrato de permissão passar nos testes adversariais.
 - [ ] Publicar a visão de simbiose, resultados e limites de uso real.
+
+# HERUS — ASA aberto e primeiro hospedeiro físico
+
+- [ ] Reformular os modos anteriores como cenários, não como limites fechados da arquitetura.
+- [ ] Definir o protocolo universal de descoberta para qualquer hospedeiro observável.
+- [ ] Representar lacunas de conhecimento como perguntas finitas e verificáveis.
+- [ ] Definir o celular e o notebook como hospedeiros auxiliares e pontes de conhecimento.
+- [ ] Tratar a Internet como ambiente externo não confiável, com proveniência e escopo.
+- [ ] Impedir envio silencioso de segredos, dados pessoais ou autoridade para serviços externos.
+- [ ] Permitir aquisição de evidência sem executar código externo automaticamente.
+- [ ] Sintetizar Skills novas somente após verificador independente, sandbox e orçamento.
+- [ ] Preparar o bring-up B1/B2 do primeiro hardware físico.
+- [ ] Medir latência, memória, energia, rádio, perdas, reinicialização e deriva no hospedeiro real.
+- [ ] Integrar feedback LRA real somente depois dos gates de segurança do firmware.
+- [ ] Repetir descoberta e renegociação com o ASA conectado a celular ou notebook.
+- [ ] Publicar o que foi aprendido, o que falhou e o que continua não demonstrado.
