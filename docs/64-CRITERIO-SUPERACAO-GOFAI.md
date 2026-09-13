@@ -51,6 +51,16 @@ A métrica primária não será apenas acurácia. O HERUS precisa mostrar adapta
 | **Preservação** | Invariantes antigos que continuam passando após adicionar a Skill. |
 | **Recuperação** | Falhas recuperadas sem reinício externo ou reprogramação manual. |
 
+## Implementação atual: aprendizagem por evidência
+
+A primeira versão do ciclo de aprendizagem por evidência foi implementada em `research/evidence_skill_synthesis.py`. Uma evidência externa passa pelo gateway HTTPS, proveniência, claims explícitos e digest de fonte. Se aceita, ela pode abrir uma síntese enumerativa limitada; ela não fornece código executável, não edita o verificador e não concede autoridade.
+
+A Skill candidata percorre o ciclo `CANDIDATE → QUARANTINED → TESTED → VERIFIED` da biblioteca oficial. O verificador RPN aritmético executa apenas a DSL finita, usa casos visíveis e ocultos e produz contraexemplos. Uma Skill que falha nos casos ocultos não é promovida. Mesmo uma Skill `VERIFIED` continua sem `allowed_effects`, com `authority` externo e sem autorização de execução.
+
+A suíte adversarial cobre fonte HTTP, claims ausentes, digest adulterado, contradição de evidência, revisão obsoleta, rejeição do verificador independente e texto externo que tenta introduzir instruções de execução. Esses testes demonstram uma propriedade mais forte que “o sistema aprendeu”: **o sistema pode adquirir uma hipótese operacional nova, mas só a conserva como procedimento finito verificável e não autorizado**.
+
+Esta etapa ainda não prova aprendizagem aberta. O vocabulário da Skill continua finito, o domínio é aritmético, a evidência não é interpretada como linguagem livre e os casos ocultos são construídos pelo laboratório. A próxima prova precisa substituir o caso único por tarefas compostas, hospedeiros estruturalmente diferentes e fontes independentes que não compartilhem o mesmo oráculo.
+
 ## O que não conta como superação
 
 Uma demonstração não conta se o novo hospedeiro foi previamente codificado no núcleo, se o teste expõe a resposta correta, se os casos ocultos foram usados durante a síntese, se uma LLM traduz a solução sem medir sua proveniência, se a pontuação ignora recusa e falso efeito ou se a execução é feita apenas em um simulador que não representa a propriedade alegada.

@@ -75,9 +75,9 @@ O feedback háptico é deliberadamente limitado. Um LRA pode comunicar confirma�
 
 ## Evidência atual
 
-A implementação host-only já contém contratos de memória, intenção, Skills, descoberta de hospedeiros, negociação de representação, deriva, quarentena, canais, guardião defensivo, feedback háptico, sandbox multi-domínio e gateway de conhecimento externo. No estado publicado mais recente, a suíte `make -C research test` passa com **248 testes**, com um skip preexistente.
+A implementação host-only já contém contratos de memória, intenção, Skills, descoberta de hospedeiros, negociação de representação, deriva, quarentena, canais, guardião defensivo, feedback háptico, sandbox multi-domínio, gateway de conhecimento externo, benchmark aberto contra um baseline GOFAI fechado e síntese de Skills por hipóteses finitas selecionadas por evidência. No estado desta etapa, a suíte `make -C research test` passa com **267 testes**, com um skip preexistente.
 
-Esses testes provam propriedades do software e cenários finitos. Eles não provam ainda alcance de rádio, consumo, latência física, qualidade de BLE, persistência após perda de energia, comportamento real do LRA, ergonomia, compreensão humana dos padrões, controle seguro de robôs ou desempenho de uma LLM local. Essas alegações dependem do hardware e dos gates de bancada.
+Esses testes provam propriedades do software e cenários finitos. A nova etapa demonstra que evidência externa aceita pode selecionar uma hipótese de uma gramática finita, submetê-la a casos visíveis e ocultos e promovê-la apenas até `VERIFIED`; ela não demonstra aprendizagem aberta nem permite que texto externo injete opcodes, autoridade ou efeitos. Também não provam ainda alcance de rádio, consumo, latência física, qualidade de BLE, persistência após perda de energia, comportamento real do LRA, ergonomia, compreensão humana dos padrões, controle seguro de robôs ou desempenho de uma LLM local. Essas alegações dependem do hardware e dos gates de bancada.
 
 ## Próximo marco físico
 
@@ -102,6 +102,7 @@ Motores, ações irreversíveis, contas financeiras e controle de sistemas crít
 | [Linha do tempo](docs/63-LINHA-DO-TEMPO.md) | Evolução do projeto, dos contratos locais à ASA e ao gate físico. |
 | [Critério GOFAI](docs/64-CRITERIO-SUPERACAO-GOFAI.md) | Critério falsificável para comparar o ASA com um baseline simbólico fechado. |
 | [Fontes de mundo aberto](research/evidence/gofai_open_world_sources.md) | Evidências acadêmicas e limites usados para construir o benchmark. |
+| [Síntese por evidência](research/evidence_skill_synthesis.py) | Seleção finita de hipóteses, verificação independente e promoção sem autoridade. |
 | [Arquitetura ASA](docs/62-SYMBIOTIC-ARCHITECTURE.md) | Definição atual da Adaptive Symbiotic Architecture e seus limites. |
 | [Especificação do sistema](docs/00-HERUS-MASTER.md) | Arquitetura geral, protocolo, segurança, energia e limites conhecidos. |
 | [Visão do produto](docs/04-PRODUCT.md) | Propósito, proposta de valor e direção de produto. |
