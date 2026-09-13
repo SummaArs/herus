@@ -50,6 +50,12 @@ Cada execução usa um registro por gate com `gate_id`, revisão do protocolo, r
 
 Mesmo que B1–B10 passem, a declaração permitida é limitada à placa, revisão, firmware, perfil de rádio, instrumento, rota e condições medidas. Não se pode declarar “seguro em geral”, “universal”, “à prova de falhas” ou “sucessor de LLMs” a partir de uma bancada.
 
+## Gate de liberação do firmware
+
+A decisão computável está em `research/firmware_release_gate.py`. Ela exige simultaneamente a prova host-only aprovada e o preflight de identidade B1/B2. Mesmo quando retorna `READY_FOR_BENCH`, o pacote físico fica limitado aos modos `OBSERVE`, `PROPOSE` e `HAPTIC_FEEDBACK`. `ACTUATE`, `EXECUTE_FINANCE`, `AUTO_PAIR` e `GRANT_AUTHORITY` permanecem proibidos.
+
+A decisão de liberação não significa que a placa foi validada. Significa apenas que o firmware mínimo pode ser usado para iniciar B1. Qualquer divergência observada na bancada retorna o estado a `BLOCKED`.
+
 ## Próximo gate operacional
 
 Antes da compra, o único trabalho pendente de decisão é confirmar a lista de peças compatível com o mapa de pinos e com o perfil de rádio do `hardware_readiness_manifest.json`. Depois da compra, o primeiro ensaio deve ser B1; nenhum teste de alcance, energia ou produto deve começar antes de B1 e B2 passarem.

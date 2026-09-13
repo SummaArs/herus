@@ -93,6 +93,8 @@ O próximo passo é o primeiro hospedeiro físico, começando de forma deliberad
 | **B6–B8 — Haptics** | Integrar driver e LRA, testar padrões, consumo e reconhecimento humano. |
 | **B9–B10 — Adaptação** | Repetir descoberta, deriva, renegociação e ponte com celular ou notebook. |
 
+A decisão de liberação está em `research/firmware_release_gate.py`, e o estado inicial está registrado em [`hardware_readiness_manifest.json`](research/evidence/hardware_readiness_manifest.json). O manifesto permanece `pre_hardware`: sem placa recebida, revisão identificada e self-test aprovado, o gate retorna `BLOCKED`. Quando B1/B2 passarem, o primeiro firmware continua limitado a `OBSERVE`, `PROPOSE` e `HAPTIC_FEEDBACK`.
+
 Motores, ações irreversíveis, contas financeiras e controle de sistemas críticos permanecem fora do primeiro gate. O sucesso não será apenas “conectar”; será recusar corretamente o que não pôde ser provado.
 
 ## Documentação principal
@@ -112,7 +114,8 @@ Motores, ações irreversíveis, contas financeiras e controle de sistemas crít
 | [Descoberta de hospedeiros](docs/59-AUTONOMOUS-HOST-DISCOVERY.md) | Protocolo de sondagem sem perfil completo pré-fornecido. |
 | [Teto host-only](docs/61-HOST-ONLY-CEILING.md) | O que foi demonstrado e o que exige hardware físico. |
 | [Contrato háptico](docs/58-HAPTIC-CONTRACT.md) | Estados, padrões e limites da interface LRA. |
-| [Entrada em hardware](research/evidence/hardware_entry_gate_v1.md) | Critérios normativos B1–B10. |
+| [Entrada em hardware](research/evidence/hardware_entry_gate_v1.md) | Critérios normativos B1–B10 e gate de liberação bench-only. |
+| [Manifesto de prontidão](research/evidence/hardware_readiness_manifest.json) | Estado registrado da placa, instrumentação e gates físicos. |
 | [Lista de compra](research/evidence/hardware_purchase_list_v1.md) | Componentes do primeiro hospedeiro físico. |
 | [Segurança](SECURITY.md) | O que os controles protegem hoje e o que depende da integração física. |
 
