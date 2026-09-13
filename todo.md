@@ -76,3 +76,16 @@
 - [ ] Remover linguagem de AGI ou capacidades não demonstradas da narrativa pública.
 - [ ] Corrigir referências cruzadas antigas e títulos inconsistentes.
 - [ ] Executar a suíte completa e publicar a organização no GitHub.
+
+# HERUS — Superação demonstrável do GOFAI
+
+- [ ] Definir uma tese falsificável de superação, sem usar apenas complexidade ou linguagem promocional.
+- [ ] Comparar HERUS e GOFAI em transferência para hospedeiro não previsto.
+- [ ] Comparar aquisição de capacidade nova a partir de evidência, sem reescrever regras manualmente.
+- [ ] Medir abstinência correta diante de desconhecimento, conflito e falta de autoridade.
+- [ ] Medir composição de Skills em tarefas não presentes na síntese original.
+- [ ] Testar uso de celular, notebook e Internet como fontes de evidência não confiável.
+- [ ] Definir casos ocultos e adversariais para impedir ajuste ao benchmark.
+- [ ] Não liberar firmware físico até o gate host-only passar com evidência reproduzível.
+- [ ] Repetir os critérios no ESP32-S3 e registrar todas as falhas físicas.
+- [ ] Publicar exatamente quais limitações do GOFAI foram superadas e quais permaneceram.

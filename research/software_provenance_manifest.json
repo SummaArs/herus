@@ -47,7 +47,7 @@
     {
       "path": "research/Makefile",
       "kind": "file",
-      "sha256": "6b0473317def78d922ca57cbc184757123395c49d5c864ce6f16686d6ec77303",
+      "sha256": "8fe1c4c87c0075089aa0327c8cd28bd7128becd813b7eb07b12f4088e6e04a03",
       "role": "host-only research test entrypoint"
     },
     {
@@ -251,7 +251,7 @@
     {
       "path": "README.md",
       "kind": "file",
-      "sha256": "793c8d6768a9c3255b26ea9c8b546040ccae45707865be3f08da58d6251e0175",
+      "sha256": "e74ed6246335cff1c54718ba8c697b28b84210108bd00e052c2c22e3f4802868",
       "role": "public project state and verification documentation"
     },
     {

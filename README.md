@@ -81,6 +81,8 @@ Esses testes provam propriedades do software e cenários finitos. Eles não prov
 
 ## Próximo marco físico
 
+Antes do hardware, o novo gate host-only é o [critério de superação das limitações do GOFAI](docs/64-CRITERIO-SUPERACAO-GOFAI.md): o ASA precisa demonstrar adaptação a novidade, transferência, abstinência e preservação de autoridade contra um baseline simbólico fechado.
+
 O próximo passo é o primeiro hospedeiro físico, começando de forma deliberadamente restrita:
 
 | Gate | Objetivo |
@@ -98,6 +100,8 @@ Motores, ações irreversíveis, contas financeiras e controle de sistemas crít
 | Documento | Conteúdo |
 |---|---|
 | [Linha do tempo](docs/63-LINHA-DO-TEMPO.md) | Evolução do projeto, dos contratos locais à ASA e ao gate físico. |
+| [Critério GOFAI](docs/64-CRITERIO-SUPERACAO-GOFAI.md) | Critério falsificável para comparar o ASA com um baseline simbólico fechado. |
+| [Fontes de mundo aberto](research/evidence/gofai_open_world_sources.md) | Evidências acadêmicas e limites usados para construir o benchmark. |
 | [Arquitetura ASA](docs/62-SYMBIOTIC-ARCHITECTURE.md) | Definição atual da Adaptive Symbiotic Architecture e seus limites. |
 | [Especificação do sistema](docs/00-HERUS-MASTER.md) | Arquitetura geral, protocolo, segurança, energia e limites conhecidos. |
 | [Visão do produto](docs/04-PRODUCT.md) | Propósito, proposta de valor e direção de produto. |
