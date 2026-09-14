@@ -115,8 +115,9 @@ class PersistentIdentity:
         issues = validate_profile(profile)
         if issues:
             raise ValueError("cannot bind invalid host profile: " + ",".join(issues))
-        event = f"bind:{profile.host_id}:{profile.digest()}"
-        return replace(self, host_id=profile.host_id, host_digest=profile.digest(), continuity_events=self.continuity_events + (event,))
+        digest = profile.digest()
+        event = f"bind:{profile.host_id}:{digest}"
+        return replace(self, host_id=profile.host_id, host_digest=digest, continuity_events=self.continuity_events + (event,))
 
     def unbind(self) -> "PersistentIdentity":
         if self.host_id is None:
@@ -146,9 +147,11 @@ class SymbioticState:
 
     def attach(self, profile: HostProfile, *, skills: Iterable[str] = ()) -> "SymbioticState":
         bound = self.identity.bind(profile)
+        host_digest = bound.host_digest
+        assert host_digest is not None
         self_model = SelfModel(
             herus_id=bound.herus_id,
-            host_digest=profile.digest(),
+            host_digest=host_digest,
             proven_skills=frozenset(skills),
             representations=profile.representation_set,
             authority="NONE",

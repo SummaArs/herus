@@ -7,6 +7,7 @@ stable cost-aware score.
 from __future__ import annotations
 
 from dataclasses import dataclass
+from functools import lru_cache
 
 from host_discovery import HostHypothesis
 from host_discovery_lab import ProbeRequest
@@ -19,6 +20,12 @@ class ProbePlan:
     estimated_bytes: int
 
 
+@lru_cache(maxsize=128)
+def _vocabulary(values: tuple[str, ...]) -> frozenset[str]:
+    """Cache finite candidate vocabularies without changing their semantics."""
+    return frozenset(values)
+
+
 def choose_next_probe(
     hypothesis: HostHypothesis,
     *,
@@ -29,11 +36,15 @@ def choose_next_probe(
 ) -> ProbePlan | None:
     """Choose the cheapest unresolved probe with deterministic tie-breaking."""
     candidates: list[ProbePlan] = []
-    for fmt in sorted(hypothesis.unknown_formats & set(candidate_formats)):
+    candidate_format_set = _vocabulary(candidate_formats)
+    candidate_interface_set = _vocabulary(candidate_interfaces)
+    latency_target_set = _vocabulary(latency_targets)
+    measured_targets = frozenset(hypothesis.latencies_ms)
+    for fmt in sorted(hypothesis.unknown_formats & candidate_format_set):
         candidates.append(ProbePlan(ProbeRequest("supports_format", fmt, next_sequence), 2, 96))
-    for interface in sorted(hypothesis.unknown_interfaces & set(candidate_interfaces)):
+    for interface in sorted(hypothesis.unknown_interfaces & candidate_interface_set):
         candidates.append(ProbePlan(ProbeRequest("has_interface", interface, next_sequence), 2, 96))
-    for target in sorted(set(latency_targets) - set(hypothesis.latencies_ms)):
+    for target in sorted(latency_target_set - measured_targets):
         candidates.append(ProbePlan(ProbeRequest("measure_latency", target, next_sequence), 1, 96))
     if hypothesis.max_payload_bytes is None:
         candidates.append(ProbePlan(ProbeRequest("max_payload_bytes", "", next_sequence), 3, 96))

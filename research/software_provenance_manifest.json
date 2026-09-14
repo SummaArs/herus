@@ -305,7 +305,7 @@
     {
       "path": "research/symbiotic_models.py",
       "kind": "file",
-      "sha256": "7d04c229aa55a7d6bc80b20c3e8bae18383fcc3dff57cee800774025eeaadafe",
+      "sha256": "a20da220ab96417934ff612670d642efe1447950e6be08591469e5e8d58fe5bf",
       "role": "finite World/Host/Self symbiotic runtime models"
     },
     {
@@ -319,6 +319,24 @@
       "kind": "file",
       "sha256": "26ae5eed0b94ec57bbe8ed3bbb1c1580344114ce4b0ecba56a0811d9a07aa747",
       "role": "symbiotic model research record"
+    },
+    {
+      "path": "research/host_probe_planner.py",
+      "kind": "file",
+      "sha256": "78f193a3c8f118a0e4670483d5bae381d908b96065a1f222d98ce5b249604680",
+      "role": "optimized finite host discovery planner"
+    },
+    {
+      "path": "research/optimization_benchmark.py",
+      "kind": "file",
+      "sha256": "6949a87bf83ff07818a847256756183bafdf617aa62969b84589a3b8bbcf189d",
+      "role": "reproducible host-only optimization benchmark"
+    },
+    {
+      "path": "docs/66-OTIMIZACAO-PRE-HARDWARE.md",
+      "kind": "file",
+      "sha256": "067d676b59e6063f9e89364be0c10e7b8a9b576720804c6e59dc71b172fcb53e",
+      "role": "pre-hardware optimization evidence record"
     }
   ],
   "components": [
