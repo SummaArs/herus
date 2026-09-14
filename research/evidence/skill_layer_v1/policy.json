@@ -1,0 +1,30 @@
+{
+  "schema": "herus.generative_lab.policy_experiment",
+  "version": 1,
+  "authority": "none",
+  "domain": "closed_finite_policy",
+  "metrics": {
+    "candidates": 28,
+    "rejected": 27,
+    "verified": 1,
+    "visible_passed": 2,
+    "hidden_passed": 2,
+    "unknown_context_accepted": false
+  },
+  "program": [
+    "SIGNAL:OK=>WAIT",
+    "SIGNAL:TIMEOUT=>ALERT",
+    "SIGNAL:CANCEL=>SAFE"
+  ],
+  "claims_supported": [
+    "A second finite domain can use the Skill lifecycle.",
+    "A total policy can be synthesized and verified against hidden state/signal cases.",
+    "Unknown context can fail closed without invoking an actuator."
+  ],
+  "claims_not_supported": [
+    "open-world policy learning",
+    "physical actuation",
+    "human authorization",
+    "safety certification"
+  ]
+}

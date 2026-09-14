@@ -1,0 +1,46 @@
+{
+  "schema": "herus.generative_lab.skill_experiment",
+  "version": 1,
+  "authority": "none",
+  "domain": "closed_integer_rpn",
+  "visible_cases": [
+    {"input_value": 0, "expected": 3},
+    {"input_value": 1, "expected": 5},
+    {"input_value": 2, "expected": 7}
+  ],
+  "hidden_cases": [
+    {"input_value": -3, "expected": -3},
+    {"input_value": 4, "expected": 11},
+    {"input_value": 8, "expected": 19}
+  ],
+  "synthesis": {
+    "grammar": "arithmetic-rpn-v1",
+    "max_program_length": 7,
+    "candidates": 6713,
+    "rejected": 6712,
+    "verified": 1,
+    "program": ["INPUT", "CONST:2", "MUL", "CONST:3", "ADD"]
+  },
+  "lifecycle": ["CANDIDATE", "QUARANTINED", "TESTED", "VERIFIED"],
+  "verification": {
+    "visible_passed": 3,
+    "hidden_passed": 3,
+    "generalization_score": 1.0,
+    "counterexamples": 0,
+    "resource_budget_steps": 5,
+    "allowed_effects": [],
+    "authority_granted": false
+  },
+  "claims_supported": [
+    "A finite DSL can produce a candidate not selected by a handwritten target program.",
+    "An independent verifier can reject candidates and accept one that passes visible and hidden cases.",
+    "A verified skill can be stored without granting execution authority."
+  ],
+  "claims_not_supported": [
+    "open-ended reasoning",
+    "natural-language understanding",
+    "learning from unbounded real-world experience",
+    "safe physical actuation",
+    "replacement of language models"
+  ]
+}

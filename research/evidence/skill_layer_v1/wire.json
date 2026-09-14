@@ -1,0 +1,17 @@
+{
+  "schema": "herus.generative_lab.wire_experiment",
+  "version": 1,
+  "authority": "none",
+  "program_length": 5,
+  "max_program": 12,
+  "wire_bytes": 10,
+  "max_wire_bytes": 17,
+  "round_trip": true,
+  "contains_authority": false,
+  "claims_not_supported": [
+    "microcontroller timing",
+    "flash durability",
+    "radio transport",
+    "power-loss recovery"
+  ]
+}

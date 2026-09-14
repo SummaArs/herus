@@ -1,0 +1,32 @@
+{
+  "schema": "herus.generative_lab.domain_comparison",
+  "version": 1,
+  "authority": "none",
+  "domains": {
+    "arithmetic": {
+      "task_count": 3,
+      "verified_tasks": 3,
+      "hidden_cases": 9,
+      "counterexamples": 0
+    },
+    "finite_policy": {
+      "candidate_count": 28,
+      "verified": 1,
+      "hidden_cases": 2,
+      "unknown_context_accepted": false
+    }
+  },
+  "shared_invariants": [
+    "finite vocabulary",
+    "bounded enumeration",
+    "independent verification",
+    "hidden-case acceptance",
+    "no authority"
+  ],
+  "limits": [
+    "passing one DSL does not imply competence in another DSL",
+    "both domains are closed and finite",
+    "no natural-language input",
+    "no physical execution"
+  ]
+}

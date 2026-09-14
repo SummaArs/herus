@@ -1,0 +1,18 @@
+{
+  "schema": "herus-adaptation-data-v1",
+  "dataset_id": "ofr_tyld_2020_2025_monthly_last",
+  "provider": "Office of Financial Research",
+  "source_url": "https://data.financialresearch.gov/v1/series/dataset?dataset=tyld&start_date=2020-01-01&end_date=2025-12-31&periodicity=M&how=last&time_format=date",
+  "dataset": "tyld",
+  "start_date": "2020-01-01",
+  "end_date": "2025-12-31",
+  "periodicity": "M",
+  "aggregation": "last",
+  "time_format": "date",
+  "retrieved_at": "2026-09-10",
+  "local_artifact": "ofr_tyld_2020_2025.json",
+  "sha256": "2b4f797d0c9d2d811f214aef125eff8825b03ce23d5efdc0ccda3c50da3d8b48",
+  "use": "host adaptation and regime observation in a no-trade sandbox",
+  "forbidden_use": "financial orders, transfers, or personalized investment decisions",
+  "status": "real_source_unmodeled"
+}

@@ -1,0 +1,21 @@
+{
+  "schema": "herus.generative_lab.policy_composition",
+  "version": 1,
+  "authority": "none",
+  "state": "CANDIDATE",
+  "dependencies": ["signal-policy@1", "action-policy@1"],
+  "passed": true,
+  "failure_count": 0,
+  "allowed_effects": [],
+  "claims_supported": [
+    "Two VERIFIED policy Skills can be composed through a typed intermediate Action.",
+    "The composed policy remains a CANDIDATE until independent attestation.",
+    "Composition does not create physical effects or authority."
+  ],
+  "claims_not_supported": [
+    "open-ended planning",
+    "automatic promotion",
+    "actuator control",
+    "human authorization"
+  ]
+}

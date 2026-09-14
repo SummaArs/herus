@@ -1,0 +1,21 @@
+{
+  "schema": "herus.generative_lab.memory_experiment",
+  "version": 1,
+  "authority": "none",
+  "before_utility": {
+    "memory-primary": 0.026455424696249147,
+    "memory-duplicate": 0.014062500000000002
+  },
+  "archived": ["memory-duplicate@1"],
+  "after_state": {
+    "memory-primary": "VERIFIED",
+    "memory-duplicate": "ARCHIVED"
+  },
+  "evidence_preserved": true,
+  "claims_not_supported": [
+    "optimal long-term memory",
+    "unbounded learning",
+    "semantic equivalence beyond exact program identity",
+    "physical storage durability"
+  ]
+}

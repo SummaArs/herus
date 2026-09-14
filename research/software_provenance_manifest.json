@@ -11,7 +11,7 @@
     {
       "path": "prove.sh",
       "kind": "file",
-      "sha256": "b525be29ede94517ac93f35e8dff97141142a4930c4a0232172c4ae1723f1c68",
+      "sha256": "25fe5bede28b32dc3b7f4962a5b12b6f02a3ce3eac8e8b9afac64f3355a8892f",
       "role": "global proof ledger"
     },
     {
@@ -47,7 +47,7 @@
     {
       "path": "research/Makefile",
       "kind": "file",
-      "sha256": "4b7bea613e1d1fc8af4cacf7597d04abf1873a4c1446da6776e33764445559c0",
+      "sha256": "ebf33881848a77d680becf049acc173d9ed79908ad3f1c48aab23757cf215192",
       "role": "host-only research test entrypoint"
     },
     {
@@ -251,7 +251,7 @@
     {
       "path": "README.md",
       "kind": "file",
-      "sha256": "f141ca8db48ac838b36a568097cb9cc19036381b600f601610d68063bcdd1512",
+      "sha256": "96d8240fe1c31fe3e70b835d6e4b9f0c816f33b30f263c60fd0fa44813dab857",
       "role": "public project state and verification documentation"
     },
     {
@@ -287,7 +287,7 @@
     {
       "path": "research/generative_lab",
       "kind": "tree",
-      "sha256": "b36b1143aa5306a81db8723025ccd6d32d7a36a19f58cfb3205cd8d6c6562acf",
+      "sha256": "a094e5fead9de6220a0d73583392b1efddd0d1e029c91a12ef0bf511ea39f862",
       "role": "host-only typed symbolic generative laboratory"
     },
     {
@@ -301,6 +301,66 @@
       "kind": "file",
       "sha256": "189b6b6839dd01f3ab78a24c1c138de696b655b73b7ea756e3f5feb148301a0b",
       "role": "generative reasoning research record"
+    },
+    {
+      "path": "research/symbiotic_models.py",
+      "kind": "file",
+      "sha256": "85a704b47c04dc965bc87f330d005031ed992be8ba5fe3fb0dc8c6f5b7e75814",
+      "role": "finite World/Host/Self symbiotic runtime models"
+    },
+    {
+      "path": "research/test_symbiotic_models.py",
+      "kind": "file",
+      "sha256": "4abef41759df14d75a34e519131801aa8b604008c4d0ee73f2a925ce3d1ecb3e",
+      "role": "symbiotic model adversarial tests"
+    },
+    {
+      "path": "docs/65-MODELO-TRIPLO-E-IDENTIDADE-PERSISTENTE.md",
+      "kind": "file",
+      "sha256": "26ae5eed0b94ec57bbe8ed3bbb1c1580344114ce4b0ecba56a0811d9a07aa747",
+      "role": "symbiotic model research record"
+    },
+    {
+      "path": "research/host_probe_planner.py",
+      "kind": "file",
+      "sha256": "78f193a3c8f118a0e4670483d5bae381d908b96065a1f222d98ce5b249604680",
+      "role": "optimized finite host discovery planner"
+    },
+    {
+      "path": "research/optimization_benchmark.py",
+      "kind": "file",
+      "sha256": "6949a87bf83ff07818a847256756183bafdf617aa62969b84589a3b8bbcf189d",
+      "role": "reproducible host-only optimization benchmark"
+    },
+    {
+      "path": "docs/66-OTIMIZACAO-PRE-HARDWARE.md",
+      "kind": "file",
+      "sha256": "067d676b59e6063f9e89364be0c10e7b8a9b576720804c6e59dc71b172fcb53e",
+      "role": "pre-hardware optimization evidence record"
+    },
+    {
+      "path": "research/real_symbiosis.py",
+      "kind": "file",
+      "sha256": "636688acf5fbd5cbbfec7c688f055e5f76c7d3841967a9d02f43c285a1d7fb91",
+      "role": "real local multi-host symbiosis runner"
+    },
+    {
+      "path": "research/test_real_symbiosis.py",
+      "kind": "file",
+      "sha256": "c6353dc0052106633f01b591b81d27a2e290019bec8128bee58b7eb9e0443bc8",
+      "role": "real evidence multi-host symbiosis tests"
+    },
+    {
+      "path": "docs/67-PROVA-SIMBIOSE-REAL-MULTI-HOST.md",
+      "kind": "file",
+      "sha256": "e08c3befafc7acbdc70febfaf3788c32e330744be78054d21e174b1f68f3cffe",
+      "role": "real local multi-host symbiosis evidence record"
+    },
+    {
+      "path": "docs/68-FREEZE-PRE-HARDWARE.md",
+      "kind": "file",
+      "sha256": "a0734c4ad549e2fd00121ed434ca0b8a489914d01bf6b89b7698343766058895",
+      "role": "pre-hardware scope freeze and physical validation boundary"
     }
   ],
   "components": [

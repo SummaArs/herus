@@ -1,0 +1,23 @@
+{
+  "schema": "herus.generative_lab.skill_ir_bridge",
+  "version": 1,
+  "authority": "PROPOSAL_ONLY",
+  "accepted": {
+    "skill_state": "VERIFIED",
+    "output_type": "IntentProposal",
+    "event_kind": "HELP",
+    "proposal_only": true
+  },
+  "refused": [
+    "output_type_not_proposal",
+    "skill_not_verified",
+    "skill_has_effects",
+    "missing_skill_evidence"
+  ],
+  "claims_not_supported": [
+    "firmware execution",
+    "human authorization",
+    "physical actuation",
+    "semantic equivalence outside the existing finite IR"
+  ]
+}

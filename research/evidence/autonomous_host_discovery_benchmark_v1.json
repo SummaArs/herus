@@ -1,0 +1,136 @@
+{
+  "claims": [
+    "bounded_cost_is_measured",
+    "abstention_is_measured",
+    "false_positive_count_is_measured"
+  ],
+  "not_proven": [
+    "physical_host_discovery",
+    "arbitrary_host_generalization",
+    "authority_inference"
+  ],
+  "protocol": "autonomous_host_discovery_benchmark_v1",
+  "rows": [
+    {
+      "abstained": true,
+      "allowed_effects": [],
+      "authority": "NONE",
+      "blocked_reasons": [
+        "probe_budget_exhausted"
+      ],
+      "bytes_used": 237,
+      "coverage": 0.4,
+      "false_positive_count": 0,
+      "max_probes": 2,
+      "probes_used": 2,
+      "session_id": "session-pulse"
+    },
+    {
+      "abstained": true,
+      "allowed_effects": [],
+      "authority": "NONE",
+      "blocked_reasons": [
+        "probe_budget_exhausted"
+      ],
+      "bytes_used": 949,
+      "coverage": 1.0,
+      "false_positive_count": 0,
+      "max_probes": 8,
+      "probes_used": 8,
+      "session_id": "session-pulse"
+    },
+    {
+      "abstained": false,
+      "allowed_effects": [],
+      "authority": "NONE",
+      "blocked_reasons": [],
+      "bytes_used": 1529,
+      "coverage": 1.0,
+      "false_positive_count": 0,
+      "max_probes": 32,
+      "probes_used": 13,
+      "session_id": "session-pulse"
+    },
+    {
+      "abstained": true,
+      "allowed_effects": [],
+      "authority": "NONE",
+      "blocked_reasons": [
+        "probe_budget_exhausted"
+      ],
+      "bytes_used": 240,
+      "coverage": 0.1667,
+      "false_positive_count": 0,
+      "max_probes": 2,
+      "probes_used": 2,
+      "session_id": "session-server"
+    },
+    {
+      "abstained": true,
+      "allowed_effects": [],
+      "authority": "NONE",
+      "blocked_reasons": [
+        "probe_budget_exhausted"
+      ],
+      "bytes_used": 957,
+      "coverage": 0.8333,
+      "false_positive_count": 0,
+      "max_probes": 8,
+      "probes_used": 8,
+      "session_id": "session-server"
+    },
+    {
+      "abstained": false,
+      "allowed_effects": [],
+      "authority": "NONE",
+      "blocked_reasons": [],
+      "bytes_used": 1542,
+      "coverage": 1.0,
+      "false_positive_count": 0,
+      "max_probes": 32,
+      "probes_used": 13,
+      "session_id": "session-server"
+    },
+    {
+      "abstained": true,
+      "allowed_effects": [],
+      "authority": "NONE",
+      "blocked_reasons": [
+        "probe_budget_exhausted"
+      ],
+      "bytes_used": 248,
+      "coverage": 0.5,
+      "false_positive_count": 0,
+      "max_probes": 2,
+      "probes_used": 2,
+      "session_id": "session-restricted"
+    },
+    {
+      "abstained": true,
+      "allowed_effects": [],
+      "authority": "NONE",
+      "blocked_reasons": [
+        "probe_budget_exhausted"
+      ],
+      "bytes_used": 992,
+      "coverage": 1.0,
+      "false_positive_count": 0,
+      "max_probes": 8,
+      "probes_used": 8,
+      "session_id": "session-restricted"
+    },
+    {
+      "abstained": false,
+      "allowed_effects": [],
+      "authority": "NONE",
+      "blocked_reasons": [],
+      "bytes_used": 1598,
+      "coverage": 1.0,
+      "false_positive_count": 0,
+      "max_probes": 32,
+      "probes_used": 13,
+      "session_id": "session-restricted"
+    }
+  ],
+  "status": "host_only"
+}

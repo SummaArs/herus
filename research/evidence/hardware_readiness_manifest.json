@@ -1,0 +1,53 @@
+{
+  "schema": "herus.hardware-readiness.v1",
+  "status": "pre_hardware",
+  "board": {
+    "model": "LilyGO T3-S3",
+    "mcu": "ESP32-S3",
+    "radio": "SX1262-915",
+    "quantity": 2,
+    "revision": null,
+    "markings": null
+  },
+  "identity": {
+    "board_revision": "pending",
+    "radio_variant": "pending",
+    "schematic_reference": "pending",
+    "selftest_result": "pending"
+  },
+  "gates": {
+    "B1": "blocked_until_received",
+    "B2": "blocked_until_received",
+    "B3": "blocked_until_B1_B2",
+    "B4": "blocked_until_B1_B2",
+    "B5": "blocked_until_B1_B2",
+    "B6": "blocked_until_B5",
+    "B7": "blocked_until_instrument_calibration",
+    "B8": "blocked_until_B2",
+    "B9": "blocked_until_B3_B4",
+    "B10": "blocked_until_evidence_record"
+  },
+  "allowed_bench_modes": [
+    "OBSERVE",
+    "PROPOSE",
+    "HAPTIC_FEEDBACK"
+  ],
+  "forbidden_bench_modes": [
+    "ACTUATE",
+    "EXECUTE_FINANCE",
+    "AUTO_PAIR",
+    "GRANT_AUTHORITY"
+  ],
+  "firmware_commit": null,
+  "instrumentation": {
+    "power_analyzer": null,
+    "calibration_reference": null,
+    "clock_basis": null
+  },
+  "evidence": {
+    "received_at": null,
+    "photographs_digest": null,
+    "bench_log_digest": null,
+    "final_record_digest": null
+  }
+}

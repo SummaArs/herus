@@ -1,0 +1,16 @@
+{
+  "schema": "herus.generative_lab.policy_composition_benchmark",
+  "version": 1,
+  "authority": "none",
+  "elapsed_ms_host": 0.201,
+  "program_steps": 3,
+  "program_bytes_ascii": 57,
+  "passed": true,
+  "failure_count": 0,
+  "allowed_effects": [],
+  "limits": {
+    "host_timing_is_not_hardware_timing": true,
+    "ascii_length_is_not_final_wire_size": true,
+    "no_actuator_execution": true
+  }
+}
