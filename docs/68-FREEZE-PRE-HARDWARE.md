@@ -20,6 +20,8 @@ attach(host-A)
 
 O novo vínculo conserva `herus_id`, mas limpa o `WorldModel` e não permite propostas baseadas nas Skills do hospedeiro anterior. O novo hospedeiro inicia com contexto próprio e autoridade `NONE`.
 
+A última contribuição externa foi incorporada seletivamente. As quatro membranas propostas — evidência, continuidade, consentimento e memória — já estavam cobertas por contratos existentes. A melhoria nova foi tornar conflitos do `WorldModel` explícitos: duas observações com o mesmo sujeito e predicado, mas valores diferentes, fazem o HERUS retornar `ABSTAIN` até resolução independente. O kernel monolítico da contribuição não foi copiado, porque duplicaria o runtime e misturaria efeitos físicos ainda não autorizados.
+
 ## Estado final host-only
 
 | Propriedade | Estado |

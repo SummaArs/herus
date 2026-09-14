@@ -71,6 +71,13 @@ class WorldModel:
         payload = [item.canonical() for item in self.observations]
         return hashlib.sha256(json.dumps(payload, sort_keys=True, separators=(",", ":")).encode()).hexdigest()
 
+    def conflicts(self) -> tuple[tuple[str, str], ...]:
+        """Return subject/predicate pairs with more than one observed value."""
+        values: dict[tuple[str, str], set[str]] = {}
+        for item in self.observations:
+            values.setdefault((item.subject, item.predicate), set()).add(item.value)
+        return tuple(sorted(key for key, observed in values.items() if len(observed) > 1))
+
 
 @dataclass(frozen=True)
 class SelfModel:
@@ -188,6 +195,8 @@ class SymbioticState:
 
     def propose(self, skill: str) -> str:
         if self.self_model is None or not self.self_model.can_propose(skill):
+            return "ABSTAIN"
+        if self.world.conflicts():
             return "ABSTAIN"
         return "PROPOSE"
 

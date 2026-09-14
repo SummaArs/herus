@@ -102,6 +102,22 @@ class SymbioticModelTests(unittest.TestCase):
         self.assertEqual(len(first.observations), 1)
         self.assertEqual(len(second.observations), 2)
 
+    def test_conflicting_world_observations_block_proposal(self) -> None:
+        state = SymbioticState(identity=PersistentIdentity("herus-001")).attach(
+            self.profile(), skills={"observe"}
+        )
+        world = WorldModel().observe(WorldObservation(
+            subject="door", predicate="open", value="true", source="sensor-a"
+        )).observe(WorldObservation(
+            subject="door", predicate="open", value="false", source="sensor-b"
+        ))
+        conflicted = SymbioticState(
+            identity=state.identity, host=state.host, world=world, self_model=state.self_model
+        )
+        self.assertEqual(conflicted.world.conflicts(), (("door", "open"),))
+        self.assertEqual(conflicted.propose("observe"), "ABSTAIN")
+        self.assertEqual(conflicted.execute("observe"), "ABSTAIN")
+
     def test_invalid_self_model_is_fail_closed(self) -> None:
         model = SelfModel(herus_id="", host_digest="", authority="EXECUTE_ANYTHING")
         self.assertIn("self_identity_missing", model.validate())

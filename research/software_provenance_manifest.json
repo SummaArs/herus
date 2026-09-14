@@ -251,7 +251,7 @@
     {
       "path": "README.md",
       "kind": "file",
-      "sha256": "1fa28c8c219b2422a9e522336464606d778a81601bcea27f3f71334d5e150458",
+      "sha256": "96d8240fe1c31fe3e70b835d6e4b9f0c816f33b30f263c60fd0fa44813dab857",
       "role": "public project state and verification documentation"
     },
     {
@@ -305,13 +305,13 @@
     {
       "path": "research/symbiotic_models.py",
       "kind": "file",
-      "sha256": "6bbe503b91328e89b80a1f8f2af4e805b9b9372ba1ae001ef6cd4a5bc5e83e64",
+      "sha256": "85a704b47c04dc965bc87f330d005031ed992be8ba5fe3fb0dc8c6f5b7e75814",
       "role": "finite World/Host/Self symbiotic runtime models"
     },
     {
       "path": "research/test_symbiotic_models.py",
       "kind": "file",
-      "sha256": "7da7483f17f800147f369478c10a332625e047ab89edcf19862648de5414579d",
+      "sha256": "4abef41759df14d75a34e519131801aa8b604008c4d0ee73f2a925ce3d1ecb3e",
       "role": "symbiotic model adversarial tests"
     },
     {
@@ -359,7 +359,7 @@
     {
       "path": "docs/68-FREEZE-PRE-HARDWARE.md",
       "kind": "file",
-      "sha256": "910b2704d89712662394b3bdb8caee6c7e06a7281889d332a64a25b591b36b1c",
+      "sha256": "a0734c4ad549e2fd00121ed434ca0b8a489914d01bf6b89b7698343766058895",
       "role": "pre-hardware scope freeze and physical validation boundary"
     }
   ],
