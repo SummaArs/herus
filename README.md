@@ -1,139 +1,134 @@
 # HERUS
 
-**Memória pessoal soberana, conversa local e comunicação essencial — com significado antes de mensagem.**
+**Adaptive Symbiotic Architecture (ASA): uma infraestrutura finita de significado, assurance e coordenação verificável.**
 
-O HERUS é um sistema pessoal para **perguntar, guardar, reencontrar e transmitir o essencial** em situações nas quais um telefone, uma rede móvel ou uma interface densa não são a melhor ferramenta. No relógio, ele oferece interação curta, confirmação física e memória seletiva. No Paper-Core, concentra escrita, estudo, conhecimento local e memória. Em vez de depender de uma LLM hospedada ou transmitir áudio e longas mensagens, trabalha com **significados essenciais, cartões de contexto, representações finitas e autoridade humana explícita**.
+O HERUS é um núcleo computacional que pode **habitar diferentes hospedeiros**, descobrir capacidades e restrições observáveis, adaptar sua representação dentro de um orçamento finito e propor coordenação sem transformar descoberta em autoridade.
 
-O produto nasce para o cotidiano, para trilhas, áreas rurais, deslocamentos, equipes de apoio e situações de baixa atenção visual. Seu propósito não é substituir o telefone nem prometer uma inteligência autônoma. É preservar comunicação, memória e coordenação humana quando conectividade, privacidade, energia ou atenção são limitadas.
+O hospedeiro inicial será um wearable de pulso. Ele não define o HERUS inteiro: é o primeiro corpo físico no qual a arquitetura será medida. Outros hospedeiros podem ser um celular, notebook, servidor, robô, sensor, rede ou ambiente externo de evidência. Cada hospedeiro precisa ser identificado, observado e validado separadamente.
 
-> **O HERUS não confunde uma mensagem com seu significado, uma proposta com uma autorização ou uma conexão com confiança.**
+> **O HERUS não confunde capacidade com autoridade, proposta com execução, dados com evidência ou conexão com confiança.**
 
 ## O que o HERUS é agora
 
-O HERUS possui duas camadas inseparáveis.
+O HERUS possui um núcleo comum e uma primeira aplicação pessoal.
 
-A primeira é a **experiência pessoal**: um relógio ou outro dispositivo simples que ajuda a pessoa a perguntar, confirmar, lembrar e comunicar estados essenciais. O Paper-Core funciona como uma estação pessoal para escrita, estudo, conhecimento local e memória. A pessoa permanece no comando: uma sugestão pode ser gerada localmente, mas memória, transmissão ou ação externa exigem uma fronteira de confirmação definida pelo sistema.
+O **ASA Core** mantém uma identidade persistente, vincula-se a um hospedeiro por um perfil verificável, observa um mundo local, compõe Skills finitas e opera sob contratos de autoridade explícitos. O mesmo núcleo pode ser desvinculado e rebindado a outro hospedeiro sem carregar automaticamente o contexto, as Skills ou a autoridade do hospedeiro anterior.
 
-A segunda é a **Adaptive Symbiotic Architecture (ASA)**. Ela é o núcleo computacional capaz de entrar em um hospedeiro, descobrir suas capacidades e limitações, negociar uma representação finita, aprender dentro de orçamento, propor Skills verificadas e operar somente dentro da autoridade comprovada. O hospedeiro pode ser o relógio, um celular, um notebook, um robô, um servidor, um sensor, uma rede ou um ambiente externo como a Internet.
+O **primeiro produto físico** é um comunicador pessoal de pulso. Ele oferece interação curta, confirmação física, memória seletiva, comunicação essencial e feedback háptico. O wearable é o primeiro hospedeiro do simbionte, não a definição completa da arquitetura.
 
-Os cenários já implementados — memória pessoal, pulso, robótica, rede defensiva, servidores e finanças em sandbox — não são categorias fechadas do ASA. São ambientes de validação. A arquitetura não deve perguntar “qual modo pré-programado estou usando?”, mas sim:
+A arquitetura também foi exercitada com dados reais locais em três hospedeiros de evidência: um gateway semântico, um auditor do corpus MIntRec e um observador financeiro baseado em artefato OFR. Nos três casos, o HERUS propôs; nenhum executou.
 
-> **Que ambiente encontrei? O que consigo observar? O que ainda não sei? Qual evidência falta? O que posso propor sem ultrapassar autoridade?**
-
-## Princípios
-
-| Princípio | Consequência prática |
-|---|---|
-| **Significado antes de mensagem** | O núcleo trabalha com intenções, estados e cartões de contexto essenciais, não com áudio bruto por padrão. |
-| **Memória pessoal soberana** | A pessoa decide o que pode ser lembrado, recuperado, removido ou transmitido. |
-| **Local e privado por padrão** | O funcionamento essencial não depende de conta, nuvem ou conectividade contínua. |
-| **Pessoa no comando** | Inteligência pode sugerir, resumir e perguntar; não envia, compra, publica, altera ou aciona algo sozinha. |
-| **Fail-closed** | Ambiguidade, digest inválido, deriva, replay, expiração ou autoridade ausente bloqueiam a progressão. |
-| **Adaptação verificável** | O ASA pode aprender sobre um ambiente, mas precisa registrar evidência, orçamento, hipótese e motivo de abstinência. |
-| **Conectar não significa confiar** | USB, BLE, LoRa, Wi‑Fi ou Internet transportam dados e propostas; nenhum canal concede autoridade automaticamente. |
-
-## Como a adaptação funciona
-
-O ciclo do ASA é comum a qualquer hospedeiro observável:
+## Como a simbiose funciona
 
 ```text
-observar o ambiente
+identificar o hospedeiro
         ↓
-formular uma lacuna de conhecimento
+observar capacidades e restrições
         ↓
-sondar ou pedir pesquisa a um hospedeiro auxiliar
-        ↓
-verificar proveniência, integridade e escopo
+registrar evidência e proveniência
         ↓
 negociar uma representação finita
         ↓
 compor ou sintetizar uma Skill limitada
         ↓
-verificar em casos visíveis, ocultos ou sandbox
+verificar casos visíveis e adversariais
         ↓
-propor uma ação
+propor uma coordenação
         ↓
-executar somente sob autoridade comprovada
+executar somente com autoridade externa comprovada
 ```
 
-Quando o ASA não sabe algo, ele pode usar um celular ou notebook como **hospedeiro auxiliar**. A Internet pode fornecer evidência externa, mas é tratada como ambiente não confiável. O gateway de conhecimento exige HTTPS, proveniência, data, identidade do pesquisador auxiliar, claims explícitos e digest verificável. Ele não executa código baixado, não transforma pesquisa em permissão e não envia segredos ou autoridade silenciosamente.
+Quando o HERUS muda de hospedeiro, o `herus_id` permanece, mas o vínculo físico e o contexto local mudam. O `rebind` limpa o mundo observado e o repertório de Skills do hospedeiro anterior. Deriva de perfil, digest inválido, ambiguidade, replay, orçamento excedido ou autoridade ausente levam a `ABSTAIN`.
 
-A adaptação não significa reprogramação arbitrária. Significa adquirir evidência, atualizar uma hipótese, sintetizar uma Skill dentro de orçamento e submetê-la a um verificador independente. Quando a prova falha, o resultado correto é pedir ajuda, permanecer em sandbox ou recusar.
+Um celular ou notebook pode atuar como hospedeiro auxiliar de pesquisa ou computação. A Internet pode fornecer evidência, mas nunca autoridade implícita. O HERUS não executa código baixado nem transforma texto externo em permissão.
 
-## Produto e arquitetura
+## Princípios
 
-| Elemento | Papel atual |
+| Princípio | Consequência prática |
 |---|---|
-| **Relógio / wearable** | Interface imediata de gesto, confirmação, estado de privacidade, memória e feedback háptico. |
-| **Paper-Core** | Estação pessoal para escrita, estudo, conhecimento local e memória soberana. |
-| **ASA Core** | Núcleo adaptativo que descobre hospedeiros, negocia representações, seleciona Skills e limita autoridade. |
-| **Celular ou notebook** | Hospedeiro auxiliar para gateway, pesquisa, armazenamento ou computação delegada sob contrato. |
-| **Robô ou dispositivo legado** | Primeiro exemplo de hospedeiro cuja capacidade deve ser descoberta antes de qualquer controle. |
-| **Internet** | Ambiente externo de evidência e comunicação; nunca autoridade implícita. |
+| **Adaptação verificável** | O núcleo pode aprender sobre um ambiente, mas precisa registrar fonte, digest, orçamento e limite. |
+| **Identidade separada do hospedeiro** | O simbionte continua o mesmo; capacidades e restrições pertencem ao vínculo atual. |
+| **Rebind sem vazamento** | Memória contextual e Skills do hospedeiro anterior não atravessam automaticamente a troca. |
+| **Proposta separada de execução** | Uma Skill pode gerar uma proposta sem possuir permissão para executá-la. |
+| **Fail-closed** | Incerteza, deriva, ausência de evidência ou autoridade insuficiente bloqueiam o avanço. |
+| **Significado antes de mensagem** | O núcleo trabalha com intenções, estados e cartões de contexto finitos. |
+| **Pessoa no comando** | Memória, transmissão, compra, publicação, controle e ação externa exigem a autoridade definida pelo contrato. |
+| **Conectar não significa confiar** | USB, BLE, LoRa, Wi‑Fi e Internet são canais; nenhum canal concede autoridade sozinho. |
 
-O feedback háptico é deliberadamente limitado. Um LRA pode comunicar confirmação, espera, recusa, bloqueio ou necessidade de atenção. Ele não concede autoridade nem executa uma intenção sozinho. O usuário deve conseguir distinguir “o HERUS detectou”, “o HERUS propôs”, “a ação foi recusada” e “uma confirmação física é necessária”.
+## Hospedeiros e papéis
+
+| Hospedeiro | Papel do ASA |
+|---|---|
+| **Wearable de pulso** | Primeiro corpo físico: gesto, confirmação, estado, comunicação essencial e LRA. |
+| **Celular ou notebook** | Hospedeiro auxiliar para pesquisa, gateway, armazenamento ou computação delegada. |
+| **Robô ou dispositivo legado** | Ambiente de descoberta: observar sensores e atuadores antes de qualquer proposta de controle. |
+| **Servidor** | Ambiente de observação, saúde, rollback e canary sob contrato explícito. |
+| **Dados financeiros** | Ambiente de observação e sandbox; negociação, transferência e aconselhamento ativo permanecem proibidos. |
+| **Internet** | Fonte externa potencial de evidência; nunca uma autoridade do HERUS. |
+
+Esses papéis são ambientes de validação, não modos fechados do ASA. A pergunta central é sempre: **o que foi observado, qual evidência existe, o que ainda falta e qual ação pode ser proposta sem ultrapassar o contrato?**
 
 ## Evidência atual
 
-A implementação host-only já contém contratos de memória, intenção, Skills, descoberta de hospedeiros, negociação de representação, deriva, quarentena, canais, guardião defensivo, feedback háptico, sandbox multi-domínio, gateway de conhecimento externo, benchmark aberto contra um baseline GOFAI fechado e síntese de Skills por hipóteses finitas selecionadas por evidência. No estado desta etapa, a suíte `make -C research test` passa com **267 testes**, com um skip preexistente.
+A etapa host-only demonstrou:
 
-Esses testes provam propriedades do software e cenários finitos. A nova etapa demonstra que evidência externa aceita pode selecionar uma hipótese de uma gramática finita, submetê-la a casos visíveis e ocultos e promovê-la apenas até `VERIFIED`; ela não demonstra aprendizagem aberta nem permite que texto externo injete opcodes, autoridade ou efeitos. Também não provam ainda alcance de rádio, consumo, latência física, qualidade de BLE, persistência após perda de energia, comportamento real do LRA, ergonomia, compreensão humana dos padrões, controle seguro de robôs ou desempenho de uma LLM local. Essas alegações dependem do hardware e dos gates de bancada.
+- identidade persistente entre hospedeiros;
+- descoberta e perfis finitos de capacidades;
+- proveniência por digest de artefatos reais locais;
+- simbiose com comunicação, dados multimodais e observação financeira;
+- `rebind` com limpeza do contexto e das Skills anteriores;
+- síntese e verificação de Skills sem promoção automática de autoridade;
+- bloqueio de execução sem autorização externa;
+- contratos de memória, intenção, rádio, confiança, recuperação e assurance;
+- bench simulado com adversários e distância.
 
-## Próximo marco físico
+A suíte atual passou com **286 testes Python**, além do gate integral de firmware, simulação e invariantes. O resultado host-only não prova energia, latência, rádio, temperatura, memória física, ergonomia, LRA ou segurança de um dispositivo real.
 
-Antes do hardware, o novo gate host-only é o [critério de superação das limitações do GOFAI](docs/64-CRITERIO-SUPERACAO-GOFAI.md): o ASA precisa demonstrar adaptação a novidade, transferência, abstinência e preservação de autoridade contra um baseline simbólico fechado.
+## Estado atual: freeze pré-hardware
 
-O próximo passo é o primeiro hospedeiro físico, começando de forma deliberadamente restrita:
+O repositório está em `pre_hardware_frozen`. Isso significa que a arquitetura host-only foi endurecida e que novas alegações relevantes devem depender de medições físicas. Não serão publicados percentuais de consumo, autonomia ou desempenho embarcado derivados apenas de simulação.
+
+O primeiro hospedeiro físico é o LilyGO T3-S3 com rádio SX1262-915 MHz. O trabalho físico começa pelos gates B1 e B2:
 
 | Gate | Objetivo |
 |---|---|
-| **B1 — Identificação** | Confirmar placa, revisão, alimentação, pinagem e componentes sem inferir capacidades não verificadas. |
-| **B2 — Boot** | Gravar o firmware mínimo, confirmar boot serial, reset, identidade e leitura local. |
-| **B3–B5 — Descoberta** | Medir memória, latência, comunicação, perdas e capacidades realmente observáveis. |
-| **B6–B8 — Haptics** | Integrar driver e LRA, testar padrões, consumo e reconhecimento humano. |
-| **B9–B10 — Adaptação** | Repetir descoberta, deriva, renegociação e ponte com celular ou notebook. |
+| **B1 — Identificação** | Confirmar placa, revisão, variante de rádio, componentes e pinagem. |
+| **B2 — Boot** | Confirmar gravação, boot serial, reset, identidade e leitura local. |
+| **B3–B5** | Medir memória, latência, comunicação e descoberta real. |
+| **B6–B8** | Integrar LRA, feedback, energia e interação humana. |
+| **B9–B10** | Repetir adaptação, deriva, renegociação e ponte com hospedeiros auxiliares. |
 
-A decisão de liberação está em `research/firmware_release_gate.py`, e o estado inicial está registrado em [`hardware_readiness_manifest.json`](research/evidence/hardware_readiness_manifest.json). O manifesto permanece `pre_hardware`: sem placa recebida, revisão identificada e self-test aprovado, o gate retorna `BLOCKED`. Quando B1/B2 passarem, o primeiro firmware continua limitado a `OBSERVE`, `PROPOSE` e `HAPTIC_FEEDBACK`.
-
-Motores, ações irreversíveis, contas financeiras e controle de sistemas críticos permanecem fora do primeiro gate. O sucesso não será apenas “conectar”; será recusar corretamente o que não pôde ser provado.
+Até B1/B2 passarem, o manifesto permanece `pre_hardware` e o firmware físico só poderá operar nos modos `OBSERVE`, `PROPOSE` e `HAPTIC_FEEDBACK`.
 
 ## Documentação principal
 
 | Documento | Conteúdo |
 |---|---|
-| [Linha do tempo](docs/63-LINHA-DO-TEMPO.md) | Evolução do projeto, dos contratos locais à ASA e ao gate físico. |
-| [Critério GOFAI](docs/64-CRITERIO-SUPERACAO-GOFAI.md) | Critério falsificável para comparar o ASA com um baseline simbólico fechado. |
-| [Fontes de mundo aberto](research/evidence/gofai_open_world_sources.md) | Evidências acadêmicas e limites usados para construir o benchmark. |
-| [Síntese por evidência](research/evidence_skill_synthesis.py) | Seleção finita de hipóteses, verificação independente e promoção sem autoridade. |
-| [Arquitetura ASA](docs/62-SYMBIOTIC-ARCHITECTURE.md) | Definição atual da Adaptive Symbiotic Architecture e seus limites. |
-| [Especificação do sistema](docs/00-HERUS-MASTER.md) | Arquitetura geral, protocolo, segurança, energia e limites conhecidos. |
-| [Visão do produto](docs/04-PRODUCT.md) | Propósito, proposta de valor e direção de produto. |
-| [Memória seletiva](docs/17-MEMORIA-SELETIVA.md) | Política para lembrar ideias, decisões e contexto sem gravar a vida inteira. |
-| [Arquitetura finita e linguagem](docs/48-ARQUITETURA-FINITA-E-LINGUAGEM.md) | Vocabulário finito, regras e papel futuro de uma LLM local. |
-| [Skill Layer v1](research/evidence/skill_layer_v1/limits.md) | Síntese limitada, verificação independente e limites de autoridade. |
-| [Descoberta de hospedeiros](docs/59-AUTONOMOUS-HOST-DISCOVERY.md) | Protocolo de sondagem sem perfil completo pré-fornecido. |
-| [Teto host-only](docs/61-HOST-ONLY-CEILING.md) | O que foi demonstrado e o que exige hardware físico. |
-| [Contrato háptico](docs/58-HAPTIC-CONTRACT.md) | Estados, padrões e limites da interface LRA. |
-| [Entrada em hardware](research/evidence/hardware_entry_gate_v1.md) | Critérios normativos B1–B10 e gate de liberação bench-only. |
-| [Manifesto de prontidão](research/evidence/hardware_readiness_manifest.json) | Estado registrado da placa, instrumentação e gates físicos. |
-| [Lista de compra](research/evidence/hardware_purchase_list_v1.md) | Componentes do primeiro hospedeiro físico. |
-| [Segurança](SECURITY.md) | O que os controles protegem hoje e o que depende da integração física. |
+| [Arquitetura ASA](docs/62-SYMBIOTIC-ARCHITECTURE.md) | Definição formal da Adaptive Symbiotic Architecture. |
+| [Modelo triplo e identidade persistente](docs/65-MODELO-TRIPLO-E-IDENTIDADE-PERSISTENTE.md) | World Model, Host Model, Self Model e identidade. |
+| [Prova real multi-hospedeiro](docs/67-PROVA-SIMBIOSE-REAL-MULTI-HOST.md) | Evidência usando comunicação, MIntRec e OFR. |
+| [Freeze pré-hardware](docs/68-FREEZE-PRE-HARDWARE.md) | Limite explícito do que pode avançar sem placa física. |
+| [Critério GOFAI](docs/64-CRITERIO-SUPERACAO-GOFAI.md) | Critério falsificável de adaptação contra baseline simbólico. |
+| [Descoberta de hospedeiros](docs/59-AUTONOMOUS-HOST-DISCOVERY.md) | Sondagem finita sem perfil completo pré-fornecido. |
+| [Arquitetura finita e linguagem](docs/48-ARQUITETURA-FINITA-E-LINGUAGEM.md) | Vocabulário finito e papel futuro de uma LLM local. |
+| [Entrada em hardware](research/evidence/hardware_entry_gate_v1.md) | Gates normativos B1–B10. |
+| [Manifesto de prontidão](research/evidence/hardware_readiness_manifest.json) | Estado da placa, instrumentação e gates físicos. |
+| [Lista de compra](research/evidence/hardware_purchase_list_v1.md) | Componentes do primeiro hospedeiro. |
 
 ## Verificação local
 
 ```bash
 ./prove.sh --quiet
-make -C firmware watch-memory-frontend
-make -C research test
+PYTHONPATH=research python3 -m unittest discover -s research -p 'test_*.py'
 ```
 
-Os comandos acima exercitam contratos de software e pesquisa host-only. Um resultado positivo autoriza o início controlado da bancada; não constitui prova de desempenho físico, segurança de rádio, privacidade de sensores ou utilidade do produto em campo.
+Um resultado positivo confirma contratos de software e bench controlado. Não constitui prova de desempenho físico, autonomia, alcance de rádio ou segurança de campo.
 
 ## O que o HERUS ainda não é
 
-O HERUS ainda não é uma AGI, não resolve NLU/NLG aberto, não substitui modelos de linguagem atuais e não possui adaptação geral comprovada a qualquer dispositivo. VSA/HDC permanece restrito ao vocabulário finito dos cartões de contexto. A memória é governada por regras e estados tipados. Uma LLM local futura pode atuar como camada linguística, mas somente depois de orçamento medido em hardware real e sem autoridade sobre memória, rádio ou confirmação física.
+O HERUS ainda não é uma AGI, não resolve NLU/NLG aberto, não substitui modelos de linguagem atuais e não possui adaptação comprovada a qualquer dispositivo. VSA/HDC permanece restrito ao vocabulário finito dos cartões de contexto. A memória é governada por regras e estados tipados. Uma LLM local futura poderá atuar como camada linguística somente depois de orçamento medido em hardware real e sem autoridade sobre memória, rádio ou confirmação física.
 
-A ambição é grande; as alegações permanecem proporcionais às evidências. O projeto avançará quando uma nova capacidade puder ser especificada, testada, auditada e, se necessário, recusada.
+A ambição é ampla; as afirmações permanecem proporcionais às evidências. O próximo salto não é uma nova frase no README. É a placa real, a medição real e a capacidade de falhar corretamente diante de um hospedeiro físico.
 
 ## Licença
 
