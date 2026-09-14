@@ -62,6 +62,27 @@ class SymbioticModelTests(unittest.TestCase):
         self.assertEqual(state.propose("observe"), "ABSTAIN")
         self.assertEqual(state.execute("observe"), "ABSTAIN")
 
+    def test_rebind_clears_old_world_and_skill_scope(self) -> None:
+        first = SymbioticState(identity=PersistentIdentity("herus-001")).attach(
+            self.profile("host-a"), skills={"observe-a"}
+        )
+        first = SymbioticState(
+            identity=first.identity,
+            host=first.host,
+            world=WorldModel().observe(WorldObservation(
+                subject="host-a", predicate="ready", value="true", source="fixture"
+            )),
+            self_model=first.self_model,
+        )
+        rebound = first.rebind(self.profile("host-b"), skills={"observe-b"})
+        self.assertEqual(rebound.validate(), ())
+        self.assertEqual(rebound.identity.herus_id, "herus-001")
+        self.assertEqual(rebound.host.host_id, "host-b")
+        self.assertEqual(rebound.world.observations, ())
+        self.assertEqual(rebound.propose("observe-a"), "ABSTAIN")
+        self.assertEqual(rebound.propose("observe-b"), "PROPOSE")
+        self.assertEqual(rebound.execute("observe-b"), "ABSTAIN")
+
     def test_world_model_rejects_unproven_confirmation(self) -> None:
         with self.assertRaises(ValueError):
             WorldModel().observe(WorldObservation(

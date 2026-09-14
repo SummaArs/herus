@@ -123,6 +123,17 @@ def _finance_host(identity: PersistentIdentity) -> RealHostEvidence:
 def run_real_symbiosis() -> dict[str, Any]:
     identity = PersistentIdentity("herus-real-symbiosis-001")
     records = [_semantic_host(identity), _mints_host(identity), _finance_host(identity)]
+    # The adapters above deliberately share only the persistent identity. The
+    # runtime-level rebind proof below verifies that a new host starts with an
+    # empty host-scoped world rather than inheriting prior observations.
+    first = SymbioticState(identity=identity).attach(
+        _profile("semantic-gateway", representation="semantic-ir-v1", interface="serial", evidence={"artifact": records[0].artifact_digest}),
+        skills={records[0].proposed_skill},
+    ).rebind(
+        _profile("mintsrec-auditor", representation="metadata-audit-v1", interface="sensor", evidence={"artifact": records[1].artifact_digest}),
+        skills={records[1].proposed_skill},
+    )
+    rebind_clean = first.host is not None and first.host.host_id == "mintsrec-auditor" and not first.world.observations and first.propose(records[0].proposed_skill) == "ABSTAIN"
     return {
         "claim": "one_persistent_herus_binds_to_multiple_real_local_evidence_hosts",
         "herus_id": identity.herus_id,
@@ -133,6 +144,7 @@ def run_real_symbiosis() -> dict[str, Any]:
             "all_proposals": all(record.proposal == "PROPOSE" for record in records),
             "all_execution_abstained": all(record.execution == "ABSTAIN" for record in records),
             "authority_not_discovered": all(record.facts.get("automatic_authority", 0) == 0 or record.facts.get("authority") == "NONE" for record in records),
+            "rebind_clears_old_world": rebind_clean,
         },
         "limitations": [
             "local audited artifacts are evidence hosts, not live external systems",

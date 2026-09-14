@@ -62,8 +62,9 @@ class WorldModel:
     observations: tuple[WorldObservation, ...] = ()
 
     def observe(self, observation: WorldObservation) -> "WorldModel":
-        if observation.validate():
-            raise ValueError("invalid world observation: " + ",".join(observation.validate()))
+        issues = observation.validate()
+        if issues:
+            raise ValueError("invalid world observation: " + ",".join(issues))
         return replace(self, observations=self.observations + (observation,))
 
     def digest(self) -> str:
@@ -162,6 +163,11 @@ class SymbioticState:
     def detach(self) -> "SymbioticState":
         detached = self.identity.unbind()
         return replace(self, identity=detached, host=None, self_model=None)
+
+    def rebind(self, profile: HostProfile, *, skills: Iterable[str] = ()) -> "SymbioticState":
+        """Move the symbiote to a new host without leaking the old world scope."""
+        detached = self.detach()
+        return SymbioticState(identity=detached.identity).attach(profile, skills=skills)
 
     def validate(self) -> tuple[str, ...]:
         issues = list(self.identity.validate())

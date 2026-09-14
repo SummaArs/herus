@@ -305,13 +305,13 @@
     {
       "path": "research/symbiotic_models.py",
       "kind": "file",
-      "sha256": "a20da220ab96417934ff612670d642efe1447950e6be08591469e5e8d58fe5bf",
+      "sha256": "6bbe503b91328e89b80a1f8f2af4e805b9b9372ba1ae001ef6cd4a5bc5e83e64",
       "role": "finite World/Host/Self symbiotic runtime models"
     },
     {
       "path": "research/test_symbiotic_models.py",
       "kind": "file",
-      "sha256": "5967bef0776c31e910f30d40dc247cad23fb98f72c23e5526ffdc56d3d6cd566",
+      "sha256": "7da7483f17f800147f369478c10a332625e047ab89edcf19862648de5414579d",
       "role": "symbiotic model adversarial tests"
     },
     {
@@ -341,20 +341,26 @@
     {
       "path": "research/real_symbiosis.py",
       "kind": "file",
-      "sha256": "bc0084a618db53070f59df103e770a9d4cddf4f486c5501863404771171af75a",
+      "sha256": "636688acf5fbd5cbbfec7c688f055e5f76c7d3841967a9d02f43c285a1d7fb91",
       "role": "real local multi-host symbiosis runner"
     },
     {
       "path": "research/test_real_symbiosis.py",
       "kind": "file",
-      "sha256": "9c340f04c051ea539e0e4ba1478bd3620387330502e2a68f25ed365c0dc56106",
+      "sha256": "c6353dc0052106633f01b591b81d27a2e290019bec8128bee58b7eb9e0443bc8",
       "role": "real evidence multi-host symbiosis tests"
     },
     {
       "path": "docs/67-PROVA-SIMBIOSE-REAL-MULTI-HOST.md",
       "kind": "file",
-      "sha256": "bb2cf08d58f167ea77b62bc6dfccd6ed1a1475f1b23f1e0cd9d5d7630929d7cb",
+      "sha256": "e08c3befafc7acbdc70febfaf3788c32e330744be78054d21e174b1f68f3cffe",
       "role": "real local multi-host symbiosis evidence record"
+    },
+    {
+      "path": "docs/68-FREEZE-PRE-HARDWARE.md",
+      "kind": "file",
+      "sha256": "910b2704d89712662394b3bdb8caee6c7e06a7281889d332a64a25b591b36b1c",
+      "role": "pre-hardware scope freeze and physical validation boundary"
     }
   ],
   "components": [

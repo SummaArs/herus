@@ -25,6 +25,8 @@ A prova demonstra quatro propriedades operacionais:
 3. **Proveniência:** cada observação é associada ao caminho e ao digest de um artefato local real.
 4. **Fronteira de autoridade:** os três hospedeiros produzem `PROPOSE`, mas todos produzem `ABSTAIN` para execução.
 
+5. **Rebind seguro:** ao trocar de hospedeiro, o contexto de mundo e o repertório de Skills do hospedeiro anterior são descartados. A identidade do HERUS continua, mas a memória contextual não atravessa o vínculo sem uma nova evidência.
+
 O HERUS não trata a existência de dados como autorização para agir. No hospedeiro financeiro, por exemplo, o próprio artefato mantém como saídas proibidas `trade`, `transfer`, `personalized_advice` e `active_financial_effect`.
 
 ## Reexecução
@@ -37,6 +39,8 @@ PYTHONPATH=research python3 -m unittest research.test_real_symbiosis
 ```
 
 A suíte verifica identidade comum, três artefatos distintos, digests de proveniência, propostas sem execução, números reais do corpus e bloqueios financeiros.
+
+Ela também executa um ciclo `attach → rebind` entre o gateway semântico e o auditor MIntRec. O ciclo verifica que o novo host não herda observações do host anterior e que uma Skill antiga retorna `ABSTAIN`.
 
 ## Limites
 

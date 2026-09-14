@@ -25,6 +25,7 @@ class RealSymbiosisTests(unittest.TestCase):
         self.assertTrue(self.result["invariants"]["all_proposals"])
         self.assertTrue(self.result["invariants"]["all_execution_abstained"])
         self.assertEqual(self.result["invariants"]["authority_not_discovered"], True)
+        self.assertTrue(self.result["invariants"]["rebind_clears_old_world"])
 
     def test_real_finance_artifact_keeps_forbidden_effects(self) -> None:
         finance = next(row for row in self.result["hosts"] if row["host_id"] == "ofr-observer")
