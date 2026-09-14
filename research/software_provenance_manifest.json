@@ -11,7 +11,7 @@
     {
       "path": "prove.sh",
       "kind": "file",
-      "sha256": "b525be29ede94517ac93f35e8dff97141142a4930c4a0232172c4ae1723f1c68",
+      "sha256": "6ac8380c2f5de7af29bd12f606b0117d18d8a4e1ce20ea6956fdd937fd29f5b6",
       "role": "global proof ledger"
     },
     {
@@ -301,6 +301,24 @@
       "kind": "file",
       "sha256": "189b6b6839dd01f3ab78a24c1c138de696b655b73b7ea756e3f5feb148301a0b",
       "role": "generative reasoning research record"
+    },
+    {
+      "path": "research/symbiotic_models.py",
+      "kind": "file",
+      "sha256": "7d04c229aa55a7d6bc80b20c3e8bae18383fcc3dff57cee800774025eeaadafe",
+      "role": "finite World/Host/Self symbiotic runtime models"
+    },
+    {
+      "path": "research/test_symbiotic_models.py",
+      "kind": "file",
+      "sha256": "5967bef0776c31e910f30d40dc247cad23fb98f72c23e5526ffdc56d3d6cd566",
+      "role": "symbiotic model adversarial tests"
+    },
+    {
+      "path": "docs/65-MODELO-TRIPLO-E-IDENTIDADE-PERSISTENTE.md",
+      "kind": "file",
+      "sha256": "26ae5eed0b94ec57bbe8ed3bbb1c1580344114ce4b0ecba56a0811d9a07aa747",
+      "role": "symbiotic model research record"
     }
   ],
   "components": [
