@@ -9,7 +9,7 @@
 #   ./prove.sh            full run
 #   ./prove.sh --quiet    verdict lines only
 #
-# Forty suites, each independently falsifiable:
+# Forty-one suites, each independently falsifiable:
 #   1  algebra      quasi-orthogonality, bundling, resonator, learning, HCP
 #   2  nucleus      bounded, opt-in local semantic intelligence
 #   3  voice        controlled local language and bounded haptic feedback
@@ -50,6 +50,7 @@
 #  38  radio        SX1262 command sequences against a recording mock bus
 #  39  physical     RF, energy and the frame ledger, from tools/budget.py
 #  40  symbiotic    World/Host/Self consistency, identity continuity and no authority escalation
+#  41  real-symbiosis real local evidence across communication, multimodal data and finance observation
 #
 # The Nucleus suite is intentionally separate: privacy and non-autonomy are
 # properties that must fail a build when regressed, not promises in a document.
@@ -262,6 +263,11 @@ banner "40/40 symbiotic models (World/Host/Self and persistent identity)"
 ( PYTHONPATH=research python3 -m unittest research.test_symbiotic_models research.test_host_profile research.test_adaptive_cycle ) > /tmp/herus_symbiotic.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_symbiotic.log
 grep -q "FAILED\|ERROR" /tmp/herus_symbiotic.log && FAIL=1 || true
+
+banner "41/41 real symbiosis (local audited evidence across three domains)"
+( PYTHONPATH=research python3 -m unittest research.test_real_symbiosis ) > /tmp/herus_real_symbiosis.log 2>&1 || FAIL=1
+[ "$QUIET" = 0 ] && cat /tmp/herus_real_symbiosis.log
+grep -q "FAILED\|ERROR" /tmp/herus_real_symbiosis.log && FAIL=1 || true
 
 echo ""
 echo "--------------------------------------------------"
