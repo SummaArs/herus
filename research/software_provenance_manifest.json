@@ -11,7 +11,7 @@
     {
       "path": "prove.sh",
       "kind": "file",
-      "sha256": "6f656977f56298fb83c7b1dec04da724c0e4418e03b47a9d1500a0c0027b6de8",
+      "sha256": "59980e1bf22ce152f6fcf3dd9160e5a9b123ab1a5982ba6dd81037aaee642242",
       "role": "global proof ledger"
     },
     {
@@ -251,7 +251,7 @@
     {
       "path": "README.md",
       "kind": "file",
-      "sha256": "0867cee87cdd3f6c5f1ab70b1435a2037740f3234c1bb7302dabbebaf125afc7",
+      "sha256": "b139b27fec938a18466a4074e4d68c11018f47346df9b52c6bbb0de6c0ab66a5",
       "role": "public project state and verification documentation"
     },
     {
@@ -377,7 +377,7 @@
     {
       "path": "docs/69-SIM-NEURO-SIMBIOTICO-V1.md",
       "kind": "file",
-      "sha256": "38897935b6b4f63b3f4b8a32eb479e12a41df58cdc6632b9e84df017ca4e3cad",
+      "sha256": "5059ff81d800f9371a17deb8ad06f2031418ea51263d256f0024e704c9ca33b8",
       "role": "SIM v1 pre-hardware research record"
     },
     {
@@ -427,6 +427,30 @@
       "kind": "file",
       "sha256": "84e9682328389bc461c8fbc77ecd5c91385b819ede42d80bcf3f330607580383",
       "role": "parallel symbiont audit and selective integration record"
+    },
+    {
+      "path": "research/sim_local_learning.py",
+      "kind": "file",
+      "sha256": "40c246693a61063c4cdfde0e327dcc43794655866d795e3e0f2ef1a8531868e7",
+      "role": "bounded local SIM prototypes with rollback"
+    },
+    {
+      "path": "research/test_sim_local_learning.py",
+      "kind": "file",
+      "sha256": "45f067464f8a8c29516e7450d8c2ae2f553a45d1c9e708e0d394e993aabb1710",
+      "role": "bounded SIM local learning tests"
+    },
+    {
+      "path": "research/sim_cost_benchmark.py",
+      "kind": "file",
+      "sha256": "14be846aa417dde43519aec5b9f71de10f5363688fa993b0b74c53d728d1bb0b",
+      "role": "host-only SIM cost benchmark"
+    },
+    {
+      "path": "docs/71-SCORECARD-PRE-HARDWARE.md",
+      "kind": "file",
+      "sha256": "d06871547b3303fa1db2fe9669c184f646f29b1910d73fdac6023057d13670b0",
+      "role": "final pre-hardware scorecard"
     }
   ],
   "components": [

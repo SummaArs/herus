@@ -28,7 +28,9 @@ O SIM não é uma LLM, não é treinamento profundo completo e não é uma alega
 
 ## Aprendizado local
 
-`train_local_delta` calcula estatísticas de observação sem alterar os pesos do modelo. Isso é deliberado. A primeira versão não permite que uma amostra altere silenciosamente o classificador usado para autoridade ou execução. Atualização de pesos exigirá um protocolo posterior com versão, evidência, rollback e validação física.
+`train_local_delta` calcula estatísticas de observação sem alterar os pesos do modelo. Além disso, `LocalPrototypeBank` fornece adaptação local bounded por protótipos inteiros: cada atualização exige label finito e proveniência, consome um orçamento de amostras, incrementa uma versão e mantém um snapshot de rollback. A adaptação não pode treinar `UNKNOWN`, não cria autoridade e não altera o contrato de execução.
+
+O benchmark host-only mediu aproximadamente `8,85 µs` por inferência e `10,21 µs` por atualização neste ambiente. Esses números servem apenas para comparação de regressão; não são medições do ESP32-S3 nem sustentam alegações de autonomia ou consumo.
 
 ## Limites
 

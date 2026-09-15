@@ -277,6 +277,10 @@ banner "43/43 action lease (expiry, fencing and no authority)"
 ( PYTHONPATH=research python3 -m unittest research.test_action_lease ) > /tmp/herus_lease.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_lease.log
 grep -q "FAILED\|ERROR" /tmp/herus_lease.log && FAIL=1 || true
+banner "44/44 SIM local learning (bounded prototypes and rollback)"
+( PYTHONPATH=research python3 -m unittest research.test_sim_local_learning ) > /tmp/herus_sim_learning.log 2>&1 || FAIL=1
+[ "$QUIET" = 0 ] && cat /tmp/herus_sim_learning.log
+grep -q "FAILED\|ERROR" /tmp/herus_sim_learning.log && FAIL=1 || true
 
 echo ""
 echo "--------------------------------------------------"
