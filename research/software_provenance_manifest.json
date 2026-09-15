@@ -11,7 +11,7 @@
     {
       "path": "prove.sh",
       "kind": "file",
-      "sha256": "6b272dae17c29e588b33249b2864eaee3a28ae36850275a79f66114c600e4540",
+      "sha256": "d1415f25215108ec43e23b9f6d5e6a8906091388f10a9bc141d7506112921518",
       "role": "global proof ledger"
     },
     {
@@ -251,7 +251,7 @@
     {
       "path": "README.md",
       "kind": "file",
-      "sha256": "637b7d71f5962549ed81dce35e563d74bd68e85a86066f73503ce7827edeebbe",
+      "sha256": "82faf41c1f7c1e55081aa230934f614a7a7b9c0cb393a588fdef39c79ed4509f",
       "role": "public project state and verification documentation"
     },
     {
@@ -487,6 +487,24 @@
       "kind": "file",
       "sha256": "501f14924a0f21e556b8dd8102dc08b9c1e3ffe292d03c93b1e0540f4975bf86",
       "role": "H1 semantic equivalence specification"
+    },
+    {
+      "path": "research/h0_host_runtime.py",
+      "kind": "file",
+      "sha256": "91a7503f40bfe81117f0576a646f19f00a6d0e03417b08c9b9bfd5b0cf035fab",
+      "role": "H0 computer residence and governed exit"
+    },
+    {
+      "path": "research/test_h0_host_runtime.py",
+      "kind": "file",
+      "sha256": "05e6ce16f27ccaea9a4c8b6a291214f9ec2461c7bf70900444bdb044ad167483",
+      "role": "H0 residence and exit tests"
+    },
+    {
+      "path": "docs/74-H0-HOST-RESIDENCE.md",
+      "kind": "file",
+      "sha256": "20e0827842d49f94abd78682ebf28db7e60c9410901ee1787b25d500a789733e",
+      "role": "H0 first real host and pulsed migration narrative"
     }
   ],
   "components": [

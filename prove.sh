@@ -289,6 +289,10 @@ banner "46/46 H0 symbiosis (bind, conflict, detach and rebind)"
 ( PYTHONPATH=research python3 -m unittest research.test_h0_symbiosis ) > /tmp/herus_h0_symbiosis.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_h0_symbiosis.log
 grep -q "FAILED\|ERROR" /tmp/herus_h0_symbiosis.log && FAIL=1 || true
+banner "47/47 H0 residence (computer host and governed exit)"
+( PYTHONPATH=research python3 -m unittest research.test_h0_host_runtime ) > /tmp/herus_h0_host.log 2>&1 || FAIL=1
+[ "$QUIET" = 0 ] && cat /tmp/herus_h0_host.log
+grep -q "FAILED\|ERROR" /tmp/herus_h0_host.log && FAIL=1 || true
 
 echo ""
 echo "--------------------------------------------------"
