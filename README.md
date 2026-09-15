@@ -14,6 +14,8 @@ O HERUS possui um núcleo comum e uma primeira aplicação pessoal.
 
 O **ASA Core** mantém uma identidade persistente, vincula-se a um hospedeiro por um perfil verificável, observa um mundo local, compõe Skills finitas e opera sob contratos de autoridade explícitos. O mesmo núcleo pode ser desvinculado e rebindado a outro hospedeiro sem carregar automaticamente o contexto, as Skills ou a autoridade do hospedeiro anterior.
 
+O **Symbiotic Intelligence Model (SIM)** acrescenta aprendizado local pequeno ao núcleo. Um componente neural quantizado classifica padrões; a camada simbólica restringe o resultado a um vocabulário finito; a camada simbiótica escolhe a representação que cabe no orçamento do hospedeiro. O SIM pode propor, mas nunca executa por conta própria.
+
 O **primeiro produto físico** é um comunicador pessoal de pulso. Ele oferece interação curta, confirmação física, memória seletiva, comunicação essencial e feedback háptico. O wearable é o primeiro hospedeiro do simbionte, não a definição completa da arquitetura.
 
 A arquitetura também foi exercitada com dados reais locais em três hospedeiros de evidência: um gateway semântico, um auditor do corpus MIntRec e um observador financeiro baseado em artefato OFR. Nos três casos, o HERUS propôs; nenhum executou.
@@ -108,6 +110,7 @@ Até B1/B2 passarem, o manifesto permanece `pre_hardware` e o firmware físico s
 | [Modelo triplo e identidade persistente](docs/65-MODELO-TRIPLO-E-IDENTIDADE-PERSISTENTE.md) | World Model, Host Model, Self Model e identidade. |
 | [Prova real multi-hospedeiro](docs/67-PROVA-SIMBIOSE-REAL-MULTI-HOST.md) | Evidência usando comunicação, MIntRec e OFR. |
 | [Freeze pré-hardware](docs/68-FREEZE-PRE-HARDWARE.md) | Limite explícito do que pode avançar sem placa física. |
+| [SIM neuro-simbiótico v1](docs/69-SIM-NEURO-SIMBIOTICO-V1.md) | Primeiro modelo local que combina aprendizado neural, significado finito e orçamento do hospedeiro. |
 | [Critério GOFAI](docs/64-CRITERIO-SUPERACAO-GOFAI.md) | Critério falsificável de adaptação contra baseline simbólico. |
 | [Descoberta de hospedeiros](docs/59-AUTONOMOUS-HOST-DISCOVERY.md) | Sondagem finita sem perfil completo pré-fornecido. |
 | [Arquitetura finita e linguagem](docs/48-ARQUITETURA-FINITA-E-LINGUAGEM.md) | Vocabulário finito e papel futuro de uma LLM local. |

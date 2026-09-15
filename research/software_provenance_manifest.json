@@ -11,7 +11,7 @@
     {
       "path": "prove.sh",
       "kind": "file",
-      "sha256": "25fe5bede28b32dc3b7f4962a5b12b6f02a3ce3eac8e8b9afac64f3355a8892f",
+      "sha256": "f2ba6e67a9189b8701c4a1b5215a0a5419ddd9853a646d924b519340b4cc3670",
       "role": "global proof ledger"
     },
     {
@@ -251,7 +251,7 @@
     {
       "path": "README.md",
       "kind": "file",
-      "sha256": "96d8240fe1c31fe3e70b835d6e4b9f0c816f33b30f263c60fd0fa44813dab857",
+      "sha256": "aa274fb7968a32c226a55e341052198ffdd81537b9d34136bd9f6d2b3993a4df",
       "role": "public project state and verification documentation"
     },
     {
@@ -361,6 +361,24 @@
       "kind": "file",
       "sha256": "a0734c4ad549e2fd00121ed434ca0b8a489914d01bf6b89b7698343766058895",
       "role": "pre-hardware scope freeze and physical validation boundary"
+    },
+    {
+      "path": "research/symbiotic_intelligence.py",
+      "kind": "file",
+      "sha256": "b01119be2f54b915d469643bcb86b40f33383cee5c62f64798dc96b31e01d848",
+      "role": "bounded local neuro-symbolic symbiotic intelligence model"
+    },
+    {
+      "path": "research/test_symbiotic_intelligence.py",
+      "kind": "file",
+      "sha256": "bb4d9d3643a9fbb044e10c05ce41a47df84b6d7d5a63c06c95f9dc4fcce4c04c",
+      "role": "SIM adversarial budget and authority tests"
+    },
+    {
+      "path": "docs/69-SIM-NEURO-SIMBIOTICO-V1.md",
+      "kind": "file",
+      "sha256": "700fb183a620a96278b06c6a4d86f4eaf8c61846500c2e062ca4dde7680d6678",
+      "role": "SIM v1 pre-hardware research record"
     }
   ],
   "components": [
@@ -416,29 +434,51 @@
       "id": "local-source-input-digest",
       "status": "active",
       "question": "Do the declared host-proof inputs match the reviewed local SHA-256 references?",
-      "evidence_required": ["manifest schema", "canonical digest algorithm", "adversarial fixture suite"],
+      "evidence_required": [
+        "manifest schema",
+        "canonical digest algorithm",
+        "adversarial fixture suite"
+      ],
       "claim_if_pass": "Only the listed local inputs match this unsigned manifest at audit time.",
-      "evidence_files": ["tools/provenance_audit.py", "research/software_provenance_manifest.json"]
+      "evidence_files": [
+        "tools/provenance_audit.py",
+        "research/software_provenance_manifest.json"
+      ]
     },
     {
       "id": "signed-build-provenance",
       "status": "pending",
       "question": "Can a verifier authenticate a provenance statement for a released artifact and trace it to a protected builder?",
-      "evidence_required": ["signed attestation", "builder trust boundary", "artifact digest", "verification procedure"],
+      "evidence_required": [
+        "signed attestation",
+        "builder trust boundary",
+        "artifact digest",
+        "verification procedure"
+      ],
       "claim_if_pass": "A separately reviewed release artifact has authenticated provenance for its declared builder boundary."
     },
     {
       "id": "complete-component-inventory",
       "status": "pending",
       "question": "Does a machine-readable inventory cover the release artifact and its resolved direct and transitive components?",
-      "evidence_required": ["artifact inventory", "coverage method", "component identities", "review record"],
+      "evidence_required": [
+        "artifact inventory",
+        "coverage method",
+        "component identities",
+        "review record"
+      ],
       "claim_if_pass": "The declared release inventory has the documented coverage, not an inferred absence of vulnerabilities."
     },
     {
       "id": "reproducible-target-build",
       "status": "pending",
       "question": "Can independent controlled environments reproduce the selected target artifact from the declared inputs?",
-      "evidence_required": ["pinned toolchain", "build recipe", "independent digest comparison", "target artifact"],
+      "evidence_required": [
+        "pinned toolchain",
+        "build recipe",
+        "independent digest comparison",
+        "target artifact"
+      ],
       "claim_if_pass": "Only the tested target artifact and declared environments reproduced the recorded digest."
     }
   ]

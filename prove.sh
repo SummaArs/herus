@@ -269,6 +269,11 @@ banner "41/41 real symbiosis (local audited evidence across three domains)"
 [ "$QUIET" = 0 ] && cat /tmp/herus_real_symbiosis.log
 grep -q "FAILED\|ERROR" /tmp/herus_real_symbiosis.log && FAIL=1 || true
 
+banner "42/42 SIM (local neuro-symbolic model, host budget and no authority)"
+( PYTHONPATH=research python3 -m unittest research.test_symbiotic_intelligence ) > /tmp/herus_sim.log 2>&1 || FAIL=1
+[ "$QUIET" = 0 ] && cat /tmp/herus_sim.log
+grep -q "FAILED\|ERROR" /tmp/herus_sim.log && FAIL=1 || true
+
 echo ""
 echo "--------------------------------------------------"
 echo "INVARIANT CHECKS"
