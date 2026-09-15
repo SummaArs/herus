@@ -16,6 +16,8 @@ O **ASA Core** mantém uma identidade persistente, vincula-se a um hospedeiro po
 
 O **Symbiotic Intelligence Model (SIM)** acrescenta aprendizado local pequeno ao núcleo. Um componente neural quantizado classifica padrões; a camada simbólica restringe o resultado a um vocabulário finito; a camada simbiótica escolhe a representação que cabe no orçamento do hospedeiro. O SIM pode propor, mas nunca executa por conta própria.
 
+O SIM v1 já possui uma ponte C11 portável, compilada e testada no host. Isso deixa o núcleo preparado para o ESP32-S3, mas não antecipa as medições físicas de RAM, ciclos, latência ou energia.
+
 O **primeiro produto físico** é um comunicador pessoal de pulso. Ele oferece interação curta, confirmação física, memória seletiva, comunicação essencial e feedback háptico. O wearable é o primeiro hospedeiro do simbionte, não a definição completa da arquitetura.
 
 A arquitetura também foi exercitada com dados reais locais em três hospedeiros de evidência: um gateway semântico, um auditor do corpus MIntRec e um observador financeiro baseado em artefato OFR. Nos três casos, o HERUS propôs; nenhum executou.

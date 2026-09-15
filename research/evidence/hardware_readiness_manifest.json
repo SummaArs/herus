@@ -39,6 +39,11 @@
     "GRANT_AUTHORITY"
   ],
   "firmware_commit": null,
+  "local_model_readiness": {
+    "sim_python": "host_validated",
+    "sim_c11": "host_compiled_and_tested",
+    "physical_measurements": "pending_B1_B2"
+  },
   "instrumentation": {
     "power_analyzer": null,
     "calibration_reference": null,

@@ -23,7 +23,7 @@
     {
       "path": "firmware",
       "kind": "tree",
-      "sha256": "df205c67982dd6d66f3661caaef853701a2c9b2d71623b45dcda95a1fab81f48",
+      "sha256": "c4c5227daa26ed0a3e4d86dda7f78dc3d69e78de70f85506f22765a3edfe2a3d",
       "role": "portable firmware and proof sources"
     },
     {
@@ -251,7 +251,7 @@
     {
       "path": "README.md",
       "kind": "file",
-      "sha256": "aa274fb7968a32c226a55e341052198ffdd81537b9d34136bd9f6d2b3993a4df",
+      "sha256": "de913331d2e4c1ed552a291a17ce722bef01dfc92529f2828a1f486e3b4b61e3",
       "role": "public project state and verification documentation"
     },
     {
@@ -377,8 +377,38 @@
     {
       "path": "docs/69-SIM-NEURO-SIMBIOTICO-V1.md",
       "kind": "file",
-      "sha256": "700fb183a620a96278b06c6a4d86f4eaf8c61846500c2e062ca4dde7680d6678",
+      "sha256": "38897935b6b4f63b3f4b8a32eb479e12a41df58cdc6632b9e84df017ca4e3cad",
       "role": "SIM v1 pre-hardware research record"
+    },
+    {
+      "path": "firmware/Makefile",
+      "kind": "file",
+      "sha256": "f5af708a407346c8684efc1e32d25d64e1806d3ce840954ffa46e6b01c385337",
+      "role": "firmware build and SIM C11 host gate"
+    },
+    {
+      "path": "firmware/core/sim.c",
+      "kind": "file",
+      "sha256": "6b26249a29ed0f82c1b93b7b778682b8f49b75a59819183d9d21e0210f39f60b",
+      "role": "portable fixed-point SIM C11 implementation"
+    },
+    {
+      "path": "firmware/core/sim.h",
+      "kind": "file",
+      "sha256": "d814f837a0ee1563e3c1314c1a1d2c86afdfe77f7925dacf258cc5f1e13e0a6e",
+      "role": "portable SIM C11 contract"
+    },
+    {
+      "path": "firmware/core/test_sim.c",
+      "kind": "file",
+      "sha256": "ba87746c83c6b33cdfbcc58ecb4cecb02c7d2cae17a5bcbc46692789176ce388",
+      "role": "SIM C11 budget, provenance and no-authority tests"
+    },
+    {
+      "path": "research/evidence/hardware_readiness_manifest.json",
+      "kind": "file",
+      "sha256": "775f6fa1b411839d56e2f00e2168bfd3926d24ca4f8da170a7924d1d8f9fbe2f",
+      "role": "updated project narrative"
     }
   ],
   "components": [

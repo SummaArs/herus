@@ -46,6 +46,7 @@
 #   make analyzer   run GCC static analysis on the production voice parser and IR bridge
 #   make sanitizers run ASan/UBSan on voice, Semantic IR bridge and memory collection
 #   make syntax     type-check the ESP32-S3 app without an ESP32 present
+#   make sim        run the local neuro-symbolic SIM v1 suite
 #   make vectors    regenerate crypto vectors from an independent implementation
 #   make clean
 #
@@ -61,9 +62,9 @@ INC     := -Icore -Inet -Iport -Itest
 CORE    := core/hv.c core/sbc.c core/lexicon.c core/hcp.c
 NET     := net/crypto.c net/session.c net/region.c net/weave.c net/beat.c net/link.c
 
-.PHONY: all algebra nucleus voice semantic-ir intent dialogue analyzer sanitizers model-lab memory-policy memory-capture memory-extract watch-memory-frontend memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale memory-collection memory-collection-index memory-collection-recovery memory-collection-recovery-stress memory-collection-finale bench-evidence-validate bench-interruption-sim memory-proposal llm-budget-check memory-physical-session memory-physical-session-recovery memory-physical-session-recovery-stress memory-physical-session-bootstrap memory-prehardware-finale threat-model threat-model-stress proof-fire-mutations assurance capstone trust control-link delivery-plan interaction interaction-rig net radio syntax vectors clean
+.PHONY: all algebra nucleus voice semantic-ir intent dialogue analyzer sanitizers model-lab memory-policy memory-capture memory-extract watch-memory-frontend memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale memory-collection memory-collection-index memory-collection-recovery memory-collection-recovery-stress memory-collection-finale bench-evidence-validate bench-interruption-sim memory-proposal llm-budget-check memory-physical-session memory-physical-session-recovery memory-physical-session-recovery-stress memory-physical-session-bootstrap memory-prehardware-finale threat-model threat-model-stress proof-fire-mutations assurance capstone trust control-link delivery-plan interaction interaction-rig net radio sim syntax vectors clean
 
-all: algebra nucleus voice semantic-ir intent dialogue analyzer model-lab memory-policy memory-capture memory-extract memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale memory-collection memory-collection-index memory-collection-recovery memory-collection-recovery-stress memory-collection-finale memory-physical-session memory-physical-session-recovery memory-physical-session-recovery-stress memory-physical-session-bootstrap memory-prehardware-finale threat-model threat-model-stress proof-fire-mutations assurance capstone trust control-link interaction interaction-rig net radio syntax
+all: algebra nucleus voice semantic-ir intent dialogue analyzer model-lab memory-policy memory-capture memory-extract memory-vault memory-consolidation memory-retrieval memory-retrieval-present memory-finale memory-collection memory-collection-index memory-collection-recovery memory-collection-recovery-stress memory-collection-finale memory-physical-session memory-physical-session-recovery memory-physical-session-recovery-stress memory-physical-session-bootstrap memory-prehardware-finale threat-model threat-model-stress proof-fire-mutations assurance capstone trust control-link interaction interaction-rig net radio sim syntax
 	@echo ""
 	@echo "=================================================="
 	@echo "ALL FIRMWARE SUITES PASS"
@@ -78,6 +79,11 @@ algebra: build
 	$(CC) $(CFLAGS) -DHV_LUT_POPCOUNT $(INC) core/hv.c core/sbc.c \
 	    core/test_algebra.c -o build/test_algebra $(LDLIBS)
 	./build/test_algebra
+
+sim: build
+	@echo "--- SIM: local neuro-symbolic model, budget and no authority ---"
+	$(CC) $(CFLAGS) $(INC) core/sim.c core/test_sim.c -o build/test_sim
+	./build/test_sim
 
 nucleus: build
 	@echo "--- nucleus: bounded local semantic intelligence ---"
