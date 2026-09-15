@@ -273,6 +273,10 @@ banner "42/42 SIM (local neuro-symbolic model, host budget and no authority)"
 ( PYTHONPATH=research python3 -m unittest research.test_symbiotic_intelligence ) > /tmp/herus_sim.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_sim.log
 grep -q "FAILED\|ERROR" /tmp/herus_sim.log && FAIL=1 || true
+banner "43/43 action lease (expiry, fencing and no authority)"
+( PYTHONPATH=research python3 -m unittest research.test_action_lease ) > /tmp/herus_lease.log 2>&1 || FAIL=1
+[ "$QUIET" = 0 ] && cat /tmp/herus_lease.log
+grep -q "FAILED\|ERROR" /tmp/herus_lease.log && FAIL=1 || true
 
 echo ""
 echo "--------------------------------------------------"

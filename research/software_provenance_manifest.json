@@ -11,7 +11,7 @@
     {
       "path": "prove.sh",
       "kind": "file",
-      "sha256": "f2ba6e67a9189b8701c4a1b5215a0a5419ddd9853a646d924b519340b4cc3670",
+      "sha256": "6f656977f56298fb83c7b1dec04da724c0e4418e03b47a9d1500a0c0027b6de8",
       "role": "global proof ledger"
     },
     {
@@ -251,7 +251,7 @@
     {
       "path": "README.md",
       "kind": "file",
-      "sha256": "de913331d2e4c1ed552a291a17ce722bef01dfc92529f2828a1f486e3b4b61e3",
+      "sha256": "0867cee87cdd3f6c5f1ab70b1435a2037740f3234c1bb7302dabbebaf125afc7",
       "role": "public project state and verification documentation"
     },
     {
@@ -409,6 +409,24 @@
       "kind": "file",
       "sha256": "775f6fa1b411839d56e2f00e2168bfd3926d24ca4f8da170a7924d1d8f9fbe2f",
       "role": "updated project narrative"
+    },
+    {
+      "path": "research/action_lease.py",
+      "kind": "file",
+      "sha256": "de9f203a1ee95c3dea73ecb99065a5b86b466a032f9cfa953b31c2707872c749",
+      "role": "stale-safe multi-host action lease and fencing"
+    },
+    {
+      "path": "research/test_action_lease.py",
+      "kind": "file",
+      "sha256": "c6a51f9bfb46a46d18093c0386d2c09dded4c01ff6c8554a6ca25a55b4f0ac7e",
+      "role": "action lease expiry and fencing tests"
+    },
+    {
+      "path": "docs/70-AUDITORIA-SIMBIONTE-1.md",
+      "kind": "file",
+      "sha256": "84e9682328389bc461c8fbc77ecd5c91385b819ede42d80bcf3f330607580383",
+      "role": "parallel symbiont audit and selective integration record"
     }
   ],
   "components": [

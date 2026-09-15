@@ -18,6 +18,8 @@ O **Symbiotic Intelligence Model (SIM)** acrescenta aprendizado local pequeno ao
 
 O SIM v1 já possui uma ponte C11 portável, compilada e testada no host. Isso deixa o núcleo preparado para o ESP32-S3, mas não antecipa as medições físicas de RAM, ciclos, latência ou energia.
 
+Para múltiplos hospedeiros, o núcleo também possui leases de ação com expiração e fencing token. Isso impede que uma instância antiga continue uma proposta depois de perder a posse ou sofrer `rebind`; o lease organiza concorrência, mas não concede autoridade.
+
 O **primeiro produto físico** é um comunicador pessoal de pulso. Ele oferece interação curta, confirmação física, memória seletiva, comunicação essencial e feedback háptico. O wearable é o primeiro hospedeiro do simbionte, não a definição completa da arquitetura.
 
 A arquitetura também foi exercitada com dados reais locais em três hospedeiros de evidência: um gateway semântico, um auditor do corpus MIntRec e um observador financeiro baseado em artefato OFR. Nos três casos, o HERUS propôs; nenhum executou.
@@ -113,6 +115,7 @@ Até B1/B2 passarem, o manifesto permanece `pre_hardware` e o firmware físico s
 | [Prova real multi-hospedeiro](docs/67-PROVA-SIMBIOSE-REAL-MULTI-HOST.md) | Evidência usando comunicação, MIntRec e OFR. |
 | [Freeze pré-hardware](docs/68-FREEZE-PRE-HARDWARE.md) | Limite explícito do que pode avançar sem placa física. |
 | [SIM neuro-simbiótico v1](docs/69-SIM-NEURO-SIMBIOTICO-V1.md) | Primeiro modelo local que combina aprendizado neural, significado finito e orçamento do hospedeiro. |
+| [Auditoria do simbionte paralelo](docs/70-AUDITORIA-SIMBIONTE-1.md) | Ideias aproveitadas, rejeitadas e o contrato de fencing incorporado. |
 | [Critério GOFAI](docs/64-CRITERIO-SUPERACAO-GOFAI.md) | Critério falsificável de adaptação contra baseline simbólico. |
 | [Descoberta de hospedeiros](docs/59-AUTONOMOUS-HOST-DISCOVERY.md) | Sondagem finita sem perfil completo pré-fornecido. |
 | [Arquitetura finita e linguagem](docs/48-ARQUITETURA-FINITA-E-LINGUAGEM.md) | Vocabulário finito e papel futuro de uma LLM local. |
