@@ -11,7 +11,7 @@
     {
       "path": "prove.sh",
       "kind": "file",
-      "sha256": "59980e1bf22ce152f6fcf3dd9160e5a9b123ab1a5982ba6dd81037aaee642242",
+      "sha256": "c052b5f7b6f2d1d1492a2f0fb4bfe79db4424be8eb6a8a0b50389753e36dec7d",
       "role": "global proof ledger"
     },
     {
@@ -251,7 +251,7 @@
     {
       "path": "README.md",
       "kind": "file",
-      "sha256": "b139b27fec938a18466a4074e4d68c11018f47346df9b52c6bbb0de6c0ab66a5",
+      "sha256": "d6a914248a96868d6e2ff9917e4df4fa9b9ad47e872f360f991e11cb781b5ba1",
       "role": "public project state and verification documentation"
     },
     {
@@ -451,6 +451,30 @@
       "kind": "file",
       "sha256": "d06871547b3303fa1db2fe9669c184f646f29b1910d73fdac6023057d13670b0",
       "role": "final pre-hardware scorecard"
+    },
+    {
+      "path": "research/h0_reference.py",
+      "kind": "file",
+      "sha256": "8048d8ef8cd9a0ce6370e3ab3c7fc0ad7b7e90ecd51170532ae9e91fc6991f7b",
+      "role": "H0 canonical reference executor"
+    },
+    {
+      "path": "research/test_h0_reference.py",
+      "kind": "file",
+      "sha256": "94b6a78bd33646c6f173428c9407cb6c4d1f2ace11b258d01095482aa508c0ee",
+      "role": "H0 golden vector tests"
+    },
+    {
+      "path": "research/evidence/h0_golden_vectors.json",
+      "kind": "file",
+      "sha256": "36a8c2a816f27e647ed995cd64ec7e2ea3438e74d8514e9a47a3d951db910166",
+      "role": "H0 semantic golden vectors"
+    },
+    {
+      "path": "docs/72-H0-REFERENCE.md",
+      "kind": "file",
+      "sha256": "1c6f5ad1c7de4fd95e8596b6d4a2dc660013f8c96cece8c365c323f6f0809f8e",
+      "role": "H0 reference and H1 equivalence record"
     }
   ],
   "components": [

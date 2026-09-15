@@ -1,0 +1,46 @@
+[
+  {
+    "case_id": "valid_arrive",
+    "features": [4, 0, 0, 0],
+    "source": "fixture-sensor",
+    "digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "representations": ["SIM-INT8"],
+    "budget_bytes": 4096,
+    "budget_steps": 12,
+    "authority": "NONE",
+    "expected": {"label": "ARRIVE", "representation": "SIM-INT8", "proposal": "PROPOSE", "execution": "ABSTAIN", "reason": "neural_pattern_passed_finite_symbolic_gate"}
+  },
+  {
+    "case_id": "no_provenance",
+    "features": [4, 0, 0, 0],
+    "source": "",
+    "digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "representations": ["SIM-INT8"],
+    "budget_bytes": 4096,
+    "budget_steps": 12,
+    "authority": "NONE",
+    "expected": {"proposal": "ABSTAIN", "execution": "ABSTAIN", "reason": "pattern_provenance_missing"}
+  },
+  {
+    "case_id": "budget_exhausted",
+    "features": [4, 0, 0, 0],
+    "source": "fixture-sensor",
+    "digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "representations": ["SIM-INT8"],
+    "budget_bytes": 128,
+    "budget_steps": 1,
+    "authority": "NONE",
+    "expected": {"proposal": "ABSTAIN", "execution": "ABSTAIN", "reason": "no_representation_fits_budget"}
+  },
+  {
+    "case_id": "authority_never_discovered",
+    "features": [4, 0, 0, 0],
+    "source": "fixture-sensor",
+    "digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "representations": ["SIM-INT8"],
+    "budget_bytes": 4096,
+    "budget_steps": 12,
+    "authority": "PROPOSAL_ONLY",
+    "expected": {"proposal": "ABSTAIN", "execution": "ABSTAIN", "reason": "host_authority_not_discoverable"}
+  }
+]

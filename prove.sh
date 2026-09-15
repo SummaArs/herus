@@ -281,6 +281,10 @@ banner "44/44 SIM local learning (bounded prototypes and rollback)"
 ( PYTHONPATH=research python3 -m unittest research.test_sim_local_learning ) > /tmp/herus_sim_learning.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_sim_learning.log
 grep -q "FAILED\|ERROR" /tmp/herus_sim_learning.log && FAIL=1 || true
+banner "45/45 H0 reference (golden vectors and canonical decisions)"
+( PYTHONPATH=research python3 -m unittest research.test_h0_reference ) > /tmp/herus_h0.log 2>&1 || FAIL=1
+[ "$QUIET" = 0 ] && cat /tmp/herus_h0.log
+grep -q "FAILED\|ERROR" /tmp/herus_h0.log && FAIL=1 || true
 
 echo ""
 echo "--------------------------------------------------"

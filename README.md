@@ -119,6 +119,7 @@ Até B1/B2 passarem, o manifesto permanece `pre_hardware` e o firmware físico s
 | [SIM neuro-simbiótico v1](docs/69-SIM-NEURO-SIMBIOTICO-V1.md) | Primeiro modelo local que combina aprendizado neural, significado finito e orçamento do hospedeiro. |
 | [Auditoria do simbionte paralelo](docs/70-AUDITORIA-SIMBIONTE-1.md) | Ideias aproveitadas, rejeitadas e o contrato de fencing incorporado. |
 | [Scorecard pré-hardware](docs/71-SCORECARD-PRE-HARDWARE.md) | Evidências, ganhos e limites após o hardening final. |
+| [H0 Reference](docs/72-H0-REFERENCE.md) | Executor canônico no computador e vetores dourados para equivalência H1. |
 | [Critério GOFAI](docs/64-CRITERIO-SUPERACAO-GOFAI.md) | Critério falsificável de adaptação contra baseline simbólico. |
 | [Descoberta de hospedeiros](docs/59-AUTONOMOUS-HOST-DISCOVERY.md) | Sondagem finita sem perfil completo pré-fornecido. |
 | [Arquitetura finita e linguagem](docs/48-ARQUITETURA-FINITA-E-LINGUAGEM.md) | Vocabulário finito e papel futuro de uma LLM local. |
