@@ -285,6 +285,10 @@ banner "45/45 H0 reference (golden vectors and canonical decisions)"
 ( PYTHONPATH=research python3 -m unittest research.test_h0_reference ) > /tmp/herus_h0.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_h0.log
 grep -q "FAILED\|ERROR" /tmp/herus_h0.log && FAIL=1 || true
+banner "46/46 H0 symbiosis (bind, conflict, detach and rebind)"
+( PYTHONPATH=research python3 -m unittest research.test_h0_symbiosis ) > /tmp/herus_h0_symbiosis.log 2>&1 || FAIL=1
+[ "$QUIET" = 0 ] && cat /tmp/herus_h0_symbiosis.log
+grep -q "FAILED\|ERROR" /tmp/herus_h0_symbiosis.log && FAIL=1 || true
 
 echo ""
 echo "--------------------------------------------------"

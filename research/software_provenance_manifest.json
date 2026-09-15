@@ -11,7 +11,7 @@
     {
       "path": "prove.sh",
       "kind": "file",
-      "sha256": "c052b5f7b6f2d1d1492a2f0fb4bfe79db4424be8eb6a8a0b50389753e36dec7d",
+      "sha256": "6b272dae17c29e588b33249b2864eaee3a28ae36850275a79f66114c600e4540",
       "role": "global proof ledger"
     },
     {
@@ -251,7 +251,7 @@
     {
       "path": "README.md",
       "kind": "file",
-      "sha256": "d6a914248a96868d6e2ff9917e4df4fa9b9ad47e872f360f991e11cb781b5ba1",
+      "sha256": "637b7d71f5962549ed81dce35e563d74bd68e85a86066f73503ce7827edeebbe",
       "role": "public project state and verification documentation"
     },
     {
@@ -475,6 +475,18 @@
       "kind": "file",
       "sha256": "1c6f5ad1c7de4fd95e8596b6d4a2dc660013f8c96cece8c365c323f6f0809f8e",
       "role": "H0 reference and H1 equivalence record"
+    },
+    {
+      "path": "research/test_h0_symbiosis.py",
+      "kind": "file",
+      "sha256": "54e5b3b3de232a73f6e00dc5e3288ed6e210d4d173b3d8c05860938c4ca62529",
+      "role": "H0 full symbiosis lifecycle tests"
+    },
+    {
+      "path": "docs/73-H1-EQUIVALENCIA-EMBEDDED.md",
+      "kind": "file",
+      "sha256": "501f14924a0f21e556b8dd8102dc08b9c1e3ffe292d03c93b1e0540f4975bf86",
+      "role": "H1 semantic equivalence specification"
     }
   ],
   "components": [

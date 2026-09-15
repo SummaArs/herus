@@ -120,6 +120,7 @@ Até B1/B2 passarem, o manifesto permanece `pre_hardware` e o firmware físico s
 | [Auditoria do simbionte paralelo](docs/70-AUDITORIA-SIMBIONTE-1.md) | Ideias aproveitadas, rejeitadas e o contrato de fencing incorporado. |
 | [Scorecard pré-hardware](docs/71-SCORECARD-PRE-HARDWARE.md) | Evidências, ganhos e limites após o hardening final. |
 | [H0 Reference](docs/72-H0-REFERENCE.md) | Executor canônico no computador e vetores dourados para equivalência H1. |
+| [H1 Embedded](docs/73-H1-EQUIVALENCIA-EMBEDDED.md) | Critério de equivalência semântica entre H0 e a ponte C11/ESP32-S3. |
 | [Critério GOFAI](docs/64-CRITERIO-SUPERACAO-GOFAI.md) | Critério falsificável de adaptação contra baseline simbólico. |
 | [Descoberta de hospedeiros](docs/59-AUTONOMOUS-HOST-DISCOVERY.md) | Sondagem finita sem perfil completo pré-fornecido. |
 | [Arquitetura finita e linguagem](docs/48-ARQUITETURA-FINITA-E-LINGUAGEM.md) | Vocabulário finito e papel futuro de uma LLM local. |
