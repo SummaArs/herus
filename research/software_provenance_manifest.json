@@ -11,7 +11,7 @@
     {
       "path": "prove.sh",
       "kind": "file",
-      "sha256": "cf4bd18c94716ec591970ad8f5a057d6fd6404b1d01541141746d5d7f47a3bc2",
+      "sha256": "85ea64dee480ab7932a3c7cd2895023f8643f2d16c8a9775693dda3132a52529",
       "role": "global proof ledger"
     },
     {
@@ -251,7 +251,7 @@
     {
       "path": "README.md",
       "kind": "file",
-      "sha256": "9520ef0f1e1e424f1fc7073f1b8bf160ffe0a50f50c606bc58ffffd2db8d4126",
+      "sha256": "ab659abc3a9802e68b20d84c4d1770ac78f53a5c063bf4447345ed1c60ec73de",
       "role": "public project state"
     },
     {
@@ -541,6 +541,36 @@
       "kind": "file",
       "sha256": "fe887460ab2194c6cfa53ff5b9f6db1944730fe3ed1f8a171dd8223015e2afe9",
       "role": "H0/H1 equivalence report"
+    },
+    {
+      "path": "research/symbiosis_lab.py",
+      "kind": "file",
+      "sha256": "68a44046d51f8ede2c3126e62e3d05ac4791fbed5b8a607cddee035eb0ebf262",
+      "role": "computational symbiosis adaptation lab"
+    },
+    {
+      "path": "research/test_symbiosis_lab.py",
+      "kind": "file",
+      "sha256": "9dbebc3fc15ee2facbce0e6d43b48036fe434515638adc1310571d14d7eaf2b0",
+      "role": "computational symbiosis adversarial tests"
+    },
+    {
+      "path": "research/symbiosis_lab_evidence.py",
+      "kind": "file",
+      "sha256": "a0f0cf4ddf568e0a672be5beb417b00d377757679da7b79c529a451481ac9a3f",
+      "role": "reproducible symbiosis evidence generator"
+    },
+    {
+      "path": "research/evidence/computational_symbiosis_lab.json",
+      "kind": "file",
+      "sha256": "a845483fbbd874e78c7645ae56df8789b0e9183b8ed9fe49f8b523df2a769493",
+      "role": "computational symbiosis evidence"
+    },
+    {
+      "path": "docs/77-LABORATORIO-SIMBIOSE-COMPUTACIONAL.md",
+      "kind": "file",
+      "sha256": "cbacc18a9a7d918223000190a78edd8e6391d31e109ac61b97e6ff022044a901",
+      "role": "computational symbiosis report"
     }
   ],
   "components": [

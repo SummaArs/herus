@@ -1,0 +1,83 @@
+{
+  "schema": "herus.computational-symbiosis-lab.v1",
+  "identity": "herus-general-lab",
+  "hosts_tested": 3,
+  "rows": [
+    {
+      "session": "session-pulse",
+      "host_id": "discovered:session-pulse",
+      "representations": [
+        "HIR16",
+        "HIR8"
+      ],
+      "interfaces": [
+        "haptic",
+        "radio",
+        "serial"
+      ],
+      "skills": [
+        "observe",
+        "haptic_feedback",
+        "bounded_radio"
+      ],
+      "status": "ADAPTED",
+      "blocked_reasons": [],
+      "proposal": "PROPOSE",
+      "execution": "ABSTAIN",
+      "authority": "NONE",
+      "world_observations_after_bind": 0,
+      "state_valid": true
+    },
+    {
+      "session": "session-server",
+      "host_id": "discovered:session-server",
+      "representations": [
+        "HIR16",
+        "HIR32"
+      ],
+      "interfaces": [
+        "display",
+        "sensor",
+        "serial"
+      ],
+      "skills": [
+        "observe",
+        "sense"
+      ],
+      "status": "ADAPTED",
+      "blocked_reasons": [],
+      "proposal": "PROPOSE",
+      "execution": "ABSTAIN",
+      "authority": "NONE",
+      "world_observations_after_bind": 0,
+      "state_valid": true
+    },
+    {
+      "session": "session-restricted",
+      "host_id": "discovered:session-restricted",
+      "representations": [
+        "HIR8"
+      ],
+      "interfaces": [
+        "serial"
+      ],
+      "skills": [
+        "observe"
+      ],
+      "status": "ADAPTED",
+      "blocked_reasons": [],
+      "proposal": "PROPOSE",
+      "execution": "ABSTAIN",
+      "authority": "NONE",
+      "world_observations_after_bind": 0,
+      "state_valid": true
+    }
+  ],
+  "claim": "The same bounded core discovers finite host capabilities, compiles a host-specific adaptation plan, proposes only within discovered scope, and never gains execution authority.",
+  "not_claimed": [
+    "physical operation",
+    "arbitrary open-world generality",
+    "ESP32 measurements",
+    "wrist interaction"
+  ]
+}

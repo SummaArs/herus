@@ -301,6 +301,10 @@ banner "49/49 H0/H1 equivalence (protected C11 decisions match reference)"
 ( cd firmware && make sim-equivalence ) > /tmp/herus_h0_h1_equivalence.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_h0_h1_equivalence.log
 grep -q "FAILED\|ERROR" /tmp/herus_h0_h1_equivalence.log && FAIL=1 || true
+banner "50/50 computational symbiosis lab (discover, adapt, operate, abstain)"
+( PYTHONPATH=research python3 -m unittest research.test_symbiosis_lab ) > /tmp/herus_symbiosis_lab.log 2>&1 || FAIL=1
+[ "$QUIET" = 0 ] && cat /tmp/herus_symbiosis_lab.log
+grep -q "FAILED\|ERROR" /tmp/herus_symbiosis_lab.log && FAIL=1 || true
 
 echo ""
 echo "--------------------------------------------------"
