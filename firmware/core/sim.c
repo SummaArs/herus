@@ -54,12 +54,16 @@ sim_decision_t sim_decide(const sim_host_budget_t *host, const sim_pattern_t *pa
                           uint16_t minimum_confidence) {
     sim_decision_t decision = {SIM_LABEL_UNKNOWN, SIM_REP_NONE, 0u, 0u, 0u};
     sim_neural_scores_t scores;
-    if (host == NULL || pattern == NULL || !host->authority_none || !pattern->provenance_present) return decision;
+    if (host == NULL || pattern == NULL || !host->authority_none) return decision;
     decision.representation = choose_representation(host, required_bytes, required_steps);
     if (decision.representation == SIM_REP_NONE) return decision;
     sim_infer(pattern, &scores);
     decision.label = scores.label;
     decision.confidence_milli = scores.confidence_milli;
+    if (!pattern->provenance_present) {
+        decision.label = SIM_LABEL_UNKNOWN;
+        return decision;
+    }
     if (scores.label != SIM_LABEL_UNKNOWN && scores.confidence_milli >= minimum_confidence) decision.proposal = 1u;
     /* execution intentionally remains zero: SIM is never an authority gate. */
     return decision;

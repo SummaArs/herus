@@ -11,7 +11,7 @@
     {
       "path": "prove.sh",
       "kind": "file",
-      "sha256": "bbb9ec526beb830dac00723530c79b60a1a40ca2078d4773f455700b31a7b41b",
+      "sha256": "cf4bd18c94716ec591970ad8f5a057d6fd6404b1d01541141746d5d7f47a3bc2",
       "role": "global proof ledger"
     },
     {
@@ -23,7 +23,7 @@
     {
       "path": "firmware",
       "kind": "tree",
-      "sha256": "c4c5227daa26ed0a3e4d86dda7f78dc3d69e78de70f85506f22765a3edfe2a3d",
+      "sha256": "fec3b03cd050cb7f13a9c004917f0148190fa2743c611be86b779e6e9e89dae1",
       "role": "portable firmware and proof sources"
     },
     {
@@ -251,7 +251,7 @@
     {
       "path": "README.md",
       "kind": "file",
-      "sha256": "a542b8ae7ab8f55ba267b3e9cf295b52b86123857e39dc18ad6a6232d518d8c2",
+      "sha256": "9520ef0f1e1e424f1fc7073f1b8bf160ffe0a50f50c606bc58ffffd2db8d4126",
       "role": "public project state"
     },
     {
@@ -383,13 +383,13 @@
     {
       "path": "firmware/Makefile",
       "kind": "file",
-      "sha256": "f5af708a407346c8684efc1e32d25d64e1806d3ce840954ffa46e6b01c385337",
+      "sha256": "444aeeac418f4152645a3084c4f516d45c4feea788fda1fb88430ff2c03cce17",
       "role": "firmware build and SIM C11 host gate"
     },
     {
       "path": "firmware/core/sim.c",
       "kind": "file",
-      "sha256": "6b26249a29ed0f82c1b93b7b778682b8f49b75a59819183d9d21e0210f39f60b",
+      "sha256": "d525e50a1be838b837cc614ebe0fe9b83a73a2664246c221ea0f2cc7f4f22fa5",
       "role": "portable fixed-point SIM C11 implementation"
     },
     {
@@ -529,6 +529,18 @@
       "kind": "file",
       "sha256": "a64c2804094e8507cc687e4b9e55a9b51ed59eaee8da56971ee8249abf725b30",
       "role": "bounded general symbiosis report"
+    },
+    {
+      "path": "firmware/core/test_sim_equivalence.c",
+      "kind": "file",
+      "sha256": "6cda03cd8ecfa746701255f4a54db14946b21ca29e424add4aeb422394eb0f4d",
+      "role": "H0/H1 C11 equivalence harness"
+    },
+    {
+      "path": "docs/76-EQUIVALENCIA-H0-H1.md",
+      "kind": "file",
+      "sha256": "fe887460ab2194c6cfa53ff5b9f6db1944730fe3ed1f8a171dd8223015e2afe9",
+      "role": "H0/H1 equivalence report"
     }
   ],
   "components": [

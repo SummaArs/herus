@@ -297,6 +297,10 @@ banner "48/48 bounded host migration (computer, embedded, wrist, robot and vehic
 ( PYTHONPATH=research python3 -m unittest research.test_host_migration ) > /tmp/herus_host_migration.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_host_migration.log
 grep -q "FAILED\|ERROR" /tmp/herus_host_migration.log && FAIL=1 || true
+banner "49/49 H0/H1 equivalence (protected C11 decisions match reference)"
+( cd firmware && make sim-equivalence ) > /tmp/herus_h0_h1_equivalence.log 2>&1 || FAIL=1
+[ "$QUIET" = 0 ] && cat /tmp/herus_h0_h1_equivalence.log
+grep -q "FAILED\|ERROR" /tmp/herus_h0_h1_equivalence.log && FAIL=1 || true
 
 echo ""
 echo "--------------------------------------------------"
