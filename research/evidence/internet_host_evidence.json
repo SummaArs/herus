@@ -1,0 +1,20 @@
+{
+  "schema": "herus.internet-host-evidence.v1",
+  "source_count": 2,
+  "accepted_count": 2,
+  "useful_claims": [
+    "esp32",
+    "psram",
+    "usb",
+    "radio",
+    "wifi",
+    "bluetooth"
+  ],
+  "decision_reasons": [
+    "bounded_provenance_verified",
+    "bounded_provenance_verified"
+  ],
+  "executable": false,
+  "training_action": "not_applied_to_authority_or_firmware",
+  "interpretation": "Internet supplied bounded documentation evidence useful for later H1/H2 planning; it did not modify executable code, grant authority, or replace physical measurement."
+}

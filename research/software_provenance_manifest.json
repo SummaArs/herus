@@ -11,7 +11,7 @@
     {
       "path": "prove.sh",
       "kind": "file",
-      "sha256": "85ea64dee480ab7932a3c7cd2895023f8643f2d16c8a9775693dda3132a52529",
+      "sha256": "c5b76e9851ce025e4b83dda9c442477acb2a21b1fcb9c5cbc15b95cf7f03c503",
       "role": "global proof ledger"
     },
     {
@@ -251,7 +251,7 @@
     {
       "path": "README.md",
       "kind": "file",
-      "sha256": "ab659abc3a9802e68b20d84c4d1770ac78f53a5c063bf4447345ed1c60ec73de",
+      "sha256": "add3bcec1fbdb98049b19686fe15a3204e82b8bf15f28e3247b3ec16b1268601",
       "role": "public project state"
     },
     {
@@ -571,6 +571,36 @@
       "kind": "file",
       "sha256": "cbacc18a9a7d918223000190a78edd8e6391d31e109ac61b97e6ff022044a901",
       "role": "computational symbiosis report"
+    },
+    {
+      "path": "research/internet_host.py",
+      "kind": "file",
+      "sha256": "26689f64a5b39aa81a167a88e3573c5d1108bf2183b1c1f64205796fa1000680",
+      "role": "Internet evidence host"
+    },
+    {
+      "path": "research/test_internet_host.py",
+      "kind": "file",
+      "sha256": "43111d5aed3cc043043371d57d1e960b0fb72475a39efcc8e8b7b77fdf068cd6",
+      "role": "Internet host adversarial tests"
+    },
+    {
+      "path": "research/internet_evidence_run.py",
+      "kind": "file",
+      "sha256": "6c936a9c5af343e6781609a99910d065228637f0dfdec90e9b9814d9bb916186",
+      "role": "real official source ingestion"
+    },
+    {
+      "path": "research/evidence/internet_host_evidence.json",
+      "kind": "file",
+      "sha256": "b68fc267dae0facb5515ebaaaaa25b57a67b8a66504ebe50b717069ded7fab56",
+      "role": "Internet host evidence"
+    },
+    {
+      "path": "docs/78-INTERNET-COMO-HOSPEDEIRO-DE-EVIDENCIA.md",
+      "kind": "file",
+      "sha256": "e4052daf27d8c37bc44cfb062e5c727529b7984c6cc4dd166ec2f304597c0a00",
+      "role": "Internet evidence host report"
     }
   ],
   "components": [

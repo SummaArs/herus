@@ -125,6 +125,7 @@ Até B1/B2 passarem, o manifesto permanece `pre_hardware` e o firmware físico s
 | [Simbiose geral bounded](docs/75-PROVA-SIMBIOSE-GERAL-BOUNDED.md) | Continuidade contratual em cinco classes de hospedeiro, ainda host-only e sem alegação física. |
 | [Equivalência H0 → H1](docs/76-EQUIVALENCIA-H0-H1.md) | Vetores H0 comparados com a ponte C11, incluindo correção de divergência semântica. |
 | [Laboratório de simbiose computacional](docs/77-LABORATORIO-SIMBIOSE-COMPUTACIONAL.md) | Descoberta por probes, adaptação compilada e operação fail-closed em hosts heterogêneos. |
+| [Internet como evidência](docs/78-INTERNET-COMO-HOSPEDEIRO-DE-EVIDENCIA.md) | Ingestão seletiva de fontes oficiais, com proveniência e sem execução ou autoridade. |
 | [Critério GOFAI](docs/64-CRITERIO-SUPERACAO-GOFAI.md) | Critério falsificável de adaptação contra baseline simbólico. |
 | [Descoberta de hospedeiros](docs/59-AUTONOMOUS-HOST-DISCOVERY.md) | Sondagem finita sem perfil completo pré-fornecido. |
 | [Arquitetura finita e linguagem](docs/48-ARQUITETURA-FINITA-E-LINGUAGEM.md) | Vocabulário finito e papel futuro de uma LLM local. |
