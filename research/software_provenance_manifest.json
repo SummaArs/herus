@@ -11,7 +11,7 @@
     {
       "path": "prove.sh",
       "kind": "file",
-      "sha256": "c5b76e9851ce025e4b83dda9c442477acb2a21b1fcb9c5cbc15b95cf7f03c503",
+      "sha256": "3833578589263aa81e055fb7562024d4074cfc56b8beb2fd1a7fd2940b8d5071",
       "role": "global proof ledger"
     },
     {
@@ -251,7 +251,7 @@
     {
       "path": "README.md",
       "kind": "file",
-      "sha256": "add3bcec1fbdb98049b19686fe15a3204e82b8bf15f28e3247b3ec16b1268601",
+      "sha256": "6b634c2411d326140a51c648f73a93ab717d9f2fd097b55e2be9104673426c03",
       "role": "public project state"
     },
     {
@@ -601,6 +601,24 @@
       "kind": "file",
       "sha256": "e4052daf27d8c37bc44cfb062e5c727529b7984c6cc4dd166ec2f304597c0a00",
       "role": "Internet evidence host report"
+    },
+    {
+      "path": "research/evidence/real_host_training_registry.json",
+      "kind": "file",
+      "sha256": "79602a06af4cd50af50e1bde7b0933278e9bde20eb0770bcedafd4991ef8e5e9",
+      "role": "real host training registry"
+    },
+    {
+      "path": "research/test_real_host_registry.py",
+      "kind": "file",
+      "sha256": "0f29b65bb07fa502d36897c17c09a3997422582ff592113cf69e18895e57340f",
+      "role": "real host registry tests"
+    },
+    {
+      "path": "docs/79-MAPA-HOSPEDEIROS-REAIS.md",
+      "kind": "file",
+      "sha256": "25c5337f97b2645d12347812e79c0bef90224b1e16aac2f203f6fc916660991c",
+      "role": "real host map"
     }
   ],
   "components": [

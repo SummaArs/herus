@@ -1,0 +1,126 @@
+{
+  "schema": "herus.real-host-training-registry.v1",
+  "policy": "Learn finite operating estimates; never learn authority or bypass verification.",
+  "hosts": [
+    {
+      "id": "computer-h0",
+      "class": "personal",
+      "reality": "real",
+      "access": "available_now",
+      "useful_for": ["identity", "memory", "latency", "local_skill_execution", "detach_rebind"],
+      "training_allowed": ["bounded prototypes", "cost estimates", "failure rates"],
+      "effects": "none_without_external_authority",
+      "next_gate": "run hidden-task and drift trials"
+    },
+    {
+      "id": "local-filesystem",
+      "class": "computer-resource",
+      "reality": "real",
+      "access": "available_now",
+      "useful_for": ["provenance", "append-only evidence", "rollback", "memory policy"],
+      "training_allowed": ["retrieval utility", "retention cost", "integrity checks"],
+      "effects": "no destructive writes",
+      "next_gate": "crash and tamper campaign"
+    },
+    {
+      "id": "local-process-sandbox",
+      "class": "computer-resource",
+      "reality": "real_bounded",
+      "access": "available_now",
+      "useful_for": ["resource budget", "timeouts", "failure isolation", "skill leases"],
+      "training_allowed": ["latency", "memory", "retry policy"],
+      "effects": "deny network and destructive operations by default",
+      "next_gate": "hostile process and timeout campaign"
+    },
+    {
+      "id": "github-herus",
+      "class": "repository-host",
+      "reality": "real_external_service",
+      "access": "authorized_connector",
+      "useful_for": ["versioned artifacts", "review", "provenance", "rollback"],
+      "training_allowed": ["change-risk estimates", "test-result history"],
+      "effects": "no automatic merge, release or deletion",
+      "next_gate": "reproducible checkout and mutation audit"
+    },
+    {
+      "id": "internet-official-docs",
+      "class": "evidence-host",
+      "reality": "real_external_information",
+      "access": "available_now",
+      "useful_for": ["capability claims", "documentation", "protocol preparation"],
+      "training_allowed": ["finite host hypotheses"],
+      "effects": "no code execution or authority",
+      "next_gate": "source conflict and stale-document campaign"
+    },
+    {
+      "id": "real-public-datasets",
+      "class": "data-host",
+      "reality": "real_audited_samples",
+      "access": "local_audited_subsets",
+      "useful_for": ["distribution shift", "parser robustness", "temporal validation", "sensor quality"],
+      "training_allowed": ["bounded prototypes with declared labels", "out-of-sample utility"],
+      "effects": "no product authority or personal-memory import",
+      "next_gate": "license, split and leakage audit per dataset"
+    },
+    {
+      "id": "robot-simulator",
+      "class": "robotics",
+      "reality": "real_software_environment",
+      "access": "host_only_ready",
+      "useful_for": ["state estimation", "safe zones", "trajectory proposals", "stop conditions"],
+      "training_allowed": ["policy cost", "failure detection", "shadow behavior"],
+      "effects": "simulation only; no actuator",
+      "next_gate": "hidden worlds, replay and emergency stop"
+    },
+    {
+      "id": "financial-sandbox",
+      "class": "finance",
+      "reality": "real_data_no_real_effect",
+      "access": "host_only_partial",
+      "useful_for": ["temporal leakage", "risk contracts", "proposal explanation"],
+      "training_allowed": ["bounded observations", "backtest diagnostics"],
+      "effects": "no order, transfer or advice authority",
+      "next_gate": "paper account with independent controls"
+    },
+    {
+      "id": "server-shadow",
+      "class": "server",
+      "reality": "real_software_target_if_connected",
+      "access": "not_connected",
+      "useful_for": ["canary planning", "rollback", "availability", "dependency drift"],
+      "training_allowed": ["shadow-only cost and failure estimates"],
+      "effects": "no production mutation",
+      "next_gate": "explicit server connector and isolated shadow target"
+    },
+    {
+      "id": "esp32-s3-h1",
+      "class": "embedded",
+      "reality": "real_physical_hardware",
+      "access": "pending_purchase_or_arrival",
+      "useful_for": ["RAM", "energy", "latency", "temperature", "radio"],
+      "training_allowed": ["quantization and host-cost estimates"],
+      "effects": "bench-only until B1-B10",
+      "next_gate": "identity and serial boot B1/B2"
+    },
+    {
+      "id": "wrist-h2",
+      "class": "physical_symbiont",
+      "reality": "real_physical_hardware",
+      "access": "blocked_by_h1",
+      "useful_for": ["LRA", "battery", "human confirmation", "body interaction"],
+      "training_allowed": ["haptic utility and energy estimates"],
+      "effects": "no autonomous critical actuation",
+      "next_gate": "H1 equivalence plus physical bring-up"
+    },
+    {
+      "id": "robot-real-h3",
+      "class": "robotics",
+      "reality": "real_physical_system",
+      "access": "not_connected",
+      "useful_for": ["sensor-actuator coupling", "safe control", "recovery"],
+      "training_allowed": ["shadow and canary only after governance"],
+      "effects": "no unbounded actuation",
+      "next_gate": "simulator evidence and external safety operator"
+    }
+  ]
+}
