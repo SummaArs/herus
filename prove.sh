@@ -293,6 +293,10 @@ banner "47/47 H0 residence (computer host and governed exit)"
 ( PYTHONPATH=research python3 -m unittest research.test_h0_host_runtime ) > /tmp/herus_h0_host.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_h0_host.log
 grep -q "FAILED\|ERROR" /tmp/herus_h0_host.log && FAIL=1 || true
+banner "48/48 bounded host migration (computer, embedded, wrist, robot and vehicle)"
+( PYTHONPATH=research python3 -m unittest research.test_host_migration ) > /tmp/herus_host_migration.log 2>&1 || FAIL=1
+[ "$QUIET" = 0 ] && cat /tmp/herus_host_migration.log
+grep -q "FAILED\|ERROR" /tmp/herus_host_migration.log && FAIL=1 || true
 
 echo ""
 echo "--------------------------------------------------"

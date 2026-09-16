@@ -1,0 +1,30 @@
+{
+  "schema": "herus.multi-host-symbiosis.v1",
+  "status": "host_only_bounded",
+  "identity": "herus-general",
+  "declared_hosts": ["computer", "embedded", "wrist", "robot", "vehicle"],
+  "verified_contracts": [
+    "identity_continuity",
+    "target_profile_validation",
+    "clean_context_on_bind",
+    "authority_none_after_migration",
+    "execution_abstains",
+    "source_target_fencing",
+    "unknown_host_kind_rejection",
+    "forged_authority_rejection",
+    "forged_context_transfer_rejection"
+  ],
+  "not_verified": [
+    "physical_wrist_operation",
+    "ESP32_S3_measurements",
+    "sensor_discovery",
+    "LRA_actuation",
+    "radio_link",
+    "battery_runtime",
+    "robot_control",
+    "vehicle_control",
+    "arbitrary_open_world_host",
+    "general_autonomy"
+  ],
+  "interpretation": "The same bounded identity and safety contracts survive declared host changes in H0 software. This is not evidence that the HERUS physically operates any listed host."
+}

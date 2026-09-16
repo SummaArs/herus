@@ -11,7 +11,7 @@
     {
       "path": "prove.sh",
       "kind": "file",
-      "sha256": "d1415f25215108ec43e23b9f6d5e6a8906091388f10a9bc141d7506112921518",
+      "sha256": "bbb9ec526beb830dac00723530c79b60a1a40ca2078d4773f455700b31a7b41b",
       "role": "global proof ledger"
     },
     {
@@ -251,8 +251,8 @@
     {
       "path": "README.md",
       "kind": "file",
-      "sha256": "82faf41c1f7c1e55081aa230934f614a7a7b9c0cb393a588fdef39c79ed4509f",
-      "role": "public project state and verification documentation"
+      "sha256": "a542b8ae7ab8f55ba267b3e9cf295b52b86123857e39dc18ad6a6232d518d8c2",
+      "role": "public project state"
     },
     {
       "path": "docs/50-INTENT-COMPILER-E-SEMANTIC-IR.md",
@@ -505,6 +505,30 @@
       "kind": "file",
       "sha256": "20e0827842d49f94abd78682ebf28db7e60c9410901ee1787b25d500a789733e",
       "role": "H0 first real host and pulsed migration narrative"
+    },
+    {
+      "path": "research/host_migration.py",
+      "kind": "file",
+      "sha256": "2c92731abfc62cf4ac6f030e2dd3e33e07853193a5ec96585c15e04c701f2d84",
+      "role": "bounded multi-host migration"
+    },
+    {
+      "path": "research/test_host_migration.py",
+      "kind": "file",
+      "sha256": "2f60991d86019b8755ba9f7b205c1942686f22a7659898862d0dc2b3650550bb",
+      "role": "multi-host migration adversarial tests"
+    },
+    {
+      "path": "research/evidence/multi_host_symbiosis_matrix.json",
+      "kind": "file",
+      "sha256": "1abb53544e4713077ab5b0b4aaef9d13a9b406e1b754103f12bd4745473a8bf4",
+      "role": "bounded multi-host evidence matrix"
+    },
+    {
+      "path": "docs/75-PROVA-SIMBIOSE-GERAL-BOUNDED.md",
+      "kind": "file",
+      "sha256": "a64c2804094e8507cc687e4b9e55a9b51ed59eaee8da56971ee8249abf725b30",
+      "role": "bounded general symbiosis report"
     }
   ],
   "components": [
