@@ -619,6 +619,12 @@
       "kind": "file",
       "sha256": "25c5337f97b2645d12347812e79c0bef90224b1e16aac2f203f6fc916660991c",
       "role": "real host map"
+    },
+    {
+      "path": "docs/evidence/2026-09-16-official-host-sources.md",
+      "kind": "file",
+      "sha256": "574fc7129ac5a8fd052bfc003e263e4b539e8966b2ee50cad90f41d1d36f4ebd",
+      "role": "official source notes used by real host map"
     }
   ],
   "components": [
