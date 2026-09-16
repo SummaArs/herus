@@ -313,6 +313,10 @@ banner "52/52 real host training registry (access, utility and safety boundaries
 ( PYTHONPATH=research python3 -m unittest research.test_real_host_registry ) > /tmp/herus_real_host_registry.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_real_host_registry.log
 grep -q "FAILED\|ERROR" /tmp/herus_real_host_registry.log && FAIL=1 || true
+banner "53/53 bounded SIM optimization and HTTPS Internet access"
+( PYTHONPATH=research python3 -m unittest research.test_symbiotic_optimization research.test_internet_fetcher ) > /tmp/herus_optimization_internet.log 2>&1 || FAIL=1
+[ "$QUIET" = 0 ] && cat /tmp/herus_optimization_internet.log
+grep -q "FAILED\|ERROR" /tmp/herus_optimization_internet.log && FAIL=1 || true
 
 echo ""
 echo "--------------------------------------------------"

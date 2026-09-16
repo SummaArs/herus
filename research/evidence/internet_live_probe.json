@@ -1,0 +1,25 @@
+{
+  "schema": "herus.internet-live-probe.v1",
+  "retrieved": [
+    {
+      "url": "https://wiki.lilygo.cc/products/t3-series/t3-s3-v1.3/",
+      "title": "t3-s3-v1.3",
+      "content_chars": 249437,
+      "source_digest": "e77f3ef4c2dce84e8d3fab37e47f2377022fd65e66fd8d60d210c0e3d6e49466",
+      "claims": [
+        "external_source_retrieved"
+      ]
+    },
+    {
+      "url": "https://documentation.espressif.com/esp32-s3_datasheet_en.pdf",
+      "title": "esp32-s3_datasheet_en.pdf",
+      "content_chars": 39,
+      "source_digest": "59dce24cb94cc41247e5449c94f89b7bde9aeab6b0cbc7257b3b006dc6ae2274",
+      "claims": [
+        "external_source_retrieved"
+      ]
+    }
+  ],
+  "execution": false,
+  "authority": "NONE"
+}

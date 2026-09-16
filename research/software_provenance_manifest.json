@@ -11,7 +11,7 @@
     {
       "path": "prove.sh",
       "kind": "file",
-      "sha256": "3833578589263aa81e055fb7562024d4074cfc56b8beb2fd1a7fd2940b8d5071",
+      "sha256": "745c0038f3877d964250e371f1387494e50dab0d0ccac820cbdfa1f8a76d1a2f",
       "role": "global proof ledger"
     },
     {
@@ -251,7 +251,7 @@
     {
       "path": "README.md",
       "kind": "file",
-      "sha256": "6b634c2411d326140a51c648f73a93ab717d9f2fd097b55e2be9104673426c03",
+      "sha256": "e5ba6a28d466aeb090e46e0b0d77a8fec8380f9ec5fe0f9698da7d0537a7df79",
       "role": "public project state"
     },
     {
@@ -365,8 +365,8 @@
     {
       "path": "research/symbiotic_intelligence.py",
       "kind": "file",
-      "sha256": "b01119be2f54b915d469643bcb86b40f33383cee5c62f64798dc96b31e01d848",
-      "role": "bounded local neuro-symbolic symbiotic intelligence model"
+      "sha256": "025d9e657ff7f0670fe43af3b74b28b007d8c6c083751a8734b0ed32cdff45e4",
+      "role": "bounded optimization objective"
     },
     {
       "path": "research/test_symbiotic_intelligence.py",
@@ -625,6 +625,42 @@
       "kind": "file",
       "sha256": "574fc7129ac5a8fd052bfc003e263e4b539e8966b2ee50cad90f41d1d36f4ebd",
       "role": "official source notes used by real host map"
+    },
+    {
+      "path": "research/internet_fetcher.py",
+      "kind": "file",
+      "sha256": "bd8b4ca7e0e64a00179e141aed37175f7f734d8f534ec8c2f25e9eda3aaddd92",
+      "role": "bounded HTTPS retrieval"
+    },
+    {
+      "path": "research/test_internet_fetcher.py",
+      "kind": "file",
+      "sha256": "34ce27d621ef5852886922ba3d7d2565ba0ce60f84769977e79290f961c2d796",
+      "role": "HTTPS retrieval adversarial tests"
+    },
+    {
+      "path": "research/internet_live_probe.py",
+      "kind": "file",
+      "sha256": "ddf0988f93c6b364e219c1973f0f7a93ff4571225ee531f407e11439e6e05ab7",
+      "role": "live official source probe"
+    },
+    {
+      "path": "research/evidence/internet_live_probe.json",
+      "kind": "file",
+      "sha256": "8992acfb317c1da40180496072e3ddaf0017e6a87110d95a83de8d7dbf2cf96e",
+      "role": "live Internet probe evidence"
+    },
+    {
+      "path": "research/test_symbiotic_optimization.py",
+      "kind": "file",
+      "sha256": "22ede2297f16f561450812410b70a5f7a3b47d7c26394b44bee713d484239c1c",
+      "role": "optimization objective tests"
+    },
+    {
+      "path": "docs/80-FUNCAO-OBJETIVO-E-TREINO-INTERNET.md",
+      "kind": "file",
+      "sha256": "e0cc6fd7f38f316232d09f14fdc86201f937a0ae48c09f9859dec62e2bb5e8bf",
+      "role": "optimization and Internet training report"
     }
   ],
   "components": [

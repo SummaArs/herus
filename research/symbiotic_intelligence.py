@@ -38,6 +38,24 @@ class SIMDecision:
     reason: str
 
 
+@dataclass(frozen=True)
+class OptimizationWeights:
+    """Positive lexicographic costs; authority is never an optimizable term."""
+    bytes_cost: int = 4
+    steps_cost: int = 3
+    uncertainty_cost: int = 2
+    utility_reward: int = 5
+
+
+def representation_objective(name: str, *, weights: OptimizationWeights = OptimizationWeights()) -> int:
+    costs = {"SIM-RULES": (512, 4, 0, 1), "SIM-HDC8": (2048, 8, 1, 2), "SIM-INT8": (4096, 12, 2, 3)}
+    if name not in costs:
+        raise ValueError("representation_unknown")
+    bytes_used, steps, uncertainty, utility = costs[name]
+    return (weights.bytes_cost * bytes_used + weights.steps_cost * steps
+            + weights.uncertainty_cost * uncertainty - weights.utility_reward * utility)
+
+
 class MicroMLP:
     """A deterministic fixed-point 4->3->4 network for local experiments."""
 
@@ -65,10 +83,11 @@ def _representation(profile: HostProfile, required_bytes: int, required_steps: i
     )
     available = profile.skill_budget.get("bytes", 0)
     available_steps = profile.skill_budget.get("steps", 0)
+    feasible = []
     for name, bytes_needed, steps_needed in candidates:
         if name in profile.representation_set and bytes_needed <= available and steps_needed <= available_steps and bytes_needed <= required_bytes and steps_needed <= required_steps:
-            return name
-    return None
+            feasible.append(name)
+    return min(feasible, key=representation_objective) if feasible else None
 
 
 def decide(profile: HostProfile, pattern: Pattern, *, required_bytes: int = 4096, required_steps: int = 12, min_confidence_milli: int = 700) -> SIMDecision:
