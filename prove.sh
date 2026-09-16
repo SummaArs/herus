@@ -317,6 +317,10 @@ banner "53/53 bounded SIM optimization and HTTPS Internet access"
 ( PYTHONPATH=research python3 -m unittest research.test_symbiotic_optimization research.test_internet_fetcher ) > /tmp/herus_optimization_internet.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_optimization_internet.log
 grep -q "FAILED\|ERROR" /tmp/herus_optimization_internet.log && FAIL=1 || true
+banner "54/54 concurrent multi-host symbiosis (shared experience, isolated authority)"
+( PYTHONPATH=research python3 -m unittest research.test_multi_host_runtime ) > /tmp/herus_multi_host_runtime.log 2>&1 || FAIL=1
+[ "$QUIET" = 0 ] && cat /tmp/herus_multi_host_runtime.log
+grep -q "FAILED\|ERROR" /tmp/herus_multi_host_runtime.log && FAIL=1 || true
 
 echo ""
 echo "--------------------------------------------------"

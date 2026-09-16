@@ -11,7 +11,7 @@
     {
       "path": "prove.sh",
       "kind": "file",
-      "sha256": "745c0038f3877d964250e371f1387494e50dab0d0ccac820cbdfa1f8a76d1a2f",
+      "sha256": "5b24add868d1c76d9ca8b1002949fa86ecc406866fd038a650866d839573bfd5",
       "role": "global proof ledger"
     },
     {
@@ -251,7 +251,7 @@
     {
       "path": "README.md",
       "kind": "file",
-      "sha256": "e5ba6a28d466aeb090e46e0b0d77a8fec8380f9ec5fe0f9698da7d0537a7df79",
+      "sha256": "6021fb674c04e4ba166fc9893ad3e3a12df6b77d75d52039922aa46b3d5f75c4",
       "role": "public project state"
     },
     {
@@ -661,6 +661,36 @@
       "kind": "file",
       "sha256": "e0cc6fd7f38f316232d09f14fdc86201f937a0ae48c09f9859dec62e2bb5e8bf",
       "role": "optimization and Internet training report"
+    },
+    {
+      "path": "research/multi_host_runtime.py",
+      "kind": "file",
+      "sha256": "1584ad624872b6acd45cbd28052ae22b9e1818e572e0cb1aca0edba635b6e57a",
+      "role": "concurrent multi-host runtime"
+    },
+    {
+      "path": "research/test_multi_host_runtime.py",
+      "kind": "file",
+      "sha256": "a383db0c8cc303e66dfeeb7b935465debb1b36ce1b5d84573dfb88b097ac99df",
+      "role": "multi-host adversarial tests"
+    },
+    {
+      "path": "research/multi_host_evidence.py",
+      "kind": "file",
+      "sha256": "a5c0342767eb7c4753109d360354f45214407734d5899ddbe4329f517431d54e",
+      "role": "concurrent evidence generator"
+    },
+    {
+      "path": "research/evidence/concurrent_multi_host_symbiosis.json",
+      "kind": "file",
+      "sha256": "5f39eeab35f645b34a4be4875aeb2f3d098186ba24a06fe4143b9777c31cd992",
+      "role": "concurrent multi-host evidence"
+    },
+    {
+      "path": "docs/81-SIMBIOSE-CONCORRENTE-MULTI-HOST.md",
+      "kind": "file",
+      "sha256": "57d5aae25a9c104ae38710c9c2c0420e3c9097c686d560140a2543c40be15b58",
+      "role": "concurrent symbiosis report"
     }
   ],
   "components": [

@@ -1,0 +1,116 @@
+{
+  "schema": "herus.concurrent-multi-host-symbiosis.v1",
+  "identity": "herus-general",
+  "host_count": 8,
+  "hosts": [
+    {
+      "host_id": "computer",
+      "identity": "herus-general",
+      "produced": 2,
+      "consumed_from_other_hosts": 14,
+      "shared_kinds": [
+        "latency",
+        "utility"
+      ],
+      "proposal": "PROPOSE",
+      "execution": "ABSTAIN"
+    },
+    {
+      "host_id": "filesystem",
+      "identity": "herus-general",
+      "produced": 2,
+      "consumed_from_other_hosts": 14,
+      "shared_kinds": [
+        "latency",
+        "utility"
+      ],
+      "proposal": "PROPOSE",
+      "execution": "ABSTAIN"
+    },
+    {
+      "host_id": "sandbox",
+      "identity": "herus-general",
+      "produced": 2,
+      "consumed_from_other_hosts": 14,
+      "shared_kinds": [
+        "latency",
+        "utility"
+      ],
+      "proposal": "PROPOSE",
+      "execution": "ABSTAIN"
+    },
+    {
+      "host_id": "internet",
+      "identity": "herus-general",
+      "produced": 2,
+      "consumed_from_other_hosts": 14,
+      "shared_kinds": [
+        "latency",
+        "utility"
+      ],
+      "proposal": "PROPOSE",
+      "execution": "ABSTAIN"
+    },
+    {
+      "host_id": "datasets",
+      "identity": "herus-general",
+      "produced": 2,
+      "consumed_from_other_hosts": 14,
+      "shared_kinds": [
+        "latency",
+        "utility"
+      ],
+      "proposal": "PROPOSE",
+      "execution": "ABSTAIN"
+    },
+    {
+      "host_id": "robot-sim",
+      "identity": "herus-general",
+      "produced": 2,
+      "consumed_from_other_hosts": 14,
+      "shared_kinds": [
+        "latency",
+        "utility"
+      ],
+      "proposal": "PROPOSE",
+      "execution": "ABSTAIN"
+    },
+    {
+      "host_id": "finance-sandbox",
+      "identity": "herus-general",
+      "produced": 2,
+      "consumed_from_other_hosts": 14,
+      "shared_kinds": [
+        "latency",
+        "utility"
+      ],
+      "proposal": "PROPOSE",
+      "execution": "ABSTAIN"
+    },
+    {
+      "host_id": "server-shadow",
+      "identity": "herus-general",
+      "produced": 2,
+      "consumed_from_other_hosts": 14,
+      "shared_kinds": [
+        "latency",
+        "utility"
+      ],
+      "proposal": "PROPOSE",
+      "execution": "ABSTAIN"
+    }
+  ],
+  "invariants": {
+    "same_identity": true,
+    "all_hosts_concurrent": true,
+    "experience_exchange_only": true,
+    "execution_never_authorized": true,
+    "private_context_shared": false
+  },
+  "claim": "The same HERUS identity can inhabit multiple bounded host contexts concurrently and exchange verified operational experience without sharing private context or execution authority.",
+  "not_claimed": [
+    "physical simultaneity",
+    "arbitrary internet-wide learning",
+    "autonomous authority"
+  ]
+}
