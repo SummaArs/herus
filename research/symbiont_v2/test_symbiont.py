@@ -2,8 +2,8 @@ from __future__ import annotations
 
 import unittest
 
-from .core import Effect, Evidence, Goal, Observation, PrimitiveAction, State, SymbiontRuntime
-from .sim_hosts import host_a, host_b
+from research.symbiont_v2.core import Effect, Evidence, Goal, State, SymbiontRuntime
+from research.symbiont_v2.sim_hosts import host_a, host_b
 
 
 class SymbiontV2Tests(unittest.TestCase):
@@ -12,7 +12,7 @@ class SymbiontV2Tests(unittest.TestCase):
         evidence = runtime.discover(host_a())
         self.assertEqual({e.action.action_id for e in evidence}, {"left", "right", "up"})
         self.assertEqual(evidence[0].effect.delta, (("x", 1),))
-        self.assertTrue(all(Observation.make(0, e.before, None).valid() for e in evidence))
+        self.assertTrue(all(e.before.to_dict() == {"x": 0, "y": 0} for e in evidence))
 
     def test_skill_must_verify_before_promotion(self) -> None:
         runtime = SymbiontRuntime("herus-test")
@@ -33,8 +33,9 @@ class SymbiontV2Tests(unittest.TestCase):
         old_epoch = runtime.host.model.epoch if runtime.host else 0
         runtime.bind(host_b())
         self.assertEqual(runtime.herus_id, "herus-test")
-        self.assertGreater(runtime.host.model.epoch, old_epoch)  # type: ignore[union-attr]
-        self.assertEqual(runtime.host.evidence, [])  # type: ignore[union-attr]
+        assert runtime.host is not None
+        self.assertGreater(runtime.host.model.epoch, old_epoch)
+        self.assertEqual(runtime.host.evidence, [])
         self.assertIn(skill.skill_id, runtime.memory.verified_skills)
 
     def test_transfer_uses_effect_contract_not_action_names(self) -> None:
