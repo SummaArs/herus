@@ -41,6 +41,8 @@ A experiência compartilhada pode mudar seleção de Skill, orçamento ou absten
 
 O ensaio executa oito hospedeiros concorrentes com a mesma identidade. Cada um produz duas experiências, consome as experiências dos outros sete e retorna `PROPOSE` sem execução. O estado compartilhado preserva experiência operacional; a autoridade permanece ausente.
 
+O ensaio também cobre a parte que faltava para uma simbiose robusta: uma residência pode falhar e se abster sem parar as outras; uma observação com a mesma chave mas valor ou revisão conflitante remove a observação da superfície consumível e coloca a chave em quarentena; e experiências expiradas deixam de ser consumidas. Assim, o conhecimento compartilhado não é tratado como verdade eterna.
+
 [Evidência reproduzível](../research/evidence/concurrent_multi_host_symbiosis.json)
 
 ## Limite da alegação

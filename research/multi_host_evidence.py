@@ -1,12 +1,18 @@
 from __future__ import annotations
 import json
 from pathlib import Path
-from multi_host_runtime import run_concurrent_symbiosis
+from multi_host_runtime import Experience, ExperienceBus, run_concurrent_symbiosis
 
 HOSTS = ("computer", "filesystem", "sandbox", "internet", "datasets", "robot-sim", "finance-sandbox", "server-shadow")
 
 if __name__ == "__main__":
     runs = run_concurrent_symbiosis(HOSTS)
+    failed_runs = run_concurrent_symbiosis(("computer", "internet", "server-shadow"), failed_hosts=("internet",))
+    bus = ExperienceBus()
+    first = Experience("drifting-host", "latency", 10, "ms", 900, "digest-a", 0, "v1", 10)
+    conflict = Experience("drifting-host", "latency", 90, "ms", 900, "digest-b", 0, "v2", 10)
+    bus.publish(first)
+    conflict_rejected = not bus.publish(conflict) and not bus.snapshot()
     output = {
         "schema": "herus.concurrent-multi-host-symbiosis.v1",
         "identity": "herus-general",
@@ -29,6 +35,9 @@ if __name__ == "__main__":
             "experience_exchange_only": True,
             "execution_never_authorized": all(run.execution == "ABSTAIN" for run in runs),
             "private_context_shared": False,
+            "failed_host_abstains": next(run for run in failed_runs if run.host_id == "internet").proposal == "ABSTAIN",
+            "other_hosts_continue": all(run.proposal == "PROPOSE" for run in failed_runs if run.host_id != "internet"),
+            "conflict_quarantined": conflict_rejected,
         },
         "claim": "The same HERUS identity can inhabit multiple bounded host contexts concurrently and exchange verified operational experience without sharing private context or execution authority.",
         "not_claimed": ["physical simultaneity", "arbitrary internet-wide learning", "autonomous authority"],

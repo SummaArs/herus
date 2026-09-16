@@ -33,6 +33,35 @@ class MultiHostRuntimeTests(unittest.TestCase):
         item = Experience("host", "utility", 1, "milli", 1001, "digest", 0)
         self.assertFalse(bus.publish(item))
 
+    def test_conflicting_same_observation_is_quarantined(self):
+        bus = ExperienceBus()
+        first = Experience("host", "latency", 10, "ms", 900, "digest-a", 0)
+        second = Experience("host", "latency", 90, "ms", 900, "digest-b", 0)
+        self.assertTrue(bus.publish(first))
+        self.assertFalse(bus.publish(second))
+        self.assertEqual(bus.snapshot(), ())
+        self.assertFalse(bus.publish(first))
+
+    def test_expired_experience_is_not_consumed(self):
+        bus = ExperienceBus()
+        item = Experience("host", "utility", 1, "milli", 900, "digest", 0, "v2", 2)
+        self.assertTrue(bus.publish(item))
+        bus.advance(2)
+        self.assertEqual(bus.snapshot(), ())
+
+    def test_revision_is_required(self):
+        bus = ExperienceBus()
+        item = Experience("host", "latency", 1, "ms", 900, "digest", 0, "", 10)
+        self.assertFalse(bus.publish(item))
+
+    def test_failed_host_abstains_without_stopping_other_hosts(self):
+        runs = run_concurrent_symbiosis(("a", "b", "c"), failed_hosts=("b",))
+        by_id = {run.host_id: run for run in runs}
+        self.assertEqual(by_id["b"].proposal, "ABSTAIN")
+        self.assertEqual(by_id["b"].experiences_produced, ())
+        self.assertEqual(by_id["a"].proposal, "PROPOSE")
+        self.assertEqual(by_id["c"].proposal, "PROPOSE")
+
 
 if __name__ == "__main__":
     unittest.main()

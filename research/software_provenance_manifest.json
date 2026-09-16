@@ -665,31 +665,31 @@
     {
       "path": "research/multi_host_runtime.py",
       "kind": "file",
-      "sha256": "1584ad624872b6acd45cbd28052ae22b9e1818e572e0cb1aca0edba635b6e57a",
-      "role": "concurrent multi-host runtime"
+      "sha256": "8f182eb6b806bc6a7a4f169ed1d7aa558734571d72a689c786ac57b7e8e0c51f",
+      "role": "concurrent runtime with expiry and quarantine"
     },
     {
       "path": "research/test_multi_host_runtime.py",
       "kind": "file",
-      "sha256": "a383db0c8cc303e66dfeeb7b935465debb1b36ce1b5d84573dfb88b097ac99df",
-      "role": "multi-host adversarial tests"
+      "sha256": "4b7ec2f652eda1d8bc4c5550a3fcb4dd4b18e75a13ad2eee2f4d0584ed9f5975",
+      "role": "drift and failure adversarial tests"
     },
     {
       "path": "research/multi_host_evidence.py",
       "kind": "file",
-      "sha256": "a5c0342767eb7c4753109d360354f45214407734d5899ddbe4329f517431d54e",
-      "role": "concurrent evidence generator"
+      "sha256": "ab616a085e4da2e2c7d3b79ded591a58f5c984ad0515cd9f006f61b738c054a4",
+      "role": "reconciliation evidence generator"
     },
     {
       "path": "research/evidence/concurrent_multi_host_symbiosis.json",
       "kind": "file",
-      "sha256": "5f39eeab35f645b34a4be4875aeb2f3d098186ba24a06fe4143b9777c31cd992",
-      "role": "concurrent multi-host evidence"
+      "sha256": "835896053570e72e6c3c098dadfd56c309ae7b49d5b6df62e77ae8fc17fec21f",
+      "role": "reconciliation evidence"
     },
     {
       "path": "docs/81-SIMBIOSE-CONCORRENTE-MULTI-HOST.md",
       "kind": "file",
-      "sha256": "57d5aae25a9c104ae38710c9c2c0420e3c9097c686d560140a2543c40be15b58",
+      "sha256": "eec51dc773d9d30a28d2154538931b485e0436546a40741f0ce1e461c358380d",
       "role": "concurrent symbiosis report"
     }
   ],

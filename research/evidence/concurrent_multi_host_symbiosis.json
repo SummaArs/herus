@@ -105,7 +105,10 @@
     "all_hosts_concurrent": true,
     "experience_exchange_only": true,
     "execution_never_authorized": true,
-    "private_context_shared": false
+    "private_context_shared": false,
+    "failed_host_abstains": true,
+    "other_hosts_continue": true,
+    "conflict_quarantined": true
   },
   "claim": "The same HERUS identity can inhabit multiple bounded host contexts concurrently and exchange verified operational experience without sharing private context or execution authority.",
   "not_claimed": [
