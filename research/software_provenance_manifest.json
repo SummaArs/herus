@@ -251,7 +251,7 @@
     {
       "path": "README.md",
       "kind": "file",
-      "sha256": "6021fb674c04e4ba166fc9893ad3e3a12df6b77d75d52039922aa46b3d5f75c4",
+      "sha256": "26c8d1b74a468046d465334af6778a90c33363538a25fbc0cb7ab5adab8578c4",
       "role": "public project state"
     },
     {
@@ -691,6 +691,18 @@
       "kind": "file",
       "sha256": "eec51dc773d9d30a28d2154538931b485e0436546a40741f0ce1e461c358380d",
       "role": "concurrent symbiosis report"
+    },
+    {
+      "path": "docs/82-PESQUISA-SEXTO-SENTIDO-SOBERANO.md",
+      "kind": "file",
+      "sha256": "7472ef4d6018da9e1e36a4bf0503033f710d9b3c61c1567cf0cee95b241380e1",
+      "role": "deep research report"
+    },
+    {
+      "path": "docs/research_notes/2026-09-17-sixth-sense-sources.md",
+      "kind": "file",
+      "sha256": "7ba97977aee4f1fc58ab7f0b53d95fd2b5e68b40d25995c4fc7a111af9fb9257",
+      "role": "verified source notes"
     }
   ],
   "components": [
