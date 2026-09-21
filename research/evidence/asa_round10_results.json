@@ -1,0 +1,50 @@
+{
+  "schema": "herus-asa-round10-v1",
+  "hypothesis": "A canonical contract, independent verifier and simulator-only executor reject forged, stale, divergent and over-budget plans fail-closed.",
+  "scope": {
+    "environment": "host-only deterministic simulator",
+    "physical_execution": false,
+    "proposal_only_outside_simulator": true,
+    "external_generalization_estimable": false
+  },
+  "tests": {
+    "focused_cases": 12,
+    "focused_passed": 12,
+    "focused_failed": 0,
+    "full_research_tests": 173,
+    "full_research_failures": 0,
+    "full_research_skipped": 1,
+    "prove_gate": "ALL INVARIANTS HOLD"
+  },
+  "adversarial": {
+    "forged_effect": "rejected",
+    "replay_and_mixed_epoch": "rejected",
+    "action_collision": "rejected",
+    "missing_attestation": "rejected",
+    "partial_failure": "rolled_back_internal_state",
+    "timeout": "rolled_back_internal_state",
+    "reentrancy": "rolled_back_internal_state",
+    "state_divergence": "rolled_back_internal_state",
+    "external_effect": "blocked_before_mutation",
+    "expired_attestation": "rejected"
+  },
+  "baselines": {
+    "no_attestation": "reject",
+    "external_effect_contract": "reject",
+    "unbounded_or_fallback_executor": "not_implemented_by_design"
+  },
+  "claims": {
+    "canonical_contract_and_attestation": "PROVADO NO ESCOPO",
+    "simulator_fail_closed_execution": "PROVADO NO ESCOPO",
+    "physical_execution_safety": "NÃO TESTADO",
+    "production_generalization": "NÃO TESTADO",
+    "AGI": "NÃO TESTADO"
+  },
+  "authority_boundary": "SimulatorExecutor is the only executor and cannot reach HostAdapter, radio, network or physical actuators.",
+  "limitations": [
+    "No physical or irreversible external effect is executed.",
+    "Authentication is a deterministic simulator trust root, not deployment identity infrastructure.",
+    "The existing SymbiontRuntime transfer path remains unaudited by this executor and is not authorized by this result.",
+    "Passing software tests does not prove physical safety or general intelligence."
+  ]
+}

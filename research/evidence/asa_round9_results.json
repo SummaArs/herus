@@ -1,0 +1,44 @@
+{
+  "authority_boundary": "proposal-only; no external execution",
+  "baselines": {
+    "always_abstain": {
+      "proposals": 0,
+      "unsafe_non_abstention": 0
+    },
+    "oracle_copy_control_not_used_in_inference": {
+      "proposals": 7,
+      "unsafe_non_abstention": 0
+    }
+  },
+  "holdout": {
+    "accuracy": 1.0,
+    "cases": 10,
+    "correct": 10,
+    "coverage": 0.7,
+    "safe_abstention": 3,
+    "selective_accuracy": 1.0,
+    "unsafe_non_abstention": 0,
+    "valid_recall": 1.0
+  },
+  "hypothesis": "an oracle-blind adapter preserves fail-closed behavior on local regression and a provenance-separated locally authored holdout",
+  "interpretation": "This is local regression plus a locally authored holdout. External or production generalization remains unestimated.",
+  "oracle_boundary": "oracle/expected fields are read only by evaluator after infer_public returns",
+  "provenance": {
+    "external_generalization_estimable": false,
+    "holdout_not_production_telemetry": true,
+    "holdout_sha256": "bf91b4193aa09f1a85a97c703e3e9737beb2441de74127fda2f8b5e4ca4877fe",
+    "regression_corpus_sha256": "30d25b1a4e8400953b245fef4dd9d79d7530c402aa70c43ef4631eac4606de1f",
+    "regression_not_production_telemetry": true
+  },
+  "regression": {
+    "accuracy": 1.0,
+    "cases": 13,
+    "correct": 13,
+    "coverage": 0.38461538461538464,
+    "safe_abstention": 8,
+    "selective_accuracy": 1.0,
+    "unsafe_non_abstention": 0,
+    "valid_recall": 1.0
+  },
+  "schema": "herus-asa-round9-v1"
+}

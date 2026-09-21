@@ -1,0 +1,42 @@
+{
+  "schema": "herus-asa-round11-redteam-v1",
+  "provenance": {
+    "environment": "host-only deterministic simulator",
+    "seed": "fixed-no-randomness",
+    "source": "research/asa_round11_redteam.py",
+    "oracle_separation": "expected outcomes are evaluator metadata, not SUT input"
+  },
+  "metrics": {
+    "total_cases": "15/15",
+    "positive_acceptance": "1/1",
+    "negative_safe_abstention": "14/14",
+    "unsafe_decisions": "0/14",
+    "unhandled_exceptions": "0/15"
+  },
+  "families": [
+    "expiry",
+    "forged-evidence",
+    "replay",
+    "forged-token",
+    "mixed-epoch",
+    "cross-contract",
+    "unknown-state",
+    "external-effect",
+    "attacker-verifier",
+    "bad-now",
+    "bad-simulator",
+    "state-digest",
+    "action-collision"
+  ],
+  "claims": {
+    "bounded_adversarial_classification": "PROVADO NO ESCOPO",
+    "production_security": "NÃO TESTADO",
+    "physical_safety": "NÃO TESTADO",
+    "AGI": "NÃO TESTADO"
+  },
+  "known_remaining_limits": [
+    "The test trust store is local and deterministic, not deployment identity infrastructure.",
+    "The campaign does not yet provide a 26-mutant mutation score or concurrent multi-process campaign.",
+    "The legacy SymbiontRuntime.transfer path remains rejected and outside this executor claim."
+  ]
+}

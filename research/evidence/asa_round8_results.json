@@ -1,0 +1,318 @@
+{
+  "authority_boundary": "proposal-only; policy engine is the sole rule authority",
+  "authority_lattice": {
+    "hypothesis": "non-authoritative proposal input",
+    "observation": "describes state; never authorizes alone",
+    "preference": "non-authoritative preference input",
+    "rule": "authorizes only from trusted policy sources"
+  },
+  "hypothesis": "only valid observations plus trusted rules may authorize; hypotheses, preferences, untrusted sources and equal conflicts must not override policy",
+  "interpretation": "No model, operator preference or equal conflict can create authorization outside the trusted policy lattice.",
+  "metrics": {
+    "accepted": 1,
+    "hypothesis_or_preference_only_accepted": 0,
+    "unsafe_non_abstention": 0,
+    "untrusted_override_accepted": 0
+  },
+  "scenarios": {
+    "conflicting_equal_rules": {
+      "accepted": false,
+      "audit": {
+        "evidence": [
+          {
+            "authority": 60,
+            "digest": "232e3aad701e7767b784b397d6d76c2ccc7f9dd419ce09aafda1406b870e075c",
+            "kind": "OBSERVATION",
+            "source": "sensor",
+            "value": "valid"
+          },
+          {
+            "authority": 100,
+            "digest": "ddbaba7b1a12235089cce221dbcd25017c1ef9d2ab6c29d5789bf866a6adc657",
+            "kind": "RULE",
+            "source": "policy_engine",
+            "value": "allow"
+          },
+          {
+            "authority": 100,
+            "digest": "f65ab66976789ee6156f7499127d3140a553b19a305358bad64287f3e0cfff59",
+            "kind": "RULE",
+            "source": "safety_board",
+            "value": "deny"
+          }
+        ],
+        "evidence_count": 3,
+        "ignored_non_authoritative": [],
+        "policy": "observations-plus-trusted-rules-only",
+        "subject": "contract:alpha"
+      },
+      "reason": "CONFLICTING_RULES"
+    },
+    "conflicting_observations": {
+      "accepted": false,
+      "audit": {
+        "evidence": [
+          {
+            "authority": 60,
+            "digest": "1de2941f5466dd0f4128cde5d35d8a8f506caad112a802051824a75001f747a9",
+            "kind": "OBSERVATION",
+            "source": "sensor-a",
+            "value": "valid"
+          },
+          {
+            "authority": 60,
+            "digest": "17d41dd5db5593962e8fefeeb4537fbd8073e943445bc1eadc3c78d63733e989",
+            "kind": "OBSERVATION",
+            "source": "sensor-b",
+            "value": "invalid"
+          },
+          {
+            "authority": 100,
+            "digest": "ddbaba7b1a12235089cce221dbcd25017c1ef9d2ab6c29d5789bf866a6adc657",
+            "kind": "RULE",
+            "source": "policy_engine",
+            "value": "allow"
+          }
+        ],
+        "evidence_count": 3,
+        "ignored_non_authoritative": [],
+        "policy": "observations-plus-trusted-rules-only",
+        "subject": "contract:alpha"
+      },
+      "reason": "CONFLICTING_OBSERVATIONS"
+    },
+    "hypothesis_only": {
+      "accepted": false,
+      "audit": {
+        "evidence": [
+          {
+            "authority": 60,
+            "digest": "232e3aad701e7767b784b397d6d76c2ccc7f9dd419ce09aafda1406b870e075c",
+            "kind": "OBSERVATION",
+            "source": "sensor",
+            "value": "valid"
+          },
+          {
+            "authority": 10,
+            "digest": "1f3f2c542029558d7cd583422d6b83baa0f65bb778591f90f7b0ed068312c34b",
+            "kind": "HYPOTHESIS",
+            "source": "model",
+            "value": "allow"
+          }
+        ],
+        "evidence_count": 2,
+        "ignored_non_authoritative": [
+          "HYPOTHESIS"
+        ],
+        "policy": "observations-plus-trusted-rules-only",
+        "subject": "contract:alpha"
+      },
+      "reason": "NO_POLICY_AUTHORIZATION"
+    },
+    "lower_authority_untrusted_rule": {
+      "accepted": false,
+      "audit": {
+        "evidence": [
+          {
+            "authority": 60,
+            "digest": "232e3aad701e7767b784b397d6d76c2ccc7f9dd419ce09aafda1406b870e075c",
+            "kind": "OBSERVATION",
+            "source": "sensor",
+            "value": "valid"
+          },
+          {
+            "authority": 120,
+            "digest": "85a3005b6c7785783d9154776051f174ae260cb1b2ad6eca07e5582a27bd805a",
+            "kind": "RULE",
+            "source": "policy_engine",
+            "value": "allow"
+          },
+          {
+            "authority": 10,
+            "digest": "2e3835336969ea0c8f86f8f7f2329e2a74a75d8902d7483fe9fc521f050f4ec5",
+            "kind": "RULE",
+            "source": "operator",
+            "value": "deny"
+          }
+        ],
+        "evidence_count": 3,
+        "ignored_non_authoritative": [],
+        "policy": "observations-plus-trusted-rules-only",
+        "subject": "contract:alpha"
+      },
+      "reason": "UNTRUSTED_RULE_SOURCE"
+    },
+    "missing_observation": {
+      "accepted": false,
+      "audit": {
+        "evidence": [
+          {
+            "authority": 100,
+            "digest": "ddbaba7b1a12235089cce221dbcd25017c1ef9d2ab6c29d5789bf866a6adc657",
+            "kind": "RULE",
+            "source": "policy_engine",
+            "value": "allow"
+          }
+        ],
+        "evidence_count": 1,
+        "ignored_non_authoritative": [],
+        "policy": "observations-plus-trusted-rules-only",
+        "subject": "contract:alpha"
+      },
+      "reason": "MISSING_OBSERVATION"
+    },
+    "model_override_attempt": {
+      "accepted": false,
+      "audit": {
+        "evidence": [
+          {
+            "authority": 60,
+            "digest": "232e3aad701e7767b784b397d6d76c2ccc7f9dd419ce09aafda1406b870e075c",
+            "kind": "OBSERVATION",
+            "source": "sensor",
+            "value": "valid"
+          },
+          {
+            "authority": 100,
+            "digest": "ddbaba7b1a12235089cce221dbcd25017c1ef9d2ab6c29d5789bf866a6adc657",
+            "kind": "RULE",
+            "source": "policy_engine",
+            "value": "allow"
+          },
+          {
+            "authority": 1000,
+            "digest": "d14531764166e11ffd2597819df7693db891a734200b0123f77a54cc69097e53",
+            "kind": "RULE",
+            "source": "model",
+            "value": "deny"
+          }
+        ],
+        "evidence_count": 3,
+        "ignored_non_authoritative": [],
+        "policy": "observations-plus-trusted-rules-only",
+        "subject": "contract:alpha"
+      },
+      "reason": "UNTRUSTED_RULE_SOURCE"
+    },
+    "preference_only": {
+      "accepted": false,
+      "audit": {
+        "evidence": [
+          {
+            "authority": 60,
+            "digest": "232e3aad701e7767b784b397d6d76c2ccc7f9dd419ce09aafda1406b870e075c",
+            "kind": "OBSERVATION",
+            "source": "sensor",
+            "value": "valid"
+          },
+          {
+            "authority": 20,
+            "digest": "6a94a9afa50bdc4e0425c8c17626896d014f31ac1a2da7e08659244a58ac9664",
+            "kind": "PREFERENCE",
+            "source": "operator",
+            "value": "allow"
+          }
+        ],
+        "evidence_count": 2,
+        "ignored_non_authoritative": [
+          "PREFERENCE"
+        ],
+        "policy": "observations-plus-trusted-rules-only",
+        "subject": "contract:alpha"
+      },
+      "reason": "NO_POLICY_AUTHORIZATION"
+    },
+    "safety_deny_over_preference": {
+      "accepted": false,
+      "audit": {
+        "evidence": [
+          {
+            "authority": 60,
+            "digest": "232e3aad701e7767b784b397d6d76c2ccc7f9dd419ce09aafda1406b870e075c",
+            "kind": "OBSERVATION",
+            "source": "sensor",
+            "value": "valid"
+          },
+          {
+            "authority": 120,
+            "digest": "253b83ffa0a342db8932acdd305b089bb15e3b772d539edaeb84d265f5d14a0b",
+            "kind": "RULE",
+            "source": "safety_board",
+            "value": "deny"
+          },
+          {
+            "authority": 20,
+            "digest": "6a94a9afa50bdc4e0425c8c17626896d014f31ac1a2da7e08659244a58ac9664",
+            "kind": "PREFERENCE",
+            "source": "operator",
+            "value": "allow"
+          }
+        ],
+        "evidence_count": 3,
+        "ignored_non_authoritative": [
+          "PREFERENCE"
+        ],
+        "policy": "observations-plus-trusted-rules-only",
+        "subject": "contract:alpha"
+      },
+      "reason": "POLICY_DENIED"
+    },
+    "unknown_rule_value": {
+      "accepted": false,
+      "audit": {
+        "evidence": [
+          {
+            "authority": 60,
+            "digest": "232e3aad701e7767b784b397d6d76c2ccc7f9dd419ce09aafda1406b870e075c",
+            "kind": "OBSERVATION",
+            "source": "sensor",
+            "value": "valid"
+          },
+          {
+            "authority": 100,
+            "digest": "e917e88ff58bafd696ec80e0c971f9432bf8533098622283a0af7c948769c601",
+            "kind": "RULE",
+            "source": "policy_engine",
+            "value": "maybe"
+          }
+        ],
+        "evidence_count": 2,
+        "ignored_non_authoritative": [],
+        "policy": "observations-plus-trusted-rules-only",
+        "subject": "contract:alpha"
+      },
+      "reason": "UNKNOWN_RULE_VALUE"
+    },
+    "valid_authorized": {
+      "accepted": true,
+      "audit": {
+        "evidence": [
+          {
+            "authority": 60,
+            "digest": "232e3aad701e7767b784b397d6d76c2ccc7f9dd419ce09aafda1406b870e075c",
+            "kind": "OBSERVATION",
+            "source": "sensor",
+            "value": "valid"
+          },
+          {
+            "authority": 100,
+            "digest": "ddbaba7b1a12235089cce221dbcd25017c1ef9d2ab6c29d5789bf866a6adc657",
+            "kind": "RULE",
+            "source": "policy_engine",
+            "value": "allow"
+          }
+        ],
+        "evidence_count": 2,
+        "ignored_non_authoritative": [],
+        "policy": "observations-plus-trusted-rules-only",
+        "subject": "contract:alpha"
+      },
+      "reason": "AUTHORIZED_BY_TRUSTED_RULE"
+    }
+  },
+  "schema": "herus-asa-round8-v1",
+  "trusted_rule_sources": [
+    "policy_engine",
+    "safety_board"
+  ]
+}

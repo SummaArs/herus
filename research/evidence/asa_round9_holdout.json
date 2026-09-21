@@ -1,0 +1,22 @@
+{
+  "schema": "herus-asa-round9-holdout-v1",
+  "provenance": {
+    "origin": "locally-authored-after-round8",
+    "independentOfProduction": true,
+    "notProductionTelemetry": true,
+    "constructionCorpus": "semantic_ir_real_corpus.json",
+    "splitPolicy": "family-and-mode holdout; opaque case ids are evaluator-only"
+  },
+  "cases": [
+    {"opaque": "q01", "mode": "TEXT", "input": "chego daqui a 1 minuto", "oracle": {"class": "ARRIVE", "minutes": 1, "status": "DRAFT"}},
+    {"opaque": "q02", "mode": "TEXT", "input": "vou chegar em sessenta minutos", "oracle": {"class": "ARRIVE", "minutes": 60, "status": "DRAFT"}},
+    {"opaque": "q03", "mode": "TEXT", "input": "já cheguei", "oracle": {"class": "ARRIVE", "minutes": null, "status": "DRAFT"}},
+    {"opaque": "q04", "mode": "TEXT", "input": "me ajude por favor", "oracle": {"class": "HELP", "minutes": null, "status": "DRAFT"}},
+    {"opaque": "q05", "mode": "TEXT", "input": "pare o alerta", "oracle": {"class": "CANCEL", "minutes": null, "status": "CANCEL_LOCAL"}},
+    {"opaque": "q06", "mode": "TEXT", "input": "não quero cancelar", "oracle": {"class": null, "minutes": null, "status": "REJECTED"}},
+    {"opaque": "q07", "mode": "TEXT", "input": "chego em 61 minutos", "oracle": {"class": null, "minutes": null, "status": "REJECTED"}},
+    {"opaque": "q08", "mode": "TEXT", "input": "cancele e me ajude", "oracle": {"class": null, "minutes": null, "status": "REJECTED"}},
+    {"opaque": "q09", "mode": "TYPED_COMMAND", "input": {"command": "ARRIVE", "minutes": 60}, "oracle": {"class": "ARRIVE", "minutes": 60, "status": "DRAFT"}},
+    {"opaque": "q10", "mode": "TYPED_COMMAND", "input": {"command": "HELP", "minutes": null}, "oracle": {"class": "HELP", "minutes": null, "status": "DRAFT"}}
+  ]
+}
