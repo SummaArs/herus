@@ -11,8 +11,8 @@
     {
       "path": "prove.sh",
       "kind": "file",
-      "sha256": "5b24add868d1c76d9ca8b1002949fa86ecc406866fd038a650866d839573bfd5",
-      "role": "global proof ledger"
+      "sha256": "f42dbfa9ec027780506a22b471f4cf3f9c16d6ab1cfab99e9c0e54f3ece53b09",
+      "role": "System One regression gate"
     },
     {
       "path": ".github/workflows/prove.yml",
@@ -251,8 +251,8 @@
     {
       "path": "README.md",
       "kind": "file",
-      "sha256": "26c8d1b74a468046d465334af6778a90c33363538a25fbc0cb7ab5adab8578c4",
-      "role": "public project state"
+      "sha256": "cb464e65b770b8bc116f5ff2f3b4895a90977dd211a49020d7de6892103740e9",
+      "role": "Jev-inspired System One documentation index"
     },
     {
       "path": "docs/50-INTENT-COMPILER-E-SEMANTIC-IR.md",
@@ -703,6 +703,24 @@
       "kind": "file",
       "sha256": "7ba97977aee4f1fc58ab7f0b53d95fd2b5e68b40d25995c4fc7a111af9fb9257",
       "role": "verified source notes"
+    },
+    {
+      "path": "research/system_one.py",
+      "kind": "file",
+      "sha256": "f745e6ca0a82594b60b29710db979e3d9febb990bb9dc5dcb65f3c7eba735474",
+      "role": "typed decision engine"
+    },
+    {
+      "path": "research/test_system_one.py",
+      "kind": "file",
+      "sha256": "e482a90e96b246182cabe83f174fb103ea19b60c0df83f4546fc46ae4541e6bd",
+      "role": "adversarial System One tests"
+    },
+    {
+      "path": "docs/83-SYSTEM-ONE-JEV-NO-HERUS.md",
+      "kind": "file",
+      "sha256": "22eed32cc7f9fce1fda6b8822f58710b8cccfe9a42ea96a9258ebe27d8a864b2",
+      "role": "Jev architecture analysis and limits"
     }
   ],
   "components": [

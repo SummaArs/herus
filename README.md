@@ -130,6 +130,7 @@ Até B1/B2 passarem, o manifesto permanece `pre_hardware` e o firmware físico s
 | [Função objetivo e treino Internet](docs/80-FUNCAO-OBJETIVO-E-TREINO-INTERNET.md) | Seleção discreta de representação e acesso HTTPS bounded, sem autoridade executável. |
 | [Simbiose concorrente multi-host](docs/81-SIMBIOSE-CONCORRENTE-MULTI-HOST.md) | Uma identidade em oito hospedeiros simultâneos, trocando experiências sem trocar autoridade ou contexto privado. |
 | [Pesquisa: sexto sentido soberano](docs/82-PESQUISA-SEXTO-SENTIDO-SOBERANO.md) | Estado da arte, expectativas de usuários, interoperabilidade, haptics, segurança e critérios para a simbiose geral. |
+| [System One / Jev no HERUS](docs/83-SYSTEM-ONE-JEV-NO-HERUS.md) | Decisões tipadas, probabilidades, avaliação paralela e abstention; não é cópia do modelo fechado Jev. |
 | [Critério GOFAI](docs/64-CRITERIO-SUPERACAO-GOFAI.md) | Critério falsificável de adaptação contra baseline simbólico. |
 | [Descoberta de hospedeiros](docs/59-AUTONOMOUS-HOST-DISCOVERY.md) | Sondagem finita sem perfil completo pré-fornecido. |
 | [Arquitetura finita e linguagem](docs/48-ARQUITETURA-FINITA-E-LINGUAGEM.md) | Vocabulário finito e papel futuro de uma LLM local. |

@@ -51,6 +51,7 @@
 #  39  physical     RF, energy and the frame ledger, from tools/budget.py
 #  40  symbiotic    World/Host/Self consistency, identity continuity and no authority escalation
 #  41  real-symbiosis real local evidence across communication, multimodal data and finance observation
+#  55  system-one typed probabilistic decisions, parallel evaluation and abstention
 #
 # The Nucleus suite is intentionally separate: privacy and non-autonomy are
 # properties that must fail a build when regressed, not promises in a document.
@@ -321,6 +322,11 @@ banner "54/54 concurrent multi-host symbiosis (shared experience, isolated autho
 ( PYTHONPATH=research python3 -m unittest research.test_multi_host_runtime ) > /tmp/herus_multi_host_runtime.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_multi_host_runtime.log
 grep -q "FAILED\|ERROR" /tmp/herus_multi_host_runtime.log && FAIL=1 || true
+
+banner "55/55 System One (typed decisions, probabilities, parallelism and abstention)"
+( PYTHONPATH=research python3 -m unittest research.test_system_one ) > /tmp/herus_system_one.log 2>&1 || FAIL=1
+[ "$QUIET" = 0 ] && cat /tmp/herus_system_one.log
+grep -q "FAILED\|ERROR" /tmp/herus_system_one.log && FAIL=1 || true
 
 echo ""
 echo "--------------------------------------------------"
