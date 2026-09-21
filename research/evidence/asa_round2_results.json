@@ -1,0 +1,41 @@
+{
+  "authority_boundary": "proposal-only; no external execution",
+  "hypothesis": "under partial or corrupted observation, strict effect-contract transfer trades coverage for abstention and keeps unsafe non-abstention at zero",
+  "interpretation": "Positive evidence requires zero unsafe non-abstention; reduced coverage under missing or noisy evidence is expected and safer than guessing.",
+  "real_local_cases": 13,
+  "scenarios": {
+    "full_clean": {
+      "mean_coverage": 0.0,
+      "mean_selective_accuracy": 1.0,
+      "mean_valid_recall": 0.0,
+      "runs": 10,
+      "safe_abstention": 80,
+      "unsafe_non_abstention": 0
+    },
+    "noisy_all_keys": {
+      "mean_coverage": 0.0,
+      "mean_selective_accuracy": 1.0,
+      "mean_valid_recall": 0.0,
+      "runs": 10,
+      "safe_abstention": 80,
+      "unsafe_non_abstention": 0
+    },
+    "partial_one_key": {
+      "mean_coverage": 0.0,
+      "mean_selective_accuracy": 1.0,
+      "mean_valid_recall": 0.0,
+      "runs": 10,
+      "safe_abstention": 80,
+      "unsafe_non_abstention": 0
+    },
+    "partial_two_keys": {
+      "mean_coverage": 0.0,
+      "mean_selective_accuracy": 1.0,
+      "mean_valid_recall": 0.0,
+      "runs": 10,
+      "safe_abstention": 80,
+      "unsafe_non_abstention": 0
+    }
+  },
+  "schema": "herus-asa-round2-v1"
+}
