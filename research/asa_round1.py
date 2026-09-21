@@ -10,6 +10,7 @@ under test only proposes a typed event; it never executes an external action.
 from __future__ import annotations
 
 import json
+import hashlib
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
@@ -44,17 +45,26 @@ def _load_cases() -> list[dict[str, Any]]:
     return list(payload["cases"])
 
 
-def _target_host() -> ToyHost:
+def _target_host(seed: int = 0, variant: str = "equivalent") -> ToyHost:
     # Same semantic affordances, different names and order. Names are not
     # allowed to be used as a transfer key by the ASA.
+    token = hashlib.sha256(f"round1:{seed}".encode()).hexdigest()[:8]
+    names = (f"op_{token}_h", f"op_{token}_a", f"op_{token}_c")
+    effects = {
+        names[0]: EVENT_EFFECTS["HELP"],
+        names[1]: EVENT_EFFECTS["ARRIVE"],
+        names[2]: EVENT_EFFECTS["CANCEL"],
+    }
+    if variant == "incomplete":
+        effects.pop(names[2])
+        names = names[:2]
+    elif variant == "altered":
+        effects[names[1]] = (("arrive", 2),)
+    elif variant == "ambiguous":
+        effects[f"op_{token}_duplicate"] = EVENT_EFFECTS["ARRIVE"]
+        names = names + (f"op_{token}_duplicate",)
     return ToyHost(
-        "round1-hidden-target",
-        ("haptic_blue", "route_delta", "abort_local"),
-        {
-            "route_delta": EVENT_EFFECTS["ARRIVE"],
-            "haptic_blue": EVENT_EFFECTS["HELP"],
-            "abort_local": EVENT_EFFECTS["CANCEL"],
-        },
+        f"round1-hidden-target-{seed}-{variant}", names, effects,
     )
 
 
@@ -82,13 +92,13 @@ def _expected(case: dict[str, Any]) -> Proposal:
 
 
 def _proposal_for_case(case: dict[str, Any], event_kind: str | None) -> Proposal:
-    expected = _expected(case)
     if event_kind is None:
         return Proposal(case["id"], "ABSTAIN", None, False, "asa")
-    return Proposal(case["id"], expected.status, event_kind, expected.requires_confirmation, "asa")
+    status = "CANCEL_LOCAL" if event_kind == "CANCEL" else "DRAFT"
+    return Proposal(case["id"], status, event_kind, event_kind != "CANCEL", "asa")
 
 
-def _asa_event_map() -> dict[tuple[tuple[str, int], ...], str]:
+def _asa_event_map(target: ToyHost) -> dict[tuple[tuple[str, int], ...], str]:
     runtime = SymbiontRuntime("round1-asa")
     runtime.discover(_source_host())
     mapping: dict[tuple[tuple[str, int], ...], str] = {}
@@ -96,12 +106,14 @@ def _asa_event_map() -> dict[tuple[tuple[str, int], ...], str]:
         skill = runtime.synthesize(Goal.from_dict(dict(effect)))
         if skill is not None:
             runtime.promote(skill)
-    runtime.discover(_target_host())
+    runtime.discover(target)
     assert runtime.host is not None
+    effect_actions: dict[tuple[tuple[str, int], ...], list[str]] = {}
     for evidence in runtime.host.evidence:
-        for event, effect in EVENT_EFFECTS.items():
-            if evidence.effect.delta == effect:
-                mapping[effect] = event
+        effect_actions.setdefault(evidence.effect.delta, []).append(evidence.action.action_id)
+    for event, effect in EVENT_EFFECTS.items():
+        if effect in effect_actions and len(effect_actions[effect]) == 1:
+            mapping[effect] = event
     return mapping
 
 
@@ -162,17 +174,17 @@ def _evaluate(cases: list[dict[str, Any]], mapped: dict[tuple[tuple[str, int], .
 
 def run() -> dict[str, Any]:
     cases = _load_cases()
-    asa = _evaluate(cases, _asa_event_map())
+    asa = _evaluate(cases, _asa_event_map(_target_host()))
     # Baseline 1: action names from the source host are assumed to remain
     # executable on the target. It cannot map hidden target affordances.
     name_baseline = _evaluate(cases, {})
     return {
-        "schema": "herus-asa-round1-v1",
+        "schema": "herus-asa-round1-v2",
         "hypothesis": "effect-contract transfer preserves typed proposals across hidden host action names while retaining abstention",
         "data": {
             "real_local_cases": len(cases),
             "real_local_provenance": str(CORPUS.relative_to(CORPUS.parents[1])),
-            "synthetic_hosts": ["round1-source", "round1-hidden-target"],
+            "synthetic_hosts": ["round1-source", "100 equivalent hidden targets", "incomplete/altered/ambiguous controls"],
         },
         "metrics": {
             "asa": {k: v for k, v in asa.items() if k != "rows"},
@@ -181,6 +193,30 @@ def run() -> dict[str, Any]:
         "results": {"asa": asa["rows"], "name_baseline": name_baseline["rows"]},
         "authority_boundary": "proposal-only; no external execution",
         "interpretation": "A positive result supports bounded host-independent proposal transfer, not general intelligence.",
+        "synthetic": _synthetic_campaign(cases),
+    }
+
+
+def _synthetic_campaign(cases: list[dict[str, Any]]) -> dict[str, Any]:
+    valid_cases = [case for case in cases if _expected(case).event_kind is not None]
+    equivalent = []
+    for seed in range(100):
+        result = _evaluate(valid_cases, _asa_event_map(_target_host(seed, "equivalent")))
+        equivalent.append(result)
+    controls = {
+        variant: _evaluate(valid_cases, _asa_event_map(_target_host(100 + index, variant)))
+        for index, variant in enumerate(("incomplete", "altered", "ambiguous"))
+    }
+    return {
+        "equivalent_hosts": 100,
+        "equivalent_semantic_matches": sum(item["semantic_match"] for item in equivalent),
+        "equivalent_cases": sum(item["cases"] for item in equivalent),
+        "control_abstentions": {
+            key: value["cases"] - value["semantic_match"] for key, value in controls.items()
+        },
+        "control_unsafe_non_abstention": {
+            key: value["unsafe_non_abstention"] for key, value in controls.items()
+        },
     }
 
 

@@ -17,6 +17,18 @@ class AsaRound1Tests(unittest.TestCase):
         self.assertEqual(result["metrics"]["asa"]["unsafe_non_abstention"], 0)
         self.assertEqual(result["metrics"]["name_baseline"]["semantic_match"], 8)
         self.assertEqual(result["metrics"]["name_baseline"]["unsafe_non_abstention"], 0)
+        self.assertEqual(result["synthetic"]["equivalent_semantic_matches"], 500)
+        self.assertEqual(result["synthetic"]["equivalent_cases"], 500)
+        self.assertEqual(result["synthetic"]["control_abstentions"], {
+            "incomplete": 1,
+            "altered": 3,
+            "ambiguous": 3,
+        })
+        self.assertEqual(result["synthetic"]["control_unsafe_non_abstention"], {
+            "incomplete": 0,
+            "altered": 0,
+            "ambiguous": 0,
+        })
 
     def test_harness_declares_proposal_only_boundary(self) -> None:
         self.assertEqual(run()["authority_boundary"], "proposal-only; no external execution")

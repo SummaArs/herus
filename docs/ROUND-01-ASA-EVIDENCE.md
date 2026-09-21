@@ -67,3 +67,12 @@ A nova suíte local contém **120 testes**, com um teste previamente ignorado no
 [2]: https://arxiv.org/html/2608.11350v1 "Self-Evolving Embodied Agents via Skill-Harness Evolution"
 [3]: https://arxiv.org/html/2606.06741v1 "OpenSkill: Open-World Self-Evolution for LLM Agents"
 [4]: https://proceedings.neurips.cc/paper_files/paper/2024/file/b631da756d1573c24c9ba9c702fde5a9-Paper-Datasets_and_Benchmarks_Track.pdf "Benchmarking LLMs for Embodied Decision Making"
+
+
+## Revisão metodológica após a auditoria acadêmica
+
+A revisão identificou que a primeira versão do harness usava o campo `expected` para preencher `status` e `requires_confirmation` na proposta. Isso não contaminava a comparação de `event_kind`, mas contaminava a métrica de contrato exato. A implementação foi corrigida: o status agora é derivado de uma política local independente (`DRAFT` para `ARRIVE` e `HELP`, `CANCEL_LOCAL` para `CANCEL`, e `ABSTAIN` quando não há proposta). O campo esperado permanece somente no avaliador.
+
+A campanha também foi ampliada para 100 hospedeiros equivalentes, com nomes e ordem gerados deterministicamente. Foram adicionados três controles negativos: hospedeiro incompleto, hospedeiro com efeito alterado e hospedeiro com colisão de efeitos. O ASA obteve **500/500 propostas semanticamente corretas** nos cinco casos positivos repetidos nos 100 hospedeiros equivalentes. Nos controles, ele se absteve em **1/5 casos** quando apenas o efeito de `CANCEL` foi removido, e em **3/5 casos** quando o efeito de `ARRIVE` foi alterado ou tornou-se ambíguo. Nos eventos ainda observáveis, continuou propondo corretamente, e houve zero decisões não seguras.
+
+Esses números fortalecem a evidência de transferência por contrato, mas continuam limitados pela simplicidade dos efeitos discretos e pelo pequeno corpus real. A revisão também recomenda que a próxima rodada introduza incerteza, observabilidade parcial, seeds independentes, separação entre especificação do gerador e gabarito, e comparação com decisões probabilísticas tipadas. Essas recomendações passam a ser o protocolo da Rodada 2.
