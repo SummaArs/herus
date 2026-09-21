@@ -1,0 +1,84 @@
+{
+  "authority_boundary": "proposal-only; no external execution",
+  "hypothesis": "median aggregation restores coverage under symmetric bounded noise while persistent bias remains fail-closed",
+  "interpretation": "Consensus can recover bounded symmetric noise, but no amount of repetition authorizes a persistently biased contract.",
+  "replicas_per_scenario": 5,
+  "scenarios": {
+    "clean_replicates": {
+      "mean_coverage": 0.38461538461538464,
+      "mean_selective_accuracy": 1.0,
+      "mean_valid_recall": 1.0,
+      "noise_deltas": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "replicas": 5,
+      "safe_abstention": 80,
+      "unsafe_non_abstention": 0
+    },
+    "one_bad_replica": {
+      "mean_coverage": 0.38461538461538464,
+      "mean_selective_accuracy": 1.0,
+      "mean_valid_recall": 1.0,
+      "noise_deltas": [
+        0,
+        0,
+        0,
+        0,
+        2
+      ],
+      "replicas": 5,
+      "safe_abstention": 80,
+      "unsafe_non_abstention": 0
+    },
+    "persistent_negative_bias": {
+      "mean_coverage": 0.0,
+      "mean_selective_accuracy": 1.0,
+      "mean_valid_recall": 0.0,
+      "noise_deltas": [
+        -1,
+        -1,
+        -1,
+        -1,
+        -1
+      ],
+      "replicas": 5,
+      "safe_abstention": 80,
+      "unsafe_non_abstention": 0
+    },
+    "persistent_positive_bias": {
+      "mean_coverage": 0.0,
+      "mean_selective_accuracy": 1.0,
+      "mean_valid_recall": 0.0,
+      "noise_deltas": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "replicas": 5,
+      "safe_abstention": 80,
+      "unsafe_non_abstention": 0
+    },
+    "symmetric_bounded_noise": {
+      "mean_coverage": 0.38461538461538464,
+      "mean_selective_accuracy": 1.0,
+      "mean_valid_recall": 1.0,
+      "noise_deltas": [
+        -1,
+        0,
+        1,
+        0,
+        -1
+      ],
+      "replicas": 5,
+      "safe_abstention": 80,
+      "unsafe_non_abstention": 0
+    }
+  },
+  "schema": "herus-asa-round3-v1"
+}
