@@ -1,0 +1,130 @@
+{
+  "authority_boundary": "proposal-only; drift or uncertainty produces abstention",
+  "baselines": {
+    "always_abstain": {
+      "compatible_accepts": 0,
+      "compatible_missed": 100,
+      "incompatible_accepts": 0
+    },
+    "blind_reuse_old_contract": {
+      "compatible_accepts": 100,
+      "incompatible_accepts": 600,
+      "unsafe_drift_accepts": 600
+    }
+  },
+  "contract": {
+    "digest": "037807f6223aea02d2061fa4a3a08fade7d869cf988006e2119ee8879b07200d",
+    "schema": 1,
+    "version": 1
+  },
+  "hypothesis": "a prior contract must become inapplicable under drift, conflict or missing evidence rather than silently extrapolate",
+  "interpretation": "Positive evidence requires 100 compatible acceptances, 0 compatible false rejects, and 100% abstention for every incompatible scenario.",
+  "scenarios": {
+    "compatible": {
+      "abstentions": 0,
+      "accepted": 100,
+      "reasons": {
+        "APPLICABLE": 100,
+        "CONFLICTING_EVIDENCE": 0,
+        "DRIFT_EFFECT": 0,
+        "DRIFT_GOAL": 0,
+        "DRIFT_PRECONDITION": 0,
+        "INCOMPLETE_OBSERVATION": 0,
+        "UNKNOWN_EFFECT": 0
+      },
+      "runs": 100,
+      "unsafe_non_abstention": 0
+    },
+    "conflict": {
+      "abstentions": 100,
+      "accepted": 0,
+      "reasons": {
+        "APPLICABLE": 0,
+        "CONFLICTING_EVIDENCE": 100,
+        "DRIFT_EFFECT": 0,
+        "DRIFT_GOAL": 0,
+        "DRIFT_PRECONDITION": 0,
+        "INCOMPLETE_OBSERVATION": 0,
+        "UNKNOWN_EFFECT": 0
+      },
+      "runs": 100,
+      "unsafe_non_abstention": 0
+    },
+    "drift_effect": {
+      "abstentions": 100,
+      "accepted": 0,
+      "reasons": {
+        "APPLICABLE": 0,
+        "CONFLICTING_EVIDENCE": 0,
+        "DRIFT_EFFECT": 100,
+        "DRIFT_GOAL": 0,
+        "DRIFT_PRECONDITION": 0,
+        "INCOMPLETE_OBSERVATION": 0,
+        "UNKNOWN_EFFECT": 0
+      },
+      "runs": 100,
+      "unsafe_non_abstention": 0
+    },
+    "drift_goal": {
+      "abstentions": 100,
+      "accepted": 0,
+      "reasons": {
+        "APPLICABLE": 0,
+        "CONFLICTING_EVIDENCE": 0,
+        "DRIFT_EFFECT": 0,
+        "DRIFT_GOAL": 100,
+        "DRIFT_PRECONDITION": 0,
+        "INCOMPLETE_OBSERVATION": 0,
+        "UNKNOWN_EFFECT": 0
+      },
+      "runs": 100,
+      "unsafe_non_abstention": 0
+    },
+    "drift_precondition": {
+      "abstentions": 100,
+      "accepted": 0,
+      "reasons": {
+        "APPLICABLE": 0,
+        "CONFLICTING_EVIDENCE": 0,
+        "DRIFT_EFFECT": 0,
+        "DRIFT_GOAL": 0,
+        "DRIFT_PRECONDITION": 100,
+        "INCOMPLETE_OBSERVATION": 0,
+        "UNKNOWN_EFFECT": 0
+      },
+      "runs": 100,
+      "unsafe_non_abstention": 0
+    },
+    "incomplete": {
+      "abstentions": 100,
+      "accepted": 0,
+      "reasons": {
+        "APPLICABLE": 0,
+        "CONFLICTING_EVIDENCE": 0,
+        "DRIFT_EFFECT": 0,
+        "DRIFT_GOAL": 0,
+        "DRIFT_PRECONDITION": 0,
+        "INCOMPLETE_OBSERVATION": 100,
+        "UNKNOWN_EFFECT": 0
+      },
+      "runs": 100,
+      "unsafe_non_abstention": 0
+    },
+    "unknown_effect": {
+      "abstentions": 100,
+      "accepted": 0,
+      "reasons": {
+        "APPLICABLE": 0,
+        "CONFLICTING_EVIDENCE": 0,
+        "DRIFT_EFFECT": 0,
+        "DRIFT_GOAL": 0,
+        "DRIFT_PRECONDITION": 0,
+        "INCOMPLETE_OBSERVATION": 0,
+        "UNKNOWN_EFFECT": 100
+      },
+      "runs": 100,
+      "unsafe_non_abstention": 0
+    }
+  },
+  "schema": "herus-asa-round6-v1"
+}
