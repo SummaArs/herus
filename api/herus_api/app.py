@@ -5,6 +5,7 @@ from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
 
 from .github_observer import GitHubObservationError, GitHubObserver
+from .learning import learn_contract, make_record
 from .models import (
     DryRunRequest,
     GitHubObservation,
@@ -29,6 +30,7 @@ async def validation_exception_handler(request: Request, exc: RequestValidationE
 
 _PROPOSALS: dict[str, Proposal] = {}
 _OBSERVATIONS: dict[str, GitHubObservation] = {}
+_LEARNING_RECORDS = []
 _IDEMPOTENCY: dict[str, tuple[str, object]] = {}
 
 
@@ -107,6 +109,32 @@ def get_observation(observation_id: str, request: Request):
     if observation is None:
         return problem("NOT_FOUND", "observation not found", request, 404)
     return observation
+
+
+@app.post("/api/v1/learning/github")
+def learn_from_github(payload: GitHubObservationRequest, request: Request, idempotency_key: str | None = Header(default=None, alias="Idempotency-Key")):
+    if not idempotency_key:
+        return problem("IDEMPOTENCY_KEY_REQUIRED", "learning requires Idempotency-Key", request, 400)
+    fingerprint = f"github-learning:{payload.repository}:{payload.ref}"
+    prior = _IDEMPOTENCY.get(idempotency_key)
+    if prior and prior[0] != fingerprint:
+        return problem("IDEMPOTENCY_CONFLICT", "Idempotency-Key was reused for different learning input", request, 422)
+    if prior and isinstance(prior[1], dict) and prior[1].get("schema") == "herus-bounded-learning-v1":
+        return JSONResponse(status_code=200, content=prior[1], headers={"Idempotency-Replayed": "true", "X-Request-Id": request_id(request)})
+    try:
+        observed = GitHubObserver(repository=payload.repository).observe(payload.ref)
+    except GitHubObservationError as error:
+        return problem(str(error), "GitHub learning input was rejected or unavailable", request, 502 if str(error) == "GITHUB_UNAVAILABLE" else 422)
+    snapshot = observed["snapshot"]
+    record = make_record(source="github", group_id=f"{payload.repository}:{payload.ref}", payload=snapshot, provenance={"provider": "github", "snapshot_digest": observed["snapshot_digest"], "authority": "PROPOSAL_ONLY", "mode": "observation"})
+    if all(existing.payload_digest != record.payload_digest for existing in _LEARNING_RECORDS):
+        _LEARNING_RECORDS.append(record)
+    result = learn_contract(_LEARNING_RECORDS)
+    result["request_id"] = request_id(request)
+    result["mode"] = "observation"
+    result["source"] = "github"
+    _IDEMPOTENCY[idempotency_key] = (fingerprint, result)
+    return result
 
 
 @app.post("/api/v1/executions/dry-run")

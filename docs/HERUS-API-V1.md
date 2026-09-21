@@ -56,6 +56,19 @@ curl -X POST http://localhost:8080/api/v1/connectors/github/observe \
 
 A resposta contém commit SHA, branch padrão, visibilidade, estado de fork/arquivamento e `snapshot_digest`. O conteúdo recebido é tratado como observação, não como instrução.
 
+## Treinamento bounded em dados reais
+
+O endpoint `POST /api/v1/learning/github` coleta a mesma observação real e cria um candidato de contrato. Antes de calcular o digest, o pipeline redige padrões conhecidos de bearer token, API key, token textual e credenciais GitHub; depois deduplica por payload canônico e separa registros por grupo de sistema/ref.
+
+```bash
+curl -X POST http://localhost:8080/api/v1/learning/github \
+  -H 'Content-Type: application/json' \
+  -H 'Idempotency-Key: learning-main-1' \
+  -d '{"repository":"SummaArs/herus","ref":"main"}'
+```
+
+O resultado é `CONTRACT_CANDIDATE`, não uma Skill executável. Ele sempre declara `authority=PROPOSAL_ONLY`, `action_authority=NONE` e `external_effect=false`. Com apenas um sistema real, o holdout é reportado como indisponível; o pipeline não fabrica holdout copiando registros do mesmo sistema.
+
 ## Limites atuais
 
 O endpoint `/api/v1/executions` está permanentemente desabilitado nesta fase. `/api/v1/executions/dry-run` também retorna `501` até que exista um adaptador com transport instrumentado que prove zero chamadas mutantes. Não são permitidos merge, deploy, delete, alteração de branch, workflow, secrets, permissões, segurança ou qualquer operação física.

@@ -1,0 +1,45 @@
+{
+  "schema": "herus-bounded-learning-v1",
+  "provenance": {
+    "source": "github",
+    "repository": "SummaArs/herus",
+    "ref": "main",
+    "mode": "observation",
+    "idempotency_key": "real-github-learning-main-20260921",
+    "snapshot_digest": "8e040daf8b187a8c6ff7b18588d71f77b11dbf1d7abec0d5b45c4f70d2ef0665",
+    "observed_commit": "a5ae01ffb976fe3fc1eae002c97136ce2f13bf68"
+  },
+  "authority": "PROPOSAL_ONLY",
+  "status": "CONTRACT_CANDIDATE",
+  "records": 1,
+  "groups": ["SummaArs/herus:main"],
+  "split": {
+    "train": 1,
+    "dev": 0,
+    "holdout": 0,
+    "holdout_reason": "one real system group only"
+  },
+  "learned": {
+    "source_kinds": ["github"],
+    "fields": ["archived", "commit_sha", "default_branch", "fork", "full_name", "ref", "repository_id", "visibility"],
+    "action_authority": "NONE",
+    "external_effect": false
+  },
+  "metrics": {
+    "unique_records": "1/1",
+    "redaction_failures": "0/1",
+    "oracle_inputs": "0/1",
+    "authority_escalations": "0/1",
+    "unsafe_decisions": "0/1",
+    "holdout_groups": "0/1",
+    "real_read_requests": "2/2",
+    "real_mutations": "0/0"
+  },
+  "claim_matrix": {
+    "real_system_contract_candidate": "PROVADO NO ESCOPO",
+    "general_learning": "NÃO TESTADO",
+    "holdout_generalization": "NÃO TESTADO",
+    "execution_authority": "FALSO/REJEITADO",
+    "AGI": "NÃO TESTADO"
+  }
+}

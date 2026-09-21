@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import unittest
 import importlib
+from unittest.mock import patch
 from fastapi.testclient import TestClient
 
 from api.herus_api.app import app
@@ -25,6 +26,7 @@ class HerusApiTests(unittest.TestCase):
         module_app = importlib.import_module("api.herus_api.app")
         module_app._PROPOSALS.clear()
         module_app._OBSERVATIONS.clear()
+        module_app._LEARNING_RECORDS.clear()
         module_app._IDEMPOTENCY.clear()
         self.client = TestClient(app)
 
@@ -69,6 +71,16 @@ class HerusApiTests(unittest.TestCase):
         response = self.client.post("/api/v1/executions/dry-run", json={"operation": "merge"}, headers={"Idempotency-Key": "dry-1"})
         self.assertEqual(response.status_code, 501)
         self.assertEqual(response.json()["code"], "DRY_RUN_NOT_IMPLEMENTED")
+
+    @patch("api.herus_api.app.GitHubObserver.observe")
+    def test_learning_endpoint_builds_bounded_contract_without_authority(self, observe) -> None:
+        observe.return_value = {"snapshot": {"repository_id": 1, "full_name": "SummaArs/herus", "ref": "main", "commit_sha": "abc", "default_branch": "main", "visibility": "public", "archived": False, "fork": False}, "snapshot_digest": "digest-1"}
+        response = self.client.post("/api/v1/learning/github", json={"repository": "SummaArs/herus", "ref": "main"}, headers={"Idempotency-Key": "learn-1"})
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json()["authority"], "PROPOSAL_ONLY")
+        self.assertEqual(response.json()["learned"]["action_authority"], "NONE")
+        self.assertEqual(response.json()["metrics"]["authority_escalations"], "0/1")
+        self.assertEqual(response.json()["mode"], "observation")
 
 
 if __name__ == "__main__":
