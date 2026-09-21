@@ -448,7 +448,10 @@ banner "41/41 ASA Round 11 (deterministic red-team and safe abstention)"
 ( PYTHONPATH=. python3 -m unittest research.test_asa_round11_redteam ) > /tmp/herus_asa11.log 2>&1 || FAIL=1
 [ "$QUIET" = 0 ] && cat /tmp/herus_asa11.log
 grep -q "FAILED\|ERROR" /tmp/herus_asa11.log && FAIL=1 || true
-
+banner "42/42 HERUS API v1 (strict proposal-only and GitHub observation boundary)"
+( PYTHONPATH=. python3 -m unittest research.test_herus_api ) > /tmp/herus_api.log 2>&1 || FAIL=1
+[ "$QUIET" = 0 ] && cat /tmp/herus_api.log
+grep -q "FAILED\|ERROR" /tmp/herus_api.log && FAIL=1 || true
 # ---------------------------------------------------------------- the bench
 # The suites above prove properties of the CODE. The bench proves properties of
 # the SYSTEM: the same code, plus distance, plus a duty cycle, plus other people

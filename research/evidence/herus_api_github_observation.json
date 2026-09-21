@@ -1,0 +1,40 @@
+{
+  "schema": "herus-api-github-observation-v1",
+  "provenance": {
+    "api": "http://127.0.0.1:8080/api/v1/connectors/github/observe",
+    "provider": "https://api.github.com",
+    "method": "GET only",
+    "repository": "SummaArs/herus",
+    "ref": "main",
+    "idempotency_key": "real-github-main-20260921",
+    "observed_at": "2026-09-21T23:03:28.921339+00:00"
+  },
+  "observation": {
+    "observation_id": "obs_b266d4c6240743488565986ba51262f8",
+    "commit_sha": "a5ae01ffb976fe3fc1eae002c97136ce2f13bf68",
+    "default_branch": "main",
+    "visibility": "public",
+    "archived": false,
+    "fork": false,
+    "authority": "PROPOSAL_ONLY",
+    "source": "github-api",
+    "snapshot_digest": "8e040daf8b187a8c6ff7b18588d71f77b11dbf1d7abec0d5b45c4f70d2ef0665"
+  },
+  "metrics": {
+    "real_read_requests": "2/2",
+    "mutating_requests": "0/0",
+    "proposal_authority_violations": "0/1",
+    "unsafe_decisions": "0/1",
+    "unhandled_exceptions": "0/1"
+  },
+  "claims": {
+    "read_only_observation_of_allowlisted_public_repo": "PROVADO NO ESCOPO",
+    "proposal_only_boundary": "PROVADO NO ESCOPO",
+    "production_oauth": "NÃO TESTADO",
+    "webhooks": "NÃO TESTADO",
+    "multi_tenant_isolation": "NÃO TESTADO",
+    "remote_execution": "FALSO/REJEITADO",
+    "physical_safety": "NÃO TESTADO",
+    "AGI": "NÃO TESTADO"
+  }
+}
