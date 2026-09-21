@@ -9,7 +9,7 @@
 #   ./prove.sh            full run
 #   ./prove.sh --quiet    verdict lines only
 #
-# Thirty-nine suites, each independently falsifiable:
+# Forty suites, each independently falsifiable:
 #   1  algebra      quasi-orthogonality, bundling, resonator, learning, HCP
 #   2  nucleus      bounded, opt-in local semantic intelligence
 #   3  voice        controlled local language and bounded haptic feedback
@@ -49,6 +49,7 @@
 #  37  protocol     crypto vs OpenSSL, ratchet, framing, Weave, Beat, canonicality
 #  38  radio        SX1262 command sequences against a recording mock bus
 #  39  physical     RF, energy and the frame ledger, from tools/budget.py
+#  40  asa-round10  canonical contract, independent verifier and simulator executor
 #
 # The Nucleus suite is intentionally separate: privacy and non-autonomy are
 # properties that must fail a build when regressed, not promises in a document.
@@ -435,6 +436,12 @@ if grep -q " OVER " /tmp/herus_c.log; then
 else
     echo "  PASS  P2 every frame in the ledger is within dwell"
 fi
+
+# --- ASA Round 10 ----------------------------------------------------------
+banner "40/40 ASA Round 10 (contract, attestation and simulator-only executor)"
+( PYTHONPATH=. python3 -m unittest research.test_asa_round10 ) > /tmp/herus_asa10.log 2>&1 || FAIL=1
+[ "$QUIET" = 0 ] && cat /tmp/herus_asa10.log
+grep -q "FAILED\|ERROR" /tmp/herus_asa10.log && FAIL=1 || true
 
 # ---------------------------------------------------------------- the bench
 # The suites above prove properties of the CODE. The bench proves properties of
