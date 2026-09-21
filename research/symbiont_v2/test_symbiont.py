@@ -3,7 +3,7 @@ from __future__ import annotations
 import unittest
 
 from research.symbiont_v2.core import Effect, Evidence, Goal, State, SymbiontRuntime
-from research.symbiont_v2.sim_hosts import host_a, host_b
+from research.symbiont_v2.sim_hosts import ToyHost, host_a, host_b
 
 
 class SymbiontV2Tests(unittest.TestCase):
@@ -45,6 +45,18 @@ class SymbiontV2Tests(unittest.TestCase):
         assert skill is not None
         runtime.promote(skill)
         self.assertTrue(runtime.transfer(skill.skill_id, host_b()))
+
+    def test_transfer_does_not_reuse_old_host_evidence(self) -> None:
+        runtime = SymbiontRuntime("herus-test")
+        runtime.discover(host_a())
+        skill = runtime.synthesize(Goal.from_dict({"x": 1}))
+        assert skill is not None
+        runtime.promote(skill)
+        empty_host = ToyHost("host-empty", (), {})
+        self.assertFalse(runtime.transfer(skill.skill_id, empty_host))
+        assert runtime.host is not None
+        self.assertEqual(runtime.host.model.host_id, "host-empty")
+        self.assertEqual(runtime.host.evidence, [])
 
     def test_conflicting_evidence_is_quarantined(self) -> None:
         runtime = SymbiontRuntime("herus-test")

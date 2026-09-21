@@ -228,6 +228,11 @@ class SymbiontRuntime:
         self._epoch = 0
         self._sequence = 0
 
+    @property
+    def herus_id(self) -> str:
+        """Return the identity that survives host rebinding."""
+        return self.memory.herus_id
+
     def bind(self, host: HostAdapter) -> HostContext:
         self._epoch += 1
         self._sequence = 0
