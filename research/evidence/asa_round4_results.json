@@ -1,0 +1,43 @@
+{
+  "adversarial": {
+    "commit_before_arm_committed": false,
+    "commit_before_arm_reason": "rolled-back:ValueError",
+    "commit_before_arm_state": {
+      "armed": 0,
+      "committed": 0
+    },
+    "missing_precondition_accepted": false,
+    "missing_precondition_reason": "precondition-or-second-transition-not-proven",
+    "partial_fault_committed": false,
+    "partial_fault_reason": "rolled-back:RuntimeError",
+    "partial_fault_state": {
+      "armed": 0,
+      "committed": 0
+    }
+  },
+  "authority_boundary": "proposal-only; transactional host execution only",
+  "contract_learned": true,
+  "corpus": {
+    "cases": 13,
+    "valid_event_cases": 5
+  },
+  "execution": {
+    "committed": true,
+    "final_state": {
+      "armed": 0,
+      "committed": 1
+    },
+    "reason": "committed"
+  },
+  "hypothesis": "temporal transfer requires proven preconditions and must rollback any partial failure",
+  "interpretation": "A positive result supports bounded temporal composition and rollback, not general planning or physical safety.",
+  "schema": "herus-asa-round4-v1",
+  "transfer": {
+    "accepted": true,
+    "plan": [
+      "stage_9",
+      "commit_blue"
+    ],
+    "reason": "verified"
+  }
+}
