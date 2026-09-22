@@ -91,7 +91,21 @@ def classify(report: Mapping[str, Any]) -> str:
     if any("hard_limit" in violation for violation in violations):
         return "not_proven"
     mechanism = report.get("mechanism", {})
+    contract = load_contract()
     mechanism_complete = all(
-        metric in mechanism for metric in load_contract()["mechanism"]["required_metrics"]
+        metric in mechanism and mechanism.get(metric) is not None
+        for metric in contract["mechanism"]["required_metrics"]
+    ) and all(
+        metric in mechanism and mechanism.get(metric) == limit
+        for metric, limit in contract["mechanism"]["hard_limits"].items()
     )
-    return "mechanism_only" if mechanism_complete else "not_proven"
+    safety_complete = all(report.get("safety", {}).get(control) is True for control in contract["safety"]["required_controls"])
+    privacy_complete = all(
+        report.get("privacy_accessibility", {}).get(field)
+        for field in contract["privacy_accessibility"]["required_fields"]
+    )
+    reproducible = all(
+        report.get("reproducibility", {}).get(field)
+        for field in contract["reproducibility"]["required_fields"]
+    )
+    return "mechanism_only" if mechanism_complete and safety_complete and privacy_complete and reproducible else "not_proven"

@@ -1,6 +1,6 @@
 # HERUS
 
-**Adaptive Symbiotic Architecture (ASA): uma infraestrutura finita de significado, assurance e coordenação verificável.**
+**Adaptive Symbiotic Architecture (ASA): um protótipo host-only de significado finito, proposta verificável e coordenação sem autoridade implícita.**
 
 O HERUS é um núcleo computacional que pode **habitar diferentes hospedeiros**, descobrir capacidades e restrições observáveis, adaptar sua representação dentro de um orçamento finito e propor coordenação sem transformar descoberta em autoridade.
 
@@ -10,7 +10,7 @@ O hospedeiro inicial será um wearable de pulso. Ele não define o HERUS inteiro
 
 ## O que o HERUS é agora
 
-O HERUS possui um núcleo comum e uma primeira aplicação pessoal.
+O HERUS possui um núcleo comum e uma primeira demonstração local em pesquisa. O estado defensável permanece `not_proven`; não existe release de produto nem execução externa autorizada.
 
 O **ASA Core** mantém uma identidade persistente, vincula-se a um hospedeiro por um perfil verificável, observa um mundo local, compõe Skills finitas e opera sob contratos de autoridade explícitos. O mesmo núcleo pode ser desvinculado e rebindado a outro hospedeiro sem carregar automaticamente o contexto, as Skills ou a autoridade do hospedeiro anterior.
 
@@ -82,11 +82,11 @@ A etapa host-only demonstrou:
 - contratos de memória, intenção, rádio, confiança, recuperação e assurance;
 - bench simulado com adversários e distância.
 
-A suíte atual passou com **286 testes Python**, além do gate integral de firmware, simulação e invariantes. O resultado host-only não prova energia, latência, rádio, temperatura, memória física, ergonomia, LRA ou segurança de um dispositivo real.
+A suíte de pesquisa observada passou com **142 testes Python, com um skip**, além do gate integral de firmware, simulação e invariantes. Esse resultado demonstra regressão interna; não prova utilidade humana, execução segura, energia, latência, rádio, temperatura, memória física, ergonomia, LRA ou segurança de um dispositivo real.
 
 ## Estado atual: freeze pré-hardware
 
-O repositório está em `pre_hardware_frozen`. Isso significa que a arquitetura host-only foi endurecida e que novas alegações relevantes devem depender de medições físicas. Não serão publicados percentuais de consumo, autonomia ou desempenho embarcado derivados apenas de simulação.
+O repositório está em `host_only_not_proven`. A arquitetura host-only é uma hipótese testável, não uma prova de simbiose geral. Novas alegações relevantes devem depender de evidência causal independente ou de medições físicas apropriadas; não serão publicados percentuais de consumo, autonomia ou desempenho embarcado derivados apenas de simulação.
 
 O primeiro hospedeiro físico é o LilyGO T3-S3 com rádio SX1262-915 MHz. O trabalho físico começa pelos gates B1 e B2:
 
@@ -116,6 +116,7 @@ Até B1/B2 passarem, o manifesto permanece `pre_hardware` e o firmware físico s
 | [Benchmark holdout adversarial](docs/53-BENCHMARK-HOLDOUT-ADVERSARIAL.md) | Avaliação independente de observabilidade, ambiguidade, autoridade e falsificação do mecanismo. |
 | [Correção do contrato de observabilidade](docs/54-CORRECAO-CONTRATO-OBSERVABILIDADE.md) | Decisão checked fail-closed, ledger monotônico e compatibilidade com a API histórica. |
 | [Etapas finais: executor e prova humana](docs/55-ETAPAS-FINAIS-EXECUTOR-HUMANO.md) | Autoridade externa, recuperação, holdout estendido e protocolo social sem dados humanos fabricados. |
+| [Rodada decisiva: HERUS Bridge](docs/56-RODADA-DECISIVA-HERUS-BRIDGE.md) | Barreira epistemológica, campanha causal isolada e vertical slice local sem efeitos externos. |
 | [Entrada em hardware](research/evidence/hardware_entry_gate_v1.md) | Gates normativos B1–B10. |
 | [Manifesto de prontidão](research/evidence/hardware_readiness_manifest.json) | Estado da placa, instrumentação e gates físicos. |
 | [Lista de compra](research/evidence/hardware_purchase_list_v1.md) | Componentes do primeiro hospedeiro. |

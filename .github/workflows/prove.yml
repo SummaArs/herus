@@ -38,7 +38,7 @@ jobs:
           python3 --version
 
       - name: Prove
-        run: ./prove.sh | tee /tmp/prove.txt
+        run: set -euo pipefail; ./prove.sh | tee /tmp/prove.txt
 
       - name: Sanitizers
         run: make -C sim sanitizers

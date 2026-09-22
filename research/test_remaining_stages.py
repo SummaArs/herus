@@ -11,6 +11,6 @@ class RemainingStageTests(unittest.TestCase):
         self.assertTrue(all(r['proposal_execute_calls']==0 for r in result['records']))
     def test_social_protocol_is_ready_without_fabricated_results(self):
         self.assertEqual(validate_protocol(load_protocol()),())
-        result=main(); self.assertEqual(result['status'],'READY_FOR_EXTERNAL_REVIEW'); self.assertIsNone(result['human_results'])
+        result=main(); self.assertEqual(result['status'],'DRAFT_PROTOCOL_NO_HUMAN_DATA'); self.assertIsNone(result['human_results'])
 
 if __name__=='__main__': unittest.main()

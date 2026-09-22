@@ -17,7 +17,7 @@ class SymbiosisUtilityContractTests(unittest.TestCase):
     def test_mechanism_without_human_baseline_is_not_useful_symbiosis(self) -> None:
         report = {"mechanism": {metric: 0 for metric in load_contract()["mechanism"]["required_metrics"]}}
         report["mechanism"].update({"identity_persistence": True, "transfer_success": 1, "correct_abstention": 1})
-        self.assertEqual(classify(report), "mechanism_only")
+        self.assertEqual(classify(report), "not_proven")
         self.assertIn("missing_dimension:human_value", validate_report(report))
 
     def test_hard_limit_violation_can_never_be_offset_by_benefit(self) -> None:

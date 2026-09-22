@@ -17,7 +17,7 @@
     {
       "path": ".github/workflows/prove.yml",
       "kind": "file",
-      "sha256": "1cdfe71ea5e13920ac09e792e3774eb02e9f7a2acd677d9899492cc6f96489f9",
+      "sha256": "f7422d17ed0b3c2963fb75c9b9402ed7769378182fa1a5fd3d9683e6293a6f53",
       "role": "host proof workflow"
     },
     {
@@ -47,7 +47,7 @@
     {
       "path": "research/Makefile",
       "kind": "file",
-      "sha256": "ec135c193f72b1ddf4cbfa146508c9df2daca12651cfa7f589afa8db797b8c08",
+      "sha256": "b1321ceb71ab960cdbd4348724367ee5022263d2bae589dab64af6273d1524fa",
       "role": "host-only research test entrypoint"
     },
     {
@@ -251,7 +251,7 @@
     {
       "path": "README.md",
       "kind": "file",
-      "sha256": "16f490b2de214e43d6e6c3b252f9daf3a098f0964cf8f65e71127b270fcd4d04",
+      "sha256": "eed795d98676aa85b893024f863568a5d7e66e574d990be7f39acc620f16d19b",
       "role": "public project state and verification documentation"
     },
     {
@@ -305,7 +305,7 @@
     {
       "path": "research/symbiont_v2",
       "kind": "tree",
-      "sha256": "2838301ee094259dab695c789f1581b59f8f7784070910d780ea6f49bcbff09d",
+      "sha256": "97408807d5b150c7f9a8030fb018e0c824a932ea5dac067b63c39da480b3a8b9",
       "role": "host-independent symbiont API and bounded transfer benchmark"
     },
     {
@@ -329,13 +329,13 @@
     {
       "path": "research/symbiosis_utility.py",
       "kind": "file",
-      "sha256": "40ff4e3270cb255166b7eed62da760f93d269bc8367659a6915fdd4636aa407a",
+      "sha256": "060cfab5ad25fa14117cbd0e3aa81c2600fa258cc110690818fd067192eff390",
       "role": "fail-closed useful symbiosis contract verifier"
     },
     {
       "path": "research/test_symbiosis_utility.py",
       "kind": "file",
-      "sha256": "b6dc4d28fdbe6ccddc89aa3054684a12dd476d5b05af5738c2316843e644d240",
+      "sha256": "13092c1a64a64418682c3ee699849563e7b35a5c73e24aa370a3aa7ddcd6111e",
       "role": "useful symbiosis contract regression tests"
     },
     {
@@ -395,7 +395,7 @@
     {
       "path": "research/test_stage5_synthesis.py",
       "kind": "file",
-      "sha256": "d5d6477ff0a9d058f1943840da7d69f4554841348c71a15f8ac96c8ace4d8fdf",
+      "sha256": "667fa1e0f06635f733f9c53da3e04ccff933d5ee21e02ee238285022e18ab043",
       "role": "stage five strict observability and compatibility tests"
     },
     {
@@ -425,7 +425,7 @@
     {
       "path": "research/test_remaining_stages.py",
       "kind": "file",
-      "sha256": "ae160b8dfda2a2869c45452e6e1ace747bd036b16ec34a06ceec2946c3d1dc5a",
+      "sha256": "50aa38331656692a6984db698f3aa4eba5766c30068a68fa5dccc6abf323690f",
       "role": "remaining stage protocol tests"
     },
     {
@@ -443,7 +443,7 @@
     {
       "path": "research/social",
       "kind": "tree",
-      "sha256": "086a22130ded7b94bd9f47bc8e4e87719a1fb437e02aa5f66cae5ac29edd8446",
+      "sha256": "3bab899f0a4a4fec3deecd58434b8b1a2c1bb7b68d466b49ebe1260cc93457cc",
       "role": "human utility protocol without fabricated participant data"
     },
     {
@@ -451,6 +451,66 @@
       "kind": "file",
       "sha256": "47fecd65e140176cf23db5c4b1788d381fef5e8a99260f14c4b5b50759c639f4",
       "role": "final executable stages and human evidence boundary"
+    },
+    {
+      "path": "research/symbiont_v2/core.py",
+      "kind": "file",
+      "sha256": "e8e01b65da8d78538e9b5684afecc2d9b2b312d98ce9f83bd74f13c19014b133",
+      "role": "final round reviewed artifact"
+    },
+    {
+      "path": "research/social/runner.py",
+      "kind": "file",
+      "sha256": "385ce41fa882aea4adf556dd501149eb0b424c00300a4964586600ed286f11e6",
+      "role": "final round reviewed artifact"
+    },
+    {
+      "path": "research/bridge_causal.py",
+      "kind": "file",
+      "sha256": "b212f9305bbea65caee3a0169d8fc9865fc7d91faa65225a422b13ff34e39933",
+      "role": "isolated causal campaign coordinator"
+    },
+    {
+      "path": "research/bridge_runtime.py",
+      "kind": "file",
+      "sha256": "8d99992a841a476601c9a7624da566bf8a9f593e75303c73e20309a7b4c62afe",
+      "role": "serialized runtime subprocess"
+    },
+    {
+      "path": "research/bridge_oracle.py",
+      "kind": "file",
+      "sha256": "2b2827d0fd0db9ccb4669394b0212da7be9f885283e1301ac147b30bd818a1b5",
+      "role": "independent private-truth oracle subprocess"
+    },
+    {
+      "path": "research/bridge_product.py",
+      "kind": "file",
+      "sha256": "b230f5b38ab6c84491a4ec6efb5ebd1b01882d9fb7fef2dbc7853c52cc4661e2",
+      "role": "local HERUS Bridge vertical slice"
+    },
+    {
+      "path": "research/test_final_round.py",
+      "kind": "file",
+      "sha256": "3c9b515f0f520b71356f70f8bf20b5c4de6c0642ceb8579256861392b9a47ca8",
+      "role": "final round mutation and product tests"
+    },
+    {
+      "path": "research/evidence/bridge_causal_v1.json",
+      "kind": "file",
+      "sha256": "6e20ceb6e72e16497bb71178aaafcf4db203457ca9441113b62a25a67499bf0b",
+      "role": "causal campaign raw results"
+    },
+    {
+      "path": "docs/56-RODADA-DECISIVA-HERUS-BRIDGE.md",
+      "kind": "file",
+      "sha256": "636dce434e901bbb999ccd6a7afd6b5918a6d26f00d8ed5f8cfb274b0d24b734",
+      "role": "final round scope and honest verdict"
+    },
+    {
+      "path": "research/evidence/final_audit",
+      "kind": "tree",
+      "sha256": "90e8a24b5dfe958b77f4536d4419b51cffe6cb49bc4b8507e11cf614b2e1ee38",
+      "role": "deep adversarial audit reports"
     }
   ],
   "components": [
@@ -506,29 +566,51 @@
       "id": "local-source-input-digest",
       "status": "active",
       "question": "Do the declared host-proof inputs match the reviewed local SHA-256 references?",
-      "evidence_required": ["manifest schema", "canonical digest algorithm", "adversarial fixture suite"],
+      "evidence_required": [
+        "manifest schema",
+        "canonical digest algorithm",
+        "adversarial fixture suite"
+      ],
       "claim_if_pass": "Only the listed local inputs match this unsigned manifest at audit time.",
-      "evidence_files": ["tools/provenance_audit.py", "research/software_provenance_manifest.json"]
+      "evidence_files": [
+        "tools/provenance_audit.py",
+        "research/software_provenance_manifest.json"
+      ]
     },
     {
       "id": "signed-build-provenance",
       "status": "pending",
       "question": "Can a verifier authenticate a provenance statement for a released artifact and trace it to a protected builder?",
-      "evidence_required": ["signed attestation", "builder trust boundary", "artifact digest", "verification procedure"],
+      "evidence_required": [
+        "signed attestation",
+        "builder trust boundary",
+        "artifact digest",
+        "verification procedure"
+      ],
       "claim_if_pass": "A separately reviewed release artifact has authenticated provenance for its declared builder boundary."
     },
     {
       "id": "complete-component-inventory",
       "status": "pending",
       "question": "Does a machine-readable inventory cover the release artifact and its resolved direct and transitive components?",
-      "evidence_required": ["artifact inventory", "coverage method", "component identities", "review record"],
+      "evidence_required": [
+        "artifact inventory",
+        "coverage method",
+        "component identities",
+        "review record"
+      ],
       "claim_if_pass": "The declared release inventory has the documented coverage, not an inferred absence of vulnerabilities."
     },
     {
       "id": "reproducible-target-build",
       "status": "pending",
       "question": "Can independent controlled environments reproduce the selected target artifact from the declared inputs?",
-      "evidence_required": ["pinned toolchain", "build recipe", "independent digest comparison", "target artifact"],
+      "evidence_required": [
+        "pinned toolchain",
+        "build recipe",
+        "independent digest comparison",
+        "target artifact"
+      ],
       "claim_if_pass": "Only the tested target artifact and declared environments reproduced the recorded digest."
     }
   ]

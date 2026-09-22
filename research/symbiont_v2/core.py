@@ -462,6 +462,9 @@ class SymbiontRuntime:
         if skill is None or skill.status != "VERIFIED":
             return decision(ProposalStatus.ABSTAIN, SafetyClaim.NONE, "SKILL_NOT_VERIFIED")
 
+        if limits.probe_max <= 0 or limits.reset_max <= 0:
+            return decision(ProposalStatus.UNSUPPORTED_BY_CONTRACT, SafetyClaim.NONE, "BUDGET_EXHAUSTED")
+
         if selected_mode == DecisionMode.STRICT:
             skill_contract = skill.observability_contract
             host_contract_factory = getattr(host, "observability_contract", None)
@@ -476,13 +479,16 @@ class SymbiontRuntime:
         proposal = self.propose_transfer(skill_id, host, max_probes=limits.probe_max)
         if proposal is None:
             return decision(ProposalStatus.ABSTAIN, SafetyClaim.NONE, "NO_PUBLIC_PROPOSAL", phase="SYNTHESIS")
-        claim = SafetyClaim.SUPPORTED if selected_mode == DecisionMode.STRICT else SafetyClaim.SAFE_BUT_UNPROVEN
+        # A local runtime can construct a proposal, but cannot establish an
+        # external attestation. SUPPORTED is deliberately reserved for a
+        # future independently verified release boundary.
+        claim = SafetyClaim.SAFE_BUT_UNPROVEN
         return TransferDecision(
             proposal=proposal,
             proposal_status=ProposalStatus.PROPOSED,
             safety_claim=claim,
-            runtime_reason="PROPOSAL_CONSTRUCTED",
-            diagnostic=Diagnostic("SYNTHESIS", "PROPOSAL_CONSTRUCTED", "plan only; no target execution"),
+            runtime_reason="PROPOSAL_CONSTRUCTED_UNPROVEN",
+            diagnostic=Diagnostic("SYNTHESIS", "PROPOSAL_CONSTRUCTED_UNPROVEN", "local plan only; no external attestation or target execution"),
             budget_ledger=ledger,
             planned_steps=len(proposal.actions),
             host_id=host.host_id,

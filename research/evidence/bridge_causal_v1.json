@@ -1,0 +1,135 @@
+{
+  "cases": [
+    {
+      "case_digest": "9ac85a4872a42055be0b0172b692cc430eca7521e6cf733bda66a81530d4dead",
+      "case_id": "opaque-a",
+      "expected_negative": false,
+      "oracle": {
+        "reason": "PRIVATE_TRANSITION_CLOSED",
+        "verdict": "CANDIDATE"
+      },
+      "result_digest": "babe621e793b814b1671ee833cfad55d75adf9f5182713ead9c057b909427676",
+      "runtime": {
+        "cost": 2,
+        "probes": 2,
+        "proposal": [
+          "select:1",
+          "select:2"
+        ],
+        "status": "SAFE_BUT_UNPROVEN",
+        "trace": [
+          {
+            "cost": 1,
+            "event": "probe",
+            "observation": "ready"
+          },
+          {
+            "cost": 1,
+            "event": "probe",
+            "observation": "ready"
+          }
+        ]
+      },
+      "schema": "herus-bridge-causal-v1"
+    },
+    {
+      "case_digest": "381e8a617799f764980c8231984bac661de638ffc4d90222c22ad14de96711e8",
+      "case_id": "opaque-b",
+      "expected_negative": true,
+      "oracle": {
+        "reason": "COMMIT_EFFECT_NOT_CLOSED",
+        "verdict": "BLOCKED"
+      },
+      "result_digest": "75f8f9330da28b4bfd5215a296a1b1d5075e39efb3bd3ef86fa486d5d9d0264b",
+      "runtime": {
+        "cost": 2,
+        "probes": 2,
+        "proposal": [
+          "select:1",
+          "select:2"
+        ],
+        "status": "SAFE_BUT_UNPROVEN",
+        "trace": [
+          {
+            "cost": 1,
+            "event": "probe",
+            "observation": "ready"
+          },
+          {
+            "cost": 1,
+            "event": "probe",
+            "observation": "ready"
+          }
+        ]
+      },
+      "schema": "herus-bridge-causal-v1"
+    },
+    {
+      "case_digest": "46bdbe11cd4210d2e95af0e278c70638ffdcd800f7d43cf819fc4170842cfe14",
+      "case_id": "order-a",
+      "expected_negative": false,
+      "oracle": {
+        "reason": "PRIVATE_TRANSITION_CLOSED",
+        "verdict": "CANDIDATE"
+      },
+      "result_digest": "9a05c57f0b6d4c8cae4961f31a00549358ffe94626487390e766382fe6908992",
+      "runtime": {
+        "cost": 2,
+        "probes": 2,
+        "proposal": [
+          "prepare",
+          "confirm"
+        ],
+        "status": "SAFE_BUT_UNPROVEN",
+        "trace": [
+          {
+            "cost": 1,
+            "event": "probe",
+            "observation": "prepared"
+          },
+          {
+            "cost": 1,
+            "event": "probe",
+            "observation": "confirmed"
+          }
+        ]
+      },
+      "schema": "herus-bridge-causal-v1"
+    },
+    {
+      "case_digest": "04aeacb6edd3db218466b875179d3fdf14b3f67b693d551eb8e19c6d6eb37645",
+      "case_id": "order-b",
+      "expected_negative": true,
+      "oracle": {
+        "reason": "COMMIT_EFFECT_NOT_CLOSED",
+        "verdict": "BLOCKED"
+      },
+      "result_digest": "f53a106a70263ae856389f9ebdb7dd83a29ff8eecad8c450b53ddcb7289319e8",
+      "runtime": {
+        "cost": 2,
+        "probes": 2,
+        "proposal": [
+          "confirm",
+          "prepare"
+        ],
+        "status": "SAFE_BUT_UNPROVEN",
+        "trace": [
+          {
+            "cost": 1,
+            "event": "probe",
+            "observation": "prepared"
+          },
+          {
+            "cost": 1,
+            "event": "probe",
+            "observation": "confirmed"
+          }
+        ]
+      },
+      "schema": "herus-bridge-causal-v1"
+    }
+  ],
+  "oracle_digest": "e41fa9a9504747a9cfc78e41dd0aed539c8a2a21a9f8c6c02bb51ee6aabccef3",
+  "runtime_digest": "8eb39f73c91ddd0258bb6da33e26ba7ddf7d6e5473135218059e3074ec009b4f",
+  "schema": "herus-bridge-causal-v1"
+}

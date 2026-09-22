@@ -99,7 +99,7 @@ class Stage5SynthesisTests(unittest.TestCase):
             mode="STRICT",
         )
         self.assertEqual(decision.proposal_status.value, "PROPOSED")
-        self.assertEqual(decision.safety_claim, SafetyClaim.SUPPORTED)
+        self.assertEqual(decision.safety_claim, SafetyClaim.SAFE_BUT_UNPROVEN)
         self.assertEqual(decision.proposal_execute_calls, 0)
 
     def test_budget_ledger_is_monotonic_and_unknown_cost_is_not_zero(self):
