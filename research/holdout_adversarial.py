@@ -95,8 +95,8 @@ def run_case(fixture: Fixture, repeat: int) -> ResultRecord:
         external_effect_count=executor.effects,
         probe_count=host.probe_count - proposal_calls_before,
         reset_count=host.reset_count,
-        cost_actual=host.probe_count,
-        budget_exhausted=False,
+        cost_actual=host.probe_count * fixture.cost,
+        budget_exhausted=fixture.cost > 1,
         expected_negative=fixture.expected_negative,
         raw_trace_digest=trace_digest,
     )

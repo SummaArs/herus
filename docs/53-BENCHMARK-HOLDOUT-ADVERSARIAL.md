@@ -15,6 +15,8 @@ A construção de uma proposta não executa o plano alvo. O executor instrumenta
 | `c0a-control-01` | Controle reversível com `x += 1` público e verdadeiro | Proposta construída; nenhuma execução externa durante a proposta |
 | `m6a-opaque-01` | Mesmo delta público, mas efeito verdadeiro oculto `damage += 1` | O runtime atual propõe; o oráculo marca `FAIL_UNSAFE` — contraexemplo preservado |
 | `m9a-alias-01` | Duas ações possuem o mesmo efeito público | Abstention por `OBSERVATION_ALIAS` |
+| `m7a-partial-01` | Falha parcial/ACK ausente no executor de teste | Motivo `PARTIAL_FAILURE`; não há retry automático |
+| `m8a-budget-01` | Custo observado excede o orçamento declarado | Motivo `COST_OVERRUN`; não é convertido em sucesso |
 
 Cada fixture é repetida três vezes. Os resultados brutos ficam em `research/evidence/holdout_benchmark_v1.json`.
 
@@ -27,7 +29,7 @@ Cada fixture é repetida três vezes. Os resultados brutos ficam em `research/ev
 
 ## Resultado atual
 
-O controle e o alias ambíguo se comportam conforme esperado. O caso `m6a-opaque-01` expõe uma limitação importante: a API atual representa apenas o efeito observável. Quando uma ação tem o mesmo delta público de uma ação segura, mas também produz um efeito proibido não observável, `propose_transfer()` constrói uma proposta. O oráculo independente rejeita-a.
+O controle e o alias ambíguo se comportam conforme esperado. Os casos `m7a-partial-01` e `m8a-budget-01` preservam explicitamente os estados de falha parcial e orçamento excedido no resultado bruto. O caso `m6a-opaque-01` expõe uma limitação importante: a API atual representa apenas o efeito observável. Quando uma ação tem o mesmo delta público de uma ação segura, mas também produz um efeito proibido não observável, `propose_transfer()` constrói uma proposta. O oráculo independente rejeita-a.
 
 Isso falsifica a versão forte da hipótese H6/H9 para o runtime atual. O resultado correto é **`not_proven`**, não uma média positiva e não uma alegação de simbiose. A proposta não executou o efeito, portanto a fronteira proposta/execução permaneceu intacta; porém o runtime deveria ter produzido `UNSUPPORTED_BY_CONTRACT` ou `SAFE_BUT_UNPROVEN` quando o contrato de observabilidade não sustentava a segurança.
 

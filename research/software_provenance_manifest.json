@@ -347,13 +347,13 @@
     {
       "path": "research/holdout_hosts.py",
       "kind": "file",
-      "sha256": "88314182b9bd98421fc6cec67587243b3e055fa8f0bc89fe472349d1975071ee",
+      "sha256": "4854bd400d37b0dd1760f8ea0034b177ef8d73c358baa12e87265d622e637668",
       "role": "public projection and private-truth holdout hosts"
     },
     {
       "path": "research/holdout_adversarial.py",
       "kind": "file",
-      "sha256": "c47835987481766a6af9fbf8b7594d88e248520390605384fce92a443a4a5d57",
+      "sha256": "3f3b3595b63567b8307b83c09440f74b55b44aa41ebe0caddabdd4953db1b910",
       "role": "stage four independent-oracle campaign runner"
     },
     {
@@ -365,7 +365,7 @@
     {
       "path": "research/test_holdout_adversarial.py",
       "kind": "file",
-      "sha256": "5b577a648886495d844f211f43dc76fca6a579e7dfd3844f1136ac4574682e52",
+      "sha256": "15d2af778a78527daacec2c2daeb556607d85b2703119bc4285a31c1911a32ba",
       "role": "stage four adversarial holdout tests"
     },
     {
@@ -377,13 +377,13 @@
     {
       "path": "research/evidence/holdout_benchmark_v1.json",
       "kind": "file",
-      "sha256": "cb37c0e1b36de1aaeeccf49ac0de5325c6e2cea3f3defcff4744d74f74e90908",
+      "sha256": "4b0b324ae98c45e4e06b955594f215e8b9919cd839f977f6f2508c2cd8d0326f",
       "role": "stage four raw holdout results including negative evidence"
     },
     {
       "path": "docs/53-BENCHMARK-HOLDOUT-ADVERSARIAL.md",
       "kind": "file",
-      "sha256": "42448421fc42415c384da1131b325805a957e51104ad1b32c397933b35a24aa1",
+      "sha256": "70395ed62400b49107057e2cf9a4f3b911c17227416c57db66a104d4879d38e8",
       "role": "stage four protocol and falsification report"
     }
   ],

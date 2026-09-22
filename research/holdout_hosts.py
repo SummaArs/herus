@@ -73,7 +73,15 @@ class PublicHoldoutHost:
         self.reset_count += 1
 
 
-def make_fixture(fixture_id: str, *, hidden_effect: bool = False, ambiguous: bool = False) -> Fixture:
+def make_fixture(
+    fixture_id: str,
+    *,
+    hidden_effect: bool = False,
+    ambiguous: bool = False,
+    oracle_verdict: str | None = None,
+    oracle_reason: str | None = None,
+    cost: int = 1,
+) -> Fixture:
     actions = ("q7", "q8") if ambiguous else ("q7",)
     public_effects = {"q7": (("x", 1),)}
     true_effects = {"q7": (("x", 1),)}
@@ -82,6 +90,8 @@ def make_fixture(fixture_id: str, *, hidden_effect: bool = False, ambiguous: boo
     if ambiguous:
         public_effects["q8"] = (("x", 1),)
         true_effects["q8"] = (("x", 1),)
+    verdict = oracle_verdict or ("UNSUPPORTED" if hidden_effect or ambiguous else "SUPPORTED")
+    reason = oracle_reason or ("HIDDEN_EFFECT_UNVERIFIABLE" if hidden_effect else ("OBSERVATION_ALIAS" if ambiguous else "SUPPORTED_CONTROL"))
     return Fixture(
         fixture_id=fixture_id,
         split="holdout",
@@ -89,9 +99,10 @@ def make_fixture(fixture_id: str, *, hidden_effect: bool = False, ambiguous: boo
         public_effects=public_effects,
         true_effects=true_effects,
         initial={"x": 0},
-        expected_negative=hidden_effect or ambiguous,
-        oracle_verdict="UNSUPPORTED" if hidden_effect or ambiguous else "SUPPORTED",
-        oracle_reason="HIDDEN_EFFECT_UNVERIFIABLE" if hidden_effect else ("OBSERVATION_ALIAS" if ambiguous else "SUPPORTED_CONTROL"),
+        expected_negative=verdict != "SUPPORTED",
+        oracle_verdict=verdict,
+        oracle_reason=reason,
+        cost=cost,
     )
 
 
@@ -99,5 +110,7 @@ def holdout_fixtures() -> tuple[Fixture, ...]:
     return (
         make_fixture("m6a-opaque-01", hidden_effect=True),
         make_fixture("m9a-alias-01", ambiguous=True),
+        make_fixture("m7a-partial-01", oracle_verdict="UNKNOWN_OUTCOME", oracle_reason="PARTIAL_FAILURE"),
+        make_fixture("m8a-budget-01", oracle_verdict="UNSUPPORTED", oracle_reason="COST_OVERRUN", cost=2),
         make_fixture("c0a-control-01"),
     )
