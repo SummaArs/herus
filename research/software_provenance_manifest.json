@@ -23,13 +23,13 @@
     {
       "path": "firmware",
       "kind": "tree",
-      "sha256": "df205c67982dd6d66f3661caaef853701a2c9b2d71623b45dcda95a1fab81f48",
+      "sha256": "c69192d44dee53558a5046e8242056d37a15bcf6153bce2b76f32d58ef5fd01b",
       "role": "portable firmware and proof sources"
     },
     {
       "path": "tools",
       "kind": "tree",
-      "sha256": "1c78d65698cf23d6199fafa0b006b94954853c400721ecf6bd42b30f506667ec",
+      "sha256": "380637ee00c155a905f79e2371b151d99cfc5b5cdd894325ed9f747eba2f66e0",
       "role": "host proof and provenance tools"
     },
     {
@@ -251,7 +251,7 @@
     {
       "path": "README.md",
       "kind": "file",
-      "sha256": "eed795d98676aa85b893024f863568a5d7e66e574d990be7f39acc620f16d19b",
+      "sha256": "9d475ae7916ac3d5b4b62287d90e377dff7c882d5c2b33b4bf6cea3a8a610ff3",
       "role": "public project state and verification documentation"
     },
     {
@@ -511,6 +511,12 @@
       "kind": "tree",
       "sha256": "90e8a24b5dfe958b77f4536d4419b51cffe6cb49bc4b8507e11cf614b2e1ee38",
       "role": "deep adversarial audit reports"
+    },
+    {
+      "path": "docs",
+      "kind": "tree",
+      "sha256": "76c1c942b85d6c7c0167d2d2722b36134829e83cd3f0d4d9160af23ebd9404f1",
+      "role": "organized documentation, maps and historical design records"
     }
   ],
   "components": [

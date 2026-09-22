@@ -249,3 +249,12 @@ propagation model is a model. **Phase 0 is still the gate**: print the
 route — `docs/03-BUILD-GUIDE.md § Phase 0`. The bench exists so that everything
 *above* the antenna is already settled by the time you are standing outside with
 a devkit on your arm.
+
+
+## Como navegar nesta pasta
+
+`main.c` registra os cenários e transforma falhas em código de saída. `world.c` modela o mundo. `node.c` modela os participantes. `channel.c` modela o canal. `learn.c` e `compose.c` exercitam aprendizagem e composição. `scenarios.c` define perguntas verificáveis. `stress.c` concentra campanhas de estresse. `study.c` mantém estudos. `render.c` imprime resultados.
+
+O simulador é uma camada intermediária entre teste unitário e bancada. Ele compila o firmware real sem criar uma segunda implementação do protocolo, mas ainda usa modelos para propagação, sensibilidade, corrente, deriva e interferência. Por isso, toda saída deve ser lida como **resultado de simulação** até ser confirmada por medição física.
+
+A documentação de orientação está em [`docs/03-MAPA-DO-CODIGO.md`](../docs/03-MAPA-DO-CODIGO.md) e [`docs/04-MAPA-DA-EVIDENCIA.md`](../docs/04-MAPA-DA-EVIDENCIA.md).
