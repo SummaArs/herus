@@ -124,6 +124,7 @@ class AbstractSkill:
     evidence_digests: tuple[str, ...]
     status: str = "CANDIDATE"
     source_host: str | None = None
+    observability_contract: object | None = None
 
     @property
     def digest(self) -> str:
@@ -402,6 +403,94 @@ class SymbiontRuntime:
             actions=tuple(actions),
             expected_final=state,
             evidence_digests=tuple(evidence_digests),
+        )
+
+    def propose_transfer_checked(
+        self,
+        skill_id: str,
+        host: HostAdapter,
+        *,
+        budget: object | None = None,
+        max_probes: int = 64,
+        mode: str = "STRICT",
+        budget_scope_id: str | None = None,
+    ) -> object:
+        """Return a typed, non-authorizing decision around a transfer proposal.
+
+        STRICT performs a public preflight before discovery. Missing contracts
+        are evidence gaps, not permission to assume a closed effect surface.
+        COMPATIBILITY preserves the historical proposal API but downgrades its
+        safety claim. Neither mode executes the proposed target plan.
+        """
+        from .stage5 import (
+            BudgetLimits,
+            DecisionMode,
+            Diagnostic,
+            ProposalStatus,
+            SafetyClaim,
+            TransferDecision,
+            initial_ledger,
+        )
+
+        selected_mode = DecisionMode(mode)
+        skill = self.memory.verified_skills.get(skill_id)
+        limits = budget if isinstance(budget, BudgetLimits) else BudgetLimits(
+            probe_max=min(max_probes, self.budget.max_probes),
+            reset_max=min(max_probes, self.budget.max_probes),
+            step_max=skill.max_steps if skill is not None else 0,
+            cost_max=None,
+        )
+        ledger = initial_ledger(budget_scope_id or f"{self.herus_id}:{host.host_id}", limits)
+
+        def decision(status, claim, reason, phase="PREFLIGHT", detail=""):
+            return TransferDecision(
+                proposal=None,
+                proposal_status=status,
+                safety_claim=claim,
+                runtime_reason=reason,
+                diagnostic=Diagnostic(phase, reason, detail or reason),
+                budget_ledger=ledger,
+                planned_steps=0,
+                host_id=host.host_id,
+                observation_digest=None,
+                skill_contract_digest=None,
+                probe_execute_calls=0,
+                proposal_execute_calls=0,
+                mode=selected_mode,
+            )
+
+        if skill is None or skill.status != "VERIFIED":
+            return decision(ProposalStatus.ABSTAIN, SafetyClaim.NONE, "SKILL_NOT_VERIFIED")
+
+        if selected_mode == DecisionMode.STRICT:
+            skill_contract = skill.observability_contract
+            host_contract_factory = getattr(host, "observability_contract", None)
+            host_contract = host_contract_factory() if callable(host_contract_factory) else None
+            if skill_contract is None or not getattr(skill_contract, "valid_for_strict", lambda: False)():
+                return decision(ProposalStatus.UNSUPPORTED_BY_CONTRACT, SafetyClaim.NONE, "OBSERVABILITY_SCHEMA_MISSING")
+            if host_contract is None or not getattr(host_contract, "valid_for_strict", lambda: False)():
+                return decision(ProposalStatus.UNSUPPORTED_BY_CONTRACT, SafetyClaim.NONE, "OBSERVABILITY_CLOSURE_UNPROVEN")
+            if limits.cost_max is None:
+                return decision(ProposalStatus.UNSUPPORTED_BY_CONTRACT, SafetyClaim.NONE, "COST_LIMIT_MISSING")
+
+        proposal = self.propose_transfer(skill_id, host, max_probes=limits.probe_max)
+        if proposal is None:
+            return decision(ProposalStatus.ABSTAIN, SafetyClaim.NONE, "NO_PUBLIC_PROPOSAL", phase="SYNTHESIS")
+        claim = SafetyClaim.SUPPORTED if selected_mode == DecisionMode.STRICT else SafetyClaim.SAFE_BUT_UNPROVEN
+        return TransferDecision(
+            proposal=proposal,
+            proposal_status=ProposalStatus.PROPOSED,
+            safety_claim=claim,
+            runtime_reason="PROPOSAL_CONSTRUCTED",
+            diagnostic=Diagnostic("SYNTHESIS", "PROPOSAL_CONSTRUCTED", "plan only; no target execution"),
+            budget_ledger=ledger,
+            planned_steps=len(proposal.actions),
+            host_id=host.host_id,
+            observation_digest=host.observe().digest,
+            skill_contract_digest=getattr(skill.observability_contract, "contract_digest", None),
+            probe_execute_calls=0,
+            proposal_execute_calls=0,
+            mode=selected_mode,
         )
 
     def snapshot(self) -> dict[str, object]:

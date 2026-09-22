@@ -47,7 +47,7 @@
     {
       "path": "research/Makefile",
       "kind": "file",
-      "sha256": "41b5d9dbf9b06131d7f7e6a4a98a915afe0be93d1429992b0103a255b8029e0d",
+      "sha256": "47f0a5d9fd1ecdc3896c3853530977c21a50cc94ec1cf18676611c0fe0d4a409",
       "role": "host-only research test entrypoint"
     },
     {
@@ -251,7 +251,7 @@
     {
       "path": "README.md",
       "kind": "file",
-      "sha256": "a66156de4dd3e1fdf84c9fe43feb788f9e49b5d1ba97bf47af7360aad0e7cefd",
+      "sha256": "c40011ffab354280f8ab152a795a5efeac3fa7292b3943c7bbc54f36961ae4c3",
       "role": "public project state and verification documentation"
     },
     {
@@ -305,7 +305,7 @@
     {
       "path": "research/symbiont_v2",
       "kind": "tree",
-      "sha256": "ffc8c13732f72905c8f52adb9e6a7844ffd450a07408d6894411c0ac0a88ebd5",
+      "sha256": "2838301ee094259dab695c789f1581b59f8f7784070910d780ea6f49bcbff09d",
       "role": "host-independent symbiont API and bounded transfer benchmark"
     },
     {
@@ -385,6 +385,30 @@
       "kind": "file",
       "sha256": "70395ed62400b49107057e2cf9a4f3b911c17227416c57db66a104d4879d38e8",
       "role": "stage four protocol and falsification report"
+    },
+    {
+      "path": "research/symbiont_v2/stage5.py",
+      "kind": "file",
+      "sha256": "ce8cd532a926aa5136b7d19feeeff73337653b9b5c40f9b7bf833a5c917df5d6",
+      "role": "stage five checked decision and monotonic budget ledger"
+    },
+    {
+      "path": "research/test_stage5_synthesis.py",
+      "kind": "file",
+      "sha256": "d5d6477ff0a9d058f1943840da7d69f4554841348c71a15f8ac96c8ace4d8fdf",
+      "role": "stage five strict observability and compatibility tests"
+    },
+    {
+      "path": "research/evidence/stage5_plan",
+      "kind": "tree",
+      "sha256": "e62cde61eb5ae22f7294a53d4393bc582dc43e2c3ffa02a10b301556a6cd9aba",
+      "role": "Wide Research stage five correction reports"
+    },
+    {
+      "path": "docs/54-CORRECAO-CONTRATO-OBSERVABILIDADE.md",
+      "kind": "file",
+      "sha256": "368788738956f9f91783e246cee4c922c933a5df27abcf4851fe6cb53fc7c1c8",
+      "role": "stage five fail-closed observability correction"
     }
   ],
   "components": [
