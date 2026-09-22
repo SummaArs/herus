@@ -47,7 +47,7 @@
     {
       "path": "research/Makefile",
       "kind": "file",
-      "sha256": "47f0a5d9fd1ecdc3896c3853530977c21a50cc94ec1cf18676611c0fe0d4a409",
+      "sha256": "ec135c193f72b1ddf4cbfa146508c9df2daca12651cfa7f589afa8db797b8c08",
       "role": "host-only research test entrypoint"
     },
     {
@@ -251,7 +251,7 @@
     {
       "path": "README.md",
       "kind": "file",
-      "sha256": "c40011ffab354280f8ab152a795a5efeac3fa7292b3943c7bbc54f36961ae4c3",
+      "sha256": "16f490b2de214e43d6e6c3b252f9daf3a098f0964cf8f65e71127b270fcd4d04",
       "role": "public project state and verification documentation"
     },
     {
@@ -341,7 +341,7 @@
     {
       "path": "research/stage4",
       "kind": "tree",
-      "sha256": "d7d20e158786cc07e219271302663af7e63146aa754306b4588d5fa82a72097e",
+      "sha256": "964aa9ac0ba288564bc6ac88b16f9e491b12b50aef78e01a3b93b422b3cf478d",
       "role": "stage four typed contracts and result validation"
     },
     {
@@ -409,6 +409,48 @@
       "kind": "file",
       "sha256": "368788738956f9f91783e246cee4c922c933a5df27abcf4851fe6cb53fc7c1c8",
       "role": "stage five fail-closed observability correction"
+    },
+    {
+      "path": "research/extended_holdout.py",
+      "kind": "file",
+      "sha256": "59fccbf7a7cc7b40f2a44ca28ddad6f8ad660735bed98df1940e1e757e413bfb",
+      "role": "reserved temporal and structural holdout families"
+    },
+    {
+      "path": "research/test_external_executor.py",
+      "kind": "file",
+      "sha256": "30c8f6b050292cd5aa7b7ef568cb077fe1c4d5acb8e5f5b1746abdc65d76fbff",
+      "role": "external executor authority and recovery tests"
+    },
+    {
+      "path": "research/test_remaining_stages.py",
+      "kind": "file",
+      "sha256": "ae160b8dfda2a2869c45452e6e1ace747bd036b16ec34a06ceec2946c3d1dc5a",
+      "role": "remaining stage protocol tests"
+    },
+    {
+      "path": "research/evidence/extended_holdout_v1.json",
+      "kind": "file",
+      "sha256": "5e061df2741b61bfefdba2278d9c85937350c1ceed60f693bf146337e44e50f8",
+      "role": "extended temporal and structural holdout reservation"
+    },
+    {
+      "path": "research/evidence/remaining_plan",
+      "kind": "tree",
+      "sha256": "641b70f2bb048b2c6692573124548b84858aeed7291e23d78d0e2fa1826ea67c",
+      "role": "Wide Research reports for remaining stages"
+    },
+    {
+      "path": "research/social",
+      "kind": "tree",
+      "sha256": "086a22130ded7b94bd9f47bc8e4e87719a1fb437e02aa5f66cae5ac29edd8446",
+      "role": "human utility protocol without fabricated participant data"
+    },
+    {
+      "path": "docs/55-ETAPAS-FINAIS-EXECUTOR-HUMANO.md",
+      "kind": "file",
+      "sha256": "47fecd65e140176cf23db5c4b1788d381fef5e8a99260f14c4b5b50759c639f4",
+      "role": "final executable stages and human evidence boundary"
     }
   ],
   "components": [

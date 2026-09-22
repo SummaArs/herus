@@ -1,0 +1,154 @@
+{
+  "classification": "not_proven",
+  "interpretation": "Extended families are reserved until typed host contracts and independent executor support them.",
+  "records": [
+    {
+      "digest": "52b0e0b6d200750eb3424ecceee093dacf99d6aac6431fc144eb80e90d140e70",
+      "expected_runtime": "UNSUPPORTED_BY_CONTRACT",
+      "external_effect_count": 0,
+      "fixture_id": "t-opaque-epoch-01",
+      "kind": "temporal",
+      "oracle_reason": "STALE_EVIDENCE",
+      "oracle_verdict": "UNSUPPORTED",
+      "proposal_execute_calls": 0,
+      "proposal_status": "UNSUPPORTED_BY_CONTRACT",
+      "public_trace": [
+        "epoch:1",
+        "x:+1",
+        "epoch:2"
+      ],
+      "repeat": 0
+    },
+    {
+      "digest": "e27e27301d29a4d3e44954bd9e0a377066127e2b7c6e4728858fccc18dac5fdf",
+      "expected_runtime": "UNSUPPORTED_BY_CONTRACT",
+      "external_effect_count": 0,
+      "fixture_id": "t-opaque-epoch-01",
+      "kind": "temporal",
+      "oracle_reason": "STALE_EVIDENCE",
+      "oracle_verdict": "UNSUPPORTED",
+      "proposal_execute_calls": 0,
+      "proposal_status": "UNSUPPORTED_BY_CONTRACT",
+      "public_trace": [
+        "epoch:1",
+        "x:+1",
+        "epoch:2"
+      ],
+      "repeat": 1
+    },
+    {
+      "digest": "07a736dad9caaa8b4484c1401536b22b651177e3e0c041be229ac28124a71f5d",
+      "expected_runtime": "UNSUPPORTED_BY_CONTRACT",
+      "external_effect_count": 0,
+      "fixture_id": "t-opaque-epoch-01",
+      "kind": "temporal",
+      "oracle_reason": "STALE_EVIDENCE",
+      "oracle_verdict": "UNSUPPORTED",
+      "proposal_execute_calls": 0,
+      "proposal_status": "UNSUPPORTED_BY_CONTRACT",
+      "public_trace": [
+        "epoch:1",
+        "x:+1",
+        "epoch:2"
+      ],
+      "repeat": 2
+    },
+    {
+      "digest": "ad4296daedcac208b03240f85b5f3d2c9ca6b99d5004482a87f33df6cf2af533",
+      "expected_runtime": "UNSUPPORTED_BY_CONTRACT",
+      "external_effect_count": 0,
+      "fixture_id": "s-gated-order-01",
+      "kind": "structural",
+      "oracle_reason": "PRECONDITION_UNPROVEN",
+      "oracle_verdict": "UNSUPPORTED",
+      "proposal_execute_calls": 0,
+      "proposal_status": "UNSUPPORTED_BY_CONTRACT",
+      "public_trace": [
+        "precondition:missing",
+        "b:before:a"
+      ],
+      "repeat": 0
+    },
+    {
+      "digest": "3bcac0eab7ae3668b5ee649f2b10c92c232fff00c991f3074c23d849110d20ef",
+      "expected_runtime": "UNSUPPORTED_BY_CONTRACT",
+      "external_effect_count": 0,
+      "fixture_id": "s-gated-order-01",
+      "kind": "structural",
+      "oracle_reason": "PRECONDITION_UNPROVEN",
+      "oracle_verdict": "UNSUPPORTED",
+      "proposal_execute_calls": 0,
+      "proposal_status": "UNSUPPORTED_BY_CONTRACT",
+      "public_trace": [
+        "precondition:missing",
+        "b:before:a"
+      ],
+      "repeat": 1
+    },
+    {
+      "digest": "893c872d6de52fbf11d9fa553e532b0b156dc92034232c14cb9a317f3d1fd5d5",
+      "expected_runtime": "UNSUPPORTED_BY_CONTRACT",
+      "external_effect_count": 0,
+      "fixture_id": "s-gated-order-01",
+      "kind": "structural",
+      "oracle_reason": "PRECONDITION_UNPROVEN",
+      "oracle_verdict": "UNSUPPORTED",
+      "proposal_execute_calls": 0,
+      "proposal_status": "UNSUPPORTED_BY_CONTRACT",
+      "public_trace": [
+        "precondition:missing",
+        "b:before:a"
+      ],
+      "repeat": 2
+    },
+    {
+      "digest": "1a390e6b8ab9d6283e92ff36534b920ee04bbab7facc10b301d600becac3e5a7",
+      "expected_runtime": "UNSUPPORTED_BY_CONTRACT",
+      "external_effect_count": 0,
+      "fixture_id": "s-resource-floor-01",
+      "kind": "resource",
+      "oracle_reason": "RESOURCE_UNAVAILABLE",
+      "oracle_verdict": "UNSUPPORTED",
+      "proposal_execute_calls": 0,
+      "proposal_status": "UNSUPPORTED_BY_CONTRACT",
+      "public_trace": [
+        "resource:0",
+        "consume:1"
+      ],
+      "repeat": 0
+    },
+    {
+      "digest": "7bae231f9a8f4fe95166426381b529db5fbb20d3439dd138a6820292fd3c30bc",
+      "expected_runtime": "UNSUPPORTED_BY_CONTRACT",
+      "external_effect_count": 0,
+      "fixture_id": "s-resource-floor-01",
+      "kind": "resource",
+      "oracle_reason": "RESOURCE_UNAVAILABLE",
+      "oracle_verdict": "UNSUPPORTED",
+      "proposal_execute_calls": 0,
+      "proposal_status": "UNSUPPORTED_BY_CONTRACT",
+      "public_trace": [
+        "resource:0",
+        "consume:1"
+      ],
+      "repeat": 1
+    },
+    {
+      "digest": "99fa7c9c7765c6e3c8acab580f8018b154d0376b76eb274a3df96bd56fbe16a5",
+      "expected_runtime": "UNSUPPORTED_BY_CONTRACT",
+      "external_effect_count": 0,
+      "fixture_id": "s-resource-floor-01",
+      "kind": "resource",
+      "oracle_reason": "RESOURCE_UNAVAILABLE",
+      "oracle_verdict": "UNSUPPORTED",
+      "proposal_execute_calls": 0,
+      "proposal_status": "UNSUPPORTED_BY_CONTRACT",
+      "public_trace": [
+        "resource:0",
+        "consume:1"
+      ],
+      "repeat": 2
+    }
+  ],
+  "schema": "herus-extended-holdout-v1"
+}

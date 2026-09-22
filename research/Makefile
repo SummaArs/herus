@@ -7,7 +7,7 @@ CFLAGS ?= -O2 -Wall -Wextra -Werror -std=c11
 # Host-only research track. This target is intentionally not part of the
 # firmware proof ledger until its semantics and resource costs are reviewed.
 test:
-		PYTHONPATH=.:.. $(PYTHON) -m unittest -v test_finite_reasoner.py test_semantic_ir.py test_semantic_ir_fuzz.py test_semantic_ir_corpus.py test_convergence.py test_annotation_protocol.py test_evolution_policy.py test_evolution_compatibility.py test_generative_lab.py test_datasets_manifest.py test_paired_audio_audit.py test_source_audit.py test_probe_remote_zip.py test_benchmark_ir.py test_slurp_text.py test_minds14_sample.py test_minds14_batch.py test_identity_audit.py symbiont_v2.test_symbiont test_symbiosis_utility.py test_holdout_adversarial.py test_stage5_synthesis.py
+		PYTHONPATH=.:.. $(PYTHON) -m unittest -v test_finite_reasoner.py test_semantic_ir.py test_semantic_ir_fuzz.py test_semantic_ir_corpus.py test_convergence.py test_annotation_protocol.py test_evolution_policy.py test_evolution_compatibility.py test_generative_lab.py test_datasets_manifest.py test_paired_audio_audit.py test_source_audit.py test_probe_remote_zip.py test_benchmark_ir.py test_slurp_text.py test_minds14_sample.py test_minds14_batch.py test_identity_audit.py symbiont_v2.test_symbiont test_symbiosis_utility.py test_holdout_adversarial.py test_stage5_synthesis.py test_external_executor.py test_remaining_stages.py
 
 real-corpus:
 	@test -f source_data/MIntRec/metadata/train.tsv

@@ -1,0 +1,12 @@
+{
+  "schema": "herus-social-utility-v1",
+  "status": "protocol_ready_no_human_data",
+  "task": "local selection and confirmation of prepared communication responses",
+  "conditions": ["CB_CONVENTIONAL_BASELINE", "NS_NO_SYMBIONT", "H_HERUS_CHECKED"],
+  "primary_metrics": ["task_error", "time_or_effort", "host_or_interface_dependence"],
+  "secondary_metrics": ["timeout", "cancel", "correction_count", "fallback", "setup_cost"],
+  "required_controls": ["informed_consent", "withdrawal", "independent_stop", "data_minimization", "retention_limit", "accessibility_review", "operator_intervention_log"],
+  "progression_thresholds": {"max_error_penalty_pp": 5, "min_setup_effort_reduction_vs_cb": 0.2, "zero_unconsented_release": true, "zero_external_execution": true},
+  "analysis_rule": "freeze_protocol_before_collection; publish participant-level raw results, exclusions and negative outcomes",
+  "prohibited_claims": ["general_intelligence", "clinical_efficacy", "physical_safety", "social_utility_broad", "consciousness", "symbiosis_general"]
+}
