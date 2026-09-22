@@ -47,7 +47,7 @@
     {
       "path": "research/Makefile",
       "kind": "file",
-      "sha256": "c5c5c913c26e50929daf0825eb05703f8ed76748733a622bc10a121426d6331d",
+      "sha256": "8c0a7206f98dee8b0c447afd2a2afd035b080b8abd7b8bae4e3281be8fe1b049",
       "role": "host-only research test entrypoint"
     },
     {
@@ -251,7 +251,7 @@
     {
       "path": "README.md",
       "kind": "file",
-      "sha256": "fe1ae5d1b500e270094b91bddb3c804598d59e81e622f7ab43a3a799d2495d00",
+      "sha256": "e6120f4359bf1c8b1d2c7985e563e73ebf9ce2f5f69dc9d1d8483dc3211875ee",
       "role": "public project state and verification documentation"
     },
     {
@@ -313,6 +313,30 @@
       "kind": "file",
       "sha256": "cdf17c88a555c261bdeed068009a3970e23b61447b9b8570a5aa58cf8c2898e9",
       "role": "symbiont API contract and stage-one research boundary"
+    },
+    {
+      "path": "docs/52-DEFINICAO-SIMBIOSE-UTIL.md",
+      "kind": "file",
+      "sha256": "bc85a7a215d658585ca52d90e6e638ab7a999e14b622f19709291852c93398ac",
+      "role": "frozen useful symbiosis definition and social utility gate"
+    },
+    {
+      "path": "research/symbiosis_utility_contract.json",
+      "kind": "file",
+      "sha256": "0e5ba37573a7c71fb4496b73f2c6fcd5164c3c8ceecca599806988e8ef769e20",
+      "role": "machine-readable useful symbiosis contract"
+    },
+    {
+      "path": "research/symbiosis_utility.py",
+      "kind": "file",
+      "sha256": "40ff4e3270cb255166b7eed62da760f93d269bc8367659a6915fdd4636aa407a",
+      "role": "fail-closed useful symbiosis contract verifier"
+    },
+    {
+      "path": "research/test_symbiosis_utility.py",
+      "kind": "file",
+      "sha256": "b6dc4d28fdbe6ccddc89aa3054684a12dd476d5b05af5738c2316843e644d240",
+      "role": "useful symbiosis contract regression tests"
     }
   ],
   "components": [
