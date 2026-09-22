@@ -113,6 +113,7 @@ Até B1/B2 passarem, o manifesto permanece `pre_hardware` e o firmware físico s
 | [Arquitetura finita e linguagem](docs/48-ARQUITETURA-FINITA-E-LINGUAGEM.md) | Vocabulário finito e papel futuro de uma LLM local. |
 | [API do Symbiont v2](docs/51-API-SIMBIONTE-V2.md) | Núcleo host-only para identidade, descoberta, verificação e transferência entre hospedeiros. |
 | [Definição de simbiose útil](docs/52-DEFINICAO-SIMBIOSE-UTIL.md) | Contrato congelado que separa mecanismo técnico de benefício humano mensurável. |
+| [Benchmark holdout adversarial](docs/53-BENCHMARK-HOLDOUT-ADVERSARIAL.md) | Avaliação independente de observabilidade, ambiguidade, autoridade e falsificação do mecanismo. |
 | [Entrada em hardware](research/evidence/hardware_entry_gate_v1.md) | Gates normativos B1–B10. |
 | [Manifesto de prontidão](research/evidence/hardware_readiness_manifest.json) | Estado da placa, instrumentação e gates físicos. |
 | [Lista de compra](research/evidence/hardware_purchase_list_v1.md) | Componentes do primeiro hospedeiro. |

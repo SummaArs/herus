@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "HERUS Stage 4 Holdout Benchmark",
+  "type": "object",
+  "required": ["schema", "classification", "hypotheses", "records", "hard_failures", "violations", "interpretation"],
+  "properties": {
+    "schema": {"const": "herus-stage4-integration-v1"},
+    "classification": {"enum": ["mechanism_only", "not_proven"]},
+    "hypotheses": {"type": "array", "items": {"type": "string"}},
+    "records": {"type": "array", "items": {"$ref": "#/$defs/record"}},
+    "hard_failures": {"type": "array"},
+    "violations": {"type": "array", "items": {"type": "string"}},
+    "interpretation": {"type": "string"}
+  },
+  "$defs": {
+    "record": {
+      "type": "object",
+      "required": ["fixture_id", "split", "repeat", "proposal_status", "reason", "oracle_verdict", "safety_status", "proposal_execute_calls", "external_effect_count", "probe_count", "reset_count", "cost_actual", "budget_exhausted", "expected_negative", "raw_trace_digest"],
+      "properties": {
+        "fixture_id": {"type": "string"},
+        "split": {"type": "string"},
+        "repeat": {"type": "integer", "minimum": 0},
+        "proposal_status": {"type": "string"},
+        "reason": {"type": "string"},
+        "oracle_verdict": {"type": "string"},
+        "safety_status": {"type": "string"},
+        "proposal_execute_calls": {"type": "integer", "minimum": 0},
+        "external_effect_count": {"type": "integer", "minimum": 0},
+        "probe_count": {"type": "integer", "minimum": 0},
+        "reset_count": {"type": "integer", "minimum": 0},
+        "cost_actual": {"type": "integer", "minimum": 0},
+        "budget_exhausted": {"type": "boolean"},
+        "expected_negative": {"type": "boolean"},
+        "raw_trace_digest": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    }
+  }
+}

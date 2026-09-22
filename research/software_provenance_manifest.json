@@ -47,7 +47,7 @@
     {
       "path": "research/Makefile",
       "kind": "file",
-      "sha256": "8c0a7206f98dee8b0c447afd2a2afd035b080b8abd7b8bae4e3281be8fe1b049",
+      "sha256": "41b5d9dbf9b06131d7f7e6a4a98a915afe0be93d1429992b0103a255b8029e0d",
       "role": "host-only research test entrypoint"
     },
     {
@@ -251,7 +251,7 @@
     {
       "path": "README.md",
       "kind": "file",
-      "sha256": "e6120f4359bf1c8b1d2c7985e563e73ebf9ce2f5f69dc9d1d8483dc3211875ee",
+      "sha256": "a66156de4dd3e1fdf84c9fe43feb788f9e49b5d1ba97bf47af7360aad0e7cefd",
       "role": "public project state and verification documentation"
     },
     {
@@ -337,6 +337,54 @@
       "kind": "file",
       "sha256": "b6dc4d28fdbe6ccddc89aa3054684a12dd476d5b05af5738c2316843e644d240",
       "role": "useful symbiosis contract regression tests"
+    },
+    {
+      "path": "research/stage4",
+      "kind": "tree",
+      "sha256": "d7d20e158786cc07e219271302663af7e63146aa754306b4588d5fa82a72097e",
+      "role": "stage four typed contracts and result validation"
+    },
+    {
+      "path": "research/holdout_hosts.py",
+      "kind": "file",
+      "sha256": "88314182b9bd98421fc6cec67587243b3e055fa8f0bc89fe472349d1975071ee",
+      "role": "public projection and private-truth holdout hosts"
+    },
+    {
+      "path": "research/holdout_adversarial.py",
+      "kind": "file",
+      "sha256": "c47835987481766a6af9fbf8b7594d88e248520390605384fce92a443a4a5d57",
+      "role": "stage four independent-oracle campaign runner"
+    },
+    {
+      "path": "research/holdout_benchmark_schema.json",
+      "kind": "file",
+      "sha256": "6a80083ff7d079d90f1d3e5b2b78925625b61cc4819d2ad5b2a5d0aed367908d",
+      "role": "stage four versioned results schema"
+    },
+    {
+      "path": "research/test_holdout_adversarial.py",
+      "kind": "file",
+      "sha256": "5b577a648886495d844f211f43dc76fca6a579e7dfd3844f1136ac4574682e52",
+      "role": "stage four adversarial holdout tests"
+    },
+    {
+      "path": "research/evidence/stage4_plan",
+      "kind": "tree",
+      "sha256": "c2d8b7cc1dcdc3d8a360ac036712231fb7b5d89d1729faaa09c7a4e844cb12d5",
+      "role": "Wide Research stage four planning reports"
+    },
+    {
+      "path": "research/evidence/holdout_benchmark_v1.json",
+      "kind": "file",
+      "sha256": "cb37c0e1b36de1aaeeccf49ac0de5325c6e2cea3f3defcff4744d74f74e90908",
+      "role": "stage four raw holdout results including negative evidence"
+    },
+    {
+      "path": "docs/53-BENCHMARK-HOLDOUT-ADVERSARIAL.md",
+      "kind": "file",
+      "sha256": "42448421fc42415c384da1131b325805a957e51104ad1b32c397933b35a24aa1",
+      "role": "stage four protocol and falsification report"
     }
   ],
   "components": [
