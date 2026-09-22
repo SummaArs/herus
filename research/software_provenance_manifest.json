@@ -305,13 +305,13 @@
     {
       "path": "research/symbiont_v2",
       "kind": "tree",
-      "sha256": "49f3233b23f263d67ed0d40a85c084f908e9690c8526f6765fcafaaadd80c7c8",
+      "sha256": "ffc8c13732f72905c8f52adb9e6a7844ffd450a07408d6894411c0ac0a88ebd5",
       "role": "host-independent symbiont API and bounded transfer benchmark"
     },
     {
       "path": "docs/51-API-SIMBIONTE-V2.md",
       "kind": "file",
-      "sha256": "31cbea38885477edfbb2fa26c8e51a0b6293e9d983a01c45de899538585ddb4e",
+      "sha256": "cdf17c88a555c261bdeed068009a3970e23b61447b9b8570a5aa58cf8c2898e9",
       "role": "symbiont API contract and stage-one research boundary"
     }
   ],

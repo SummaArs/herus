@@ -71,4 +71,22 @@ PYTHONPATH=. python3 -m research.symbiont_v2.benchmark
 PYTHONPATH=research python3 -m unittest discover -s research -p 'test_*.py'
 ```
 
-Os resultados desta etapa permanecem separados do firmware. O próximo gate é o protocolo black-box: o núcleo não poderá consultar o mapa interno de efeitos do hospedeiro, e os hosts de avaliação deverão incluir casos holdout, contraditórios, temporais e perigosos.
+Os resultados desta etapa permanecem separados do firmware.
+
+## Etapa 2 — protocolo black-box
+
+A fronteira agora é exercitada com `BlackBoxHost`, que expõe somente `host_id`,
+recursos, espaço público de ações, observação, execução e reset. O runtime não
+consulta o mapa interno de efeitos. Ele infere os efeitos exclusivamente pela
+diferença entre observações públicas antes e depois de uma sondagem.
+
+`propose_transfer()` substitui a antiga interpretação ambígua de transferência:
+produz um `TransferProposal` ou abstém-se. Construir a proposta não chama o
+executor do hospedeiro. `transfer()` permanece apenas como wrapper booleano de
+compatibilidade e também não executa ações. Correspondências de efeito com mais
+de uma ação são ambíguas e falham fechado.
+
+Este é um avanço metodológico, não uma prova de generalidade. O próximo gate
+continua sendo o holdout: hospedeiros desconhecidos, evidência contraditória,
+mudança temporal, efeitos parcialmente observáveis e ações perigosas. Nenhum
+resultado desta API autoriza um atuador físico.

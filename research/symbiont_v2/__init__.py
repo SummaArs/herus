@@ -15,10 +15,11 @@ from .core import (
     PrimitiveAction,
     State,
     SymbiontRuntime,
+    TransferProposal,
 )
 
 __all__ = [
     "SCHEMA_VERSION", "AbstractSkill", "DiscoveryBudget", "Effect", "Evidence", "Goal", "HostAdapter",
     "HostContext", "HostModel", "Observation", "PersistentMemory",
-    "PrimitiveAction", "State", "SymbiontRuntime",
+    "PrimitiveAction", "State", "SymbiontRuntime", "TransferProposal",
 ]

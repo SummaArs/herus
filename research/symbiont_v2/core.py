@@ -140,6 +140,17 @@ class AbstractSkill:
 
 
 @dataclass(frozen=True)
+class TransferProposal:
+    """A host-grounded plan; constructing it never executes an action."""
+
+    skill_id: str
+    host_id: str
+    actions: tuple[PrimitiveAction, ...]
+    expected_final: State
+    evidence_digests: tuple[str, ...]
+
+
+@dataclass(frozen=True)
 class HostModel:
     host_id: str
     resources: tuple[str, ...]
@@ -249,8 +260,10 @@ class SymbiontRuntime:
         return self.host
 
     def discover(self, host: HostAdapter) -> tuple[Evidence, ...]:
-        if self.host is None or self.host.model.host_id != host.host_id:
-            self.bind(host)
+        # Every discovery call starts a fresh public observation session. A
+        # reused host_id is not evidence that the underlying host is the same;
+        # retaining the old model here would turn an identifier into trust.
+        self.bind(host)
         assert self.host is not None
         out: list[Evidence] = []
         for action in tuple(host.safe_action_space())[: self.budget.max_probes]:
@@ -340,32 +353,56 @@ class SymbiontRuntime:
         return self.memory.promote(skill)
 
     def transfer(self, skill_id: str, host: HostAdapter, *, max_probes: int = 64) -> bool:
-        """Ground a persistent skill on another host via observed effect contracts."""
+        """Return whether a transfer proposal can be constructed.
+
+        Compatibility wrapper retained for the stage-one API. It deliberately
+        does not execute the proposal; callers needing its contents should use
+        :meth:`propose_transfer`.
+        """
+        return self.propose_transfer(skill_id, host, max_probes=max_probes) is not None
+
+    def propose_transfer(
+        self, skill_id: str, host: HostAdapter, *, max_probes: int = 64
+    ) -> TransferProposal | None:
+        """Ground a persistent skill using only public observations.
+
+        The returned plan is not an authorization and is never sent to the
+        host's executor. Ambiguous effect matches are rejected instead of
+        selecting an arbitrary action.
+        """
         skill = self.memory.verified_skills.get(skill_id)
         if skill is None or skill.status != "VERIFIED":
-            return False
-        self.bind(host)
+            return None
         self.discover(host)
         assert self.host is not None
         candidates = self.host.evidence[:max_probes]
         if not candidates:
-            return False
-        # Build a one-to-one mapping from abstract effect to target primitive.
-        mapping: dict[tuple[tuple[str, int], ...], PrimitiveAction] = {}
+            return None
+        mapping: dict[tuple[tuple[str, int], ...], list[Evidence]] = {}
         for evidence in candidates:
-            mapping.setdefault(evidence.effect.delta, evidence.action)
+            mapping.setdefault(evidence.effect.delta, []).append(evidence)
         if len(mapping) < len(set(effect.delta for effect in skill.effects)):
-            return False
+            return None
         state = host.observe().state
+        actions: list[PrimitiveAction] = []
+        evidence_digests: list[str] = []
         for expected in skill.effects:
-            action = mapping.get(expected.delta)
-            if action is None:
-                return False
-            result = host.execute(action)
-            if not result.valid():
-                return False
-            state = result.state
-        return skill.goal.satisfied(state)
+            matches = mapping.get(expected.delta, [])
+            if len(matches) != 1:
+                return None
+            evidence = matches[0]
+            actions.append(evidence.action)
+            evidence_digests.append(evidence.digest)
+            state = self._apply(state, expected)
+        if not skill.goal.satisfied(state):
+            return None
+        return TransferProposal(
+            skill_id=skill.skill_id,
+            host_id=host.host_id,
+            actions=tuple(actions),
+            expected_final=state,
+            evidence_digests=tuple(evidence_digests),
+        )
 
     def snapshot(self) -> dict[str, object]:
         return {

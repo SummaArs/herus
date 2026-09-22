@@ -3,7 +3,7 @@ from __future__ import annotations
 import unittest
 
 from research.symbiont_v2.core import Effect, Evidence, Goal, State, SymbiontRuntime
-from research.symbiont_v2.sim_hosts import ToyHost, host_a, host_b
+from research.symbiont_v2.sim_hosts import BlackBoxHost, ToyHost, host_a, host_b
 
 
 class SymbiontV2Tests(unittest.TestCase):
@@ -45,6 +45,44 @@ class SymbiontV2Tests(unittest.TestCase):
         assert skill is not None
         runtime.promote(skill)
         self.assertTrue(runtime.transfer(skill.skill_id, host_b()))
+
+    def test_black_box_host_is_sufficient_for_discovery_and_transfer(self) -> None:
+        runtime = SymbiontRuntime("herus-test")
+        source = BlackBoxHost(host_a())
+        runtime.discover(source)
+        skill = runtime.synthesize(Goal.from_dict({"x": 1}))
+        assert skill is not None
+        runtime.promote(skill)
+        target = BlackBoxHost(host_b())
+        proposal = runtime.propose_transfer(skill.skill_id, target)
+        self.assertIsNotNone(proposal)
+        self.assertEqual(proposal.host_id if proposal else None, "host-B")
+        self.assertEqual(target.execute_count, len(target.safe_action_space()))
+
+    def test_transfer_proposal_never_executes_the_target_plan(self) -> None:
+        runtime = SymbiontRuntime("herus-test")
+        runtime.discover(host_a())
+        skill = runtime.synthesize(Goal.from_dict({"x": 1}))
+        assert skill is not None
+        runtime.promote(skill)
+        target = BlackBoxHost(host_b())
+        proposal = runtime.propose_transfer(skill.skill_id, target)
+        self.assertIsNotNone(proposal)
+        # Only discovery probes execute; the proposed action is not sent.
+        self.assertEqual(target.execute_count, 3)
+
+    def test_ambiguous_effect_match_abstains(self) -> None:
+        runtime = SymbiontRuntime("herus-test")
+        runtime.discover(host_a())
+        skill = runtime.synthesize(Goal.from_dict({"x": 1}))
+        assert skill is not None
+        runtime.promote(skill)
+        ambiguous = ToyHost(
+            "host-ambiguous",
+            ("a", "b"),
+            {"a": (("x", 1),), "b": (("x", 1),)},
+        )
+        self.assertIsNone(runtime.propose_transfer(skill.skill_id, BlackBoxHost(ambiguous)))
 
     def test_transfer_does_not_reuse_old_host_evidence(self) -> None:
         runtime = SymbiontRuntime("herus-test")

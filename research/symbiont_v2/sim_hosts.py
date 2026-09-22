@@ -50,6 +50,38 @@ class ToyHost:
         self._sequence = 0
 
 
+class BlackBoxHost:
+    """Public-only wrapper used to catch accidental model/introspection access."""
+
+    def __init__(self, inner: ToyHost) -> None:
+        self._inner = inner
+        self.execute_count = 0
+
+    @property
+    def host_id(self) -> str:
+        return self._inner.host_id
+
+    def resources(self) -> tuple[str, ...]:
+        return self._inner.resources()
+
+    def safe_action_space(self) -> tuple[PrimitiveAction, ...]:
+        return self._inner.safe_action_space()
+
+    def observe(self) -> Observation:
+        return self._inner.observe()
+
+    def execute(self, action: PrimitiveAction) -> Observation:
+        self.execute_count += 1
+        return self._inner.execute(action)
+
+    def reset(self) -> None:
+        self._inner.reset()
+
+    @property
+    def effects_by_name(self) -> dict[str, tuple[tuple[str, int], ...]]:
+        raise AssertionError("black-box host internals must not be inspected")
+
+
 def host_a() -> ToyHost:
     return ToyHost(
         "host-A",
