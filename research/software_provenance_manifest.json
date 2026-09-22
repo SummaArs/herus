@@ -47,7 +47,7 @@
     {
       "path": "research/Makefile",
       "kind": "file",
-      "sha256": "4b7bea613e1d1fc8af4cacf7597d04abf1873a4c1446da6776e33764445559c0",
+      "sha256": "c5c5c913c26e50929daf0825eb05703f8ed76748733a622bc10a121426d6331d",
       "role": "host-only research test entrypoint"
     },
     {
@@ -251,7 +251,7 @@
     {
       "path": "README.md",
       "kind": "file",
-      "sha256": "96d8240fe1c31fe3e70b835d6e4b9f0c816f33b30f263c60fd0fa44813dab857",
+      "sha256": "fe1ae5d1b500e270094b91bddb3c804598d59e81e622f7ab43a3a799d2495d00",
       "role": "public project state and verification documentation"
     },
     {
@@ -301,6 +301,18 @@
       "kind": "file",
       "sha256": "189b6b6839dd01f3ab78a24c1c138de696b655b73b7ea756e3f5feb148301a0b",
       "role": "generative reasoning research record"
+    },
+    {
+      "path": "research/symbiont_v2",
+      "kind": "tree",
+      "sha256": "49f3233b23f263d67ed0d40a85c084f908e9690c8526f6765fcafaaadd80c7c8",
+      "role": "host-independent symbiont API and bounded transfer benchmark"
+    },
+    {
+      "path": "docs/51-API-SIMBIONTE-V2.md",
+      "kind": "file",
+      "sha256": "31cbea38885477edfbb2fa26c8e51a0b6293e9d983a01c45de899538585ddb4e",
+      "role": "symbiont API contract and stage-one research boundary"
     }
   ],
   "components": [
