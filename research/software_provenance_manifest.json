@@ -53,13 +53,13 @@
     {
       "path": "research/semantic_ir.py",
       "kind": "file",
-      "sha256": "af34d369f05c8981aca8ade1ea15e7a1f164c32c6be06e73b49a2a439ead6981",
+      "sha256": "e1fb1d598ecb4fa32ae879a66e6c4cde2328e3088da0ee7c360943d2785a3efc",
       "role": "host-only semantic IR implementation"
     },
     {
       "path": "research/test_semantic_ir.py",
       "kind": "file",
-      "sha256": "0c0d3907cca0a432facf6761c2dd0404395c9c1c536f447147345fa756802857",
+      "sha256": "632cb729d8a1b8b077679636f69f0d51f14f9747ebe833b31b7b359ff5be5704",
       "role": "host-only semantic IR tests"
     },
     {
@@ -251,13 +251,13 @@
     {
       "path": "README.md",
       "kind": "file",
-      "sha256": "f141ca8db48ac838b36a568097cb9cc19036381b600f601610d68063bcdd1512",
+      "sha256": "96d8240fe1c31fe3e70b835d6e4b9f0c816f33b30f263c60fd0fa44813dab857",
       "role": "public project state and verification documentation"
     },
     {
       "path": "docs/50-INTENT-COMPILER-E-SEMANTIC-IR.md",
       "kind": "file",
-      "sha256": "f90b79d1b670c495aa1207a8712b53d0e418652b91972406ad1f00af66a71bc3",
+      "sha256": "3508dc9a69f51c2b53091bc8237250c3a76cfea3df76252a0232730ef4de549f",
       "role": "intent compiler and semantic IR research record"
     },
     {

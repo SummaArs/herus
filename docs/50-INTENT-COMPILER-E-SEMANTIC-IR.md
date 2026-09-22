@@ -73,6 +73,16 @@ A representação intermediária precisa ter pelo menos: tipo de evento, origem,
 | `requestedAction` | Somente proposta; passa por política e confirmação. |
 | `ttl` | Expiração obrigatória para contexto transitório. |
 
+### Identidade canônica, não autoridade
+
+Uma IR aceita precisa ser reproduzível antes de ser comparada entre modalidades,
+armazenada como evidência ou usada em um experimento. O host compiler agora
+produz uma serialização JSON canônica: chaves ordenadas, separadores compactos,
+Unicode escapado e valores preservados sem coerção. O digest SHA-256 dessa
+serialização pode identificar o artefato experimental, mas não concede validade,
+memória, trust, transmissão ou execução. IR inválida — inclusive qualquer uma
+com autoridade diferente de `PROPOSAL_ONLY` — não recebe identidade canônica.
+
 ## Como o Intent Compiler entra no HERUS
 
 O Intent Compiler do OonCore oferece o padrão para a futura camada `Semantic IR Compiler`:

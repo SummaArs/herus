@@ -8,6 +8,8 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from enum import Enum
+import hashlib
+import json
 import re
 from typing import Any, Mapping
 
@@ -185,6 +187,26 @@ def compile_ir(value: Mapping[str, Any]) -> tuple[SemanticProposal | None, tuple
         evidence=evidence,
     )
     return proposal, ()
+
+
+def canonical_json(value: Mapping[str, Any]) -> str:
+    """Return the stable wire-independent representation of an accepted IR.
+
+    Canonicalization is deliberately a post-validation operation: malformed or
+    authority-bearing input must never acquire a reproducible identity merely
+    because it can be serialized. JSON's sorted keys and compact separators
+    make the result independent of producer insertion order while preserving
+    the contract's exact values (there is no coercion or defaulting).
+    """
+    issues = validate_ir(value)
+    if issues:
+        raise ValueError("cannot canonicalize invalid Semantic IR: " + "; ".join(issue.code for issue in issues))
+    return json.dumps(value, ensure_ascii=True, sort_keys=True, separators=(",", ":"))
+
+
+def canonical_digest(value: Mapping[str, Any]) -> str:
+    """Return the SHA-256 identity of a validated canonical Semantic IR."""
+    return hashlib.sha256(canonical_json(value).encode("ascii")).hexdigest()
 
 
 def to_firmware_command(proposal: SemanticProposal) -> tuple[str, int] | None:

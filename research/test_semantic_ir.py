@@ -5,6 +5,8 @@ from semantic_ir import (
     HypothesisStatus,
     SemanticProposal,
     Source,
+    canonical_digest,
+    canonical_json,
     compile_ir,
     meaning_key,
     to_firmware_command,
@@ -142,6 +144,26 @@ class SemanticIRTests(unittest.TestCase):
             self.assertEqual(issues, ())
             self.assertEqual(proposal.minutes, None)
             self.assertEqual(to_firmware_command(proposal), command)
+
+    def test_canonical_serialization_is_stable_across_key_order(self):
+        first = valid_ir()
+        second = {
+            "authority": first["authority"],
+            "hypothesisStatus": first["hypothesisStatus"],
+            "evidence": first["evidence"],
+            "slots": first["slots"],
+            "runnerUpPct": first["runnerUpPct"],
+            "confidencePct": first["confidencePct"],
+            "source": first["source"],
+            "eventKind": first["eventKind"],
+            "schemaVersion": first["schemaVersion"],
+        }
+        self.assertEqual(canonical_json(first), canonical_json(second))
+        self.assertEqual(canonical_digest(first), canonical_digest(second))
+
+    def test_canonicalization_rejects_invalid_or_authority_bearing_ir(self):
+        with self.assertRaises(ValueError):
+            canonical_json(valid_ir(authority="EXECUTE"))
 
 
 if __name__ == "__main__":
