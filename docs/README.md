@@ -2,7 +2,7 @@
 
 ## Como usar
 
-A documentação antiga conserva decisões e experimentos importantes, mas foi escrita em momentos diferentes. Leia primeiro os seis documentos de orientação numerados de `00` a `06`. Depois use as famílias abaixo conforme a pergunta.
+A documentação antiga conserva decisões e experimentos importantes, mas foi escrita em momentos diferentes. Leia primeiro os sete documentos de orientação numerados de `00` a `06`. Depois use as famílias abaixo conforme a pergunta.
 
 ## Orientação atual
 
