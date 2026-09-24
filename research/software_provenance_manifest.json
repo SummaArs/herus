@@ -251,7 +251,7 @@
     {
       "path": "README.md",
       "kind": "file",
-      "sha256": "9d475ae7916ac3d5b4b62287d90e377dff7c882d5c2b33b4bf6cea3a8a610ff3",
+      "sha256": "1244d93d3d2013bb3f020e8d867ec76135790bb5dc369da39ea78ac5828ff58a",
       "role": "public project state and verification documentation"
     },
     {
@@ -515,7 +515,7 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "76c1c942b85d6c7c0167d2d2722b36134829e83cd3f0d4d9160af23ebd9404f1",
+      "sha256": "86b095208c544bb3ffaed10e3c3200a3ce15a7fc7fa7fe8c72aa9ccf3c36d709",
       "role": "organized documentation, maps and historical design records"
     }
   ],

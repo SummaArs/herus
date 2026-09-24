@@ -4,6 +4,14 @@
 
 O HERUS não deve avançar por acúmulo de módulos. Ele deve avançar somente quando uma incerteza relevante for reduzida. Cada fase possui uma pergunta, uma entrega, um gate e uma condição de parada.
 
+## Direção oficial: simbionte soberano
+
+O objetivo futuro do HERUS é tornar-se um **simbionte computacional autônomo, transferível e soberano**. Ele deverá habitar sistemas autorizados, compreender as capacidades de cada hospedeiro, transferir Skills entre softwares e usar uma superfície física para confirmação, cancelamento e parada.
+
+Soberania significa que dados privados, memória, traces e modelos permanecem no domínio controlado pelo usuário por padrão. Nenhum egress externo deve ocorrer por padrão. Qualquer comunicação indispensável para uma ação autorizada deverá ser mínima, limitada, registrada e revogável. Essa é uma meta arquitetural ainda não demonstrada pelo protótipo atual.
+
+O documento normativo dessa direção é [57 — Direção soberana e simbionte](57-DIRECAO-SOBERANA-E-SIMBIONTE.md).
+
 ## Fase A — Reprodutibilidade e leitura
 
 **Pergunta:** outra pessoa consegue entender o estado atual e reproduzir os gates locais?
@@ -71,11 +79,12 @@ Um release só pode ocorrer com atestação de proveniência, documentação de 
 ## Linha de decisão
 
 ```text
-mapear → reproduzir → isolar causalidade → testar compreensão
-      → medir valor → medir hardware → replicar externamente
+mapear → reproduzir → provar soberania local → isolar causalidade
+      → transferir uma Skill entre hosts → integrar pulso e revogação
+      → testar compreensão → medir valor → medir hardware → replicar
 ```
 
-Nunca inverter esta ordem para usar hardware, voz ou LLM como substitutos de uma hipótese não demonstrada.
+Nunca inverter esta ordem para usar hardware, voz, LLM ou nuvem como substitutos de uma hipótese não demonstrada ou da soberania dos dados.
 
 ## Referências
 

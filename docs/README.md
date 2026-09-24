@@ -13,6 +13,7 @@ A documentação antiga conserva decisões e experimentos importantes, mas foi e
 - [04 — Mapa da evidência](04-MAPA-DA-EVIDENCIA.md)
 - [05 — Glossário](05-GLOSSARIO.md)
 - [06 — Roadmap e gates](06-ROADMAP-E-GATES.md)
+- [57 — Direção soberana e simbionte](57-DIRECAO-SOBERANA-E-SIMBIONTE.md)
 
 ## Fundamentos e arquitetura histórica
 

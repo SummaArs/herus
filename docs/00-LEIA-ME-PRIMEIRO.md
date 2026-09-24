@@ -17,6 +17,7 @@ Hoje, o HERUS é um **protótipo host-only em estado `not_proven`**. Ele contém
 5. [Glossário](05-GLOSSARIO.md): fixa o significado dos termos que mais facilmente geram confusão.
 6. [Roadmap e gates](06-ROADMAP-E-GATES.md): mostra a ordem correta para continuar sem saltar etapas.
 7. [Rodada decisiva](56-RODADA-DECISIVA-HERUS-BRIDGE.md): descreve a última correção epistemológica e o HERUS Bridge.
+8. [Direção soberana](57-DIRECAO-SOBERANA-E-SIMBIONTE.md): define o novo objetivo do simbionte e a soberania de dados.
 
 ## As três perguntas que governam o projeto
 
@@ -26,11 +27,11 @@ Ele começou como um comunicador semântico de baixa largura de banda. Depois ga
 
 ### O que o HERUS é?
 
-É um repositório com quatro corpos de trabalho: um firmware C com contratos e invariantes; um simulador C; protótipos Python de Semantic IR, raciocínio e Symbiont; e um conjunto de documentos e evidências. O núcleo de pesquisa mais defensável hoje é uma **transferência finita entre hospedeiros que produz propostas, não execução**.
+É um repositório com quatro corpos de trabalho: um firmware C com contratos e invariantes; um simulador C; protótipos Python de Semantic IR, raciocínio e Symbiont; e um conjunto de documentos e evidências. O núcleo de pesquisa mais defensável hoje é uma **transferência finita entre hospedeiros que produz propostas, não execução**. A direção oficial agora é transformar esse núcleo em um simbionte autônomo e soberano, sem promover essa capacidade antes dos gates correspondentes.
 
 ### O que o HERUS será?
 
-Ele só deve avançar em três degraus: validar o mecanismo causalmente, testar se uma pessoa entende a proposta e o cancelamento, e só então decidir se existe um produto físico útil. Hardware, rádio, voz, LLM local, memória pessoal e execução externa são fases posteriores, não atalhos para provar utilidade.
+Ele deverá avançar por soberania local, separação entre Core, gateway e hospedeiro, transferência de uma Skill entre dois sistemas, integração com o pulso e só então sessões humanas, valor comparativo e hardware. Hardware, rádio, voz, LLM local e execução externa não podem substituir a prova de que os dados permanecem sob controle do usuário.
 
 ## Como interpretar este repositório
 

@@ -17,10 +17,11 @@ O HERUS não é uma AGI, não é um produto lançado, não é um sistema de exec
 | 5 | [Mapa da evidência](docs/04-MAPA-DA-EVIDENCIA.md) | O que foi demonstrado e o que não foi? |
 | 6 | [Glossário](docs/05-GLOSSARIO.md) | O que cada termo significa? |
 | 7 | [Roadmap e gates](docs/06-ROADMAP-E-GATES.md) | Qual é a próxima sequência legítima? |
+| 8 | [Direção soberana](docs/57-DIRECAO-SOBERANA-E-SIMBIONTE.md) | Qual é o futuro objetivo do HERUS? |
 
 ## O núcleo da tese
 
-O **ASA Core** mantém uma identidade persistente, observa um hospedeiro, aprende transições finitas e compõe uma Skill verificável. Ao mudar de hospedeiro, ele precisa reconstruir o contexto local. Uma proposta pode ser apresentada a uma pessoa; execução externa exige autoridade separada, que ainda não está provada.
+O **ASA Core** mantém uma identidade persistente, observa um hospedeiro, aprende transições finitas e compõe uma Skill verificável. Ao mudar de hospedeiro, ele precisa reconstruir o contexto local. O objetivo futuro é que o Symbiont habite sistemas autorizados sem retirar os dados privados do domínio do usuário, usando uma autoridade física, revogável e auditável.
 
 O mecanismo mais defensável está no pacote [Symbiont v2](research/symbiont_v2/README.md). O primeiro produto de pesquisa é o [HERUS Bridge](docs/56-RODADA-DECISIVA-HERUS-BRIDGE.md), uma demonstração local de proposta, prévia, confirmação, cancelamento, abstenção e parada sem transmissão nem efeitos externos.
 
@@ -62,6 +63,7 @@ Na última verificação local, a pesquisa passou com **148 testes e um skip**, 
 | [Observabilidade checked](docs/54-CORRECAO-CONTRATO-OBSERVABILIDADE.md) | Ledger e decisão fail-closed. |
 | [Etapas finais](docs/55-ETAPAS-FINAIS-EXECUTOR-HUMANO.md) | Executor sintético, holdout estendido e protocolo social. |
 | [Rodada decisiva](docs/56-RODADA-DECISIVA-HERUS-BRIDGE.md) | P0, campanha causal e HERUS Bridge. |
+| [Direção soberana](docs/57-DIRECAO-SOBERANA-E-SIMBIONTE.md) | Soberania de dados, Symbiont transferível e futuro objetivo. |
 
 ## Código por papel
 
