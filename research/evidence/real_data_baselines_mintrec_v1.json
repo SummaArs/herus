@@ -1,0 +1,57 @@
+{
+  "dataset": {
+    "holdout_seasons": [
+      "S06"
+    ],
+    "id": "THU-IAR/MIntRec",
+    "labels": 20,
+    "published_split": "train",
+    "source": "https://datasets-server.huggingface.co/rows",
+    "test_rows": 386,
+    "train_rows": 1838,
+    "train_seasons": [
+      "S04",
+      "S05"
+    ]
+  },
+  "limits": [
+    "MIntRec labels are not HERUS events",
+    "text metadata only; audio and video are excluded",
+    "the current SymbioticLearner is proposal/effect oriented, so contextual memory is a transparent adapter baseline",
+    "chronological season holdout is not the official paper split",
+    "no claim of superiority is made from this single corpus"
+  ],
+  "methods": {
+    "1nn_cosine": {
+      "accuracy": 0.398964,
+      "coverage": 1.0,
+      "macro_f1": 0.322042,
+      "selective_accuracy": 0.398964
+    },
+    "centroid_cosine": {
+      "accuracy": 0.373057,
+      "coverage": 1.0,
+      "macro_f1": 0.340202,
+      "selective_accuracy": 0.373057
+    },
+    "majority": {
+      "accuracy": 0.119171,
+      "coverage": 1.0,
+      "macro_f1": 0.010648,
+      "selective_accuracy": 0.119171
+    },
+    "multinomial_naive_bayes": {
+      "accuracy": 0.492228,
+      "coverage": 1.0,
+      "macro_f1": 0.374427,
+      "selective_accuracy": 0.492228
+    },
+    "symbiotic_finite_context_memory": {
+      "accuracy": 0.062176,
+      "coverage": 0.062176,
+      "macro_f1": 0.11877,
+      "selective_accuracy": 1.0
+    }
+  },
+  "task": "MIntRec 20-way text intent classification; no HERUS label mapping"
+}

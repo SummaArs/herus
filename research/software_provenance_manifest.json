@@ -47,8 +47,8 @@
     {
       "path": "research/Makefile",
       "kind": "file",
-      "sha256": "731c1b6ce492fbbea66804e0298d3c5b8846623c0f8e1ccf27994fc3b7842d98",
-      "role": "official research test target including public API"
+      "sha256": "e0e4f541732598d966b9dcaeeef3d23eed8ca77bcda22a0c7efa35f8036cf592",
+      "role": "official tests including metric checks"
     },
     {
       "path": "research/semantic_ir.py",
@@ -251,8 +251,8 @@
     {
       "path": "README.md",
       "kind": "file",
-      "sha256": "f90137044bff172d5756fd622fdb9ded3fd0ac9328d69624bd78d2d379f3e850",
-      "role": "public algorithm state, import surface and test count"
+      "sha256": "c85626e3947602ecae3b6e171884acb43d66c229cc30f11397bd5daab0116b1c",
+      "role": "real MIntRec baseline benchmark and honest limits"
     },
     {
       "path": "docs/50-INTENT-COMPILER-E-SEMANTIC-IR.md",
@@ -515,7 +515,7 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "5d3286502cba4c016359310a3ab5374af2df9774cde274269102fbc913eb31e3",
+      "sha256": "e8f15e5878207df7da086d6fdda51d835d7422f50a3dc5f266e6b4bed79c7c68",
       "role": "organized documentation, maps and historical design records"
     },
     {
@@ -733,6 +733,30 @@
       "kind": "file",
       "sha256": "a64b724ae8db269fb0ae1b727179b2c2c985e7a3f9f67e863e2f3e5c08581c88",
       "role": "public library contract and limits"
+    },
+    {
+      "path": "research/real_data_baseline_benchmark.py",
+      "kind": "file",
+      "sha256": "d80d5b46056d8742dc2c1522efb17fd6d2b678b8328f833bc8148c71be3fb36f",
+      "role": "real MIntRec benchmark against classical algorithms"
+    },
+    {
+      "path": "research/test_real_data_baseline_benchmark.py",
+      "kind": "file",
+      "sha256": "cabb9ea27eb10091b488c7a1186531fc4dd089eeccc2f2f56544578f521a6f8e",
+      "role": "coverage and selective accuracy metric tests"
+    },
+    {
+      "path": "research/evidence/real_data_baselines_mintrec_v1.json",
+      "kind": "file",
+      "sha256": "addc1fa75543249428633ebb909aef16ab27f47888d18cbb4c1ee8682c4c117c",
+      "role": "reproducible real-data benchmark result"
+    },
+    {
+      "path": "docs/92-BENCHMARK-DADOS-REAIS-E-BASELINES.md",
+      "kind": "file",
+      "sha256": "2085e07a3d8c6422fa84eb209f2b84bc7b66df5f6b4cea83c7141b6424e3828b",
+      "role": "real-data comparison and falsification report"
     }
   ],
   "components": [

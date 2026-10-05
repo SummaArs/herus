@@ -35,6 +35,7 @@ Sobre essa camada, o [Meta-Simbionte](docs/85-META-SIMBIONTE-E-HISTORICO-DE-SOLU
 - Simulador C com mundo controlado, distância e adversários.
 - Protótipos Python para Semantic IR, raciocínio finito, Symbiont e avaliação de utilidade.
 - Holdouts históricos e uma campanha causal isolada para efeitos ocultos.
+- Benchmark real MIntRec com holdout por temporada e comparação contra Naive Bayes, 1-NN, centróides e maioria.
 - Manifestos de hardware e proveniência local.
 - Documentação histórica desde o comunicador semântico original até a auditoria ASA.
 
@@ -82,6 +83,7 @@ Na última verificação local, a pesquisa passou com **177 testes e um skip**, 
 | [Protocolo externo](docs/89-PROTOCOLO-EXTERNO-E-ISOLAMENTO.md) | Host em processo separado, JSONL, corrupção e timeout fail-closed. |
 | [Host JSONL v1](docs/90-PROTOCOLO-HERUS-HOST-JSONL-V1.md) | Contrato congelado de interoperabilidade entre learner e hospedeiro. |
 | [Biblioteca pública](docs/91-BIBLIOTECA-PUBLICA-SYMBIOTIC-LEARNING.md) | API importável v0.1.0, proposal-only e sem efeitos colaterais. |
+| [Benchmark real](docs/92-BENCHMARK-DADOS-REAIS-E-BASELINES.md) | MIntRec S04/S05→S06 contra baselines clássicos; revela cobertura baixa da memória simbiótica. |
 
 ## Código por papel
 
