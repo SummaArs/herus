@@ -68,6 +68,20 @@ class MetaSymbioticLearner:
         matches = [r for r in self._history if r.goal_effect == problem.goal_effect and _context_matches(r.context, problem.context) and r.verification == "verified" and problem.risk <= self.learner.max_risk]
         return tuple(sorted(matches, key=lambda r: (r.source_host_kind != problem.host_kind, -r.version)))
 
+    def rank_candidates(self, problem: Problem, candidates: Sequence[Episode]) -> tuple[Episode, ...]:
+        """Order observed candidates using history; never removes evidence.
+
+        Ranking is a search heuristic only. The verifier still sees every
+        candidate and can abstain on aliases, drift, budget or risk.
+        """
+        refs = self.references(problem)
+        known_actions = {ref.action for ref in refs}
+        def score(episode: Episode) -> tuple[int, int, int]:
+            context = 1 if _context_matches(problem.context, episode.context) else 0
+            prior_action = 1 if episode.action in known_actions else 0
+            return (context, prior_action, -episode.cost)
+        return tuple(sorted(candidates, key=score, reverse=True))
+
     def remember(self, problem: Problem, proposal: Proposal, *, evidence_digest: str, verified: bool) -> VerifiedSolution | None:
         if not verified or proposal.status != "PROPOSE" or proposal.action is None or not evidence_digest:
             return None
@@ -79,7 +93,8 @@ class MetaSymbioticLearner:
     def adapt(self, problem: Problem, candidates: Sequence[Episode], *, cost_budget: int = 4, current_step: int = 0) -> MetaProposal:
         refs = self.references(problem)
         strategy = self.strategy(problem)
-        proposal = self.learner.propose(problem.goal_effect, candidates, cost_budget=cost_budget, context=problem.context, current_step=current_step)
+        ranked = self.rank_candidates(problem, candidates)
+        proposal = self.learner.propose(problem.goal_effect, ranked, cost_budget=cost_budget, context=problem.context, current_step=current_step)
         if proposal.status != "PROPOSE":
             reason = "reference_requires_fresh_evidence" if refs else proposal.reason
             return MetaProposal(None, "ABSTAIN", reason, refs[0].solution_id if refs else None, strategy, False, 0)

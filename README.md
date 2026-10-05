@@ -52,7 +52,7 @@ PYTHONPATH=research python3 -m research.bridge_product
 python3 tools/provenance_audit.py --strict research/software_provenance_manifest.json
 ```
 
-Na última verificação local, a pesquisa passou com **163 testes e um skip**, e o proof integral confirmou as invariantes host-only e de simulação. Isso é uma regressão interna, não uma prova de produto ou de campo.
+Na última verificação local, a pesquisa passou com **165 testes e um skip**, e o proof integral confirmou as invariantes host-only e de simulação. Isso é uma regressão interna, não uma prova de produto ou de campo.
 
 ## Documentos de decisão
 

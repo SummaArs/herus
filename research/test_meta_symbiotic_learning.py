@@ -35,6 +35,15 @@ class MetaSymbioticLearningTests(unittest.TestCase):
         self.assertEqual(adapted.reference_id, meta.history[0].solution_id)
         self.assertEqual(adapted.reason, 'fresh_evidence_matches_reference')
 
+    def test_history_ranks_search_without_removing_candidates(self):
+        meta = MetaSymbioticLearner()
+        raw = meta.learner.propose(self.problem.goal_effect, self.source, context=self.problem.context)
+        meta.remember(self.problem, raw, evidence_digest='proof', verified=True)
+        decoy = Episode.from_maps({'mode': 0}, 'decoy', {'mode': 0}, context={'channel': 9}, cost=2)
+        ranked = meta.rank_candidates(self.problem, [decoy, self.source[0]])
+        self.assertEqual(len(ranked), 2)
+        self.assertEqual(ranked[0].action, 'gesture')
+
     def test_unverified_solution_is_not_saved(self):
         meta = MetaSymbioticLearner()
         raw = meta.learner.propose(self.problem.goal_effect, self.source, context=self.problem.context)

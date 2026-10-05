@@ -47,7 +47,7 @@
     {
       "path": "research/Makefile",
       "kind": "file",
-      "sha256": "dc71d7bffb87752873aa0a94bf7140010d585c20fba4b0c83a127106cd117902",
+      "sha256": "fe5b9e79ac2c570acc94cbc43ce8a63df3da4d1452c6746be41b5d3b901584b8",
       "role": "host-only research test entrypoint"
     },
     {
@@ -251,7 +251,7 @@
     {
       "path": "README.md",
       "kind": "file",
-      "sha256": "94a20f1b918d67aae2af8059b038db3282eef872847a5d34a2589afb85dae18d",
+      "sha256": "96947874f144b92c849b6b23fc24ccdc83457e1b5290546ac50a530790ac0883",
       "role": "public project state and verification documentation"
     },
     {
@@ -515,7 +515,7 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "87ba36bd0b2fcb22b708b4e078dfce008d766227564eed4321ecf4e95572476f",
+      "sha256": "b83eab3334686464ae8916a0fbaa6d17a953a1b78009495cfedf4dee09b952cd",
       "role": "organized documentation, maps and historical design records"
     },
     {
@@ -551,20 +551,32 @@
     {
       "path": "research/meta_symbiotic_learning.py",
       "kind": "file",
-      "sha256": "52209049305ae62aa6d28417bebb3ca830059d0741345d7321955b819d5965fd",
+      "sha256": "2faadfd4c9d8be691dc046d5b827f28cbff52d7fcbf4d54655cf7654e17a8fcf",
       "role": "Meta-Symbiotic Learning library"
     },
     {
       "path": "research/test_meta_symbiotic_learning.py",
       "kind": "file",
-      "sha256": "e2b023414967414ba16289e281f0f0fbc002991ab5fdc6aeb05ac100023f04af",
+      "sha256": "cd2f4aee3785a7ee7c8317edeb03cd6f561064b3d4f8a2b72d4ae43f376e43bc",
       "role": "Meta-Symbiotic Learning tests"
     },
     {
       "path": "docs/85-META-SIMBIONTE-E-HISTORICO-DE-SOLUCOES.md",
       "kind": "file",
-      "sha256": "a2b280f5075825325f88ceb97de907d05798b28d43f9fa37bc8b7139ec57d527",
+      "sha256": "f52ddd1ebed35b7f58b4c24d95cf65eea8ee10f1e3561e9bae563dcde39e7fe6",
       "role": "meta-symbiont contract and limits"
+    },
+    {
+      "path": "research/meta_symbiotic_benchmark.py",
+      "kind": "file",
+      "sha256": "5691214f8c39255a0ebe5f4886d630917d4953d8b3d6dc1e9b1742e766a04c76",
+      "role": "meta-symbiotic ranking benchmark"
+    },
+    {
+      "path": "research/test_meta_symbiotic_benchmark.py",
+      "kind": "file",
+      "sha256": "79b26b4ea283dfeba11c760f4c717d68fc144c8a344d20bb6d9317a018440d05",
+      "role": "meta-symbiotic benchmark tests"
     }
   ],
   "components": [

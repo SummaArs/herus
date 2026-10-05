@@ -28,6 +28,7 @@ Uma referência histórica só pode:
 
 - ser lida;
 - influenciar a escolha de estratégia de sondagem;
+- ordenar candidatos observados por contexto e compatibilidade histórica;
 - sugerir uma hipótese de correspondência;
 - aparecer no trace para auditoria.
 
@@ -66,6 +67,8 @@ A regra mais importante é:
 
 > **Histórico pode orientar a busca; somente evidência fresca pode sustentar a proposta.**
 
+O ranking meta-simbiótico não remove candidatos. Ele apenas altera a ordem de investigação. O verificador continua recebendo o conjunto completo e pode abster-se por alias, deriva, orçamento ou risco.
+
 ## Personalização
 
 A personalização não significa alterar a constituição do HERUS para cada usuário. Ela significa adaptar a solução ao problema atual usando:
@@ -87,6 +90,8 @@ O núcleo de segurança permanece fixo. O repertório de hipóteses pode crescer
 - `VerifiedSolution` — registro imutável de solução comprovada;
 - `MetaProposal` — proposta com estratégia, referência e evidência fresca;
 - `MetaSymbioticLearner` — histórico, recuperação, adaptação e exportação.
+
+O benchmark `research/meta_symbiotic_benchmark.py` mede se uma referência verificada coloca o candidato correto mais cedo sem reduzir o conjunto de candidatos, sem dispensar evidência fresca e sem conceder autoridade.
 
 Exemplo:
 
