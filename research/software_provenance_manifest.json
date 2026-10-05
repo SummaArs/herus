@@ -47,7 +47,7 @@
     {
       "path": "research/Makefile",
       "kind": "file",
-      "sha256": "03492306eb3270f17dcd348ec1acd37b699e0d52cbcf0bd565006a916e29a0fe",
+      "sha256": "8631b6ae7d65c4c4b1f4c4c0a499303646e2f403faede5be8ac771a70bfebee6",
       "role": "host-only research test entrypoint"
     },
     {
@@ -251,7 +251,7 @@
     {
       "path": "README.md",
       "kind": "file",
-      "sha256": "48d5fd52a5cbb4875512f4e4997991f45313a7367666f58a38b3706180063130",
+      "sha256": "c00ec631880504f7f25099d020b5ce93c6c5c6c9cf763d2f14fdca6b41bd6ee7",
       "role": "public project state and verification documentation"
     },
     {
@@ -515,7 +515,7 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "2e2ee3261060221a1062b7377bec954108e7b5751facd892a8fbd7dbdef90dda",
+      "sha256": "e935f48c1147a183ffc107ea7586f7ecbf499da01aa817928136bc0de6a164cd",
       "role": "organized documentation, maps and historical design records"
     },
     {
@@ -601,6 +601,30 @@
       "kind": "file",
       "sha256": "2a7fb46a489bc8356e21d169632f9664a00cc43a1bcf33fc112b2e6f08b767a9",
       "role": "wide campaign analysis and limits"
+    },
+    {
+      "path": "research/holdout_symbiotic_benchmark.py",
+      "kind": "file",
+      "sha256": "603d2fc0f972029e1ccf9ea14c19ec854288554e10b40383c462b348fb15a90a",
+      "role": "independent-style holdout benchmark"
+    },
+    {
+      "path": "research/test_holdout_symbiotic_benchmark.py",
+      "kind": "file",
+      "sha256": "5c9fd4738ca6fae3757502b5b77b0dc93d7bb01a8b6749bcd6186e3bd953426b",
+      "role": "holdout benchmark tests"
+    },
+    {
+      "path": "research/evidence/holdout_symbiotic_learning_v1.json",
+      "kind": "file",
+      "sha256": "3bb1c6aef0970761cb579644d494638a3e8ea9107b37f6317ebc3dc925549a96",
+      "role": "holdout raw evidence"
+    },
+    {
+      "path": "docs/87-HOLDOUT-INDEPENDENTE-SYMBIOTIC.md",
+      "kind": "file",
+      "sha256": "16a36ce3da4b6a03a1895892faa6d25aee38aa2b18f4af8c29c22e4f6fdee829",
+      "role": "holdout analysis and discovered representation bug"
     }
   ],
   "components": [

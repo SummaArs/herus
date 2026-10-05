@@ -52,7 +52,7 @@ PYTHONPATH=research python3 -m research.bridge_product
 python3 tools/provenance_audit.py --strict research/software_provenance_manifest.json
 ```
 
-Na última verificação local, a pesquisa passou com **167 testes e um skip**, e o proof integral confirmou as invariantes host-only e de simulação. A campanha ampla também separa acerto seguro de falso aceite em 100 casos sintéticos. Isso é uma regressão interna, não uma prova de produto ou de campo.
+Na última verificação local, a pesquisa passou com **169 testes e um skip**, e o proof integral confirmou as invariantes host-only e de simulação. A campanha ampla e o holdout local também separam acerto seguro de falso aceite. Isso é uma regressão interna, não uma prova de produto ou de campo.
 
 ## Documentos de decisão
 
@@ -71,6 +71,7 @@ Na última verificação local, a pesquisa passou com **167 testes e um skip**, 
 | [Symbiotic Learning](docs/84-ALGORITMO-SYMBIOTIC-LEARNING.md) | Algoritmo bounded de indução de efeitos e transferência de Skills. |
 | [Meta-Simbionte](docs/85-META-SIMBIONTE-E-HISTORICO-DE-SOLUCOES.md) | Histórico verificável e adaptação personalizada sem reutilização cega. |
 | [Campanha ampla](docs/86-CAMPANHA-WIDE-SYMBIOTIC-LEARNING.md) | 100 casos, baselines e falso aceite separado do acerto. |
+| [Holdout independente](docs/87-HOLDOUT-INDEPENDENTE-SYMBIOTIC.md) | 60 fixtures separados e oracle não fornecido ao learner. |
 
 ## Código por papel
 
