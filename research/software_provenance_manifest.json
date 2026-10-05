@@ -47,7 +47,7 @@
     {
       "path": "research/Makefile",
       "kind": "file",
-      "sha256": "a43529ded079e55ab7dc026cd2b770292cad73a41b3c4f2b3568216e7ed15bc6",
+      "sha256": "52e551895a130f99ccd5d017168a02637cf8143ec82a6d0f8e6eeb69b80146a7",
       "role": "host-only research test entrypoint"
     },
     {
@@ -251,7 +251,7 @@
     {
       "path": "README.md",
       "kind": "file",
-      "sha256": "7406029e7fdf8aa1dd7b4d359aaca2222d3c8d044cd16e95caa964f5eb220d05",
+      "sha256": "0cb9b045bc57eb5f1f598989225930e0888410d4d984e1fbc894cf7595d1439b",
       "role": "public project state and verification documentation"
     },
     {
@@ -515,26 +515,38 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "88195e70f3bcd84ec11bffeedfecf07a8b7c1f2c54914dc1045d166856f509d7",
+      "sha256": "20fc752a5e4724bf8a4552fb8cc8a11ffc082e1e9996317029d2a717f5c8e0db",
       "role": "organized documentation, maps and historical design records"
     },
     {
       "path": "research/symbiotic_learning.py",
       "kind": "file",
-      "sha256": "6ac2599ea9782db0358eb80c9f2112b6a8f880261ce0e606c4fff38c46888b31",
-      "role": "Symbiotic Learning v1 algorithm"
+      "sha256": "353a08ca8ef3897d47be9488098ceb83b717a5f32ad09ffed0374987724fab36",
+      "role": "Symbiotic Learning v2 algorithm"
     },
     {
       "path": "research/test_symbiotic_learning.py",
       "kind": "file",
-      "sha256": "cabe030644f7523064b29672c19e0bdc8299776dffa1d1acf0e9c7bbeb598e15",
-      "role": "adversarial Symbiotic Learning tests"
+      "sha256": "57f497a71d59b7b0441e91b79ea74178357ff27dc60f2eeb4860bf465aa3bfb4",
+      "role": "adversarial Symbiotic Learning v2 tests"
     },
     {
       "path": "docs/84-ALGORITMO-SYMBIOTIC-LEARNING.md",
       "kind": "file",
-      "sha256": "a1463d2d766b73d8dea65f469c5f4f4065de14479dac3e3d58cb77119659c88d",
-      "role": "Symbiotic Learning proposal and limits"
+      "sha256": "70e4e0088d475b2a7ae5b77ae41934dbbee93f154d0f5e42de615650cd0864ac",
+      "role": "Symbiotic Learning v2 proposal and limits"
+    },
+    {
+      "path": "research/symbiotic_learning_benchmark.py",
+      "kind": "file",
+      "sha256": "8a71013340ee0be01f326b8d21f8b79298532100ed339a55bb7dd6415e4e8a7b",
+      "role": "Symbiotic Learning baseline benchmark"
+    },
+    {
+      "path": "research/test_symbiotic_learning_benchmark.py",
+      "kind": "file",
+      "sha256": "41bf53fea79e0c6296003fb385afc38fb6637ba74b2b069df4ad8a0402cbb245",
+      "role": "baseline benchmark tests"
     }
   ],
   "components": [
