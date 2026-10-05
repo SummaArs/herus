@@ -8,7 +8,10 @@ from __future__ import annotations
 from dataclasses import dataclass, asdict
 from hashlib import sha256
 from typing import Mapping, Sequence
-from symbiotic_learning import Episode, Proposal, State, SymbioticLearner, _digest, _state, _context_matches
+try:
+    from .symbiotic_learning import Episode, Proposal, State, SymbioticLearner, _digest, _state, _context_matches
+except ImportError:  # legacy PYTHONPATH=research execution
+    from symbiotic_learning import Episode, Proposal, State, SymbioticLearner, _digest, _state, _context_matches
 
 @dataclass(frozen=True)
 class Problem:
