@@ -654,7 +654,7 @@
       "path": "research/external_host_protocol.py",
       "kind": "file",
       "sha256": "b688ce5db1aa5fe36516daf0e3073054e86d05cee36a758460431c46d05d6ea9",
-      "role": "client for frozen process-isolated JSONL protocol"
+      "role": "configurable external protocol client"
     },
     {
       "path": "research/test_external_host_protocol.py",
@@ -691,6 +691,18 @@
       "kind": "file",
       "sha256": "a1b866232a6be86b2b729363048a9a6410db8c2802f1e17d7fdf314c167ebdca",
       "role": "frozen public host protocol"
+    },
+    {
+      "path": "research/independent_host_c11.c",
+      "kind": "file",
+      "sha256": "ab13235eb604dd99454e27bd05efef139cf1df74d35245246ea6e591794f2b91",
+      "role": "standalone C11 protocol conformance host"
+    },
+    {
+      "path": "research/test_c11_host_conformance.py",
+      "kind": "file",
+      "sha256": "bbefdd4cbe2813be9106743c874e1069a0151958668fb2861bddcb111236ebdb",
+      "role": "cross-language protocol conformance test"
     }
   ],
   "components": [

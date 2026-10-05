@@ -12,10 +12,11 @@ from pathlib import Path
 from symbiotic_learning import Episode
 
 class ExternalHostClient:
-    def __init__(self, *, timeout: float = 0.5, startup_timeout: float = 1.0) -> None:
+    def __init__(self, *, timeout: float = 0.5, startup_timeout: float = 1.0, executable: str | None = None) -> None:
         self.timeout = timeout
         host_path = Path(__file__).with_name('independent_host_process.py')
-        self.proc = subprocess.Popen([sys.executable, str(host_path)], stdin=subprocess.PIPE, stdout=subprocess.PIPE, text=True, bufsize=1)
+        command = [executable] if executable else [sys.executable, str(host_path)]
+        self.proc = subprocess.Popen(command, stdin=subprocess.PIPE, stdout=subprocess.PIPE, text=True, bufsize=1)
         old_timeout = self.timeout
         self.timeout = startup_timeout
         ready = self._request({'op': 'ready'})
