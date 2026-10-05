@@ -38,6 +38,10 @@ Sobre essa camada, o [Meta-Simbionte](docs/85-META-SIMBIONTE-E-HISTORICO-DE-SOLU
 - Manifestos de hardware e proveniência local.
 - Documentação histórica desde o comunicador semântico original até a auditoria ASA.
 
+## Foco atual: algoritmo
+
+O objetivo imediato é concluir e falsificar o algoritmo Symbiotic Learning e seu meta-aprendizado. A conformidade C11 e o protocolo externo são tratados como implementações de biblioteca e testes de interoperabilidade; não são uma solicitação para iniciar validação física.
+
 ## O que ainda não existe
 
 Ainda não existe prova de autonomia, alcance de rádio, consumo, temperatura, ergonomia, segurança física, benefício social, acessibilidade populacional, adaptação a qualquer dispositivo, linguagem aberta, execução externa ou simbiose geral.

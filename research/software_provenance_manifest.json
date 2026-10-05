@@ -251,8 +251,8 @@
     {
       "path": "README.md",
       "kind": "file",
-      "sha256": "f1a812f4fd6f15b9527834c0840d4748cc4b630292fb9945387a94fab2c6fd64",
-      "role": "public project state and verification documentation"
+      "sha256": "89660a62060def8854c289c33ad9beba12660e65a62efe2ecba69993054ab32a",
+      "role": "public project state and algorithm-only focus"
     },
     {
       "path": "docs/50-INTENT-COMPILER-E-SEMANTIC-IR.md",
@@ -515,7 +515,7 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "c98d33ba5ce543fa65708c4148b6f6c86aaf4179e286ed11056e5b52e51ce884",
+      "sha256": "a2713210643d97eec9fe3a3842ff0067c4f021d6f1a7bbed267dc88021d28047",
       "role": "organized documentation, maps and historical design records"
     },
     {
@@ -551,8 +551,8 @@
     {
       "path": "research/meta_symbiotic_learning.py",
       "kind": "file",
-      "sha256": "2faadfd4c9d8be691dc046d5b827f28cbff52d7fcbf4d54655cf7654e17a8fcf",
-      "role": "Meta-Symbiotic Learning library"
+      "sha256": "56bad64ebdb990feeaeabf5848db8df29fa52d90225d91d5b689161653ea2e0e",
+      "role": "verified-history ranking policy"
     },
     {
       "path": "research/test_meta_symbiotic_learning.py",
@@ -563,14 +563,14 @@
     {
       "path": "docs/85-META-SIMBIONTE-E-HISTORICO-DE-SOLUCOES.md",
       "kind": "file",
-      "sha256": "f52ddd1ebed35b7f58b4c24d95cf65eea8ee10f1e3561e9bae563dcde39e7fe6",
-      "role": "meta-symbiont contract and limits"
+      "sha256": "ca588885c277d966240362a5906785cc0cc5e138070d930a643ff45b585370d3",
+      "role": "meta-learning history contract and causal benchmark"
     },
     {
       "path": "research/meta_symbiotic_benchmark.py",
       "kind": "file",
-      "sha256": "5691214f8c39255a0ebe5f4886d630917d4953d8b3d6dc1e9b1742e766a04c76",
-      "role": "meta-symbiotic ranking benchmark"
+      "sha256": "bb0a5e6b8ee0bbe3635667565d2b6b1543119b056503d75ebfdec17781acbdcd",
+      "role": "causal history gain benchmark"
     },
     {
       "path": "research/test_meta_symbiotic_benchmark.py",
@@ -653,7 +653,7 @@
     {
       "path": "research/external_host_protocol.py",
       "kind": "file",
-      "sha256": "1f6cdaf7656fd0f307dce1a23f86195e6b09c4c2e0c34e4ca01af9969a60a39c",
+      "sha256": "b688ce5db1aa5fe36516daf0e3073054e86d05cee36a758460431c46d05d6ea9",
       "role": "client for frozen process-isolated JSONL protocol"
     },
     {

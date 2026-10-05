@@ -91,7 +91,7 @@ O núcleo de segurança permanece fixo. O repertório de hipóteses pode crescer
 - `MetaProposal` — proposta com estratégia, referência e evidência fresca;
 - `MetaSymbioticLearner` — histórico, recuperação, adaptação e exportação.
 
-O benchmark `research/meta_symbiotic_benchmark.py` mede se uma referência verificada coloca o candidato correto mais cedo sem reduzir o conjunto de candidatos, sem dispensar evidência fresca e sem conceder autoridade.
+O benchmark `research/meta_symbiotic_benchmark.py` mede se uma referência verificada coloca o candidato correto mais cedo sem reduzir o conjunto de candidatos, sem dispensar evidência fresca e sem conceder autoridade. A versão atual controla o contexto e o custo dos candidatos: sem histórico o alvo fica em posição 3; com referência do efeito compatível, sobe para posição 1. Assim o ganho atribuído ao histórico não é apenas um efeito de contexto.
 
 Exemplo:
 

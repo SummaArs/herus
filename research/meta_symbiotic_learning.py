@@ -76,10 +76,12 @@ class MetaSymbioticLearner:
         """
         refs = self.references(problem)
         known_actions = {ref.action for ref in refs}
-        def score(episode: Episode) -> tuple[int, int, int]:
+        known_effects = {ref.goal_effect for ref in refs}
+        def score(episode: Episode) -> tuple[int, int, int, int]:
             context = 1 if _context_matches(problem.context, episode.context) else 0
             prior_action = 1 if episode.action in known_actions else 0
-            return (context, prior_action, -episode.cost)
+            prior_effect = 1 if episode.effect in known_effects else 0
+            return (context, prior_effect, prior_action, -episode.cost)
         return tuple(sorted(candidates, key=score, reverse=True))
 
     def remember(self, problem: Problem, proposal: Proposal, *, evidence_digest: str, verified: bool) -> VerifiedSolution | None:
