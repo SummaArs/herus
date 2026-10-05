@@ -47,8 +47,8 @@
     {
       "path": "research/Makefile",
       "kind": "file",
-      "sha256": "83eb21435870a35de93e35e77587ac332893b0a6b8cdac9cd35439fcd6cfa3e9",
-      "role": "host-only research test entrypoint"
+      "sha256": "731c1b6ce492fbbea66804e0298d3c5b8846623c0f8e1ccf27994fc3b7842d98",
+      "role": "official research test target including public API"
     },
     {
       "path": "research/semantic_ir.py",
@@ -251,8 +251,8 @@
     {
       "path": "README.md",
       "kind": "file",
-      "sha256": "89660a62060def8854c289c33ad9beba12660e65a62efe2ecba69993054ab32a",
-      "role": "public project state and algorithm-only focus"
+      "sha256": "f90137044bff172d5756fd622fdb9ded3fd0ac9328d69624bd78d2d379f3e850",
+      "role": "public algorithm state, import surface and test count"
     },
     {
       "path": "docs/50-INTENT-COMPILER-E-SEMANTIC-IR.md",
@@ -515,7 +515,7 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "a2713210643d97eec9fe3a3842ff0067c4f021d6f1a7bbed267dc88021d28047",
+      "sha256": "5d3286502cba4c016359310a3ab5374af2df9774cde274269102fbc913eb31e3",
       "role": "organized documentation, maps and historical design records"
     },
     {
@@ -551,7 +551,7 @@
     {
       "path": "research/meta_symbiotic_learning.py",
       "kind": "file",
-      "sha256": "56bad64ebdb990feeaeabf5848db8df29fa52d90225d91d5b689161653ea2e0e",
+      "sha256": "96aa71c6a20bfa20531880709ddeb456e6ff4204986bbdbecc3714462c27b18f",
       "role": "verified-history ranking policy"
     },
     {
@@ -703,6 +703,36 @@
       "kind": "file",
       "sha256": "bbefdd4cbe2813be9106743c874e1069a0151958668fb2861bddcb111236ebdb",
       "role": "cross-language protocol conformance test"
+    },
+    {
+      "path": "research/test_public_api.py",
+      "kind": "file",
+      "sha256": "228ce2f4f1dc37ffd54414e64bddc193b554c160bd1f1a71c7405ff16647edb8",
+      "role": "public proposal-only API tests"
+    },
+    {
+      "path": "research/__init__.py",
+      "kind": "file",
+      "sha256": "413eee641e4587337ba5dfd28582c3611b147b67d1d12aed93afc80faeedd9d8",
+      "role": "research package marker"
+    },
+    {
+      "path": "herus_symbiotic/__init__.py",
+      "kind": "file",
+      "sha256": "215608547edcc4b4a3283c4b850073662c53e9675d7967a152fa897e62b6261e",
+      "role": "stable public import surface v0.1.0"
+    },
+    {
+      "path": "pyproject.toml",
+      "kind": "file",
+      "sha256": "221a82347c911f8e405c7a3503fe171e7597caaeda601860038e6ddd3125d11a",
+      "role": "reproducible package metadata"
+    },
+    {
+      "path": "docs/91-BIBLIOTECA-PUBLICA-SYMBIOTIC-LEARNING.md",
+      "kind": "file",
+      "sha256": "a64b724ae8db269fb0ae1b727179b2c2c985e7a3f9f67e863e2f3e5c08581c88",
+      "role": "public library contract and limits"
     }
   ],
   "components": [

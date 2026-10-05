@@ -42,6 +42,8 @@ Sobre essa camada, o [Meta-Simbionte](docs/85-META-SIMBIONTE-E-HISTORICO-DE-SOLU
 
 O objetivo imediato é concluir e falsificar o algoritmo Symbiotic Learning e seu meta-aprendizado. A conformidade C11 e o protocolo externo são tratados como implementações de biblioteca e testes de interoperabilidade; não são uma solicitação para iniciar validação física.
 
+A superfície importável está em [`herus_symbiotic`](docs/91-BIBLIOTECA-PUBLICA-SYMBIOTIC-LEARNING.md), versão `0.1.0`. A API é proposal-only: importar e inferir não executa ações, acessa rede ou concede autoridade.
+
 ## O que ainda não existe
 
 Ainda não existe prova de autonomia, alcance de rádio, consumo, temperatura, ergonomia, segurança física, benefício social, acessibilidade populacional, adaptação a qualquer dispositivo, linguagem aberta, execução externa ou simbiose geral.
@@ -56,7 +58,7 @@ PYTHONPATH=research python3 -m research.bridge_product
 python3 tools/provenance_audit.py --strict research/software_provenance_manifest.json
 ```
 
-Na última verificação local, a pesquisa passou com **174 testes e um skip**, e o proof integral confirmou as invariantes host-only e de simulação. A campanha ampla, o holdout local, o harness black-box e o protocolo entre processos também separam acerto seguro de falso aceite. Isso é uma regressão interna, não uma prova de produto ou de campo.
+Na última verificação local, a pesquisa passou com **177 testes e um skip**, e o proof integral confirmou as invariantes host-only e de simulação. A campanha ampla, o holdout local, o harness black-box, a API pública e o protocolo entre processos também separam acerto seguro de falso aceite. Isso é uma regressão interna, não uma prova de produto ou de campo.
 
 ## Documentos de decisão
 
@@ -79,6 +81,7 @@ Na última verificação local, a pesquisa passou com **174 testes e um skip**, 
 | [Host black-box](docs/88-HOST-BLACK-BOX-E-ROTACAO.md) | Estado parcial, ações renomeadas e rotação de interface. |
 | [Protocolo externo](docs/89-PROTOCOLO-EXTERNO-E-ISOLAMENTO.md) | Host em processo separado, JSONL, corrupção e timeout fail-closed. |
 | [Host JSONL v1](docs/90-PROTOCOLO-HERUS-HOST-JSONL-V1.md) | Contrato congelado de interoperabilidade entre learner e hospedeiro. |
+| [Biblioteca pública](docs/91-BIBLIOTECA-PUBLICA-SYMBIOTIC-LEARNING.md) | API importável v0.1.0, proposal-only e sem efeitos colaterais. |
 
 ## Código por papel
 
