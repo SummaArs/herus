@@ -1,0 +1,17 @@
+{
+  "authority_granted": false,
+  "corrupt_response": "{\"reason\": \"invalid_json\", \"status\": \"ERROR\"}",
+  "first_action": "target_x",
+  "fresh_evidence_required": true,
+  "initial_actions": [
+    "target_x",
+    "target_y"
+  ],
+  "process_isolated": true,
+  "rotated_actions": [
+    "target_level",
+    "target_new"
+  ],
+  "second_action": "target_new",
+  "survived_corruption": true
+}

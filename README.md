@@ -52,7 +52,7 @@ PYTHONPATH=research python3 -m research.bridge_product
 python3 tools/provenance_audit.py --strict research/software_provenance_manifest.json
 ```
 
-Na última verificação local, a pesquisa passou com **171 testes e um skip**, e o proof integral confirmou as invariantes host-only e de simulação. A campanha ampla, o holdout local e o harness black-box também separam acerto seguro de falso aceite. Isso é uma regressão interna, não uma prova de produto ou de campo.
+Na última verificação local, a pesquisa passou com **174 testes e um skip**, e o proof integral confirmou as invariantes host-only e de simulação. A campanha ampla, o holdout local, o harness black-box e o protocolo entre processos também separam acerto seguro de falso aceite. Isso é uma regressão interna, não uma prova de produto ou de campo.
 
 ## Documentos de decisão
 
@@ -73,6 +73,7 @@ Na última verificação local, a pesquisa passou com **171 testes e um skip**, 
 | [Campanha ampla](docs/86-CAMPANHA-WIDE-SYMBIOTIC-LEARNING.md) | 100 casos, baselines e falso aceite separado do acerto. |
 | [Holdout independente](docs/87-HOLDOUT-INDEPENDENTE-SYMBIOTIC.md) | 60 fixtures separados e oracle não fornecido ao learner. |
 | [Host black-box](docs/88-HOST-BLACK-BOX-E-ROTACAO.md) | Estado parcial, ações renomeadas e rotação de interface. |
+| [Protocolo externo](docs/89-PROTOCOLO-EXTERNO-E-ISOLAMENTO.md) | Host em processo separado, JSONL, corrupção e timeout fail-closed. |
 
 ## Código por papel
 

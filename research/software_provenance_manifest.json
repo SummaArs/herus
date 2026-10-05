@@ -47,7 +47,7 @@
     {
       "path": "research/Makefile",
       "kind": "file",
-      "sha256": "858511e2b5d070c272a3eb81da67b502010932df9e19723ee32c178f809aba0d",
+      "sha256": "83eb21435870a35de93e35e77587ac332893b0a6b8cdac9cd35439fcd6cfa3e9",
       "role": "host-only research test entrypoint"
     },
     {
@@ -251,7 +251,7 @@
     {
       "path": "README.md",
       "kind": "file",
-      "sha256": "30b4b43064549bd8888c5a7b0345050b1bf51db25edd0091e04f9153298bf19a",
+      "sha256": "ae836b13b794b4d620e9d256e3b47f2af664eb7df2c0b6840445280132128017",
       "role": "public project state and verification documentation"
     },
     {
@@ -515,7 +515,7 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "06daeba15e3cc7b60098a2087d81fd3607a1ef0518ee3bf0a548249a3076b90f",
+      "sha256": "6a6ccb8061e6a4453b3f4f5e8c1c77294e780e6ecacc6314ad210d3d01d17254",
       "role": "organized documentation, maps and historical design records"
     },
     {
@@ -649,6 +649,36 @@
       "kind": "file",
       "sha256": "375da6df6fed2755a8232ab1edd6ba85adfcb3b8ea78b09aa60866f787e4c54e",
       "role": "black-box harness analysis and limits"
+    },
+    {
+      "path": "research/external_host_protocol.py",
+      "kind": "file",
+      "sha256": "51bc3da52e2f07676e1605da5e601eb00a7f033941a52ffe554dc28da98816f5",
+      "role": "process-isolated JSONL host protocol"
+    },
+    {
+      "path": "research/test_external_host_protocol.py",
+      "kind": "file",
+      "sha256": "aed2336314e121d72554d2a8d538dc959356cfd15ebd17dc197413ff8bd43800",
+      "role": "external protocol corruption and timeout tests"
+    },
+    {
+      "path": "research/external_host_evidence.py",
+      "kind": "file",
+      "sha256": "fa26357a35cffc47eb9bd379ec674024a1bd057d828170527090443b87f973d0",
+      "role": "external protocol reproducible evidence runner"
+    },
+    {
+      "path": "research/evidence/external_host_protocol_v1.json",
+      "kind": "file",
+      "sha256": "7b46e6799e95d4a297232d428fb2c01a0f8a5a541bb2885ee51ba80001c53808",
+      "role": "external process raw evidence"
+    },
+    {
+      "path": "docs/89-PROTOCOLO-EXTERNO-E-ISOLAMENTO.md",
+      "kind": "file",
+      "sha256": "e20e5535ad3df7298c4cce8db2c1c27de9e2b0084bec7ef1e2d2a5ae03f8b9f0",
+      "role": "process isolation analysis and limits"
     }
   ],
   "components": [
