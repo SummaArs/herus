@@ -12,7 +12,7 @@ processo learner
 processo host externo
 ```
 
-O host externo mantém em seu próprio processo:
+O host externo agora é o programa standalone `research/independent_host_process.py`, sem imports do learner. Ele mantém em seu próprio processo:
 
 - mapa de ações;
 - estado privado;
@@ -47,6 +47,6 @@ Evidência: [`research/evidence/external_host_protocol_v1.json`](../research/evi
 
 ## Interpretação
 
-Este é um avanço sobre o black-box anterior porque o host e o learner não compartilham objetos Python, classes ou memória no caminho operacional. A comunicação é um protocolo textual limitado.
+Este é um avanço sobre o black-box anterior porque o host e o learner não compartilham objetos Python, classes ou memória no caminho operacional. A comunicação é o protocolo congelado [HERUS Host JSONL v1](90-PROTOCOLO-HERUS-HOST-JSONL-V1.md).
 
 Ainda não é prova de independência científica: ambos os processos são gerados pelo mesmo repositório e executados na mesma máquina. A próxima validação deve usar um host implementado separadamente, ou pelo menos um protocolo congelado antes do learner.

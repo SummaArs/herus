@@ -251,7 +251,7 @@
     {
       "path": "README.md",
       "kind": "file",
-      "sha256": "ae836b13b794b4d620e9d256e3b47f2af664eb7df2c0b6840445280132128017",
+      "sha256": "f1a812f4fd6f15b9527834c0840d4748cc4b630292fb9945387a94fab2c6fd64",
       "role": "public project state and verification documentation"
     },
     {
@@ -515,7 +515,7 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "6a6ccb8061e6a4453b3f4f5e8c1c77294e780e6ecacc6314ad210d3d01d17254",
+      "sha256": "c98d33ba5ce543fa65708c4148b6f6c86aaf4179e286ed11056e5b52e51ce884",
       "role": "organized documentation, maps and historical design records"
     },
     {
@@ -653,8 +653,8 @@
     {
       "path": "research/external_host_protocol.py",
       "kind": "file",
-      "sha256": "51bc3da52e2f07676e1605da5e601eb00a7f033941a52ffe554dc28da98816f5",
-      "role": "process-isolated JSONL host protocol"
+      "sha256": "1f6cdaf7656fd0f307dce1a23f86195e6b09c4c2e0c34e4ca01af9969a60a39c",
+      "role": "client for frozen process-isolated JSONL protocol"
     },
     {
       "path": "research/test_external_host_protocol.py",
@@ -677,8 +677,20 @@
     {
       "path": "docs/89-PROTOCOLO-EXTERNO-E-ISOLAMENTO.md",
       "kind": "file",
-      "sha256": "e20e5535ad3df7298c4cce8db2c1c27de9e2b0084bec7ef1e2d2a5ae03f8b9f0",
+      "sha256": "79c7a7f63bb80af519af18bf919abc48ff144f31eb144fba80d400b62e9fe50f",
       "role": "process isolation analysis and limits"
+    },
+    {
+      "path": "research/independent_host_process.py",
+      "kind": "file",
+      "sha256": "2bbfe8583a591149f6217ff0a5e4cc576438d8300f0bcaae25a785a29ac1b5f6",
+      "role": "standalone host implementation with stdlib only"
+    },
+    {
+      "path": "docs/90-PROTOCOLO-HERUS-HOST-JSONL-V1.md",
+      "kind": "file",
+      "sha256": "a1b866232a6be86b2b729363048a9a6410db8c2802f1e17d7fdf314c167ebdca",
+      "role": "frozen public host protocol"
     }
   ],
   "components": [

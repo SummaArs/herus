@@ -1,30 +1,27 @@
-"""External host protocol for process-isolated symbiosis tests."""
+"""Client for the frozen HERUS Host JSONL v1 protocol.
+
+The host implementation is intentionally elsewhere in
+``independent_host_process.py`` and is launched as a separate process.
+"""
 from __future__ import annotations
 import json
 import select
 import subprocess
 import sys
-import time
-from dataclasses import dataclass
-from typing import Mapping
+from pathlib import Path
 from symbiotic_learning import Episode
-
-@dataclass(frozen=True)
-class WireObservation:
-    action: str
-    before: dict[str, int]
-    after: dict[str, int]
-    context: dict[str, int]
-    step: int
-    risk: int
 
 class ExternalHostClient:
     def __init__(self, *, timeout: float = 0.5, startup_timeout: float = 1.0) -> None:
         self.timeout = timeout
-        self.proc = subprocess.Popen([sys.executable, __file__, '--server'], stdin=subprocess.PIPE, stdout=subprocess.PIPE, text=True, bufsize=1)
+        host_path = Path(__file__).with_name('independent_host_process.py')
+        self.proc = subprocess.Popen([sys.executable, str(host_path)], stdin=subprocess.PIPE, stdout=subprocess.PIPE, text=True, bufsize=1)
         old_timeout = self.timeout
         self.timeout = startup_timeout
-        self._request({'op': 'ready'})
+        ready = self._request({'op': 'ready'})
+        if ready.get('protocol') != 'herus-host-jsonl-v1':
+            self.proc.kill()
+            raise RuntimeError('protocol_version_mismatch')
         self.timeout = old_timeout
 
     def _request(self, payload: dict[str, object]) -> dict[str, object]:
@@ -34,6 +31,9 @@ class ExternalHostClient:
         ready, _, _ = select.select([self.proc.stdout], [], [], self.timeout)
         if not ready:
             self.proc.kill()
+            self.proc.wait(timeout=1)
+            if self.proc.stdin: self.proc.stdin.close()
+            if self.proc.stdout: self.proc.stdout.close()
             raise TimeoutError('external_host_timeout')
         line = self.proc.stdout.readline()
         if not line:
@@ -56,7 +56,8 @@ class ExternalHostClient:
 
     def raw(self, line: str) -> str:
         assert self.proc.stdin and self.proc.stdout
-        self.proc.stdin.write(line + '\n'); self.proc.stdin.flush()
+        self.proc.stdin.write(line + '\n')
+        self.proc.stdin.flush()
         ready, _, _ = select.select([self.proc.stdout], [], [], self.timeout)
         if not ready:
             self.proc.kill()
@@ -73,35 +74,3 @@ class ExternalHostClient:
         self.proc.wait(timeout=1)
         if self.proc.stdin: self.proc.stdin.close()
         if self.proc.stdout: self.proc.stdout.close()
-
-
-def _server() -> None:
-    actions = {'target_x': {'mode': 1}, 'target_y': {'level': 1}}
-    public = {'mode': 0, 'level': 0}
-    context = {'zone': 1}
-    step = 0
-    for line in sys.stdin:
-        try:
-            request = json.loads(line)
-            op = request.get('op')
-            if op == 'ready': response = {'status': 'OK'}
-            elif op == 'describe': response = {'status': 'OK', 'actions': sorted(actions)}
-            elif op == 'probe':
-                action = request.get('action')
-                before = dict(public); step += 1; risk = 0 if action in actions else 1
-                for key, value in actions.get(action, {}).items(): public[key] = value
-                response = {'status': 'OK', 'before': before, 'after': dict(public), 'context': dict(context), 'step': step, 'risk': risk}
-            elif op == 'reset': public = {'mode': 0, 'level': 0}; step += 1; response = {'status': 'OK'}
-            elif op == 'rotate': actions = {'target_new': {'mode': 1}, 'target_level': {'level': 1}}; step += 1; response = {'status': 'OK'}
-            elif op == 'delay': time.sleep(float(request.get('seconds', 0))); response = {'status': 'OK'}
-            elif op == 'quit': response = {'status': 'OK'}; print(json.dumps(response), flush=True); return
-            else: response = {'status': 'ERROR', 'reason': 'unknown_operation'}
-        except json.JSONDecodeError: response = {'status': 'ERROR', 'reason': 'invalid_json'}
-        except Exception: response = {'status': 'ERROR', 'reason': 'malformed_request'}
-        try:
-            print(json.dumps(response, sort_keys=True), flush=True)
-        except BrokenPipeError:
-            return
-
-if __name__ == '__main__':
-    if '--server' in sys.argv: _server()

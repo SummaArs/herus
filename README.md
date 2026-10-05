@@ -74,6 +74,7 @@ Na última verificação local, a pesquisa passou com **174 testes e um skip**, 
 | [Holdout independente](docs/87-HOLDOUT-INDEPENDENTE-SYMBIOTIC.md) | 60 fixtures separados e oracle não fornecido ao learner. |
 | [Host black-box](docs/88-HOST-BLACK-BOX-E-ROTACAO.md) | Estado parcial, ações renomeadas e rotação de interface. |
 | [Protocolo externo](docs/89-PROTOCOLO-EXTERNO-E-ISOLAMENTO.md) | Host em processo separado, JSONL, corrupção e timeout fail-closed. |
+| [Host JSONL v1](docs/90-PROTOCOLO-HERUS-HOST-JSONL-V1.md) | Contrato congelado de interoperabilidade entre learner e hospedeiro. |
 
 ## Código por papel
 
