@@ -27,6 +27,8 @@ O mecanismo mais defensável está no pacote [Symbiont v2](research/symbiont_v2/
 
 A nova hipótese algorítmica é o [Symbiotic Learning v2](docs/84-ALGORITMO-SYMBIOTIC-LEARNING.md): indução contextual, bounded e reversível de efeitos observáveis para transferir uma Skill entre hospedeiros. O nome descreve uma linha de pesquisa proposta; ainda não é um campo científico estabelecido nem uma alegação de superioridade sobre os paradigmas existentes.
 
+Sobre essa camada, o [Meta-Simbionte](docs/85-META-SIMBIONTE-E-HISTORICO-DE-SOLUCOES.md) mantém um histórico append-only de soluções verificadas. O histórico orienta novas sondagens e personaliza propostas, mas nunca substitui evidência fresca, autoridade ou confirmação humana.
+
 ## O que já existe
 
 - Firmware C com contratos de semântica, memória, interação, confiança, recuperação e ameaças.
@@ -50,7 +52,7 @@ PYTHONPATH=research python3 -m research.bridge_product
 python3 tools/provenance_audit.py --strict research/software_provenance_manifest.json
 ```
 
-Na última verificação local, a pesquisa passou com **158 testes e um skip**, e o proof integral confirmou as invariantes host-only e de simulação. Isso é uma regressão interna, não uma prova de produto ou de campo.
+Na última verificação local, a pesquisa passou com **163 testes e um skip**, e o proof integral confirmou as invariantes host-only e de simulação. Isso é uma regressão interna, não uma prova de produto ou de campo.
 
 ## Documentos de decisão
 
@@ -67,6 +69,7 @@ Na última verificação local, a pesquisa passou com **158 testes e um skip**, 
 | [Rodada decisiva](docs/56-RODADA-DECISIVA-HERUS-BRIDGE.md) | P0, campanha causal e HERUS Bridge. |
 | [Direção soberana](docs/57-DIRECAO-SOBERANA-E-SIMBIONTE.md) | Soberania de dados, Symbiont transferível e futuro objetivo. |
 | [Symbiotic Learning](docs/84-ALGORITMO-SYMBIOTIC-LEARNING.md) | Algoritmo bounded de indução de efeitos e transferência de Skills. |
+| [Meta-Simbionte](docs/85-META-SIMBIONTE-E-HISTORICO-DE-SOLUCOES.md) | Histórico verificável e adaptação personalizada sem reutilização cega. |
 
 ## Código por papel
 
