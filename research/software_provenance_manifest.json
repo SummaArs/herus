@@ -47,7 +47,7 @@
     {
       "path": "research/Makefile",
       "kind": "file",
-      "sha256": "b1321ceb71ab960cdbd4348724367ee5022263d2bae589dab64af6273d1524fa",
+      "sha256": "a43529ded079e55ab7dc026cd2b770292cad73a41b3c4f2b3568216e7ed15bc6",
       "role": "host-only research test entrypoint"
     },
     {
@@ -251,7 +251,7 @@
     {
       "path": "README.md",
       "kind": "file",
-      "sha256": "1244d93d3d2013bb3f020e8d867ec76135790bb5dc369da39ea78ac5828ff58a",
+      "sha256": "7406029e7fdf8aa1dd7b4d359aaca2222d3c8d044cd16e95caa964f5eb220d05",
       "role": "public project state and verification documentation"
     },
     {
@@ -515,8 +515,26 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "548abbe27ae9e940902c1179b028127a72cc5c7e42e689db8cf9b256f67cd3d0",
+      "sha256": "88195e70f3bcd84ec11bffeedfecf07a8b7c1f2c54914dc1045d166856f509d7",
       "role": "organized documentation, maps and historical design records"
+    },
+    {
+      "path": "research/symbiotic_learning.py",
+      "kind": "file",
+      "sha256": "6ac2599ea9782db0358eb80c9f2112b6a8f880261ce0e606c4fff38c46888b31",
+      "role": "Symbiotic Learning v1 algorithm"
+    },
+    {
+      "path": "research/test_symbiotic_learning.py",
+      "kind": "file",
+      "sha256": "cabe030644f7523064b29672c19e0bdc8299776dffa1d1acf0e9c7bbeb598e15",
+      "role": "adversarial Symbiotic Learning tests"
+    },
+    {
+      "path": "docs/84-ALGORITMO-SYMBIOTIC-LEARNING.md",
+      "kind": "file",
+      "sha256": "a1463d2d766b73d8dea65f469c5f4f4065de14479dac3e3d58cb77119659c88d",
+      "role": "Symbiotic Learning proposal and limits"
     }
   ],
   "components": [

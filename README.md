@@ -25,6 +25,8 @@ O **ASA Core** mantém uma identidade persistente, observa um hospedeiro, aprend
 
 O mecanismo mais defensável está no pacote [Symbiont v2](research/symbiont_v2/README.md). O primeiro produto de pesquisa é o [HERUS Bridge](docs/56-RODADA-DECISIVA-HERUS-BRIDGE.md), uma demonstração local de proposta, prévia, confirmação, cancelamento, abstenção e parada sem transmissão nem efeitos externos.
 
+A nova hipótese algorítmica é o [Symbiotic Learning v1](docs/84-ALGORITMO-SYMBIOTIC-LEARNING.md): indução incremental de efeitos observáveis para transferir uma Skill entre hospedeiros. O nome descreve uma linha de pesquisa proposta; ainda não é um campo científico estabelecido nem uma alegação de superioridade sobre os paradigmas existentes.
+
 ## O que já existe
 
 - Firmware C com contratos de semântica, memória, interação, confiança, recuperação e ameaças.
@@ -48,7 +50,7 @@ PYTHONPATH=research python3 -m research.bridge_product
 python3 tools/provenance_audit.py --strict research/software_provenance_manifest.json
 ```
 
-Na última verificação local, a pesquisa passou com **148 testes e um skip**, e o proof integral confirmou as invariantes host-only e de simulação. Isso é uma regressão interna, não uma prova de produto ou de campo.
+Na última verificação local, a pesquisa passou com **154 testes e um skip**, e o proof integral confirmou as invariantes host-only e de simulação. Isso é uma regressão interna, não uma prova de produto ou de campo.
 
 ## Documentos de decisão
 
@@ -64,6 +66,7 @@ Na última verificação local, a pesquisa passou com **148 testes e um skip**, 
 | [Etapas finais](docs/55-ETAPAS-FINAIS-EXECUTOR-HUMANO.md) | Executor sintético, holdout estendido e protocolo social. |
 | [Rodada decisiva](docs/56-RODADA-DECISIVA-HERUS-BRIDGE.md) | P0, campanha causal e HERUS Bridge. |
 | [Direção soberana](docs/57-DIRECAO-SOBERANA-E-SIMBIONTE.md) | Soberania de dados, Symbiont transferível e futuro objetivo. |
+| [Symbiotic Learning](docs/84-ALGORITMO-SYMBIOTIC-LEARNING.md) | Algoritmo bounded de indução de efeitos e transferência de Skills. |
 
 ## Código por papel
 
