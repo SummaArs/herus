@@ -1,0 +1,9 @@
+{
+  "authority_granted": false,
+  "fresh_evidence_required": true,
+  "rotated_action": "target_new",
+  "source_action": "source_a",
+  "target_action": "target_x",
+  "target_action_space_changed": true,
+  "target_host_private_state_hidden": true
+}

@@ -47,7 +47,7 @@
     {
       "path": "research/Makefile",
       "kind": "file",
-      "sha256": "8631b6ae7d65c4c4b1f4c4c0a499303646e2f403faede5be8ac771a70bfebee6",
+      "sha256": "858511e2b5d070c272a3eb81da67b502010932df9e19723ee32c178f809aba0d",
       "role": "host-only research test entrypoint"
     },
     {
@@ -251,7 +251,7 @@
     {
       "path": "README.md",
       "kind": "file",
-      "sha256": "c00ec631880504f7f25099d020b5ce93c6c5c6c9cf763d2f14fdca6b41bd6ee7",
+      "sha256": "30b4b43064549bd8888c5a7b0345050b1bf51db25edd0091e04f9153298bf19a",
       "role": "public project state and verification documentation"
     },
     {
@@ -515,7 +515,7 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "e935f48c1147a183ffc107ea7586f7ecbf499da01aa817928136bc0de6a164cd",
+      "sha256": "06daeba15e3cc7b60098a2087d81fd3607a1ef0518ee3bf0a548249a3076b90f",
       "role": "organized documentation, maps and historical design records"
     },
     {
@@ -625,6 +625,30 @@
       "kind": "file",
       "sha256": "16a36ce3da4b6a03a1895892faa6d25aee38aa2b18f4af8c29c22e4f6fdee829",
       "role": "holdout analysis and discovered representation bug"
+    },
+    {
+      "path": "research/blackbox_symbiosis.py",
+      "kind": "file",
+      "sha256": "f94d3826f1edc8c56d7fdc43ceec8291311408b453b191f077ced33d302c0446",
+      "role": "black-box host adaptation harness"
+    },
+    {
+      "path": "research/test_blackbox_symbiosis.py",
+      "kind": "file",
+      "sha256": "094f6c42aa86c55400d367f483a07b2ded044a9b05bd8163fe0a6c320462d050",
+      "role": "black-box adaptation tests"
+    },
+    {
+      "path": "research/evidence/blackbox_symbiotic_v1.json",
+      "kind": "file",
+      "sha256": "50e382f879b7b9eb83bf4eb727d5d83cd46744ba3d0d979a4d178a068124e1b9",
+      "role": "black-box raw evidence"
+    },
+    {
+      "path": "docs/88-HOST-BLACK-BOX-E-ROTACAO.md",
+      "kind": "file",
+      "sha256": "375da6df6fed2755a8232ab1edd6ba85adfcb3b8ea78b09aa60866f787e4c54e",
+      "role": "black-box harness analysis and limits"
     }
   ],
   "components": [
