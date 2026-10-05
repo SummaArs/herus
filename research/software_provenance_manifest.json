@@ -47,7 +47,7 @@
     {
       "path": "research/Makefile",
       "kind": "file",
-      "sha256": "fe5b9e79ac2c570acc94cbc43ce8a63df3da4d1452c6746be41b5d3b901584b8",
+      "sha256": "03492306eb3270f17dcd348ec1acd37b699e0d52cbcf0bd565006a916e29a0fe",
       "role": "host-only research test entrypoint"
     },
     {
@@ -251,7 +251,7 @@
     {
       "path": "README.md",
       "kind": "file",
-      "sha256": "96947874f144b92c849b6b23fc24ccdc83457e1b5290546ac50a530790ac0883",
+      "sha256": "48d5fd52a5cbb4875512f4e4997991f45313a7367666f58a38b3706180063130",
       "role": "public project state and verification documentation"
     },
     {
@@ -515,7 +515,7 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "b83eab3334686464ae8916a0fbaa6d17a953a1b78009495cfedf4dee09b952cd",
+      "sha256": "2e2ee3261060221a1062b7377bec954108e7b5751facd892a8fbd7dbdef90dda",
       "role": "organized documentation, maps and historical design records"
     },
     {
@@ -577,6 +577,30 @@
       "kind": "file",
       "sha256": "79b26b4ea283dfeba11c760f4c717d68fc144c8a344d20bb6d9317a018440d05",
       "role": "meta-symbiotic benchmark tests"
+    },
+    {
+      "path": "research/wide_symbiotic_benchmark.py",
+      "kind": "file",
+      "sha256": "652b1e56d96e9e77856667e98b6393702b7f25c8b36e3839bbb9e90f556ff64d",
+      "role": "wide Symbiotic Learning benchmark"
+    },
+    {
+      "path": "research/test_wide_symbiotic_benchmark.py",
+      "kind": "file",
+      "sha256": "3de3fbbfc4ef96ddf7fadd1f56705092dd5a86831e0cb2f98855c12ac544abd3",
+      "role": "wide benchmark tests"
+    },
+    {
+      "path": "research/evidence/wide_symbiotic_learning_v1.json",
+      "kind": "file",
+      "sha256": "4e21b8e7b22929630754919773ee76e5ed5e94125cdc0d26d560df7b0deb5adf",
+      "role": "wide benchmark raw evidence"
+    },
+    {
+      "path": "docs/86-CAMPANHA-WIDE-SYMBIOTIC-LEARNING.md",
+      "kind": "file",
+      "sha256": "2a7fb46a489bc8356e21d169632f9664a00cc43a1bcf33fc112b2e6f08b767a9",
+      "role": "wide campaign analysis and limits"
     }
   ],
   "components": [
