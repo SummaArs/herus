@@ -47,8 +47,8 @@
     {
       "path": "research/Makefile",
       "kind": "file",
-      "sha256": "e2b2e83c0b72bca7b3b70ce26c754b694a35feaf1a503a5be7f485948142a3fe",
-      "role": "programming skill test gate"
+      "sha256": "92b866e1c077b70af18a5296d6ba071ec48dd49f485b6bd77fae7ccc5500ecbe",
+      "role": "obligation ledger test gate"
     },
     {
       "path": "research/semantic_ir.py",
@@ -251,8 +251,8 @@
     {
       "path": "README.md",
       "kind": "file",
-      "sha256": "334b437aec73e0781d77da2ca1ebd277c3e90b30bdde2488253856556f6d4929",
-      "role": "programming skill status and test count"
+      "sha256": "e0756acecda0091c58de012759104f474f61456b46946b4c61556ce92d2adcbf",
+      "role": "REA-inspired obligation ledger status and test count"
     },
     {
       "path": "docs/50-INTENT-COMPILER-E-SEMANTIC-IR.md",
@@ -515,7 +515,7 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "df51babf3b5255bdbc906b797b2527cbab1a99ba91981a586098e79f0c5399c5",
+      "sha256": "ce8f1143fae495c751bc2b7a427bf1e302ce2f817b11f2f2f5910132671477a9",
       "role": "organized documentation, maps and historical design records"
     },
     {
@@ -719,8 +719,8 @@
     {
       "path": "herus_symbiotic/__init__.py",
       "kind": "file",
-      "sha256": "f3c76eba0b9adcaa16510d6c645a414427795131d3ec4d367aabe659c3a07b25",
-      "role": "public programming skill import"
+      "sha256": "43e51ba350d131118ca4807089453d30ef6c8462056b4569d94f35515af9586e",
+      "role": "public evidence ledger import"
     },
     {
       "path": "pyproject.toml",
@@ -913,6 +913,24 @@
       "kind": "file",
       "sha256": "94df86f4216595eb01986b7873c153f32a451ea92345f47b607f8115b376bc57",
       "role": "programming skill specification and limits"
+    },
+    {
+      "path": "herus_symbiotic/programming_evidence.py",
+      "kind": "file",
+      "sha256": "7461533714a61def68f242bedccead11a1e21eea897ac03658259a273d99bc95",
+      "role": "authenticated programming evidence ledger"
+    },
+    {
+      "path": "research/test_programming_evidence.py",
+      "kind": "file",
+      "sha256": "197e6cf121d18829b4ff9cc3f7566dd7aa2daedde1fc02c32d9772c007770ac5",
+      "role": "obligation closure adversarial tests"
+    },
+    {
+      "path": "docs/100-AUDITORIA-REA-E-LEDGER-DE-PROGRAMACAO.md",
+      "kind": "file",
+      "sha256": "9ed747acd352a58b0d149e3a4e804af9e13bd51128a044b46760ea99e8ffccc9",
+      "role": "REA audit and programming ledger specification"
     }
   ],
   "components": [
