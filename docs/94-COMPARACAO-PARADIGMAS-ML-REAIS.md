@@ -13,14 +13,15 @@ Nenhum rótulo MIntRec foi transformado em evento HERUS.
 | Supervisionado | Naive Bayes multinomial | 49,22% | 37,44% | 100% |
 | Supervisionado | 1-NN cosseno | 39,90% | 32,20% | 100% |
 | Não supervisionado | K-means + mapeamento S05 | 31,35% | 15,99% | 100% |
-| Reforço | Bandit contextual proxy | 13,21% | 12,52% | 99,48% |
+| Auto-supervisionado | Coocorrência PPMI + protótipo congelado | 17,88% | 9,12% | 100% |
+| Reforço | Bandit contextual proxy | 11,92% | 10,94% | 99,48% |
 | Memória simbiótica exata | Contexto finito | 6,22% | 11,88% | 6,22% |
 
 ## Auto-supervisionado
 
-Não foi apresentado como resultado nesta rodada. O corpus não fornece um protocolo auto-supervisionado independente que seja comparável sem introduzir uma decisão metodológica arbitrária. Criar um “auto-supervisionado” apenas renomeando augmentation ou clustering seria maquiagem experimental.
+Esta primeira versão usa coocorrência local e PPMI no S04 como tarefa de representação sem rótulos. A representação é congelada; apenas protótipos supervisionados são ajustados depois. Ela foi avaliada no S06 e obteve 17,88%. Isso é um resultado real, mas fraco.
 
-O próximo protocolo auto-supervisionado deverá especificar:
+O protocolo especifica:
 
 1. tarefa pretexto sem rótulo;
 2. divisão temporal;
@@ -28,6 +29,8 @@ O próximo protocolo auto-supervisionado deverá especificar:
 4. congelamento antes da avaliação;
 5. transferência para S06;
 6. comparação contra os mesmos baselines.
+
+O resultado não vence K-means, 1-NN ou Naive Bayes. Também não é um transformer.
 
 ## Limites do reforço
 
@@ -38,3 +41,7 @@ Logo, não é correto afirmar que o HERUS venceu ou perdeu o RL em geral. O resu
 ## Estado científico
 
 O HERUS ainda não vence os baselines supervisionados reais. O valor diferencial continua sendo a combinação de proposta, abstenção, memória verificável e controle de autoridade. Para competir em desempenho, ainda falta uma representação transferível que preserve essas garantias.
+
+## Transformers
+
+Não há uma vitória contra transformers nesta rodada porque nenhum transformer foi treinado e avaliado neste mesmo protocolo. A comparação correta exigirá fixar modelo, tokenizer, orçamento de parâmetros, dados permitidos, fine-tuning, seed, custo e holdout. “Vencer transformers” é uma hipótese futura falsificável, não um resultado atual.

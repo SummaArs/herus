@@ -1,0 +1,42 @@
+{
+  "comparability": {
+    "reinforcement": "proxy only: labels become actions and exact-label reward; no physical state transition exists",
+    "self_supervised": "not claimed: this text corpus has no independent augmentation/pretext protocol yet",
+    "supervised": "direct 20-way classification; Naive Bayes remains the reference supervised baseline",
+    "unsupervised": "clusters have no labels; S05 is used only to map clusters to labels"
+  },
+  "dataset": {
+    "calibration": 1272,
+    "fit": 566,
+    "holdout": 386,
+    "holdout_season": "S06",
+    "id": "THU-IAR/MIntRec",
+    "source": "https://datasets-server.huggingface.co/rows"
+  },
+  "limits": [
+    "no MIntRec label is mapped to a HERUS event",
+    "text only; audio/video excluded",
+    "one temporal holdout",
+    "results do not establish superiority across ML"
+  ],
+  "methods": {
+    "reinforcement_contextual_bandit_proxy": {
+      "accuracy": 0.119171,
+      "coverage": 0.994819,
+      "macro_f1": 0.10936,
+      "selective_accuracy": 0.119792
+    },
+    "self_supervised_cooccurrence_frozen_prototype": {
+      "accuracy": 0.178756,
+      "coverage": 1.0,
+      "macro_f1": 0.091169,
+      "selective_accuracy": 0.178756
+    },
+    "unsupervised_kmeans_cluster_then_calibrate": {
+      "accuracy": 0.313472,
+      "coverage": 1.0,
+      "macro_f1": 0.15986,
+      "selective_accuracy": 0.313472
+    }
+  }
+}

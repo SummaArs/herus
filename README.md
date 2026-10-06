@@ -36,7 +36,7 @@ Sobre essa camada, o [Meta-Simbionte](docs/85-META-SIMBIONTE-E-HISTORICO-DE-SOLU
 - Protótipos Python para Semantic IR, raciocínio finito, Symbiont e avaliação de utilidade.
 - Holdouts históricos e uma campanha causal isolada para efeitos ocultos.
 - Benchmark real MIntRec com holdout por temporada e comparação contra Naive Bayes, 1-NN, centróides e maioria.
-- Comparação entre paradigmas supervisionado, não supervisionado e reforço proxy no mesmo holdout real; auto-supervisão permanece pendente por rigor metodológico.
+- Comparação entre paradigmas supervisionado, não supervisionado, auto-supervisionado e reforço proxy no mesmo holdout real; nenhum resultado atual supera o supervisionado.
 - Manifestos de hardware e proveniência local.
 - Documentação histórica desde o comunicador semântico original até a auditoria ASA.
 
@@ -60,7 +60,7 @@ PYTHONPATH=research python3 -m research.bridge_product
 python3 tools/provenance_audit.py --strict research/software_provenance_manifest.json
 ```
 
-Na última verificação local, a pesquisa passou com **177 testes e um skip**, e o proof integral confirmou as invariantes host-only e de simulação. A campanha ampla, o holdout local, o harness black-box, a API pública e o protocolo entre processos também separam acerto seguro de falso aceite. Isso é uma regressão interna, não uma prova de produto ou de campo.
+Na última verificação local, a pesquisa passou com **182 testes e um skip**, e o proof integral confirmou as invariantes host-only e de simulação. A campanha ampla, o holdout local, o harness black-box, a API pública, a auto-supervisão experimental e o protocolo entre processos também separam acerto seguro de falso aceite. Isso é uma regressão interna, não uma prova de produto ou de campo.
 
 ## Documentos de decisão
 

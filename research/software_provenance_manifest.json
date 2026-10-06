@@ -251,8 +251,8 @@
     {
       "path": "README.md",
       "kind": "file",
-      "sha256": "a32f8b5a304dc21dd5f7b870f633a64a55f838b464d74460c7f3994a05aef1bb",
-      "role": "cross-paradigm real ML comparison"
+      "sha256": "237f41a0247ca691258a50a9638ab4d6c03668796d87d377189d1cc840a08b77",
+      "role": "self-supervised benchmark status and test count"
     },
     {
       "path": "docs/50-INTENT-COMPILER-E-SEMANTIC-IR.md",
@@ -515,7 +515,7 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "cfd0b5fe3c6693c61890d8c8dc2cc24e501169132463c7420eeb22f2c8e0fad4",
+      "sha256": "1c12ac4b81ac914ded11a1847fb06fd2b4efa3c656b80af27b1860156d54e46e",
       "role": "organized documentation, maps and historical design records"
     },
     {
@@ -773,14 +773,14 @@
     {
       "path": "research/ml_paradigms_benchmark.py",
       "kind": "file",
-      "sha256": "3c13b26963a226f4a2099dc6431cca4af7f8b38fe01193691480067fce5fe5a5",
-      "role": "unsupervised and reinforcement proxy benchmark"
+      "sha256": "f8894cf7d9cf7576c7ce1bccc18b43dc8ecd718b356b98cf873eac6dc9ef6e64",
+      "role": "self-supervised cooccurrence representation benchmark"
     },
     {
       "path": "research/test_ml_paradigms_benchmark.py",
       "kind": "file",
-      "sha256": "3a4286ecce0a5421070523145a00de3aeac2656d0875eb02817cf924e0ec85d9",
-      "role": "paradigm benchmark deterministic tests"
+      "sha256": "184266a85edc9c18107622474a0ae1c1eee6f8a7b461aea4626785e192d2f016",
+      "role": "self-supervised adapter tests"
     },
     {
       "path": "research/evidence/ml_paradigms_mintrec_v1.json",
@@ -791,8 +791,14 @@
     {
       "path": "docs/94-COMPARACAO-PARADIGMAS-ML-REAIS.md",
       "kind": "file",
-      "sha256": "540142dd4ba42640237b92bfb0bcbb085edc569ec9c55c86389ae5bc66387b8c",
-      "role": "cross-paradigm methodology and limits"
+      "sha256": "a7c795294ddb3fff488801ad37472fc94d5af9369140fc86efa8b21dc80add7c",
+      "role": "updated paradigm comparison and transformer limit"
+    },
+    {
+      "path": "research/evidence/ml_paradigms_mintrec_v2.json",
+      "kind": "file",
+      "sha256": "33c322a6ce7d46e4f54e51c3a01d422adca58d3dae390a19f852f83a8ee3d0cb",
+      "role": "self-supervised real-data result"
     }
   ],
   "components": [

@@ -76,6 +76,38 @@ def contextual_bandit(fit, calibration, test, epsilon=0.0):
     return out
 
 
+def self_supervised_cooccurrence(fit, calibration, test, dimensions=16):
+    """Pretrain token geometry without labels, then use frozen prototypes.
+
+    The pretext task is local word-context cooccurrence on S04. Labels are
+    used only by the prototype head; S05 is not used to alter the geometry.
+    This is a small auditable self-supervised adapter, not a transformer.
+    """
+    vocab = vocabulary(fit, limit=1200)
+    words = list(vocab); index = {word: i for i, word in enumerate(words)}
+    co = np.zeros((len(words), len(words)), dtype=float)
+    for row in fit:
+        sequence = [word for word in tokens(row['text']) if word in index]
+        for i, word in enumerate(sequence):
+            for j in range(max(0, i - 2), min(len(sequence), i + 3)):
+                if i != j: co[index[word], index[sequence[j]]] += 1.0
+    if not len(words): return [None] * len(test)
+    # PPMI makes the representation depend on unlabeled distributional
+    # structure rather than the target labels.
+    total = max(1.0, co.sum()); row_totals = np.maximum(co.sum(axis=1, keepdims=True), 1e-12); col_totals = np.maximum(co.sum(axis=0, keepdims=True), 1e-12)
+    ppmi = np.maximum(np.log((co * total + 1e-12) / (row_totals * col_totals / total + 1e-12)), 0.0)
+    _, singular, vt = np.linalg.svd(ppmi, full_matrices=False)
+    embedding = vt[:min(dimensions, len(singular))].T * np.sqrt(singular[:min(dimensions, len(singular))])
+    def encode(row):
+        ids = [index[word] for word in tokens(row['text']) if word in index]
+        return embedding[ids].mean(axis=0) if ids else np.zeros(embedding.shape[1])
+    fit_vectors = [encode(row) for row in fit]; test_vectors = [encode(row) for row in test]
+    prototypes = defaultdict(list)
+    for row, vector_value in zip(fit, fit_vectors): prototypes[row['label']].append(vector_value)
+    prototypes = {label: np.mean(values, axis=0) for label, values in prototypes.items()}
+    return [max(prototypes, key=lambda label: float(np.dot(vector_value, prototypes[label]))) for vector_value in test_vectors]
+
+
 def run():
     rows = fetch_split('train', 2224)
     fit = [r for r in rows if r['season'] == 'S04']; calibration = [r for r in rows if r['season'] == 'S05']; test = [r for r in rows if r['season'] == 'S06']
@@ -84,6 +116,7 @@ def run():
         'methods': {
             'unsupervised_kmeans_cluster_then_calibrate': metrics(test, unsupervised_cluster(fit, calibration, test)),
             'reinforcement_contextual_bandit_proxy': metrics(test, contextual_bandit(fit, calibration, test)),
+            'self_supervised_cooccurrence_frozen_prototype': metrics(test, self_supervised_cooccurrence(fit, calibration, test)),
         },
         'comparability': {
             'supervised': 'direct 20-way classification; Naive Bayes remains the reference supervised baseline',

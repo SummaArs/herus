@@ -1,6 +1,6 @@
 import unittest
 import numpy as np
-from ml_paradigms_benchmark import kmeans, contextual_bandit
+from ml_paradigms_benchmark import kmeans, contextual_bandit, self_supervised_cooccurrence
 
 
 class ParadigmBenchmarkTests(unittest.TestCase):
@@ -14,6 +14,15 @@ class ParadigmBenchmarkTests(unittest.TestCase):
         fit = [{'text': 'alpha', 'label': 'A'}]
         test = [{'text': 'unknown', 'label': 'B'}]
         self.assertEqual(contextual_bandit(fit, [], test), [None])
+
+    def test_self_supervised_adapter_returns_finite_predictions(self):
+        fit = [
+            {'text': 'alpha blue', 'label': 'A'},
+            {'text': 'beta red', 'label': 'B'},
+        ]
+        predictions = self_supervised_cooccurrence(fit, [], [{'text': 'alpha', 'label': 'A'}])
+        self.assertEqual(len(predictions), 1)
+        self.assertIn(predictions[0], {'A', 'B'})
 
 
 if __name__ == '__main__':
