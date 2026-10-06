@@ -1,0 +1,49 @@
+{
+  "calibration": {
+    "minimum_precision": 0.5,
+    "result": {
+      "accuracy": 0.865169,
+      "coverage": 0.932584,
+      "macro_f1": 0.863678,
+      "selective_accuracy": 0.927711
+    },
+    "threshold": 0.074574
+  },
+  "dataset": {
+    "calibration": 89,
+    "config": "pt-PT",
+    "fit": 417,
+    "holdout": 98,
+    "id": "PolyAI/minds14",
+    "labels": 14,
+    "rows": 604,
+    "source": "https://datasets-server.huggingface.co/rows"
+  },
+  "limits": [
+    "one published train split partitioned locally",
+    "no speaker-independent split verified",
+    "audio was not decoded; transcription only",
+    "MInDS labels are not HERUS events"
+  ],
+  "methods": {
+    "centroid": {
+      "accuracy": 0.877551,
+      "coverage": 1.0,
+      "macro_f1": 0.876193,
+      "selective_accuracy": 0.877551
+    },
+    "consensus_selective": {
+      "accuracy": 0.857143,
+      "coverage": 0.908163,
+      "macro_f1": 0.87659,
+      "selective_accuracy": 0.94382
+    },
+    "naive_bayes": {
+      "accuracy": 0.918367,
+      "coverage": 1.0,
+      "macro_f1": 0.892947,
+      "selective_accuracy": 0.918367
+    }
+  },
+  "split": "deterministic within-label path order; no speaker-independent guarantee"
+}
