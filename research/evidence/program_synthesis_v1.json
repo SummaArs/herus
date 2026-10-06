@@ -2,7 +2,7 @@
   "grammar": "finite-int-binary-v1",
   "results": [
     {
-      "candidates_checked": 10,
+      "candidates_checked": 118,
       "detail": "unique public match",
       "expression": "x + y",
       "hidden_pass": true,
@@ -11,7 +11,16 @@
       "task_id": "add.v1"
     },
     {
-      "candidates_checked": 10,
+      "candidates_checked": 118,
+      "detail": "unique public match",
+      "expression": "(x + y) * (x - y)",
+      "hidden_pass": true,
+      "public_pass": true,
+      "status": "PROPOSE",
+      "task_id": "composed.v1"
+    },
+    {
+      "candidates_checked": 118,
       "detail": "unique public match",
       "expression": "x - y",
       "hidden_pass": false,
@@ -20,8 +29,8 @@
       "task_id": "contradictory.v1"
     },
     {
-      "candidates_checked": 10,
-      "detail": "ambiguous public examples",
+      "candidates_checked": 0,
+      "detail": "invalid or underspecified task",
       "expression": "",
       "hidden_pass": null,
       "public_pass": false,

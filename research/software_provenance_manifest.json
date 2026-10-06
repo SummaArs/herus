@@ -515,7 +515,7 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "f708890a628965240d093954b8e0ab790a537bd88861360303c9e9f497b72d06",
+      "sha256": "6c9f08d86791bd4f24710cd68db0b0e85ed1b8fba6c1999359971329d97e294f",
       "role": "organized documentation, maps and historical design records"
     },
     {
@@ -965,32 +965,32 @@
     {
       "path": "research/program_synthesis.py",
       "kind": "file",
-      "sha256": "f0bdd9b10d01ac971dcf98d3cbd924e58a5ce464f841bb13378a6f1e5487d886",
-      "role": "finite enumerative program synthesis"
+      "sha256": "f6b5c8f6fb0776fd1a14af57080c05c64f13416552c5205c9a8d1f2ee4475585",
+      "role": "compositional bounded synthesis with canonical probes"
     },
     {
       "path": "research/test_program_synthesis.py",
       "kind": "file",
-      "sha256": "5b31a7d269601aacb49a51d130d0e87380a47abb0ec4bee1dc1c92b1b2450bce",
-      "role": "public hidden holdout synthesis tests"
+      "sha256": "e1831861eac940f2b59c5026cc87938d680e1f74b4973bcf38e9b057641532e0",
+      "role": "compositional synthesis and ambiguity tests"
     },
     {
       "path": "research/synthesis_evidence.py",
       "kind": "file",
-      "sha256": "2532d223d4cb7feadb95674b1faf832c4d73c78b074d8b1fe2e314d1aceb6880",
-      "role": "reproducible synthesis evidence generator"
+      "sha256": "710ae471e1c6fc28dd6387031aee3f616351b8fa6cceec1967c9f7cc4c21451d",
+      "role": "compositional synthesis evidence generator"
     },
     {
       "path": "research/evidence/program_synthesis_v1.json",
       "kind": "file",
-      "sha256": "1f8068831821f7924e8728448074289acc34e69b7252cfc01e6eab244b963c51",
-      "role": "bounded synthesis v1 evidence"
+      "sha256": "f090acd0c731794fd4dc694faba99388c4d2cc5dfa2745c9b592dc20f5198eef",
+      "role": "updated compositional synthesis evidence"
     },
     {
       "path": "docs/102-SINTESE-ENUMERATIVA-BOUNDED.md",
       "kind": "file",
-      "sha256": "f6e112dc1116d76513074ab497294d3f4c4c9f589157d4c84c86043c9cc308a0",
-      "role": "bounded synthesis specification and limits"
+      "sha256": "7aa2a831b9e1cf1497841e34f7ca4b769a7b06a874ccad2dc07c0f7d79ff2bcb",
+      "role": "compositional synthesis specification"
     }
   ],
   "components": [

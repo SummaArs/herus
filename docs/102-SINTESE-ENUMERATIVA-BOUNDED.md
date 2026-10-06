@@ -2,7 +2,7 @@
 
 ## O que foi implementado
 
-O HERUS agora possui uma faixa pequena de síntese de programas sobre uma gramática finita de expressões inteiras binárias. Ela enumera candidatos a partir de exemplos públicos e só retorna `PROPOSE` quando exatamente um candidato os satisfaz e também passa os exemplos ocultos fornecidos pela tarefa.
+O HERUS agora possui uma faixa pequena de síntese de programas sobre uma gramática finita de expressões inteiras binárias, incluindo composição de profundidade 2. Ela enumera candidatos a partir de exemplos públicos e só retorna `PROPOSE` quando exatamente um comportamento candidato os satisfaz e também passa os exemplos ocultos fornecidos pela tarefa. Formas sintáticas equivalentes são deduplicadas por probes canônicos independentes.
 
 Resultados possíveis:
 
@@ -15,14 +15,15 @@ Resultados possíveis:
 | Tarefa | Público | Oculto | Resultado |
 |---|---:|---:|---|
 | `add.v1` | 3/3 | passou | `PROPOSE`, `x + y` |
+| `composed.v1` | 4/4 | passou | `PROPOSE`, `(x + y) * (x - y)` |
 | `contradictory.v1` | 2/2 | falhou | `REJECT_HIDDEN`, `x - y` |
-| `ambiguous.v1` | 1 exemplo | não usado | `ABSTAIN` |
+| `ambiguous.v1` | 2 exemplos insuficientes | não usado | `ABSTAIN` |
 
 A evidência bruta está em `research/evidence/program_synthesis_v1.json`.
 
 ## O que isso prova
 
-Prova que o HERUS consegue realizar síntese enumerativa pequena, detectar ambiguidade e rejeitar uma hipótese que se ajusta aos exemplos públicos mas falha na validação oculta.
+Prova que o HERUS consegue realizar síntese enumerativa pequena, compor expressões, detectar subespecificação e rejeitar uma hipótese que se ajusta aos exemplos públicos mas falha na validação oculta.
 
 ## O que não prova
 
