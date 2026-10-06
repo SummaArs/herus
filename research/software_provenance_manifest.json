@@ -47,8 +47,8 @@
     {
       "path": "research/Makefile",
       "kind": "file",
-      "sha256": "649569051967f14cd1cd35055c3f2ad5449137aeba91de6ae77b9264f018320f",
-      "role": "programming evaluator test gate"
+      "sha256": "90662daac5119a49db3ca8a74ac296386ab4f358578661f799b1e408b9429cfe",
+      "role": "bounded synthesis test gate"
     },
     {
       "path": "research/semantic_ir.py",
@@ -251,8 +251,8 @@
     {
       "path": "README.md",
       "kind": "file",
-      "sha256": "cb9b3705e3878067b3fbd7e3232d7de94104954e03b65e0d402cecb156178f3f",
-      "role": "programming evaluator status and test count"
+      "sha256": "8c50acaf1b67b6eaa2ed58fb9e9d551cf13f235624a4cce91f5dcfad9b89ca7a",
+      "role": "bounded synthesis status and test count"
     },
     {
       "path": "docs/50-INTENT-COMPILER-E-SEMANTIC-IR.md",
@@ -515,7 +515,7 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "97f2389ef8ab8ef47671199e35a2e6e777b0e48154a980d18b5d700cc86cdc8a",
+      "sha256": "f708890a628965240d093954b8e0ab790a537bd88861360303c9e9f497b72d06",
       "role": "organized documentation, maps and historical design records"
     },
     {
@@ -961,6 +961,36 @@
       "kind": "file",
       "sha256": "c8b293a7c2637be0c46db75e771a065403ce59c74684d855d12e6f54b2573a53",
       "role": "real programming evaluator specification"
+    },
+    {
+      "path": "research/program_synthesis.py",
+      "kind": "file",
+      "sha256": "f0bdd9b10d01ac971dcf98d3cbd924e58a5ce464f841bb13378a6f1e5487d886",
+      "role": "finite enumerative program synthesis"
+    },
+    {
+      "path": "research/test_program_synthesis.py",
+      "kind": "file",
+      "sha256": "5b31a7d269601aacb49a51d130d0e87380a47abb0ec4bee1dc1c92b1b2450bce",
+      "role": "public hidden holdout synthesis tests"
+    },
+    {
+      "path": "research/synthesis_evidence.py",
+      "kind": "file",
+      "sha256": "2532d223d4cb7feadb95674b1faf832c4d73c78b074d8b1fe2e314d1aceb6880",
+      "role": "reproducible synthesis evidence generator"
+    },
+    {
+      "path": "research/evidence/program_synthesis_v1.json",
+      "kind": "file",
+      "sha256": "1f8068831821f7924e8728448074289acc34e69b7252cfc01e6eab244b963c51",
+      "role": "bounded synthesis v1 evidence"
+    },
+    {
+      "path": "docs/102-SINTESE-ENUMERATIVA-BOUNDED.md",
+      "kind": "file",
+      "sha256": "f6e112dc1116d76513074ab497294d3f4c4c9f589157d4c84c86043c9cc308a0",
+      "role": "bounded synthesis specification and limits"
     }
   ],
   "components": [

@@ -40,7 +40,7 @@ Sobre essa camada, o [Meta-Simbionte](docs/85-META-SIMBIONTE-E-HISTORICO-DE-SOLU
 - Primeiro baseline transformer real: BERT pequeno, S04→S05→S06, 17,62% no holdout; comparação direta concluída sem alegação de vitória.
 - Probe de atalhos em 386 utterances reais: prefixos superficiais mudaram até 55,18% das previsões dos baselines, revelando fragilidade que acurácia sozinha não mostra.
 - Normalização canônica limitada recuperou 99,22%–100% das previsões após os fillers testados, sem apagar palavras internas; a correção permanece restrita ao vocabulário declarado.
-- Habilidade de programação importável inspirada no Jev: decompõe tarefas tipadas, diagnostica falhas observadas e gera propostas de código/testes sem executar, escrever arquivos ou conceder autoridade; um avaliador separado mede candidatos em subprocesso controlado.
+- Habilidade de programação importável inspirada no Jev: decompõe tarefas tipadas, diagnostica falhas observadas e gera propostas de código/testes sem executar, escrever arquivos ou conceder autoridade; um avaliador separado mede candidatos em subprocesso controlado e uma síntese enumerativa bounded rejeita hipóteses que falham no holdout.
 - Ledger de programação inspirado no REA: propostas só fecham quando casos positivos, negativos e malformados têm evidência autenticada e autoridade comparável.
 - Auditoria crítica de erros e contrato executável que bloqueia alegações de vitória contra transformers ou de simbiose geral sem evidência equivalente.
 - Revisão acadêmica sobre simbolismo puro: núcleo constitucional 100% simbólico; aprendizado limitado nas camadas de percepção e proposta.
@@ -67,7 +67,7 @@ PYTHONPATH=research python3 -m research.bridge_product
 python3 tools/provenance_audit.py --strict research/software_provenance_manifest.json
 ```
 
-Na última verificação local, a pesquisa passou com **205 testes e um skip**, e o proof integral confirmou as invariantes host-only e de simulação. A campanha ampla, o holdout local, o harness black-box, a API pública, a auto-supervisão experimental, o baseline transformer, o probe de atalhos, a normalização limitada, a habilidade de programação proposal-only, o ciclo de reparo guiado por falha, o avaliador executável controlado, o ledger de obrigações e o protocolo entre processos também separam acerto seguro de falso aceite. Isso é uma regressão interna, não uma prova de produto ou de campo.
+Na última verificação local, a pesquisa passou com **209 testes e um skip**, e o proof integral confirmou as invariantes host-only e de simulação. A campanha ampla, o holdout local, o harness black-box, a API pública, a auto-supervisão experimental, o baseline transformer, o probe de atalhos, a normalização limitada, a habilidade de programação proposal-only, o ciclo de reparo guiado por falha, o avaliador executável controlado, a síntese enumerativa bounded, o ledger de obrigações e o protocolo entre processos também separam acerto seguro de falso aceite. Isso é uma regressão interna, não uma prova de produto ou de campo.
 
 ## Documentos de decisão
 
@@ -99,6 +99,7 @@ Na última verificação local, a pesquisa passou com **205 testes e um skip**, 
 | [Habilidade de programação](docs/99-HABILIDADE-PROGRAMACAO-JEV-INSPIRED.md) | Decomposição tipada e propostas de código/testes sem execução ou autoridade. |
 | [Auditoria REA](docs/100-AUDITORIA-REA-E-LEDGER-DE-PROGRAMACAO.md) | Evidência autenticada, obrigações abertas e autoridade comparável para propostas de código. |
 | [Avaliador real de programação](docs/101-AVALIADOR-REAL-DE-PROGRAMACAO.md) | Mede candidato correto, incorreto e não terminante em subprocesso controlado. |
+| [Síntese enumerativa bounded](docs/102-SINTESE-ENUMERATIVA-BOUNDED.md) | Gera hipótese por gramática finita e rejeita ajuste que falha no holdout. |
 | [Auditoria crítica](docs/95-AUDITORIA-CRITICA-ERROS-E-CORRECOES.md) | Erros metodológicos registrados e regras permanentes contra overclaiming. |
 
 ## Código por papel

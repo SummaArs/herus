@@ -1,0 +1,32 @@
+{
+  "grammar": "finite-int-binary-v1",
+  "results": [
+    {
+      "candidates_checked": 10,
+      "detail": "unique public match",
+      "expression": "x + y",
+      "hidden_pass": true,
+      "public_pass": true,
+      "status": "PROPOSE",
+      "task_id": "add.v1"
+    },
+    {
+      "candidates_checked": 10,
+      "detail": "unique public match",
+      "expression": "x - y",
+      "hidden_pass": false,
+      "public_pass": true,
+      "status": "REJECT_HIDDEN",
+      "task_id": "contradictory.v1"
+    },
+    {
+      "candidates_checked": 10,
+      "detail": "ambiguous public examples",
+      "expression": "",
+      "hidden_pass": null,
+      "public_pass": false,
+      "status": "ABSTAIN",
+      "task_id": "ambiguous.v1"
+    }
+  ]
+}
