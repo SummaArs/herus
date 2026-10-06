@@ -39,6 +39,7 @@ Sobre essa camada, o [Meta-Simbionte](docs/85-META-SIMBIONTE-E-HISTORICO-DE-SOLU
 - Comparação entre paradigmas supervisionado, não supervisionado, auto-supervisionado e reforço proxy no mesmo holdout real; nenhum resultado atual supera o supervisionado.
 - Primeiro baseline transformer real: BERT pequeno, S04→S05→S06, 17,62% no holdout; comparação direta concluída sem alegação de vitória.
 - Auditoria crítica de erros e contrato executável que bloqueia alegações de vitória contra transformers ou de simbiose geral sem evidência equivalente.
+- Revisão acadêmica sobre simbolismo puro: núcleo constitucional 100% simbólico; aprendizado limitado nas camadas de percepção e proposta.
 - Manifestos de hardware e proveniência local.
 - Documentação histórica desde o comunicador semântico original até a auditoria ASA.
 
@@ -89,6 +90,7 @@ Na última verificação local, a pesquisa passou com **186 testes e um skip**, 
 | [Benchmark real](docs/92-BENCHMARK-DADOS-REAIS-E-BASELINES.md) | MIntRec S04/S05→S06 contra baselines clássicos; revela cobertura baixa da memória simbiótica. |
 | [Paradigmas de ML](docs/94-COMPARACAO-PARADIGMAS-ML-REAIS.md) | Comparação real com supervisionado, K-means e bandit proxy, sem alegar equivalência indevida. |
 | [Transformer real](docs/96-TRANSFORMER-REAL-MINTREC.md) | BERT pequeno executado no mesmo holdout temporal, com custo e limites registrados. |
+| [Simbolismo puro](docs/97-SIMBOLISMO-PURO-E-SYMBIOTIC-LEARNING.md) | Decisão baseada em papers sobre o que deve ser simbólico e onde o aprendizado é necessário. |
 | [Auditoria crítica](docs/95-AUDITORIA-CRITICA-ERROS-E-CORRECOES.md) | Erros metodológicos registrados e regras permanentes contra overclaiming. |
 
 ## Código por papel

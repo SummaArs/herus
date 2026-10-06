@@ -251,8 +251,8 @@
     {
       "path": "README.md",
       "kind": "file",
-      "sha256": "a013f3b2a1ccf8b810b46d27716eb2aeddf9d1f79ff6416c88d3dc6ff5f38f1d",
-      "role": "real transformer baseline status and test count"
+      "sha256": "05e00cd1d0e012e773a64a76cd8a4eef06b2eadc8418065630ec6fb6b9b4577e",
+      "role": "symbolic purity architecture decision"
     },
     {
       "path": "docs/50-INTENT-COMPILER-E-SEMANTIC-IR.md",
@@ -515,7 +515,7 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "b61035a8209a2a6b25ae9a20e8f4e103a3d187312287d8bb6928e325728f1736",
+      "sha256": "74cd034ebab2476110ec39f08a6ffc91b2a8ad6916aad9d3c008c5ec9a9a3788",
       "role": "organized documentation, maps and historical design records"
     },
     {
@@ -841,6 +841,18 @@
       "kind": "file",
       "sha256": "3d014f15dd5aa77d9eb0f28c8afb9c06407990a4fc5d9a91c7f0b03dd20b69c0",
       "role": "real transformer comparison and limits"
+    },
+    {
+      "path": "docs/research_notes/2026-10-06-neurosymbolic-sources.md",
+      "kind": "file",
+      "sha256": "1a17408dc1209c7543a7f05b42e1a05555e688273f2eed603ff6fa90240da635",
+      "role": "verified academic source notes"
+    },
+    {
+      "path": "docs/97-SIMBOLISMO-PURO-E-SYMBIOTIC-LEARNING.md",
+      "kind": "file",
+      "sha256": "dd1209329b8a4bd11fd46068818e8bf5e0a76f3c471b63a3fd37834b0a87c0fd",
+      "role": "academic decision on symbolic core and learned proposal layer"
     }
   ],
   "components": [
