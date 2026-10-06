@@ -47,8 +47,8 @@
     {
       "path": "research/Makefile",
       "kind": "file",
-      "sha256": "7b05ee7be36d1d1685915a9f9e6062497b7e7e51c811370e09938d3be7f89947",
-      "role": "risk coverage test gate"
+      "sha256": "bdc311891dadbcd994fda69ee1c1631e3a110e5d93c755926bb5f082554ec2f5",
+      "role": "consensus risk coverage test gate"
     },
     {
       "path": "research/semantic_ir.py",
@@ -251,8 +251,8 @@
     {
       "path": "README.md",
       "kind": "file",
-      "sha256": "0392296415bc86439dc0db5ccf9740c9eb40569b9d8b15c84c3aa136624e811d",
-      "role": "strict no-leakage risk coverage result and test count"
+      "sha256": "cff1b9111acb8f382afeedda0233798bc42a5da587297d96a0f1b354c9a59eda",
+      "role": "consensus real risk coverage result and test count"
     },
     {
       "path": "docs/50-INTENT-COMPILER-E-SEMANTIC-IR.md",
@@ -515,7 +515,7 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "63f71fc89a51e8ca96359ceb02bfcd92cbdc7d6c1ad02f0748ded3b2eca6f5cc",
+      "sha256": "0ea3eefb391cbc7248ead4163f2dfab83bd77ffe4f5cc5ef760664904436b40e",
       "role": "organized documentation, maps and historical design records"
     },
     {
@@ -1013,8 +1013,26 @@
     {
       "path": "docs/103-RISCO-COBERTURA-MINTREC.md",
       "kind": "file",
-      "sha256": "a063724892a90b6fcae3b472b188e1631d51cc616dbaf0249e8227fa864f2cf5",
-      "role": "corrected no-leakage risk coverage analysis"
+      "sha256": "b6559afdf97e8a114c0a91c4ce86c3645b63f0126045368bfe173d14a8980302",
+      "role": "consensus risk coverage result"
+    },
+    {
+      "path": "research/consensus_risk_coverage_mintrec.py",
+      "kind": "file",
+      "sha256": "398e6c4a344ebfafc55d02ba3ffbc99043ab7f0b1bd972b652768d80828d7ed1",
+      "role": "real NB centroid consensus policy"
+    },
+    {
+      "path": "research/test_consensus_risk_coverage_mintrec.py",
+      "kind": "file",
+      "sha256": "4be100d5177c656e7b129d47010b34980bc987cc6def482bce12d169b46ae9c1",
+      "role": "consensus calibration test"
+    },
+    {
+      "path": "research/evidence/consensus_risk_coverage_mintrec_v1.json",
+      "kind": "file",
+      "sha256": "990af908c0a53a801b9da782b2233e68557f6d71c0c57c2bc119888e92277bf8",
+      "role": "real consensus temporal evidence"
     }
   ],
   "components": [

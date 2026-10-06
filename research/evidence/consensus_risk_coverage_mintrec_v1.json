@@ -1,0 +1,32 @@
+{
+  "calibration": {
+    "accuracy": 0.169811,
+    "coverage": 0.283019,
+    "macro_f1": 0.186347,
+    "selective_accuracy": 0.6
+  },
+  "dataset": {
+    "calibration_rows": 1272,
+    "calibration_season": "S05",
+    "fit_rows": 566,
+    "fit_season": "S04",
+    "holdout_rows": 386,
+    "holdout_season": "S06",
+    "id": "THU-IAR/MIntRec",
+    "source": "https://datasets-server.huggingface.co/rows"
+  },
+  "holdout": {
+    "accuracy": 0.207254,
+    "coverage": 0.341969,
+    "macro_f1": 0.162355,
+    "selective_accuracy": 0.606061
+  },
+  "limits": [
+    "text-only MIntRec is not a HERUS event benchmark",
+    "single temporal holdout",
+    "consensus improves coverage only marginally and is not general superiority"
+  ],
+  "minimum_precision": 0.5,
+  "policy": "accept only when Naive Bayes and centroid agree and NB margin clears threshold",
+  "threshold": 0.000231
+}

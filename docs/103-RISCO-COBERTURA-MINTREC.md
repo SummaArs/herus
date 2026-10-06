@@ -27,6 +27,14 @@ Isso não é vitória contra o Naive Bayes completo: o benchmark supervisionado 
 
 A contribuição do HERUS é a política explícita de proposta/abstenção e a medição de risco–cobertura. A evidência atual não demonstra superioridade geral nem garantia seletiva de 80%.
 
+## Consenso entre representações
+
+Foi testada uma política adicional usando somente S04 para ajustar dois pontos de vista: Naive Bayes lexical e protótipos por cosseno. A proposta só é aceita quando os dois concordam e a margem do Naive Bayes supera o limiar escolhido em S05.
+
+No holdout S06, o consenso alcançou **34,20% de cobertura** e **60,61% de precisão seletiva**, contra 30,83% e 60,50% da política Naive Bayes seletiva. O ganho é real, mas pequeno; não demonstra vitória contra os baselines.
+
+A evidência está em `research/evidence/consensus_risk_coverage_mintrec_v1.json` e a implementação em `research/consensus_risk_coverage_mintrec.py`.
+
 ## Limites
 
 MIntRec é um corpus textual de intenções externas, não um corpus de eventos HERUS. Não há mapeamento automático para comandos HERUS, nem áudio/vídeo neste ensaio. É necessário repetir a análise em outros datasets e tarefas com rótulos relevantes antes de aumentar alegações.
