@@ -1,0 +1,42 @@
+{
+  "calibration": {
+    "result": {
+      "accuracy": 0.911565,
+      "coverage": 0.92517,
+      "macro_f1": 0.94586,
+      "selective_accuracy": 0.985294
+    },
+    "threshold": 0.025488
+  },
+  "dataset": {
+    "calibration_language": "en-US",
+    "calibration_rows": 147,
+    "fit_language": "en-US",
+    "fit_rows": 416,
+    "holdout_language": "pt-PT",
+    "holdout_rows": 604,
+    "id": "PolyAI/minds14",
+    "shared_labels": 14
+  },
+  "holdout": {
+    "consensus_selective": {
+      "accuracy": 0.034768,
+      "coverage": 0.119205,
+      "macro_f1": 0.051852,
+      "selective_accuracy": 0.291667
+    },
+    "naive_bayes": {
+      "accuracy": 0.081126,
+      "coverage": 1.0,
+      "macro_f1": 0.052238,
+      "selective_accuracy": 0.081126
+    }
+  },
+  "limits": [
+    "cross-language transfer is not product language understanding",
+    "no audio decoded",
+    "no speaker independence metadata verified",
+    "single language pair"
+  ],
+  "policy": "NB and centroid agreement; threshold selected on English calibration"
+}

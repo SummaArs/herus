@@ -47,8 +47,8 @@
     {
       "path": "research/Makefile",
       "kind": "file",
-      "sha256": "cf1ad8e746ad65b0641c0520a76e121e80eded01e1b240ed8c3bc4aabc5c8f67",
-      "role": "MInDS14 benchmark test gate"
+      "sha256": "5a28261dba7c3655880d1eb7e9adb90540279fc56d320fba3558631d633dc8bb",
+      "role": "cross-language benchmark test gate"
     },
     {
       "path": "research/semantic_ir.py",
@@ -251,8 +251,8 @@
     {
       "path": "README.md",
       "kind": "file",
-      "sha256": "c7c0209a0f06e5af34feb750e724fec0c01993ae88ec6ccc0989bb633e6a28e3",
-      "role": "external MInDS14 validation and test count"
+      "sha256": "c27196b6170eedd58e9fe860a5be957c620db72c51936ca06c9f5daee62fdf85",
+      "role": "cross-language transfer result and test count"
     },
     {
       "path": "docs/50-INTENT-COMPILER-E-SEMANTIC-IR.md",
@@ -515,7 +515,7 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "1bf061ace3c08c8eccd408e82c0646d6db125e268907a97c8f2f17a2ba5c9097",
+      "sha256": "0696dbaf0e90da7c6be38514fef7f3e0df2336e77db5a6c2906f52d2dc883ccb",
       "role": "organized documentation, maps and historical design records"
     },
     {
@@ -1057,6 +1057,30 @@
       "kind": "file",
       "sha256": "a63a6f5f05f906d47cbf1edb3cbd0c0ba12dd2abc33914348a6b29e40beadbd2",
       "role": "external MInDS14 validation report"
+    },
+    {
+      "path": "research/minds14_cross_language.py",
+      "kind": "file",
+      "sha256": "5b0bd39c14f6bc1824f7e6c9467384a53707b9e3e5bdd38babfb4a1c18f159a7",
+      "role": "real English Portuguese transfer benchmark"
+    },
+    {
+      "path": "research/test_minds14_cross_language.py",
+      "kind": "file",
+      "sha256": "1da7f5542817d844e7b00b30c0aff2bb46368747181585fb095c546f4588bbd1",
+      "role": "cross-language negative evidence test"
+    },
+    {
+      "path": "research/evidence/minds14_cross_language_v1.json",
+      "kind": "file",
+      "sha256": "daa610986afbf59d2a1728c6eedb82f85fba126595641c9ca2146f6fd461c7ac",
+      "role": "real cross-language transfer evidence"
+    },
+    {
+      "path": "docs/105-TRANSFERENCIA-CROSS-LANGUAGE-MINDS14.md",
+      "kind": "file",
+      "sha256": "ff19075d135fade48ca6f9650d4f1566e5e828be3752328702f668175c7ecd50",
+      "role": "cross-language transfer limits"
     }
   ],
   "components": [
