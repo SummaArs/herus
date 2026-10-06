@@ -67,7 +67,7 @@ PYTHONPATH=research python3 -m research.bridge_product
 python3 tools/provenance_audit.py --strict research/software_provenance_manifest.json
 ```
 
-Na última verificação local, a pesquisa passou com **211 testes e um skip**, e o proof integral confirmou as invariantes host-only e de simulação. A campanha ampla, o holdout local, o harness black-box, a API pública, a auto-supervisão experimental, o baseline transformer, o probe de atalhos, a normalização limitada, a habilidade de programação proposal-only, o ciclo de reparo guiado por falha, o avaliador executável controlado, a síntese enumerativa bounded com orçamento explícito, o ledger de obrigações e o protocolo entre processos também separam acerto seguro de falso aceite. Isso é uma regressão interna, não uma prova de produto ou de campo.
+Na última verificação local, a pesquisa passou com **213 testes e um skip**, e o proof integral confirmou as invariantes host-only e de simulação. Em dados reais MIntRec, a política risco–cobertura atingiu 74,34% de precisão seletiva com 39,38% de cobertura no ponto calibrado a 0,50; não foi declarada superior ao baseline Naive Bayes, que alcançou 49,22% de acurácia com cobertura total. A campanha ampla, o holdout local, o harness black-box, a API pública, a auto-supervisão experimental, o baseline transformer, o probe de atalhos, a normalização limitada, a habilidade de programação proposal-only, o ciclo de reparo guiado por falha, o avaliador executável controlado, a síntese enumerativa bounded com orçamento explícito, o ledger de obrigações e o protocolo entre processos também separam acerto seguro de falso aceite. Isso é uma regressão interna e uma análise real, não uma prova de produto ou de campo.
 
 ## Documentos de decisão
 
@@ -100,6 +100,7 @@ Na última verificação local, a pesquisa passou com **211 testes e um skip**, 
 | [Auditoria REA](docs/100-AUDITORIA-REA-E-LEDGER-DE-PROGRAMACAO.md) | Evidência autenticada, obrigações abertas e autoridade comparável para propostas de código. |
 | [Avaliador real de programação](docs/101-AVALIADOR-REAL-DE-PROGRAMACAO.md) | Mede candidato correto, incorreto e não terminante em subprocesso controlado. |
 | [Síntese enumerativa bounded](docs/102-SINTESE-ENUMERATIVA-BOUNDED.md) | Gera hipótese por gramática finita e rejeita ajuste que falha no holdout. |
+| [Risco–cobertura MIntRec](docs/103-RISCO-COBERTURA-MINTREC.md) | Avalia abstenção e precisão seletiva em holdout temporal real, sem vazamento. |
 | [Auditoria crítica](docs/95-AUDITORIA-CRITICA-ERROS-E-CORRECOES.md) | Erros metodológicos registrados e regras permanentes contra overclaiming. |
 
 ## Código por papel

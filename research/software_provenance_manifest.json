@@ -47,8 +47,8 @@
     {
       "path": "research/Makefile",
       "kind": "file",
-      "sha256": "90662daac5119a49db3ca8a74ac296386ab4f358578661f799b1e408b9429cfe",
-      "role": "bounded synthesis test gate"
+      "sha256": "7b05ee7be36d1d1685915a9f9e6062497b7e7e51c811370e09938d3be7f89947",
+      "role": "risk coverage test gate"
     },
     {
       "path": "research/semantic_ir.py",
@@ -251,8 +251,8 @@
     {
       "path": "README.md",
       "kind": "file",
-      "sha256": "be404bfa2b8966ff94801f1c38e8f2d46b0b31b4c32dd3e48aaa5b5f70ab670e",
-      "role": "synthesis budget status and test count"
+      "sha256": "09d599bfb94de937d56fa01d954ad29a85c2e30010e3112d7dca5d4400049855",
+      "role": "real risk coverage result and test count"
     },
     {
       "path": "docs/50-INTENT-COMPILER-E-SEMANTIC-IR.md",
@@ -515,7 +515,7 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "b3d89316b9e5cbda51db310ba2e72ced5da3a1c47f9121e453bb769df8b95be9",
+      "sha256": "998e2ef84ffe858f2fc70f6ee6241b243a9aba3c0a35189b3484cc483f288ef4",
       "role": "organized documentation, maps and historical design records"
     },
     {
@@ -991,6 +991,30 @@
       "kind": "file",
       "sha256": "9205936ae7302eefdd5e576ceeb80873de5310d2ef359ed0c767fcbce2b7efc1",
       "role": "synthesis budget contract"
+    },
+    {
+      "path": "research/risk_coverage_mintrec.py",
+      "kind": "file",
+      "sha256": "2483be59b584ba092d38a434c0b1d6f9bb9fb11e3d057896e86940aa679a7192",
+      "role": "real MIntRec risk coverage analysis"
+    },
+    {
+      "path": "research/test_risk_coverage_mintrec.py",
+      "kind": "file",
+      "sha256": "60dd4f5b50c44313ba5e8df2ebfae5468a0988de42217d610249fe70668ca338",
+      "role": "calibration leakage and abstention tests"
+    },
+    {
+      "path": "research/evidence/risk_coverage_mintrec_v1.json",
+      "kind": "file",
+      "sha256": "9aae612695066e29d40df934a33556c1ac1fcef71177743842b84f563bc7a8d9",
+      "role": "real temporal risk coverage evidence"
+    },
+    {
+      "path": "docs/103-RISCO-COBERTURA-MINTREC.md",
+      "kind": "file",
+      "sha256": "6c5f358216815f152928540ecff3aa2eb9469d7c678211824a511861e3df5d71",
+      "role": "real risk coverage analysis and limits"
     }
   ],
   "components": [

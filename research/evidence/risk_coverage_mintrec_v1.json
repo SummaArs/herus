@@ -1,0 +1,105 @@
+{
+  "dataset": {
+    "calibration_rows": 1272,
+    "calibration_season": "S05",
+    "fit_rows": 566,
+    "fit_season": "S04",
+    "holdout_rows": 386,
+    "holdout_season": "S06",
+    "id": "THU-IAR/MIntRec",
+    "source": "https://datasets-server.huggingface.co/rows"
+  },
+  "limits": [
+    "text-only intent benchmark is not a HERUS event benchmark",
+    "no threshold was selected using S06",
+    "single temporal holdout; repeat across datasets is required"
+  ],
+  "points": [
+    {
+      "calibration": {
+        "accuracy": 0.126572,
+        "coverage": 0.253145,
+        "macro_f1": 0.115825,
+        "selective_accuracy": 0.5
+      },
+      "holdout": {
+        "accuracy": 0.292746,
+        "coverage": 0.393782,
+        "macro_f1": 0.234807,
+        "selective_accuracy": 0.743421
+      },
+      "minimum_precision": 0.5,
+      "status": "EVALUATED",
+      "threshold": 1.906517
+    },
+    {
+      "calibration": {
+        "accuracy": 0.001572,
+        "coverage": 0.002358,
+        "macro_f1": 0.001527,
+        "selective_accuracy": 0.666667
+      },
+      "holdout": {
+        "accuracy": 0.007772,
+        "coverage": 0.007772,
+        "macro_f1": 0.008069,
+        "selective_accuracy": 1.0
+      },
+      "minimum_precision": 0.6,
+      "status": "EVALUATED",
+      "threshold": 6.360059
+    },
+    {
+      "calibration": {
+        "accuracy": 0.001572,
+        "coverage": 0.001572,
+        "macro_f1": 0.001538,
+        "selective_accuracy": 1.0
+      },
+      "holdout": {
+        "accuracy": 0.002591,
+        "coverage": 0.002591,
+        "macro_f1": 0.002941,
+        "selective_accuracy": 1.0
+      },
+      "minimum_precision": 0.7,
+      "status": "EVALUATED",
+      "threshold": 7.917625
+    },
+    {
+      "calibration": {
+        "accuracy": 0.001572,
+        "coverage": 0.001572,
+        "macro_f1": 0.001538,
+        "selective_accuracy": 1.0
+      },
+      "holdout": {
+        "accuracy": 0.002591,
+        "coverage": 0.002591,
+        "macro_f1": 0.002941,
+        "selective_accuracy": 1.0
+      },
+      "minimum_precision": 0.8,
+      "status": "EVALUATED",
+      "threshold": 7.917625
+    },
+    {
+      "calibration": {
+        "accuracy": 0.001572,
+        "coverage": 0.001572,
+        "macro_f1": 0.001538,
+        "selective_accuracy": 1.0
+      },
+      "holdout": {
+        "accuracy": 0.002591,
+        "coverage": 0.002591,
+        "macro_f1": 0.002941,
+        "selective_accuracy": 1.0
+      },
+      "minimum_precision": 0.9,
+      "status": "EVALUATED",
+      "threshold": 7.917625
+    }
+  ],
+  "selection_rule": "maximize calibration coverage subject to minimum selective precision"
+}
