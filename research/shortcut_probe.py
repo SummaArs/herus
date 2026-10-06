@@ -8,6 +8,7 @@ from __future__ import annotations
 import json
 from collections import Counter
 from real_data_baseline_benchmark import fetch_split, nb, knn, centroid, contextual_memory, metrics
+from intent_normalization import normalize_surface
 
 FILLERS = ('please', 'if you can', 'thanks')
 
@@ -18,6 +19,9 @@ def flip_rate(original, changed):
     comparable = sum(a is not None and b is not None for a, b in zip(original, changed))
     flips = sum(a != b for a, b in zip(original, changed) if a is not None and b is not None)
     return flips / comparable if comparable else 0.0
+
+def normalized(rows):
+    return [{**row, 'text': normalize_surface(row['text'])} for row in rows]
 
 def run():
     rows = fetch_split('train', 2224)
@@ -33,11 +37,14 @@ def run():
     probes = {}
     for filler in FILLERS:
         changed = transformed(test, filler)
+        canonical = normalized(changed)
         probes[filler] = {
             name: {
                 'original_metrics': metrics(test, base[name]),
                 'transformed_metrics': metrics(changed, fn(changed)),
+                'canonical_metrics': metrics(canonical, fn(canonical)),
                 'prediction_flip_rate': round(flip_rate(base[name], fn(changed)), 6),
+                'canonical_recovery_rate': round(1.0 - flip_rate(base[name], fn(canonical)), 6),
             }
             for name, fn in methods.items()
         }

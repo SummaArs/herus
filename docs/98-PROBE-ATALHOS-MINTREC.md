@@ -29,6 +29,14 @@ A leitura correta é:
 
 > abstenção reduz falsos compromissos, mas uma memória contextual frágil ainda pode ser afetada por pequenas mudanças de superfície.
 
+## Correção testada
+
+Foi adicionada uma normalização canônica limitada que remove somente os prefixos `please`, `if you can` e `thanks` quando aparecem no início. Ela não remove ocorrências internas nem termos do conteúdo central.
+
+No mesmo holdout, a normalização recuperou entre **99,22% e 100%** das previsões originais dos métodos, dependendo do prefixo. Isso corrige o atalho específico medido, mas não é compreensão semântica aberta. A regra só é válida para o vocabulário explicitamente declarado.
+
+O resultado é uma melhoria de robustez local, não um aumento do score geral do algoritmo.
+
 ## O que o probe não prova
 
 - não prova que os fillers preservam semântica em todos os casos;

@@ -47,8 +47,8 @@
     {
       "path": "research/Makefile",
       "kind": "file",
-      "sha256": "a45bd378910cf141955f8ad879b74113222ad326ae0a37bce85c25df8f14c0ec",
-      "role": "shortcut probe test gate"
+      "sha256": "6054a52f012c1628b623909e40d2e621c655cfd11827a4e2ec28c5aeacc645f6",
+      "role": "normalization test gate"
     },
     {
       "path": "research/semantic_ir.py",
@@ -251,8 +251,8 @@
     {
       "path": "README.md",
       "kind": "file",
-      "sha256": "4cf1417855b0dfab6d50a44fe182414577fe401f409ec5b696caf59ffc004c98",
-      "role": "shortcut probe status and test count"
+      "sha256": "2906af4f539dc003bd9ff8b309e4f79ff78e4e0d75c190eb0bc80dbe9597171a",
+      "role": "bounded normalization status and test count"
     },
     {
       "path": "docs/50-INTENT-COMPILER-E-SEMANTIC-IR.md",
@@ -515,7 +515,7 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "91361965f10452906d9e6ad058fbb6e4dab29053a159db796e07bf21e3a67218",
+      "sha256": "567c39e9213749d5a97297e55badb871ff779321d2c27f5fa309ef443bad8f81",
       "role": "organized documentation, maps and historical design records"
     },
     {
@@ -857,14 +857,14 @@
     {
       "path": "research/shortcut_probe.py",
       "kind": "file",
-      "sha256": "37ea2ff7e16eaeaa52f193d4647ee16a9e8c9bb528f1ee8985a2556444b8d887",
-      "role": "real-data invariance and shortcut probe"
+      "sha256": "126eab1102bfbbf18341963332fee6c48d7faff9faaa7740cb33d68d2d0488d4",
+      "role": "shortcut probe with canonical recovery"
     },
     {
       "path": "research/test_shortcut_probe.py",
       "kind": "file",
-      "sha256": "0ff4f9d170d22ee94f1429b8fda37cdf6d34e369da20fb0ed4106d9f6cf17065",
-      "role": "shortcut probe deterministic tests"
+      "sha256": "491f4e185c1ed174e31f05225e7e784a4d63089450f9956ef18e6051c3912a97",
+      "role": "canonical recovery test"
     },
     {
       "path": "research/evidence/shortcut_probe_mintrec_v1.json",
@@ -875,8 +875,26 @@
     {
       "path": "docs/98-PROBE-ATALHOS-MINTREC.md",
       "kind": "file",
-      "sha256": "eb29b4b548d65644e5a8b22f52b2d02abc8cce67adae92c89c32daac72905630",
-      "role": "shortcut probe findings and limits"
+      "sha256": "33cfc761595857e0377018db3cccf7035ee097cb2ebf5f6c42d38d9c3880199d",
+      "role": "shortcut probe and bounded normalization findings"
+    },
+    {
+      "path": "research/intent_normalization.py",
+      "kind": "file",
+      "sha256": "1e27e72ee8b84bb9c9b4f66bc82a0594080c2e0117db3dea6cd2d0a13b8a5d43",
+      "role": "bounded canonical surface normalization"
+    },
+    {
+      "path": "research/test_intent_normalization.py",
+      "kind": "file",
+      "sha256": "fffd7aa2706f938fa7ff78daa56b8e49b0e59ec4c8acda1472442cb8a8da57e9",
+      "role": "normalization safety tests"
+    },
+    {
+      "path": "research/evidence/shortcut_probe_mintrec_v2.json",
+      "kind": "file",
+      "sha256": "5c5b4ce8282647260ae0f96afd286030a8e1bd675b09eabf7919de893d92b652",
+      "role": "real-data canonical recovery result"
     }
   ],
   "components": [
