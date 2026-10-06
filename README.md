@@ -37,6 +37,7 @@ Sobre essa camada, o [Meta-Simbionte](docs/85-META-SIMBIONTE-E-HISTORICO-DE-SOLU
 - Holdouts históricos e uma campanha causal isolada para efeitos ocultos.
 - Benchmark real MIntRec com holdout por temporada e comparação contra Naive Bayes, 1-NN, centróides e maioria.
 - Comparação entre paradigmas supervisionado, não supervisionado, auto-supervisionado e reforço proxy no mesmo holdout real; nenhum resultado atual supera o supervisionado.
+- Auditoria crítica de erros e contrato executável que bloqueia alegações de vitória contra transformers ou de simbiose geral sem evidência equivalente.
 - Manifestos de hardware e proveniência local.
 - Documentação histórica desde o comunicador semântico original até a auditoria ASA.
 
@@ -60,7 +61,7 @@ PYTHONPATH=research python3 -m research.bridge_product
 python3 tools/provenance_audit.py --strict research/software_provenance_manifest.json
 ```
 
-Na última verificação local, a pesquisa passou com **182 testes e um skip**, e o proof integral confirmou as invariantes host-only e de simulação. A campanha ampla, o holdout local, o harness black-box, a API pública, a auto-supervisão experimental e o protocolo entre processos também separam acerto seguro de falso aceite. Isso é uma regressão interna, não uma prova de produto ou de campo.
+Na última verificação local, a pesquisa passou com **184 testes e um skip**, e o proof integral confirmou as invariantes host-only e de simulação. A campanha ampla, o holdout local, o harness black-box, a API pública, a auto-supervisão experimental, o contrato de avaliação e o protocolo entre processos também separam acerto seguro de falso aceite. Isso é uma regressão interna, não uma prova de produto ou de campo.
 
 ## Documentos de decisão
 
@@ -86,6 +87,7 @@ Na última verificação local, a pesquisa passou com **182 testes e um skip**, 
 | [Biblioteca pública](docs/91-BIBLIOTECA-PUBLICA-SYMBIOTIC-LEARNING.md) | API importável v0.1.0, proposal-only e sem efeitos colaterais. |
 | [Benchmark real](docs/92-BENCHMARK-DADOS-REAIS-E-BASELINES.md) | MIntRec S04/S05→S06 contra baselines clássicos; revela cobertura baixa da memória simbiótica. |
 | [Paradigmas de ML](docs/94-COMPARACAO-PARADIGMAS-ML-REAIS.md) | Comparação real com supervisionado, K-means e bandit proxy, sem alegar equivalência indevida. |
+| [Auditoria crítica](docs/95-AUDITORIA-CRITICA-ERROS-E-CORRECOES.md) | Erros metodológicos registrados e regras permanentes contra overclaiming. |
 
 ## Código por papel
 

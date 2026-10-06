@@ -47,8 +47,8 @@
     {
       "path": "research/Makefile",
       "kind": "file",
-      "sha256": "128067055722057199a042b08b838ac845acb48b8f4981d68c67f11bac13a3a2",
-      "role": "paradigm benchmark test gate"
+      "sha256": "ac5928d831cc52c9f27e8151f233a2fe3432de575a2e292cfda64d3a23e1a8fb",
+      "role": "evaluation contract test gate"
     },
     {
       "path": "research/semantic_ir.py",
@@ -251,8 +251,8 @@
     {
       "path": "README.md",
       "kind": "file",
-      "sha256": "237f41a0247ca691258a50a9638ab4d6c03668796d87d377189d1cc840a08b77",
-      "role": "self-supervised benchmark status and test count"
+      "sha256": "74ff4993630d4b87716d8d09bd88e1bf8b005c905c0e5aba55d3dd2d2f9410bd",
+      "role": "critical audit and evaluation contract status"
     },
     {
       "path": "docs/50-INTENT-COMPILER-E-SEMANTIC-IR.md",
@@ -515,7 +515,7 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "1c12ac4b81ac914ded11a1847fb06fd2b4efa3c656b80af27b1860156d54e46e",
+      "sha256": "ed508089a85da5a02d18ea082777254372c3e1a3cf53b34f9907174796429ee4",
       "role": "organized documentation, maps and historical design records"
     },
     {
@@ -799,6 +799,24 @@
       "kind": "file",
       "sha256": "33c322a6ce7d46e4f54e51c3a01d422adca58d3dae390a19f852f83a8ee3d0cb",
       "role": "self-supervised real-data result"
+    },
+    {
+      "path": "research/evidence/evaluation_contract_v1.json",
+      "kind": "file",
+      "sha256": "00f30d1fe0493a5b617074ed293826bbb602409c6417e10e664e319a258c6edf",
+      "role": "claims and next-score requirements"
+    },
+    {
+      "path": "research/test_evaluation_contract.py",
+      "kind": "file",
+      "sha256": "c167dd2e5c9314e209bb6cdf1ad976bea64ea03d2cd173180b4e55dadb2a07aa",
+      "role": "anti-overclaim evaluation tests"
+    },
+    {
+      "path": "docs/95-AUDITORIA-CRITICA-ERROS-E-CORRECOES.md",
+      "kind": "file",
+      "sha256": "028504a0b2cbc3017db1052c59e8d2ca049c0bb9fb7e03cf7422be25cf0fb844",
+      "role": "critical error ledger and permanent corrections"
     }
   ],
   "components": [
