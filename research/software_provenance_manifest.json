@@ -515,7 +515,7 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "e8f15e5878207df7da086d6fdda51d835d7422f50a3dc5f266e6b4bed79c7c68",
+      "sha256": "fb9d3ae829f4f18dda232749320e2e8274e07e9d0509877be2a9a4cafe010c2b",
       "role": "organized documentation, maps and historical design records"
     },
     {
@@ -737,8 +737,8 @@
     {
       "path": "research/real_data_baseline_benchmark.py",
       "kind": "file",
-      "sha256": "d80d5b46056d8742dc2c1522efb17fd6d2b678b8328f833bc8148c71be3fb36f",
-      "role": "real MIntRec benchmark against classical algorithms"
+      "sha256": "86105ad2572953ec1a7a460e4bf0c2b3837038a5c7c3210d8238ff6c6585705e",
+      "role": "calibrated coverage precision experiment"
     },
     {
       "path": "research/test_real_data_baseline_benchmark.py",
@@ -757,6 +757,18 @@
       "kind": "file",
       "sha256": "2085e07a3d8c6422fa84eb209f2b84bc7b66df5f6b4cea83c7141b6424e3828b",
       "role": "real-data comparison and falsification report"
+    },
+    {
+      "path": "research/evidence/real_data_baselines_mintrec_v2.json",
+      "kind": "file",
+      "sha256": "187a0eba1d124942fb3fde91cef2016119cf4d1f58f32463bc2a4d852b4a8614",
+      "role": "calibrated real-data result"
+    },
+    {
+      "path": "docs/93-CALIBRACAO-COBERTURA-PRECISAO.md",
+      "kind": "file",
+      "sha256": "de164efd630b3161e2b61d1ca759676f1fdc84f4ff51511d0d10711a3c26f557",
+      "role": "coverage precision frontier report"
     }
   ],
   "components": [

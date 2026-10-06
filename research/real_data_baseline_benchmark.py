@@ -86,6 +86,35 @@ def contextual_memory(train, test):
         predictions.append(memory[key].most_common(1)[0][0] if key in memory else None)
     return predictions
 
+def _nb_scores(train, row):
+    labels = sorted({item['label'] for item in train})
+    docs = Counter(item['label'] for item in train)
+    words = {label: Counter() for label in labels}; totals = Counter(); vocabulary = set()
+    for item in train:
+        counts = vector(item['text']); words[item['label']].update(counts)
+        totals[item['label']] += sum(counts.values()); vocabulary.update(counts)
+    v = max(1, len(vocabulary)); n = len(train); counts = vector(row['text']); scores = {}
+    for label in labels:
+        score = math.log((docs[label] + 1) / (n + len(labels)))
+        denom = totals[label] + v
+        scores[label] = score + sum(c * math.log((words[label][token] + 1) / denom) for token, c in counts.items())
+    ordered = sorted(scores.items(), key=lambda pair: pair[1], reverse=True)
+    return ordered[0][0], ordered[0][1] - ordered[1][1]
+
+def calibrated_symbiotic_memory(fit, calibration, test, minimum_precision=0.80):
+    """Use a confidence margin calibrated without seeing the final holdout."""
+    calibration_scores = [_nb_scores(fit, row) for row in calibration]
+    candidates = sorted({margin for _, margin in calibration_scores})
+    accepted_threshold = float('inf'); best_coverage = -1.0
+    for threshold in candidates:
+        predictions = [(label if margin >= threshold else None) for (label, margin) in calibration_scores]
+        result = metrics(calibration, predictions)
+        if result['coverage'] and result['selective_accuracy'] >= minimum_precision and result['coverage'] > best_coverage:
+            accepted_threshold = threshold
+            best_coverage = result['coverage']
+    test_scores = [_nb_scores(fit, row) for row in test]
+    return [(label if margin >= accepted_threshold else None) for label, margin in test_scores], accepted_threshold
+
 def metrics(test, predictions):
     labels = sorted({row['label'] for row in test})
     correct = sum(row['label'] == pred for row, pred in zip(test, predictions) if pred is not None)
@@ -108,8 +137,10 @@ def run():
     # while S04/S05 are used for fitting. This prevents utterance leakage.
     train = [row for row in all_rows if row['season'] in {'S04', 'S05'}]
     test = [row for row in all_rows if row['season'] == 'S06']
-    methods = {'majority': majority(train, test), 'multinomial_naive_bayes': nb(train, test), '1nn_cosine': knn(train, test), 'centroid_cosine': centroid(train, test), 'symbiotic_finite_context_memory': contextual_memory(train, test)}
-    result = {'dataset': {'id': DATASET, 'source': API, 'published_split': 'train', 'train_rows': len(train), 'test_rows': len(test), 'train_seasons': ['S04', 'S05'], 'holdout_seasons': ['S06'], 'labels': len(set(row['label'] for row in train + test))}, 'task': 'MIntRec 20-way text intent classification; no HERUS label mapping', 'methods': {name: metrics(test, predictions) for name, predictions in methods.items()}, 'limits': ['MIntRec labels are not HERUS events', 'text metadata only; audio and video are excluded', 'the current SymbioticLearner is proposal/effect oriented, so contextual memory is a transparent adapter baseline', 'chronological season holdout is not the official paper split', 'no claim of superiority is made from this single corpus']}
+    fit = [row for row in all_rows if row['season'] == 'S04']; calibration = [row for row in all_rows if row['season'] == 'S05']
+    calibrated, threshold = calibrated_symbiotic_memory(fit, calibration, test)
+    methods = {'majority': majority(train, test), 'multinomial_naive_bayes': nb(train, test), '1nn_cosine': knn(train, test), 'centroid_cosine': centroid(train, test), 'symbiotic_finite_context_memory': contextual_memory(train, test), 'symbiotic_calibrated_prototype': calibrated}
+    result = {'dataset': {'id': DATASET, 'source': API, 'published_split': 'train', 'train_rows': len(train), 'test_rows': len(test), 'train_seasons': ['S04', 'S05'], 'calibration_season': 'S05', 'fit_season_for_calibration': 'S04', 'holdout_seasons': ['S06'], 'labels': len(set(row['label'] for row in train + test))}, 'calibration': {'minimum_precision': 0.80, 'margin_threshold': round(threshold, 6)}, 'task': 'MIntRec 20-way text intent classification; no HERUS label mapping', 'methods': {name: metrics(test, predictions) for name, predictions in methods.items()}, 'limits': ['MIntRec labels are not HERUS events', 'text metadata only; audio and video are excluded', 'the current SymbioticLearner is proposal/effect oriented, so calibrated prototype is an adapter baseline', 'chronological season holdout is not the official paper split', 'no claim of superiority is made from this single corpus']}
     return result
 
 if __name__ == '__main__':
