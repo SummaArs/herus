@@ -1,6 +1,6 @@
 import ast
 import unittest
-from herus_symbiotic.programming import ProgrammingRequest, ProgrammingSkill
+from herus_symbiotic.programming import ProgrammingRequest, ProgrammingSkill, TestFailure
 
 
 class ProgrammingSkillTests(unittest.TestCase):
@@ -31,6 +31,19 @@ class ProgrammingSkillTests(unittest.TestCase):
         result = self.skill.propose(ProgrammingRequest('write a parser', 'c11', ('no allocation',)))
         self.assertEqual(result.status, 'PROPOSE')
         self.assertIn('proposal only', result.source)
+
+    def test_failure_diagnosis_requests_evidence_without_emitting_patch(self):
+        result = self.skill.diagnose_failures((TestFailure('parser.bad', 'syntax mismatch', 'object', 'text'),))
+        self.assertEqual(result.status, 'REPAIR_PROPOSAL')
+        self.assertEqual(result.authority, 'none')
+        self.assertEqual(result.patch, '')
+        self.assertIn('parser.bad: possible contract/parser mismatch', result.hypotheses)
+        self.assertTrue(result.requested_evidence)
+
+    def test_empty_or_malformed_failure_abstains(self):
+        result = self.skill.diagnose_failures((TestFailure('', ''),))
+        self.assertEqual(result.status, 'ABSTAIN')
+        self.assertEqual(result.authority, 'none')
 
 
 if __name__ == '__main__':

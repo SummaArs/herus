@@ -45,6 +45,18 @@ proposal = skill.propose(
 
 A proposta contém código, plano e testes. O código gerado é um esqueleto deliberadamente incompleto. Isso é intencional: gerar código plausível não é o mesmo que provar código correto.
 
+## Reparo guiado por falha
+
+`ProgrammingSkill.diagnose_failures` recebe falhas observadas e produz hipóteses, plano de investigação e evidências solicitadas. Ele não emite patch executável quando a causa ainda não está estabelecida. Falha vazia ou malformada produz `ABSTAIN`.
+
+O ciclo é:
+
+```text
+falha observada → hipótese limitada → evidência pedida → patch revisável → ledger → nova verificação
+```
+
+Isso evita o padrão perigoso de “consertar” um teste sem demonstrar que o contrato original foi preservado.
+
 ## Por que isso ainda não aumenta o score
 
 A habilidade foi validada como API proposal-only, mas ainda não foi comparada em um benchmark real de programação contra modelos ou ferramentas existentes. Portanto, ela aumenta o repertório do HERUS, mas não aumenta automaticamente o score científico de conclusão.

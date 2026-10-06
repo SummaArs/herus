@@ -35,6 +35,22 @@ class ProgrammingProposal:
     assumptions: Tuple[str, ...]
     authority: str = "none"
 
+@dataclass(frozen=True)
+class TestFailure:
+    test_id: str
+    message: str
+    expected: str = ""
+    observed: str = ""
+
+@dataclass(frozen=True)
+class RepairProposal:
+    status: str
+    hypotheses: Tuple[str, ...]
+    plan: Tuple[str, ...]
+    requested_evidence: Tuple[str, ...]
+    patch: str = ""
+    authority: str = "none"
+
 class ProgrammingSkill:
     """Finite, deterministic planner for small programming proposals."""
 
@@ -78,6 +94,40 @@ class ProgrammingSkill:
         )
         status = "PROPOSE" if not any(q.blocking for q in questions) else "PROPOSE_WITH_QUESTIONS"
         return ProgrammingProposal(status, language, plan, questions, source, tests, assumptions)
+
+    def diagnose_failures(self, failures: Tuple[TestFailure, ...]) -> RepairProposal:
+        """Turn observed failures into a bounded repair proposal.
+
+        The method never invents a passing result and never emits an
+        executable patch without enough evidence. A caller must provide the
+        affected code and rerun independent verification outside this module.
+        """
+        if not failures or any(not item.test_id.strip() or not item.message.strip() for item in failures):
+            return RepairProposal("ABSTAIN", (), (), ("Provide a non-empty test id and observed failure message.",))
+        hypotheses = tuple(self._failure_hypothesis(item) for item in failures)
+        requested = (
+            "provide the smallest affected function or interface",
+            "reproduce the failure with a fixed input",
+            "add a regression case before changing implementation",
+            "rerun positive, negative, malformed, and boundary cases",
+        )
+        return RepairProposal(
+            "REPAIR_PROPOSAL",
+            hypotheses,
+            ("preserve the failing observation", "test the narrowest hypothesis", "propose the smallest reversible change", "rebuild the evidence ledger"),
+            requested,
+        )
+
+    @staticmethod
+    def _failure_hypothesis(failure: TestFailure) -> str:
+        message = failure.message.casefold()
+        if "timeout" in message or "deadline" in message:
+            return f"{failure.test_id}: possible deadline or lifecycle violation"
+        if "parse" in message or "syntax" in message:
+            return f"{failure.test_id}: possible contract/parser mismatch"
+        if failure.expected and failure.observed and failure.expected != failure.observed:
+            return f"{failure.test_id}: observed value differs from expected value"
+        return f"{failure.test_id}: cause unknown; do not infer implementation fault yet"
 
     @staticmethod
     def _questions(goal: str, constraints: Tuple[str, ...]) -> Tuple[ProgrammingQuestion, ...]:

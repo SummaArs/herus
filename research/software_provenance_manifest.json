@@ -251,8 +251,8 @@
     {
       "path": "README.md",
       "kind": "file",
-      "sha256": "e0756acecda0091c58de012759104f474f61456b46946b4c61556ce92d2adcbf",
-      "role": "REA-inspired obligation ledger status and test count"
+      "sha256": "8d158456e4ddf580029797e6730ae717373488ac6873d910b3a6e71a2709c7d9",
+      "role": "repair cycle status and test count"
     },
     {
       "path": "docs/50-INTENT-COMPILER-E-SEMANTIC-IR.md",
@@ -515,7 +515,7 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "ce8f1143fae495c751bc2b7a427bf1e302ce2f817b11f2f2f5910132671477a9",
+      "sha256": "7816e4d12798a99bba8bb045d938580ae3662a44cb04e70870c96224fb39b4ea",
       "role": "organized documentation, maps and historical design records"
     },
     {
@@ -719,8 +719,8 @@
     {
       "path": "herus_symbiotic/__init__.py",
       "kind": "file",
-      "sha256": "43e51ba350d131118ca4807089453d30ef6c8462056b4569d94f35515af9586e",
-      "role": "public evidence ledger import"
+      "sha256": "4f9696b64205faeecba6ac7138f0031ad69d91848d35fd853a64be9ba42e0305",
+      "role": "public repair proposal imports"
     },
     {
       "path": "pyproject.toml",
@@ -899,20 +899,20 @@
     {
       "path": "herus_symbiotic/programming.py",
       "kind": "file",
-      "sha256": "71b4cb93245cd5118c0d37c82e9f9eae9db4a30dcdd534a005c2c98daa743db1",
-      "role": "proposal-only programming skill"
+      "sha256": "252717e146e75fef89f58cf06bb12e9d8e9958b99bb5e8b564f347866e22b473",
+      "role": "failure-guided repair proposal API"
     },
     {
       "path": "research/test_programming_skill.py",
       "kind": "file",
-      "sha256": "f21ee8e583720aefeae956ce95bb96c7e16931f782e4715873529f188d1270db",
-      "role": "programming skill adversarial tests"
+      "sha256": "dd7b100c4024f126a2e1ba3a45d3125b966224da5db7e0d8b42082e2d5260807",
+      "role": "repair proposal adversarial tests"
     },
     {
       "path": "docs/99-HABILIDADE-PROGRAMACAO-JEV-INSPIRED.md",
       "kind": "file",
-      "sha256": "94df86f4216595eb01986b7873c153f32a451ea92345f47b607f8115b376bc57",
-      "role": "programming skill specification and limits"
+      "sha256": "96c9e7c17389fd014ed20ae8f28d7ff2e5da4a26a8daf83517565059777ad004",
+      "role": "repair cycle specification"
     },
     {
       "path": "herus_symbiotic/programming_evidence.py",
