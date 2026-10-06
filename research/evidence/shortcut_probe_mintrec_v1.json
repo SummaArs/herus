@@ -1,0 +1,216 @@
+{
+  "dataset": {
+    "holdout_rows": 386,
+    "holdout_season": "S06",
+    "id": "THU-IAR/MIntRec",
+    "source": "https://datasets-server.huggingface.co/rows",
+    "train_seasons": [
+      "S04",
+      "S05"
+    ]
+  },
+  "limits": [
+    "synthetic perturbation is not proof of full semantic invariance",
+    "only text metadata",
+    "does not measure transformer because its checkpoint is not persisted in this probe",
+    "a low flip rate can coexist with systematic wrong predictions"
+  ],
+  "probe": {
+    "assumption": "the added politeness/filler prefix should not change the original intent label",
+    "fillers": [
+      "please",
+      "if you can",
+      "thanks"
+    ],
+    "no_labels_changed": true,
+    "type": "filler_invariance"
+  },
+  "results": {
+    "if you can": {
+      "1nn_cosine": {
+        "original_metrics": {
+          "accuracy": 0.398964,
+          "coverage": 1.0,
+          "macro_f1": 0.322042,
+          "selective_accuracy": 0.398964
+        },
+        "prediction_flip_rate": 0.507772,
+        "transformed_metrics": {
+          "accuracy": 0.292746,
+          "coverage": 1.0,
+          "macro_f1": 0.241613,
+          "selective_accuracy": 0.292746
+        }
+      },
+      "centroid_cosine": {
+        "original_metrics": {
+          "accuracy": 0.373057,
+          "coverage": 1.0,
+          "macro_f1": 0.340202,
+          "selective_accuracy": 0.373057
+        },
+        "prediction_flip_rate": 0.551813,
+        "transformed_metrics": {
+          "accuracy": 0.282383,
+          "coverage": 1.0,
+          "macro_f1": 0.294946,
+          "selective_accuracy": 0.282383
+        }
+      },
+      "multinomial_naive_bayes": {
+        "original_metrics": {
+          "accuracy": 0.492228,
+          "coverage": 1.0,
+          "macro_f1": 0.374427,
+          "selective_accuracy": 0.492228
+        },
+        "prediction_flip_rate": 0.261658,
+        "transformed_metrics": {
+          "accuracy": 0.448187,
+          "coverage": 1.0,
+          "macro_f1": 0.29588,
+          "selective_accuracy": 0.448187
+        }
+      },
+      "symbiotic_finite_context_memory": {
+        "original_metrics": {
+          "accuracy": 0.062176,
+          "coverage": 0.062176,
+          "macro_f1": 0.11877,
+          "selective_accuracy": 1.0
+        },
+        "prediction_flip_rate": 0.0,
+        "transformed_metrics": {
+          "accuracy": 0.0,
+          "coverage": 0.0,
+          "macro_f1": 0.0,
+          "selective_accuracy": 0.0
+        }
+      }
+    },
+    "please": {
+      "1nn_cosine": {
+        "original_metrics": {
+          "accuracy": 0.398964,
+          "coverage": 1.0,
+          "macro_f1": 0.322042,
+          "selective_accuracy": 0.398964
+        },
+        "prediction_flip_rate": 0.093264,
+        "transformed_metrics": {
+          "accuracy": 0.38342,
+          "coverage": 1.0,
+          "macro_f1": 0.312818,
+          "selective_accuracy": 0.38342
+        }
+      },
+      "centroid_cosine": {
+        "original_metrics": {
+          "accuracy": 0.373057,
+          "coverage": 1.0,
+          "macro_f1": 0.340202,
+          "selective_accuracy": 0.373057
+        },
+        "prediction_flip_rate": 0.046632,
+        "transformed_metrics": {
+          "accuracy": 0.365285,
+          "coverage": 1.0,
+          "macro_f1": 0.338434,
+          "selective_accuracy": 0.365285
+        }
+      },
+      "multinomial_naive_bayes": {
+        "original_metrics": {
+          "accuracy": 0.492228,
+          "coverage": 1.0,
+          "macro_f1": 0.374427,
+          "selective_accuracy": 0.492228
+        },
+        "prediction_flip_rate": 0.225389,
+        "transformed_metrics": {
+          "accuracy": 0.474093,
+          "coverage": 1.0,
+          "macro_f1": 0.317961,
+          "selective_accuracy": 0.474093
+        }
+      },
+      "symbiotic_finite_context_memory": {
+        "original_metrics": {
+          "accuracy": 0.062176,
+          "coverage": 0.062176,
+          "macro_f1": 0.11877,
+          "selective_accuracy": 1.0
+        },
+        "prediction_flip_rate": 0.0,
+        "transformed_metrics": {
+          "accuracy": 0.0,
+          "coverage": 0.0,
+          "macro_f1": 0.0,
+          "selective_accuracy": 0.0
+        }
+      }
+    },
+    "thanks": {
+      "1nn_cosine": {
+        "original_metrics": {
+          "accuracy": 0.398964,
+          "coverage": 1.0,
+          "macro_f1": 0.322042,
+          "selective_accuracy": 0.398964
+        },
+        "prediction_flip_rate": 0.222798,
+        "transformed_metrics": {
+          "accuracy": 0.34456,
+          "coverage": 1.0,
+          "macro_f1": 0.272375,
+          "selective_accuracy": 0.34456
+        }
+      },
+      "centroid_cosine": {
+        "original_metrics": {
+          "accuracy": 0.373057,
+          "coverage": 1.0,
+          "macro_f1": 0.340202,
+          "selective_accuracy": 0.373057
+        },
+        "prediction_flip_rate": 0.085492,
+        "transformed_metrics": {
+          "accuracy": 0.34715,
+          "coverage": 1.0,
+          "macro_f1": 0.307282,
+          "selective_accuracy": 0.34715
+        }
+      },
+      "multinomial_naive_bayes": {
+        "original_metrics": {
+          "accuracy": 0.492228,
+          "coverage": 1.0,
+          "macro_f1": 0.374427,
+          "selective_accuracy": 0.492228
+        },
+        "prediction_flip_rate": 0.199482,
+        "transformed_metrics": {
+          "accuracy": 0.455959,
+          "coverage": 1.0,
+          "macro_f1": 0.305905,
+          "selective_accuracy": 0.455959
+        }
+      },
+      "symbiotic_finite_context_memory": {
+        "original_metrics": {
+          "accuracy": 0.062176,
+          "coverage": 0.062176,
+          "macro_f1": 0.11877,
+          "selective_accuracy": 1.0
+        },
+        "prediction_flip_rate": 0.25,
+        "transformed_metrics": {
+          "accuracy": 0.007772,
+          "coverage": 0.010363,
+          "macro_f1": 0.012,
+          "selective_accuracy": 0.75
+        }
+      }
+    }
+  }
+}
