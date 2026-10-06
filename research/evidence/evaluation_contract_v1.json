@@ -16,10 +16,10 @@
     "AGI"
   ],
   "required_for_next_score_increase": [
-    {"id": "transformer_baseline", "status": "pending", "requirement": "Run a small real transformer with fixed seed, budget and S06 holdout"},
+    {"id": "transformer_baseline", "status": "completed", "requirement": "Run a small real transformer with fixed seed, budget and S06 holdout"},
     {"id": "domain_shift", "status": "pending", "requirement": "Evaluate on a second real dataset with an unseen-domain holdout"},
     {"id": "abstention_curve", "status": "completed", "requirement": "Report coverage and selective precision"},
-    {"id": "cost_accounting", "status": "pending", "requirement": "Measure training/inference time and memory for every method"},
+    {"id": "cost_accounting", "status": "partial", "requirement": "Measure training/inference time and memory for every method"},
     {"id": "rl_environment", "status": "pending", "requirement": "Use a real sequential environment before making RL claims"}
   ]
 }

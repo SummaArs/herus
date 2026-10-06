@@ -1,0 +1,86 @@
+{
+  "dataset": {
+    "fit_rows": 566,
+    "holdout_rows": 386,
+    "id": "THU-IAR/MIntRec",
+    "labels": 20,
+    "validation_rows": 1272
+  },
+  "history": [
+    {
+      "epoch": 1,
+      "loss": 2.94491,
+      "validation": {
+        "accuracy": 0.106132,
+        "coverage": 1.0,
+        "macro_f1": 0.028559,
+        "selective_accuracy": 0.106132
+      }
+    },
+    {
+      "epoch": 2,
+      "loss": 2.836243,
+      "validation": {
+        "accuracy": 0.113994,
+        "coverage": 1.0,
+        "macro_f1": 0.018089,
+        "selective_accuracy": 0.113994
+      }
+    },
+    {
+      "epoch": 3,
+      "loss": 2.754106,
+      "validation": {
+        "accuracy": 0.119497,
+        "coverage": 1.0,
+        "macro_f1": 0.02035,
+        "selective_accuracy": 0.119497
+      }
+    },
+    {
+      "epoch": 4,
+      "loss": 2.693327,
+      "validation": {
+        "accuracy": 0.119497,
+        "coverage": 1.0,
+        "macro_f1": 0.019208,
+        "selective_accuracy": 0.119497
+      }
+    },
+    {
+      "epoch": 5,
+      "loss": 2.644906,
+      "validation": {
+        "accuracy": 0.132075,
+        "coverage": 1.0,
+        "macro_f1": 0.033501,
+        "selective_accuracy": 0.132075
+      }
+    }
+  ],
+  "holdout_metrics": {
+    "accuracy": 0.176166,
+    "coverage": 1.0,
+    "macro_f1": 0.039633,
+    "selective_accuracy": 0.176166
+  },
+  "limits": [
+    "small pretrained transformer baseline, not state of the art",
+    "text only; audio/video excluded",
+    "one temporal holdout",
+    "no MIntRec label mapped to a HERUS event"
+  ],
+  "model": "google/bert_uncased_L-2_H-128_A-2",
+  "protocol": {
+    "batch_size": 16,
+    "device": "cpu",
+    "epochs": 5,
+    "fit_season": "S04",
+    "holdout_season": "S06",
+    "learning_rate": 5e-05,
+    "max_length": 96,
+    "seed": 17,
+    "validation_season": "S05"
+  },
+  "runtime_seconds": 16.943
+}

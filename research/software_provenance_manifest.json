@@ -47,8 +47,8 @@
     {
       "path": "research/Makefile",
       "kind": "file",
-      "sha256": "ac5928d831cc52c9f27e8151f233a2fe3432de575a2e292cfda64d3a23e1a8fb",
-      "role": "evaluation contract test gate"
+      "sha256": "59b0a234433bc71cea4cd5ae6058c4dcd7cc66e546675e467d88e0790c9ab92b",
+      "role": "transformer evidence test gate"
     },
     {
       "path": "research/semantic_ir.py",
@@ -251,8 +251,8 @@
     {
       "path": "README.md",
       "kind": "file",
-      "sha256": "74ff4993630d4b87716d8d09bd88e1bf8b005c905c0e5aba55d3dd2d2f9410bd",
-      "role": "critical audit and evaluation contract status"
+      "sha256": "a013f3b2a1ccf8b810b46d27716eb2aeddf9d1f79ff6416c88d3dc6ff5f38f1d",
+      "role": "real transformer baseline status and test count"
     },
     {
       "path": "docs/50-INTENT-COMPILER-E-SEMANTIC-IR.md",
@@ -515,7 +515,7 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "ed508089a85da5a02d18ea082777254372c3e1a3cf53b34f9907174796429ee4",
+      "sha256": "b61035a8209a2a6b25ae9a20e8f4e103a3d187312287d8bb6928e325728f1736",
       "role": "organized documentation, maps and historical design records"
     },
     {
@@ -803,8 +803,8 @@
     {
       "path": "research/evidence/evaluation_contract_v1.json",
       "kind": "file",
-      "sha256": "00f30d1fe0493a5b617074ed293826bbb602409c6417e10e664e319a258c6edf",
-      "role": "claims and next-score requirements"
+      "sha256": "a37b693ad6afb351fd265363036a9747f805345597a3f223faec975a3d438b6e",
+      "role": "transformer baseline completion status"
     },
     {
       "path": "research/test_evaluation_contract.py",
@@ -817,6 +817,30 @@
       "kind": "file",
       "sha256": "028504a0b2cbc3017db1052c59e8d2ca049c0bb9fb7e03cf7422be25cf0fb844",
       "role": "critical error ledger and permanent corrections"
+    },
+    {
+      "path": "research/transformer_mintrec_benchmark.py",
+      "kind": "file",
+      "sha256": "0a2667b92ddc0883cc6143d7bd483c090e3fadcf27c68fa07a5881c54badca57",
+      "role": "real transformer MIntRec protocol"
+    },
+    {
+      "path": "research/evidence/transformer_mintrec_v1.json",
+      "kind": "file",
+      "sha256": "5673f34a2b2f9b74444faf57ecb69ebf4c22dde5c74cd7835da8a579a4ce7063",
+      "role": "real transformer holdout result"
+    },
+    {
+      "path": "research/test_transformer_mintrec_benchmark.py",
+      "kind": "file",
+      "sha256": "7629a91c84973c56399ee14e75e1b5346e2f15d28a5c39e6e746437f1324670f",
+      "role": "transformer evidence integrity tests"
+    },
+    {
+      "path": "docs/96-TRANSFORMER-REAL-MINTREC.md",
+      "kind": "file",
+      "sha256": "3d014f15dd5aa77d9eb0f28c8afb9c06407990a4fc5d9a91c7f0b03dd20b69c0",
+      "role": "real transformer comparison and limits"
     }
   ],
   "components": [
