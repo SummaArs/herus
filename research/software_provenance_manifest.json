@@ -47,8 +47,8 @@
     {
       "path": "research/Makefile",
       "kind": "file",
-      "sha256": "6054a52f012c1628b623909e40d2e621c655cfd11827a4e2ec28c5aeacc645f6",
-      "role": "normalization test gate"
+      "sha256": "e2b2e83c0b72bca7b3b70ce26c754b694a35feaf1a503a5be7f485948142a3fe",
+      "role": "programming skill test gate"
     },
     {
       "path": "research/semantic_ir.py",
@@ -251,8 +251,8 @@
     {
       "path": "README.md",
       "kind": "file",
-      "sha256": "2906af4f539dc003bd9ff8b309e4f79ff78e4e0d75c190eb0bc80dbe9597171a",
-      "role": "bounded normalization status and test count"
+      "sha256": "334b437aec73e0781d77da2ca1ebd277c3e90b30bdde2488253856556f6d4929",
+      "role": "programming skill status and test count"
     },
     {
       "path": "docs/50-INTENT-COMPILER-E-SEMANTIC-IR.md",
@@ -515,7 +515,7 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "567c39e9213749d5a97297e55badb871ff779321d2c27f5fa309ef443bad8f81",
+      "sha256": "df51babf3b5255bdbc906b797b2527cbab1a99ba91981a586098e79f0c5399c5",
       "role": "organized documentation, maps and historical design records"
     },
     {
@@ -719,8 +719,8 @@
     {
       "path": "herus_symbiotic/__init__.py",
       "kind": "file",
-      "sha256": "215608547edcc4b4a3283c4b850073662c53e9675d7967a152fa897e62b6261e",
-      "role": "stable public import surface v0.1.0"
+      "sha256": "f3c76eba0b9adcaa16510d6c645a414427795131d3ec4d367aabe659c3a07b25",
+      "role": "public programming skill import"
     },
     {
       "path": "pyproject.toml",
@@ -895,6 +895,24 @@
       "kind": "file",
       "sha256": "5c5b4ce8282647260ae0f96afd286030a8e1bd675b09eabf7919de893d92b652",
       "role": "real-data canonical recovery result"
+    },
+    {
+      "path": "herus_symbiotic/programming.py",
+      "kind": "file",
+      "sha256": "71b4cb93245cd5118c0d37c82e9f9eae9db4a30dcdd534a005c2c98daa743db1",
+      "role": "proposal-only programming skill"
+    },
+    {
+      "path": "research/test_programming_skill.py",
+      "kind": "file",
+      "sha256": "f21ee8e583720aefeae956ce95bb96c7e16931f782e4715873529f188d1270db",
+      "role": "programming skill adversarial tests"
+    },
+    {
+      "path": "docs/99-HABILIDADE-PROGRAMACAO-JEV-INSPIRED.md",
+      "kind": "file",
+      "sha256": "94df86f4216595eb01986b7873c153f32a451ea92345f47b607f8115b376bc57",
+      "role": "programming skill specification and limits"
     }
   ],
   "components": [
