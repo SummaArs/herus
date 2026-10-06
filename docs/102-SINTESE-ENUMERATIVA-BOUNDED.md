@@ -9,6 +9,7 @@ Resultados possíveis:
 - `PROPOSE`: solução única passou público e oculto;
 - `REJECT_HIDDEN`: solução ajusta o público, mas falha no oculto;
 - `ABSTAIN`: tarefa inválida ou exemplos públicos ambíguos.
+- `BUDGET_EXCEEDED`: a enumeração atingiu o limite explícito de candidatos.
 
 ## Evidência v1
 
@@ -24,6 +25,10 @@ A evidência bruta está em `research/evidence/program_synthesis_v1.json`.
 ## O que isso prova
 
 Prova que o HERUS consegue realizar síntese enumerativa pequena, compor expressões, detectar subespecificação e rejeitar uma hipótese que se ajusta aos exemplos públicos mas falha na validação oculta.
+
+## Orçamento
+
+Cada tarefa declara `max_candidates`. O sintetizador não continua procurando indefinidamente e não transforma orçamento insuficiente em falha sem diagnóstico: retorna `BUDGET_EXCEEDED`, sem expressão proposta e sem alegação de validade oculta.
 
 ## O que não prova
 

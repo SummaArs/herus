@@ -19,6 +19,7 @@ class SynthesisTask:
     public_examples: Tuple[IOExample, ...]
     hidden_examples: Tuple[IOExample, ...]
     max_depth: int = 2
+    max_candidates: int = 256
 
 @dataclass(frozen=True)
 class SynthesisResult:
@@ -44,7 +45,7 @@ CANONICAL_PROBES = ((-2, -1), (-2, 1), (-1, 2), (0, 1), (1, 0), (1, 2), (2, -1),
 
 
 def synthesize(task: SynthesisTask) -> SynthesisResult:
-    if not task.public_examples or len({example.inputs for example in task.public_examples}) < 2 or task.max_depth < 1 or task.max_depth > 3:
+    if not task.public_examples or len({example.inputs for example in task.public_examples}) < 2 or task.max_depth < 1 or task.max_depth > 3 or task.max_candidates < 1 or task.max_candidates > 10000:
         return SynthesisResult("ABSTAIN", task.task_id, "", False, None, 0, "invalid or underspecified task")
     candidates = [(name, fn) for name, fn in OPS]
     if task.max_depth >= 2:
@@ -53,6 +54,8 @@ def synthesize(task: SynthesisTask) -> SynthesisResult:
     matches = []
     for expression, fn in candidates:
         checked += 1
+        if checked > task.max_candidates:
+            return SynthesisResult("BUDGET_EXCEEDED", task.task_id, "", False, None, checked - 1, "candidate budget exhausted")
         try:
             if all(fn(*example.inputs) == example.output for example in task.public_examples):
                 matches.append((expression, fn))

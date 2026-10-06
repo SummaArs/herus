@@ -47,6 +47,19 @@ class ProgramSynthesisTests(unittest.TestCase):
         self.assertTrue(result.hidden_pass)
         self.assertGreater(result.candidates_checked, 10)
 
+    def test_candidate_budget_fails_closed(self):
+        task = SynthesisTask(
+            'budget.v1',
+            (IOExample((2, 3), 5), IOExample((-1, 4), 3)),
+            (),
+            2,
+            3,
+        )
+        result = synthesize(task)
+        self.assertEqual(result.status, 'BUDGET_EXCEEDED')
+        self.assertEqual(result.expression, '')
+        self.assertEqual(result.hidden_pass, None)
+
 
 if __name__ == '__main__':
     unittest.main()

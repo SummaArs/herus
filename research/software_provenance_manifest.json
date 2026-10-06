@@ -251,8 +251,8 @@
     {
       "path": "README.md",
       "kind": "file",
-      "sha256": "8c50acaf1b67b6eaa2ed58fb9e9d551cf13f235624a4cce91f5dcfad9b89ca7a",
-      "role": "bounded synthesis status and test count"
+      "sha256": "be404bfa2b8966ff94801f1c38e8f2d46b0b31b4c32dd3e48aaa5b5f70ab670e",
+      "role": "synthesis budget status and test count"
     },
     {
       "path": "docs/50-INTENT-COMPILER-E-SEMANTIC-IR.md",
@@ -515,7 +515,7 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "6c9f08d86791bd4f24710cd68db0b0e85ed1b8fba6c1999359971329d97e294f",
+      "sha256": "b3d89316b9e5cbda51db310ba2e72ced5da3a1c47f9121e453bb769df8b95be9",
       "role": "organized documentation, maps and historical design records"
     },
     {
@@ -965,14 +965,14 @@
     {
       "path": "research/program_synthesis.py",
       "kind": "file",
-      "sha256": "f6b5c8f6fb0776fd1a14af57080c05c64f13416552c5205c9a8d1f2ee4475585",
-      "role": "compositional bounded synthesis with canonical probes"
+      "sha256": "c2fe4c73486a59db668f3824bf9d347168e428cb3abddf869745456afe615d7e",
+      "role": "explicit candidate budget and fail-closed status"
     },
     {
       "path": "research/test_program_synthesis.py",
       "kind": "file",
-      "sha256": "e1831861eac940f2b59c5026cc87938d680e1f74b4973bcf38e9b057641532e0",
-      "role": "compositional synthesis and ambiguity tests"
+      "sha256": "1605c5cc8c0ae04c97101c58222d49d3c77f17d0e1db0124625d653e62e0af93",
+      "role": "candidate budget regression test"
     },
     {
       "path": "research/synthesis_evidence.py",
@@ -989,8 +989,8 @@
     {
       "path": "docs/102-SINTESE-ENUMERATIVA-BOUNDED.md",
       "kind": "file",
-      "sha256": "7aa2a831b9e1cf1497841e34f7ca4b769a7b06a874ccad2dc07c0f7d79ff2bcb",
-      "role": "compositional synthesis specification"
+      "sha256": "9205936ae7302eefdd5e576ceeb80873de5310d2ef359ed0c767fcbce2b7efc1",
+      "role": "synthesis budget contract"
     }
   ],
   "components": [
