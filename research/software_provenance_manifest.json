@@ -47,8 +47,8 @@
     {
       "path": "research/Makefile",
       "kind": "file",
-      "sha256": "92b866e1c077b70af18a5296d6ba071ec48dd49f485b6bd77fae7ccc5500ecbe",
-      "role": "obligation ledger test gate"
+      "sha256": "649569051967f14cd1cd35055c3f2ad5449137aeba91de6ae77b9264f018320f",
+      "role": "programming evaluator test gate"
     },
     {
       "path": "research/semantic_ir.py",
@@ -251,8 +251,8 @@
     {
       "path": "README.md",
       "kind": "file",
-      "sha256": "8d158456e4ddf580029797e6730ae717373488ac6873d910b3a6e71a2709c7d9",
-      "role": "repair cycle status and test count"
+      "sha256": "cb9b3705e3878067b3fbd7e3232d7de94104954e03b65e0d402cecb156178f3f",
+      "role": "programming evaluator status and test count"
     },
     {
       "path": "docs/50-INTENT-COMPILER-E-SEMANTIC-IR.md",
@@ -515,7 +515,7 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "7816e4d12798a99bba8bb045d938580ae3662a44cb04e70870c96224fb39b4ea",
+      "sha256": "97f2389ef8ab8ef47671199e35a2e6e777b0e48154a980d18b5d700cc86cdc8a",
       "role": "organized documentation, maps and historical design records"
     },
     {
@@ -931,6 +931,36 @@
       "kind": "file",
       "sha256": "9ed747acd352a58b0d149e3a4e804af9e13bd51128a044b46760ea99e8ffccc9",
       "role": "REA audit and programming ledger specification"
+    },
+    {
+      "path": "research/programming_evaluator.py",
+      "kind": "file",
+      "sha256": "7fde7eb9ebd4aa737a7b06a3c6c4daa13f6205ef36a771ec9efc8cb3dedca495",
+      "role": "bounded programming evaluation harness"
+    },
+    {
+      "path": "research/test_programming_evaluator.py",
+      "kind": "file",
+      "sha256": "7733e092717092decae6f4c9ea4b0c5a93ae2c380719f5656d38ff7b3f560e6c",
+      "role": "positive negative timeout evaluator tests"
+    },
+    {
+      "path": "research/programming_eval_evidence.py",
+      "kind": "file",
+      "sha256": "850094742f994d1ddf2c61c6c5bed8b0e6c985d4a8bb8257d5a2786f75a1f9d2",
+      "role": "reproducible evaluator evidence generator"
+    },
+    {
+      "path": "research/evidence/programming_evaluator_v1.json",
+      "kind": "file",
+      "sha256": "60eca5482e915a5bd320b8a72e65d45bf68f1bdc98ffe127871fd23881e78a72",
+      "role": "programming evaluator v1 evidence"
+    },
+    {
+      "path": "docs/101-AVALIADOR-REAL-DE-PROGRAMACAO.md",
+      "kind": "file",
+      "sha256": "c8b293a7c2637be0c46db75e771a065403ce59c74684d855d12e6f54b2573a53",
+      "role": "real programming evaluator specification"
     }
   ],
   "components": [

@@ -1,0 +1,35 @@
+{
+  "authority": "isolated-subprocess",
+  "cases": [
+    {
+      "authority": "isolated-subprocess",
+      "case_kind": "positive",
+      "detail": "all runner assertions passed",
+      "exit_code": 0,
+      "status": "pass",
+      "stderr_digest": "ec6e24df421b74636de9bdfade8e36f5db88d49558addd30b5d6718d9a1074f4",
+      "stdout_digest": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "task_id": "add.v1"
+    },
+    {
+      "authority": "isolated-subprocess",
+      "case_kind": "negative",
+      "detail": "Traceback (most recent call last):\n  File \"/tmp/herus-program-eval-1kcg2ltw/runner.py\", line 6, in <module>\n    assert module.solve(2, 3) == 5\n           ^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "exit_code": 1,
+      "status": "fail",
+      "stderr_digest": "a372660afdb84329ddd98fa44601149de36088f315dd7de4d727b42949833217",
+      "stdout_digest": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "task_id": "add.v1"
+    },
+    {
+      "authority": "isolated-subprocess",
+      "case_kind": "timeout",
+      "detail": "deadline exceeded",
+      "exit_code": null,
+      "status": "timeout",
+      "stderr_digest": "45169ef9e7792ec49e0ceec065aaa8e100c8eaed96e716b986227e2e54aa87da",
+      "stdout_digest": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "task_id": "loop.v1"
+    }
+  ]
+}
