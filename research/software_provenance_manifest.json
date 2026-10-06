@@ -47,8 +47,8 @@
     {
       "path": "research/Makefile",
       "kind": "file",
-      "sha256": "e0e4f541732598d966b9dcaeeef3d23eed8ca77bcda22a0c7efa35f8036cf592",
-      "role": "official tests including metric checks"
+      "sha256": "128067055722057199a042b08b838ac845acb48b8f4981d68c67f11bac13a3a2",
+      "role": "paradigm benchmark test gate"
     },
     {
       "path": "research/semantic_ir.py",
@@ -251,8 +251,8 @@
     {
       "path": "README.md",
       "kind": "file",
-      "sha256": "c85626e3947602ecae3b6e171884acb43d66c229cc30f11397bd5daab0116b1c",
-      "role": "real MIntRec baseline benchmark and honest limits"
+      "sha256": "a32f8b5a304dc21dd5f7b870f633a64a55f838b464d74460c7f3994a05aef1bb",
+      "role": "cross-paradigm real ML comparison"
     },
     {
       "path": "docs/50-INTENT-COMPILER-E-SEMANTIC-IR.md",
@@ -515,7 +515,7 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "fb9d3ae829f4f18dda232749320e2e8274e07e9d0509877be2a9a4cafe010c2b",
+      "sha256": "cfd0b5fe3c6693c61890d8c8dc2cc24e501169132463c7420eeb22f2c8e0fad4",
       "role": "organized documentation, maps and historical design records"
     },
     {
@@ -769,6 +769,30 @@
       "kind": "file",
       "sha256": "de164efd630b3161e2b61d1ca759676f1fdc84f4ff51511d0d10711a3c26f557",
       "role": "coverage precision frontier report"
+    },
+    {
+      "path": "research/ml_paradigms_benchmark.py",
+      "kind": "file",
+      "sha256": "3c13b26963a226f4a2099dc6431cca4af7f8b38fe01193691480067fce5fe5a5",
+      "role": "unsupervised and reinforcement proxy benchmark"
+    },
+    {
+      "path": "research/test_ml_paradigms_benchmark.py",
+      "kind": "file",
+      "sha256": "3a4286ecce0a5421070523145a00de3aeac2656d0875eb02817cf924e0ec85d9",
+      "role": "paradigm benchmark deterministic tests"
+    },
+    {
+      "path": "research/evidence/ml_paradigms_mintrec_v1.json",
+      "kind": "file",
+      "sha256": "05a6d0b2e2217f1fabef4564ba7bc47e99c985b29967a4ec36ee3502de429d75",
+      "role": "real cross-paradigm benchmark result"
+    },
+    {
+      "path": "docs/94-COMPARACAO-PARADIGMAS-ML-REAIS.md",
+      "kind": "file",
+      "sha256": "540142dd4ba42640237b92bfb0bcbb085edc569ec9c55c86389ae5bc66387b8c",
+      "role": "cross-paradigm methodology and limits"
     }
   ],
   "components": [
