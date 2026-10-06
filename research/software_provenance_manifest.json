@@ -251,8 +251,8 @@
     {
       "path": "README.md",
       "kind": "file",
-      "sha256": "09d599bfb94de937d56fa01d954ad29a85c2e30010e3112d7dca5d4400049855",
-      "role": "real risk coverage result and test count"
+      "sha256": "0392296415bc86439dc0db5ccf9740c9eb40569b9d8b15c84c3aa136624e811d",
+      "role": "strict no-leakage risk coverage result and test count"
     },
     {
       "path": "docs/50-INTENT-COMPILER-E-SEMANTIC-IR.md",
@@ -515,7 +515,7 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "998e2ef84ffe858f2fc70f6ee6241b243a9aba3c0a35189b3484cc483f288ef4",
+      "sha256": "63f71fc89a51e8ca96359ceb02bfcd92cbdc7d6c1ad02f0748ded3b2eca6f5cc",
       "role": "organized documentation, maps and historical design records"
     },
     {
@@ -995,26 +995,26 @@
     {
       "path": "research/risk_coverage_mintrec.py",
       "kind": "file",
-      "sha256": "2483be59b584ba092d38a434c0b1d6f9bb9fb11e3d057896e86940aa679a7192",
-      "role": "real MIntRec risk coverage analysis"
+      "sha256": "e6ee4fe757c690be5d8f67dd337b6636721b446c87ce3e0ef8073bbb6f20701f",
+      "role": "strict fit-only holdout scoring"
     },
     {
       "path": "research/test_risk_coverage_mintrec.py",
       "kind": "file",
-      "sha256": "60dd4f5b50c44313ba5e8df2ebfae5468a0988de42217d610249fe70668ca338",
-      "role": "calibration leakage and abstention tests"
+      "sha256": "9adf22015750c8fba662e63b255e5247701952902ac29ccce7522d79b83244c7",
+      "role": "published strict evidence regression"
     },
     {
       "path": "research/evidence/risk_coverage_mintrec_v1.json",
       "kind": "file",
-      "sha256": "9aae612695066e29d40df934a33556c1ac1fcef71177743842b84f563bc7a8d9",
-      "role": "real temporal risk coverage evidence"
+      "sha256": "10d52d42e3c692cd7499d68468f4fc710f1a8526e19701d096f6520cbe5c745e",
+      "role": "corrected strict temporal evidence"
     },
     {
       "path": "docs/103-RISCO-COBERTURA-MINTREC.md",
       "kind": "file",
-      "sha256": "6c5f358216815f152928540ecff3aa2eb9469d7c678211824a511861e3df5d71",
-      "role": "real risk coverage analysis and limits"
+      "sha256": "a063724892a90b6fcae3b472b188e1631d51cc616dbaf0249e8227fa864f2cf5",
+      "role": "corrected no-leakage risk coverage analysis"
     }
   ],
   "components": [

@@ -13,19 +13,19 @@
 
 | Precisão mínima na calibração | Cobertura no holdout | Precisão seletiva no holdout |
 |---:|---:|---:|
-| 0,50 | 39,38% | 74,34% |
-| 0,60 | 0,78% | 100% |
-| 0,70 | 0,26% | 100% |
-| 0,80 | 0,26% | 100% |
-| 0,90 | 0,26% | 100% |
+| 0,50 | 30,83% | 60,50% |
+| 0,60 | 0,52% | 0% |
+| 0,70 | 0% | 0% |
+| 0,80 | 0% | 0% |
+| 0,90 | 0% | 0% |
 
 ## Interpretação científica
 
-O ponto de 0,50 é mais útil do que o ponto anterior de 0,80: mantém precisão seletiva de 74,34% no holdout e cobre 39,38% dos exemplos. Ainda assim, não satisfaz uma garantia de 80% fora da calibração. Os pontos de 100% são seguros apenas porque quase sempre se abstêm.
+Uma correção metodológica foi necessária: a versão anterior usava S04+S05 para construir o escore do holdout depois de usar S05 na calibração. Isso permitia influência indevida da calibração. A versão atual pontua S06 somente com o modelo ajustado em S04. O resultado corrigido é 60,50% de precisão seletiva com 30,83% de cobertura no ponto de 0,50; para metas de 70% ou mais, não há cobertura. Este resultado substitui o anterior.
 
-Isso não é vitória contra o Naive Bayes completo: o benchmark supervisionado obtém 49,22% de acurácia com 100% de cobertura, enquanto a política seletiva obtém 29,27% de acurácia global e 74,34% de precisão nos casos aceitos.
+Isso não é vitória contra o Naive Bayes completo: o benchmark supervisionado obtém 49,22% de acurácia com 100% de cobertura, enquanto a política corrigida obtém 18,65% de acurácia global e 60,50% de precisão nos casos aceitos.
 
-A contribuição do HERUS é a política explícita de proposta/abstenção e a medição de risco–cobertura, não superioridade geral em classificação.
+A contribuição do HERUS é a política explícita de proposta/abstenção e a medição de risco–cobertura. A evidência atual não demonstra superioridade geral nem garantia seletiva de 80%.
 
 ## Limites
 

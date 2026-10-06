@@ -1,4 +1,6 @@
 import unittest
+import json
+from pathlib import Path
 from risk_coverage_mintrec import select_threshold
 
 class RiskCoverageTests(unittest.TestCase):
@@ -20,6 +22,11 @@ class RiskCoverageTests(unittest.TestCase):
         fit = [{'text': 'alpha', 'label': 'a'}, {'text': 'beta', 'label': 'b'}]
         calibration = [{'text': 'alpha', 'label': 'b'}, {'text': 'beta', 'label': 'a'}]
         self.assertIsNone(select_threshold(fit, calibration, 1.0))
+
+    def test_published_evidence_declares_strict_scoring_and_points(self):
+        evidence = json.loads((Path(__file__).parent / 'evidence' / 'risk_coverage_mintrec_v1.json').read_text())
+        self.assertIn('fit season only', evidence['scoring_rule'])
+        self.assertGreaterEqual(len(evidence['points']), 5)
 
 if __name__ == '__main__':
     unittest.main()

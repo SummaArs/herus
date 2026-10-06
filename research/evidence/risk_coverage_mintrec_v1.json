@@ -23,10 +23,10 @@
         "selective_accuracy": 0.5
       },
       "holdout": {
-        "accuracy": 0.292746,
-        "coverage": 0.393782,
-        "macro_f1": 0.234807,
-        "selective_accuracy": 0.743421
+        "accuracy": 0.186528,
+        "coverage": 0.30829,
+        "macro_f1": 0.128126,
+        "selective_accuracy": 0.605042
       },
       "minimum_precision": 0.5,
       "status": "EVALUATED",
@@ -40,10 +40,10 @@
         "selective_accuracy": 0.666667
       },
       "holdout": {
-        "accuracy": 0.007772,
-        "coverage": 0.007772,
-        "macro_f1": 0.008069,
-        "selective_accuracy": 1.0
+        "accuracy": 0.0,
+        "coverage": 0.005181,
+        "macro_f1": 0.0,
+        "selective_accuracy": 0.0
       },
       "minimum_precision": 0.6,
       "status": "EVALUATED",
@@ -57,10 +57,10 @@
         "selective_accuracy": 1.0
       },
       "holdout": {
-        "accuracy": 0.002591,
-        "coverage": 0.002591,
-        "macro_f1": 0.002941,
-        "selective_accuracy": 1.0
+        "accuracy": 0.0,
+        "coverage": 0.0,
+        "macro_f1": 0.0,
+        "selective_accuracy": 0.0
       },
       "minimum_precision": 0.7,
       "status": "EVALUATED",
@@ -74,10 +74,10 @@
         "selective_accuracy": 1.0
       },
       "holdout": {
-        "accuracy": 0.002591,
-        "coverage": 0.002591,
-        "macro_f1": 0.002941,
-        "selective_accuracy": 1.0
+        "accuracy": 0.0,
+        "coverage": 0.0,
+        "macro_f1": 0.0,
+        "selective_accuracy": 0.0
       },
       "minimum_precision": 0.8,
       "status": "EVALUATED",
@@ -91,15 +91,16 @@
         "selective_accuracy": 1.0
       },
       "holdout": {
-        "accuracy": 0.002591,
-        "coverage": 0.002591,
-        "macro_f1": 0.002941,
-        "selective_accuracy": 1.0
+        "accuracy": 0.0,
+        "coverage": 0.0,
+        "macro_f1": 0.0,
+        "selective_accuracy": 0.0
       },
       "minimum_precision": 0.9,
       "status": "EVALUATED",
       "threshold": 7.917625
     }
   ],
+  "scoring_rule": "holdout scores use fit season only; calibration selects threshold only",
   "selection_rule": "maximize calibration coverage subject to minimum selective precision"
 }

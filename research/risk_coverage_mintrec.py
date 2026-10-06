@@ -28,7 +28,9 @@ def run():
     fit = [r for r in rows if r['season'] == 'S04']
     calibration = [r for r in rows if r['season'] == 'S05']
     holdout = [r for r in rows if r['season'] == 'S06']
-    holdout_scores = [_nb_scores(fit + calibration, row) for row in holdout]
+    # Strict protocol: S05 selects the threshold, but S06 is scored by the
+    # model fitted only on S04. Calibration labels must not enter the scorer.
+    holdout_scores = [_nb_scores(fit, row) for row in holdout]
     points = []
     for target in TARGETS:
         selected = select_threshold(fit, calibration, target)
@@ -37,7 +39,7 @@ def run():
             continue
         predictions = [label if margin >= selected['threshold'] else None for label, margin in holdout_scores]
         points.append({'minimum_precision': target, 'status': 'EVALUATED', 'threshold': selected['threshold'], 'calibration': selected['calibration'], 'holdout': metrics(holdout, predictions)})
-    return {'dataset': {'id': 'THU-IAR/MIntRec', 'source': 'https://datasets-server.huggingface.co/rows', 'fit_season': 'S04', 'calibration_season': 'S05', 'holdout_season': 'S06', 'fit_rows': len(fit), 'calibration_rows': len(calibration), 'holdout_rows': len(holdout)}, 'selection_rule': 'maximize calibration coverage subject to minimum selective precision', 'points': points, 'limits': ['text-only intent benchmark is not a HERUS event benchmark', 'no threshold was selected using S06', 'single temporal holdout; repeat across datasets is required']}
+    return {'dataset': {'id': 'THU-IAR/MIntRec', 'source': 'https://datasets-server.huggingface.co/rows', 'fit_season': 'S04', 'calibration_season': 'S05', 'holdout_season': 'S06', 'fit_rows': len(fit), 'calibration_rows': len(calibration), 'holdout_rows': len(holdout)}, 'selection_rule': 'maximize calibration coverage subject to minimum selective precision', 'scoring_rule': 'holdout scores use fit season only; calibration selects threshold only', 'points': points, 'limits': ['text-only intent benchmark is not a HERUS event benchmark', 'no threshold was selected using S06', 'single temporal holdout; repeat across datasets is required']}
 
 if __name__ == '__main__':
     print(json.dumps(run(), indent=2, sort_keys=True))
