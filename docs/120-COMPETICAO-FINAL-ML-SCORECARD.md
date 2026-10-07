@@ -13,6 +13,7 @@ O HERUS **ainda não vence todos os algoritmos**. No MIntRec, o melhor baseline 
 | MInDS-14 pt-PT | tfidf_logistic_regression | classical supervised | 0.94898 | 0.94637 | 1.0 | 0.94898 |
 | MInDS-14 pt-PT | tfidf_knn | classical supervised | 0.938776 | 0.934785 | 1.0 | 0.938776 |
 | MIntRec S06 | multinomial_naive_bayes | supervised / HERUS adapter | 0.492228 | 0.374427 | 1.0 | 0.492228 |
+| MIntRec S06 | distilbert_multilingual_cased | transformer forte | 0.466321 | 0.338785 | 1.0 | 0.466321 |
 | MIntRec S06 | tensor_train_rank_64 | tensor network | 0.42228 | 0.370328 | 1.0 | 0.42228 |
 | MIntRec S06 | 1nn_cosine | supervised / HERUS adapter | 0.398964 | 0.322042 | 1.0 | 0.398964 |
 | MIntRec S06 | tensor_train_rank_32 | tensor network | 0.398964 | 0.354478 | 1.0 | 0.398964 |

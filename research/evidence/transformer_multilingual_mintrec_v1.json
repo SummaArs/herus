@@ -1,0 +1,66 @@
+{
+  "dataset": {
+    "fit_rows": 566,
+    "holdout_rows": 386,
+    "id": "THU-IAR/MIntRec",
+    "labels": 20,
+    "validation_rows": 1272
+  },
+  "history": [
+    {
+      "epoch": 1,
+      "loss": 2.615205,
+      "validation": {
+        "accuracy": 0.225629,
+        "coverage": 1.0,
+        "macro_f1": 0.090589,
+        "selective_accuracy": 0.225629
+      }
+    },
+    {
+      "epoch": 2,
+      "loss": 2.012823,
+      "validation": {
+        "accuracy": 0.352201,
+        "coverage": 1.0,
+        "macro_f1": 0.211442,
+        "selective_accuracy": 0.352201
+      }
+    },
+    {
+      "epoch": 3,
+      "loss": 1.32069,
+      "validation": {
+        "accuracy": 0.441824,
+        "coverage": 1.0,
+        "macro_f1": 0.332223,
+        "selective_accuracy": 0.441824
+      }
+    }
+  ],
+  "holdout_metrics": {
+    "accuracy": 0.466321,
+    "coverage": 1.0,
+    "macro_f1": 0.338785,
+    "selective_accuracy": 0.466321
+  },
+  "limits": [
+    "single model is not universal transformer evidence",
+    "text only; audio/video excluded",
+    "one temporal holdout",
+    "no MIntRec label mapped to a HERUS event"
+  ],
+  "model": "distilbert-base-multilingual-cased",
+  "protocol": {
+    "batch_size": 8,
+    "device": "cpu",
+    "epochs": 3,
+    "fit_season": "S04",
+    "holdout_season": "S06",
+    "learning_rate": 5e-05,
+    "max_length": 96,
+    "seed": 17,
+    "validation_season": "S05"
+  },
+  "runtime_seconds": 340.708
+}

@@ -19,6 +19,7 @@ def build():
     for item in load('tensor_network_mintrec_v1.json')['ranks']:
         rows.append(row('MIntRec S06',f"tensor_train_rank_{item['rank']}",item,'tensor network','tensor_network_mintrec_v1.json'))
     t=load('transformer_mintrec_v1.json')['holdout_metrics']; rows.append(row('MIntRec S06','bert_tiny',t,'transformer','transformer_mintrec_v1.json'))
+    tm=load('transformer_multilingual_mintrec_v1.json')['holdout_metrics']; rows.append(row('MIntRec S06','distilbert_multilingual_cased',tm,'transformer forte','transformer_multilingual_mintrec_v1.json'))
     s=load('selective_margin_calibration_mintrec_v1.json')['holdout']['0.95']; rows.append(row('MIntRec S06','herus_selective_target_95',s,'HERUS selective assurance','selective_margin_calibration_mintrec_v1.json'))
     for item in load('ml_reference_matrix_minds14_v1.json')['models']:
         rows.append(row('MInDS-14 pt-PT',item['model'],item,'classical supervised','ml_reference_matrix_minds14_v1.json'))

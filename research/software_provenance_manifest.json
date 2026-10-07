@@ -47,8 +47,8 @@
     {
       "path": "research/Makefile",
       "kind": "file",
-      "sha256": "e32565e1a7a4a72cf3f8cc19a6a28fb8b2cb9706f05cb4d5251b46c6c82bee79",
-      "role": "final competition gate"
+      "sha256": "050f66c8821824f5936e4a014abe373c6157bd477e338cb205c51971bda2b536",
+      "role": "transformer integrity gate"
     },
     {
       "path": "research/semantic_ir.py",
@@ -251,8 +251,8 @@
     {
       "path": "README.md",
       "kind": "file",
-      "sha256": "0b92c8daa7c1c68b9a9a8fb5c46f092e10a81269d07201c08fdf743a2df42960",
-      "role": "final competition narrative and test count"
+      "sha256": "154cb18a4b75d2cfde5f1fd419d172519844fb9852f3ac21f20dd0663655f2bf",
+      "role": "strong transformer result and honest Manus boundary"
     },
     {
       "path": "docs/50-INTENT-COMPILER-E-SEMANTIC-IR.md",
@@ -515,7 +515,7 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "32cedfff8b95d918e3be37152032db0d1fb3c4f93238e5036ae69197c23da74b",
+      "sha256": "2a7bc0cfab21c6195a9682965c511823ada84a450dd68e39852a06c3f7d52217",
       "role": "organized documentation, maps and historical design records"
     },
     {
@@ -821,8 +821,8 @@
     {
       "path": "research/transformer_mintrec_benchmark.py",
       "kind": "file",
-      "sha256": "0a2667b92ddc0883cc6143d7bd483c090e3fadcf27c68fa07a5881c54badca57",
-      "role": "real transformer MIntRec protocol"
+      "sha256": "e69a91e341f0256f5a714aca311f4696ec82ebd84b56a8d1cfb2429078b9d21d",
+      "role": "configurable transformer benchmark"
     },
     {
       "path": "research/evidence/transformer_mintrec_v1.json",
@@ -1445,26 +1445,44 @@
     {
       "path": "research/final_ml_competition.py",
       "kind": "file",
-      "sha256": "4687f1515e50a2d7b39729ad9e9b84766f3b81e15c512fe311cfbe9e018f83d3",
-      "role": "real ML competition aggregator"
+      "sha256": "cc880560da773609a3f59e6a09c01b20378ecfa2ac94e45c67ae36894669ff95",
+      "role": "updated competition aggregator"
     },
     {
       "path": "research/test_final_ml_competition.py",
       "kind": "file",
-      "sha256": "bf4241d48586a9060560e2dfac8c0c9f2f4d5093e6145544cb70cfef1c80a6e4",
-      "role": "competition scorecard tests"
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "role": "updated scorecard test"
     },
     {
       "path": "research/evidence/final_ml_competition_v1.json",
       "kind": "file",
-      "sha256": "2c139ec769f0c9ecb14c9dc7bb8f4eba0626fe39bcbd4990fae1dd12f96182ce",
-      "role": "competition scorecard evidence"
+      "sha256": "c51827bc1ff7b4c1045c96bfd7bfae878f3f09418a5f12ef0c9ffaa32a2e9e62",
+      "role": "updated competition evidence"
     },
     {
       "path": "docs/120-COMPETICAO-FINAL-ML-SCORECARD.md",
       "kind": "file",
-      "sha256": "e65d4c276c282c5199cb9186f9fdd593f9c6a5296b81db28e453d24038e86888",
+      "sha256": "9d0a275c8bfb54dfc323267d6653aff826bf7df1f367a131de798005f3a0b467",
       "role": "competition scorecard report"
+    },
+    {
+      "path": "research/test_transformer_integrity.py",
+      "kind": "file",
+      "sha256": "86604252988d2218598326f4b75a580eee3d9d741b024030aec7003da58f4853",
+      "role": "benchmark integrity test"
+    },
+    {
+      "path": "research/evidence/transformer_multilingual_mintrec_v1.json",
+      "kind": "file",
+      "sha256": "70cb44901c65801bcd017e69e047802baf5c7587ba1306f8bb31a58104215dba",
+      "role": "strong transformer evidence"
+    },
+    {
+      "path": "docs/121-TRANSFORMER-FORTE-E-COMPARACAO-MANUS.md",
+      "kind": "file",
+      "sha256": "9895dfff2449a2b2d479f72bf2a95968ea4f282727647564d0c093fab66ea383",
+      "role": "strong transformer report"
     }
   ],
   "components": [
