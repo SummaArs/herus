@@ -47,8 +47,8 @@
     {
       "path": "research/Makefile",
       "kind": "file",
-      "sha256": "4257eafe81c4c6b4dbcba9da18975650f9e6bf21f24d033eaf11eff4fe31a178",
-      "role": "MIntRec tensor test gate"
+      "sha256": "1e469229ba628d359e56f93cae7dffe49d3a9a82a4677141f9ff20e85c25fa37",
+      "role": "adaptive representation gate"
     },
     {
       "path": "research/semantic_ir.py",
@@ -251,8 +251,8 @@
     {
       "path": "README.md",
       "kind": "file",
-      "sha256": "96b8d40f27a1f0c1a9822f07b60a1acf6045f417ac43ec5be5a0eae040af78d3",
-      "role": "MIntRec tensor transfer result and test count"
+      "sha256": "798e7cec8a37315c98c73b394d87582701b358dec697913fb7b14582c84a1013",
+      "role": "adaptive representation result and test count"
     },
     {
       "path": "docs/50-INTENT-COMPILER-E-SEMANTIC-IR.md",
@@ -515,7 +515,7 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "c4d05a7682bc6146fc09347795cc6608b20adec7e8d1f0cc525fd3be69991279",
+      "sha256": "bcf6e4090a7f5fa4f7651ed2eee1ef441064407872e1b6bb486b9159d8e01bc4",
       "role": "organized documentation, maps and historical design records"
     },
     {
@@ -1279,6 +1279,36 @@
       "kind": "file",
       "sha256": "8a90529c468f0719217733177e5d706d20428f41d2cdd7e861ad0b743fe5af19",
       "role": "MIntRec tensor temporal report"
+    },
+    {
+      "path": "research/evidence/adaptive_representation_mintrec_v2.json",
+      "kind": "file",
+      "sha256": "ac8d5cf468b9b655cc6f68505217dd06c3a3a1dc33cc16e0ce7d2dce47ebae77",
+      "role": "refit adaptive evidence"
+    },
+    {
+      "path": "docs/113-SELECAO-ADAPTATIVA-MINTREC.md",
+      "kind": "file",
+      "sha256": "2c7f1719d0f84708fbd6defb2af1167bc34a9e7330135179d861e881784d4270",
+      "role": "adaptive representation report"
+    },
+    {
+      "path": "research/evidence/adaptive_representation_mintrec_v1.json",
+      "kind": "file",
+      "sha256": "b7fc815fe5c266d5f81be566a0f02fea47059ac8f053a1d7105f9e18577cf1f5",
+      "role": "pre-refit adaptive evidence"
+    },
+    {
+      "path": "research/adaptive_representation_mintrec.py",
+      "kind": "file",
+      "sha256": "3c5de5d4e1c3a102637cc283b9a134a3ab123f6110820b29437b5e39f2687af6",
+      "role": "temporal adaptive representation"
+    },
+    {
+      "path": "research/test_adaptive_representation_mintrec.py",
+      "kind": "file",
+      "sha256": "f0afee9e601a7180f1edb6d92e6899e98cd495148f144a648b98d53444957d80",
+      "role": "adaptive representation test"
     }
   ],
   "components": [

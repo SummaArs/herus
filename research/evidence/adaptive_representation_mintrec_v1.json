@@ -1,0 +1,56 @@
+{
+  "calibration": {
+    "char_tfidf_svm": {
+      "accuracy": 0.396226,
+      "coverage": 1.0,
+      "macro_f1": 0.324759,
+      "selective_accuracy": 0.396226
+    },
+    "word_tfidf_logistic": {
+      "accuracy": 0.362421,
+      "coverage": 1.0,
+      "macro_f1": 0.286505,
+      "selective_accuracy": 0.362421
+    },
+    "word_tfidf_svm": {
+      "accuracy": 0.421384,
+      "coverage": 1.0,
+      "macro_f1": 0.349871,
+      "selective_accuracy": 0.421384
+    }
+  },
+  "calibration_rows": 1272,
+  "chosen_by_calibration": "word_tfidf_svm",
+  "chosen_holdout": {
+    "accuracy": 0.476684,
+    "coverage": 1.0,
+    "macro_f1": 0.363303,
+    "selective_accuracy": 0.476684
+  },
+  "dataset": "THU-IAR/MIntRec",
+  "fit_rows": 566,
+  "fit_split": "S04",
+  "holdout": {
+    "char_tfidf_svm": {
+      "accuracy": 0.484456,
+      "coverage": 1.0,
+      "macro_f1": 0.351463,
+      "selective_accuracy": 0.484456
+    },
+    "word_tfidf_logistic": {
+      "accuracy": 0.419689,
+      "coverage": 1.0,
+      "macro_f1": 0.278079,
+      "selective_accuracy": 0.419689
+    },
+    "word_tfidf_svm": {
+      "accuracy": 0.476684,
+      "coverage": 1.0,
+      "macro_f1": 0.363303,
+      "selective_accuracy": 0.476684
+    }
+  },
+  "holdout_rows": 386,
+  "holdout_split": "S06",
+  "selection_split": "S05"
+}
