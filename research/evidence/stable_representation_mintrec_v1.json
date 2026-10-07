@@ -1,0 +1,92 @@
+{
+  "chosen": "word_tfidf_svm",
+  "dataset": "THU-IAR/MIntRec",
+  "fit_rows": 380,
+  "holdout_refit": {
+    "char_tfidf_svm": {
+      "accuracy": 0.57513,
+      "coverage": 1.0,
+      "macro_f1": 0.471238,
+      "selective_accuracy": 0.57513
+    },
+    "word_tfidf_logistic": {
+      "accuracy": 0.57772,
+      "coverage": 1.0,
+      "macro_f1": 0.478462,
+      "selective_accuracy": 0.57772
+    },
+    "word_tfidf_svm": {
+      "accuracy": 0.564767,
+      "coverage": 1.0,
+      "macro_f1": 0.471305,
+      "selective_accuracy": 0.564767
+    }
+  },
+  "holdout_rows": 386,
+  "holdout_split": "S06",
+  "refit_rows": 1838,
+  "selection": "mean_and_worst_temporal_validation",
+  "stability": {
+    "char_tfidf_svm": {
+      "accuracy_mean": 0.396721,
+      "accuracy_worst": 0.368711,
+      "folds": [
+        {
+          "accuracy": 0.424731,
+          "coverage": 1.0,
+          "macro_f1": 0.385069,
+          "selective_accuracy": 0.424731
+        },
+        {
+          "accuracy": 0.368711,
+          "coverage": 1.0,
+          "macro_f1": 0.29777,
+          "selective_accuracy": 0.368711
+        }
+      ],
+      "macro_f1_mean": 0.3414195
+    },
+    "word_tfidf_logistic": {
+      "accuracy_mean": 0.3697885,
+      "accuracy_worst": 0.330975,
+      "folds": [
+        {
+          "accuracy": 0.408602,
+          "coverage": 1.0,
+          "macro_f1": 0.294106,
+          "selective_accuracy": 0.408602
+        },
+        {
+          "accuracy": 0.330975,
+          "coverage": 1.0,
+          "macro_f1": 0.253031,
+          "selective_accuracy": 0.330975
+        }
+      ],
+      "macro_f1_mean": 0.2735685
+    },
+    "word_tfidf_svm": {
+      "accuracy_mean": 0.4032005,
+      "accuracy_worst": 0.397799,
+      "folds": [
+        {
+          "accuracy": 0.408602,
+          "coverage": 1.0,
+          "macro_f1": 0.400331,
+          "selective_accuracy": 0.408602
+        },
+        {
+          "accuracy": 0.397799,
+          "coverage": 1.0,
+          "macro_f1": 0.336239,
+          "selective_accuracy": 0.397799
+        }
+      ],
+      "macro_f1_mean": 0.368285
+    }
+  },
+  "validation_rows": [
+    186,
+    1272
+  ]
+}

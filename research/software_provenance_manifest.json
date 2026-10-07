@@ -47,8 +47,8 @@
     {
       "path": "research/Makefile",
       "kind": "file",
-      "sha256": "1e469229ba628d359e56f93cae7dffe49d3a9a82a4677141f9ff20e85c25fa37",
-      "role": "adaptive representation gate"
+      "sha256": "190457ad5a757c6b72933eebe17d7e340ac082b797fa1747f67ae9521b0d3ac3",
+      "role": "stable selection gate"
     },
     {
       "path": "research/semantic_ir.py",
@@ -251,8 +251,8 @@
     {
       "path": "README.md",
       "kind": "file",
-      "sha256": "798e7cec8a37315c98c73b394d87582701b358dec697913fb7b14582c84a1013",
-      "role": "adaptive representation result and test count"
+      "sha256": "498221e1049e112dac507634a073ec5766e215717dd2757763ed8457aca0a0b8",
+      "role": "stable selection narrative and test count"
     },
     {
       "path": "docs/50-INTENT-COMPILER-E-SEMANTIC-IR.md",
@@ -515,7 +515,7 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "bcf6e4090a7f5fa4f7651ed2eee1ef441064407872e1b6bb486b9159d8e01bc4",
+      "sha256": "ea06b6830ca5622a67e3403090f22f934719ac7d810867c8982d66641680ebdb",
       "role": "organized documentation, maps and historical design records"
     },
     {
@@ -1309,6 +1309,30 @@
       "kind": "file",
       "sha256": "f0afee9e601a7180f1edb6d92e6899e98cd495148f144a648b98d53444957d80",
       "role": "adaptive representation test"
+    },
+    {
+      "path": "research/stable_representation_mintrec.py",
+      "kind": "file",
+      "sha256": "0f72bd1e19be89c94cf32fa5b4b732958f930d4bc8981082fcc8a6d222e9bf9a",
+      "role": "temporal stability selector"
+    },
+    {
+      "path": "research/test_stable_representation_mintrec.py",
+      "kind": "file",
+      "sha256": "cbe756398b85236a4a9ffc215d636d565401fba696a2fc6d7adaa89c83bbaed7",
+      "role": "stable selection test"
+    },
+    {
+      "path": "research/evidence/stable_representation_mintrec_v1.json",
+      "kind": "file",
+      "sha256": "fbc80b2b0cfe431761b61ffa12d6877a0d6e5e6b66b19ece199c2a61188f5dbb",
+      "role": "stable selection evidence"
+    },
+    {
+      "path": "docs/114-SELECAO-ESTAVEL-MINTREC.md",
+      "kind": "file",
+      "sha256": "b83e16b37025cbde3eff5802d6bb29e3b33dbf82e84260da900da7930f3b8bd7",
+      "role": "stable selection report"
     }
   ],
   "components": [
