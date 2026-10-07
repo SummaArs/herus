@@ -1,0 +1,12 @@
+{
+  "decision": "PASS_FOR_DESIGN_ONLY",
+  "errors": [],
+  "execution_result_present": false,
+  "identity_summary": {
+    "episode_clusters": 10,
+    "holdout_rows": 386,
+    "largest_cluster": 54,
+    "singleton_clusters": 0
+  },
+  "interpretation": "clustered sampling improves uncertainty for repeated episodes; it does not identify a universal causal effect"
+}

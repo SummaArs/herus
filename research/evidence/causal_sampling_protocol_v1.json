@@ -1,0 +1,38 @@
+{
+  "schema_version": "herus.causal_sampling.v1",
+  "status": "protocol_only",
+  "scope": "MIntRec S06 fixed population",
+  "estimand": {
+    "name": "paired_intervention_effect",
+    "formula": "mean(Y_full_HERUS(example) - Y_control(example))",
+    "outcome": "pre_registered per-example utility; primary macro-F1 reconstructed from ledger",
+    "interpretation": "effect of the named implementation under this fixed protocol, not universal causal effect"
+  },
+  "treatment": "full_symbiotic_learning_v2_text_adapter",
+  "control": "context_memory_or_named_baseline_only_if_frozen_before_holdout",
+  "unit_of_analysis": "episode",
+  "sampling": {
+    "method": "cluster_bootstrap_within_S06",
+    "cluster_key": "episode",
+    "iterations": 10000,
+    "seed": 17,
+    "paired_within_cluster": true,
+    "resample_rows_individually": false,
+    "holdout_selection": "fixed_manifest_before_analysis"
+  },
+  "identification_requirements": [
+    "same example_id is evaluated by treatment and control",
+    "treatment and control code versions are frozen before reading outcomes",
+    "no training or calibration row belongs to the S06 episode set",
+    "outcome definition and abstention utility are frozen before evaluation",
+    "all clusters and exclusions are reported",
+    "no claim beyond the fixed S06 protocol without a separate design"
+  ],
+  "blocked_misinterpretations": [
+    "sampling alone proves causality",
+    "paired difference is a universal treatment effect",
+    "episode bootstrap fixes an invalid or incomplete ledger",
+    "observational benchmark proves production safety"
+  ],
+  "decision": "ELIGIBLE_AS_PRE_REGISTERED_ABLATION_DESIGN_NOT_EXECUTION_RESULT"
+}
