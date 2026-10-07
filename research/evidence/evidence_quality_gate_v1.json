@@ -1,0 +1,15 @@
+{
+  "blockers": [
+    "paired_prediction_ledger_not_archived",
+    "mintrec_costs_missing"
+  ],
+  "dataset": "THU-IAR/MIntRec",
+  "decision": "BLOCK",
+  "eligible_for_complete_paired_claim": false,
+  "eligible_for_efficiency_claim": false,
+  "requirements": [
+    "archive one aligned row per holdout example for every compared method",
+    "measure train and inference cost under the same environment and budget",
+    "retain seeds, versions and resource definitions"
+  ]
+}
