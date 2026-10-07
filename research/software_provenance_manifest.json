@@ -47,8 +47,8 @@
     {
       "path": "research/Makefile",
       "kind": "file",
-      "sha256": "d4c76a2ff34f88834ae50e0e8a6d0722fd6c1c07eb6b17227c0fab5270e16e50",
-      "role": "single facade gate"
+      "sha256": "e32565e1a7a4a72cf3f8cc19a6a28fb8b2cb9706f05cb4d5251b46c6c82bee79",
+      "role": "final competition gate"
     },
     {
       "path": "research/semantic_ir.py",
@@ -251,8 +251,8 @@
     {
       "path": "README.md",
       "kind": "file",
-      "sha256": "ec2f3d0bba01aae37f2e54c481778348829b8587e60a47f642f34968f82c6b19",
-      "role": "single facade narrative and test count"
+      "sha256": "0b92c8daa7c1c68b9a9a8fb5c46f092e10a81269d07201c08fdf743a2df42960",
+      "role": "final competition narrative and test count"
     },
     {
       "path": "docs/50-INTENT-COMPILER-E-SEMANTIC-IR.md",
@@ -515,7 +515,7 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "22c9ea9cd74dcd4d4b825425ba025925f91a76db4446e4a5b99674a86d7f1352",
+      "sha256": "32cedfff8b95d918e3be37152032db0d1fb3c4f93238e5036ae69197c23da74b",
       "role": "organized documentation, maps and historical design records"
     },
     {
@@ -1441,6 +1441,30 @@
       "kind": "file",
       "sha256": "d14f44708cd6b4830b8fc220c8a68b5c9b779e04a32c56667547c03465b41392",
       "role": "facade specification"
+    },
+    {
+      "path": "research/final_ml_competition.py",
+      "kind": "file",
+      "sha256": "4687f1515e50a2d7b39729ad9e9b84766f3b81e15c512fe311cfbe9e018f83d3",
+      "role": "real ML competition aggregator"
+    },
+    {
+      "path": "research/test_final_ml_competition.py",
+      "kind": "file",
+      "sha256": "bf4241d48586a9060560e2dfac8c0c9f2f4d5093e6145544cb70cfef1c80a6e4",
+      "role": "competition scorecard tests"
+    },
+    {
+      "path": "research/evidence/final_ml_competition_v1.json",
+      "kind": "file",
+      "sha256": "2c139ec769f0c9ecb14c9dc7bb8f4eba0626fe39bcbd4990fae1dd12f96182ce",
+      "role": "competition scorecard evidence"
+    },
+    {
+      "path": "docs/120-COMPETICAO-FINAL-ML-SCORECARD.md",
+      "kind": "file",
+      "sha256": "e65d4c276c282c5199cb9186f9fdd593f9c6a5296b81db28e453d24038e86888",
+      "role": "competition scorecard report"
     }
   ],
   "components": [
