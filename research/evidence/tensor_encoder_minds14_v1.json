@@ -1,0 +1,14 @@
+{
+  "accuracy": 0.877551,
+  "coverage": 1.0,
+  "dataset": "PolyAI/minds14",
+  "encoder_parameters": "frozen_external",
+  "holdout_rows": 98,
+  "infer_ms": 0.55,
+  "macro_f1": 0.860242,
+  "model": "frozen_multilingual_encoder_plus_tt_head",
+  "parameters": 7424,
+  "rank": 32,
+  "selective_accuracy": 0.877551,
+  "train_ms": 1208.96
+}

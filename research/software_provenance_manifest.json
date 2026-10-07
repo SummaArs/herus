@@ -47,8 +47,8 @@
     {
       "path": "research/Makefile",
       "kind": "file",
-      "sha256": "78a4beb933d3057c6a315c51d620a75122b828b4803ac97ab23051b1f5cebb30",
-      "role": "tensor network test gate"
+      "sha256": "c30f580d7f6f8b2667aebd81b6594d7f1182f1884696db4c39247b8742eb840e",
+      "role": "tensor hybrid test gate"
     },
     {
       "path": "research/semantic_ir.py",
@@ -251,8 +251,8 @@
     {
       "path": "README.md",
       "kind": "file",
-      "sha256": "59f062caf77df88810d21676efd025bc442bf1325af056c3056a066185beed2d",
-      "role": "tensor network benchmark and test count"
+      "sha256": "a1bef2c04b2be932cd967cee904c4792a2da41a00f440d70f5be13c2bae8cbb8",
+      "role": "tensor hybrid ablation and test count"
     },
     {
       "path": "docs/50-INTENT-COMPILER-E-SEMANTIC-IR.md",
@@ -515,7 +515,7 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "9f2ea9f939aa4c0b6494d892440af550a70443c85504227330285b2185927624",
+      "sha256": "51f7cdaf105319630bc46fdc4607010ee537410ed5955decc2b561bdc7c50b65",
       "role": "organized documentation, maps and historical design records"
     },
     {
@@ -1037,8 +1037,8 @@
     {
       "path": "research/minds14_real_benchmark.py",
       "kind": "file",
-      "sha256": "3b31420dc24fdf01b0f0e69340f2ce651da5e8980ca81baea7206aac2af683cd",
-      "role": "real Portuguese MInDS14 benchmark"
+      "sha256": "524a2fc133d43f9115ca5b0b4d33e38efe3b2db2b55522b119aace5b832c70d9",
+      "role": "resilient MInDS-14 ingestion"
     },
     {
       "path": "research/test_minds14_real_benchmark.py",
@@ -1213,6 +1213,30 @@
       "kind": "file",
       "sha256": "d61165ca85dff4c5dfcc8a4d4aa8169891626c1fe6a077080e0c1a8ab0e2240f",
       "role": "tensor network report"
+    },
+    {
+      "path": "research/tensor_encoder_minds14.py",
+      "kind": "file",
+      "sha256": "a93a083d2164b62e02a6044ff776faed2fca744ebb6017616008fe019f78154a",
+      "role": "frozen encoder tensor head ablation"
+    },
+    {
+      "path": "research/test_tensor_encoder_minds14.py",
+      "kind": "file",
+      "sha256": "183465134f07e466816edc8c686c9c21dd2a20a84bfa3e3ef3939032a8f5ff48",
+      "role": "tensor encoder ablation test"
+    },
+    {
+      "path": "research/evidence/tensor_encoder_minds14_v1.json",
+      "kind": "file",
+      "sha256": "72247fe2a49fbfce01c8c255d6c3c2feaada09fd6abb82222904184fbfa19fd6",
+      "role": "tensor encoder hybrid evidence"
+    },
+    {
+      "path": "docs/111-ENCODER-TENSORIAL-HIBRIDO.md",
+      "kind": "file",
+      "sha256": "46598db55e6683737b3b1e9d2f5c0406dece7438a1b4e109d1ee40e9313cc31f",
+      "role": "tensor encoder hybrid report"
     }
   ],
   "components": [

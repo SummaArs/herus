@@ -5,7 +5,7 @@ within each intent by sorted source path: 70% fit, 15% calibration, 15%
 holdout. This is not a speaker-independent split; that limitation is reported.
 """
 from __future__ import annotations
-import json, urllib.parse, urllib.request
+import json, time, urllib.error, urllib.parse, urllib.request
 from collections import Counter
 from real_data_baseline_benchmark import metrics, _nb_scores, vector, cosine
 from consensus_risk_coverage_mintrec import centroid_model, consensus_score
@@ -15,11 +15,23 @@ DATASET='PolyAI/minds14'; CONFIG='pt-PT'; SPLIT='train'
 
 def fetch_rows():
     first=urllib.parse.urlencode({'dataset':DATASET,'config':CONFIG,'split':SPLIT,'offset':0,'length':1})
-    with urllib.request.urlopen(API+'?'+first, timeout=60) as r: meta=json.load(r)
+    for attempt in range(4):
+        try:
+            with urllib.request.urlopen(API+'?'+first, timeout=60) as r: meta=json.load(r)
+            break
+        except urllib.error.HTTPError:
+            if attempt == 3: raise
+            time.sleep(1 + attempt)
     total=meta['num_rows_total']; rows=[]
     for offset in range(0,total,100):
         q=urllib.parse.urlencode({'dataset':DATASET,'config':CONFIG,'split':SPLIT,'offset':offset,'length':min(100,total-offset)})
-        with urllib.request.urlopen(API+'?'+q, timeout=60) as r: payload=json.load(r)
+        for attempt in range(4):
+            try:
+                with urllib.request.urlopen(API+'?'+q, timeout=60) as r: payload=json.load(r)
+                break
+            except urllib.error.HTTPError:
+                if attempt == 3: raise
+                time.sleep(1 + attempt)
         rows.extend({'text':item['row']['transcription'],'label':str(item['row']['intent_class']),'path':item['row']['path']} for item in payload['rows'])
     return rows
 
