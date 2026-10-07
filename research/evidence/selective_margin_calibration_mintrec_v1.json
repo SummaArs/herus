@@ -1,0 +1,76 @@
+{
+  "calibration": {
+    "0.7": {
+      "accepted": 484,
+      "coverage": 0.380503,
+      "risk": 0.299587,
+      "selective_accuracy": 0.700413
+    },
+    "0.8": {
+      "accepted": 382,
+      "coverage": 0.300314,
+      "risk": 0.198953,
+      "selective_accuracy": 0.801047
+    },
+    "0.9": {
+      "accepted": 235,
+      "coverage": 0.184748,
+      "risk": 0.097872,
+      "selective_accuracy": 0.902128
+    },
+    "0.95": {
+      "accepted": 173,
+      "coverage": 0.136006,
+      "risk": 0.046243,
+      "selective_accuracy": 0.953757
+    }
+  },
+  "calibration_rows": 1272,
+  "calibration_split": "S05",
+  "dataset": "THU-IAR/MIntRec",
+  "fit_split": "S04",
+  "holdout": {
+    "0.7": {
+      "accepted": 175,
+      "coverage": 0.453368,
+      "risk": 0.16,
+      "selective_accuracy": 0.84
+    },
+    "0.8": {
+      "accepted": 151,
+      "coverage": 0.391192,
+      "risk": 0.139073,
+      "selective_accuracy": 0.860927
+    },
+    "0.9": {
+      "accepted": 111,
+      "coverage": 0.287565,
+      "risk": 0.09009,
+      "selective_accuracy": 0.90991
+    },
+    "0.95": {
+      "accepted": 88,
+      "coverage": 0.227979,
+      "risk": 0.068182,
+      "selective_accuracy": 0.931818
+    }
+  },
+  "holdout_rows": 386,
+  "holdout_split": "S06",
+  "math": {
+    "coverage": "accepted / total",
+    "margin": "top_decision_score - second_decision_score",
+    "risk": "1 - selective_accuracy",
+    "threshold_selection": "maximize calibration coverage subject to selective_accuracy >= target"
+  },
+  "refit_splits": [
+    "S04",
+    "S05"
+  ],
+  "thresholds": {
+    "0.7": 0.4097430250638622,
+    "0.8": 0.5040725442752421,
+    "0.9": 0.7769742954668284,
+    "0.95": 0.93327418896546
+  }
+}

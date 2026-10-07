@@ -47,8 +47,8 @@
     {
       "path": "research/Makefile",
       "kind": "file",
-      "sha256": "241773736411689854feaf8411bfde0679573fb15a65582afcb5c2414b7c16b8",
-      "role": "calibrated margin gate"
+      "sha256": "b432ec755996c9e0249d0d0018ac32007d4c5d2d587e4cbd6cc1ac938c09fb92",
+      "role": "selective calibration gate"
     },
     {
       "path": "research/semantic_ir.py",
@@ -251,8 +251,8 @@
     {
       "path": "README.md",
       "kind": "file",
-      "sha256": "9fdfe922641469d569553d199e382ce632af83f926556a194cc976d2cb9ed075",
-      "role": "calibrated margin result and test count"
+      "sha256": "53bb8df9f3757d2a4635eaa9b825227ae27e93903bae8e1343822bbac812e147",
+      "role": "selective calibration result and test count"
     },
     {
       "path": "docs/50-INTENT-COMPILER-E-SEMANTIC-IR.md",
@@ -515,7 +515,7 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "e61b2d95b16ba2b5e690ce48d92e0386045e918b03cc7503d96361fbfe3e7840",
+      "sha256": "d81ed85be31fdfdf96b6b0909f7aca68a1a0f3cfc2632104615518921a144f90",
       "role": "organized documentation, maps and historical design records"
     },
     {
@@ -1381,6 +1381,30 @@
       "kind": "file",
       "sha256": "a19fd38727f5181eebdf0a56bc70267105f45e08d6d6c7219405114c28046ecc",
       "role": "calibrated margin report"
+    },
+    {
+      "path": "research/selective_margin_calibration_mintrec.py",
+      "kind": "file",
+      "sha256": "805754561f55abe8d0471a1a22bc3cb2760ff1971133c282c448afd3edc136e7",
+      "role": "selective risk coverage implementation"
+    },
+    {
+      "path": "research/test_selective_margin_calibration_mintrec.py",
+      "kind": "file",
+      "sha256": "6851b6573db19a5fec13c91c72d909f6d9c7edbd657877cbf5bbde3f984b1628",
+      "role": "selective calibration test"
+    },
+    {
+      "path": "research/evidence/selective_margin_calibration_mintrec_v1.json",
+      "kind": "file",
+      "sha256": "8cb34f4abbe3c4937aebc5eddaec592b848bbf52dd393b4a0ef57d36799ed150",
+      "role": "selective calibration evidence"
+    },
+    {
+      "path": "docs/117-CALIBRACAO-SELETIVA-RISCO-COBERTURA-MINTREC.md",
+      "kind": "file",
+      "sha256": "8a2fa35f79587ac3046ca3b6d99a4c61f57c54529af7b1227ba57b7f336b44e7",
+      "role": "selective calibration specification"
     }
   ],
   "components": [
