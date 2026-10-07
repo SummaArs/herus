@@ -1,0 +1,10 @@
+{
+  "blockers": [
+    "speaker_independent_split_missing",
+    "label_contract_missing"
+  ],
+  "dataset": "PolyAI/minds14",
+  "decision": "BLOCK",
+  "eligible_for_cross_domain_claim": false,
+  "rule": "real dataset is necessary but not sufficient; transfer requires independent holdout, label alignment and an evaluated HERUS method"
+}
