@@ -4,7 +4,17 @@
 
 A documentação antiga conserva decisões e experimentos importantes, mas foi escrita em momentos diferentes. Leia primeiro os sete documentos de orientação numerados de `00` a `06`. Depois use as famílias abaixo conforme a pergunta.
 
-## Orientação atual
+## Orientação atual — algoritmo HERUS Symbiotic
+
+- [135 — Repertório do algoritmo HERUS Symbiotic](135-REPERTORIO-ALGORITMO-HERUS-SYMBIOTIC.md)
+- [84 — Algoritmo Symbiotic Learning](84-ALGORITMO-SYMBIOTIC-LEARNING.md)
+- [136 — Função objetivo e atualização](136-FUNCAO-OBJETIVO-E-ATUALIZACAO-HERUS.md)
+- [119 — Fachada única HERUS](119-FACHADA-UNICA-HERUS.md)
+- [134 — Síntese da crise e reestruturação](134-SINTESE-CRISE-E-REESTRUTURACAO.md)
+- [Arquivo histórico](../archive/README.md)
+- [Object Lock v1](../object-lock/v1.yaml)
+
+## Orientação geral
 
 - [00 — Leia isto primeiro](00-LEIA-ME-PRIMEIRO.md)
 - [01 — Linha do tempo](01-LINHA-DO-TEMPO.md)

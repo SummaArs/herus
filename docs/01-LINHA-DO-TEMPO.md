@@ -60,15 +60,46 @@ Ainda em **22 de setembro**, três correções são implementadas:
 2. **P1:** runtime e oracle da campanha causal são separados por subprocessos. Variantes com transcript público igual e efeito oculto diferente são bloqueadas.
 3. **P2:** nasce o **HERUS Bridge**, uma experiência local em que a pessoa define uma rotina, troca de interface, revisa uma proposta e confirma ou cancela sem qualquer efeito externo.
 
+## Fase 9 — O algoritmo HERUS Symbiotic
+
+**Segunda metade de setembro de 2026.** A direção principal deixa de ser o hardware e passa a ser a criação de um algoritmo de IA importável. O nome **Symbiotic Learning** é mantido como hipótese de uma família algorítmica: aprender uma competência condicionada ao hospedeiro, otimizar sob contratos e preservar a identidade verificável durante a adaptação.
+
+Entram o núcleo Python, a fachada `from herus_symbiotic import Herus`, a indução contextual bounded, a memória episódica, o histórico de soluções, a explicação por IDs de evidência e a comparação com famílias reais de ML.
+
+O resultado desta fase não é “HERUS venceu todos os modelos”. É a criação de um repertório experimental: Naive Bayes, SVM, Random Forest, regressão, k-NN, transformers, encoders multilíngues, Tensor-Train, conformal prediction e políticas seletivas passam a ser controles, componentes ou ablações explicitamente separados do HERUS-core.
+
+## Fase 10 — Benchmark científico e limites
+
+**Final de setembro e início de outubro de 2026.** O projeto executa benchmarks em MIntRec e MInDS-14, compara precisão total e seletiva, mede custo, cobertura, deriva e incerteza, e incorpora análise pareada, proveniência, manifesto de identidade e ledger por exemplo.
+
+Os resultados são mistos e valiosos: algumas variantes do HERUS apresentam comportamento seletivo, mas baselines clássicos vencem em diversos regimes de cobertura total e seletiva. A transferência lexical não se sustenta automaticamente. A conclusão correta é que ainda não há SOTA geral.
+
+Esta fase também revela problemas estruturais: o núcleo atual recebe `target_effect`, positivos são privilegiados na confiança, e o pipeline chamado HERUS não é sempre identificável como o mesmo objeto do núcleo. Esses problemas não invalidam o objetivo algorítmico; definem o trabalho necessário para transformar a semente em um algoritmo completo.
+
+## Fase 11 — Crise científica e reorganização
+
+**7 de outubro de 2026.** Uma Wide Research de crise revisa fundamentos, paradigmas, objeto, experimentos e trajetória prática. A decisão não é abandonar o HERUS Symbiotic, mas reorganizá-lo:
+
+1. preservar todo o trabalho histórico;
+2. declarar o HERUS Symbiotic como objetivo algorítmico principal;
+3. separar core, adaptadores, controles e assurance;
+4. definir entrada, função de decisão, função de otimização, memória e erro;
+5. manter Object Lock, ledger e gates para impedir vazamento e claims infladas;
+6. testar primeiro se a combinação de adaptação, evidência negativa, otimização sob restrições e abstenção produz uma vantagem real.
+
+O Object Lock não substitui o algoritmo. Ele define as condições para que o algoritmo possa ser testado sem confundir uma tabela de consulta, um adaptador textual e o HERUS Symbiotic como se fossem a mesma coisa.
+
 ## Estado atual
 
-O HERUS é hoje um **candidato de mecanismo host-only com uma demonstração de produto local**, não uma simbiose geral. A pergunta imediata não é “como adicionar mais capacidades?”. É:
+O HERUS é hoje um **algoritmo de IA em evolução**, com um núcleo v2 implementado, uma fachada importável, um repertório de baselines reais e uma infraestrutura de verificação. A hipótese de Symbiotic Learning permanece aberta, mas ainda não foi provada como SOTA, nem como simbiose geral.
 
-> Uma transferência finita pode ser demonstrada sem circularidade, e uma pessoa entende claramente o que o sistema propõe, o que ele não fez e como pará-lo?
+A pergunta atual é:
+
+> Uma função de aprendizagem com memória, representação condicionada ao hospedeiro, otimização sob risco/custo/autoridade, feedback positivo e negativo e abstenção consegue adaptar-se melhor — ou de modo mais seguro e econômico — que os paradigmas existentes em um regime definido?
 
 ## Próximo futuro
 
-Se o Bridge passar por revisão independente e sessões formativas, o projeto pode preparar um piloto humano pareado. Se falhar, deve redesenhar ou encerrar essa linha de produto antes de investir em hardware, rádio, voz ou LLM. Essa possibilidade de parar é parte do desenho científico.
+O próximo ciclo deve fechar a função objetivo e a regra de atualização do HERUS Symbiotic, corrigir a semântica de feedback negativo e estado atual, testar hosts simulados com interfaces permutadas e comparar contra memória trivial, modelos supervisionados, bandits/RL proxy e transformers. O hardware físico permanece como host futuro, não como substituto da prova algorítmica.
 
 ## Referências
 

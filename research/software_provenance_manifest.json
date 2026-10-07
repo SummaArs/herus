@@ -251,7 +251,7 @@
     {
       "path": "README.md",
       "kind": "file",
-      "sha256": "7e9d5ea7c371cbdf0310fea8a63b903448670d796430c07a6f18e25e749ed642",
+      "sha256": "596c9512e48b87014375557a4d4e851d35e06e97cc658781e6bdaaed1e02ddc4",
       "role": "conformal assurance and test count"
     },
     {
@@ -515,7 +515,7 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "56cb6ef178b690d323e9291ec3ae94766c80de4b254ff5957ba559c3ef6bc95f",
+      "sha256": "08a6297878f99858b99d270453d226763e208b32d5e21659a084cd7ecbdb2beb",
       "role": "organized documentation, maps and historical design records"
     },
     {
