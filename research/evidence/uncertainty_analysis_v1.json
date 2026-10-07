@@ -1,0 +1,94 @@
+{
+  "protocol": "Wilson 95% intervals from published aggregate counts; rounded counts; no paired bootstrap because prediction vectors are not archived",
+  "results": [
+    {
+      "dataset": "MIntRec S06",
+      "model": "multinomial_naive_bayes",
+      "n": 386,
+      "correct_rounded": 190,
+      "accuracy_wilson_95": {
+        "estimate": 0.492228,
+        "low": 0.442676,
+        "high": 0.541933
+      }
+    },
+    {
+      "dataset": "MIntRec S06",
+      "model": "distilbert_multilingual_cased",
+      "n": 386,
+      "correct_rounded": 180,
+      "accuracy_wilson_95": {
+        "estimate": 0.466321,
+        "low": 0.41713,
+        "high": 0.516176
+      }
+    },
+    {
+      "dataset": "MIntRec S06",
+      "model": "tensor_train_rank_64",
+      "n": 386,
+      "correct_rounded": 163,
+      "accuracy_wilson_95": {
+        "estimate": 0.42228,
+        "low": 0.374009,
+        "high": 0.472083
+      }
+    },
+    {
+      "dataset": "MIntRec S06",
+      "model": "bert_tiny",
+      "n": 386,
+      "correct_rounded": 68,
+      "accuracy_wilson_95": {
+        "estimate": 0.176166,
+        "low": 0.141405,
+        "high": 0.217309
+      }
+    },
+    {
+      "dataset": "MInDS-14 pt-PT",
+      "model": "tfidf_linear_svm",
+      "n": 98,
+      "correct_rounded": 94,
+      "accuracy_wilson_95": {
+        "estimate": 0.959184,
+        "low": 0.89971,
+        "high": 0.984015
+      }
+    },
+    {
+      "dataset": "MInDS-14 pt-PT",
+      "model": "tfidf_random_forest",
+      "n": 98,
+      "correct_rounded": 94,
+      "accuracy_wilson_95": {
+        "estimate": 0.959184,
+        "low": 0.89971,
+        "high": 0.984015
+      }
+    },
+    {
+      "dataset": "MIntRec S06",
+      "model": "herus_selective_target_95",
+      "n": 386,
+      "accepted": 88,
+      "correct_accepted": 82,
+      "coverage_wilson_95": {
+        "estimate": 0.227979,
+        "low": 0.188928,
+        "high": 0.272392
+      },
+      "selective_accuracy_wilson_95": {
+        "estimate": 0.931818,
+        "low": 0.859132,
+        "high": 0.96838
+      }
+    }
+  ],
+  "limits": [
+    "intervals quantify sampling uncertainty only",
+    "rounded published metrics introduce at most one-count ambiguity",
+    "macro-F1 confidence intervals not computed",
+    "no causal or universal superiority claim"
+  ]
+}

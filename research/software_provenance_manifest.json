@@ -47,8 +47,8 @@
     {
       "path": "research/Makefile",
       "kind": "file",
-      "sha256": "050f66c8821824f5936e4a014abe373c6157bd477e338cb205c51971bda2b536",
-      "role": "transformer integrity gate"
+      "sha256": "b0a1c4c3c10681fe4fb5cad01972a521659672a931fd282b2f3def3d564e6c23",
+      "role": "uncertainty gate"
     },
     {
       "path": "research/semantic_ir.py",
@@ -251,8 +251,8 @@
     {
       "path": "README.md",
       "kind": "file",
-      "sha256": "154cb18a4b75d2cfde5f1fd419d172519844fb9852f3ac21f20dd0663655f2bf",
-      "role": "strong transformer result and honest Manus boundary"
+      "sha256": "648f531b2d03a26812464e3d83fdf3b3019d7d5663b028e5d64dc9fca2c25b88",
+      "role": "uncertainty analysis and test count"
     },
     {
       "path": "docs/50-INTENT-COMPILER-E-SEMANTIC-IR.md",
@@ -515,7 +515,7 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "2a7bc0cfab21c6195a9682965c511823ada84a450dd68e39852a06c3f7d52217",
+      "sha256": "5eaa43141898315e5ce368416c2e653bd92606c409814aff8590bd88f49a483b",
       "role": "organized documentation, maps and historical design records"
     },
     {
@@ -1483,6 +1483,30 @@
       "kind": "file",
       "sha256": "9895dfff2449a2b2d479f72bf2a95968ea4f282727647564d0c093fab66ea383",
       "role": "strong transformer report"
+    },
+    {
+      "path": "research/uncertainty_analysis.py",
+      "kind": "file",
+      "sha256": "fc48166dd4b2f9927d4d9834455365ae25503416ff9e0e063659bb4337eb3311",
+      "role": "Wilson uncertainty analysis"
+    },
+    {
+      "path": "research/test_uncertainty_analysis.py",
+      "kind": "file",
+      "sha256": "54b0e258e7745ef757f5679ea3d15ef0c1c1c9ce4379b89a19efee78744af9a2",
+      "role": "uncertainty tests"
+    },
+    {
+      "path": "research/evidence/uncertainty_analysis_v1.json",
+      "kind": "file",
+      "sha256": "8499dcd61ccd6eebd97cea2ec4a8430ec0b72e3c34c80f4fd51b35488da4d743",
+      "role": "uncertainty evidence"
+    },
+    {
+      "path": "docs/122-INCERTEZA-ESTATISTICA-E-PROXIMO-GATE.md",
+      "kind": "file",
+      "sha256": "e006a153c5f22616c314eca91d02e34ea08ddff069d64268e79026103e6eb04c",
+      "role": "uncertainty report"
     }
   ],
   "components": [
