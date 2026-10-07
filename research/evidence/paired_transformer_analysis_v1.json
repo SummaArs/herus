@@ -1,0 +1,53 @@
+{
+  "protocol": "same chronological S06 holdout; paired bootstrap over identical example indices",
+  "dataset": "THU-IAR/MIntRec",
+  "holdout_rows": 386,
+  "models": {
+    "naive_bayes": {
+      "accuracy": 0.492228,
+      "macro_f1": 0.374427,
+      "coverage": 1.0,
+      "selective_accuracy": 0.492228
+    },
+    "herus_context_memory": {
+      "accuracy": 0.062176,
+      "macro_f1": 0.11877,
+      "coverage": 0.062176,
+      "selective_accuracy": 1.0
+    },
+    "distilbert_multilingual": {
+      "accuracy": 0.466321,
+      "macro_f1": 0.338785,
+      "coverage": 1.0,
+      "selective_accuracy": 0.466321
+    }
+  },
+  "comparisons": {
+    "herus_minus_transformer": {
+      "observed_delta_accuracy": -0.404145,
+      "ci95_low": -0.455959,
+      "ci95_high": -0.352332,
+      "iterations": 4000,
+      "seed": 17
+    },
+    "transformer_minus_naive_bayes": {
+      "observed_delta_accuracy": -0.025907,
+      "ci95_low": -0.07772,
+      "ci95_high": 0.025907,
+      "iterations": 4000,
+      "seed": 17
+    },
+    "herus_minus_naive_bayes": {
+      "observed_delta_accuracy": -0.430052,
+      "ci95_low": -0.479275,
+      "ci95_high": -0.378238,
+      "iterations": 4000,
+      "seed": 17
+    }
+  },
+  "limits": [
+    "HERUS memory is not the full proposal pipeline",
+    "one holdout and one transformer seed",
+    "MIntRec labels are not HERUS events"
+  ]
+}

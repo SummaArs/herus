@@ -47,8 +47,8 @@
     {
       "path": "research/Makefile",
       "kind": "file",
-      "sha256": "4e28da561abccd7d70fd256c13f59c182dcdb7079d0506db3677c6ee0e47b293",
-      "role": "paired evaluation gate"
+      "sha256": "b1be91be4fbcbfca773cbf7a68c1600400a7082f36568f4d94c547dcef41747e",
+      "role": "transformer paired gate"
     },
     {
       "path": "research/semantic_ir.py",
@@ -251,8 +251,8 @@
     {
       "path": "README.md",
       "kind": "file",
-      "sha256": "16355839bbd5bf1ad8a39193ad07a01862273b030b63d9aeada74eebd04aed10",
-      "role": "paired bootstrap and test count"
+      "sha256": "51fe0f4b38e89172327c1bb4e3a67bd6ef5a1f4489e977cc11a387828ccf0ee8",
+      "role": "transformer paired comparison and test count"
     },
     {
       "path": "docs/50-INTENT-COMPILER-E-SEMANTIC-IR.md",
@@ -515,7 +515,7 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "a9a42a94843faef6fdcf21cda8fcf76c36e23b26f35a28c43bb9bf63a02df81a",
+      "sha256": "31a72a851c65a2a1a753ecd70348cefa1caf9bac2f0cb4ae1eefaf2965c7eeea",
       "role": "organized documentation, maps and historical design records"
     },
     {
@@ -803,8 +803,8 @@
     {
       "path": "research/evidence/evaluation_contract_v1.json",
       "kind": "file",
-      "sha256": "e122ee682b7da52943db8e910ccf917adb61007f7592ee48bb6bed49554d9218",
-      "role": "updated evaluation contract"
+      "sha256": "377aa824a4ea3bcd18a1f78bb1966e43314a4edea13b00d278859ce08594ffa5",
+      "role": "evaluation contract status"
     },
     {
       "path": "research/test_evaluation_contract.py",
@@ -821,8 +821,8 @@
     {
       "path": "research/transformer_mintrec_benchmark.py",
       "kind": "file",
-      "sha256": "e69a91e341f0256f5a714aca311f4696ec82ebd84b56a8d1cfb2429078b9d21d",
-      "role": "configurable transformer benchmark"
+      "sha256": "60899c3feaba7a81972e7e945c1ccb40890acb92083501961d14033f0c1831d2",
+      "role": "transformer prediction ledger"
     },
     {
       "path": "research/evidence/transformer_mintrec_v1.json",
@@ -1475,7 +1475,7 @@
     {
       "path": "research/evidence/transformer_multilingual_mintrec_v1.json",
       "kind": "file",
-      "sha256": "70cb44901c65801bcd017e69e047802baf5c7587ba1306f8bb31a58104215dba",
+      "sha256": "699fdda030e2eb0b5a96799f88066fbcaba69ff1b24892fdfc7e6ebd04d299a2",
       "role": "strong transformer evidence"
     },
     {
@@ -1531,6 +1531,24 @@
       "kind": "file",
       "sha256": "54a17512612add61a8af55ca48c3f462defbb4c58cb8ea6545746d88a63fe6b6",
       "role": "paired evaluation report"
+    },
+    {
+      "path": "research/test_paired_transformer_analysis.py",
+      "kind": "file",
+      "sha256": "e6143f373c72262f18d453953a15e8e03143041592a7b77e300e897fe5bb0a0e",
+      "role": "paired transformer tests"
+    },
+    {
+      "path": "research/evidence/paired_transformer_analysis_v1.json",
+      "kind": "file",
+      "sha256": "0aae3331bdf3d210a6e7af1ce59d5e0ffadcc18ce27099525720f2837fe2ec64",
+      "role": "paired transformer evidence"
+    },
+    {
+      "path": "docs/124-COMPETICAO-PAREADA-COM-TRANSFORMER.md",
+      "kind": "file",
+      "sha256": "8c22c94f94f90636d81189836d0aeb9df0ec324a751703c86fdcffaa38f6e0e3",
+      "role": "paired transformer report"
     }
   ],
   "components": [

@@ -1,6 +1,7 @@
 {
   "schema_version": "herus.evaluation.v1",
-  "status": "incomplete; paired baseline bootstrap completed, transformer ledger pending",
+  "status": "incomplete",
+  "status_detail": "paired baseline bootstrap completed; transformer ledger now completed; multi-seed and cross-domain evidence pending",
   "current_score": 64.5,
   "claims_allowed": [
     "proposal-only bounded learning",
