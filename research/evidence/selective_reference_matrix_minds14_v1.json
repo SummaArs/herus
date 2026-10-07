@@ -1,0 +1,60 @@
+{
+  "calibration_rows": 89,
+  "dataset": "PolyAI/minds14",
+  "fit_rows": 417,
+  "holdout_rows": 98,
+  "limits": [
+    "single text corpus",
+    "threshold calibrated on 89 examples",
+    "no speaker-independent split verified",
+    "not a universal benchmark"
+  ],
+  "models": {
+    "linear_svm": {
+      "calibration": {
+        "accuracy": 0.955056,
+        "coverage": 1.0,
+        "macro_f1": 0.949947,
+        "selective_accuracy": 0.955056
+      },
+      "holdout": {
+        "accuracy": 0.959184,
+        "coverage": 1.0,
+        "macro_f1": 0.955328,
+        "selective_accuracy": 0.959184
+      },
+      "threshold": 0.018601121461575443
+    },
+    "logistic_regression": {
+      "calibration": {
+        "accuracy": 0.94382,
+        "coverage": 0.988764,
+        "macro_f1": 0.95224,
+        "selective_accuracy": 0.954545
+      },
+      "holdout": {
+        "accuracy": 0.94898,
+        "coverage": 0.979592,
+        "macro_f1": 0.953542,
+        "selective_accuracy": 0.96875
+      },
+      "threshold": 0.11467123291481086
+    },
+    "random_forest": {
+      "calibration": {
+        "accuracy": 0.921348,
+        "coverage": 0.966292,
+        "macro_f1": 0.931353,
+        "selective_accuracy": 0.953488
+      },
+      "holdout": {
+        "accuracy": 0.959184,
+        "coverage": 0.969388,
+        "macro_f1": 0.970263,
+        "selective_accuracy": 0.989474
+      },
+      "threshold": 0.25
+    }
+  },
+  "target_precision": 0.95
+}

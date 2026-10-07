@@ -47,8 +47,8 @@
     {
       "path": "research/Makefile",
       "kind": "file",
-      "sha256": "a43f99b948a8562616768d1e7b88bf055ac7a0f97dd039d4e91ceb76d5ebda7b",
-      "role": "reference baseline matrix test gate"
+      "sha256": "85b795f5e6dda42e09f83574f62b3e186d7508c95b9a7f8b1ffb73e2d594908d",
+      "role": "selective matrix test gate"
     },
     {
       "path": "research/semantic_ir.py",
@@ -251,8 +251,8 @@
     {
       "path": "README.md",
       "kind": "file",
-      "sha256": "1754b110ca3849cb610af9bb35c63e638573149d0f7653dfb4086faed7b2235e",
-      "role": "classical ML reference matrix and test count"
+      "sha256": "60947d15fbada0e3547c7c6988fa32698efb07d63c0f574bc66473d152070e8d",
+      "role": "selective baseline matrix and test count"
     },
     {
       "path": "docs/50-INTENT-COMPILER-E-SEMANTIC-IR.md",
@@ -515,7 +515,7 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "1bba6b16d6db8312ee107f448357958d63bd74b569dee4eed9b969ea23c43832",
+      "sha256": "4474dc6a84be095b7c05de7282cdfe806d80df8ec2796034c8c4801997bafa98",
       "role": "organized documentation, maps and historical design records"
     },
     {
@@ -1153,6 +1153,30 @@
       "kind": "file",
       "sha256": "457f5eb1241a011303d9bdf0398594434655238b254b09e4e9c5050c859493e3",
       "role": "classical baseline comparison report"
+    },
+    {
+      "path": "research/selective_reference_matrix_minds14.py",
+      "kind": "file",
+      "sha256": "b3b18ee1cfef92cefdab0b350f37e2b3296b8bb534cacbe55fb83cc1c837cc83",
+      "role": "real selective baseline matrix"
+    },
+    {
+      "path": "research/test_selective_reference_matrix_minds14.py",
+      "kind": "file",
+      "sha256": "6543cfe9dbc43e9134dbe6ce006c5459f5cdd82e1a388a13c6f6f01c328f90b9",
+      "role": "selective matrix evidence test"
+    },
+    {
+      "path": "research/evidence/selective_reference_matrix_minds14_v1.json",
+      "kind": "file",
+      "sha256": "1391e4e3337cd03a2a387d92d44704e9e5695e1f40aeaa175f5648e289ee9c44",
+      "role": "selective baseline evidence"
+    },
+    {
+      "path": "docs/109-MATRIZ-RISCO-COBERTURA-BASELINES.md",
+      "kind": "file",
+      "sha256": "e745b63180b315bdda1ee8b72ae286711892df624cd02b02b47e75bb7617dddd",
+      "role": "selective baseline comparison report"
     }
   ],
   "components": [
