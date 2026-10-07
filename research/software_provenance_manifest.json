@@ -47,8 +47,8 @@
     {
       "path": "research/Makefile",
       "kind": "file",
-      "sha256": "b0a1c4c3c10681fe4fb5cad01972a521659672a931fd282b2f3def3d564e6c23",
-      "role": "uncertainty gate"
+      "sha256": "4e28da561abccd7d70fd256c13f59c182dcdb7079d0506db3677c6ee0e47b293",
+      "role": "paired evaluation gate"
     },
     {
       "path": "research/semantic_ir.py",
@@ -251,8 +251,8 @@
     {
       "path": "README.md",
       "kind": "file",
-      "sha256": "648f531b2d03a26812464e3d83fdf3b3019d7d5663b028e5d64dc9fca2c25b88",
-      "role": "uncertainty analysis and test count"
+      "sha256": "16355839bbd5bf1ad8a39193ad07a01862273b030b63d9aeada74eebd04aed10",
+      "role": "paired bootstrap and test count"
     },
     {
       "path": "docs/50-INTENT-COMPILER-E-SEMANTIC-IR.md",
@@ -515,7 +515,7 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "5eaa43141898315e5ce368416c2e653bd92606c409814aff8590bd88f49a483b",
+      "sha256": "a9a42a94843faef6fdcf21cda8fcf76c36e23b26f35a28c43bb9bf63a02df81a",
       "role": "organized documentation, maps and historical design records"
     },
     {
@@ -803,8 +803,8 @@
     {
       "path": "research/evidence/evaluation_contract_v1.json",
       "kind": "file",
-      "sha256": "a37b693ad6afb351fd265363036a9747f805345597a3f223faec975a3d438b6e",
-      "role": "transformer baseline completion status"
+      "sha256": "e122ee682b7da52943db8e910ccf917adb61007f7592ee48bb6bed49554d9218",
+      "role": "updated evaluation contract"
     },
     {
       "path": "research/test_evaluation_contract.py",
@@ -1507,6 +1507,30 @@
       "kind": "file",
       "sha256": "e006a153c5f22616c314eca91d02e34ea08ddff069d64268e79026103e6eb04c",
       "role": "uncertainty report"
+    },
+    {
+      "path": "research/paired_holdout_analysis.py",
+      "kind": "file",
+      "sha256": "111dcf46ae06118f84710eccb6c62213b8333d70272f38fd06b3299d48defa8a",
+      "role": "paired prediction ledger and bootstrap"
+    },
+    {
+      "path": "research/test_paired_holdout_analysis.py",
+      "kind": "file",
+      "sha256": "adeb0a9a8f5c7e76443acaceca83ece7e9e32e14e7fa2f1877f522c0096cc858",
+      "role": "paired bootstrap tests"
+    },
+    {
+      "path": "research/evidence/paired_holdout_analysis_v1.json",
+      "kind": "file",
+      "sha256": "86a6130af02dca0df2fac37c7b1e22c8e828d6ff37976f982ffd258db855dc77",
+      "role": "paired holdout evidence"
+    },
+    {
+      "path": "docs/123-BOOTSTRAP-PAREADO-E-LEDGER-DE-PREVISOES.md",
+      "kind": "file",
+      "sha256": "54a17512612add61a8af55ca48c3f462defbb4c58cb8ea6545746d88a63fe6b6",
+      "role": "paired evaluation report"
     }
   ],
   "components": [

@@ -1,0 +1,3508 @@
+{
+  "protocol": "chronological S04+S05 fit; S06 holdout; paired bootstrap over saved per-example predictions",
+  "dataset": "THU-IAR/MIntRec",
+  "holdout_rows": 386,
+  "models": {
+    "multinomial_naive_bayes": {
+      "accuracy": 0.492228,
+      "macro_f1": 0.374427,
+      "coverage": 1.0,
+      "selective_accuracy": 0.492228
+    },
+    "symbiotic_finite_context_memory": {
+      "accuracy": 0.062176,
+      "macro_f1": 0.11877,
+      "coverage": 0.062176,
+      "selective_accuracy": 1.0
+    }
+  },
+  "paired_comparison": {
+    "observed_delta_accuracy": 0.430052,
+    "bootstrap_mean": 0.429791,
+    "ci95_low": 0.378238,
+    "ci95_high": 0.479275,
+    "iterations": 4000,
+    "seed": 17
+  },
+  "prediction_ledger": [
+    {
+      "index": 0,
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 1,
+      "label": "Prevent",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 2,
+      "label": "Apologise",
+      "nb_prediction": "Apologise",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 3,
+      "label": "Inform",
+      "nb_prediction": "Comfort",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 4,
+      "label": "Taunt",
+      "nb_prediction": "Praise",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 5,
+      "label": "Apologise",
+      "nb_prediction": "Apologise",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 6,
+      "label": "Advise",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 7,
+      "label": "Complain",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 8,
+      "label": "Advise",
+      "nb_prediction": "Advise",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 9,
+      "label": "Thank",
+      "nb_prediction": "Thank",
+      "memory_prediction": "Thank",
+      "nb_correct": true,
+      "memory_accepted": true,
+      "memory_correct": true
+    },
+    {
+      "index": 10,
+      "label": "Praise",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 11,
+      "label": "Flaunt",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 12,
+      "label": "Complain",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 13,
+      "label": "Prevent",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 14,
+      "label": "Advise",
+      "nb_prediction": "Advise",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 15,
+      "label": "Advise",
+      "nb_prediction": "Advise",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 16,
+      "label": "Care",
+      "nb_prediction": "Praise",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 17,
+      "label": "Complain",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 18,
+      "label": "Advise",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 19,
+      "label": "Joke",
+      "nb_prediction": "Praise",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 20,
+      "label": "Advise",
+      "nb_prediction": "Advise",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 21,
+      "label": "Praise",
+      "nb_prediction": "Praise",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 22,
+      "label": "Taunt",
+      "nb_prediction": "Criticize",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 23,
+      "label": "Introduce",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 24,
+      "label": "Criticize",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 25,
+      "label": "Arrange",
+      "nb_prediction": "Arrange",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 26,
+      "label": "Thank",
+      "nb_prediction": "Thank",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 27,
+      "label": "Apologise",
+      "nb_prediction": "Apologise",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 28,
+      "label": "Apologise",
+      "nb_prediction": "Apologise",
+      "memory_prediction": "Apologise",
+      "nb_correct": true,
+      "memory_accepted": true,
+      "memory_correct": true
+    },
+    {
+      "index": 29,
+      "label": "Complain",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 30,
+      "label": "Leave",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 31,
+      "label": "Thank",
+      "nb_prediction": "Thank",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 32,
+      "label": "Thank",
+      "nb_prediction": "Thank",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 33,
+      "label": "Complain",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 34,
+      "label": "Apologise",
+      "nb_prediction": "Apologise",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 35,
+      "label": "Comfort",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 36,
+      "label": "Apologise",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 37,
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 38,
+      "label": "Introduce",
+      "nb_prediction": "Introduce",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 39,
+      "label": "Complain",
+      "nb_prediction": "Advise",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 40,
+      "label": "Prevent",
+      "nb_prediction": "Prevent",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 41,
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 42,
+      "label": "Praise",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 43,
+      "label": "Inform",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 44,
+      "label": "Agree",
+      "nb_prediction": "Praise",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 45,
+      "label": "Complain",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 46,
+      "label": "Joke",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 47,
+      "label": "Advise",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 48,
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 49,
+      "label": "Praise",
+      "nb_prediction": "Praise",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 50,
+      "label": "Complain",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 51,
+      "label": "Oppose",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 52,
+      "label": "Apologise",
+      "nb_prediction": "Apologise",
+      "memory_prediction": "Apologise",
+      "nb_correct": true,
+      "memory_accepted": true,
+      "memory_correct": true
+    },
+    {
+      "index": 53,
+      "label": "Criticize",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 54,
+      "label": "Praise",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 55,
+      "label": "Praise",
+      "nb_prediction": "Praise",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 56,
+      "label": "Thank",
+      "nb_prediction": "Thank",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 57,
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 58,
+      "label": "Praise",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 59,
+      "label": "Inform",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 60,
+      "label": "Inform",
+      "nb_prediction": "Leave",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 61,
+      "label": "Praise",
+      "nb_prediction": "Praise",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 62,
+      "label": "Praise",
+      "nb_prediction": "Praise",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 63,
+      "label": "Agree",
+      "nb_prediction": "Praise",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 64,
+      "label": "Introduce",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 65,
+      "label": "Leave",
+      "nb_prediction": "Leave",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 66,
+      "label": "Comfort",
+      "nb_prediction": "Comfort",
+      "memory_prediction": "Comfort",
+      "nb_correct": true,
+      "memory_accepted": true,
+      "memory_correct": true
+    },
+    {
+      "index": 67,
+      "label": "Leave",
+      "nb_prediction": "Leave",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 68,
+      "label": "Comfort",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 69,
+      "label": "Apologise",
+      "nb_prediction": "Apologise",
+      "memory_prediction": "Apologise",
+      "nb_correct": true,
+      "memory_accepted": true,
+      "memory_correct": true
+    },
+    {
+      "index": 70,
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 71,
+      "label": "Apologise",
+      "nb_prediction": "Apologise",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 72,
+      "label": "Complain",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 73,
+      "label": "Flaunt",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 74,
+      "label": "Apologise",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 75,
+      "label": "Praise",
+      "nb_prediction": "Praise",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 76,
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 77,
+      "label": "Praise",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 78,
+      "label": "Complain",
+      "nb_prediction": "Praise",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 79,
+      "label": "Complain",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 80,
+      "label": "Inform",
+      "nb_prediction": "Praise",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 81,
+      "label": "Comfort",
+      "nb_prediction": "Comfort",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 82,
+      "label": "Ask for help",
+      "nb_prediction": "Ask for help",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 83,
+      "label": "Leave",
+      "nb_prediction": "Leave",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 84,
+      "label": "Flaunt",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 85,
+      "label": "Apologise",
+      "nb_prediction": "Apologise",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 86,
+      "label": "Criticize",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 87,
+      "label": "Complain",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 88,
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 89,
+      "label": "Thank",
+      "nb_prediction": "Praise",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 90,
+      "label": "Advise",
+      "nb_prediction": "Advise",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 91,
+      "label": "Advise",
+      "nb_prediction": "Apologise",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 92,
+      "label": "Introduce",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 93,
+      "label": "Praise",
+      "nb_prediction": "Praise",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 94,
+      "label": "Apologise",
+      "nb_prediction": "Apologise",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 95,
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 96,
+      "label": "Thank",
+      "nb_prediction": "Comfort",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 97,
+      "label": "Inform",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 98,
+      "label": "Complain",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 99,
+      "label": "Inform",
+      "nb_prediction": "Arrange",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 100,
+      "label": "Arrange",
+      "nb_prediction": "Leave",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 101,
+      "label": "Greet",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 102,
+      "label": "Comfort",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 103,
+      "label": "Comfort",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 104,
+      "label": "Care",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 105,
+      "label": "Care",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 106,
+      "label": "Thank",
+      "nb_prediction": "Thank",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 107,
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 108,
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 109,
+      "label": "Agree",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 110,
+      "label": "Inform",
+      "nb_prediction": "Praise",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 111,
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 112,
+      "label": "Inform",
+      "nb_prediction": "Comfort",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 113,
+      "label": "Praise",
+      "nb_prediction": "Praise",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 114,
+      "label": "Advise",
+      "nb_prediction": "Advise",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 115,
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 116,
+      "label": "Prevent",
+      "nb_prediction": "Prevent",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 117,
+      "label": "Praise",
+      "nb_prediction": "Praise",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 118,
+      "label": "Criticize",
+      "nb_prediction": "Thank",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 119,
+      "label": "Comfort",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 120,
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 121,
+      "label": "Agree",
+      "nb_prediction": "Comfort",
+      "memory_prediction": "Agree",
+      "nb_correct": false,
+      "memory_accepted": true,
+      "memory_correct": true
+    },
+    {
+      "index": 122,
+      "label": "Inform",
+      "nb_prediction": "Praise",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 123,
+      "label": "Apologise",
+      "nb_prediction": "Apologise",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 124,
+      "label": "Criticize",
+      "nb_prediction": "Arrange",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 125,
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 126,
+      "label": "Complain",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 127,
+      "label": "Leave",
+      "nb_prediction": "Leave",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 128,
+      "label": "Thank",
+      "nb_prediction": "Thank",
+      "memory_prediction": "Thank",
+      "nb_correct": true,
+      "memory_accepted": true,
+      "memory_correct": true
+    },
+    {
+      "index": 129,
+      "label": "Taunt",
+      "nb_prediction": "Criticize",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 130,
+      "label": "Care",
+      "nb_prediction": "Care",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 131,
+      "label": "Arrange",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 132,
+      "label": "Arrange",
+      "nb_prediction": "Praise",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 133,
+      "label": "Complain",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 134,
+      "label": "Advise",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 135,
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 136,
+      "label": "Inform",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 137,
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 138,
+      "label": "Oppose",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 139,
+      "label": "Agree",
+      "nb_prediction": "Praise",
+      "memory_prediction": "Agree",
+      "nb_correct": false,
+      "memory_accepted": true,
+      "memory_correct": true
+    },
+    {
+      "index": 140,
+      "label": "Leave",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 141,
+      "label": "Criticize",
+      "nb_prediction": "Criticize",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 142,
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 143,
+      "label": "Inform",
+      "nb_prediction": "Arrange",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 144,
+      "label": "Greet",
+      "nb_prediction": "Greet",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 145,
+      "label": "Praise",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 146,
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 147,
+      "label": "Criticize",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 148,
+      "label": "Care",
+      "nb_prediction": "Criticize",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 149,
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 150,
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 151,
+      "label": "Complain",
+      "nb_prediction": "Praise",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 152,
+      "label": "Praise",
+      "nb_prediction": "Praise",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 153,
+      "label": "Comfort",
+      "nb_prediction": "Leave",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 154,
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 155,
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 156,
+      "label": "Leave",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 157,
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 158,
+      "label": "Complain",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 159,
+      "label": "Criticize",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 160,
+      "label": "Complain",
+      "nb_prediction": "Criticize",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 161,
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 162,
+      "label": "Advise",
+      "nb_prediction": "Advise",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 163,
+      "label": "Comfort",
+      "nb_prediction": "Advise",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 164,
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 165,
+      "label": "Arrange",
+      "nb_prediction": "Arrange",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 166,
+      "label": "Oppose",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 167,
+      "label": "Introduce",
+      "nb_prediction": "Praise",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 168,
+      "label": "Apologise",
+      "nb_prediction": "Apologise",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 169,
+      "label": "Introduce",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 170,
+      "label": "Ask for help",
+      "nb_prediction": "Arrange",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 171,
+      "label": "Praise",
+      "nb_prediction": "Praise",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 172,
+      "label": "Complain",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 173,
+      "label": "Praise",
+      "nb_prediction": "Praise",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 174,
+      "label": "Complain",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 175,
+      "label": "Praise",
+      "nb_prediction": "Praise",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 176,
+      "label": "Agree",
+      "nb_prediction": "Praise",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 177,
+      "label": "Complain",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 178,
+      "label": "Agree",
+      "nb_prediction": "Praise",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 179,
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 180,
+      "label": "Leave",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 181,
+      "label": "Comfort",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 182,
+      "label": "Apologise",
+      "nb_prediction": "Apologise",
+      "memory_prediction": "Apologise",
+      "nb_correct": true,
+      "memory_accepted": true,
+      "memory_correct": true
+    },
+    {
+      "index": 183,
+      "label": "Introduce",
+      "nb_prediction": "Praise",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 184,
+      "label": "Criticize",
+      "nb_prediction": "Criticize",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 185,
+      "label": "Criticize",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 186,
+      "label": "Complain",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 187,
+      "label": "Praise",
+      "nb_prediction": "Praise",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 188,
+      "label": "Prevent",
+      "nb_prediction": "Advise",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 189,
+      "label": "Taunt",
+      "nb_prediction": "Praise",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 190,
+      "label": "Complain",
+      "nb_prediction": "Praise",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 191,
+      "label": "Advise",
+      "nb_prediction": "Advise",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 192,
+      "label": "Thank",
+      "nb_prediction": "Thank",
+      "memory_prediction": "Thank",
+      "nb_correct": true,
+      "memory_accepted": true,
+      "memory_correct": true
+    },
+    {
+      "index": 193,
+      "label": "Praise",
+      "nb_prediction": "Praise",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 194,
+      "label": "Criticize",
+      "nb_prediction": "Criticize",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 195,
+      "label": "Taunt",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 196,
+      "label": "Praise",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 197,
+      "label": "Introduce",
+      "nb_prediction": "Praise",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 198,
+      "label": "Joke",
+      "nb_prediction": "Advise",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 199,
+      "label": "Joke",
+      "nb_prediction": "Praise",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 200,
+      "label": "Taunt",
+      "nb_prediction": "Praise",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 201,
+      "label": "Care",
+      "nb_prediction": "Care",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 202,
+      "label": "Complain",
+      "nb_prediction": "Advise",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 203,
+      "label": "Apologise",
+      "nb_prediction": "Apologise",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 204,
+      "label": "Apologise",
+      "nb_prediction": "Apologise",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 205,
+      "label": "Care",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 206,
+      "label": "Care",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 207,
+      "label": "Joke",
+      "nb_prediction": "Praise",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 208,
+      "label": "Thank",
+      "nb_prediction": "Thank",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 209,
+      "label": "Complain",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 210,
+      "label": "Comfort",
+      "nb_prediction": "Comfort",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 211,
+      "label": "Oppose",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 212,
+      "label": "Inform",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 213,
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 214,
+      "label": "Complain",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 215,
+      "label": "Care",
+      "nb_prediction": "Praise",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 216,
+      "label": "Advise",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 217,
+      "label": "Care",
+      "nb_prediction": "Praise",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 218,
+      "label": "Apologise",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 219,
+      "label": "Criticize",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 220,
+      "label": "Comfort",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 221,
+      "label": "Praise",
+      "nb_prediction": "Praise",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 222,
+      "label": "Apologise",
+      "nb_prediction": "Apologise",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 223,
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 224,
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 225,
+      "label": "Thank",
+      "nb_prediction": "Thank",
+      "memory_prediction": "Thank",
+      "nb_correct": true,
+      "memory_accepted": true,
+      "memory_correct": true
+    },
+    {
+      "index": 226,
+      "label": "Comfort",
+      "nb_prediction": "Comfort",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 227,
+      "label": "Complain",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 228,
+      "label": "Taunt",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 229,
+      "label": "Arrange",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 230,
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 231,
+      "label": "Thank",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 232,
+      "label": "Advise",
+      "nb_prediction": "Advise",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 233,
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 234,
+      "label": "Arrange",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 235,
+      "label": "Thank",
+      "nb_prediction": "Thank",
+      "memory_prediction": "Thank",
+      "nb_correct": true,
+      "memory_accepted": true,
+      "memory_correct": true
+    },
+    {
+      "index": 236,
+      "label": "Care",
+      "nb_prediction": "Arrange",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 237,
+      "label": "Apologise",
+      "nb_prediction": "Apologise",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 238,
+      "label": "Care",
+      "nb_prediction": "Care",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 239,
+      "label": "Complain",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 240,
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 241,
+      "label": "Care",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 242,
+      "label": "Inform",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 243,
+      "label": "Leave",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 244,
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 245,
+      "label": "Praise",
+      "nb_prediction": "Praise",
+      "memory_prediction": "Praise",
+      "nb_correct": true,
+      "memory_accepted": true,
+      "memory_correct": true
+    },
+    {
+      "index": 246,
+      "label": "Criticize",
+      "nb_prediction": "Praise",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 247,
+      "label": "Apologise",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 248,
+      "label": "Greet",
+      "nb_prediction": "Greet",
+      "memory_prediction": "Greet",
+      "nb_correct": true,
+      "memory_accepted": true,
+      "memory_correct": true
+    },
+    {
+      "index": 249,
+      "label": "Inform",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 250,
+      "label": "Praise",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 251,
+      "label": "Criticize",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 252,
+      "label": "Introduce",
+      "nb_prediction": "Praise",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 253,
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 254,
+      "label": "Care",
+      "nb_prediction": "Care",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 255,
+      "label": "Leave",
+      "nb_prediction": "Leave",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 256,
+      "label": "Complain",
+      "nb_prediction": "Advise",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 257,
+      "label": "Apologise",
+      "nb_prediction": "Apologise",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 258,
+      "label": "Arrange",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 259,
+      "label": "Prevent",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 260,
+      "label": "Praise",
+      "nb_prediction": "Praise",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 261,
+      "label": "Joke",
+      "nb_prediction": "Criticize",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 262,
+      "label": "Thank",
+      "nb_prediction": "Thank",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 263,
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 264,
+      "label": "Advise",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 265,
+      "label": "Complain",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 266,
+      "label": "Care",
+      "nb_prediction": "Care",
+      "memory_prediction": "Care",
+      "nb_correct": true,
+      "memory_accepted": true,
+      "memory_correct": true
+    },
+    {
+      "index": 267,
+      "label": "Advise",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 268,
+      "label": "Prevent",
+      "nb_prediction": "Advise",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 269,
+      "label": "Complain",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 270,
+      "label": "Inform",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 271,
+      "label": "Criticize",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 272,
+      "label": "Complain",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 273,
+      "label": "Inform",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 274,
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 275,
+      "label": "Criticize",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 276,
+      "label": "Inform",
+      "nb_prediction": "Arrange",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 277,
+      "label": "Ask for help",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 278,
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 279,
+      "label": "Thank",
+      "nb_prediction": "Thank",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 280,
+      "label": "Care",
+      "nb_prediction": "Care",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 281,
+      "label": "Comfort",
+      "nb_prediction": "Comfort",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 282,
+      "label": "Prevent",
+      "nb_prediction": "Prevent",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 283,
+      "label": "Leave",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 284,
+      "label": "Oppose",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 285,
+      "label": "Inform",
+      "nb_prediction": "Arrange",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 286,
+      "label": "Apologise",
+      "nb_prediction": "Apologise",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 287,
+      "label": "Apologise",
+      "nb_prediction": "Apologise",
+      "memory_prediction": "Apologise",
+      "nb_correct": true,
+      "memory_accepted": true,
+      "memory_correct": true
+    },
+    {
+      "index": 288,
+      "label": "Thank",
+      "nb_prediction": "Praise",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 289,
+      "label": "Advise",
+      "nb_prediction": "Advise",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 290,
+      "label": "Inform",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 291,
+      "label": "Joke",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 292,
+      "label": "Apologise",
+      "nb_prediction": "Apologise",
+      "memory_prediction": "Apologise",
+      "nb_correct": true,
+      "memory_accepted": true,
+      "memory_correct": true
+    },
+    {
+      "index": 293,
+      "label": "Inform",
+      "nb_prediction": "Introduce",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 294,
+      "label": "Thank",
+      "nb_prediction": "Thank",
+      "memory_prediction": "Thank",
+      "nb_correct": true,
+      "memory_accepted": true,
+      "memory_correct": true
+    },
+    {
+      "index": 295,
+      "label": "Inform",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 296,
+      "label": "Apologise",
+      "nb_prediction": "Apologise",
+      "memory_prediction": "Apologise",
+      "nb_correct": true,
+      "memory_accepted": true,
+      "memory_correct": true
+    },
+    {
+      "index": 297,
+      "label": "Complain",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 298,
+      "label": "Care",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 299,
+      "label": "Care",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 300,
+      "label": "Comfort",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 301,
+      "label": "Complain",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 302,
+      "label": "Complain",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 303,
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 304,
+      "label": "Complain",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 305,
+      "label": "Inform",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 306,
+      "label": "Prevent",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 307,
+      "label": "Advise",
+      "nb_prediction": "Advise",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 308,
+      "label": "Advise",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 309,
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 310,
+      "label": "Advise",
+      "nb_prediction": "Apologise",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 311,
+      "label": "Apologise",
+      "nb_prediction": "Apologise",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 312,
+      "label": "Introduce",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 313,
+      "label": "Oppose",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 314,
+      "label": "Introduce",
+      "nb_prediction": "Advise",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 315,
+      "label": "Complain",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 316,
+      "label": "Taunt",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 317,
+      "label": "Praise",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 318,
+      "label": "Arrange",
+      "nb_prediction": "Arrange",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 319,
+      "label": "Complain",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 320,
+      "label": "Introduce",
+      "nb_prediction": "Criticize",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 321,
+      "label": "Apologise",
+      "nb_prediction": "Apologise",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 322,
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 323,
+      "label": "Complain",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 324,
+      "label": "Complain",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 325,
+      "label": "Agree",
+      "nb_prediction": "Inform",
+      "memory_prediction": "Agree",
+      "nb_correct": false,
+      "memory_accepted": true,
+      "memory_correct": true
+    },
+    {
+      "index": 326,
+      "label": "Care",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 327,
+      "label": "Flaunt",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 328,
+      "label": "Inform",
+      "nb_prediction": "Arrange",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 329,
+      "label": "Praise",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 330,
+      "label": "Advise",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 331,
+      "label": "Comfort",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 332,
+      "label": "Care",
+      "nb_prediction": "Praise",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 333,
+      "label": "Inform",
+      "nb_prediction": "Arrange",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 334,
+      "label": "Apologise",
+      "nb_prediction": "Apologise",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 335,
+      "label": "Inform",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 336,
+      "label": "Praise",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 337,
+      "label": "Comfort",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 338,
+      "label": "Praise",
+      "nb_prediction": "Praise",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 339,
+      "label": "Inform",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 340,
+      "label": "Criticize",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 341,
+      "label": "Arrange",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 342,
+      "label": "Complain",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 343,
+      "label": "Inform",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 344,
+      "label": "Advise",
+      "nb_prediction": "Advise",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 345,
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 346,
+      "label": "Praise",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 347,
+      "label": "Apologise",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 348,
+      "label": "Flaunt",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 349,
+      "label": "Criticize",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 350,
+      "label": "Inform",
+      "nb_prediction": "Criticize",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 351,
+      "label": "Apologise",
+      "nb_prediction": "Apologise",
+      "memory_prediction": "Apologise",
+      "nb_correct": true,
+      "memory_accepted": true,
+      "memory_correct": true
+    },
+    {
+      "index": 352,
+      "label": "Oppose",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 353,
+      "label": "Complain",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 354,
+      "label": "Apologise",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 355,
+      "label": "Thank",
+      "nb_prediction": "Thank",
+      "memory_prediction": "Thank",
+      "nb_correct": true,
+      "memory_accepted": true,
+      "memory_correct": true
+    },
+    {
+      "index": 356,
+      "label": "Apologise",
+      "nb_prediction": "Apologise",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 357,
+      "label": "Complain",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 358,
+      "label": "Oppose",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 359,
+      "label": "Inform",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 360,
+      "label": "Prevent",
+      "nb_prediction": "Prevent",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 361,
+      "label": "Inform",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 362,
+      "label": "Advise",
+      "nb_prediction": "Advise",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 363,
+      "label": "Thank",
+      "nb_prediction": "Praise",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 364,
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 365,
+      "label": "Arrange",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 366,
+      "label": "Advise",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 367,
+      "label": "Complain",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 368,
+      "label": "Thank",
+      "nb_prediction": "Thank",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 369,
+      "label": "Greet",
+      "nb_prediction": "Greet",
+      "memory_prediction": "Greet",
+      "nb_correct": true,
+      "memory_accepted": true,
+      "memory_correct": true
+    },
+    {
+      "index": 370,
+      "label": "Apologise",
+      "nb_prediction": "Apologise",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 371,
+      "label": "Criticize",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 372,
+      "label": "Apologise",
+      "nb_prediction": "Apologise",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 373,
+      "label": "Complain",
+      "nb_prediction": "Complain",
+      "memory_prediction": "Complain",
+      "nb_correct": true,
+      "memory_accepted": true,
+      "memory_correct": true
+    },
+    {
+      "index": 374,
+      "label": "Apologise",
+      "nb_prediction": "Apologise",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 375,
+      "label": "Taunt",
+      "nb_prediction": "Criticize",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 376,
+      "label": "Apologise",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 377,
+      "label": "Praise",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 378,
+      "label": "Ask for help",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 379,
+      "label": "Praise",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 380,
+      "label": "Criticize",
+      "nb_prediction": "Arrange",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 381,
+      "label": "Inform",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 382,
+      "label": "Complain",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 383,
+      "label": "Inform",
+      "nb_prediction": "Comfort",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 384,
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "memory_prediction": null,
+      "nb_correct": true,
+      "memory_accepted": false,
+      "memory_correct": false
+    },
+    {
+      "index": 385,
+      "label": "Oppose",
+      "nb_prediction": "Complain",
+      "memory_prediction": null,
+      "nb_correct": false,
+      "memory_accepted": false,
+      "memory_correct": false
+    }
+  ],
+  "limits": [
+    "does not compare to transformer because transformer prediction vectors were not archived",
+    "bootstrap measures this holdout only",
+    "MIntRec labels are not HERUS events"
+  ]
+}

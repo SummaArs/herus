@@ -1,6 +1,6 @@
 {
   "schema_version": "herus.evaluation.v1",
-  "status": "incomplete",
+  "status": "incomplete; paired baseline bootstrap completed, transformer ledger pending",
   "current_score": 64.5,
   "claims_allowed": [
     "proposal-only bounded learning",
@@ -20,6 +20,7 @@
     {"id": "domain_shift", "status": "pending", "requirement": "Evaluate on a second real dataset with an unseen-domain holdout"},
     {"id": "abstention_curve", "status": "completed", "requirement": "Report coverage and selective precision"},
     {"id": "cost_accounting", "status": "partial", "requirement": "Measure training/inference time and memory for every method"},
+    {"id": "paired_prediction_ledger", "status": "partial", "requirement": "Archive per-example predictions for HERUS, baselines and transformer before paired tests"},
     {"id": "rl_environment", "status": "pending", "requirement": "Use a real sequential environment before making RL claims"}
   ]
 }
