@@ -17,12 +17,13 @@ Foi implementado um classificador Tensor-Train de dois núcleos, com entrada has
 | 8 | 1.152 | 86,73% | 0,30 ms |
 | 16 | 2.304 | 87,76% | 0,43 ms |
 | 32 | 4.608 | 89,80% | 0,43 ms |
+| **64** | **18.432** | **95,92%** | **1,04 ms** |
 
-A Linear SVM do mesmo corpus alcançou 95,92%. Portanto, o melhor tensorial ainda perde 6,12 pontos percentuais, mas usa uma representação extremamente compacta e tem inferência sub-milisegundo.
+A Linear SVM do mesmo corpus alcançou 95,92%. O rank 64 agora empata a SVM em acurácia, supera sua macro-F1 (95,66% contra 95,53%) e tem inferência medida em 1,04 ms contra 6,70 ms, embora use mais parâmetros treináveis que o rank 32. Isso é uma vitória de custo–desempenho neste holdout, não uma vitória universal.
 
 ## Decisão
 
-Redes tensoriais são promissoras como **camada de eficiência ou compressão**, não como prova de superioridade do HERUS. A próxima hipótese útil é um modelo híbrido: encoder/protótipos simbióticos para selecionar a representação e núcleo tensorial pequeno para inferência. Esse híbrido só contará como avanço se mantiver o holdout intocado e superar a fronteira de custo-desempenho dos baselines.
+Redes tensoriais são promissoras como **camada de eficiência ou compressão**. O rank 64 atingiu o primeiro empate com um baseline clássico forte e melhorou latência e macro-F1 neste protocolo. Ainda não é superioridade geral: falta repetir em outros datasets, seeds e domínios, além de medir memória real e robustez a deriva. O híbrido encoder–tensorial anterior foi negativo, então não será promovido sem nova evidência.
 
 ## Limites
 

@@ -47,8 +47,8 @@
     {
       "path": "research/Makefile",
       "kind": "file",
-      "sha256": "c30f580d7f6f8b2667aebd81b6594d7f1182f1884696db4c39247b8742eb840e",
-      "role": "tensor hybrid test gate"
+      "sha256": "a1e748116aa989b7e18bbe639bbfbf1a77095ae0c92c24e536519cc4890eb29e",
+      "role": "wide tensor rank test gate"
     },
     {
       "path": "research/semantic_ir.py",
@@ -251,8 +251,8 @@
     {
       "path": "README.md",
       "kind": "file",
-      "sha256": "a1bef2c04b2be932cd967cee904c4792a2da41a00f440d70f5be13c2bae8cbb8",
-      "role": "tensor hybrid ablation and test count"
+      "sha256": "a5dec1bfdd12c6754c2c5a222da053572db46d776fe187c73a600cdcbbb1f82b",
+      "role": "rank 64 tensor benchmark and test count"
     },
     {
       "path": "docs/50-INTENT-COMPILER-E-SEMANTIC-IR.md",
@@ -515,7 +515,7 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "51f7cdaf105319630bc46fdc4607010ee537410ed5955decc2b561bdc7c50b65",
+      "sha256": "3e83e63a19d03b5f914030b61fc18554579e2735a2e85e9bfc6d6c016ad21f49",
       "role": "organized documentation, maps and historical design records"
     },
     {
@@ -1211,8 +1211,8 @@
     {
       "path": "docs/110-REDES-TENSORIAIS-MINDS14.md",
       "kind": "file",
-      "sha256": "d61165ca85dff4c5dfcc8a4d4aa8169891626c1fe6a077080e0c1a8ab0e2240f",
-      "role": "tensor network report"
+      "sha256": "500b5daa9f8edf05b9ddad38f541505a1a4e03e5da9b9c91c59d424842ae5811",
+      "role": "wide tensor rank 64 report"
     },
     {
       "path": "research/tensor_encoder_minds14.py",
@@ -1237,6 +1237,24 @@
       "kind": "file",
       "sha256": "46598db55e6683737b3b1e9d2f5c0406dece7438a1b4e109d1ee40e9313cc31f",
       "role": "tensor encoder hybrid report"
+    },
+    {
+      "path": "research/tensor_network_wide_minds14.py",
+      "kind": "file",
+      "sha256": "65841b89e77f436cc0ac1cdf54780a5eb0b6b5dafd28c2dbd7d3557c1c2bbf7d",
+      "role": "wide tensor train rank sweep"
+    },
+    {
+      "path": "research/test_tensor_network_wide_minds14.py",
+      "kind": "file",
+      "sha256": "969394386562f31cbdb41850060bbab23839fcefacf50f5f435109a9711cb7dd",
+      "role": "rank 64 competitive result test"
+    },
+    {
+      "path": "research/evidence/tensor_network_wide_minds14_v1.json",
+      "kind": "file",
+      "sha256": "e60fd95b78d43f6d563a258ce984318fd8fd338642b0f9fb4e1b9ad8917b2e6d",
+      "role": "wide tensor evidence"
     }
   ],
   "components": [
