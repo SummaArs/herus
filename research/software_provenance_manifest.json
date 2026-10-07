@@ -47,8 +47,8 @@
     {
       "path": "research/Makefile",
       "kind": "file",
-      "sha256": "85b795f5e6dda42e09f83574f62b3e186d7508c95b9a7f8b1ffb73e2d594908d",
-      "role": "selective matrix test gate"
+      "sha256": "78a4beb933d3057c6a315c51d620a75122b828b4803ac97ab23051b1f5cebb30",
+      "role": "tensor network test gate"
     },
     {
       "path": "research/semantic_ir.py",
@@ -251,8 +251,8 @@
     {
       "path": "README.md",
       "kind": "file",
-      "sha256": "60947d15fbada0e3547c7c6988fa32698efb07d63c0f574bc66473d152070e8d",
-      "role": "selective baseline matrix and test count"
+      "sha256": "59f062caf77df88810d21676efd025bc442bf1325af056c3056a066185beed2d",
+      "role": "tensor network benchmark and test count"
     },
     {
       "path": "docs/50-INTENT-COMPILER-E-SEMANTIC-IR.md",
@@ -515,7 +515,7 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "4474dc6a84be095b7c05de7282cdfe806d80df8ec2796034c8c4801997bafa98",
+      "sha256": "9f2ea9f939aa4c0b6494d892440af550a70443c85504227330285b2185927624",
       "role": "organized documentation, maps and historical design records"
     },
     {
@@ -1177,6 +1177,42 @@
       "kind": "file",
       "sha256": "e745b63180b315bdda1ee8b72ae286711892df624cd02b02b47e75bb7617dddd",
       "role": "selective baseline comparison report"
+    },
+    {
+      "path": "research/tensor_network_minds14.py",
+      "kind": "file",
+      "sha256": "9b5f453d3698ede0db57e8d9cf2a25c86e814be99b65b6868fe1cef3b1d4a8eb",
+      "role": "two-core tensor train classifier"
+    },
+    {
+      "path": "research/tensor_network_rank_sweep.py",
+      "kind": "file",
+      "sha256": "dfca8e008084dfd08e2b057ee1ca192da02fac99a0d5cd7dd97525a49ac4a47b",
+      "role": "tensor rank cost sweep"
+    },
+    {
+      "path": "research/test_tensor_network_minds14.py",
+      "kind": "file",
+      "sha256": "dd649dcf255eb2bfe0018d440bc663df81e38a236a7c662febcb863e35d51726",
+      "role": "tensor network evidence test"
+    },
+    {
+      "path": "research/evidence/tensor_network_minds14_v1.json",
+      "kind": "file",
+      "sha256": "175a6a1f0e48d3a32a6a18b6ef8f51eb1c1c520060b8dcc7ebcaa0d850914bd7",
+      "role": "tensor classifier evidence"
+    },
+    {
+      "path": "research/evidence/tensor_network_rank_sweep_minds14_v1.json",
+      "kind": "file",
+      "sha256": "6fd15f17066ed606ced152e3f573f84c939e472bf17e81459b353faa53c57f93",
+      "role": "tensor rank sweep evidence"
+    },
+    {
+      "path": "docs/110-REDES-TENSORIAIS-MINDS14.md",
+      "kind": "file",
+      "sha256": "d61165ca85dff4c5dfcc8a4d4aa8169891626c1fe6a077080e0c1a8ab0e2240f",
+      "role": "tensor network report"
     }
   ],
   "components": [

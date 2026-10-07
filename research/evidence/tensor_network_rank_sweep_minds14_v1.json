@@ -1,0 +1,56 @@
+{
+  "dataset": "PolyAI/minds14",
+  "holdout_rows": 98,
+  "ranks": [
+    {
+      "accuracy": 0.632653,
+      "coverage": 1.0,
+      "infer_ms": 0.67,
+      "macro_f1": 0.61696,
+      "parameters": 288,
+      "rank": 2,
+      "selective_accuracy": 0.632653,
+      "train_ms": 602.62
+    },
+    {
+      "accuracy": 0.673469,
+      "coverage": 1.0,
+      "infer_ms": 0.32,
+      "macro_f1": 0.67277,
+      "parameters": 576,
+      "rank": 4,
+      "selective_accuracy": 0.673469,
+      "train_ms": 448.97
+    },
+    {
+      "accuracy": 0.867347,
+      "coverage": 1.0,
+      "infer_ms": 0.3,
+      "macro_f1": 0.870094,
+      "parameters": 1152,
+      "rank": 8,
+      "selective_accuracy": 0.867347,
+      "train_ms": 426.7
+    },
+    {
+      "accuracy": 0.877551,
+      "coverage": 1.0,
+      "infer_ms": 0.43,
+      "macro_f1": 0.880724,
+      "parameters": 2304,
+      "rank": 16,
+      "selective_accuracy": 0.877551,
+      "train_ms": 489.18
+    },
+    {
+      "accuracy": 0.897959,
+      "coverage": 1.0,
+      "infer_ms": 0.43,
+      "macro_f1": 0.898534,
+      "parameters": 4608,
+      "rank": 32,
+      "selective_accuracy": 0.897959,
+      "train_ms": 1191.5
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "accuracy": 0.867347,
+  "coverage": 1.0,
+  "dataset": "PolyAI/minds14",
+  "epochs": 250,
+  "holdout_rows": 98,
+  "infer_ms": 0.49,
+  "input_features": 256,
+  "macro_f1": 0.870094,
+  "model": "two_core_tensor_train_classifier",
+  "parameters": 1152,
+  "rank": 8,
+  "seed": 7,
+  "selective_accuracy": 0.867347,
+  "train_ms": 597.59
+}
