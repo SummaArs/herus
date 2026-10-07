@@ -47,8 +47,8 @@
     {
       "path": "research/Makefile",
       "kind": "file",
-      "sha256": "a1e748116aa989b7e18bbe639bbfbf1a77095ae0c92c24e536519cc4890eb29e",
-      "role": "wide tensor rank test gate"
+      "sha256": "4257eafe81c4c6b4dbcba9da18975650f9e6bf21f24d033eaf11eff4fe31a178",
+      "role": "MIntRec tensor test gate"
     },
     {
       "path": "research/semantic_ir.py",
@@ -251,8 +251,8 @@
     {
       "path": "README.md",
       "kind": "file",
-      "sha256": "a5dec1bfdd12c6754c2c5a222da053572db46d776fe187c73a600cdcbbb1f82b",
-      "role": "rank 64 tensor benchmark and test count"
+      "sha256": "96b8d40f27a1f0c1a9822f07b60a1acf6045f417ac43ec5be5a0eae040af78d3",
+      "role": "MIntRec tensor transfer result and test count"
     },
     {
       "path": "docs/50-INTENT-COMPILER-E-SEMANTIC-IR.md",
@@ -515,7 +515,7 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "3e83e63a19d03b5f914030b61fc18554579e2735a2e85e9bfc6d6c016ad21f49",
+      "sha256": "c4d05a7682bc6146fc09347795cc6608b20adec7e8d1f0cc525fd3be69991279",
       "role": "organized documentation, maps and historical design records"
     },
     {
@@ -1255,6 +1255,30 @@
       "kind": "file",
       "sha256": "e60fd95b78d43f6d563a258ce984318fd8fd338642b0f9fb4e1b9ad8917b2e6d",
       "role": "wide tensor evidence"
+    },
+    {
+      "path": "research/tensor_network_mintrec.py",
+      "kind": "file",
+      "sha256": "97409a52c90b2712a6812c5d3ee4d14326c7c512862017e5d585475cb02489ea",
+      "role": "temporal MIntRec tensor train"
+    },
+    {
+      "path": "research/test_tensor_network_mintrec.py",
+      "kind": "file",
+      "sha256": "8b78cb3fce9c5e6166768c1e66039ffef22a74b52ad73c666e6104f88c494b12",
+      "role": "MIntRec tensor holdout test"
+    },
+    {
+      "path": "research/evidence/tensor_network_mintrec_v1.json",
+      "kind": "file",
+      "sha256": "04cc90f8d72590212dc41db623de66915710fd6e8c09e286ddad0c6468ca5856",
+      "role": "MIntRec tensor evidence"
+    },
+    {
+      "path": "docs/112-TENSOR-TRAIN-MINTREC-TEMPORAL.md",
+      "kind": "file",
+      "sha256": "8a90529c468f0719217733177e5d706d20428f41d2cdd7e861ad0b743fe5af19",
+      "role": "MIntRec tensor temporal report"
     }
   ],
   "components": [

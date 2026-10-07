@@ -1,0 +1,33 @@
+{
+  "dataset": "THU-IAR/MIntRec",
+  "fit_rows": 1838,
+  "fit_seasons": [
+    "S04",
+    "S05"
+  ],
+  "holdout_rows": 386,
+  "holdout_season": "S06",
+  "input_features": 1024,
+  "ranks": [
+    {
+      "accuracy": 0.398964,
+      "coverage": 1.0,
+      "infer_ms": 3.18,
+      "macro_f1": 0.354478,
+      "parameters": 9216,
+      "rank": 32,
+      "selective_accuracy": 0.398964,
+      "train_ms": 12557.59
+    },
+    {
+      "accuracy": 0.42228,
+      "coverage": 1.0,
+      "infer_ms": 6.08,
+      "macro_f1": 0.370328,
+      "parameters": 18432,
+      "rank": 64,
+      "selective_accuracy": 0.42228,
+      "train_ms": 35695.69
+    }
+  ]
+}
