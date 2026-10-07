@@ -8,6 +8,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from hashlib import sha256
 from typing import Mapping, Sequence
+import math
 
 State = tuple[tuple[str, int], ...]
 
@@ -24,6 +25,21 @@ def _digest(value: object) -> str:
 def _context_matches(required: State, observed: State) -> bool:
     actual = dict(observed)
     return all(actual.get(k) == v for k, v in required)
+
+def _wilson_lower(successes: int, trials: int, z: float = 1.96) -> int:
+    """Return a conservative agreement lower bound in milli-units.
+
+    This is deliberately an evidence-stability score, not a calibrated claim
+    that the action is universally correct. Small samples therefore remain
+    conservative instead of receiving a perfect heuristic confidence.
+    """
+    if trials <= 0 or successes < 0 or successes > trials:
+        return 0
+    p = successes / trials
+    denominator = 1 + (z * z / trials)
+    centre = (p + z * z / (2 * trials)) / denominator
+    half = z * math.sqrt((p * (1 - p) / trials) + (z * z / (4 * trials * trials))) / denominator
+    return max(0, min(1000, int(math.floor(1000 * max(0.0, centre - half)))))
 
 @dataclass(frozen=True)
 class Episode:
@@ -114,8 +130,8 @@ class SymbioticLearner:
             if len(actions) != 1:
                 result.append(SkillHypothesis(_digest((context, effect)), effect, "", 0, len(episodes), "ABSTAIN", "action_alias", context, 0, drift, evidence_ids))
                 continue
-            confidence = min(1000, 250 * len(episodes) - (300 if drift else 0))
-            stability = min(1000, 500 + 250 * min(len(episodes), 2) - (500 if drift else 0))
+            confidence = _wilson_lower(len(episodes), len(episodes)) if not drift else 0
+            stability = confidence
             status = "ABSTAIN" if drift else "CANDIDATE"
             result.append(SkillHypothesis(_digest((context, effect)), effect, next(iter(actions)), max(0, confidence), len(episodes), status, "temporal_drift" if drift else "observable_effect", context, max(0, stability), drift, evidence_ids))
         return tuple(result)
@@ -134,7 +150,8 @@ class SymbioticLearner:
         if len(actions) != 1:
             return Proposal(skill_id, None, 0, "ABSTAIN", "ambiguous_effect", min(e.cost for e in matches), len(matches), False, evidence_ids, "Abstenção: o mesmo efeito/contexto foi observado com ações diferentes.")
         chosen = matches[0]
-        return Proposal(skill_id, chosen.action, min(1000, 500 + 250 * min(len(matches), 2)), "PROPOSE", "unique_effect_match", chosen.cost, len(matches), False, evidence_ids, f"Proposta sustentada por {len(matches)} episódio(s) com efeito e contexto coincidentes.")
+        confidence = _wilson_lower(len(matches), len(matches))
+        return Proposal(skill_id, chosen.action, confidence, "PROPOSE", "unique_effect_match", chosen.cost, len(matches), False, evidence_ids, f"Proposta sustentada por {len(matches)} episódio(s) com efeito e contexto coincidentes; confiança é limite inferior de Wilson da estabilidade da evidência.")
 
     def export(self) -> dict[str, object]:
         return {"algorithm": "symbiotic-learning-v2", "version": self._version, "episodes": len(self._episodes), "skills": [h.__dict__ for h in self.induce()]}

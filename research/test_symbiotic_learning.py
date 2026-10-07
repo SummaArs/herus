@@ -1,5 +1,5 @@
 import unittest
-from symbiotic_learning import Episode, SymbioticLearner, _state
+from symbiotic_learning import Episode, SymbioticLearner, _state, _wilson_lower
 
 class SymbioticLearningTests(unittest.TestCase):
     def setUp(self):
@@ -84,5 +84,9 @@ class SymbioticLearningTests(unittest.TestCase):
     def test_negative_risk_is_rejected_fail_closed(self):
         learner = SymbioticLearner()
         self.assertFalse(learner.observe(Episode.from_maps({}, 'unsafe', {'x': 1}, risk=-1)))
+
+    def test_confidence_is_conservative_for_small_evidence(self):
+        self.assertLess(_wilson_lower(1, 1), 1000)
+        self.assertGreater(_wilson_lower(10, 10), _wilson_lower(1, 1))
 
 if __name__ == '__main__': unittest.main()

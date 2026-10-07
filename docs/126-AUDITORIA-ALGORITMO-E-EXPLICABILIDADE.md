@@ -26,11 +26,15 @@ Os IDs são derivados de uma representação determinística do episódio e perm
 
 ### Mantidos como limites explícitos
 
-- A confiança em milésimos ainda é uma **escala heurística**, não uma probabilidade calibrada.
+- A confiança em milésimos é agora o **limite inferior de Wilson de 95% para a estabilidade da evidência**; ela não é uma probabilidade calibrada de que a ação seja universalmente correta.
 - A indução usa correspondência exata; não há generalização semântica comprovada fora do espaço observado.
 - `provenance` é registrado, mas ainda não é uma assinatura criptográfica nem uma cadeia de custódia externa.
 - O algoritmo é proposal-only: não há execução, interação com rede ou controle de host.
 - A evidência de benchmark não autoriza claims de SOTA geral, superioridade a transformers, RL geral, simbiose geral ou AGI.
+
+### Interpretação da confiança
+
+Para uma hipótese com `n` observações concordantes, o HERUS calcula um limite inferior binomial conservador para a taxa de concordância. Assim, uma única observação não recebe confiança perfeita, mesmo que não exista conflito conhecido. O score mede **quanto a evidência observada é estável**, não competência fora do suporte observado.
 
 ## 3. Critério de progresso
 
@@ -49,6 +53,7 @@ A nova suíte adiciona invariantes para:
 
 - presença e cardinalidade da trilha de evidência;
 - explicação legível da proposta;
+- confiança conservadora baseada em Wilson, sem transformar amostra pequena em certeza;
 - rejeição de ações vazias;
 - rejeição de risco negativo.
 
