@@ -1,0 +1,3130 @@
+{
+  "dataset": "THU-IAR/MIntRec",
+  "holdout_manifest_sha256": "7034771f34ee2a9e02c7ecba6a4a62e8585f032f3cbb63609ce6e03fa45b8083",
+  "holdout_rows": 386,
+  "holdout_season": "S06",
+  "identity_formula": "sha256(canonical JSON of season, episode, clip, label, text)",
+  "identity_key": "example_id",
+  "labels": [
+    "Advise",
+    "Agree",
+    "Apologise",
+    "Arrange",
+    "Ask for help",
+    "Care",
+    "Comfort",
+    "Complain",
+    "Criticize",
+    "Flaunt",
+    "Greet",
+    "Inform",
+    "Introduce",
+    "Joke",
+    "Leave",
+    "Oppose",
+    "Praise",
+    "Prevent",
+    "Taunt",
+    "Thank"
+  ],
+  "limits": [
+    "content-derived identity is not a provider-issued immutable ID",
+    "rows API revision is not exposed in this response",
+    "text/label metadata only; no audio/video claim"
+  ],
+  "records": [
+    {
+      "clip": "9",
+      "episode": "E09",
+      "example_id": "003519c62a377fad5f2475605252027e7af7822b84be37b703b8a0a05875bda9",
+      "label": "Inform",
+      "season": "S06",
+      "text": "next up, we're running short on reusable bags."
+    },
+    {
+      "clip": "444",
+      "episode": "E04",
+      "example_id": "008e0bf08b3bbc248187f5ca36f71f3f5612f3b9ab2bbb7fd49218ced841a344",
+      "label": "Inform",
+      "season": "S06",
+      "text": "let's all come together for marcus."
+    },
+    {
+      "clip": "597",
+      "episode": "E03",
+      "example_id": "01342957d3b20106a5247bc960bbc6cbb57d3dfcaada7b798b17d924fa4e187a",
+      "label": "Care",
+      "season": "S06",
+      "text": "did you get hurt before?"
+    },
+    {
+      "clip": "370",
+      "episode": "E03",
+      "example_id": "014d969f493c78e3e129548a0dc9886a5821631e65a8f767edc0afb5994b8547",
+      "label": "Taunt",
+      "season": "S06",
+      "text": "ah, too much clothing for this horndog."
+    },
+    {
+      "clip": "109",
+      "episode": "E02",
+      "example_id": "0234e1543b683122aa07511c0f759bd53613dfa0de0c88b54e7ff73d351d4256",
+      "label": "Praise",
+      "season": "S06",
+      "text": "so cute and cozy in here!"
+    },
+    {
+      "clip": "483",
+      "episode": "E07",
+      "example_id": "029461e31040ccfb5b1dd42c31da01bfe8acd560768b5e015b575b6dc675b239",
+      "label": "Criticize",
+      "season": "S06",
+      "text": "it was you guys the whole time?"
+    },
+    {
+      "clip": "160",
+      "episode": "E03",
+      "example_id": "03439e08ce9fc87735f2b5411ceeb37bb9ef3cf06189f176745e4356d8b48e90",
+      "label": "Leave",
+      "season": "S06",
+      "text": "just leave it with me. i'll find someone else."
+    },
+    {
+      "clip": "66",
+      "episode": "E04",
+      "example_id": "041b18a4daf9d22dd47be0149b9f016acae6226a5d1d2a7828fb7d162a9a5576",
+      "label": "Inform",
+      "season": "S06",
+      "text": "dina, you have justine and me at the same register"
+    },
+    {
+      "clip": "308",
+      "episode": "E03",
+      "example_id": "063251014cb0b09779b6daec963509d75b0a3876d0044ba835e61ce34fb48608",
+      "label": "Thank",
+      "season": "S06",
+      "text": "thank you, marcus."
+    },
+    {
+      "clip": "88",
+      "episode": "E01",
+      "example_id": "06725557b294ff613a954cc250d5d34304a6629726e44c4ac183ac652539c673",
+      "label": "Praise",
+      "season": "S06",
+      "text": "you are essential, and the true heroes"
+    },
+    {
+      "clip": "355",
+      "episode": "E01",
+      "example_id": "0723947ef27aa5dd62045990310c786540c6465f52eb1f6738ee674a195588bf",
+      "label": "Inform",
+      "season": "S06",
+      "text": "but properly distanced, so don't move your chairs."
+    },
+    {
+      "clip": "115",
+      "episode": "E08",
+      "example_id": "075243aaac43bad0b3ac21b3d9d8e0955e08a87c7dcbf1b1cbfbe75a83dd7b66",
+      "label": "Apologise",
+      "season": "S06",
+      "text": "hey, i'm really sorry about that."
+    },
+    {
+      "clip": "61",
+      "episode": "E08",
+      "example_id": "084315f2c4dd6e0236ec20027a21af1b660f31f9c9ef30665706bee5f8624131",
+      "label": "Leave",
+      "season": "S06",
+      "text": "okay, i'm gonna go. bye, tony."
+    },
+    {
+      "clip": "218",
+      "episode": "E06",
+      "example_id": "08580527ef71221e916b1abaeadbff2f7264a4dfd1efd247e51252a3f9399704",
+      "label": "Thank",
+      "season": "S06",
+      "text": "thanks."
+    },
+    {
+      "clip": "4",
+      "episode": "E10",
+      "example_id": "08d88ebf32363d6a76a30ff8861a5dc6db3a8fcfa56322b61c86243faf4dc370",
+      "label": "Inform",
+      "season": "S06",
+      "text": "now, cloud 9's lawyer will also be present."
+    },
+    {
+      "clip": "343",
+      "episode": "E01",
+      "example_id": "0957309c4f43634cb48e48b26960be306b5713878fd984ce0e26b9c7aa2d8934",
+      "label": "Comfort",
+      "season": "S06",
+      "text": "amy, it's fine. it's just a call."
+    },
+    {
+      "clip": "468",
+      "episode": "E09",
+      "example_id": "096eb66e8e77fdc05ea860b9413ef6ff944b82fbd16eb07f79b8703e5b57b8fa",
+      "label": "Apologise",
+      "season": "S06",
+      "text": "yeah, i'm sorry. you're right."
+    },
+    {
+      "clip": "231",
+      "episode": "E02",
+      "example_id": "09bda6b52a5e020d7891bead97264007d10be16f5d5536de0961fbd09d0b1a6a",
+      "label": "Praise",
+      "season": "S06",
+      "text": "she seems...really nice."
+    },
+    {
+      "clip": "39",
+      "episode": "E04",
+      "example_id": "0a82de77e5860109557f299f9b4305c302f0ceec00393218cc309ea55f732ae9",
+      "label": "Praise",
+      "season": "S06",
+      "text": "gosh, it's just so nice to be doing something positive"
+    },
+    {
+      "clip": "528",
+      "episode": "E04",
+      "example_id": "0a9e5b212c97c53dc78307f46e1481e63b285ea6d27127d527e185847bb5c221",
+      "label": "Criticize",
+      "season": "S06",
+      "text": "garrett totally stole my look, and no one is talking about it."
+    },
+    {
+      "clip": "106",
+      "episode": "E03",
+      "example_id": "0b68a2c5ae160854026a8a621aaf22df90519c1608a25760f932f0128fb48d35",
+      "label": "Praise",
+      "season": "S06",
+      "text": "oh, jonah, that's wonderful."
+    },
+    {
+      "clip": "343",
+      "episode": "E07",
+      "example_id": "0b78eb1a97147d6f227786e693e5c09ee40a07bd55c493c4c612a0e01bd08f52",
+      "label": "Apologise",
+      "season": "S06",
+      "text": "i don't know what this is, but i'm sorry."
+    },
+    {
+      "clip": "474",
+      "episode": "E03",
+      "example_id": "0ca2256fb5bbb2c330ff0b3058c149b04be60bcdd1f84b9b405869ccaac56076",
+      "label": "Advise",
+      "season": "S06",
+      "text": "we should be talking about actual issues."
+    },
+    {
+      "clip": "26",
+      "episode": "E05",
+      "example_id": "0dc9bfce9f467f55577b24eb589706383e75d91b1574dde7800bbe1a7b3f34b1",
+      "label": "Praise",
+      "season": "S06",
+      "text": "yup, that was pretty cool of corporate to fix it."
+    },
+    {
+      "clip": "87",
+      "episode": "E01",
+      "example_id": "0dd477c07f39db3b02695c5f7fce67b0b45756f10392cdd57ba50b10144bf2be",
+      "label": "Inform",
+      "season": "S06",
+      "text": "but for now, they want everybody to know that,  we value our employees' dedication."
+    },
+    {
+      "clip": "5",
+      "episode": "E03",
+      "example_id": "0e575d201d867e0db4685d6c79476699ae3a6e36aec7609122b4729933a451ef",
+      "label": "Apologise",
+      "season": "S06",
+      "text": "oh, jonah, i'm sorry."
+    },
+    {
+      "clip": "236",
+      "episode": "E01",
+      "example_id": "0f0cfee65fa77e8e2437a113378c150e689d53cc783a40283d8fdfd36113265b",
+      "label": "Prevent",
+      "season": "S06",
+      "text": "no, glenn! 6 feet!"
+    },
+    {
+      "clip": "169",
+      "episode": "E09",
+      "example_id": "0f3e319aadcc621d9876c6c6376e5b30acf5cb9207fbee0e9e9e170023fb00d6",
+      "label": "Complain",
+      "season": "S06",
+      "text": "i think it was gonna be racist."
+    },
+    {
+      "clip": "426",
+      "episode": "E07",
+      "example_id": "11048e92e4eac76067e72aa4a6ef30a5cd719e06fa096b78a6c2ac9c8c167fcf",
+      "label": "Joke",
+      "season": "S06",
+      "text": "zephra can eat our ass meat."
+    },
+    {
+      "clip": "25",
+      "episode": "E02",
+      "example_id": "11f1d48053f341cc490b9c8dcb7fb85ee20cb2be46abf2d251f41f69b8e6d5b5",
+      "label": "Oppose",
+      "season": "S06",
+      "text": "that is not true, marcus."
+    },
+    {
+      "clip": "488",
+      "episode": "E07",
+      "example_id": "12511a02d1a5669922865db73992ff2573a841a3f761326223c780adc5332ee4",
+      "label": "Care",
+      "season": "S06",
+      "text": "what happened with amy?"
+    },
+    {
+      "clip": "109",
+      "episode": "E08",
+      "example_id": "12540724162c759d60d7696a4d004b97a861d5e2bb834b82ef2c2dd14cb0c89d",
+      "label": "Care",
+      "season": "S06",
+      "text": "oh, hey. dina, what's up?"
+    },
+    {
+      "clip": "112",
+      "episode": "E03",
+      "example_id": "1287471e06bf152515b149ba02bc3629c277a60812806add8a41db9c1d0f18be",
+      "label": "Advise",
+      "season": "S06",
+      "text": "it's worth a try."
+    },
+    {
+      "clip": "280",
+      "episode": "E10",
+      "example_id": "12cac8b9ab88f552af90ea39361c594655bac2bbed9a4c4c93eb86b7f8f4ccae",
+      "label": "Complain",
+      "season": "S06",
+      "text": "oh, no, i hate to hear that."
+    },
+    {
+      "clip": "396",
+      "episode": "E04",
+      "example_id": "150004bbe69f89cdd53fc862a814a612fda7f9be91f6e33b0d9c2a0638bf0582",
+      "label": "Complain",
+      "season": "S06",
+      "text": "this job is hard enough."
+    },
+    {
+      "clip": "1",
+      "episode": "E02",
+      "example_id": "167ed273d207fbf22a0d2cc9012b759149990b775e7402a106fd8228a73d699a",
+      "label": "Inform",
+      "season": "S06",
+      "text": "quick covid safety reminder:"
+    },
+    {
+      "clip": "570",
+      "episode": "E09",
+      "example_id": "16f456698780fc5474370b08973e166fb67d5053c5dbc5def71ec977ebaa05ea",
+      "label": "Arrange",
+      "season": "S06",
+      "text": "dina, go get that letter."
+    },
+    {
+      "clip": "208",
+      "episode": "E01",
+      "example_id": "17449b121d89eeaf757925e003f99de51819c39e0547a5d5cf36ce998805efc1",
+      "label": "Inform",
+      "season": "S06",
+      "text": "zephra finally sent over the safety protocols."
+    },
+    {
+      "clip": "490",
+      "episode": "E04",
+      "example_id": "17b4e5aa436233a002adfe7509b3a13a7f7d7bd469fe5bfefe56b976679e3529",
+      "label": "Praise",
+      "season": "S06",
+      "text": "awesome, yeah."
+    },
+    {
+      "clip": "491",
+      "episode": "E04",
+      "example_id": "1838115f5d797120e1b68c59d3e3cbc36dfe125ffa86323d4d2696b977c661d7",
+      "label": "Apologise",
+      "season": "S06",
+      "text": "you know, i'm sorry."
+    },
+    {
+      "clip": "14",
+      "episode": "E04",
+      "example_id": "1894b4e88cc75e4efecea56976a644692d2c82c670cfe52fc14a655960e66e0b",
+      "label": "Complain",
+      "season": "S06",
+      "text": "they love money, and they don't care if we die."
+    },
+    {
+      "clip": "99",
+      "episode": "E06",
+      "example_id": "18ab767e746692ed8a94e8fa595914ba521e04483702f4f22b7651e2a04c6143",
+      "label": "Care",
+      "season": "S06",
+      "text": "what kind of symptoms have you been having?"
+    },
+    {
+      "clip": "3",
+      "episode": "E10",
+      "example_id": "18bf7327638addca58441c49f162f10acc4c1e7facbd04d47865127584c4a84f",
+      "label": "Inform",
+      "season": "S06",
+      "text": "you're gonna be deposed by carol's lawyer today."
+    },
+    {
+      "clip": "589",
+      "episode": "E06",
+      "example_id": "19cddfc2415b2e300b22f92636979801dc650a9c1321420a5959cf1972bd7bb6",
+      "label": "Introduce",
+      "season": "S06",
+      "text": "we are the manager."
+    },
+    {
+      "clip": "601",
+      "episode": "E07",
+      "example_id": "1afd916efe32c7137d09e99c6a9fcdd986e484c8af32cec8034342b80cfc64e2",
+      "label": "Praise",
+      "season": "S06",
+      "text": "you were a great roommate."
+    },
+    {
+      "clip": "242",
+      "episode": "E01",
+      "example_id": "1cf260df40cd6ef5a25c75912d02f85b9f949672bc9e6d68fcf31b6c3f2bda16",
+      "label": "Complain",
+      "season": "S06",
+      "text": "this is so unfair!"
+    },
+    {
+      "clip": "515",
+      "episode": "E05",
+      "example_id": "1e3053f13a2041b9393f5a7c1950b18417542e3025e8785f0b2ec2f37832c695",
+      "label": "Thank",
+      "season": "S06",
+      "text": "oh, wow. yeah--thanks."
+    },
+    {
+      "clip": "564",
+      "episode": "E08",
+      "example_id": "1e4f508c2eab13da4d662802581645a2e7918e809e1c49237ec8adfd703fcc36",
+      "label": "Complain",
+      "season": "S06",
+      "text": "i was giving you amazing advice and you mocked me"
+    },
+    {
+      "clip": "74",
+      "episode": "E05",
+      "example_id": "1ecc90bb39c7fd3c8c445a33602fc2f1aa94be3355d5515b242d0b9a8d67931a",
+      "label": "Agree",
+      "season": "S06",
+      "text": "yeah, you know, this is actually exactly"
+    },
+    {
+      "clip": "150",
+      "episode": "E03",
+      "example_id": "209a798df5bb7b4985e6291f0c64224f75b331dc1d1f6d5e44855f8a1e1e541b",
+      "label": "Advise",
+      "season": "S06",
+      "text": "it couldn't hurt to shake things up a little bit here."
+    },
+    {
+      "clip": "44",
+      "episode": "E06",
+      "example_id": "20d0b173e405a19a3506d7491f9a58cd8a4e63e0892df1647a882b4ffd336151",
+      "label": "Comfort",
+      "season": "S06",
+      "text": "anyway, dina, don't worry about it."
+    },
+    {
+      "clip": "246",
+      "episode": "E02",
+      "example_id": "21c813cd8522209485cbb581f7332451a7852295e8322d1ff8343a49cd117b7a",
+      "label": "Apologise",
+      "season": "S06",
+      "text": "hey, so i just wanted to apologize"
+    },
+    {
+      "clip": "172",
+      "episode": "E01",
+      "example_id": "22a5200299d5ad0f2756a31d84c1d17248f87e9b80e68832209a16b5720c2ed2",
+      "label": "Arrange",
+      "season": "S06",
+      "text": "everybody in single-file lines."
+    },
+    {
+      "clip": "581",
+      "episode": "E04",
+      "example_id": "22f17dcba42e32fcadf1c1dbb9bd47239a4c94245858bbad7803412af6549bff",
+      "label": "Inform",
+      "season": "S06",
+      "text": "but hey, sales are up."
+    },
+    {
+      "clip": "229",
+      "episode": "E09",
+      "example_id": "23113f49edf0bec95adf0633e2e3de3d7e5d521f65108b00eccc873468f0eb7c",
+      "label": "Complain",
+      "season": "S06",
+      "text": "it's actually super distracting."
+    },
+    {
+      "clip": "163",
+      "episode": "E09",
+      "example_id": "23c4f682cb47f943ffa626da4ca795f0617abbe8aae01095b818bb66d60cef3a",
+      "label": "Taunt",
+      "season": "S06",
+      "text": "she's got less brains--"
+    },
+    {
+      "clip": "39",
+      "episode": "E08",
+      "example_id": "2519a1c295da61d834f37ef5c1304a6a957ebd35760965656cc9fcb3c973ce95",
+      "label": "Care",
+      "season": "S06",
+      "text": "is she still with brian? did something happen?"
+    },
+    {
+      "clip": "412",
+      "episode": "E07",
+      "example_id": "25cb861e00f688b6cf970b5e80cc2bf0cbad83da9f2c0cf6c40771fff7cf07cf",
+      "label": "Joke",
+      "season": "S06",
+      "text": "you're gorgeous like a vodka girl."
+    },
+    {
+      "clip": "606",
+      "episode": "E08",
+      "example_id": "25dbb36994a75d948dfc9c634ad988e886ba5c7f7c687c1f3a6f3a0fbc7ba938",
+      "label": "Inform",
+      "season": "S06",
+      "text": "yeah, you're gonna have to fast on tuesday."
+    },
+    {
+      "clip": "447",
+      "episode": "E01",
+      "example_id": "2624bd91474e7e816a31f8d97cef1a6f7b9d9ce67d21b138ed7ac1b71928f46f",
+      "label": "Taunt",
+      "season": "S06",
+      "text": "you're satan workers!"
+    },
+    {
+      "clip": "238",
+      "episode": "E01",
+      "example_id": "2649af6839b1305f9a5c5dc61821771b26ff8cc93b54b23c0a3df2094f203c28",
+      "label": "Inform",
+      "season": "S06",
+      "text": "we're limiting toilet paper to one pack per household."
+    },
+    {
+      "clip": "126",
+      "episode": "E08",
+      "example_id": "264b58492e3e79b44b4b45785fcaf1cc8c60c81f78aaf3bbdbe7b73a34b5fbf5",
+      "label": "Complain",
+      "season": "S06",
+      "text": "so i think i've just been really lonely."
+    },
+    {
+      "clip": "14",
+      "episode": "E08",
+      "example_id": "26f81a1149015f1625813110234022aee99c6d4636e18cd1293e43762726c48e",
+      "label": "Apologise",
+      "season": "S06",
+      "text": "oh, i'm sorry."
+    },
+    {
+      "clip": "389",
+      "episode": "E03",
+      "example_id": "27b4db3fc9211b8d41d1c7f8750709f80d7f920e88164d5959b301b78ee712c2",
+      "label": "Complain",
+      "season": "S06",
+      "text": "she threw a mustard jar at me. it left a bruise... on my thigh."
+    },
+    {
+      "clip": "247",
+      "episode": "E03",
+      "example_id": "2a8ed7db0b535fc9ed82e175013985945a5be1944ce67bf2ad9a0cdc090748d1",
+      "label": "Advise",
+      "season": "S06",
+      "text": "so be a gentleman. go with the lights out."
+    },
+    {
+      "clip": "92",
+      "episode": "E03",
+      "example_id": "2bc66a427841750f5fb67ab1daa6be6bf399ce6490f657d7afa44964c04ad25b",
+      "label": "Oppose",
+      "season": "S06",
+      "text": "yeah, no, i'm not gonna do that."
+    },
+    {
+      "clip": "486",
+      "episode": "E05",
+      "example_id": "2ca51f21c8df7f0714e21a126c030b20e916ecbda39469710c88f6f7d1c173c6",
+      "label": "Inform",
+      "season": "S06",
+      "text": "please report to the break room for pizza because apparently, now everyone gets pizza."
+    },
+    {
+      "clip": "123",
+      "episode": "E04",
+      "example_id": "2cfd7333eb88444084bf325cd4260565249918e5b9f40f1e4160ea4e2c8a6a41",
+      "label": "Apologise",
+      "season": "S06",
+      "text": "i'm sorry."
+    },
+    {
+      "clip": "477",
+      "episode": "E03",
+      "example_id": "2d65b404d53441c3a9794529c5228d796fd8fe716c11d0ce2cbbd19b520fcebe",
+      "label": "Prevent",
+      "season": "S06",
+      "text": "whoa, whoa, whoa, whoa, whoa. we don't need to do that, okay?"
+    },
+    {
+      "clip": "213",
+      "episode": "E06",
+      "example_id": "2fb31ae27ca2011c7f62e172f8bf06830604f643c57768fd5853b83258b999aa",
+      "label": "Comfort",
+      "season": "S06",
+      "text": "we all wish we could just rip that pain out of your body"
+    },
+    {
+      "clip": "67",
+      "episode": "E03",
+      "example_id": "30f299ce806a3a6fee57b89c28b5029fc1a644791e2552753d9a3afd08f37172",
+      "label": "Complain",
+      "season": "S06",
+      "text": "i mean, dusty mint stinks."
+    },
+    {
+      "clip": "177",
+      "episode": "E05",
+      "example_id": "316dff6596a2c730fad5574e26d054f3b04b9aff1ce93d00cecb8e62fcd56134",
+      "label": "Inform",
+      "season": "S06",
+      "text": "okay, guys, so this list is to come up with issues that are affecting black customers and employees."
+    },
+    {
+      "clip": "408",
+      "episode": "E07",
+      "example_id": "31fd28202328cfad7e93d0879dc8204ad871de84ea1f9f0f92048340314cc16b",
+      "label": "Complain",
+      "season": "S06",
+      "text": "they ride us till we drop and then immediately sell our ass meat."
+    },
+    {
+      "clip": "257",
+      "episode": "E10",
+      "example_id": "32435f44477d3be2ad3a454dfa7b3a4abdb3a1a47ba880b3c1dfdbd1d8efff12",
+      "label": "Praise",
+      "season": "S06",
+      "text": "love the socks, by the way. so thoughtful."
+    },
+    {
+      "clip": "423",
+      "episode": "E04",
+      "example_id": "3334d1434fe4776f283c1e31dc38d59b149212f02df2a8fdbe0ff8120829f9eb",
+      "label": "Care",
+      "season": "S06",
+      "text": "sandra, what is going on in there?"
+    },
+    {
+      "clip": "41",
+      "episode": "E06",
+      "example_id": "33a4b59b90ca3588b0759636db7485b9b585b6f88ab243350f9620334e203653",
+      "label": "Inform",
+      "season": "S06",
+      "text": "somebody parked their volvo in your spot."
+    },
+    {
+      "clip": "20",
+      "episode": "E01",
+      "example_id": "3427653130a489675cfd401e8617c005957198eabdf85e4d992d0e1e4bfb0c6d",
+      "label": "Inform",
+      "season": "S06",
+      "text": "the whole job is being a liaison to cloud 9"
+    },
+    {
+      "clip": "186",
+      "episode": "E04",
+      "example_id": "34710072ec825c239411192696ef8b4204d92ce1cc5df9d9b75cf589616b4ada",
+      "label": "Criticize",
+      "season": "S06",
+      "text": "you just can't handle women lifting up other women."
+    },
+    {
+      "clip": "176",
+      "episode": "E10",
+      "example_id": "34831b834b516c7661d991f4fc39e091199ee3f54388eaf8df03b492cb4cf59d",
+      "label": "Oppose",
+      "season": "S06",
+      "text": "uh, no, glenn would never do anything like."
+    },
+    {
+      "clip": "576",
+      "episode": "E07",
+      "example_id": "3589cdb42f2ac2266845ccc549a5547959fad8cee1db87cc4feb2d5520df98a0",
+      "label": "Thank",
+      "season": "S06",
+      "text": "oh, well, thanks."
+    },
+    {
+      "clip": "558",
+      "episode": "E09",
+      "example_id": "358a44841d9e417e9ecb655a7aeaa8671f384a536e23e57a97af7342d2b4b457",
+      "label": "Complain",
+      "season": "S06",
+      "text": "this isn't the company i signed up to work for after they drove my family hardware store out of business."
+    },
+    {
+      "clip": "412",
+      "episode": "E01",
+      "example_id": "35bb791dffb58ea15a390c23447315a3cb44b35655b80c88723c6c741684bd3c",
+      "label": "Inform",
+      "season": "S06",
+      "text": "hey, amy, i dropped my mask..."
+    },
+    {
+      "clip": "337",
+      "episode": "E02",
+      "example_id": "35c52ca36a70b6b33cf616d0f1133c33da4f3a19201f22c9c8dbd2f05a63a62d",
+      "label": "Greet",
+      "season": "S06",
+      "text": "hi amy, it's me."
+    },
+    {
+      "clip": "420",
+      "episode": "E10",
+      "example_id": "36b90386fc6bc04aaf191819f3da3be311c19da23c167e14e3ad82fff18a4b66",
+      "label": "Introduce",
+      "season": "S06",
+      "text": "because the ducklings were having a tea party"
+    },
+    {
+      "clip": "466",
+      "episode": "E06",
+      "example_id": "372cd07b99b09bb50863d4547560bd6677a48cfe9ab853f549f25e06e9b910f6",
+      "label": "Criticize",
+      "season": "S06",
+      "text": "i guess it's defective, just like the two of you!"
+    },
+    {
+      "clip": "481",
+      "episode": "E08",
+      "example_id": "3733adb1b0c3aae1caef10ba84a5f00c77840aa5d3ba9a1a84db2a0cca6d595d",
+      "label": "Oppose",
+      "season": "S06",
+      "text": "that's not what i meant."
+    },
+    {
+      "clip": "251",
+      "episode": "E04",
+      "example_id": "37606cf899dfdf9e5e231db55355dab8d63ff5a635ea3bc8642f9f770e561516",
+      "label": "Inform",
+      "season": "S06",
+      "text": "attention cloud 9 employees, this is your manager."
+    },
+    {
+      "clip": "35",
+      "episode": "E04",
+      "example_id": "37d9d8bb6c0376096223f05564bb022377f2134759bf4bd3761132a9700e7c53",
+      "label": "Apologise",
+      "season": "S06",
+      "text": "hey, guys, sorry i'm late, but to kick things off"
+    },
+    {
+      "clip": "341",
+      "episode": "E01",
+      "example_id": "3826cdb92a093a8b8ba43bcae2b8f92cf9934cb8bd6d7f342ff7d602ec6376c0",
+      "label": "Leave",
+      "season": "S06",
+      "text": "i mean, i should probably get back to my office"
+    },
+    {
+      "clip": "353",
+      "episode": "E06",
+      "example_id": "38e8c4efe432357ebdbaedb536b21049788ca16b79775f8ae0d688a1d812accd",
+      "label": "Comfort",
+      "season": "S06",
+      "text": "let's all just relax, okay?"
+    },
+    {
+      "clip": "144",
+      "episode": "E01",
+      "example_id": "390e79f276368e1a1809f5f3ea3d5d87d73d94a8568a30d061f2a974c683f79a",
+      "label": "Inform",
+      "season": "S06",
+      "text": "hey, they still have some!"
+    },
+    {
+      "clip": "463",
+      "episode": "E10",
+      "example_id": "39b45b198a22506a6e4f1c3866b4708c61c2266001adf9b8380913932ae9b1ee",
+      "label": "Apologise",
+      "season": "S06",
+      "text": "glenn, hey, look, i- i'm sorry."
+    },
+    {
+      "clip": "88",
+      "episode": "E06",
+      "example_id": "39f6e0ab4d844c5c352fbbef71f4479e726f7d12e8462d6b1631f77f32340115",
+      "label": "Inform",
+      "season": "S06",
+      "text": "flooding in the attic and the basement."
+    },
+    {
+      "clip": "101",
+      "episode": "E03",
+      "example_id": "3ac267493359efaebb1da379b33d556abc84af295513e296c9b369e11279736d",
+      "label": "Leave",
+      "season": "S06",
+      "text": "you know what? i don't wanna know."
+    },
+    {
+      "clip": "534",
+      "episode": "E10",
+      "example_id": "3bfd9ad430da7072d1cbad64c9465f40444bedc161b371d309f11f61dd1fa40f",
+      "label": "Apologise",
+      "season": "S06",
+      "text": "i...sorry about all that."
+    },
+    {
+      "clip": "250",
+      "episode": "E09",
+      "example_id": "3c03ea246172ff1603ebe102a32796c794068cd71551ff7178f104b88f171dad",
+      "label": "Introduce",
+      "season": "S06",
+      "text": "no, that's my nephew. he's my lock screen."
+    },
+    {
+      "clip": "64",
+      "episode": "E04",
+      "example_id": "3c0f7197325f75538f2b5a6ef978711be0d4841b5306af710ae5a6593a57f5b1",
+      "label": "Arrange",
+      "season": "S06",
+      "text": "you're taking a trip to bruise town."
+    },
+    {
+      "clip": "4",
+      "episode": "E03",
+      "example_id": "3cabbd8717c5d035951a85f5985ab981f54c3673eebf8b7814d2d0d7e8c54246",
+      "label": "Inform",
+      "season": "S06",
+      "text": "i'm taking over for amy, and--"
+    },
+    {
+      "clip": "333",
+      "episode": "E09",
+      "example_id": "3d777de57b9fa63c8b0f6460272968f161c8938f5ee4b91511b1ee5fd7c733bd",
+      "label": "Oppose",
+      "season": "S06",
+      "text": "that's dumb. there's no zephra conspiracy."
+    },
+    {
+      "clip": "459",
+      "episode": "E01",
+      "example_id": "3e818a4ac5ae8742d3bf7ad8db6b875770e2f0f66f538c4d7962c79869bf4c76",
+      "label": "Care",
+      "season": "S06",
+      "text": "what happened here?"
+    },
+    {
+      "clip": "260",
+      "episode": "E01",
+      "example_id": "401d03c7784de37d5e2f9a2d1a490782ad14804054b2c6c1f720dba8bfb8b56d",
+      "label": "Taunt",
+      "season": "S06",
+      "text": "oh, great, more reasons for the wet-lips to yell at me."
+    },
+    {
+      "clip": "283",
+      "episode": "E01",
+      "example_id": "41f009a22b72579db9a7dd7f11ca7e9968322c931d61e9eece54f4ad4e92bb45",
+      "label": "Complain",
+      "season": "S06",
+      "text": "i can't handle a full afternoon of her fake drunk voice."
+    },
+    {
+      "clip": "151",
+      "episode": "E02",
+      "example_id": "4318b2cc7be41fd3a2a0faf620e428070a5b2f1e937ed6409fa6b4238b62b511",
+      "label": "Complain",
+      "season": "S06",
+      "text": "exhausting."
+    },
+    {
+      "clip": "146",
+      "episode": "E03",
+      "example_id": "43a848c989f59c6f67c5e20b0bb74a51e2a61b701ccd50bf19c99ae064dd0211",
+      "label": "Inform",
+      "season": "S06",
+      "text": "they were discontinued seven years ago."
+    },
+    {
+      "clip": "372",
+      "episode": "E03",
+      "example_id": "44c0825a7b18c8aa889724673e2ca0d5efc60cd7a70fa7ac2f3dfba4fbcac696",
+      "label": "Complain",
+      "season": "S06",
+      "text": "we can't trust him about anything."
+    },
+    {
+      "clip": "405",
+      "episode": "E02",
+      "example_id": "450f4743f437aa8d227c70624c13696860f486119440a1377a8665ab254f4361",
+      "label": "Thank",
+      "season": "S06",
+      "text": "hi amy, thanks for looking out for me all these years."
+    },
+    {
+      "clip": "6",
+      "episode": "E09",
+      "example_id": "4517c3838fc15eab9e6b4de907da0ca411e97883bdf057ae3419f6cd38113f07",
+      "label": "Apologise",
+      "season": "S06",
+      "text": "i'm sorry, guys."
+    },
+    {
+      "clip": "325",
+      "episode": "E07",
+      "example_id": "46c60416f16778d1b505f7f913b06445dbdd8ce86f62f68a617cd0f1a766ffa1",
+      "label": "Praise",
+      "season": "S06",
+      "text": "kelly, this is wonderful."
+    },
+    {
+      "clip": "67",
+      "episode": "E01",
+      "example_id": "47b742c43f4ad2bcc4f63ad323ab7a3571aeb353fe0f0d038f789630a67e8936",
+      "label": "Care",
+      "season": "S06",
+      "text": "hey, any update on when you two lovebirds are moving to cali?"
+    },
+    {
+      "clip": "115",
+      "episode": "E02",
+      "example_id": "48332c997a24810346b47b4125e4f02fedde17d2b38024876b31a789ba2b8aa0",
+      "label": "Thank",
+      "season": "S06",
+      "text": "thanks for keeping this little assistant arrangement going."
+    },
+    {
+      "clip": "210",
+      "episode": "E01",
+      "example_id": "4b8733a944c4340931f9fa598674381b1a630ea54b84db48bbc8e93a3da9c247",
+      "label": "Inform",
+      "season": "S06",
+      "text": "so, employees must wipe down the register and credit card machine after each customer"
+    },
+    {
+      "clip": "575",
+      "episode": "E04",
+      "example_id": "4be77e65d1f1d7486b2c5989e834a11dc809b6f746e16ef778f0c6d8e0fed465",
+      "label": "Care",
+      "season": "S06",
+      "text": "uh, so what was it?"
+    },
+    {
+      "clip": "16",
+      "episode": "E09",
+      "example_id": "4c9cda523ce4b13129b342bf4d7cf5f57d6051777660db895243100e920003c2",
+      "label": "Inform",
+      "season": "S06",
+      "text": "cheyenne will be handing out new protective equipment."
+    },
+    {
+      "clip": "586",
+      "episode": "E04",
+      "example_id": "4d31cf27b82d9c2aac01a064e22e5bc7eb74b297e02d6ea78378c83a43862f77",
+      "label": "Complain",
+      "season": "S06",
+      "text": "i even lost cheyenne, and she'd follow a balloon"
+    },
+    {
+      "clip": "3",
+      "episode": "E08",
+      "example_id": "4e8e01118b45328f0bfb18311237ea09c4cb567c5a95eff06b116db9a7f292b0",
+      "label": "Introduce",
+      "season": "S06",
+      "text": "that this is made out of polyvinyl chloride"
+    },
+    {
+      "clip": "581",
+      "episode": "E07",
+      "example_id": "4ed0cacfd2d794c9409288a9e2eae75f1ca5d7824e5bfaab7c1d6ac1432460ca",
+      "label": "Criticize",
+      "season": "S06",
+      "text": "carol, that is so savage."
+    },
+    {
+      "clip": "575",
+      "episode": "E08",
+      "example_id": "5080ac2ff8a4fcc4574942c6ff8d0183d4c2035fc1897e46676eb75744c9dda7",
+      "label": "Comfort",
+      "season": "S06",
+      "text": "but, uh, hey, at least you're getting yourself back out there"
+    },
+    {
+      "clip": "464",
+      "episode": "E02",
+      "example_id": "526e93d1cba6417fe00a1ceb7d07688c2832ad8f664163835246b49d273fcf23",
+      "label": "Praise",
+      "season": "S06",
+      "text": "oh, that's really sweet, actually."
+    },
+    {
+      "clip": "532",
+      "episode": "E09",
+      "example_id": "5429a097c61a54fd88d1963b526f5d0d769163474a3a9122ac0e96548f9823e0",
+      "label": "Leave",
+      "season": "S06",
+      "text": "we'll get into this later."
+    },
+    {
+      "clip": "263",
+      "episode": "E10",
+      "example_id": "55a30ab82017bac47b4bfed620aed016e28311e60b9e359a830bed567c9ebbcb",
+      "label": "Complain",
+      "season": "S06",
+      "text": "like anything you say, she's just gonna twist to make it sound like glenn's incompetent."
+    },
+    {
+      "clip": "83",
+      "episode": "E03",
+      "example_id": "562587a01caecd6a01e6cc341284910969a505c4caa4b9b63562fb830a880761",
+      "label": "Inform",
+      "season": "S06",
+      "text": "tony is in the store, and he would like me to open up the condom case."
+    },
+    {
+      "clip": "473",
+      "episode": "E06",
+      "example_id": "56ae9d1d51f444736bcea407018fe14b7e518bb9734645584cb39fe0e264454b",
+      "label": "Complain",
+      "season": "S06",
+      "text": "dang, they take this crap way serious."
+    },
+    {
+      "clip": "69",
+      "episode": "E02",
+      "example_id": "56d9fcc02112e98599d91e3e6e02f8d00a0197a051866b0a4a837cebb2d9b5bd",
+      "label": "Advise",
+      "season": "S06",
+      "text": "oh, we could have a double wedding."
+    },
+    {
+      "clip": "195",
+      "episode": "E01",
+      "example_id": "57133a70c91efecf4afcd1f98339ee0622382887842b32785826366116038dd4",
+      "label": "Inform",
+      "season": "S06",
+      "text": "so, first off, marcus tested positive for covid after attending a spring break party on the lake."
+    },
+    {
+      "clip": "569",
+      "episode": "E07",
+      "example_id": "57414c7e43164c18a6e7b684470161ef9ea76145d8de64e716ebc90fc4bb6e5c",
+      "label": "Inform",
+      "season": "S06",
+      "text": "dina assigned me to hang out with you today"
+    },
+    {
+      "clip": "124",
+      "episode": "E02",
+      "example_id": "586d87ff90bdf232e1da8114723147cf68b0beb0b217651b6cc453858b3b3f03",
+      "label": "Ask for help",
+      "season": "S06",
+      "text": "for amy's goodbye party, and i was hoping that you could come up with some electronic photos of her time here."
+    },
+    {
+      "clip": "220",
+      "episode": "E03",
+      "example_id": "58d22c804b09d0f1b6823f10b1815abc8c0ae645d702bca5e7bdb3c333cdcde2",
+      "label": "Inform",
+      "season": "S06",
+      "text": "so we're gonna let the people decide."
+    },
+    {
+      "clip": "404",
+      "episode": "E07",
+      "example_id": "5934bbb8229ac6d4c476046535ba097aa066e9a45d77b9c7af4909b9ab950da8",
+      "label": "Complain",
+      "season": "S06",
+      "text": "i'm not disinfecting everything for my health."
+    },
+    {
+      "clip": "537",
+      "episode": "E09",
+      "example_id": "593c83ab1b9058349ae7805f3aef7faa8a7c2ce9ebfee35d1adad7a924c22a47",
+      "label": "Care",
+      "season": "S06",
+      "text": "oh, glenn, should you be drinking that with your diabetes?"
+    },
+    {
+      "clip": "486",
+      "episode": "E08",
+      "example_id": "5a283c900b5a32602bb2fb785e985b8e465c2f46f8b3806cd85c8f201667c53f",
+      "label": "Taunt",
+      "season": "S06",
+      "text": "do you want us to give you a trophy?"
+    },
+    {
+      "clip": "225",
+      "episode": "E01",
+      "example_id": "5b19a482de65052d30ea270b852a00571e96a14a8f731e81e3c0629e9450e494",
+      "label": "Complain",
+      "season": "S06",
+      "text": "i'm like a sitting duck in customer service. you have any idea how wet-lipped"
+    },
+    {
+      "clip": "89",
+      "episode": "E04",
+      "example_id": "5b1e2efe06de09492cd568fa6e165daa917e99ee2caf010f809e2089767630b7",
+      "label": "Flaunt",
+      "season": "S06",
+      "text": "not a problem for me."
+    },
+    {
+      "clip": "502",
+      "episode": "E03",
+      "example_id": "5bbe47fd5d154e84cde5afc63e90ed49a03edc3d27798ce2253212d8a272f19f",
+      "label": "Advise",
+      "season": "S06",
+      "text": "and every zone captain should have a walkie-talkie."
+    },
+    {
+      "clip": "461",
+      "episode": "E01",
+      "example_id": "5ca54e2c3e51c10bbd786d2b9579b467b3e5de1c6f7eab72e329ab3f6ee6da93",
+      "label": "Advise",
+      "season": "S06",
+      "text": "might i suggest you not look up at the ceiling tonight?"
+    },
+    {
+      "clip": "250",
+      "episode": "E02",
+      "example_id": "5d1275749a25e840636f3b646b8acaa6ff21938b825689e1e7fbcd86b91ddf51",
+      "label": "Care",
+      "season": "S06",
+      "text": "okay, cool, 'cause you seemed uncomfortable"
+    },
+    {
+      "clip": "468",
+      "episode": "E01",
+      "example_id": "5d46f8fb347b7a6fc1d3b99d35abe9cca30322df5e21213d5de0638edb720d98",
+      "label": "Complain",
+      "season": "S06",
+      "text": "but they have me on these calls all day every day!"
+    },
+    {
+      "clip": "129",
+      "episode": "E03",
+      "example_id": "5e0e6c54ae4eca154535be079e2761449d88878c4fad18b5f84d0c5221ed9653",
+      "label": "Advise",
+      "season": "S06",
+      "text": "what if we gave walkie-talkies to all the zone captains"
+    },
+    {
+      "clip": "15",
+      "episode": "E04",
+      "example_id": "5f757d62c9a9ea5a65cd64f2bb9c37f10de5e8e23a71eda35c753bf8d699fff5",
+      "label": "Agree",
+      "season": "S06",
+      "text": "ah, yeah, that makes sense."
+    },
+    {
+      "clip": "386",
+      "episode": "E07",
+      "example_id": "5ff10518ac3d9d9d5c1a015761f3d886c56bcedb8efd279d83b4f8b45013cba6",
+      "label": "Praise",
+      "season": "S06",
+      "text": "because he's actually perfect."
+    },
+    {
+      "clip": "548",
+      "episode": "E03",
+      "example_id": "60f5abd4ee3861527655a8bbc936e078449619f9036806e49ae59f8dcfaec2f5",
+      "label": "Apologise",
+      "season": "S06",
+      "text": "i'm sorry."
+    },
+    {
+      "clip": "80",
+      "episode": "E02",
+      "example_id": "61320a087e4fcdab88be43c83171fefdfecfb183c2f040709a2e958706119fa1",
+      "label": "Agree",
+      "season": "S06",
+      "text": "yeah, yeah, you're right. you're right."
+    },
+    {
+      "clip": "396",
+      "episode": "E10",
+      "example_id": "61c8b8b3d9c13ab586964555f06390f6496c5b4e2748610fa8bd2ef00169d9c4",
+      "label": "Praise",
+      "season": "S06",
+      "text": "garrett's like a really nice guy and funny and cute."
+    },
+    {
+      "clip": "462",
+      "episode": "E03",
+      "example_id": "622ec9eaf36eb4f38bffe099628b5b2f79e81826b63b92aa3a19af94610ddad0",
+      "label": "Inform",
+      "season": "S06",
+      "text": "oh, and you're not allowed to shop here anymore."
+    },
+    {
+      "clip": "105",
+      "episode": "E01",
+      "example_id": "62bb09e5d77b0f92af832e572b5072cbd27fc782fbc37f9b3d9ab95ec28a234b",
+      "label": "Inform",
+      "season": "S06",
+      "text": "the governor shut down all indoor dining."
+    },
+    {
+      "clip": "312",
+      "episode": "E01",
+      "example_id": "630df41f7d78fb4f546163f4656ad1d6caed4e0a3015e7464ce948da29756621",
+      "label": "Criticize",
+      "season": "S06",
+      "text": "sandra, you're supposed to be on lookout!"
+    },
+    {
+      "clip": "60",
+      "episode": "E04",
+      "example_id": "6414160e50cb10c0908a97e8a4e810fb497d741283cce48e6310fbac06baf933",
+      "label": "Complain",
+      "season": "S06",
+      "text": "why are we walking so fast? i'm literally winded."
+    },
+    {
+      "clip": "128",
+      "episode": "E05",
+      "example_id": "64ae4e82a74dbff78de0d7d56b2daac96f0af7763cd6e2475c23f6c8b0356d6a",
+      "label": "Inform",
+      "season": "S06",
+      "text": "and i wish there was something i could do to make it up to the black employees."
+    },
+    {
+      "clip": "424",
+      "episode": "E07",
+      "example_id": "667f7aca0c09b40c246e794d3e17b913ca00f55f23974096685dc761fd36d874",
+      "label": "Comfort",
+      "season": "S06",
+      "text": "don't worry about it."
+    },
+    {
+      "clip": "291",
+      "episode": "E02",
+      "example_id": "66d87cbca921cf37df80ee2ce1a8bcf550f92035f66081e5be086d25ba01f6ae",
+      "label": "Leave",
+      "season": "S06",
+      "text": "i will see you, uh, in a little bit."
+    },
+    {
+      "clip": "426",
+      "episode": "E01",
+      "example_id": "67160cededa219fb189d1f387e1c99a505eeb3ee2bdb9e413e2fd2000128f62f",
+      "label": "Apologise",
+      "season": "S06",
+      "text": "yes, i'm so sorry."
+    },
+    {
+      "clip": "238",
+      "episode": "E10",
+      "example_id": "6792cc3b585e01e4a95097a3bc33150151df309a2638036caa203e6858cd0f65",
+      "label": "Inform",
+      "season": "S06",
+      "text": "hey! i got you a little congratulations gift"
+    },
+    {
+      "clip": "192",
+      "episode": "E05",
+      "example_id": "67aa135b2aa09c2b6e8327c444d998135e8d8d5d1c2a0f530105f06d437c9c9d",
+      "label": "Advise",
+      "season": "S06",
+      "text": "but i think it might be easier if you just wrote it down."
+    },
+    {
+      "clip": "184",
+      "episode": "E07",
+      "example_id": "6836b5f8451cc50f694bce434ec6ff53eebdda7f30bf325804b00c25a9386edc",
+      "label": "Comfort",
+      "season": "S06",
+      "text": "it's gonna be okay, jonah."
+    },
+    {
+      "clip": "542",
+      "episode": "E04",
+      "example_id": "685c3a08926293dbcc1514c8eae4c8a01a7b585e6377cbd246b0cba9f215047f",
+      "label": "Inform",
+      "season": "S06",
+      "text": "okay, all right, new rule: no one can be mad about whatever was said in this room, okay?"
+    },
+    {
+      "clip": "486",
+      "episode": "E04",
+      "example_id": "68cb518c6cec0154439d2f3d1112c4aeb80a75996e06e0007d2582df18c773a3",
+      "label": "Advise",
+      "season": "S06",
+      "text": "so i say turn every golf course into a solar farm."
+    },
+    {
+      "clip": "319",
+      "episode": "E03",
+      "example_id": "694042abd8b5c3f18411ce61f0a57f5c0d598a8800a64b34e34971eb8e5d2a78",
+      "label": "Thank",
+      "season": "S06",
+      "text": "thank you."
+    },
+    {
+      "clip": "347",
+      "episode": "E01",
+      "example_id": "69e37f9d0e13ae67e3182931c9db81a3fafa542cc91c1608586785aceed92191",
+      "label": "Inform",
+      "season": "S06",
+      "text": "let me know if anything big happens."
+    },
+    {
+      "clip": "555",
+      "episode": "E03",
+      "example_id": "6a875e91cdf325f04ae98ac87817040c638402b7589b55db02d1915636a499b3",
+      "label": "Arrange",
+      "season": "S06",
+      "text": "so starting tomorrow, you will do what i tell you to do"
+    },
+    {
+      "clip": "10",
+      "episode": "E09",
+      "example_id": "6a8bf68f8f9d54875856841cae3a102d2fcb49d742c7fde11f8c1f853b2c700f",
+      "label": "Advise",
+      "season": "S06",
+      "text": "oh, we can just use the ones under mateo's eyes."
+    },
+    {
+      "clip": "498",
+      "episode": "E03",
+      "example_id": "6aa8a66fe47e0cc65d174e1afe620f14a069058cb513ee64d8d96ff3657d61e8",
+      "label": "Advise",
+      "season": "S06",
+      "text": "for instance, i think we should stagger our shift start times"
+    },
+    {
+      "clip": "612",
+      "episode": "E08",
+      "example_id": "6b033b1e721f3474d381f404a3f68fb01d87a1833035baddd76d10cc8d9c6d85",
+      "label": "Praise",
+      "season": "S06",
+      "text": "tony's a good kid. i like him."
+    },
+    {
+      "clip": "568",
+      "episode": "E04",
+      "example_id": "6c27fd97c283351603c7374de99b158922de6c8fb10e4084ef54c3a6fc3c78fa",
+      "label": "Inform",
+      "season": "S06",
+      "text": "it's gonna be all about the moon before you know it."
+    },
+    {
+      "clip": "385",
+      "episode": "E05",
+      "example_id": "6cc59edb294ec149480e1479609116ac68450f4927b2f0367b85626c6069c55d",
+      "label": "Introduce",
+      "season": "S06",
+      "text": "it's your boy, kenan bravo."
+    },
+    {
+      "clip": "482",
+      "episode": "E01",
+      "example_id": "6d70e432d982f823bde89028e7224379a58b133ab4547ee1940c755df60c1ef1",
+      "label": "Inform",
+      "season": "S06",
+      "text": "i'm just gonna hand out shift assignments"
+    },
+    {
+      "clip": "574",
+      "episode": "E04",
+      "example_id": "6dda81205f7514da8e8041f9431aef307c2b682c54a403d25ec32c6344f7ba8f",
+      "label": "Thank",
+      "season": "S06",
+      "text": "thanks, that's comforting."
+    },
+    {
+      "clip": "42",
+      "episode": "E06",
+      "example_id": "6df8297499f5e247d82edf2d538fd3530bfc9a531c32f66271ac42ee91e57629",
+      "label": "Oppose",
+      "season": "S06",
+      "text": "no, ken, that's my car. that's the managers spot."
+    },
+    {
+      "clip": "388",
+      "episode": "E05",
+      "example_id": "6e4a647edba751a5a0580e911024670c76effe3ea83de446b579cd63466afc2f",
+      "label": "Introduce",
+      "season": "S06",
+      "text": "and here's the guy we have to thank."
+    },
+    {
+      "clip": "9",
+      "episode": "E06",
+      "example_id": "6ebca823b680ce84d04e13bb9a0801c425677d77f76f25e70683beb04f0414cb",
+      "label": "Apologise",
+      "season": "S06",
+      "text": "hey, sorry about that."
+    },
+    {
+      "clip": "604",
+      "episode": "E04",
+      "example_id": "6ed37304cd6705d688f568358ff6ccddfa29471375fd9ea2e5a6a381f81c83f8",
+      "label": "Care",
+      "season": "S06",
+      "text": "how do you feel, justine?"
+    },
+    {
+      "clip": "434",
+      "episode": "E04",
+      "example_id": "6ef8ae0ab2f984687f85e896b424da53e53e2dde8b01beaf789c009bf8c67d19",
+      "label": "Inform",
+      "season": "S06",
+      "text": "your manager is listening."
+    },
+    {
+      "clip": "38",
+      "episode": "E02",
+      "example_id": "6f0e149c17bfb57c0b773f39dacd385ea5d69832321eebd8b3b11c4c99653a97",
+      "label": "Arrange",
+      "season": "S06",
+      "text": "so sandra, you're cleaning carts."
+    },
+    {
+      "clip": "308",
+      "episode": "E09",
+      "example_id": "6f52f3b014f331d8dbbf21ef08f1e305ec7b23b0f81585c941e647aa06fc77ad",
+      "label": "Complain",
+      "season": "S06",
+      "text": "their tablets barely hold a charge."
+    },
+    {
+      "clip": "328",
+      "episode": "E03",
+      "example_id": "6f5821185b41ccee4eedb5ab2a6898324df6905aeefdfa5e720a2cb57c371d0d",
+      "label": "Praise",
+      "season": "S06",
+      "text": "you know, it was actually really cute."
+    },
+    {
+      "clip": "54",
+      "episode": "E08",
+      "example_id": "7002e0c82fce616908853f1e9c01bdd8b42e8e6f90dde4a75de95463272cb004",
+      "label": "Prevent",
+      "season": "S06",
+      "text": "mom, come on."
+    },
+    {
+      "clip": "36",
+      "episode": "E02",
+      "example_id": "70486205633049131ad2ba04a5893f4bd2bf33a03c6c3d5ee224bdb2e1f9a27f",
+      "label": "Inform",
+      "season": "S06",
+      "text": "okay, we're gonna be in this meeting forever"
+    },
+    {
+      "clip": "454",
+      "episode": "E10",
+      "example_id": "70c54760e10473d098abf951cb541dc2302a3a8eeb08c680276c86c5ab3e088f",
+      "label": "Complain",
+      "season": "S06",
+      "text": "i have been nervously holding my pee for six hours"
+    },
+    {
+      "clip": "354",
+      "episode": "E09",
+      "example_id": "713321c80a56be72c354f85ffa9c7a2616af1b5dda971dffbd415005a074afd3",
+      "label": "Taunt",
+      "season": "S06",
+      "text": "but you haven't because you're afraid"
+    },
+    {
+      "clip": "579",
+      "episode": "E09",
+      "example_id": "720620d368c71cbb190b71a14e461fd453565cb3b802953c4d1cd7ff71eba627",
+      "label": "Praise",
+      "season": "S06",
+      "text": "i-i saw that memo, too. good job, glenn."
+    },
+    {
+      "clip": "208",
+      "episode": "E06",
+      "example_id": "720d4247a3d2fa08f6aa85977f67432eb2ca77fd224a9fa6d272e57f3f012299",
+      "label": "Inform",
+      "season": "S06",
+      "text": "i thought you all should know, 20 minutes ago at 1:37 p.m., biscuit took her last breath."
+    },
+    {
+      "clip": "372",
+      "episode": "E02",
+      "example_id": "72ba48336128016a3d2c54178d696e77ff3a067433d96c317ba7b35245b92d3c",
+      "label": "Advise",
+      "season": "S06",
+      "text": "can't we just get to california"
+    },
+    {
+      "clip": "506",
+      "episode": "E08",
+      "example_id": "72e6ecd860d363211ffb9b5cc26040ab4f99d826b73cbca52b00f4e7fb5188c1",
+      "label": "Apologise",
+      "season": "S06",
+      "text": "did i miss a meeting? sorry."
+    },
+    {
+      "clip": "167",
+      "episode": "E05",
+      "example_id": "73534fcbdd0c44b61c03664e2103c3d3f70bb709d346ed28b5cdd2ca6b1976f4",
+      "label": "Advise",
+      "season": "S06",
+      "text": "but i thought we'd make a list of the other issues corporate needs to address."
+    },
+    {
+      "clip": "164",
+      "episode": "E04",
+      "example_id": "745b0de217bf41fed1b3bb58086add5911d474b8352e1408a50713ffdf05b7c0",
+      "label": "Apologise",
+      "season": "S06",
+      "text": "sorry, i've just been feeling a little down lately."
+    },
+    {
+      "clip": "328",
+      "episode": "E07",
+      "example_id": "74f36f7b8b605f1c8c9ca7aa637b121dcac61c5abc408307e0edbb95aa5ee2ac",
+      "label": "Inform",
+      "season": "S06",
+      "text": "kelly came over from fenton to cover a shift."
+    },
+    {
+      "clip": "526",
+      "episode": "E02",
+      "example_id": "75233a858164a75a5a54cc07f2db4d5ff72adce1748e9964e07a4c452d7f3608",
+      "label": "Thank",
+      "season": "S06",
+      "text": "thanks."
+    },
+    {
+      "clip": "455",
+      "episode": "E10",
+      "example_id": "75c4c914a7b719771d79aa2089792aaa13e1000711d6f4dd7f4e7a35bd2bb1fa",
+      "label": "Leave",
+      "season": "S06",
+      "text": "so i really need to get to a men's room."
+    },
+    {
+      "clip": "67",
+      "episode": "E04",
+      "example_id": "780e08ab8c77af5f6ce95f7b9c8813746936779fc4d8ea71bcf078eae3dfb7c5",
+      "label": "Complain",
+      "season": "S06",
+      "text": "but lady is on my last nerve today."
+    },
+    {
+      "clip": "333",
+      "episode": "E07",
+      "example_id": "790360ea89344fe3c8dd4f9cadecd5b8c41c9d7f13cd07682f78de0d83ae2b6f",
+      "label": "Inform",
+      "season": "S06",
+      "text": "and we thought of you"
+    },
+    {
+      "clip": "422",
+      "episode": "E06",
+      "example_id": "798763ce110340918601985324232433e71089a2fac3c308474f4300b60019f1",
+      "label": "Apologise",
+      "season": "S06",
+      "text": "oh, i'm sorry."
+    },
+    {
+      "clip": "503",
+      "episode": "E04",
+      "example_id": "799dd5e109d2ca2bcaf26908d01cb6f8387b63fa984c96a9b9b5ede211375e73",
+      "label": "Apologise",
+      "season": "S06",
+      "text": "oh, i'm sorry, jonah."
+    },
+    {
+      "clip": "332",
+      "episode": "E02",
+      "example_id": "7b0bdedb4fea32bc730e06120af3731a4a0032a03c2faa7dcaff8d95d43a65fb",
+      "label": "Introduce",
+      "season": "S06",
+      "text": "hi, amy. it's glenn."
+    },
+    {
+      "clip": "509",
+      "episode": "E09",
+      "example_id": "7b66a0e0e9a85192fa4ba31daf17c3a89f85da4e9b52481716769faff5f61a20",
+      "label": "Criticize",
+      "season": "S06",
+      "text": "all the times that you hurt my feelings."
+    },
+    {
+      "clip": "543",
+      "episode": "E03",
+      "example_id": "7d06b5a08477a4e06052b13813d6ccbdc0c64b7e20a2d74d2ec0e715b6db512b",
+      "label": "Advise",
+      "season": "S06",
+      "text": "we should just give it to cheyenne."
+    },
+    {
+      "clip": "26",
+      "episode": "E06",
+      "example_id": "7d45adfd0e01da7624d6edeab6d7e4098b598d609be990586f777f7227da54d4",
+      "label": "Inform",
+      "season": "S06",
+      "text": "no, it's that we no longer have to sanitize"
+    },
+    {
+      "clip": "236",
+      "episode": "E08",
+      "example_id": "7e9ca35d0c0136c7e094fe41e9f6f2dcbf3ea7357a08ca0daeaf59866041c09a",
+      "label": "Joke",
+      "season": "S06",
+      "text": "feels like i'm buying a gremlin."
+    },
+    {
+      "clip": "442",
+      "episode": "E07",
+      "example_id": "7fd5a122d087476eeefc58128e48df4b3e2e3e519dba4b98c45ca9336001c4ba",
+      "label": "Inform",
+      "season": "S06",
+      "text": "i have wood floors. it gets dusty."
+    },
+    {
+      "clip": "622",
+      "episode": "E03",
+      "example_id": "804c641f6af53ad09e20cef1fa98fdc3bb4b053d444ac772aa106307b0a1fe32",
+      "label": "Thank",
+      "season": "S06",
+      "text": "thank you, glenn. it's fine."
+    },
+    {
+      "clip": "134",
+      "episode": "E02",
+      "example_id": "80b3b44dd6c0b88d11f71d334f84451149048853b39a99af7ab5cb65f099cfd4",
+      "label": "Prevent",
+      "season": "S06",
+      "text": "please stop. this is hurting me."
+    },
+    {
+      "clip": "297",
+      "episode": "E02",
+      "example_id": "80e472b83c483998cbad3e0916c780b0d3b86430f32507fe32e6bc3c6482bd0e",
+      "label": "Apologise",
+      "season": "S06",
+      "text": "yeah--oh, hey, i apologize for jonah's murder joke."
+    },
+    {
+      "clip": "310",
+      "episode": "E10",
+      "example_id": "82a0c7e0db0d142c52a73c42e33cefb5a4405437354afdb56b60e04f3933159a",
+      "label": "Praise",
+      "season": "S06",
+      "text": "jonah's...the most competent."
+    },
+    {
+      "clip": "206",
+      "episode": "E07",
+      "example_id": "83592cd7b9873224c0ad8596abc5fc8a97a99bac391469c8ba5bd79c9a68de46",
+      "label": "Apologise",
+      "season": "S06",
+      "text": "i'm sorry."
+    },
+    {
+      "clip": "342",
+      "episode": "E10",
+      "example_id": "8461b36a4d3df00921798d5cf02237f17429a7ec05443ddd287e1a9ee6caa141",
+      "label": "Complain",
+      "season": "S06",
+      "text": "why do people think that i'm at fault"
+    },
+    {
+      "clip": "590",
+      "episode": "E04",
+      "example_id": "84ec79152f313f97ae47bb1dd43cd1fc6cd3b69a179c8c45e22e95fd9f39c9a9",
+      "label": "Apologise",
+      "season": "S06",
+      "text": "i'm sorry."
+    },
+    {
+      "clip": "532",
+      "episode": "E04",
+      "example_id": "853e70a63c5deebcd4744bcc5519b2873e5f666c37fc3ec26f1fa5fc6c280458",
+      "label": "Advise",
+      "season": "S06",
+      "text": "i think jerry should have ended up with carol!"
+    },
+    {
+      "clip": "501",
+      "episode": "E03",
+      "example_id": "858f8e563084f5e18c371b5f561111cb5157ccb7cdc9887bb4ff1932ac66f782",
+      "label": "Advise",
+      "season": "S06",
+      "text": "we should have go-back carts for each department."
+    },
+    {
+      "clip": "525",
+      "episode": "E10",
+      "example_id": "8632b5602967f19a6ea2c8f84ca2f6382955db0aec6fe2ce7c1e79aebdab88b1",
+      "label": "Comfort",
+      "season": "S06",
+      "text": "don't feel guilty."
+    },
+    {
+      "clip": "561",
+      "episode": "E07",
+      "example_id": "87f84da7e2dac0223abc6ef31e3947c73bf10c84323eda6d1db8246361307d46",
+      "label": "Apologise",
+      "season": "S06",
+      "text": "i'm so sorry."
+    },
+    {
+      "clip": "595",
+      "episode": "E04",
+      "example_id": "8831edf3dc653ea96f6bbf76a73f112ef72cda4a0c7689d714ed8991d1c9ad5a",
+      "label": "Complain",
+      "season": "S06",
+      "text": "look, i don't understand why everybody wants to talk everything to death. to talk everything to death."
+    },
+    {
+      "clip": "415",
+      "episode": "E06",
+      "example_id": "891d70f8bea36695d0c82f8b0ade8898b1fad76813b0f625e8fcb21f464e3427",
+      "label": "Praise",
+      "season": "S06",
+      "text": "it really is gorgeous."
+    },
+    {
+      "clip": "308",
+      "episode": "E10",
+      "example_id": "8d2bc776e4705bbc81870ca86f42444ab9506ce5567ba5b99b9ba1fa831ef01a",
+      "label": "Flaunt",
+      "season": "S06",
+      "text": "glenn and i, we're top dogs in this doghouse."
+    },
+    {
+      "clip": "280",
+      "episode": "E05",
+      "example_id": "8de46ccade4f3d5fad99bb8f932951a0cdfbcf87f4ea390552a5bd4dbd3e74da",
+      "label": "Prevent",
+      "season": "S06",
+      "text": "oh, whoa! no, no, no! don't actually scoot in."
+    },
+    {
+      "clip": "62",
+      "episode": "E04",
+      "example_id": "8e9eacb0c90b3fd272ed5f131dc18914721fcc73fff1f6e9a6caf3b594e25481",
+      "label": "Arrange",
+      "season": "S06",
+      "text": "cheyenne, you're still gonna have to stay on top of deliveries. produce comes at 11:00."
+    },
+    {
+      "clip": "60",
+      "episode": "E08",
+      "example_id": "8ed6540ea61967e3fca9973c6fb46c454ae09e4dcd52dc008a2d11992af02b2f",
+      "label": "Apologise",
+      "season": "S06",
+      "text": "sorry, just a little nervous."
+    },
+    {
+      "clip": "195",
+      "episode": "E07",
+      "example_id": "8f96577fffe1d1e609d6f66038f85001a0b9e8f8f992d8cb2f17066980257335",
+      "label": "Praise",
+      "season": "S06",
+      "text": "wow, that makes so much sense."
+    },
+    {
+      "clip": "33",
+      "episode": "E03",
+      "example_id": "8fb4702da2facc8ce0e872bf7f896750a1204510ca15f08a8768f0d0b7eb890e",
+      "label": "Inform",
+      "season": "S06",
+      "text": "we need someone to replace me as floor supervisor."
+    },
+    {
+      "clip": "598",
+      "episode": "E08",
+      "example_id": "900e6301e6cd27996a1b1bc14537f76982e2539c2d2bcf32b5d5bcb8b40f1bc2",
+      "label": "Praise",
+      "season": "S06",
+      "text": "seriously, garrett, this is gonna be awesome."
+    },
+    {
+      "clip": "240",
+      "episode": "E10",
+      "example_id": "901798bdf02f3b6a06e4dbdd7130d806fba1782e450a26117cbf6b551721bf2b",
+      "label": "Introduce",
+      "season": "S06",
+      "text": "some fun socks!"
+    },
+    {
+      "clip": "154",
+      "episode": "E02",
+      "example_id": "907f665d528bb3eefd308e6f9ee87db1c39bd1fb0ed66974d085c6b25e7545c7",
+      "label": "Prevent",
+      "season": "S06",
+      "text": "don't ask to see them."
+    },
+    {
+      "clip": "481",
+      "episode": "E03",
+      "example_id": "91101450c40ec12306c3d4daa45b6ec90c9cf2383b569cff76fe121af0a300c3",
+      "label": "Complain",
+      "season": "S06",
+      "text": "why shouldn't we have a debate?"
+    },
+    {
+      "clip": "558",
+      "episode": "E06",
+      "example_id": "93f9481ce50cefdfbd6e5e245794724d587930817bf3f2473c1b62bba92228cf",
+      "label": "Comfort",
+      "season": "S06",
+      "text": "not to worry, i've been texting with titus"
+    },
+    {
+      "clip": "45",
+      "episode": "E06",
+      "example_id": "9502bc20606d59e068a31aef7aa3d17a2fe6414d5aa8c99be455a08e8be13e4e",
+      "label": "Inform",
+      "season": "S06",
+      "text": "they're towing it right now."
+    },
+    {
+      "clip": "79",
+      "episode": "E05",
+      "example_id": "96d06cc854e4829475744728cfc94ff92a1f2883ff431c2dc02c172936c6ffc3",
+      "label": "Agree",
+      "season": "S06",
+      "text": "but he's right."
+    },
+    {
+      "clip": "68",
+      "episode": "E04",
+      "example_id": "9710d2b6257ab3b16e369f376443a618eb40a1c7120e22b391f3714368bb52d6",
+      "label": "Ask for help",
+      "season": "S06",
+      "text": "can you please switch me anywhere?"
+    },
+    {
+      "clip": "577",
+      "episode": "E04",
+      "example_id": "975bf2b6449022991cec00c9a716539d1311ca8466e7075480bbc8d2e9d40410",
+      "label": "Joke",
+      "season": "S06",
+      "text": "it looked kind of like an inside-out otter."
+    },
+    {
+      "clip": "285",
+      "episode": "E10",
+      "example_id": "97bd4c9ca49e88c8bafef95930777c9def34237492783264099853279470131c",
+      "label": "Arrange",
+      "season": "S06",
+      "text": "look, all you guys have to do is go in there"
+    },
+    {
+      "clip": "246",
+      "episode": "E01",
+      "example_id": "99b40ba34badcd643553acb767372031dcfc40b6bcafd3315670c214f8c38a39",
+      "label": "Complain",
+      "season": "S06",
+      "text": "the ink's starting to turn our butts weird colors."
+    },
+    {
+      "clip": "12",
+      "episode": "E05",
+      "example_id": "99b6c526ed65e0c461f1cecdcf2c48e79a594e047d3d68d2c73b5c2db85dcf1d",
+      "label": "Inform",
+      "season": "S06",
+      "text": "effective immediately, cloud 9 will no longer keep black haircare products in locked cases."
+    },
+    {
+      "clip": "315",
+      "episode": "E09",
+      "example_id": "9b301ac57038c02b537b7881dec381f02b4b38bde121e302ae66bcaa3f45794e",
+      "label": "Inform",
+      "season": "S06",
+      "text": "effective immediately, there will be no more talk about conspiracy theories."
+    },
+    {
+      "clip": "458",
+      "episode": "E02",
+      "example_id": "9bd036d84cbf04315da4c2c6c254218fcdc1bf1f6cb1a32b5bc517246f34ac44",
+      "label": "Thank",
+      "season": "S06",
+      "text": "aww, that's pretty. thank you."
+    },
+    {
+      "clip": "551",
+      "episode": "E03",
+      "example_id": "9bf2a96489ee6aed339a72ad0d17b18d85e334ee0fcb922ae67ba4c2d3538098",
+      "label": "Criticize",
+      "season": "S06",
+      "text": "you've gone power mad."
+    },
+    {
+      "clip": "388",
+      "episode": "E07",
+      "example_id": "9c07c97addea2760604b72dc0a1a8eacc5af6d8189b6f0b1919faeff12f9b25b",
+      "label": "Thank",
+      "season": "S06",
+      "text": "thank you."
+    },
+    {
+      "clip": "575",
+      "episode": "E06",
+      "example_id": "9cd6c48eb68da91d5d75ad9473b8b0caef2610033473bb9c2d7a152e95e566a8",
+      "label": "Inform",
+      "season": "S06",
+      "text": "oh, hey, guys, i don't know if you heard, but sandra's cat died yesterday"
+    },
+    {
+      "clip": "287",
+      "episode": "E07",
+      "example_id": "9e524fae4c1213bd4f9c4627361492db5a8f146c1ee8035c9cedc2f6d74335bd",
+      "label": "Leave",
+      "season": "S06",
+      "text": "i am going to sit in traffic for 45 minutes and return this."
+    },
+    {
+      "clip": "23",
+      "episode": "E06",
+      "example_id": "9f2bd6f52f8b9fa2bdc1ee2d3f14604643114adc4ef15daf8ae5245ac5ddc018",
+      "label": "Complain",
+      "season": "S06",
+      "text": "like, super annoying for me."
+    },
+    {
+      "clip": "4",
+      "episode": "E05",
+      "example_id": "9f6b3aece3f91f52578a0fa8575c7d1a274f4bf1677921d7a2658df269b7924c",
+      "label": "Inform",
+      "season": "S06",
+      "text": "that he misses you all and he sends everyone his biggest, warmest hug."
+    },
+    {
+      "clip": "290",
+      "episode": "E02",
+      "example_id": "9f731e2b1b7c3353503679acafc43bedc785dfe68ee41abfbd1d61759cd4b55b",
+      "label": "Leave",
+      "season": "S06",
+      "text": "um, i'm gonna- i gotta get back to work."
+    },
+    {
+      "clip": "1",
+      "episode": "E04",
+      "example_id": "a011c33a791d3fac453e01fd5c6c68d0a364f24971e8dd12ab7197fde8e20c35",
+      "label": "Inform",
+      "season": "S06",
+      "text": "okay, glenn texted that he's  rubbing a little latte"
+    },
+    {
+      "clip": "432",
+      "episode": "E04",
+      "example_id": "a0e79a3ac67e3ec7fd4f69ef4a6777390d312b72174762b8ff55f57b1a538ab6",
+      "label": "Inform",
+      "season": "S06",
+      "text": "so new rule: talking about our feelings is now encouraged."
+    },
+    {
+      "clip": "527",
+      "episode": "E09",
+      "example_id": "a127790ec3a0e86b3d3a9b9c8865d592973b160f80ae03ae566a1c39f35927a4",
+      "label": "Introduce",
+      "season": "S06",
+      "text": "havarti, great cheese on a sandwich"
+    },
+    {
+      "clip": "455",
+      "episode": "E07",
+      "example_id": "a202552b3f1e7ece53dc1a155b22cd5deadffa7b4b2e6045dc0bca6f557e07e4",
+      "label": "Flaunt",
+      "season": "S06",
+      "text": "and it's the best thing that's ever happened to me."
+    },
+    {
+      "clip": "400",
+      "episode": "E04",
+      "example_id": "a43409cf412e1d53e55ff2f1ba8475eb82dec63fe1ec67e7bdcfcd9c639ca765",
+      "label": "Complain",
+      "season": "S06",
+      "text": "what, so because i'm manager, i have to help people poop their emotions all over the place?"
+    },
+    {
+      "clip": "114",
+      "episode": "E01",
+      "example_id": "a4a6ffea03074379ff6137bef88965d83b7fa906c1c23a760336c00886a924a6",
+      "label": "Arrange",
+      "season": "S06",
+      "text": "just pick a conditioner and keep moving."
+    },
+    {
+      "clip": "333",
+      "episode": "E02",
+      "example_id": "a4ad2eccb0ee997b697775aa01c065e8c59d9383942a5d3fe10fc03bd1a3a398",
+      "label": "Praise",
+      "season": "S06",
+      "text": "i just wanted to say how very proud i, glenn, am of you."
+    },
+    {
+      "clip": "62",
+      "episode": "E08",
+      "example_id": "a4e9322263e23a20bc18133a2d753bef1913827c86bb99d3ecf5c6a85dcd9a7b",
+      "label": "Care",
+      "season": "S06",
+      "text": "sure you're gonna be okay?"
+    },
+    {
+      "clip": "361",
+      "episode": "E06",
+      "example_id": "a5ba0b0719a8120934c28a3df6f4b3792d65e2026fd4b0309afc08301060dd21",
+      "label": "Agree",
+      "season": "S06",
+      "text": "fine."
+    },
+    {
+      "clip": "252",
+      "episode": "E04",
+      "example_id": "a675cfc1bce7fd1e70ee63bc49ff05a78ccf7ebd760c925796c7680f9548f383",
+      "label": "Inform",
+      "season": "S06",
+      "text": "new policy. starting now, there will be absolutely no personal talk on the floor."
+    },
+    {
+      "clip": "212",
+      "episode": "E06",
+      "example_id": "a6d8160c2260b5cffc06d037f63b1d4dc4d2af6dc4127a9a475a7cab9fc244d0",
+      "label": "Apologise",
+      "season": "S06",
+      "text": "i'm so sorry, sandra."
+    },
+    {
+      "clip": "542",
+      "episode": "E03",
+      "example_id": "a6ec36cbecb20c330bf0eb8d8bab65d871ce7caa1c6e1b5ec4b2d3473b881867",
+      "label": "Prevent",
+      "season": "S06",
+      "text": "oh, you don't need to count these."
+    },
+    {
+      "clip": "564",
+      "episode": "E01",
+      "example_id": "a7981f5de05fcb65bae17d798c0229c95a5b60e3ae384719b677cc6f179dee85",
+      "label": "Praise",
+      "season": "S06",
+      "text": "it's pretty nice back here."
+    },
+    {
+      "clip": "509",
+      "episode": "E02",
+      "example_id": "a80d3224679aace0ea258db019d0c2cb4d42510c6b5990cae7ac323442a8061a",
+      "label": "Complain",
+      "season": "S06",
+      "text": "feels pretty bad."
+    },
+    {
+      "clip": "330",
+      "episode": "E09",
+      "example_id": "a8992e76fc03eb333736bb5ac73947faa0907c34b05cb3a326d74a1b22be3cf9",
+      "label": "Complain",
+      "season": "S06",
+      "text": "5g, it's bad stuff."
+    },
+    {
+      "clip": "436",
+      "episode": "E10",
+      "example_id": "a89db7579d7d85e43690a3ab31a64f15cfa90821f172a678db971bcc0711c8fe",
+      "label": "Ask for help",
+      "season": "S06",
+      "text": "hannah, can you update the sim card on the robot?"
+    },
+    {
+      "clip": "502",
+      "episode": "E07",
+      "example_id": "a90e9746cee3985cdcc68ff3df6be0250c2c1118d4ddb9b73f887d1455b889cf",
+      "label": "Agree",
+      "season": "S06",
+      "text": "you're right."
+    },
+    {
+      "clip": "163",
+      "episode": "E01",
+      "example_id": "ac4d2f5b5adc68192081f66d79b5ad6856f28e954dd803854b4a3f91c1c85771",
+      "label": "Inform",
+      "season": "S06",
+      "text": "they sent over a very detailed, step-by-step--"
+    },
+    {
+      "clip": "242",
+      "episode": "E10",
+      "example_id": "ad710ebe6d68338ebfa7b04f69b0f17d3f2deb065a7ecff5ac4764237c9314f4",
+      "label": "Thank",
+      "season": "S06",
+      "text": "thanks so much."
+    },
+    {
+      "clip": "81",
+      "episode": "E05",
+      "example_id": "adf5ec37242947407b47c8697217c6ce6c0f5d53866e77e6e51d13e5a67d063f",
+      "label": "Arrange",
+      "season": "S06",
+      "text": "you're gonna hold a meeting, and you're gonna compile a list of all the racist stuff that corporate needs to talk about."
+    },
+    {
+      "clip": "234",
+      "episode": "E05",
+      "example_id": "af451a717125317b73e013d11ed69aba1de9992f3d5c35535988c49bfdf31462",
+      "label": "Complain",
+      "season": "S06",
+      "text": "yeah, like certain employees always asking to touch my hair."
+    },
+    {
+      "clip": "536",
+      "episode": "E05",
+      "example_id": "af6e6e98c5d57b2ee663d0b0b485e2f81392808819d5901260940d4d68425bc4",
+      "label": "Introduce",
+      "season": "S06",
+      "text": "our corona tests came back negative."
+    },
+    {
+      "clip": "370",
+      "episode": "E04",
+      "example_id": "af9ac250c34cf5a5b25f83ed7a83af1f40aaf88919fbd200886b06372e10f4d4",
+      "label": "Advise",
+      "season": "S06",
+      "text": "how's it going in there?"
+    },
+    {
+      "clip": "320",
+      "episode": "E02",
+      "example_id": "afda4652c33b744e695e3f60d7415254fa2a81e24c23023557cb5dfd2c60f93f",
+      "label": "Comfort",
+      "season": "S06",
+      "text": "well, i'm sure you'll figure something out."
+    },
+    {
+      "clip": "127",
+      "episode": "E05",
+      "example_id": "b0491aa004e1992159803225f3b6593b09d1fd81a5226c308e1fca5847be461f",
+      "label": "Apologise",
+      "season": "S06",
+      "text": "anyway, the point is i'm just so sorry."
+    },
+    {
+      "clip": "12",
+      "episode": "E03",
+      "example_id": "b27cb14e12015d4a767786771d55acdf73bbd7e22588fb6e3046231ed6435235",
+      "label": "Advise",
+      "season": "S06",
+      "text": "why don't we all lead the meeting together?"
+    },
+    {
+      "clip": "429",
+      "episode": "E09",
+      "example_id": "b3457ab2d072bbba3dc41d72372be0c141fc5f4ae352cd575fd1764b12c6cc85",
+      "label": "Criticize",
+      "season": "S06",
+      "text": "but really you were only using me to get to bo!"
+    },
+    {
+      "clip": "443",
+      "episode": "E04",
+      "example_id": "b37f70c0da208fcc50f4f70ed4e8ee730e0580551926980699cd65883dfef2a4",
+      "label": "Thank",
+      "season": "S06",
+      "text": "thank you, marcus."
+    },
+    {
+      "clip": "216",
+      "episode": "E01",
+      "example_id": "b3a80cec886303bdc9ca09ab3046389867fde772819ceef99649f2304b19755f",
+      "label": "Inform",
+      "season": "S06",
+      "text": "we're also required to wear masks."
+    },
+    {
+      "clip": "139",
+      "episode": "E03",
+      "example_id": "b3e4d449f07a024411b007a0d26de1662438ea455ce7a6740db1b100b2c243c4",
+      "label": "Advise",
+      "season": "S06",
+      "text": "right, but we could just buy more walkies."
+    },
+    {
+      "clip": "475",
+      "episode": "E08",
+      "example_id": "b44102ab71fc67405519d2b74860d68f25e048e5f25a306ff2b6eae2a8734bc3",
+      "label": "Criticize",
+      "season": "S06",
+      "text": "then why were you yelling at him when it happened?"
+    },
+    {
+      "clip": "220",
+      "episode": "E06",
+      "example_id": "b47301592c912fc9ba59c676ae806a825b6379b20c66f0c067c7f11ab09b7cf6",
+      "label": "Thank",
+      "season": "S06",
+      "text": "but i really appreciate all of your support."
+    },
+    {
+      "clip": "438",
+      "episode": "E01",
+      "example_id": "b4999785913dce40daeb54b1b3df4411b8a04bb37d9ea3c8745434df762302d7",
+      "label": "Criticize",
+      "season": "S06",
+      "text": "this man is harassing me"
+    },
+    {
+      "clip": "552",
+      "episode": "E10",
+      "example_id": "b56ed14ef7e593b6c43b62ab8bc634cc0b5bb5ea0dca5e206bb24c4e21d8c99c",
+      "label": "Complain",
+      "season": "S06",
+      "text": "oh, my god, she is the worst."
+    },
+    {
+      "clip": "235",
+      "episode": "E04",
+      "example_id": "b57f0da109eb4d49a8827278cc54a242c3ef5619f9adc0e634b70a10462ea63e",
+      "label": "Care",
+      "season": "S06",
+      "text": "whoa, you okay there?"
+    },
+    {
+      "clip": "173",
+      "episode": "E05",
+      "example_id": "b692ce7ad4eea6220d0b6e3a2cac69b17facdc95295b9f53608efce6958a204a",
+      "label": "Care",
+      "season": "S06",
+      "text": "how about some new options in our vending machines?"
+    },
+    {
+      "clip": "200",
+      "episode": "E01",
+      "example_id": "b69a53871ed02ef1ce5784b5ab63ac24772b8ffa70b55df072c3adaef4df3b4a",
+      "label": "Inform",
+      "season": "S06",
+      "text": "okay, um, some good news."
+    },
+    {
+      "clip": "364",
+      "episode": "E02",
+      "example_id": "b75f6312948feca16bc790d5e9e14e2a3f55d6730df1567f4cfe1db92b3ef524",
+      "label": "Complain",
+      "season": "S06",
+      "text": "that's not fair? i'm blowing my life up for you."
+    },
+    {
+      "clip": "340",
+      "episode": "E01",
+      "example_id": "b83f641b5015da80a6b8f1d9dbb0a11beb960d2b4d107fd8c57c1dbcd0689cc9",
+      "label": "Apologise",
+      "season": "S06",
+      "text": "agh! sorry, guys."
+    },
+    {
+      "clip": "197",
+      "episode": "E01",
+      "example_id": "b96f6bf38f38fc56e90a417acbaa415852d591e75280d9df6a13e7749219c241",
+      "label": "Inform",
+      "season": "S06",
+      "text": "so if any of you have been hanging out with marcus, you should leave now."
+    },
+    {
+      "clip": "476",
+      "episode": "E08",
+      "example_id": "ba024f4deec2b8aa9cb2c306c68a867343f4a9627224e07717169d990e25f8e0",
+      "label": "Oppose",
+      "season": "S06",
+      "text": "i wasn't yelling!"
+    },
+    {
+      "clip": "541",
+      "episode": "E07",
+      "example_id": "ba36a7d6fddf06c87a9e985c884b8b52bd488322a9c55f5841545cfe27e5bfb9",
+      "label": "Care",
+      "season": "S06",
+      "text": "are you okay?"
+    },
+    {
+      "clip": "350",
+      "episode": "E05",
+      "example_id": "ba7cf3075676c5d7f74d9e6c4898b223c08659c7d623cddb508bee237fb93e7d",
+      "label": "Complain",
+      "season": "S06",
+      "text": "i'm sick of looking at it. it's going on the list."
+    },
+    {
+      "clip": "218",
+      "episode": "E03",
+      "example_id": "baaebcf47df259614c6a2e80b1d55c67728caf6eb61be86ba98905e892f7e0ad",
+      "label": "Inform",
+      "season": "S06",
+      "text": "we're having an election."
+    },
+    {
+      "clip": "3",
+      "episode": "E07",
+      "example_id": "bb217d8d7dbcab0c8500a40bd2bc230d29ee8edf3c021458907479a1da880df9",
+      "label": "Comfort",
+      "season": "S06",
+      "text": "but don't be intimidated."
+    },
+    {
+      "clip": "258",
+      "episode": "E01",
+      "example_id": "bd061256ea69c0412d438d790aa0c54a8112fe1358b6a2964c0884054cf58253",
+      "label": "Inform",
+      "season": "S06",
+      "text": "so, no returns on food, clothing, or anything that looks open."
+    },
+    {
+      "clip": "385",
+      "episode": "E07",
+      "example_id": "bd88f2727f0459b47655f75315db54b9d2e2ce736dc930ef3d0656092c5e22dc",
+      "label": "Complain",
+      "season": "S06",
+      "text": "and it's driving me crazy"
+    },
+    {
+      "clip": "340",
+      "episode": "E06",
+      "example_id": "bdb8ec20363b843f053fdb38f5a5f2dc76e921798c4ec9f6baa3b20471624ba7",
+      "label": "Complain",
+      "season": "S06",
+      "text": "i wouldn't even buy myself a diamond"
+    },
+    {
+      "clip": "7",
+      "episode": "E02",
+      "example_id": "bdf5320961752aeb044f0d1b99d7363e5ce614562274f395cc16d25c5638d451",
+      "label": "Inform",
+      "season": "S06",
+      "text": "glenn has agreed to step back in as manager."
+    },
+    {
+      "clip": "279",
+      "episode": "E07",
+      "example_id": "be1e395ea3c1158f0b66768f657f5bbb4ab12e675d9f722f48f6967e9ac22273",
+      "label": "Criticize",
+      "season": "S06",
+      "text": "i felt like you abandoned me."
+    },
+    {
+      "clip": "384",
+      "episode": "E09",
+      "example_id": "bf6ed3f5a17d5bf702b6e19a649716fa0a7cc315dcce7533950d37ec9c783620",
+      "label": "Comfort",
+      "season": "S06",
+      "text": "yours was just, like, attitude, which is fine."
+    },
+    {
+      "clip": "212",
+      "episode": "E03",
+      "example_id": "bfb8b2e50d165bf0748e0fa2a1b048c3cbf36065c3868e2d6fe6c61242db856e",
+      "label": "Inform",
+      "season": "S06",
+      "text": "okay, listen. ultimately, it is your call"
+    },
+    {
+      "clip": "536",
+      "episode": "E01",
+      "example_id": "c0979440a9878d0eb77a407fb7a4a9ba7ecbf1728b0cdc159e861da25fbca642",
+      "label": "Thank",
+      "season": "S06",
+      "text": "thank you!"
+    },
+    {
+      "clip": "7",
+      "episode": "E06",
+      "example_id": "c19bbb72c0e72ff8523a647af81fdf9af78bbcbed08410d1d44e010237f0687a",
+      "label": "Joke",
+      "season": "S06",
+      "text": "you were the baby jesus."
+    },
+    {
+      "clip": "282",
+      "episode": "E01",
+      "example_id": "c1a2f2eef0a3f0681332fe5c7d1b703900121e624233696869cacd477534d298",
+      "label": "Advise",
+      "season": "S06",
+      "text": "we should just send justine home, right?"
+    },
+    {
+      "clip": "392",
+      "episode": "E10",
+      "example_id": "c275ba9f4cf86c59e887cc89394bd1c12aaa5883d365200cd93bf0a126b0568d",
+      "label": "Complain",
+      "season": "S06",
+      "text": "hmm. damn. i really thought we were vibing."
+    },
+    {
+      "clip": "458",
+      "episode": "E03",
+      "example_id": "c3493faa6536cf7e5c1b29c5d518904bd9ce59c05862c1d50a5d541f393ce205",
+      "label": "Flaunt",
+      "season": "S06",
+      "text": "glenn gave me ultimate executive power."
+    },
+    {
+      "clip": "364",
+      "episode": "E07",
+      "example_id": "c34df9706d9096a366fb06a36c531682675f6e0bb1638203b86aec5c40bd821e",
+      "label": "Complain",
+      "season": "S06",
+      "text": "i'm done getting tangled in the crazy of you people."
+    },
+    {
+      "clip": "237",
+      "episode": "E01",
+      "example_id": "c42126980d57d840541840a9d5d9a257bca13277bacba022573a41b91fd8d967",
+      "label": "Apologise",
+      "season": "S06",
+      "text": "oh, sorry."
+    },
+    {
+      "clip": "580",
+      "episode": "E09",
+      "example_id": "c4e66440d692a0cd9b2fd2fa11b3ef54de6709373c82fc529cd99c7e850c6796",
+      "label": "Thank",
+      "season": "S06",
+      "text": "thank you."
+    },
+    {
+      "clip": "483",
+      "episode": "E06",
+      "example_id": "c519cf30c98b5e1f386b58c764d75a0158ae6146c648f62ff9b694deb8316882",
+      "label": "Inform",
+      "season": "S06",
+      "text": "glenn did this to keep me out of his way."
+    },
+    {
+      "clip": "531",
+      "episode": "E04",
+      "example_id": "c6a3c7702cbc3c8d4efe7ee59b42c28f631cedbd1e4b092a8003ca56b660c248",
+      "label": "Inform",
+      "season": "S06",
+      "text": "okay, guys, the goal is not to fight."
+    },
+    {
+      "clip": "486",
+      "episode": "E07",
+      "example_id": "c6fb48f033e31a8a3a84bbdd9f2dd7be1066d0e523ffbcfb23fe198a5f91c3ff",
+      "label": "Complain",
+      "season": "S06",
+      "text": "what am i gonna tell my parents?"
+    },
+    {
+      "clip": "237",
+      "episode": "E05",
+      "example_id": "c7192009ff2cfc54eb6792c4a45437d412a3365a8656671ee0d2980b4c9ab12e",
+      "label": "Apologise",
+      "season": "S06",
+      "text": "i'm sorry. your hair looks fun."
+    },
+    {
+      "clip": "589",
+      "episode": "E07",
+      "example_id": "c71d8fce60562231c8f7cd2dfc243c5d7916d21182588fa196db184a1117da0c",
+      "label": "Apologise",
+      "season": "S06",
+      "text": "i'm sorry, marcus."
+    },
+    {
+      "clip": "263",
+      "episode": "E02",
+      "example_id": "c7b91840c094342f7a597e9490b7203aeec0c27b33488f28d8e116c24da8ee02",
+      "label": "Complain",
+      "season": "S06",
+      "text": "i don't- i'm spinning out today."
+    },
+    {
+      "clip": "424",
+      "episode": "E10",
+      "example_id": "c939b876f2f54f416ae53c6105d1b2cc4d98ae41d54a27bbafcc84857a2d0ae9",
+      "label": "Prevent",
+      "season": "S06",
+      "text": "excuse me. you can't be in here."
+    },
+    {
+      "clip": "108",
+      "episode": "E02",
+      "example_id": "cbee5a77e6415b0e851b2fde3bcde848f38c59b2fd28655265817c76e1c71449",
+      "label": "Greet",
+      "season": "S06",
+      "text": "hey, hey, matt- oh, wow!"
+    },
+    {
+      "clip": "547",
+      "episode": "E04",
+      "example_id": "cc9f9a1bf8ddc9b7e755f974641d8d1a358f57d6647edecaa63dedb1e1a20e4f",
+      "label": "Praise",
+      "season": "S06",
+      "text": "but i've never seen anyone worse at this job."
+    },
+    {
+      "clip": "550",
+      "episode": "E06",
+      "example_id": "ccf10071a7ba578e24c9e9df10a511fdbf4b3aa9abe0550712b453913c490735",
+      "label": "Comfort",
+      "season": "S06",
+      "text": "take a breath, man. you're not getting fired."
+    },
+    {
+      "clip": "478",
+      "episode": "E02",
+      "example_id": "cd423173c6b6ba2bb1958c01192f28ad1c86610bef4452ac84172ef40ea8428c",
+      "label": "Praise",
+      "season": "S06",
+      "text": "well, it's still very cool."
+    },
+    {
+      "clip": "422",
+      "episode": "E05",
+      "example_id": "cd55126da10c1777a1487bc3827dca698f6867cc94aaeacb7b06aba2ed9e3e9a",
+      "label": "Apologise",
+      "season": "S06",
+      "text": "oh, hey, guys. sorry."
+    },
+    {
+      "clip": "568",
+      "episode": "E09",
+      "example_id": "cda37adf1861326e3278a28706e6dc1e5eb24f48becb60bd1a294e5dfe069d00",
+      "label": "Thank",
+      "season": "S06",
+      "text": "jonah, thank you for believing in me."
+    },
+    {
+      "clip": "437",
+      "episode": "E08",
+      "example_id": "cdb9468bd497cc656e3f5783f6745bcf9ae1fb85f1f5772fef2173b4e6ffbb6a",
+      "label": "Leave",
+      "season": "S06",
+      "text": "i'm out. nope, nope, nope."
+    },
+    {
+      "clip": "78",
+      "episode": "E01",
+      "example_id": "ce65362b8c050eeddc8e6f47a2cf2491058a84fbb8827dca081cbcdce2dbfcc0",
+      "label": "Inform",
+      "season": "S06",
+      "text": "actually, the latest articles are saying actually, the latest articles are saying that washing your hands isn't enough."
+    },
+    {
+      "clip": "113",
+      "episode": "E02",
+      "example_id": "ceeb1ca95f596f0dd4d97eca67c6f3fa40567d24f8ed31edb56708af584ac76d",
+      "label": "Thank",
+      "season": "S06",
+      "text": "thanks!"
+    },
+    {
+      "clip": "252",
+      "episode": "E02",
+      "example_id": "cf4c383ec08e9a0e51f2ae0c5875cda59c42d6245d9e4380ae93d147a29ef4f4",
+      "label": "Oppose",
+      "season": "S06",
+      "text": "it wasn't- it wasn't that."
+    },
+    {
+      "clip": "445",
+      "episode": "E01",
+      "example_id": "d02577dd060b9c20a6fa68a1449b67e3143ecf2e7e67b1cc04e90126b26d7632",
+      "label": "Criticize",
+      "season": "S06",
+      "text": "you guys are working for satan, aren't you?"
+    },
+    {
+      "clip": "70",
+      "episode": "E04",
+      "example_id": "d0f6aae3eafeab210e77968a9c32e1d6cf3f4d9dc926a2bf2db88a8469d48475",
+      "label": "Arrange",
+      "season": "S06",
+      "text": "you're gonna go back and work on that register"
+    },
+    {
+      "clip": "155",
+      "episode": "E02",
+      "example_id": "d189a246a76945eb64edeeed66c22ca4b319b0b3700f6bd3ba9d319023067d55",
+      "label": "Care",
+      "season": "S06",
+      "text": "it's gonna be hard to leave this place, huh?"
+    },
+    {
+      "clip": "509",
+      "episode": "E05",
+      "example_id": "d3634ee0ad87c00eb5692d76e756259eb6be8b099849efd1c1b543016c7bcfd9",
+      "label": "Criticize",
+      "season": "S06",
+      "text": "you're just as bad as glenn."
+    },
+    {
+      "clip": "503",
+      "episode": "E02",
+      "example_id": "d395c62dd7ac740c725fe2a23f37f9cfbc4da523fafc94e11ebe9ccbd0100dd5",
+      "label": "Care",
+      "season": "S06",
+      "text": "how's the search going?"
+    },
+    {
+      "clip": "233",
+      "episode": "E01",
+      "example_id": "d406ba015d844b33b0b7dff5314395062c90d67ed7fc1243829a91d809cd676a",
+      "label": "Praise",
+      "season": "S06",
+      "text": "that cloud 9 employees are the true heroes"
+    },
+    {
+      "clip": "117",
+      "episode": "E01",
+      "example_id": "d454f34c4e66ed8df63c6f9cb3f70effcc475f8e4bab846a920ea5d70f55b75e",
+      "label": "Taunt",
+      "season": "S06",
+      "text": "ah, he's just putting on a show."
+    },
+    {
+      "clip": "45",
+      "episode": "E01",
+      "example_id": "d48f125fd3d653cba3787708d0b5d665452754d00345174a3d3d23b70ad1743a",
+      "label": "Inform",
+      "season": "S06",
+      "text": "the cdc recommendation of washing your hands"
+    },
+    {
+      "clip": "542",
+      "episode": "E08",
+      "example_id": "d4ab196d96d669c6568e85ae08457429a5b69d5e7feeb6124c680741f7c819b8",
+      "label": "Comfort",
+      "season": "S06",
+      "text": "but it's not really your fault."
+    },
+    {
+      "clip": "432",
+      "episode": "E01",
+      "example_id": "d4fa6a8a12beb8d7142c7539cabc81023e08cbadd524c4d9cb0106467aa08e9b",
+      "label": "Leave",
+      "season": "S06",
+      "text": "cindy, i'm gonna do that right now."
+    },
+    {
+      "clip": "495",
+      "episode": "E01",
+      "example_id": "d600016615db3b8feb15d1de9b452a962c4e4bc595d356cd4684bc5f00c2816c",
+      "label": "Comfort",
+      "season": "S06",
+      "text": "amy might have abandoned us a little, but we're fine!"
+    },
+    {
+      "clip": "512",
+      "episode": "E07",
+      "example_id": "d64d1f110a5b863838cc71effe37ef0e736c26b84470659d8f39e91aa558e1a1",
+      "label": "Care",
+      "season": "S06",
+      "text": "so you're good?"
+    },
+    {
+      "clip": "140",
+      "episode": "E10",
+      "example_id": "d674a4363100c678079fcb58009789ca8997545c83c205c008a2553acb08aebc",
+      "label": "Criticize",
+      "season": "S06",
+      "text": "eugene? did you lock me out?"
+    },
+    {
+      "clip": "535",
+      "episode": "E01",
+      "example_id": "d6a0f1acb732c9bfcafef4fb225fc74fcf71c0cf693477bf329a9c8f4dbb483e",
+      "label": "Praise",
+      "season": "S06",
+      "text": "yeah, wow! great, that's great!"
+    },
+    {
+      "clip": "601",
+      "episode": "E04",
+      "example_id": "d7c15468fff0a449b83ec5991336e53f05172c2b61156e908ba65be3a1b910be",
+      "label": "Agree",
+      "season": "S06",
+      "text": "yeah."
+    },
+    {
+      "clip": "545",
+      "episode": "E04",
+      "example_id": "d7f387092ee6e49a308c19eb72fe918f3fca19491dcd625da489981b072b63b6",
+      "label": "Complain",
+      "season": "S06",
+      "text": "ugh, this whole day sucks."
+    },
+    {
+      "clip": "452",
+      "episode": "E03",
+      "example_id": "d8b6e5403709a5e19b58db9b483ac2cf5dea19155244a092de7a8d9bac74896c",
+      "label": "Criticize",
+      "season": "S06",
+      "text": "mateo just tried to fire me."
+    },
+    {
+      "clip": "118",
+      "episode": "E08",
+      "example_id": "d8cb22d80ebd9f7feb46a28f4db6fc46f8ed77edc3fe830006fe17b315a212d5",
+      "label": "Complain",
+      "season": "S06",
+      "text": "why did this happen? am i a bad person?"
+    },
+    {
+      "clip": "546",
+      "episode": "E04",
+      "example_id": "d90e5841d939a458e214f5056a37b3399f58bfe30a51a987d10452e22b1c24ed",
+      "label": "Apologise",
+      "season": "S06",
+      "text": "yeah, dina, i'm sorry, no offense"
+    },
+    {
+      "clip": "366",
+      "episode": "E01",
+      "example_id": "d9ec67aa69bd036809906b485bca35890eeeef0af2d16aaaa95427a145f9cee7",
+      "label": "Introduce",
+      "season": "S06",
+      "text": "anti-looting procedures."
+    },
+    {
+      "clip": "132",
+      "episode": "E10",
+      "example_id": "da64c8388b9c7712479ce64ecf2e3a76aa776364d39f816101b895561c89d269",
+      "label": "Prevent",
+      "season": "S06",
+      "text": "whatever. you can't go in there."
+    },
+    {
+      "clip": "21",
+      "episode": "E01",
+      "example_id": "da66aa5decb904505dab045a151ce9d6ff06932203ec00d9464516ef3ff40709",
+      "label": "Inform",
+      "season": "S06",
+      "text": "so i'm still gonna be working with you guys."
+    },
+    {
+      "clip": "419",
+      "episode": "E10",
+      "example_id": "da8a94817f28f64899a3f554a30189340fd69850e63c1a8f4953562f2fa10df1",
+      "label": "Praise",
+      "season": "S06",
+      "text": "and april was kinda fun"
+    },
+    {
+      "clip": "474",
+      "episode": "E06",
+      "example_id": "da963f72fecffe01df96d71c2ef67f842c6ab548b487cd53bef6911fc516b9bf",
+      "label": "Taunt",
+      "season": "S06",
+      "text": "something you'd like to share with the class, turd melon?"
+    },
+    {
+      "clip": "90",
+      "episode": "E03",
+      "example_id": "daf1e4875fd80f6b48ad107928d2eedf04684c2978b23b75d1a043c0d5977c07",
+      "label": "Advise",
+      "season": "S06",
+      "text": "and actually,maybe you could talk to him about sex and stuff."
+    },
+    {
+      "clip": "573",
+      "episode": "E07",
+      "example_id": "dc5a8498d69b5bb3320195965cd8e84858806ad2e2624b2e41046b525ef09030",
+      "label": "Comfort",
+      "season": "S06",
+      "text": "but don't worry, i'm not gonna give them anything"
+    },
+    {
+      "clip": "545",
+      "episode": "E09",
+      "example_id": "dcb591da95125deca6a4ef10f541d5f467be638e49f4bb1f6d8edc55111c28b2",
+      "label": "Joke",
+      "season": "S06",
+      "text": "he's, like, a major fox."
+    },
+    {
+      "clip": "170",
+      "episode": "E05",
+      "example_id": "de0bbc2f7c7873758cf0458acb28455a91eb544c67ad4ad448ba72f7b6f8fa54",
+      "label": "Arrange",
+      "season": "S06",
+      "text": "ooh, yes, that's a good one! write that one down."
+    },
+    {
+      "clip": "479",
+      "episode": "E08",
+      "example_id": "dec7e7bbb0ded7e44083c5198070243977e3ec79e0599205728ca92a23f50785",
+      "label": "Criticize",
+      "season": "S06",
+      "text": "he just--he wasn't listening."
+    },
+    {
+      "clip": "597",
+      "episode": "E09",
+      "example_id": "dfe6e5a7fe9ae0b479fa14207169432f1fa0dd9eb7746feb8015162457e98982",
+      "label": "Praise",
+      "season": "S06",
+      "text": "nice job."
+    },
+    {
+      "clip": "20",
+      "episode": "E06",
+      "example_id": "e0927cfd980f56a536635e97b9efefb802a6208dcb7ebecd46da2bc698efb944",
+      "label": "Inform",
+      "season": "S06",
+      "text": "we've got a really exciting covid announcement."
+    },
+    {
+      "clip": "145",
+      "episode": "E08",
+      "example_id": "e0e03824a6f671747f5828b1990116a13223f0fb570d8293d87327889671f5cd",
+      "label": "Prevent",
+      "season": "S06",
+      "text": "the--the case is closed. you can't reopen the case."
+    },
+    {
+      "clip": "524",
+      "episode": "E02",
+      "example_id": "e25568fcf604829812cf72a36300f1d45b011bb87f441c5fdced7563e9420062",
+      "label": "Advise",
+      "season": "S06",
+      "text": "thought you might need something a little stronger."
+    },
+    {
+      "clip": "110",
+      "episode": "E10",
+      "example_id": "e3aabfcaf5b2ca1c5efb68fdefed289c7c7fa6392e132ce73531bbd2f093a738",
+      "label": "Criticize",
+      "season": "S06",
+      "text": "you fart face!"
+    },
+    {
+      "clip": "559",
+      "episode": "E01",
+      "example_id": "e400e74a5ff06b4f63e0306bd67211502e824364a925afddc8025d51a46ae4d5",
+      "label": "Ask for help",
+      "season": "S06",
+      "text": "yeah, well, we need your help back in the store."
+    },
+    {
+      "clip": "499",
+      "episode": "E08",
+      "example_id": "e40f5193d040e25c4e3fbd72b4055506bfdc223ce884adbff670835882f1b80b",
+      "label": "Criticize",
+      "season": "S06",
+      "text": "you did hit mateo for being undocumented."
+    },
+    {
+      "clip": "141",
+      "episode": "E03",
+      "example_id": "e4a4db9aada74563e83a20b4761d3e22988d6bbd3426851bf95ca587f7bb5bda",
+      "label": "Inform",
+      "season": "S06",
+      "text": "they discontinued them seven years ago."
+    },
+    {
+      "clip": "606",
+      "episode": "E03",
+      "example_id": "e50732e57c51c486ad20dbee73933c2008f77bb8864ada26de3344e8746a15d2",
+      "label": "Apologise",
+      "season": "S06",
+      "text": "oh, i'm sorry."
+    },
+    {
+      "clip": "570",
+      "episode": "E07",
+      "example_id": "e5128ae0b021d24a46c5f014631a827e32ac7b91c196e72291d1ed198140492e",
+      "label": "Inform",
+      "season": "S06",
+      "text": "to, like, write down any bad or crazy things you did."
+    },
+    {
+      "clip": "420",
+      "episode": "E06",
+      "example_id": "e64ad837be769f3240169443df8aeb1abb7c72d37220b2d97790546edec755d8",
+      "label": "Taunt",
+      "season": "S06",
+      "text": "her hair looks like spaghetti that's been left in the pot."
+    },
+    {
+      "clip": "503",
+      "episode": "E07",
+      "example_id": "e6bfc63d17d103184946460512c9df294f7e1869181cccee6d72ff45fbcf1bdb",
+      "label": "Apologise",
+      "season": "S06",
+      "text": "i'm sorry, kelly. i--"
+    },
+    {
+      "clip": "215",
+      "episode": "E05",
+      "example_id": "e85263caacfc2a8b35b2b825a2bbc8f94d1368ff2f2d741ce96c7a0d96877155",
+      "label": "Praise",
+      "season": "S06",
+      "text": "cool, let's all give credit to jonah for janet's idea."
+    },
+    {
+      "clip": "455",
+      "episode": "E03",
+      "example_id": "e9e3937dd79040813b86ec5c3f4ade5bc04d7d4815e8b61e8331bb9ad97d0f94",
+      "label": "Criticize",
+      "season": "S06",
+      "text": "he's been yelling at people all day like he runs the store."
+    },
+    {
+      "clip": "574",
+      "episode": "E05",
+      "example_id": "ea3977383988931575c56f2a307447b62bb4cf457aa0c0832bf05f10c3017653",
+      "label": "Apologise",
+      "season": "S06",
+      "text": "to show you how sorry we are."
+    },
+    {
+      "clip": "136",
+      "episode": "E08",
+      "example_id": "eaba16370c51a063630b8ab3d1f62083b9f81d050ec0e4419e8744f43c383113",
+      "label": "Agree",
+      "season": "S06",
+      "text": "oh, absolutely."
+    },
+    {
+      "clip": "535",
+      "episode": "E07",
+      "example_id": "ec704a0ea2858a9880d38ce3e05af7c625f2cfc90305a8180aeadb1ccb6afadc",
+      "label": "Complain",
+      "season": "S06",
+      "text": "that's past the property line."
+    },
+    {
+      "clip": "90",
+      "episode": "E04",
+      "example_id": "ecafaa7d989c69f3278c3954399b70b64ce5e340cbf4fddc5e335197d92ad3a0",
+      "label": "Inform",
+      "season": "S06",
+      "text": "i'm gonna turn this place into the most efficient machine"
+    },
+    {
+      "clip": "360",
+      "episode": "E09",
+      "example_id": "ece519ea450ca78db18c7c5903f2e63b0d493117323f189c3b4f38125d0297f4",
+      "label": "Inform",
+      "season": "S06",
+      "text": "leading scientist admits earth is flat."
+    },
+    {
+      "clip": "586",
+      "episode": "E07",
+      "example_id": "eef476788f0c7cb2dea464315539e873ef2ff0ce00b9649143350a2359cc1c3d",
+      "label": "Greet",
+      "season": "S06",
+      "text": "hey."
+    },
+    {
+      "clip": "548",
+      "episode": "E10",
+      "example_id": "eff5c018b3cffa2d4f021cf8f96bc244087517fbfa26360eb10313a4edad987b",
+      "label": "Praise",
+      "season": "S06",
+      "text": "i-i thought it was kind of sweet, actually."
+    },
+    {
+      "clip": "414",
+      "episode": "E10",
+      "example_id": "f1f353140c6d96f1e3c8fcccc6bbc31f5fb18c956d589a53bc2fca194964d75a",
+      "label": "Advise",
+      "season": "S06",
+      "text": "i 'm just saying that you should tell garrett"
+    },
+    {
+      "clip": "436",
+      "episode": "E03",
+      "example_id": "f292b39450a6101636d41ce7f2c300c40152548357a062678fb9ee091c6c317b",
+      "label": "Joke",
+      "season": "S06",
+      "text": "i would give jonah a lap dance in a second"
+    },
+    {
+      "clip": "567",
+      "episode": "E09",
+      "example_id": "f2ff03139c4f1583227d7d3b6196f511f0f786010a9415778623d85ca668342b",
+      "label": "Comfort",
+      "season": "S06",
+      "text": "but you're gonna be okay- you've got this."
+    },
+    {
+      "clip": "326",
+      "episode": "E03",
+      "example_id": "f4824179d36658b7df03c40b99b5a1596f6b668e2df9307a40da4f4ce700f958",
+      "label": "Thank",
+      "season": "S06",
+      "text": "you did? aww, thanks, garrett."
+    },
+    {
+      "clip": "449",
+      "episode": "E04",
+      "example_id": "f4a93a18ff347481011624433585a527997ffb8c8462a693d780e167ca885382",
+      "label": "Advise",
+      "season": "S06",
+      "text": "seems great, but maybe we should set some ground rules."
+    },
+    {
+      "clip": "32",
+      "episode": "E01",
+      "example_id": "f4c9d4f8b9d6b0efa274ca9705056baa4437bb58e59963e81dd025d84471e470",
+      "label": "Inform",
+      "season": "S06",
+      "text": "whoa! the nba just announced they're suspending the season."
+    },
+    {
+      "clip": "471",
+      "episode": "E03",
+      "example_id": "f4d8719d281c1c04c852546fa8cd27b9d048d48bf0f650e61e817715c2f1fc71",
+      "label": "Praise",
+      "season": "S06",
+      "text": "oh, that's cool."
+    },
+    {
+      "clip": "26",
+      "episode": "E10",
+      "example_id": "f4dc2fa409651692f625fcc3369279e8968c2894f5e427f7192c8d1f31304c53",
+      "label": "Inform",
+      "season": "S06",
+      "text": "carol, you can probably just go start your shift now."
+    },
+    {
+      "clip": "509",
+      "episode": "E01",
+      "example_id": "f538465377dc15c021831afc0ea8417bf450d71063dbe629ae79d687d55f3cec",
+      "label": "Introduce",
+      "season": "S06",
+      "text": "amy sosa here."
+    },
+    {
+      "clip": "568",
+      "episode": "E05",
+      "example_id": "f55212e40069f63b4a7786bae6137dacfaa52415cc2ca5015fe431f163e24a5b",
+      "label": "Care",
+      "season": "S06",
+      "text": "you seemed pretty beefed."
+    },
+    {
+      "clip": "247",
+      "episode": "E10",
+      "example_id": "f5601b222ca8f7c108728ff30c3d873d8fd91fd1e4b03d2878c8d47f835120c4",
+      "label": "Inform",
+      "season": "S06",
+      "text": "he was gonna blab to the lawyers about our work arrangement."
+    },
+    {
+      "clip": "492",
+      "episode": "E02",
+      "example_id": "f826bc5d1b5616a7fafecb21951a26193f10fe65422cc5cb3a7c1f5c5a6b0b94",
+      "label": "Thank",
+      "season": "S06",
+      "text": "ohh, cheyenne, that's really sweet, thank you."
+    },
+    {
+      "clip": "613",
+      "episode": "E03",
+      "example_id": "f9fc743471d5e9f1ea8c1bb1e0983441529d808a457b043dcbfeba3e59d5a62e",
+      "label": "Inform",
+      "season": "S06",
+      "text": "and i do have an update on the breadsticks."
+    },
+    {
+      "clip": "15",
+      "episode": "E09",
+      "example_id": "fa3b16dec7e3a0a9906e53c7185d73f5aa8a31ccd2ffb5ccecadea03a75b8da1",
+      "label": "Inform",
+      "season": "S06",
+      "text": "now, we've noticed some of your masks are getting dingy."
+    },
+    {
+      "clip": "191",
+      "episode": "E07",
+      "example_id": "fa8433b0a4e826d22bfc8808cddb22f1f0f65ee8165579a826679a920d6b9143",
+      "label": "Oppose",
+      "season": "S06",
+      "text": "it's really not. it's not hot juice."
+    },
+    {
+      "clip": "509",
+      "episode": "E10",
+      "example_id": "fb4fd6d6a30d8e52aab2be40545ea0ee58a3c23ef6287ebf78a4eddccc57c9fe",
+      "label": "Inform",
+      "season": "S06",
+      "text": "okay. they left the break room."
+    },
+    {
+      "clip": "208",
+      "episode": "E05",
+      "example_id": "fbd6dde4c18ad46c2366b634f02050d5ac0c8c6eacf92349417d4d6a51d5662e",
+      "label": "Praise",
+      "season": "S06",
+      "text": "i think it's great that we're trying"
+    },
+    {
+      "clip": "219",
+      "episode": "E03",
+      "example_id": "fc501ca07ed5eda880eb78ca3a8f565b866dc882c944446b89b8e53d7668b509",
+      "label": "Inform",
+      "season": "S06",
+      "text": "both jonah and cheyenne wanna be floor supervisor."
+    },
+    {
+      "clip": "355",
+      "episode": "E07",
+      "example_id": "fc935f921b08292e8b319e685293a0f39d941ab37ceb4f0df5113e6d9c686ac6",
+      "label": "Flaunt",
+      "season": "S06",
+      "text": "guys, i'm gonna be a little busy around 2:00 p.m. don't even ask me what i'm doing. it's private."
+    },
+    {
+      "clip": "324",
+      "episode": "E07",
+      "example_id": "fd8aac010c73cac33ba2b84918ffab0da983193c74df2ccaebae077284e4cf58",
+      "label": "Apologise",
+      "season": "S06",
+      "text": "oh, sorry i'm a little late. where do you want me?"
+    },
+    {
+      "clip": "434",
+      "episode": "E02",
+      "example_id": "fececd99283ea0146b8d9cfbb3db0d590382126d7c68ff1e81b336c4f2277083",
+      "label": "Praise",
+      "season": "S06",
+      "text": "shh, guys, best part!"
+    },
+    {
+      "clip": "617",
+      "episode": "E03",
+      "example_id": "ff40c40727661f0392f47558828b69953982630955c97ea328b24e9d2a7769b2",
+      "label": "Apologise",
+      "season": "S06",
+      "text": "i'm sorry jonah."
+    },
+    {
+      "clip": "115",
+      "episode": "E05",
+      "example_id": "fffd9368c72e3a21501edc18087cc99e5e0de01e1d322d52f5c0eff66a51aa79",
+      "label": "Greet",
+      "season": "S06",
+      "text": "hey."
+    }
+  ],
+  "schema_version": "herus.mintrec.identity.v1",
+  "source": "https://datasets-server.huggingface.co/rows",
+  "source_revision": "not_exposed_by_rows_api",
+  "source_rows": 2224,
+  "source_rows_sha256": "13327559f5b42014a18c2f76d6322aa4b183833932b90b776bc344b3faccacd2"
+}

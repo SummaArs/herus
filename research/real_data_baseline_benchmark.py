@@ -19,7 +19,7 @@ def fetch_split(split: str, total: int, page: int = 100) -> list[dict[str, str]]
         query = urllib.parse.urlencode({'dataset': DATASET, 'config': 'default', 'split': split, 'offset': offset, 'length': min(page, total-offset)})
         with urllib.request.urlopen(API + '?' + query, timeout=60) as response:
             payload = json.load(response)
-        rows.extend({'text': item['row']['text'], 'label': item['row']['label'], 'season': item['row']['season'], 'episode': item['row']['episode']} for item in payload['rows'])
+        rows.extend({'text': item['row']['text'], 'label': item['row']['label'], 'season': item['row']['season'], 'episode': item['row']['episode'], 'clip': str(item['row']['clip'])} for item in payload['rows'])
     return rows
 
 def tokens(text: str) -> list[str]:
