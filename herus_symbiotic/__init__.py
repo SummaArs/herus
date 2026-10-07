@@ -8,12 +8,13 @@ from research.meta_symbiotic_learning import MetaProposal, MetaSymbioticLearner,
 from herus_symbiotic.programming import ProgrammingProposal, ProgrammingQuestion, ProgrammingRequest, ProgrammingSkill, RepairProposal, TestFailure
 from herus_symbiotic.programming_evidence import EvidenceRecord, LedgerResult, ProgrammingObligation, build_programming_ledger
 from herus_symbiotic.data_science import DataIssue, DatasetProfile, DataScienceSkill, MLPlan
+from herus_symbiotic.herus import Herus
 
 __all__ = [
     'Episode', 'Proposal', 'SkillHypothesis', 'State', 'SymbioticLearner',
     'MetaProposal', 'MetaSymbioticLearner', 'Problem', 'VerifiedSolution',
     'ProgrammingProposal', 'ProgrammingQuestion', 'ProgrammingRequest', 'ProgrammingSkill', 'RepairProposal', 'TestFailure',
     'EvidenceRecord', 'LedgerResult', 'ProgrammingObligation', 'build_programming_ledger',
-    'DataIssue', 'DatasetProfile', 'DataScienceSkill', 'MLPlan',
+    'DataIssue', 'DatasetProfile', 'DataScienceSkill', 'MLPlan', 'Herus',
 ]
 __version__ = '0.1.0'

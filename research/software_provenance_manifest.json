@@ -47,8 +47,8 @@
     {
       "path": "research/Makefile",
       "kind": "file",
-      "sha256": "aaaf4c0aa91975d042f67dd2042e8a78d069f8c0e1c6bd16445ab148463a3a0c",
-      "role": "data science skill gate"
+      "sha256": "d4c76a2ff34f88834ae50e0e8a6d0722fd6c1c07eb6b17227c0fab5270e16e50",
+      "role": "single facade gate"
     },
     {
       "path": "research/semantic_ir.py",
@@ -251,8 +251,8 @@
     {
       "path": "README.md",
       "kind": "file",
-      "sha256": "50293fbb6aff69cfabb83b704835f0138e940e950b3a7b551c67b43ecd3fa8eb",
-      "role": "data science skill narrative and test count"
+      "sha256": "ec2f3d0bba01aae37f2e54c481778348829b8587e60a47f642f34968f82c6b19",
+      "role": "single facade narrative and test count"
     },
     {
       "path": "docs/50-INTENT-COMPILER-E-SEMANTIC-IR.md",
@@ -515,7 +515,7 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "1504fd9b3a8e74dfa54454d61543a749ec1fe4ac31b5ee6abcdde3bd8b972937",
+      "sha256": "22c9ea9cd74dcd4d4b825425ba025925f91a76db4446e4a5b99674a86d7f1352",
       "role": "organized documentation, maps and historical design records"
     },
     {
@@ -719,8 +719,8 @@
     {
       "path": "herus_symbiotic/__init__.py",
       "kind": "file",
-      "sha256": "898c4adbbe26ed3e02becf54906521095c3b68f6ffb9fd640873cb082a9e10b0",
-      "role": "public data science API"
+      "sha256": "82ec0dbed173826ddf9125cefefa9e9168ede734135ac657d3ea427d77872a93",
+      "role": "single facade export"
     },
     {
       "path": "pyproject.toml",
@@ -1423,6 +1423,24 @@
       "kind": "file",
       "sha256": "21eef80af5d9324bb34d823f6d7edc5a281dd4821fa42e1d7409bf75f92eff83",
       "role": "data science skill specification"
+    },
+    {
+      "path": "herus_symbiotic/herus.py",
+      "kind": "file",
+      "sha256": "2fdd717461f7538486c1e1e5f6f198ab4d135eb426c6dd42b4a3b712b6d0635f",
+      "role": "single public facade"
+    },
+    {
+      "path": "research/test_herus_facade.py",
+      "kind": "file",
+      "sha256": "0f24efff86fc2422c5c63c25e8b1a9ab1ab6f14c4ff038d464be31767748a200",
+      "role": "facade tests"
+    },
+    {
+      "path": "docs/119-FACHADA-UNICA-HERUS.md",
+      "kind": "file",
+      "sha256": "d14f44708cd6b4830b8fc220c8a68b5c9b779e04a32c56667547c03465b41392",
+      "role": "facade specification"
     }
   ],
   "components": [
