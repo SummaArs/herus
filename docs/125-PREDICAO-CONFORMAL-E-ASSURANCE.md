@@ -25,3 +25,7 @@ A técnica resolve uma parte importante da deriva temporal: em vez de transforma
 Ela também revela o preço da honestidade: neste domínio, o conjunto é grande. Portanto, não é uma vitória de classificação e não prova raciocínio geral. É uma melhoria de assurance: o HERUS sabe representar incerteza sem escolher uma classe arbitrariamente.
 
 O próximo refinamento é aprender representações que reduzam o tamanho dos conjuntos mantendo a cobertura, sempre calibradas fora do holdout.
+
+## Ablação por classe
+
+Também foi testada uma calibração com quantis separados por classe. Ela reduziu modestamente o tamanho médio dos conjuntos — de 15,98 para 15,37 no alvo nominal de 95% —, mas cobriu apenas 93,78% do S06. Portanto, foi **rejeitada como política principal**: uma compressão que perde a cobertura prometida não é melhoria de assurance.

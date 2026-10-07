@@ -28,8 +28,16 @@ def evaluate(train,cal,test,coverage_target):
  covered=sum(r['label'] in s for r,s in zip(test,sets)); singleton=[(r,s) for r,s in zip(test,sets) if len(s)==1]
  return {'target_marginal_coverage':coverage_target,'quantile':round(q,6),'test_set_coverage':round(covered/len(test),6),'mean_set_size':round(sum(map(len,sets))/len(sets),6),'singleton_coverage':round(len(singleton)/len(test),6),'singleton_accuracy':round(sum(r['label']==s[0] for r,s in singleton)/len(singleton),6) if singleton else 0.0}
 
+def evaluate_class_conditional(train,cal,test,coverage_target):
+ qs={label: quantile([1-probs(train,r)[label] for r in cal if r['label']==label],coverage_target) for label in {r['label'] for r in cal}}
+ sets=[]
+ for r in test:
+  p=probs(train,r); sets.append([y for y,v in p.items() if 1-v<=qs[y]])
+ covered=sum(r['label'] in s for r,s in zip(test,sets)); singles=[(r,s) for r,s in zip(test,sets) if len(s)==1]
+ return {'target_nominal_coverage':coverage_target,'test_set_coverage':round(covered/len(test),6),'mean_set_size':round(sum(map(len,sets))/len(sets),6),'singleton_coverage':round(len(singles)/len(test),6),'singleton_accuracy':round(sum(r['label']==s[0] for r,s in singles)/len(singles),6) if singles else 0.0}
+
 def run():
  rows=b.fetch_split('train',2224); train=[r for r in rows if r['season']=='S04']; cal=[r for r in rows if r['season']=='S05']; test=[r for r in rows if r['season']=='S06']
- result={'protocol':'split conformal; S04 fit, S05 calibration, S06 chronological holdout','dataset':'THU-IAR/MIntRec','holdout_rows':len(test),'results':[evaluate(train,cal,test,q) for q in (.80,.90,.95,.99)],'limits':['marginal coverage is not per-class coverage','prediction sets are not natural-language reasoning','MIntRec labels are not HERUS events']}
+ result={'protocol':'split conformal; S04 fit, S05 calibration, S06 chronological holdout','dataset':'THU-IAR/MIntRec','holdout_rows':len(test),'results':[evaluate(train,cal,test,q) for q in (.80,.90,.95,.99)],'class_conditional_ablation':[evaluate_class_conditional(train,cal,test,q) for q in (.80,.90,.95)],'limits':['marginal coverage is not per-class coverage','class-conditional calibration is exploratory and failed nominal coverage on S06','prediction sets are not natural-language reasoning','MIntRec labels are not HERUS events']}
  (E/'conformal_mintrec_v1.json').write_text(json.dumps(result,indent=2,ensure_ascii=False)+'\n'); return result
 if __name__=='__main__': print(json.dumps(run(),indent=2,ensure_ascii=False))

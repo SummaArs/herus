@@ -36,8 +36,32 @@
       "singleton_accuracy": 0.0
     }
   ],
+  "class_conditional_ablation": [
+    {
+      "target_nominal_coverage": 0.8,
+      "test_set_coverage": 0.777202,
+      "mean_set_size": 8.492228,
+      "singleton_coverage": 0.056995,
+      "singleton_accuracy": 0.409091
+    },
+    {
+      "target_nominal_coverage": 0.9,
+      "test_set_coverage": 0.896373,
+      "mean_set_size": 12.549223,
+      "singleton_coverage": 0.012953,
+      "singleton_accuracy": 0.0
+    },
+    {
+      "target_nominal_coverage": 0.95,
+      "test_set_coverage": 0.937824,
+      "mean_set_size": 15.365285,
+      "singleton_coverage": 0.012953,
+      "singleton_accuracy": 0.0
+    }
+  ],
   "limits": [
     "marginal coverage is not per-class coverage",
+    "class-conditional calibration is exploratory and failed nominal coverage on S06",
     "prediction sets are not natural-language reasoning",
     "MIntRec labels are not HERUS events"
   ]

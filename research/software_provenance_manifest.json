@@ -515,7 +515,7 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "9bf94369e87e742cff38eb822800f858f522413456b58adf020b6af0a8050b90",
+      "sha256": "1a64bfdeb2ce48b0b1d91cbd3a363e1ddf4c5844da3d47b7cb055b1762f3985c",
       "role": "organized documentation, maps and historical design records"
     },
     {
@@ -1553,8 +1553,8 @@
     {
       "path": "research/conformal_mintrec.py",
       "kind": "file",
-      "sha256": "0b83e70a14b27f1afb251655ef374113bef4b0b6b63aeb369786c0e737c23a0d",
-      "role": "split conformal evaluation"
+      "sha256": "1da5a3dd2eb448c2453c19a4123f096f1536042c6b209cc24b63a01b15111cd2",
+      "role": "class-conditional conformal ablation"
     },
     {
       "path": "research/test_conformal_mintrec.py",
@@ -1565,14 +1565,14 @@
     {
       "path": "research/evidence/conformal_mintrec_v1.json",
       "kind": "file",
-      "sha256": "ee2b40ac3903cb172c5a6e7bd5d2c0d266d96357c7de4b9108fec9c780ff2073",
-      "role": "conformal evidence"
+      "sha256": "2e05f8c3d247a01a2dea59796be1ba2b7922e929c5aa3409535d2cd49d603f0f",
+      "role": "updated conformal evidence"
     },
     {
       "path": "docs/125-PREDICAO-CONFORMAL-E-ASSURANCE.md",
       "kind": "file",
-      "sha256": "dee3f741d18aba590e234358c4b55935666d4d3c2b2a7e6c178b24b91f95ec3a",
-      "role": "conformal assurance report"
+      "sha256": "0553d83e62432c1e002338f92f8d4c96bbd37566bfe81f80631d5ee22be5fa4f",
+      "role": "updated conformal report"
     }
   ],
   "components": [
