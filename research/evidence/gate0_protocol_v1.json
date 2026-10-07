@@ -1,0 +1,71 @@
+{
+  "schema_version": "herus.gate0.protocol.v1",
+  "status": "frozen_pending_execution",
+  "claim_scope": "MIntRec S06 temporal holdout only",
+  "dataset": {
+    "id": "THU-IAR/MIntRec",
+    "fit_seasons": ["S04", "S05"],
+    "holdout_season": "S06",
+    "holdout_rows_expected": 386,
+    "holdout_must_remain_intact_until_evaluation": true,
+    "identity_key": "example_id",
+    "join_policy": "exact_id_only_no_positional_join"
+  },
+  "herus_object": {
+    "implementation_id": "TO_BE_FILLED_BY_GATE_1",
+    "required_definition": "full Symbiotic Learning v2 text adapter, not context_memory_only",
+    "execution_authority": "proposal_only",
+    "network_access": false
+  },
+  "comparators": [
+    "multinomial_naive_bayes",
+    "distilbert-base-multilingual-cased"
+  ],
+  "seeds": [17, 29, 43],
+  "primary_endpoint": {
+    "name": "macro_f1_full_coverage",
+    "unit": "holdout_example",
+    "abstention_counts_as_non_correct": true,
+    "practical_margin": 0.02,
+    "comparison": "HERUS minus each comparator",
+    "pass_rule": "lower_95_percent_paired_interval_exceeds_practical_margin"
+  },
+  "secondary_endpoints": {
+    "selective": {
+      "minimum_coverage": 0.20,
+      "metric": "selective_accuracy",
+      "required_reporting": ["coverage", "accepted_count", "correct_accepted", "wilson_lower_95"],
+      "claim_scope": "empirical_on_this_holdout_only"
+    },
+    "reliability": ["global_accuracy", "macro_f1", "coverage", "abstention_rate"]
+  },
+  "analysis": {
+    "bootstrap_iterations": 10000,
+    "bootstrap_unit": "example_id_or_dialogue_if_group_key_exists",
+    "selection_split": "S05_only",
+    "holdout_peeking": false,
+    "multiple_comparisons": "primary_endpoint_against_two_named_comparators_reported_separately",
+    "ledger_required": true,
+    "cost_measurement_required": true
+  },
+  "required_artifacts": [
+    "dataset_snapshot_and_checksum",
+    "s06_example_id_manifest",
+    "paired_prediction_ledger_by_example_id_and_seed",
+    "model_versions_and_checkpoints",
+    "environment_manifest",
+    "raw_cost_logs",
+    "independent_metric_recount"
+  ],
+  "blocked_claims_until_gate2": [
+    "SOTA_general",
+    "beats_transformers",
+    "beats_current_ML_generally",
+    "general_symbiosis",
+    "AGI",
+    "universal_efficiency",
+    "production_assurance"
+  ],
+  "gate0_decision": "PASS_FOR_PROTOCOL_ONLY_BLOCKED_FOR_EXECUTION",
+  "known_blocker": "implementation_id must be frozen and Gate 1 must produce an identity-keyed ledger before any efficacy claim"
+}
