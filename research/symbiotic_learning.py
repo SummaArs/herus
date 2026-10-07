@@ -59,6 +59,7 @@ class SkillHypothesis:
     context: State = ()
     stability_milli: int = 0
     drift: bool = False
+    evidence_ids: tuple[str, ...] = ()
 
 @dataclass(frozen=True)
 class Proposal:
@@ -70,6 +71,8 @@ class Proposal:
     cost: int
     evidence_count: int = 0
     drift: bool = False
+    evidence_ids: tuple[str, ...] = ()
+    explanation: str = ""
 
 class SymbioticLearner:
     """Incremental, finite, context-aware and reversible effect learner."""
@@ -89,7 +92,7 @@ class SymbioticLearner:
         self._episodes, self._version = list(snapshot[0]), snapshot[1]
 
     def observe(self, episode: Episode) -> bool:
-        if episode.cost < 0 or episode.risk > self.max_risk or episode.outcome not in {"observed", "negative"}:
+        if not episode.action or episode.cost < 0 or episode.risk < 0 or episode.risk > self.max_risk or episode.outcome not in {"observed", "negative"}:
             return False
         if len(self._episodes) >= self.max_observations or sum(e.cost for e in self._episodes) + episode.cost > self.max_cost:
             return False
@@ -107,29 +110,31 @@ class SymbioticLearner:
             actions = {e.action for e in episodes}
             steps = [e.step for e in episodes]
             drift = bool(steps and max(steps) - min(steps) > self.max_age)
+            evidence_ids = tuple(_digest((e.before, e.action, e.after, e.context, e.step)) for e in episodes)
             if len(actions) != 1:
-                result.append(SkillHypothesis(_digest((context, effect)), effect, "", 0, len(episodes), "ABSTAIN", "action_alias", context, 0, drift))
+                result.append(SkillHypothesis(_digest((context, effect)), effect, "", 0, len(episodes), "ABSTAIN", "action_alias", context, 0, drift, evidence_ids))
                 continue
             confidence = min(1000, 250 * len(episodes) - (300 if drift else 0))
             stability = min(1000, 500 + 250 * min(len(episodes), 2) - (500 if drift else 0))
             status = "ABSTAIN" if drift else "CANDIDATE"
-            result.append(SkillHypothesis(_digest((context, effect)), effect, next(iter(actions)), max(0, confidence), len(episodes), status, "temporal_drift" if drift else "observable_effect", context, max(0, stability), drift))
+            result.append(SkillHypothesis(_digest((context, effect)), effect, next(iter(actions)), max(0, confidence), len(episodes), status, "temporal_drift" if drift else "observable_effect", context, max(0, stability), drift, evidence_ids))
         return tuple(result)
 
     def propose(self, target_effect: State, candidates: Sequence[Episode], *, cost_budget: int = 4, context: State = (), current_step: int = 0) -> Proposal:
         skill_id = _digest((context, target_effect))
         if cost_budget <= 0:
-            return Proposal(skill_id, None, 0, "ABSTAIN", "budget_exhausted", 0)
+            return Proposal(skill_id, None, 0, "ABSTAIN", "budget_exhausted", 0, explanation="Nenhuma proposta: o orçamento disponível é zero ou negativo.")
         matches = [e for e in candidates if e.outcome == "observed" and e.effect == target_effect and _context_matches(context, e.context) and e.cost <= cost_budget and e.risk <= self.max_risk]
         if not matches:
-            return Proposal(skill_id, None, 0, "ABSTAIN", "effect_not_observed", 0)
+            return Proposal(skill_id, None, 0, "ABSTAIN", "effect_not_observed", 0, explanation="Nenhum episódio observado reproduz simultaneamente efeito, contexto, risco e custo.")
+        evidence_ids = tuple(_digest((e.before, e.action, e.after, e.context, e.step)) for e in matches)
         if any(e.step and current_step and abs(e.step - current_step) > self.max_age for e in matches):
-            return Proposal(skill_id, None, 0, "ABSTAIN", "temporal_drift", min(e.cost for e in matches), len(matches), True)
+            return Proposal(skill_id, None, 0, "ABSTAIN", "temporal_drift", min(e.cost for e in matches), len(matches), True, evidence_ids, "Abstenção: a evidência correspondente está fora da janela temporal permitida.")
         actions = {e.action for e in matches}
         if len(actions) != 1:
-            return Proposal(skill_id, None, 0, "ABSTAIN", "ambiguous_effect", min(e.cost for e in matches), len(matches))
+            return Proposal(skill_id, None, 0, "ABSTAIN", "ambiguous_effect", min(e.cost for e in matches), len(matches), False, evidence_ids, "Abstenção: o mesmo efeito/contexto foi observado com ações diferentes.")
         chosen = matches[0]
-        return Proposal(skill_id, chosen.action, min(1000, 500 + 250 * min(len(matches), 2)), "PROPOSE", "unique_effect_match", chosen.cost, len(matches))
+        return Proposal(skill_id, chosen.action, min(1000, 500 + 250 * min(len(matches), 2)), "PROPOSE", "unique_effect_match", chosen.cost, len(matches), False, evidence_ids, f"Proposta sustentada por {len(matches)} episódio(s) com efeito e contexto coincidentes.")
 
     def export(self) -> dict[str, object]:
         return {"algorithm": "symbiotic-learning-v2", "version": self._version, "episodes": len(self._episodes), "skills": [h.__dict__ for h in self.induce()]}

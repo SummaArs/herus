@@ -61,4 +61,28 @@ class SymbioticLearningTests(unittest.TestCase):
         self.assertTrue(learner.observe(negative))
         self.assertEqual(learner.induce(), ())
 
+    def test_proposal_exposes_reproducible_evidence_trace(self):
+        learner = SymbioticLearner()
+        episode = self.source[0]
+        proposal = learner.propose(episode.effect, [episode])
+        self.assertEqual(proposal.status, 'PROPOSE')
+        self.assertEqual(proposal.evidence_count, len(proposal.evidence_ids))
+        self.assertTrue(proposal.evidence_ids[0])
+        self.assertIn('episódio', proposal.explanation)
+
+    def test_induced_hypothesis_exposes_evidence_trace(self):
+        learner = SymbioticLearner()
+        self.assertTrue(learner.observe(self.source[0]))
+        hypothesis = learner.induce()[0]
+        self.assertEqual(hypothesis.observations, len(hypothesis.evidence_ids))
+        self.assertTrue(hypothesis.evidence_ids[0])
+
+    def test_empty_action_is_rejected_fail_closed(self):
+        learner = SymbioticLearner()
+        self.assertFalse(learner.observe(Episode.from_maps({}, '', {'x': 1})))
+
+    def test_negative_risk_is_rejected_fail_closed(self):
+        learner = SymbioticLearner()
+        self.assertFalse(learner.observe(Episode.from_maps({}, 'unsafe', {'x': 1}, risk=-1)))
+
 if __name__ == '__main__': unittest.main()

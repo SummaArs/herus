@@ -515,19 +515,19 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "1a64bfdeb2ce48b0b1d91cbd3a363e1ddf4c5844da3d47b7cb055b1762f3985c",
+      "sha256": "ec39b22bdf6e9d3480c8a3c1e9d9bd4e3ff6a5fdb5ea0b005520cbd2ddf0b4b0",
       "role": "organized documentation, maps and historical design records"
     },
     {
       "path": "research/symbiotic_learning.py",
       "kind": "file",
-      "sha256": "353a08ca8ef3897d47be9488098ceb83b717a5f32ad09ffed0374987724fab36",
+      "sha256": "23e9681cd4db56575adea0e6eda0f9fa6df17e24d19649491cce8f63d68d05a3",
       "role": "Symbiotic Learning v2 algorithm"
     },
     {
       "path": "research/test_symbiotic_learning.py",
       "kind": "file",
-      "sha256": "57f497a71d59b7b0441e91b79ea74178357ff27dc60f2eeb4860bf465aa3bfb4",
+      "sha256": "fb578e7e0a665db31f446e3d318043683c9bcc5a54980b33f3818f30c61bbb4b",
       "role": "adversarial Symbiotic Learning v2 tests"
     },
     {
