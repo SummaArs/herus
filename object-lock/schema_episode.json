@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "herus.episode.v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["example_id", "entity_id", "timestamp", "context", "current_state", "action", "outcome", "provenance", "verifier"],
+  "properties": {
+    "example_id": {"type": "string", "minLength": 1},
+    "entity_id": {"type": "string", "minLength": 1},
+    "timestamp": {"type": "integer", "minimum": 0},
+    "context": {"type": "object"},
+    "current_state": {"type": "object"},
+    "before": {"type": "object"},
+    "action": {"type": "string", "minLength": 1},
+    "after": {"type": "object"},
+    "target_effect": {"type": ["object", "null"]},
+    "outcome": {"enum": ["positive", "negative", "unknown"]},
+    "cost": {"type": "number", "minimum": 0},
+    "risk": {"type": "number", "minimum": 0},
+    "delay": {"type": "number", "minimum": 0},
+    "provenance": {"type": "string", "minLength": 1},
+    "verifier": {"type": "string", "minLength": 1}
+  }
+}

@@ -1,0 +1,96 @@
+schema_version: herus.object_lock.v1
+status: proposed_for_lock
+execution_authorized: false
+object_id: herus-selective-episodic-gate
+scope: single_domain_temporal_holdout
+
+input:
+  record_type: structured_context_and_current_state
+  required_fields:
+    - example_id
+    - entity_id
+    - timestamp
+    - context
+    - current_state
+  forbidden_fields:
+    - y_true
+    - test_label
+    - target_effect_derived_from_test_label
+
+target:
+  name: candidate_effect
+  source: independent_upstream_or_human_annotation
+  must_be_versioned: true
+  must_not_depend_on_holdout_label: true
+  provenance_required: true
+
+output:
+  type: action_proposal_or_abstain
+  execution_authority: none
+  abstention_reasons:
+    - no_evidence
+    - ambiguous_action
+    - conflicting_positive_negative_evidence
+    - stale_evidence
+    - incompatible_state
+    - risk_budget_exceeded
+    - cost_budget_exceeded
+
+memory:
+  positive_and_negative_evidence_are_retained: true
+  negative_evidence_changes_support: true
+  empty_context_is_not_universal_match: true
+  state_and_preconditions_participate_in_matching: true
+
+partitions:
+  fit: S04
+  calibration: S05
+  holdout: S06
+  holdout_is_untouched_until_evaluation: true
+  independent_unit: episode
+  join_key: example_id
+
+primary_claim:
+  text: selective_gate_precision_at_fixed_coverage_in_one_domain
+  minimum_coverage: 0.30
+  minimum_precision: 0.95
+  practical_margin_against_primary_control: 0.03
+  confidence_interval: episode_cluster_bootstrap_95
+
+comparators:
+  primary: context_frequency_threshold
+  secondary:
+    - finite_memory_lookup
+    - simple_confidence_threshold
+
+required_metrics:
+  - accepted_precision
+  - global_accuracy
+  - coverage
+  - abstention_rate
+  - risk_coverage_curve
+  - invalid_proposal_rate
+  - conflict_rate
+  - stale_evidence_rate
+  - per_episode_results
+  - leave_one_episode_out
+
+claims_forbidden_until_rejected_or_supported:
+  - SOTA_general
+  - universal_superiority
+  - AGI
+  - general_symbiosis
+  - universal_transfer
+  - production_safety
+  - causal_effect
+  - multimodal_generalization
+
+hard_stop_conditions:
+  - target_leakage
+  - duplicate_or_missing_example_id
+  - positive_only_support_counting
+  - context_empty_matches_everything
+  - current_state_ignored
+  - negative_evidence_ignored
+  - holdout_touched_before_lock
+  - result_not_reproducible_after_shuffle
