@@ -47,8 +47,8 @@
     {
       "path": "research/Makefile",
       "kind": "file",
-      "sha256": "8499808901368c3ddae90968b8e482c1b54608db1f1a7265e376d1fa85a36efe",
-      "role": "alignment ablation test gate"
+      "sha256": "a43f99b948a8562616768d1e7b88bf055ac7a0f97dd039d4e91ceb76d5ebda7b",
+      "role": "reference baseline matrix test gate"
     },
     {
       "path": "research/semantic_ir.py",
@@ -251,8 +251,8 @@
     {
       "path": "README.md",
       "kind": "file",
-      "sha256": "bafbee0b5b392ec0c05f2c010244c6748823b6919a67b48b8b9eebbc5c019f8a",
-      "role": "unsupervised alignment ablation and test count"
+      "sha256": "1754b110ca3849cb610af9bb35c63e638573149d0f7653dfb4086faed7b2235e",
+      "role": "classical ML reference matrix and test count"
     },
     {
       "path": "docs/50-INTENT-COMPILER-E-SEMANTIC-IR.md",
@@ -515,7 +515,7 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "319111993cdd754a3350b63cd6feba9427c46ff757e9764b308ff7d9616f6ed8",
+      "sha256": "1bba6b16d6db8312ee107f448357958d63bd74b569dee4eed9b969ea23c43832",
       "role": "organized documentation, maps and historical design records"
     },
     {
@@ -1129,6 +1129,30 @@
       "kind": "file",
       "sha256": "ece73978367be1dcef478d4492a1172e1df28d4aec86d796f3cbb5f9fe7706ec",
       "role": "rejected alignment hypothesis report"
+    },
+    {
+      "path": "research/ml_reference_matrix_minds14.py",
+      "kind": "file",
+      "sha256": "19ff1f60a9d5029a6b1bbdba7a71f71c09c8f0b9277836e25a8607a97be828f8",
+      "role": "real classical baseline matrix"
+    },
+    {
+      "path": "research/test_ml_reference_matrix_minds14.py",
+      "kind": "file",
+      "sha256": "19bf21ba17977b7e695ef1264cd1356c3c235e6b054f9a5d16ae0a15de28b022",
+      "role": "baseline matrix evidence test"
+    },
+    {
+      "path": "research/evidence/ml_reference_matrix_minds14_v1.json",
+      "kind": "file",
+      "sha256": "69882e7662523aa89fe1b1c3de817a44a615407289d679e840af72b224c324f9",
+      "role": "real baseline matrix evidence"
+    },
+    {
+      "path": "docs/108-MATRIZ-BASELINES-ML-MINDS14.md",
+      "kind": "file",
+      "sha256": "457f5eb1241a011303d9bdf0398594434655238b254b09e4e9c5050c859493e3",
+      "role": "classical baseline comparison report"
     }
   ],
   "components": [

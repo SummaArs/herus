@@ -1,0 +1,50 @@
+{
+  "config": "pt-PT",
+  "dataset": "PolyAI/minds14",
+  "fit_rows": 417,
+  "holdout_rows": 98,
+  "models": [
+    {
+      "accuracy": 0.94898,
+      "coverage": 1.0,
+      "infer_ms": 4.81,
+      "macro_f1": 0.94637,
+      "model": "tfidf_logistic_regression",
+      "selective_accuracy": 0.94898,
+      "train_ms": 1350.22
+    },
+    {
+      "accuracy": 0.959184,
+      "coverage": 1.0,
+      "infer_ms": 6.7,
+      "macro_f1": 0.955328,
+      "model": "tfidf_linear_svm",
+      "selective_accuracy": 0.959184,
+      "train_ms": 88.58
+    },
+    {
+      "accuracy": 0.938776,
+      "coverage": 1.0,
+      "infer_ms": 5.9,
+      "macro_f1": 0.934785,
+      "model": "tfidf_knn",
+      "selective_accuracy": 0.938776,
+      "train_ms": 23.95
+    },
+    {
+      "accuracy": 0.959184,
+      "coverage": 1.0,
+      "infer_ms": 15.72,
+      "macro_f1": 0.953565,
+      "model": "tfidf_random_forest",
+      "selective_accuracy": 0.959184,
+      "train_ms": 418.01
+    }
+  ],
+  "notes": [
+    "all classical models use the same text-only holdout",
+    "HERUS consensus and frozen multilingual encoder are reported in separate evidence to preserve protocol differences",
+    "no claim of universal superiority from one corpus"
+  ],
+  "split": "deterministic within-label path order; no speaker-independent guarantee"
+}
