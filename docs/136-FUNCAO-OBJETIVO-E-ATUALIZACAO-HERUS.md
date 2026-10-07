@@ -70,13 +70,25 @@ Requisitos:
 - abstention;
 - snapshot/rollback.
 
+Também existe agora uma primeira implementação executável do objetivo:
+
+- `UtilityWeights` para ponderar risco, custo, autoridade e déficit de evidência;
+- `SymbioticLearner.objective(...)` para calcular utilidade penalizada;
+- `Feedback` tipado com resultado, provenance e verificador;
+- `SymbioticLearner.update(...)` para atualização bounded e reversível;
+- `UpdateResult` com estado, motivo, score e ID de evidência;
+- contraevidência negativa vinculada ao `target_effect`;
+- matching opcional do estado atual;
+- contexto vazio que não casa universalmente;
+- deriva temporal aplicada inclusive quando o passo é zero.
+
 ## O que falta para chamar de algoritmo completo
 
 - entrada que não receba o rótulo/efeito verdadeiro do holdout;
-- estado atual e precondições na decisão;
-- negativos usados como contraevidência real;
-- função de utilidade executável e versionada;
-- atualização de `θ` ou memória guiada por feedback;
+- estado atual e precondições na decisão completa;
+- negativos usados como contraevidência em múltiplos regimes;
+- função de utilidade calibrada em dados reais;
+- atualização de `θ` além da memória episódica;
 - adapter de hospedeiro separado do core;
 - benchmark de interfaces/hosts permutados;
 - comparação com controles em orçamento equivalente;

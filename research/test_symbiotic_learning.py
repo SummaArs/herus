@@ -1,5 +1,5 @@
 import unittest
-from symbiotic_learning import Episode, SymbioticLearner, _state, _wilson_lower
+from symbiotic_learning import Episode, Feedback, SymbioticLearner, UtilityWeights, _state, _wilson_lower
 
 class SymbioticLearningTests(unittest.TestCase):
     def setUp(self):
@@ -88,5 +88,49 @@ class SymbioticLearningTests(unittest.TestCase):
     def test_confidence_is_conservative_for_small_evidence(self):
         self.assertLess(_wilson_lower(1, 1), 1000)
         self.assertGreater(_wilson_lower(10, 10), _wilson_lower(1, 1))
+
+    def test_objective_penalizes_risk_cost_authority_and_evidence(self):
+        learner = SymbioticLearner()
+        score = learner.objective(utility=10, risk=2, cost=3, authority_violation=1, evidence_deficit=2,
+                                  weights=UtilityWeights(risk=2, cost=1, authority=4, evidence=0.5))
+        self.assertEqual(score, 10 - 4 - 3 - 4 - 1)
+
+    def test_update_accepts_verified_positive_feedback_and_is_auditable(self):
+        learner = SymbioticLearner()
+        effect = Episode.from_maps({'mode': 0}, 'button_a', {'mode': 1}).effect
+        result = learner.update(Feedback(_state({'mode': 0}), 'button_a', _state({'mode': 1}), effect,
+                                         utility=4, provenance='fixture-1', verifier='test'))
+        self.assertTrue(result.accepted)
+        self.assertEqual(result.status, 'UPDATED')
+        self.assertTrue(result.evidence_id)
+        self.assertEqual(len(learner.snapshot()[0]), 1)
+
+    def test_update_rejects_authority_violation_without_mutation(self):
+        learner = SymbioticLearner()
+        result = learner.update(Feedback((), 'unsafe', _state({'x': 1}), _state({'x': 1}), authority_violation=1))
+        self.assertFalse(result.accepted)
+        self.assertEqual(result.reason, 'authority_violation')
+        self.assertEqual(learner.version, 0)
+
+    def test_negative_feedback_blocks_the_same_action_when_target_is_bound(self):
+        learner = SymbioticLearner()
+        positive = Episode.from_maps({'mode': 0}, 'button_a', {'mode': 1})
+        negative = Episode.from_maps({'mode': 0}, 'button_a', {'mode': 0}, outcome='negative', target_effect=positive.effect)
+        self.assertTrue(learner.observe(positive))
+        self.assertTrue(learner.observe(negative))
+        proposal = learner.propose(positive.effect, [positive, negative], current_state=positive.before)
+        self.assertEqual(proposal.reason, 'negative_evidence')
+
+    def test_current_state_is_required_for_state_conditioned_proposal(self):
+        learner = SymbioticLearner()
+        episode = Episode.from_maps({'mode': 0}, 'button_a', {'mode': 1})
+        proposal = learner.propose(episode.effect, [episode], current_state=_state({'mode': 99}))
+        self.assertEqual(proposal.reason, 'effect_not_observed')
+
+    def test_empty_context_does_not_match_nonempty_context(self):
+        learner = SymbioticLearner()
+        episode = Episode.from_maps({'mode': 0}, 'button_a', {'mode': 1}, context={'channel': 1})
+        proposal = learner.propose(episode.effect, [episode], context=())
+        self.assertEqual(proposal.reason, 'effect_not_observed')
 
 if __name__ == '__main__': unittest.main()

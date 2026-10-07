@@ -24,6 +24,8 @@ def _digest(value: object) -> str:
 
 def _context_matches(required: State, observed: State) -> bool:
     actual = dict(observed)
+    if not required:
+        return not observed
     return all(actual.get(k) == v for k, v in required)
 
 def _wilson_lower(successes: int, trials: int, z: float = 1.96) -> int:
@@ -52,6 +54,7 @@ class Episode:
     context: State = ()
     step: int = 0
     outcome: str = "observed"
+    target_effect: State | None = None
 
     @classmethod
     def from_maps(cls, before: Mapping[str, int], action: str, after: Mapping[str, int], **kw: int | str | Mapping[str, int]) -> "Episode":
@@ -90,6 +93,41 @@ class Proposal:
     evidence_ids: tuple[str, ...] = ()
     explanation: str = ""
 
+@dataclass(frozen=True)
+class UtilityWeights:
+    """Weights for the proposal objective; all penalties are non-negative."""
+    risk: float = 1.0
+    cost: float = 1.0
+    authority: float = 1.0
+    evidence: float = 1.0
+
+@dataclass(frozen=True)
+class Feedback:
+    """Verified host feedback used by the bounded update rule."""
+    before: State
+    action: str
+    after: State
+    target_effect: State
+    context: State = ()
+    outcome: str = "positive"
+    utility: float = 0.0
+    risk: float = 0.0
+    cost: float = 1.0
+    authority_violation: float = 0.0
+    evidence_deficit: float = 0.0
+    provenance: str = "public"
+    verifier: str = "unspecified"
+    step: int = 0
+
+@dataclass(frozen=True)
+class UpdateResult:
+    accepted: bool
+    status: str
+    reason: str
+    objective: float
+    version: int
+    evidence_id: str = ""
+
 class SymbioticLearner:
     """Incremental, finite, context-aware and reversible effect learner."""
     def __init__(self, *, max_observations: int = 32, max_cost: int = 32, max_risk: int = 0, max_age: int = 8) -> None:
@@ -106,6 +144,30 @@ class SymbioticLearner:
 
     def rollback(self, snapshot: tuple[tuple[Episode, ...], int]) -> None:
         self._episodes, self._version = list(snapshot[0]), snapshot[1]
+
+    def objective(self, *, utility: float, risk: float, cost: float, authority_violation: float = 0.0, evidence_deficit: float = 0.0, weights: UtilityWeights = UtilityWeights()) -> float:
+        """Score a feedback event under the host contract."""
+        values = (risk, cost, authority_violation, evidence_deficit)
+        if any(value < 0 for value in values):
+            raise ValueError("objective_penalties_must_be_non_negative")
+        return float(utility - weights.risk * risk - weights.cost * cost - weights.authority * authority_violation - weights.evidence * evidence_deficit)
+
+    def update(self, feedback: Feedback, *, weights: UtilityWeights = UtilityWeights()) -> UpdateResult:
+        """Apply one bounded, reversible feedback update; never grants authority."""
+        if feedback.outcome not in {"positive", "negative"}:
+            return UpdateResult(False, "REJECTED", "feedback_outcome_invalid", 0.0, self.version)
+        if not feedback.action or feedback.risk < 0 or feedback.cost < 0:
+            return UpdateResult(False, "REJECTED", "feedback_contract_invalid", 0.0, self.version)
+        score = self.objective(utility=feedback.utility, risk=feedback.risk, cost=feedback.cost, authority_violation=feedback.authority_violation, evidence_deficit=feedback.evidence_deficit, weights=weights)
+        if feedback.authority_violation > 0:
+            return UpdateResult(False, "REJECTED", "authority_violation", score, self.version)
+        episode = Episode(feedback.before, feedback.action, feedback.after, int(feedback.cost), int(feedback.risk), feedback.provenance, feedback.context, feedback.step, "observed" if feedback.outcome == "positive" else "negative", feedback.target_effect)
+        snapshot = self.snapshot()
+        if not self.observe(episode):
+            self.rollback(snapshot)
+            return UpdateResult(False, "REJECTED", "observation_budget_or_risk", score, self.version)
+        evidence_id = _digest((episode.before, episode.action, episode.after, episode.context, episode.step, episode.target_effect, episode.outcome))
+        return UpdateResult(True, "UPDATED", "feedback_accepted", score, self.version, evidence_id)
 
     def observe(self, episode: Episode) -> bool:
         if not episode.action or episode.cost < 0 or episode.risk < 0 or episode.risk > self.max_risk or episode.outcome not in {"observed", "negative"}:
@@ -136,19 +198,22 @@ class SymbioticLearner:
             result.append(SkillHypothesis(_digest((context, effect)), effect, next(iter(actions)), max(0, confidence), len(episodes), status, "temporal_drift" if drift else "observable_effect", context, max(0, stability), drift, evidence_ids))
         return tuple(result)
 
-    def propose(self, target_effect: State, candidates: Sequence[Episode], *, cost_budget: int = 4, context: State = (), current_step: int = 0) -> Proposal:
+    def propose(self, target_effect: State, candidates: Sequence[Episode], *, cost_budget: int = 4, context: State = (), current_step: int | None = 0, current_state: State | None = None) -> Proposal:
         skill_id = _digest((context, target_effect))
         if cost_budget <= 0:
             return Proposal(skill_id, None, 0, "ABSTAIN", "budget_exhausted", 0, explanation="Nenhuma proposta: o orçamento disponível é zero ou negativo.")
-        matches = [e for e in candidates if e.outcome == "observed" and e.effect == target_effect and _context_matches(context, e.context) and e.cost <= cost_budget and e.risk <= self.max_risk]
+        matches = [e for e in candidates if e.outcome == "observed" and e.effect == target_effect and _context_matches(context, e.context) and (current_state is None or e.before == current_state) and e.cost <= cost_budget and e.risk <= self.max_risk]
         if not matches:
             return Proposal(skill_id, None, 0, "ABSTAIN", "effect_not_observed", 0, explanation="Nenhum episódio observado reproduz simultaneamente efeito, contexto, risco e custo.")
         evidence_ids = tuple(_digest((e.before, e.action, e.after, e.context, e.step)) for e in matches)
-        if any(e.step and current_step and abs(e.step - current_step) > self.max_age for e in matches):
+        if current_step is not None and any(abs(e.step - current_step) > self.max_age for e in matches):
             return Proposal(skill_id, None, 0, "ABSTAIN", "temporal_drift", min(e.cost for e in matches), len(matches), True, evidence_ids, "Abstenção: a evidência correspondente está fora da janela temporal permitida.")
         actions = {e.action for e in matches}
         if len(actions) != 1:
             return Proposal(skill_id, None, 0, "ABSTAIN", "ambiguous_effect", min(e.cost for e in matches), len(matches), False, evidence_ids, "Abstenção: o mesmo efeito/contexto foi observado com ações diferentes.")
+        negative_actions = {e.action for e in candidates if e.outcome == "negative" and e.target_effect == target_effect and _context_matches(context, e.context) and (current_state is None or e.before == current_state)}
+        if negative_actions.intersection(actions):
+            return Proposal(skill_id, None, 0, "ABSTAIN", "negative_evidence", min(e.cost for e in matches), len(matches), False, evidence_ids, "Abstenção: existe contraevidência negativa para a única ação observada.")
         chosen = matches[0]
         confidence = _wilson_lower(len(matches), len(matches))
         return Proposal(skill_id, chosen.action, confidence, "PROPOSE", "unique_effect_match", chosen.cost, len(matches), False, evidence_ids, f"Proposta sustentada por {len(matches)} episódio(s) com efeito e contexto coincidentes; confiança é limite inferior de Wilson da estabilidade da evidência.")

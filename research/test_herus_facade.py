@@ -18,4 +18,11 @@ class HerusFacadeTests(unittest.TestCase):
         self.assertEqual(proposal.action,'enable')
         self.assertEqual(h.inspect()['authority'],'none')
 
+    def test_update_applies_verified_feedback_without_authority(self):
+        h=Herus()
+        result=h.update({'ready':0}, 'enable', {'ready':1}, {'ready':1}, utility=2, verifier='test')
+        self.assertTrue(result.accepted)
+        self.assertEqual(result.status, 'UPDATED')
+        self.assertEqual(h.inspect()['authority'], 'none')
+
 if __name__=='__main__': unittest.main()

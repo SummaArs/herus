@@ -4,7 +4,7 @@ from typing import Any, Mapping, Sequence, Tuple
 from herus_symbiotic.data_science import DataScienceSkill, MLPlan
 from herus_symbiotic.programming import ProgrammingRequest, ProgrammingSkill, ProgrammingProposal
 from research.meta_symbiotic_learning import MetaSymbioticLearner, Problem
-from research.symbiotic_learning import Episode, Proposal, State, SymbioticLearner
+from research.symbiotic_learning import Episode, Feedback, Proposal, State, SymbioticLearner, UpdateResult
 
 class Herus:
     """One importable object for beginners and senior users.
@@ -30,11 +30,18 @@ class Herus:
         """Record an observed episode; rejected observations fail closed."""
         return self.learning.observe(Episode.from_maps(before, action, after, **kwargs))
 
-    def propose(self, target_effect: Mapping[str, int], *, context: Mapping[str, int] | None = None, cost_budget: int = 4, current_step: int = 0) -> Proposal:
+    def propose(self, target_effect: Mapping[str, int], *, context: Mapping[str, int] | None = None, current_state: Mapping[str, int] | None = None, cost_budget: int = 4, current_step: int | None = 0) -> Proposal:
         """Propose an action from observed evidence; never execute it."""
         state: State = tuple(sorted((str(k), int(v)) for k, v in target_effect.items()))
         ctx: State = tuple(sorted((str(k), int(v)) for k, v in (context or {}).items()))
-        return self.learning.propose(state, self.learning.snapshot()[0], cost_budget=cost_budget, context=ctx, current_step=current_step)
+        current: State | None = None if current_state is None else tuple(sorted((str(k), int(v)) for k, v in current_state.items()))
+        return self.learning.propose(state, self.learning.snapshot()[0], cost_budget=cost_budget, context=ctx, current_step=current_step, current_state=current)
+
+    def update(self, before: Mapping[str, int], action: str, after: Mapping[str, int], target_effect: Mapping[str, int], *, outcome: str = "positive", utility: float = 0.0, risk: float = 0.0, cost: float = 1.0, context: Mapping[str, int] | None = None, provenance: str = "public", verifier: str = "unspecified", step: int = 0) -> UpdateResult:
+        """Apply verified host feedback to the bounded learner; never execute."""
+        to_state = lambda value: tuple(sorted((str(k), int(v)) for k, v in value.items()))
+        feedback = Feedback(to_state(before), action, to_state(after), to_state(target_effect), to_state(context or {}), outcome, utility, risk, cost, 0.0, 0.0, provenance, verifier, step)
+        return self.learning.update(feedback)
 
     def inspect(self) -> dict[str, object]:
         """Return an explainable snapshot suitable for logs and teaching."""
@@ -42,4 +49,4 @@ class Herus:
 
     @staticmethod
     def help() -> str:
-        return "Herus().data(...) audita ML; .program(...) planeja código; .observe(...) aprende evidência; .propose(...) propõe sem executar; .inspect() explica o estado."
+        return "Herus().data(...) audita ML; .program(...) planeja código; .observe(...) aprende evidência; .update(...) aplica feedback verificado; .propose(...) propõe sem executar; .inspect() explica o estado."

@@ -515,19 +515,19 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "08a6297878f99858b99d270453d226763e208b32d5e21659a084cd7ecbdb2beb",
+      "sha256": "b91840b9db5fec783d161016f1b5f22eea3f38a4089917ce8680f3fb4efdfe73",
       "role": "organized documentation, maps and historical design records"
     },
     {
       "path": "research/symbiotic_learning.py",
       "kind": "file",
-      "sha256": "13d910a8ed98e6b58c923ae60a0da851a474a2164985d74c09faef1994a333af",
+      "sha256": "6852353bad3eab1f0439cc9f3c379e4b7bff1cc3db12ba0de88e3c2e6ad905fc",
       "role": "Symbiotic Learning v2 algorithm"
     },
     {
       "path": "research/test_symbiotic_learning.py",
       "kind": "file",
-      "sha256": "7d0b336f9b65b1a66248d11194fa95821ee98587a76d1ab66c7ce12825265572",
+      "sha256": "b1c10551dcd37fcfee32b1f9dc413fb29265c78872f0b48012478c6c0787100d",
       "role": "adversarial Symbiotic Learning v2 tests"
     },
     {
@@ -539,7 +539,7 @@
     {
       "path": "research/symbiotic_learning_benchmark.py",
       "kind": "file",
-      "sha256": "8a71013340ee0be01f326b8d21f8b79298532100ed339a55bb7dd6415e4e8a7b",
+      "sha256": "684e21df2c4b6b9b19baf41bed8a8e2d0b8947a4c7b1aea98307ba87c4e2884d",
       "role": "Symbiotic Learning baseline benchmark"
     },
     {
@@ -809,7 +809,7 @@
     {
       "path": "research/test_evaluation_contract.py",
       "kind": "file",
-      "sha256": "c167dd2e5c9314e209bb6cdf1ad976bea64ea03d2cd173180b4e55dadb2a07aa",
+      "sha256": "30a2e1ffd9c732563962060976b49b7c5812c221378844b541243a3634b3aea9",
       "role": "anti-overclaim evaluation tests"
     },
     {
@@ -833,7 +833,7 @@
     {
       "path": "research/test_transformer_mintrec_benchmark.py",
       "kind": "file",
-      "sha256": "7629a91c84973c56399ee14e75e1b5346e2f15d28a5c39e6e746437f1324670f",
+      "sha256": "22c6fb08b9c7821b41662b89b85ff91de16bfa70faeeb454c6f29d4e1734b764",
       "role": "transformer evidence integrity tests"
     },
     {
@@ -1427,13 +1427,13 @@
     {
       "path": "herus_symbiotic/herus.py",
       "kind": "file",
-      "sha256": "2fdd717461f7538486c1e1e5f6f198ab4d135eb426c6dd42b4a3b712b6d0635f",
+      "sha256": "188a7bfe5fdf86de1f1a296246df7fbc3bc104634ae57d27c0c9208a1a2c474f",
       "role": "single public facade"
     },
     {
       "path": "research/test_herus_facade.py",
       "kind": "file",
-      "sha256": "0f24efff86fc2422c5c63c25e8b1a9ab1ab6f14c4ff038d464be31767748a200",
+      "sha256": "8d8837adc903955e258e0c910482ce6f51fc1f2684396e9a892345c1e33cfe87",
       "role": "facade tests"
     },
     {

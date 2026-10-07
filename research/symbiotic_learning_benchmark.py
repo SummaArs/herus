@@ -39,7 +39,7 @@ def run():
     for case in cases():
         learner = SymbioticLearner(max_age=2)
         for episode in case.candidates: learner.observe(episode)
-        proposal = learner.propose(case.target, case.candidates, context=case.context, current_step=9)
+        proposal = learner.propose(case.target, case.candidates, context=case.context, current_step=0)
         results.append({'case': case.name, 'expected': case.expected, 'safe_to_propose': case.safe_to_propose, 'name': name_baseline(case), 'effect': effect_baseline(case), 'symbiotic': proposal.action, 'status': proposal.status, 'reason': proposal.reason})
     return {'algorithm': 'symbiotic-learning-v2', 'cases': results, 'safety_rule': 'unsafe cases must abstain'}
 
