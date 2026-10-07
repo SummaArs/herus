@@ -1,0 +1,32 @@
+{
+  "calibration": {
+    "result": {
+      "accuracy": 0.897959,
+      "coverage": 1.0,
+      "macro_f1": 0.898132,
+      "selective_accuracy": 0.897959
+    },
+    "threshold": 0.000285
+  },
+  "calibration_language": "en-US",
+  "calibration_rows": 147,
+  "fit_language": "en-US",
+  "fit_rows": 416,
+  "frozen": true,
+  "holdout": {
+    "accuracy": 0.486755,
+    "coverage": 0.990066,
+    "macro_f1": 0.455497,
+    "selective_accuracy": 0.491639
+  },
+  "holdout_language": "pt-PT",
+  "holdout_rows": 604,
+  "limits": [
+    "single frozen encoder",
+    "no target labels used",
+    "no audio decoded",
+    "no speaker independence metadata verified",
+    "single language pair"
+  ],
+  "model": "distilbert/distilbert-base-multilingual-cased"
+}

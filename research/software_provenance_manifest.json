@@ -47,8 +47,8 @@
     {
       "path": "research/Makefile",
       "kind": "file",
-      "sha256": "5a28261dba7c3655880d1eb7e9adb90540279fc56d320fba3558631d633dc8bb",
-      "role": "cross-language benchmark test gate"
+      "sha256": "be61f69cf65fdf3adfa5360607eaa560fb1b407e370bbe2fb1a01562a5f6dcfd",
+      "role": "multilingual encoder test gate"
     },
     {
       "path": "research/semantic_ir.py",
@@ -251,8 +251,8 @@
     {
       "path": "README.md",
       "kind": "file",
-      "sha256": "c27196b6170eedd58e9fe860a5be957c620db72c51936ca06c9f5daee62fdf85",
-      "role": "cross-language transfer result and test count"
+      "sha256": "1c02654bdf7b4173123a2fc6d591b4c01bd40b5f998ebc1fabcfc5b512b8e787",
+      "role": "frozen multilingual encoder result and test count"
     },
     {
       "path": "docs/50-INTENT-COMPILER-E-SEMANTIC-IR.md",
@@ -515,7 +515,7 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "0696dbaf0e90da7c6be38514fef7f3e0df2336e77db5a6c2906f52d2dc883ccb",
+      "sha256": "30981cabd578fe650e0fe2c3d5fa46ad62b3ebacbe3338fbb6bdb802f8052b96",
       "role": "organized documentation, maps and historical design records"
     },
     {
@@ -1081,6 +1081,30 @@
       "kind": "file",
       "sha256": "ff19075d135fade48ca6f9650d4f1566e5e828be3752328702f668175c7ecd50",
       "role": "cross-language transfer limits"
+    },
+    {
+      "path": "research/multilingual_encoder_benchmark.py",
+      "kind": "file",
+      "sha256": "a55af1bb167e58ed9f0ffa4b19c05cf69797fbc7ce1290571b00899a980a3ecf",
+      "role": "frozen multilingual encoder benchmark"
+    },
+    {
+      "path": "research/test_multilingual_encoder_benchmark.py",
+      "kind": "file",
+      "sha256": "e972e2b8561256b3d5b4377f42602c8a4943dd222069fb946e6278979efa0ae4",
+      "role": "multilingual encoder evidence test"
+    },
+    {
+      "path": "research/evidence/multilingual_encoder_minds14_v1.json",
+      "kind": "file",
+      "sha256": "52b8405dff928a14877cd1e846ed37c7ff8eeee6138e1dbf1c22df776679b3d9",
+      "role": "real frozen cross-language evidence"
+    },
+    {
+      "path": "docs/106-ENCODER-MULTILINGUE-CROSS-LANGUAGE.md",
+      "kind": "file",
+      "sha256": "bd57c4e9f8860ea932ee5adebc554b192e176b628e999de9cae2add5a6110c7a",
+      "role": "multilingual encoder validation report"
     }
   ],
   "components": [
