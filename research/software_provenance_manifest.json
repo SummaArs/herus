@@ -47,8 +47,8 @@
     {
       "path": "research/Makefile",
       "kind": "file",
-      "sha256": "190457ad5a757c6b72933eebe17d7e340ac082b797fa1747f67ae9521b0d3ac3",
-      "role": "stable selection gate"
+      "sha256": "d498ab44712c784d82d777d4b5f4d7de622d0b687c6f1873134d8f1408475aa6",
+      "role": "ensemble gate"
     },
     {
       "path": "research/semantic_ir.py",
@@ -251,8 +251,8 @@
     {
       "path": "README.md",
       "kind": "file",
-      "sha256": "498221e1049e112dac507634a073ec5766e215717dd2757763ed8457aca0a0b8",
-      "role": "stable selection narrative and test count"
+      "sha256": "ac69543150c0e5c657e372aeb3e09564c05ea7e00e82d051d03bbfd042fffa29",
+      "role": "ensemble result and test count"
     },
     {
       "path": "docs/50-INTENT-COMPILER-E-SEMANTIC-IR.md",
@@ -515,7 +515,7 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "ea06b6830ca5622a67e3403090f22f934719ac7d810867c8982d66641680ebdb",
+      "sha256": "f59af00546b2d6e25af88ff741c5e089b36887e173ff2230678009e41d7e9063",
       "role": "organized documentation, maps and historical design records"
     },
     {
@@ -1333,6 +1333,30 @@
       "kind": "file",
       "sha256": "b83e16b37025cbde3eff5802d6bb29e3b33dbf82e84260da900da7930f3b8bd7",
       "role": "stable selection report"
+    },
+    {
+      "path": "research/ensemble_representation_mintrec.py",
+      "kind": "file",
+      "sha256": "34403780d26549ea8ef2dfb48f2eab9357d485c10fbb237edfa688dea697fb1a",
+      "role": "representation ensemble"
+    },
+    {
+      "path": "research/test_ensemble_representation_mintrec.py",
+      "kind": "file",
+      "sha256": "715481fb07221bfc7fa27a8cb9abe1f8e2a2b57578c1d1ffef681714612bd0b0",
+      "role": "ensemble test"
+    },
+    {
+      "path": "research/evidence/ensemble_representation_mintrec_v1.json",
+      "kind": "file",
+      "sha256": "017cc111f7bc2af63a449822876524795d21dbcc71620da4dc34f0fc60c09873",
+      "role": "ensemble evidence"
+    },
+    {
+      "path": "docs/115-ENSEMBLE-REPRESENTACOES-MINTREC.md",
+      "kind": "file",
+      "sha256": "08e64908388103496a056b4166d3770535868edd2c21704b35901f084ff82cea",
+      "role": "ensemble report"
     }
   ],
   "components": [

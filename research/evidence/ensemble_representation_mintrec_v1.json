@@ -1,0 +1,74 @@
+{
+  "calibration": {
+    "all_vote": {
+      "accuracy": 0.404874,
+      "coverage": 1.0,
+      "macro_f1": 0.332635,
+      "selective_accuracy": 0.404874
+    },
+    "char_svm": {
+      "accuracy": 0.396226,
+      "coverage": 1.0,
+      "macro_f1": 0.324759,
+      "selective_accuracy": 0.396226
+    },
+    "word_char_vote": {
+      "accuracy": 0.421384,
+      "coverage": 1.0,
+      "macro_f1": 0.349871,
+      "selective_accuracy": 0.421384
+    },
+    "word_logistic": {
+      "accuracy": 0.362421,
+      "coverage": 1.0,
+      "macro_f1": 0.286505,
+      "selective_accuracy": 0.362421
+    },
+    "word_svm": {
+      "accuracy": 0.421384,
+      "coverage": 1.0,
+      "macro_f1": 0.349871,
+      "selective_accuracy": 0.421384
+    }
+  },
+  "calibration_rows": 1272,
+  "chosen": "word_svm",
+  "dataset": "THU-IAR/MIntRec",
+  "fit_rows": 566,
+  "holdout_refit": {
+    "all_vote": {
+      "accuracy": 0.572539,
+      "coverage": 1.0,
+      "macro_f1": 0.477666,
+      "selective_accuracy": 0.572539
+    },
+    "char_svm": {
+      "accuracy": 0.57513,
+      "coverage": 1.0,
+      "macro_f1": 0.471238,
+      "selective_accuracy": 0.57513
+    },
+    "word_char_vote": {
+      "accuracy": 0.564767,
+      "coverage": 1.0,
+      "macro_f1": 0.471305,
+      "selective_accuracy": 0.564767
+    },
+    "word_logistic": {
+      "accuracy": 0.57772,
+      "coverage": 1.0,
+      "macro_f1": 0.478462,
+      "selective_accuracy": 0.57772
+    },
+    "word_svm": {
+      "accuracy": 0.564767,
+      "coverage": 1.0,
+      "macro_f1": 0.471305,
+      "selective_accuracy": 0.564767
+    }
+  },
+  "holdout_rows": 386,
+  "holdout_split": "S06",
+  "refit_rows": 1838,
+  "selection_split": "S05"
+}
