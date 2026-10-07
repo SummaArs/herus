@@ -1,0 +1,20 @@
+{
+  "decision": "BLOCK",
+  "errors": [
+    "ledger_not_complete_for_all_seeds_ids_models"
+  ],
+  "execution_claim_authorized": false,
+  "expected_examples": 386,
+  "expected_models": [
+    "distilbert_multilingual",
+    "herus_full",
+    "multinomial_naive_bayes"
+  ],
+  "expected_rows": 3474,
+  "expected_seeds": [
+    17,
+    29,
+    43
+  ],
+  "rows": 0
+}
