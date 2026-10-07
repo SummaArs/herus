@@ -4,7 +4,7 @@ English is split into fit/calibration; Portuguese is an untouched external
 holdout. The labels are shared by the dataset, so no inferred mapping is used.
 """
 from __future__ import annotations
-import json, urllib.parse, urllib.request
+import json, time, urllib.error, urllib.parse, urllib.request
 from collections import Counter
 from real_data_baseline_benchmark import metrics, _nb_scores, vector
 from consensus_risk_coverage_mintrec import centroid_model, consensus_score
@@ -13,11 +13,23 @@ API='https://datasets-server.huggingface.co/rows'; DATASET='PolyAI/minds14'
 
 def fetch(config):
     q=urllib.parse.urlencode({'dataset':DATASET,'config':config,'split':'train','offset':0,'length':1})
-    with urllib.request.urlopen(API+'?'+q,timeout=60) as r: meta=json.load(r)
+    for attempt in range(4):
+        try:
+            with urllib.request.urlopen(API+'?'+q,timeout=60) as r: meta=json.load(r)
+            break
+        except urllib.error.HTTPError:
+            if attempt == 3: raise
+            time.sleep(1 + attempt)
     rows=[]
     for offset in range(0,meta['num_rows_total'],100):
         q=urllib.parse.urlencode({'dataset':DATASET,'config':config,'split':'train','offset':offset,'length':min(100,meta['num_rows_total']-offset)})
-        with urllib.request.urlopen(API+'?'+q,timeout=60) as r: payload=json.load(r)
+        for attempt in range(4):
+            try:
+                with urllib.request.urlopen(API+'?'+q,timeout=60) as r: payload=json.load(r)
+                break
+            except urllib.error.HTTPError:
+                if attempt == 3: raise
+                time.sleep(1 + attempt)
         rows.extend({'text':x['row']['transcription'],'label':str(x['row']['intent_class']),'path':x['row']['path']} for x in payload['rows'])
     return rows
 

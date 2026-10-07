@@ -47,8 +47,8 @@
     {
       "path": "research/Makefile",
       "kind": "file",
-      "sha256": "be61f69cf65fdf3adfa5360607eaa560fb1b407e370bbe2fb1a01562a5f6dcfd",
-      "role": "multilingual encoder test gate"
+      "sha256": "8499808901368c3ddae90968b8e482c1b54608db1f1a7265e376d1fa85a36efe",
+      "role": "alignment ablation test gate"
     },
     {
       "path": "research/semantic_ir.py",
@@ -251,8 +251,8 @@
     {
       "path": "README.md",
       "kind": "file",
-      "sha256": "1c02654bdf7b4173123a2fc6d591b4c01bd40b5f998ebc1fabcfc5b512b8e787",
-      "role": "frozen multilingual encoder result and test count"
+      "sha256": "bafbee0b5b392ec0c05f2c010244c6748823b6919a67b48b8b9eebbc5c019f8a",
+      "role": "unsupervised alignment ablation and test count"
     },
     {
       "path": "docs/50-INTENT-COMPILER-E-SEMANTIC-IR.md",
@@ -515,7 +515,7 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "30981cabd578fe650e0fe2c3d5fa46ad62b3ebacbe3338fbb6bdb802f8052b96",
+      "sha256": "319111993cdd754a3350b63cd6feba9427c46ff757e9764b308ff7d9616f6ed8",
       "role": "organized documentation, maps and historical design records"
     },
     {
@@ -1061,8 +1061,8 @@
     {
       "path": "research/minds14_cross_language.py",
       "kind": "file",
-      "sha256": "5b0bd39c14f6bc1824f7e6c9467384a53707b9e3e5bdd38babfb4a1c18f159a7",
-      "role": "real English Portuguese transfer benchmark"
+      "sha256": "61a73f0e7cf4c6d8bc84e4d3ae2731d1e77fa3337d2bf3a75e1ef4618b8280eb",
+      "role": "resilient external dataset ingestion"
     },
     {
       "path": "research/test_minds14_cross_language.py",
@@ -1105,6 +1105,30 @@
       "kind": "file",
       "sha256": "bd57c4e9f8860ea932ee5adebc554b192e176b628e999de9cae2add5a6110c7a",
       "role": "multilingual encoder validation report"
+    },
+    {
+      "path": "research/unsupervised_alignment_benchmark.py",
+      "kind": "file",
+      "sha256": "34682483c9fb86e8e892abdb18308a6cebddc66504969da732988095ad2ff266",
+      "role": "negative unsupervised alignment ablation"
+    },
+    {
+      "path": "research/test_unsupervised_alignment_benchmark.py",
+      "kind": "file",
+      "sha256": "7703efb39b2c26108df31cc07aa57eebb9c68a2d8c6fdc372554ebcd6c9f4c3d",
+      "role": "alignment no-gain evidence test"
+    },
+    {
+      "path": "research/evidence/unsupervised_alignment_minds14_v1.json",
+      "kind": "file",
+      "sha256": "471db840ccff262f83bbb19545f063d617b0a3d18a6d3346fd0867933557f7a5",
+      "role": "alignment ablation evidence"
+    },
+    {
+      "path": "docs/107-ABLACAO-ALINHAMENTO-NAO-SUPERVISIONADO.md",
+      "kind": "file",
+      "sha256": "ece73978367be1dcef478d4492a1172e1df28d4aec86d796f3cbb5f9fe7706ec",
+      "role": "rejected alignment hypothesis report"
     }
   ],
   "components": [

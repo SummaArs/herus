@@ -1,0 +1,32 @@
+{
+  "baseline_frozen_encoder": {
+    "accuracy": 0.486755,
+    "coverage": 0.990066,
+    "selective_accuracy": 0.491639
+  },
+  "calibration": {
+    "result": {
+      "accuracy": 0.77551,
+      "coverage": 1.0,
+      "macro_f1": 0.781279,
+      "selective_accuracy": 0.77551
+    },
+    "threshold": 0.00010865926742553711
+  },
+  "conclusion": "no measurable improvement over frozen multilingual encoder",
+  "holdout": {
+    "accuracy": 0.486755,
+    "coverage": 0.990066,
+    "macro_f1": 0.480561,
+    "selective_accuracy": 0.491639
+  },
+  "limits": [
+    "transductive target text observation",
+    "single language pair",
+    "no audio",
+    "no speaker independence metadata"
+  ],
+  "method": "global mean alignment using unlabeled Portuguese texts",
+  "model": "distilbert/distilbert-base-multilingual-cased",
+  "target_labels_used": false
+}
