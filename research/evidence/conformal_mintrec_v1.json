@@ -1,0 +1,44 @@
+{
+  "protocol": "split conformal; S04 fit, S05 calibration, S06 chronological holdout",
+  "dataset": "THU-IAR/MIntRec",
+  "holdout_rows": 386,
+  "results": [
+    {
+      "target_marginal_coverage": 0.8,
+      "quantile": 0.995655,
+      "test_set_coverage": 0.813472,
+      "mean_set_size": 8.564767,
+      "singleton_coverage": 0.010363,
+      "singleton_accuracy": 0.5
+    },
+    {
+      "target_marginal_coverage": 0.9,
+      "quantile": 0.999301,
+      "test_set_coverage": 0.901554,
+      "mean_set_size": 12.836788,
+      "singleton_coverage": 0.0,
+      "singleton_accuracy": 0.0
+    },
+    {
+      "target_marginal_coverage": 0.95,
+      "quantile": 0.999891,
+      "test_set_coverage": 0.948187,
+      "mean_set_size": 15.976684,
+      "singleton_coverage": 0.0,
+      "singleton_accuracy": 0.0
+    },
+    {
+      "target_marginal_coverage": 0.99,
+      "quantile": 0.999998,
+      "test_set_coverage": 0.994819,
+      "mean_set_size": 19.111399,
+      "singleton_coverage": 0.0,
+      "singleton_accuracy": 0.0
+    }
+  ],
+  "limits": [
+    "marginal coverage is not per-class coverage",
+    "prediction sets are not natural-language reasoning",
+    "MIntRec labels are not HERUS events"
+  ]
+}

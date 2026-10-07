@@ -47,8 +47,8 @@
     {
       "path": "research/Makefile",
       "kind": "file",
-      "sha256": "b1be91be4fbcbfca773cbf7a68c1600400a7082f36568f4d94c547dcef41747e",
-      "role": "transformer paired gate"
+      "sha256": "d6ca0b89122a3a18b3bf7322adb156360755545171925c74c78d41db04837afb",
+      "role": "conformal evaluation gate"
     },
     {
       "path": "research/semantic_ir.py",
@@ -251,8 +251,8 @@
     {
       "path": "README.md",
       "kind": "file",
-      "sha256": "51fe0f4b38e89172327c1bb4e3a67bd6ef5a1f4489e977cc11a387828ccf0ee8",
-      "role": "transformer paired comparison and test count"
+      "sha256": "7e9d5ea7c371cbdf0310fea8a63b903448670d796430c07a6f18e25e749ed642",
+      "role": "conformal assurance and test count"
     },
     {
       "path": "docs/50-INTENT-COMPILER-E-SEMANTIC-IR.md",
@@ -515,7 +515,7 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "31a72a851c65a2a1a753ecd70348cefa1caf9bac2f0cb4ae1eefaf2965c7eeea",
+      "sha256": "9bf94369e87e742cff38eb822800f858f522413456b58adf020b6af0a8050b90",
       "role": "organized documentation, maps and historical design records"
     },
     {
@@ -1549,6 +1549,30 @@
       "kind": "file",
       "sha256": "8c22c94f94f90636d81189836d0aeb9df0ec324a751703c86fdcffaa38f6e0e3",
       "role": "paired transformer report"
+    },
+    {
+      "path": "research/conformal_mintrec.py",
+      "kind": "file",
+      "sha256": "0b83e70a14b27f1afb251655ef374113bef4b0b6b63aeb369786c0e737c23a0d",
+      "role": "split conformal evaluation"
+    },
+    {
+      "path": "research/test_conformal_mintrec.py",
+      "kind": "file",
+      "sha256": "e8cf2e8d9c3c22c36230dc650783085c5a734b8f24834806b5d159be254e531f",
+      "role": "conformal tests"
+    },
+    {
+      "path": "research/evidence/conformal_mintrec_v1.json",
+      "kind": "file",
+      "sha256": "ee2b40ac3903cb172c5a6e7bd5d2c0d266d96357c7de4b9108fec9c780ff2073",
+      "role": "conformal evidence"
+    },
+    {
+      "path": "docs/125-PREDICAO-CONFORMAL-E-ASSURANCE.md",
+      "kind": "file",
+      "sha256": "dee3f741d18aba590e234358c4b55935666d4d3c2b2a7e6c178b24b91f95ec3a",
+      "role": "conformal assurance report"
     }
   ],
   "components": [
