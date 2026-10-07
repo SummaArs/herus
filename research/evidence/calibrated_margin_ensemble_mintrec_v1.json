@@ -1,0 +1,24 @@
+{
+  "calibration_best": {
+    "accuracy": 0.435535,
+    "macro_f1": 0.356871
+  },
+  "dataset": "THU-IAR/MIntRec",
+  "grid_size": 120,
+  "holdout": {
+    "accuracy": 0.564767,
+    "coverage": 1.0,
+    "macro_f1": 0.480153,
+    "selective_accuracy": 0.564767
+  },
+  "holdout_split": "S06",
+  "refit_splits": [
+    "S04",
+    "S05"
+  ],
+  "selection_split": "S05",
+  "weights": [
+    0.7,
+    0.4
+  ]
+}

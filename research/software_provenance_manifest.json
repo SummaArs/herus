@@ -47,8 +47,8 @@
     {
       "path": "research/Makefile",
       "kind": "file",
-      "sha256": "d498ab44712c784d82d777d4b5f4d7de622d0b687c6f1873134d8f1408475aa6",
-      "role": "ensemble gate"
+      "sha256": "241773736411689854feaf8411bfde0679573fb15a65582afcb5c2414b7c16b8",
+      "role": "calibrated margin gate"
     },
     {
       "path": "research/semantic_ir.py",
@@ -251,8 +251,8 @@
     {
       "path": "README.md",
       "kind": "file",
-      "sha256": "ac69543150c0e5c657e372aeb3e09564c05ea7e00e82d051d03bbfd042fffa29",
-      "role": "ensemble result and test count"
+      "sha256": "9fdfe922641469d569553d199e382ce632af83f926556a194cc976d2cb9ed075",
+      "role": "calibrated margin result and test count"
     },
     {
       "path": "docs/50-INTENT-COMPILER-E-SEMANTIC-IR.md",
@@ -515,7 +515,7 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "f59af00546b2d6e25af88ff741c5e089b36887e173ff2230678009e41d7e9063",
+      "sha256": "e61b2d95b16ba2b5e690ce48d92e0386045e918b03cc7503d96361fbfe3e7840",
       "role": "organized documentation, maps and historical design records"
     },
     {
@@ -1357,6 +1357,30 @@
       "kind": "file",
       "sha256": "08e64908388103496a056b4166d3770535868edd2c21704b35901f084ff82cea",
       "role": "ensemble report"
+    },
+    {
+      "path": "research/calibrated_margin_ensemble_mintrec.py",
+      "kind": "file",
+      "sha256": "8c3313d8d35bda88026aabc562856d6c3f334fde51cef4a436b74b7562942b74",
+      "role": "calibrated margin ensemble"
+    },
+    {
+      "path": "research/test_calibrated_margin_ensemble_mintrec.py",
+      "kind": "file",
+      "sha256": "c2031c8250d8e6a2b1134eddcef481b42cfce6b2123ce441ff5ac180002348af",
+      "role": "calibrated margin test"
+    },
+    {
+      "path": "research/evidence/calibrated_margin_ensemble_mintrec_v1.json",
+      "kind": "file",
+      "sha256": "b07efedb9ab87e8749168809340f0c798c038523766d2937f296d8a5fa4e0b88",
+      "role": "calibrated margin evidence"
+    },
+    {
+      "path": "docs/116-ENSEMBLE-MARGENS-CALIBRADAS-MINTREC.md",
+      "kind": "file",
+      "sha256": "a19fd38727f5181eebdf0a56bc70267105f45e08d6d6c7219405114c28046ecc",
+      "role": "calibrated margin report"
     }
   ],
   "components": [
