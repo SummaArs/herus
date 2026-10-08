@@ -515,7 +515,7 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "c423ec90510358f051583df06ff3f8ca5196725a79b9aee02a3189b1978986c9",
+      "sha256": "23b1729e041bf8ed7e10bf91f9fc016e58077d4b8eeed7af51f9c43b73b62e9e",
       "role": "organized documentation, maps and historical design records"
     },
     {
@@ -1793,19 +1793,19 @@
     {
       "path": "docs/146-ERA-DO-APRENDIZADO-SIMBIOTICO.md",
       "kind": "file",
-      "sha256": "5bb31a54b57522ea39987af7eeef1e640d08f3189a2269f627944fe661b1ba7d",
+      "sha256": "4aa7557cc3bfb7bb7878f61d407374d00f266ba57f38b17c673a878fd55e4cdf",
       "role": "symbiotic learning paradigm specification"
     },
     {
       "path": "research/universal_symbiotic.py",
       "kind": "file",
-      "sha256": "0bdb1d359f855511cb645fa88f3f029e96434f9e0696ad48137b3a507e35dbf5",
+      "sha256": "d5a8073d6f6f30f5939f7c180d45d28aea6586bd36c2ffac4204ede0547b8887",
       "role": "universal symbiotic paradigm router"
     },
     {
       "path": "research/test_universal_symbiotic.py",
       "kind": "file",
-      "sha256": "add51484636cc4956be125fdc4b80a489f534f85c8cd88c55390ea879561bfd3",
+      "sha256": "993ac788ccf76dd27c6ce09613999bd356ab34037cd61a817d47e1afdc303199",
       "role": "universal router adversarial tests"
     },
     {

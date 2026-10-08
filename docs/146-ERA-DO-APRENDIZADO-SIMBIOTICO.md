@@ -70,3 +70,7 @@ Para elevar a tese a um novo campo de ML, ainda será necessário demonstrar em 
 ## Claim permitido
 
 > HERUS propõe uma quinta dimensão de aprendizado: a coordenação verificável entre candidatos de modelos, hospedeiros, evidências e autoridade. A implementação inicial é testável e fail-closed; sua superioridade geral ainda não foi provada.
+
+## Promoção operacional conservadora
+
+O meta-algoritmo não promove uma política alternativa com base em um único hospedeiro. A API `promote_policy()` aplica o gate de estabilidade multi-host; sem margem prática em todos os hospedeiros independentes, retorna `ABSTAIN` e preserva a política padrão.

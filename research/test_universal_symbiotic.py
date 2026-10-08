@@ -35,5 +35,15 @@ class UniversalSymbioticTests(unittest.TestCase):
     def test_invalid_contract_fails_closed(self):
         u=UniversalSymbioticLearner(); self.assertEqual(u.fit(self.cal,UniversalContract('',max_risk=0)).status,'BLOCKED')
 
+    def test_policy_promotion_is_blocked_without_cross_host_stability(self):
+        u=UniversalSymbioticLearner()
+        decision=u.promote_policy([
+            {'dataset':'MIntRec','validation_accuracy':{'score_calibrated':.44,'universal_default':.33}},
+            {'dataset':'MInDS-14','validation_accuracy':{'score_calibrated':.84,'universal_default':.84}},
+            {'dataset':'Banking77','validation_accuracy':{'score_calibrated':.725,'universal_default':.721}},
+        ])
+        self.assertEqual(decision['status'],'ABSTAIN')
+        self.assertEqual(decision['policy'],'universal_default')
+
 
 if __name__=='__main__': unittest.main()

@@ -89,3 +89,9 @@ class UniversalSymbioticLearner:
 
     def inspect(self) -> dict[str, object]:
         return {"thresholds": dict(self.thresholds), "contract": self.contract, "authority": "none", "paradigm_router": "bounded"}
+
+    def promote_policy(self, validation_records: Sequence[dict[str, object]], *, alternative: str = "score_calibrated", default: str = "universal_default", margin: float = 0.01, min_hosts: int = 3) -> dict[str, object]:
+        """Promote a policy only after the independent multi-host stability gate passes."""
+        from policy_stability_gate import evaluate
+        decision = evaluate(validation_records, alternative=alternative, default=default, margin=margin, min_hosts=min_hosts)
+        return {"status": decision.status, "policy": decision.policy, "reason": decision.reason, "hosts": decision.hosts, "passing_hosts": decision.passing_hosts, "minimum_margin": decision.minimum_margin, "deltas": dict(decision.deltas)}
