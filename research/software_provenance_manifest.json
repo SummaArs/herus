@@ -515,7 +515,7 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "3bdc746d94e346af23364533215ff05326a3e521963dc487a48467e03c076e6f",
+      "sha256": "e4be05e00efda46b5331563705999f1d6b0845c115ae6d394ea90f6ccd7fe6c3",
       "role": "organized documentation, maps and historical design records"
     },
     {
@@ -1729,6 +1729,30 @@
       "kind": "file",
       "sha256": "7af5881d99a5039a05a35cc50c229061487b5a4c08cc8cdf4420d8e792744bb9",
       "role": "combined selection-effect scientific report"
+    },
+    {
+      "path": "research/risk_coverage_curves.py",
+      "kind": "file",
+      "sha256": "a6d83b810294a850565d44b1b37dc9141be46d5475bc5631223852a96403c427",
+      "role": "real risk-coverage curve benchmark"
+    },
+    {
+      "path": "research/evidence/risk_coverage_curves_v1.json",
+      "kind": "file",
+      "sha256": "62b1297c63d159638ff87bdda459006d0998350e995a0e6231c9d0f0a5db44bc",
+      "role": "risk-coverage curves across real domains"
+    },
+    {
+      "path": "research/test_risk_coverage_curves.py",
+      "kind": "file",
+      "sha256": "06d13574726d5dd41c4790d70a60c0a955ebdaeb94ea5d3131bb8fef17b2cc3b",
+      "role": "risk-coverage curve integrity tests"
+    },
+    {
+      "path": "docs/144-CURVAS-RISCO-COBERTURA.md",
+      "kind": "file",
+      "sha256": "b8ab14a514fbb7808b18642667226b2df6f804aa578cf0c7a92d352c8d8be09a",
+      "role": "risk-coverage scientific report"
     }
   ],
   "components": [
