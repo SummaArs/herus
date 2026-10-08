@@ -1,0 +1,47 @@
+{
+  "dataset": {
+    "calibration": "S05",
+    "fit": "S04",
+    "holdout": "S06",
+    "holdout_examples": 386,
+    "id": "THU-IAR/MIntRec"
+  },
+  "metrics": {
+    "chosen_policy": {
+      "accuracy": 0.396373,
+      "coverage": 1.0,
+      "macro_f1": 0.307852,
+      "selective_accuracy": 0.396373
+    },
+    "score_calibrated": {
+      "accuracy": 0.396373,
+      "coverage": 1.0,
+      "macro_f1": 0.307852,
+      "selective_accuracy": 0.396373
+    },
+    "universal_default": {
+      "accuracy": 0.38342,
+      "coverage": 1.0,
+      "macro_f1": 0.234159,
+      "selective_accuracy": 0.38342
+    }
+  },
+  "protocol": {
+    "claim_boundary": "policy selection replication; no SOTA claim",
+    "holdout_labels_used_for_selection": false,
+    "nested_calibration": true
+  },
+  "schema": "herus-policy-selection-mintrec-v1",
+  "selection": {
+    "calibration_split": {
+      "tune": 636,
+      "validation": 636
+    },
+    "chosen_policy": "score_calibrated",
+    "tie_rule": "universal_default",
+    "validation_accuracy": {
+      "score_calibrated": 0.443396,
+      "universal_default": 0.336478
+    }
+  }
+}

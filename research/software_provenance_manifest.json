@@ -515,7 +515,7 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "7f65c6042c78d8cde75091b1a012641a86416b9906b00dffe15d3741dbc99fd7",
+      "sha256": "6b6f532b76fed2f5229c4633a2a73b64ab7a14cfc9e1d03981997e2a796d2777",
       "role": "organized documentation, maps and historical design records"
     },
     {
@@ -1969,6 +1969,30 @@
       "kind": "file",
       "sha256": "54d05994247a7dfc58c9e46eb900bda85d5d0387f9db14e619cf7c1bfbf634d2",
       "role": "score calibration regression report"
+    },
+    {
+      "path": "research/policy_selection_mintrec.py",
+      "kind": "file",
+      "sha256": "5d757e09fdc2caa2bb4ca4bfc2535584fde75d48544b1473af4315ab2d4177f4",
+      "role": "nested host policy selection"
+    },
+    {
+      "path": "research/evidence/policy_selection_mintrec_v1.json",
+      "kind": "file",
+      "sha256": "94185a8020fb80b22a6f9de0f9c1356fcbd7412b0273254c58c5ba739dadfb70",
+      "role": "host policy selection evidence"
+    },
+    {
+      "path": "research/test_policy_selection_mintrec.py",
+      "kind": "file",
+      "sha256": "a5e71807ebb6fd70a407d2db9cf1b91f8d1b7ba1e98b0961a092916225bbdaab",
+      "role": "host policy selection tests"
+    },
+    {
+      "path": "docs/154-SELECAO-DE-POLITICA-POR-HOSPEDEIRO.md",
+      "kind": "file",
+      "sha256": "778c1bbd114a96c0f240c1c84595c0111518b24e10a43a5378db1861b58f7b49",
+      "role": "nested policy selection report"
     }
   ],
   "components": [
