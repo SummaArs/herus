@@ -133,4 +133,22 @@ class SymbioticLearningTests(unittest.TestCase):
         proposal = learner.propose(episode.effect, [episode], context=())
         self.assertEqual(proposal.reason, 'effect_not_observed')
 
+    def test_weight_optimizer_is_bounded_deterministic_and_fit_only(self):
+        learner = SymbioticLearner()
+        feedback = [
+            Feedback((), 'safe', _state({'ok': 1}), _state({'ok': 1}), utility=4, risk=0, cost=1, evidence_deficit=0),
+            Feedback((), 'uncertain', _state({'ok': 0}), _state({'ok': 1}), utility=1, risk=2, cost=1, evidence_deficit=2),
+        ]
+        first = learner.optimize_weights(feedback, grid=(0, 1, 2))
+        second = learner.optimize_weights(feedback, grid=(0, 1, 2))
+        self.assertEqual(first, second)
+        self.assertEqual(first.evaluations, 81)
+        self.assertEqual(first.fit_count, 2)
+        self.assertEqual(learner.version, 0)
+
+    def test_weight_optimizer_blocks_empty_fit(self):
+        result = SymbioticLearner().optimize_weights([])
+        self.assertEqual(result.status, 'NO_FIT_DATA')
+        self.assertEqual(result.evaluations, 0)
+
 if __name__ == '__main__': unittest.main()

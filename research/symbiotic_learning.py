@@ -128,6 +128,14 @@ class UpdateResult:
     version: int
     evidence_id: str = ""
 
+@dataclass(frozen=True)
+class OptimizationResult:
+    weights: UtilityWeights
+    objective_total: float
+    evaluations: int
+    status: str
+    fit_count: int
+
 class SymbioticLearner:
     """Incremental, finite, context-aware and reversible effect learner."""
     def __init__(self, *, max_observations: int = 32, max_cost: int = 32, max_risk: int = 0, max_age: int = 8) -> None:
@@ -151,6 +159,32 @@ class SymbioticLearner:
         if any(value < 0 for value in values):
             raise ValueError("objective_penalties_must_be_non_negative")
         return float(utility - weights.risk * risk - weights.cost * cost - weights.authority * authority_violation - weights.evidence * evidence_deficit)
+
+    def optimize_weights(self, feedback: Sequence[Feedback], *, grid: Sequence[float] = (0.0, 0.5, 1.0, 2.0, 4.0)) -> OptimizationResult:
+        """Select contract-penalty weights on fit feedback only.
+
+        This is intentionally a bounded grid search: deterministic, inspectable,
+        finite, and incapable of reading holdout labels or mutating learner state.
+        The tie-break prefers stronger authority and evidence penalties.
+        """
+        if not feedback or not grid or any(value < 0 for value in grid):
+            return OptimizationResult(UtilityWeights(), 0.0, 0, "NO_FIT_DATA", len(feedback))
+        values = tuple(sorted(set(float(value) for value in grid)))
+        best: tuple[float, tuple[float, float, float, float], UtilityWeights] | None = None
+        evaluations = 0
+        for risk in values:
+            for cost in values:
+                for authority in values:
+                    for evidence in values:
+                        weights = UtilityWeights(risk, cost, authority, evidence)
+                        total = sum(self.objective(utility=f.utility, risk=f.risk, cost=f.cost, authority_violation=f.authority_violation, evidence_deficit=f.evidence_deficit, weights=weights) for f in feedback)
+                        evaluations += 1
+                        tie_break = (authority, evidence, risk, cost)
+                        candidate = (total, tie_break, weights)
+                        if best is None or (candidate[0], candidate[1]) > (best[0], best[1]):
+                            best = candidate
+        assert best is not None
+        return OptimizationResult(best[2], best[0], evaluations, "OPTIMIZED", len(feedback))
 
     def update(self, feedback: Feedback, *, weights: UtilityWeights = UtilityWeights()) -> UpdateResult:
         """Apply one bounded, reversible feedback update; never grants authority."""

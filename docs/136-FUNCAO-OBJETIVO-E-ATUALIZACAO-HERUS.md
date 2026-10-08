@@ -77,6 +77,7 @@ Também existe agora uma primeira implementação executável do objetivo:
 - `Feedback` tipado com resultado, provenance e verificador;
 - `SymbioticLearner.update(...)` para atualização bounded e reversível;
 - `UpdateResult` com estado, motivo, score e ID de evidência;
+- `OptimizationResult` e busca de pesos bounded no conjunto de ajuste;
 - contraevidência negativa vinculada ao `target_effect`;
 - matching opcional do estado atual;
 - contexto vazio que não casa universalmente;
@@ -87,7 +88,7 @@ Também existe agora uma primeira implementação executável do objetivo:
 - entrada que não receba o rótulo/efeito verdadeiro do holdout;
 - estado atual e precondições na decisão completa;
 - negativos usados como contraevidência em múltiplos regimes;
-- função de utilidade calibrada em dados reais;
+- função de utilidade calibrada em dados reais e separada do holdout;
 - atualização de `θ` além da memória episódica;
 - adapter de hospedeiro separado do core;
 - benchmark de interfaces/hosts permutados;
