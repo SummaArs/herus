@@ -82,6 +82,7 @@ Também existe agora uma primeira implementação executável do objetivo:
 - matching opcional do estado atual;
 - contexto vazio que não casa universalmente;
 - deriva temporal aplicada inclusive quando o passo é zero.
+- `propose_action(...)` para seleção nativa sem receber o efeito verdadeiro do holdout.
 
 O módulo `research/holdout_optimization.py` acrescenta o primeiro harness
 fit–holdout: exige `example_id` estável, rejeita duplicatas e interseção entre
@@ -112,6 +113,11 @@ ou autoridade implicitamente.
 - comparação com controles em orçamento equivalente;
 - medição conjunta de utilidade, risco, custo, cobertura e latência.
 - validação com dados reais, em vez de apenas fixtures sintéticos.
+
+O primeiro teste real do selector nativo em MInDS-14 não reproduziu a vantagem
+do adapter NB–centróide. O resultado está registrado em
+`docs/145-IDENTIDADE-DO-CORE-E-RESULTADO-NEGATIVO.md`; portanto, os resultados
+anteriores não podem ser atribuídos ao core sem um encoder próprio.
 
 ## Critério de avanço
 

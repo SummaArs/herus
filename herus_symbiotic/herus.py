@@ -37,6 +37,12 @@ class Herus:
         current: State | None = None if current_state is None else tuple(sorted((str(k), int(v)) for k, v in current_state.items()))
         return self.learning.propose(state, self.learning.snapshot()[0], cost_budget=cost_budget, context=ctx, current_step=current_step, current_state=current, host=host)
 
+    def select_action(self, current_state: Mapping[str, int], *, context: Mapping[str, int] | None = None, cost_budget: int = 4, current_step: int | None = 0, host: HostContract | None = None) -> Proposal:
+        """Select an action from the native core without receiving a target effect."""
+        state: State = tuple(sorted((str(k), int(v)) for k, v in current_state.items()))
+        ctx: State = tuple(sorted((str(k), int(v)) for k, v in (context or {}).items()))
+        return self.learning.propose_action(state, self.learning.snapshot()[0], cost_budget=cost_budget, context=ctx, current_step=current_step, host=host)
+
     def update(self, before: Mapping[str, int], action: str, after: Mapping[str, int], target_effect: Mapping[str, int], *, outcome: str = "positive", utility: float = 0.0, risk: float = 0.0, cost: float = 1.0, context: Mapping[str, int] | None = None, provenance: str = "public", verifier: str = "unspecified", step: int = 0, example_id: str = "", host: HostContract | None = None) -> UpdateResult:
         """Apply verified host feedback to the bounded learner; never execute."""
         to_state = lambda value: tuple(sorted((str(k), int(v)) for k, v in value.items()))
@@ -53,4 +59,4 @@ class Herus:
 
     @staticmethod
     def help() -> str:
-        return "Herus().data(...) audita ML; .program(...) planeja código; .observe(...) aprende evidência; .update(...) aplica feedback verificado; .propose(...) propõe sem executar; .migrate(...) planeja migração sem transferir autoridade; .inspect() explica o estado."
+        return "Herus().data(...) audita ML; .program(...) planeja código; .observe(...) aprende evidência; .update(...) aplica feedback verificado; .propose(...) propõe sem executar; .select_action(...) seleciona pelo core sem target effect; .migrate(...) planeja migração sem transferir autoridade; .inspect() explica o estado."

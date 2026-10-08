@@ -1,0 +1,913 @@
+{
+  "dataset": {
+    "calibration": 89,
+    "config": "pt-PT",
+    "fit": 417,
+    "holdout": 98,
+    "id": "PolyAI/minds14",
+    "rows": 604
+  },
+  "ledger": [
+    {
+      "accepted": false,
+      "confidence_milli": 0,
+      "correct": false,
+      "example_id": "pt-PT~ABROAD/CAe0b3bd7802aa8a8c49e631dc963160f0_3.wav",
+      "label": "0",
+      "prediction": null,
+      "reason": "state_not_observed"
+    },
+    {
+      "accepted": false,
+      "confidence_milli": 0,
+      "correct": false,
+      "example_id": "pt-PT~ABROAD/CAe29689bc7ea0f4101143506baf8d68fe_2.wav",
+      "label": "0",
+      "prediction": null,
+      "reason": "state_not_observed"
+    },
+    {
+      "accepted": false,
+      "confidence_milli": 0,
+      "correct": false,
+      "example_id": "pt-PT~ABROAD/CAe51c9ca4d2e65b98f00b372a480f8867_2.wav",
+      "label": "0",
+      "prediction": null,
+      "reason": "state_not_observed"
+    },
+    {
+      "accepted": false,
+      "confidence_milli": 0,
+      "correct": false,
+      "example_id": "pt-PT~ABROAD/CAe9ce705fb3e8095290f0158d209689ee_3.wav",
+      "label": "0",
+      "prediction": null,
+      "reason": "state_not_observed"
+    },
+    {
+      "accepted": false,
+      "confidence_milli": 0,
+      "correct": false,
+      "example_id": "pt-PT~ABROAD/CAee8bd001ed495a0e732688fa15c855b4_2.wav",
+      "label": "0",
+      "prediction": null,
+      "reason": "ambiguous_state"
+    },
+    {
+      "accepted": false,
+      "confidence_milli": 0,
+      "correct": false,
+      "example_id": "pt-PT~ABROAD/CAeecf6c1d0b688487390760e8a5461fad_1.wav",
+      "label": "0",
+      "prediction": null,
+      "reason": "state_not_observed"
+    },
+    {
+      "accepted": false,
+      "confidence_milli": 0,
+      "correct": false,
+      "example_id": "pt-PT~ABROAD/CAf127defad3bac3ea426618860ad232aa_1.wav",
+      "label": "0",
+      "prediction": null,
+      "reason": "ambiguous_state"
+    },
+    {
+      "accepted": false,
+      "confidence_milli": 0,
+      "correct": false,
+      "example_id": "pt-PT~ABROAD/CAf2beeb59c82ce2de659bd4a7f3bb6914_3.wav",
+      "label": "0",
+      "prediction": null,
+      "reason": "ambiguous_state"
+    },
+    {
+      "accepted": false,
+      "confidence_milli": 0,
+      "correct": false,
+      "example_id": "pt-PT~ABROAD/CAf3a732f29df53adcac88f32bd91f5640_2.wav",
+      "label": "0",
+      "prediction": null,
+      "reason": "state_not_observed"
+    },
+    {
+      "accepted": true,
+      "confidence_milli": 206,
+      "correct": false,
+      "example_id": "pt-PT~ABROAD/CAf70be20fff527ed2a53b9434f7012d18_3.wav",
+      "label": "0",
+      "prediction": "8",
+      "reason": "unique_state_match"
+    },
+    {
+      "accepted": false,
+      "confidence_milli": 0,
+      "correct": false,
+      "example_id": "pt-PT~ABROAD/CAf70be20fff527ed2a53b9434f7012d18_5.wav",
+      "label": "0",
+      "prediction": null,
+      "reason": "state_not_observed"
+    },
+    {
+      "accepted": true,
+      "confidence_milli": 206,
+      "correct": false,
+      "example_id": "pt-PT~ABROAD/CAf725e67d481bd4a064e829adae4b3e74_2.wav",
+      "label": "0",
+      "prediction": "3",
+      "reason": "unique_state_match"
+    },
+    {
+      "accepted": false,
+      "confidence_milli": 0,
+      "correct": false,
+      "example_id": "pt-PT~ABROAD/CAfabed6cccf6c33abd7d291dca9f1f0db_2.wav",
+      "label": "0",
+      "prediction": null,
+      "reason": "ambiguous_state"
+    },
+    {
+      "accepted": false,
+      "confidence_milli": 0,
+      "correct": false,
+      "example_id": "pt-PT~ABROAD/CAfb5d556c6173357ed0695b25fcdca446_3.wav",
+      "label": "0",
+      "prediction": null,
+      "reason": "state_not_observed"
+    },
+    {
+      "accepted": false,
+      "confidence_milli": 0,
+      "correct": false,
+      "example_id": "pt-PT~ADDRESS/response_34.wav",
+      "label": "1",
+      "prediction": null,
+      "reason": "state_not_observed"
+    },
+    {
+      "accepted": false,
+      "confidence_milli": 0,
+      "correct": false,
+      "example_id": "pt-PT~ADDRESS/response_38.wav",
+      "label": "1",
+      "prediction": null,
+      "reason": "ambiguous_state"
+    },
+    {
+      "accepted": false,
+      "confidence_milli": 0,
+      "correct": false,
+      "example_id": "pt-PT~ADDRESS/response_4.wav",
+      "label": "1",
+      "prediction": null,
+      "reason": "state_not_observed"
+    },
+    {
+      "accepted": true,
+      "confidence_milli": 438,
+      "correct": true,
+      "example_id": "pt-PT~ADDRESS/response_40.wav",
+      "label": "1",
+      "prediction": "1",
+      "reason": "unique_state_match"
+    },
+    {
+      "accepted": false,
+      "confidence_milli": 0,
+      "correct": false,
+      "example_id": "pt-PT~ADDRESS/response_41.wav",
+      "label": "1",
+      "prediction": null,
+      "reason": "ambiguous_state"
+    },
+    {
+      "accepted": false,
+      "confidence_milli": 0,
+      "correct": false,
+      "example_id": "pt-PT~ADDRESS/response_5.wav",
+      "label": "1",
+      "prediction": null,
+      "reason": "state_not_observed"
+    },
+    {
+      "accepted": false,
+      "confidence_milli": 0,
+      "correct": false,
+      "example_id": "pt-PT~HIGH_VALUE_PAYMENT/response_40.wav",
+      "label": "10",
+      "prediction": null,
+      "reason": "ambiguous_state"
+    },
+    {
+      "accepted": false,
+      "confidence_milli": 0,
+      "correct": false,
+      "example_id": "pt-PT~HIGH_VALUE_PAYMENT/response_42.wav",
+      "label": "10",
+      "prediction": null,
+      "reason": "state_not_observed"
+    },
+    {
+      "accepted": false,
+      "confidence_milli": 0,
+      "correct": false,
+      "example_id": "pt-PT~HIGH_VALUE_PAYMENT/response_5.wav",
+      "label": "10",
+      "prediction": null,
+      "reason": "ambiguous_state"
+    },
+    {
+      "accepted": true,
+      "confidence_milli": 206,
+      "correct": false,
+      "example_id": "pt-PT~HIGH_VALUE_PAYMENT/response_7.wav",
+      "label": "10",
+      "prediction": "0",
+      "reason": "unique_state_match"
+    },
+    {
+      "accepted": false,
+      "confidence_milli": 0,
+      "correct": false,
+      "example_id": "pt-PT~HIGH_VALUE_PAYMENT/response_9.wav",
+      "label": "10",
+      "prediction": null,
+      "reason": "state_not_observed"
+    },
+    {
+      "accepted": false,
+      "confidence_milli": 0,
+      "correct": false,
+      "example_id": "pt-PT~JOINT_ACCOUNT/response_27.wav",
+      "label": "11",
+      "prediction": null,
+      "reason": "state_not_observed"
+    },
+    {
+      "accepted": false,
+      "confidence_milli": 0,
+      "correct": false,
+      "example_id": "pt-PT~JOINT_ACCOUNT/response_29.wav",
+      "label": "11",
+      "prediction": null,
+      "reason": "state_not_observed"
+    },
+    {
+      "accepted": false,
+      "confidence_milli": 0,
+      "correct": false,
+      "example_id": "pt-PT~JOINT_ACCOUNT/response_30.wav",
+      "label": "11",
+      "prediction": null,
+      "reason": "state_not_observed"
+    },
+    {
+      "accepted": false,
+      "confidence_milli": 0,
+      "correct": false,
+      "example_id": "pt-PT~JOINT_ACCOUNT/response_31.wav",
+      "label": "11",
+      "prediction": null,
+      "reason": "ambiguous_state"
+    },
+    {
+      "accepted": false,
+      "confidence_milli": 0,
+      "correct": false,
+      "example_id": "pt-PT~JOINT_ACCOUNT/response_4.wav",
+      "label": "11",
+      "prediction": null,
+      "reason": "ambiguous_state"
+    },
+    {
+      "accepted": false,
+      "confidence_milli": 0,
+      "correct": false,
+      "example_id": "pt-PT~JOINT_ACCOUNT/response_5.wav",
+      "label": "11",
+      "prediction": null,
+      "reason": "state_not_observed"
+    },
+    {
+      "accepted": false,
+      "confidence_milli": 0,
+      "correct": false,
+      "example_id": "pt-PT~JOINT_ACCOUNT/response_7.wav",
+      "label": "11",
+      "prediction": null,
+      "reason": "ambiguous_state"
+    },
+    {
+      "accepted": false,
+      "confidence_milli": 0,
+      "correct": false,
+      "example_id": "pt-PT~LATEST_TRANSACTIONS/response_26.wav",
+      "label": "12",
+      "prediction": null,
+      "reason": "state_not_observed"
+    },
+    {
+      "accepted": true,
+      "confidence_milli": 342,
+      "correct": false,
+      "example_id": "pt-PT~LATEST_TRANSACTIONS/response_3.wav",
+      "label": "12",
+      "prediction": "9",
+      "reason": "unique_state_match"
+    },
+    {
+      "accepted": false,
+      "confidence_milli": 0,
+      "correct": false,
+      "example_id": "pt-PT~LATEST_TRANSACTIONS/response_4.wav",
+      "label": "12",
+      "prediction": null,
+      "reason": "ambiguous_state"
+    },
+    {
+      "accepted": false,
+      "confidence_milli": 0,
+      "correct": false,
+      "example_id": "pt-PT~LATEST_TRANSACTIONS/response_5.wav",
+      "label": "12",
+      "prediction": null,
+      "reason": "ambiguous_state"
+    },
+    {
+      "accepted": true,
+      "confidence_milli": 206,
+      "correct": false,
+      "example_id": "pt-PT~LATEST_TRANSACTIONS/response_8.wav",
+      "label": "12",
+      "prediction": "8",
+      "reason": "unique_state_match"
+    },
+    {
+      "accepted": false,
+      "confidence_milli": 0,
+      "correct": false,
+      "example_id": "pt-PT~LATEST_TRANSACTIONS/response_9.wav",
+      "label": "12",
+      "prediction": null,
+      "reason": "ambiguous_state"
+    },
+    {
+      "accepted": false,
+      "confidence_milli": 0,
+      "correct": false,
+      "example_id": "pt-PT~PAY_BILL/response_32.wav",
+      "label": "13",
+      "prediction": null,
+      "reason": "ambiguous_state"
+    },
+    {
+      "accepted": false,
+      "confidence_milli": 0,
+      "correct": false,
+      "example_id": "pt-PT~PAY_BILL/response_4.wav",
+      "label": "13",
+      "prediction": null,
+      "reason": "ambiguous_state"
+    },
+    {
+      "accepted": true,
+      "confidence_milli": 206,
+      "correct": true,
+      "example_id": "pt-PT~PAY_BILL/response_6.wav",
+      "label": "13",
+      "prediction": "13",
+      "reason": "unique_state_match"
+    },
+    {
+      "accepted": false,
+      "confidence_milli": 0,
+      "correct": false,
+      "example_id": "pt-PT~PAY_BILL/response_7.wav",
+      "label": "13",
+      "prediction": null,
+      "reason": "ambiguous_state"
+    },
+    {
+      "accepted": false,
+      "confidence_milli": 0,
+      "correct": false,
+      "example_id": "pt-PT~PAY_BILL/response_8.wav",
+      "label": "13",
+      "prediction": null,
+      "reason": "state_not_observed"
+    },
+    {
+      "accepted": false,
+      "confidence_milli": 0,
+      "correct": false,
+      "example_id": "pt-PT~PAY_BILL/response_9.wav",
+      "label": "13",
+      "prediction": null,
+      "reason": "ambiguous_state"
+    },
+    {
+      "accepted": false,
+      "confidence_milli": 0,
+      "correct": false,
+      "example_id": "pt-PT~APP_ERROR/response_42.wav",
+      "label": "2",
+      "prediction": null,
+      "reason": "state_not_observed"
+    },
+    {
+      "accepted": true,
+      "confidence_milli": 206,
+      "correct": false,
+      "example_id": "pt-PT~APP_ERROR/response_43.wav",
+      "label": "2",
+      "prediction": "9",
+      "reason": "unique_state_match"
+    },
+    {
+      "accepted": false,
+      "confidence_milli": 0,
+      "correct": false,
+      "example_id": "pt-PT~APP_ERROR/response_5.wav",
+      "label": "2",
+      "prediction": null,
+      "reason": "ambiguous_state"
+    },
+    {
+      "accepted": true,
+      "confidence_milli": 206,
+      "correct": false,
+      "example_id": "pt-PT~APP_ERROR/response_6.wav",
+      "label": "2",
+      "prediction": "10",
+      "reason": "unique_state_match"
+    },
+    {
+      "accepted": true,
+      "confidence_milli": 206,
+      "correct": true,
+      "example_id": "pt-PT~APP_ERROR/response_7.wav",
+      "label": "2",
+      "prediction": "2",
+      "reason": "unique_state_match"
+    },
+    {
+      "accepted": false,
+      "confidence_milli": 0,
+      "correct": false,
+      "example_id": "pt-PT~APP_ERROR/response_8.wav",
+      "label": "2",
+      "prediction": null,
+      "reason": "ambiguous_state"
+    },
+    {
+      "accepted": true,
+      "confidence_milli": 342,
+      "correct": true,
+      "example_id": "pt-PT~APP_ERROR/response_9.wav",
+      "label": "2",
+      "prediction": "2",
+      "reason": "unique_state_match"
+    },
+    {
+      "accepted": false,
+      "confidence_milli": 0,
+      "correct": false,
+      "example_id": "pt-PT~ATM_LIMIT/response_40.wav",
+      "label": "3",
+      "prediction": null,
+      "reason": "ambiguous_state"
+    },
+    {
+      "accepted": false,
+      "confidence_milli": 0,
+      "correct": false,
+      "example_id": "pt-PT~ATM_LIMIT/response_41.wav",
+      "label": "3",
+      "prediction": null,
+      "reason": "state_not_observed"
+    },
+    {
+      "accepted": false,
+      "confidence_milli": 0,
+      "correct": false,
+      "example_id": "pt-PT~ATM_LIMIT/response_43.wav",
+      "label": "3",
+      "prediction": null,
+      "reason": "state_not_observed"
+    },
+    {
+      "accepted": true,
+      "confidence_milli": 609,
+      "correct": true,
+      "example_id": "pt-PT~ATM_LIMIT/response_5.wav",
+      "label": "3",
+      "prediction": "3",
+      "reason": "unique_state_match"
+    },
+    {
+      "accepted": false,
+      "confidence_milli": 0,
+      "correct": false,
+      "example_id": "pt-PT~ATM_LIMIT/response_6.wav",
+      "label": "3",
+      "prediction": null,
+      "reason": "state_not_observed"
+    },
+    {
+      "accepted": true,
+      "confidence_milli": 206,
+      "correct": false,
+      "example_id": "pt-PT~ATM_LIMIT/response_7.wav",
+      "label": "3",
+      "prediction": "0",
+      "reason": "unique_state_match"
+    },
+    {
+      "accepted": false,
+      "confidence_milli": 0,
+      "correct": false,
+      "example_id": "pt-PT~ATM_LIMIT/response_9.wav",
+      "label": "3",
+      "prediction": null,
+      "reason": "state_not_observed"
+    },
+    {
+      "accepted": false,
+      "confidence_milli": 0,
+      "correct": false,
+      "example_id": "pt-PT~BALANCE/response_38.wav",
+      "label": "4",
+      "prediction": null,
+      "reason": "state_not_observed"
+    },
+    {
+      "accepted": false,
+      "confidence_milli": 0,
+      "correct": false,
+      "example_id": "pt-PT~BALANCE/response_4.wav",
+      "label": "4",
+      "prediction": null,
+      "reason": "state_not_observed"
+    },
+    {
+      "accepted": false,
+      "confidence_milli": 0,
+      "correct": false,
+      "example_id": "pt-PT~BALANCE/response_41.wav",
+      "label": "4",
+      "prediction": null,
+      "reason": "ambiguous_state"
+    },
+    {
+      "accepted": false,
+      "confidence_milli": 0,
+      "correct": false,
+      "example_id": "pt-PT~BALANCE/response_6.wav",
+      "label": "4",
+      "prediction": null,
+      "reason": "state_not_observed"
+    },
+    {
+      "accepted": true,
+      "confidence_milli": 609,
+      "correct": false,
+      "example_id": "pt-PT~BALANCE/response_7.wav",
+      "label": "4",
+      "prediction": "3",
+      "reason": "unique_state_match"
+    },
+    {
+      "accepted": false,
+      "confidence_milli": 0,
+      "correct": false,
+      "example_id": "pt-PT~BALANCE/response_8.wav",
+      "label": "4",
+      "prediction": null,
+      "reason": "ambiguous_state"
+    },
+    {
+      "accepted": true,
+      "confidence_milli": 206,
+      "correct": false,
+      "example_id": "pt-PT~BUSINESS_LOAN/response_34.wav",
+      "label": "5",
+      "prediction": "9",
+      "reason": "unique_state_match"
+    },
+    {
+      "accepted": false,
+      "confidence_milli": 0,
+      "correct": false,
+      "example_id": "pt-PT~BUSINESS_LOAN/response_35.wav",
+      "label": "5",
+      "prediction": null,
+      "reason": "state_not_observed"
+    },
+    {
+      "accepted": false,
+      "confidence_milli": 0,
+      "correct": false,
+      "example_id": "pt-PT~BUSINESS_LOAN/response_37.wav",
+      "label": "5",
+      "prediction": null,
+      "reason": "state_not_observed"
+    },
+    {
+      "accepted": false,
+      "confidence_milli": 0,
+      "correct": false,
+      "example_id": "pt-PT~BUSINESS_LOAN/response_38.wav",
+      "label": "5",
+      "prediction": null,
+      "reason": "ambiguous_state"
+    },
+    {
+      "accepted": false,
+      "confidence_milli": 0,
+      "correct": false,
+      "example_id": "pt-PT~BUSINESS_LOAN/response_4.wav",
+      "label": "5",
+      "prediction": null,
+      "reason": "ambiguous_state"
+    },
+    {
+      "accepted": true,
+      "confidence_milli": 438,
+      "correct": true,
+      "example_id": "pt-PT~BUSINESS_LOAN/response_7.wav",
+      "label": "5",
+      "prediction": "5",
+      "reason": "unique_state_match"
+    },
+    {
+      "accepted": false,
+      "confidence_milli": 0,
+      "correct": false,
+      "example_id": "pt-PT~BUSINESS_LOAN/response_9.wav",
+      "label": "5",
+      "prediction": null,
+      "reason": "state_not_observed"
+    },
+    {
+      "accepted": false,
+      "confidence_milli": 0,
+      "correct": false,
+      "example_id": "pt-PT~CARD_ISSUES/response_35.wav",
+      "label": "6",
+      "prediction": null,
+      "reason": "ambiguous_state"
+    },
+    {
+      "accepted": false,
+      "confidence_milli": 0,
+      "correct": false,
+      "example_id": "pt-PT~CARD_ISSUES/response_36.wav",
+      "label": "6",
+      "prediction": null,
+      "reason": "ambiguous_state"
+    },
+    {
+      "accepted": false,
+      "confidence_milli": 0,
+      "correct": false,
+      "example_id": "pt-PT~CARD_ISSUES/response_38.wav",
+      "label": "6",
+      "prediction": null,
+      "reason": "state_not_observed"
+    },
+    {
+      "accepted": false,
+      "confidence_milli": 0,
+      "correct": false,
+      "example_id": "pt-PT~CARD_ISSUES/response_4.wav",
+      "label": "6",
+      "prediction": null,
+      "reason": "state_not_observed"
+    },
+    {
+      "accepted": false,
+      "confidence_milli": 0,
+      "correct": false,
+      "example_id": "pt-PT~CARD_ISSUES/response_5.wav",
+      "label": "6",
+      "prediction": null,
+      "reason": "ambiguous_state"
+    },
+    {
+      "accepted": false,
+      "confidence_milli": 0,
+      "correct": false,
+      "example_id": "pt-PT~CARD_ISSUES/response_8.wav",
+      "label": "6",
+      "prediction": null,
+      "reason": "ambiguous_state"
+    },
+    {
+      "accepted": false,
+      "confidence_milli": 0,
+      "correct": false,
+      "example_id": "pt-PT~CARD_ISSUES/response_9.wav",
+      "label": "6",
+      "prediction": null,
+      "reason": "state_not_observed"
+    },
+    {
+      "accepted": false,
+      "confidence_milli": 0,
+      "correct": false,
+      "example_id": "pt-PT~CASH_DEPOSIT/response_26.wav",
+      "label": "7",
+      "prediction": null,
+      "reason": "ambiguous_state"
+    },
+    {
+      "accepted": false,
+      "confidence_milli": 0,
+      "correct": false,
+      "example_id": "pt-PT~CASH_DEPOSIT/response_3.wav",
+      "label": "7",
+      "prediction": null,
+      "reason": "ambiguous_state"
+    },
+    {
+      "accepted": false,
+      "confidence_milli": 0,
+      "correct": false,
+      "example_id": "pt-PT~CASH_DEPOSIT/response_4.wav",
+      "label": "7",
+      "prediction": null,
+      "reason": "ambiguous_state"
+    },
+    {
+      "accepted": false,
+      "confidence_milli": 0,
+      "correct": false,
+      "example_id": "pt-PT~CASH_DEPOSIT/response_6.wav",
+      "label": "7",
+      "prediction": null,
+      "reason": "state_not_observed"
+    },
+    {
+      "accepted": false,
+      "confidence_milli": 0,
+      "correct": false,
+      "example_id": "pt-PT~CASH_DEPOSIT/response_7.wav",
+      "label": "7",
+      "prediction": null,
+      "reason": "state_not_observed"
+    },
+    {
+      "accepted": true,
+      "confidence_milli": 206,
+      "correct": false,
+      "example_id": "pt-PT~CASH_DEPOSIT/response_8.wav",
+      "label": "7",
+      "prediction": "11",
+      "reason": "unique_state_match"
+    },
+    {
+      "accepted": false,
+      "confidence_milli": 0,
+      "correct": false,
+      "example_id": "pt-PT~CASH_DEPOSIT/response_9.wav",
+      "label": "7",
+      "prediction": null,
+      "reason": "state_not_observed"
+    },
+    {
+      "accepted": false,
+      "confidence_milli": 0,
+      "correct": false,
+      "example_id": "pt-PT~DIRECT_DEBIT/response_4.wav",
+      "label": "8",
+      "prediction": null,
+      "reason": "state_not_observed"
+    },
+    {
+      "accepted": false,
+      "confidence_milli": 0,
+      "correct": false,
+      "example_id": "pt-PT~DIRECT_DEBIT/response_40.wav",
+      "label": "8",
+      "prediction": null,
+      "reason": "state_not_observed"
+    },
+    {
+      "accepted": false,
+      "confidence_milli": 0,
+      "correct": false,
+      "example_id": "pt-PT~DIRECT_DEBIT/response_42.wav",
+      "label": "8",
+      "prediction": null,
+      "reason": "ambiguous_state"
+    },
+    {
+      "accepted": false,
+      "confidence_milli": 0,
+      "correct": false,
+      "example_id": "pt-PT~DIRECT_DEBIT/response_7.wav",
+      "label": "8",
+      "prediction": null,
+      "reason": "ambiguous_state"
+    },
+    {
+      "accepted": false,
+      "confidence_milli": 0,
+      "correct": false,
+      "example_id": "pt-PT~DIRECT_DEBIT/response_8.wav",
+      "label": "8",
+      "prediction": null,
+      "reason": "state_not_observed"
+    },
+    {
+      "accepted": false,
+      "confidence_milli": 0,
+      "correct": false,
+      "example_id": "pt-PT~DIRECT_DEBIT/response_9.wav",
+      "label": "8",
+      "prediction": null,
+      "reason": "state_not_observed"
+    },
+    {
+      "accepted": false,
+      "confidence_milli": 0,
+      "correct": false,
+      "example_id": "pt-PT~FREEZE/response_36.wav",
+      "label": "9",
+      "prediction": null,
+      "reason": "state_not_observed"
+    },
+    {
+      "accepted": true,
+      "confidence_milli": 342,
+      "correct": true,
+      "example_id": "pt-PT~FREEZE/response_37.wav",
+      "label": "9",
+      "prediction": "9",
+      "reason": "unique_state_match"
+    },
+    {
+      "accepted": false,
+      "confidence_milli": 0,
+      "correct": false,
+      "example_id": "pt-PT~FREEZE/response_4.wav",
+      "label": "9",
+      "prediction": null,
+      "reason": "ambiguous_state"
+    },
+    {
+      "accepted": false,
+      "confidence_milli": 0,
+      "correct": false,
+      "example_id": "pt-PT~FREEZE/response_5.wav",
+      "label": "9",
+      "prediction": null,
+      "reason": "state_not_observed"
+    },
+    {
+      "accepted": false,
+      "confidence_milli": 0,
+      "correct": false,
+      "example_id": "pt-PT~FREEZE/response_6.wav",
+      "label": "9",
+      "prediction": null,
+      "reason": "ambiguous_state"
+    },
+    {
+      "accepted": true,
+      "confidence_milli": 206,
+      "correct": true,
+      "example_id": "pt-PT~FREEZE/response_8.wav",
+      "label": "9",
+      "prediction": "9",
+      "reason": "unique_state_match"
+    },
+    {
+      "accepted": false,
+      "confidence_milli": 0,
+      "correct": false,
+      "example_id": "pt-PT~FREEZE/response_9.wav",
+      "label": "9",
+      "prediction": null,
+      "reason": "ambiguous_state"
+    }
+  ],
+  "limits": [
+    "exact state matching is intentionally conservative",
+    "coarse state is not a language model",
+    "MInDS speaker independence not verified"
+  ],
+  "metrics": {
+    "abstentions": 79,
+    "accuracy": 0.08163265306122448,
+    "coverage": 0.19387755102040816,
+    "selective_accuracy": 0.42105263157894735
+  },
+  "protocol": {
+    "adapter": "none",
+    "calibration_labels_used": false,
+    "claim_boundary": "native core identity test; not SOTA claim",
+    "input": "coarse text-derived state only",
+    "target_effect_passed_to_selector": false
+  },
+  "schema": "herus-native-core-minds14-v1"
+}

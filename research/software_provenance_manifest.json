@@ -515,19 +515,19 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "e4be05e00efda46b5331563705999f1d6b0845c115ae6d394ea90f6ccd7fe6c3",
+      "sha256": "5c68b12328d4775d250f703250fb2ea55efba4ff5426cc2144355f09e26fecfc",
       "role": "organized documentation, maps and historical design records"
     },
     {
       "path": "research/symbiotic_learning.py",
       "kind": "file",
-      "sha256": "0b7ef98b6b58caa2fc484b5eb1ce218e4850cd58f99f8c7d2b6562f1ee06318f",
+      "sha256": "2aafd3ac8ac2ceb84abbe0f40c017040dbebbe17e7b4f228cf5c48480bb96045",
       "role": "Symbiotic Learning v2 algorithm"
     },
     {
       "path": "research/test_symbiotic_learning.py",
       "kind": "file",
-      "sha256": "bf8a34d23cec45485292274ef77f20c3c52c921c67c270a34b55223e75dff931",
+      "sha256": "ba7d39c9a9bd102a34536cb2699642caa85fa31e1b9409075a10f0dc0e555940",
       "role": "adversarial Symbiotic Learning v2 tests"
     },
     {
@@ -1439,13 +1439,13 @@
     {
       "path": "herus_symbiotic/herus.py",
       "kind": "file",
-      "sha256": "fc7c11ba7f1ff7c91da19e04f1ec5a6466264824a4b265257904b2a7d5da39f3",
+      "sha256": "aac9182d58e06f555f0802bda13f2a2819d05bfe3f3f9312b87e9120b7258e32",
       "role": "single public facade"
     },
     {
       "path": "research/test_herus_facade.py",
       "kind": "file",
-      "sha256": "8d8837adc903955e258e0c910482ce6f51fc1f2684396e9a892345c1e33cfe87",
+      "sha256": "5b520ddc5c1632ad154d049920232d31c5fb6d81ece55f62e5c4753d3ebd96cd",
       "role": "facade tests"
     },
     {
@@ -1753,6 +1753,30 @@
       "kind": "file",
       "sha256": "b8ab14a514fbb7808b18642667226b2df6f804aa578cf0c7a92d352c8d8be09a",
       "role": "risk-coverage scientific report"
+    },
+    {
+      "path": "research/native_core_minds14_benchmark.py",
+      "kind": "file",
+      "sha256": "8096799844047e644970c4c0676265a5b42a956dfcd932bc874f9961549232bc",
+      "role": "native core no-adapter MInDS-14 benchmark"
+    },
+    {
+      "path": "research/evidence/native_core_minds14_v1.json",
+      "kind": "file",
+      "sha256": "0bc3c3b478c1a575a71db334da4dc0976f0eb4d9e648874184029cdd66495cad",
+      "role": "negative native core identity evidence"
+    },
+    {
+      "path": "research/test_native_core_minds14_benchmark.py",
+      "kind": "file",
+      "sha256": "0e96156b445bf851edf077892b345bc44234461129257609a4fcdcb012482954",
+      "role": "native core benchmark integrity tests"
+    },
+    {
+      "path": "docs/145-IDENTIDADE-DO-CORE-E-RESULTADO-NEGATIVO.md",
+      "kind": "file",
+      "sha256": "dc3f4e8285eb52d6013c966dc260298bd85be8282c3ac77abefb6a8d1eb926f3",
+      "role": "native core identity and negative result report"
     }
   ],
   "components": [

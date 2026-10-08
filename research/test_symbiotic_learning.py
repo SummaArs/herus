@@ -133,6 +133,19 @@ class SymbioticLearningTests(unittest.TestCase):
         proposal = learner.propose(episode.effect, [episode], context=())
         self.assertEqual(proposal.reason, 'effect_not_observed')
 
+    def test_native_action_selector_does_not_receive_target_effect(self):
+        learner = SymbioticLearner()
+        episode = Episode.from_maps({'mode': 0}, 'button_a', {'mode': 1})
+        proposal = learner.propose_action(episode.before, [episode])
+        self.assertEqual((proposal.status, proposal.action, proposal.reason), ('PROPOSE', 'button_a', 'unique_state_match'))
+        self.assertTrue(proposal.evidence_ids)
+
+    def test_native_action_selector_abstains_on_ambiguous_state(self):
+        learner = SymbioticLearner()
+        episodes = [Episode.from_maps({'mode': 0}, 'a', {'mode': 1}), Episode.from_maps({'mode': 0}, 'b', {'mode': 2})]
+        proposal = learner.propose_action(episodes[0].before, episodes)
+        self.assertEqual(proposal.reason, 'ambiguous_state')
+
     def test_weight_optimizer_is_bounded_deterministic_and_fit_only(self):
         learner = SymbioticLearner()
         feedback = [

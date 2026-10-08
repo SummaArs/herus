@@ -287,5 +287,31 @@ class SymbioticLearner:
         confidence = _wilson_lower(len(matches), len(matches))
         return Proposal(skill_id, chosen.action, confidence, "PROPOSE", "unique_effect_match", chosen.cost, len(matches), False, evidence_ids, f"Proposta sustentada por {len(matches)} episódio(s) com efeito e contexto coincidentes; confiança é limite inferior de Wilson da estabilidade da evidência.")
 
+    def propose_action(self, current_state: State, candidates: Sequence[Episode], *, context: State = (), cost_budget: int = 4, current_step: int | None = 0, host: HostContract | None = None) -> Proposal:
+        """Select an action from the observed pre-state without target leakage.
+
+        Unlike ``propose``, this entry point never receives the holdout effect.
+        It is deliberately exact-match and abstains on action ambiguity, making
+        the core's generalization boundary measurable rather than hidden inside
+        a text adapter.
+        """
+        skill_id = _digest((context, current_state, "action-selection"))
+        if cost_budget <= 0:
+            return Proposal(skill_id, None, 0, "ABSTAIN", "budget_exhausted", 0, explanation="Abstenção: orçamento esgotado.")
+        if host is not None and (not host.host_id or host.max_cost < 0 or host.max_risk < 0):
+            return Proposal(skill_id, None, 0, "ABSTAIN", "host_contract_invalid", 0, explanation="Abstenção: contrato inválido.")
+        matches = [e for e in candidates if e.outcome == "observed" and e.before == current_state and _context_matches(context, e.context) and e.cost <= cost_budget and e.risk <= self.max_risk and (host is None or (e.action in host.capabilities and e.cost <= host.max_cost and e.risk <= host.max_risk))]
+        if not matches:
+            return Proposal(skill_id, None, 0, "ABSTAIN", "state_not_observed", 0, explanation="Abstenção: nenhum estado/contexto idêntico foi observado.")
+        evidence_ids = tuple(_digest((e.before, e.action, e.after, e.context, e.step)) for e in matches)
+        if current_step is not None and any(abs(e.step - current_step) > self.max_age for e in matches):
+            return Proposal(skill_id, None, 0, "ABSTAIN", "temporal_drift", min(e.cost for e in matches), len(matches), True, evidence_ids, "Abstenção: evidência fora da janela temporal.")
+        actions = {e.action for e in matches}
+        if len(actions) != 1:
+            return Proposal(skill_id, None, 0, "ABSTAIN", "ambiguous_state", min(e.cost for e in matches), len(matches), False, evidence_ids, "Abstenção: o mesmo estado foi associado a ações diferentes.")
+        chosen = matches[0]
+        confidence = _wilson_lower(len(matches), len(matches))
+        return Proposal(skill_id, chosen.action, confidence, "PROPOSE", "unique_state_match", chosen.cost, len(matches), False, evidence_ids, f"Proposta sustentada por {len(matches)} episódio(s) com estado e contexto coincidentes; sem acesso ao efeito-alvo.")
+
     def export(self) -> dict[str, object]:
         return {"algorithm": "symbiotic-learning-v2", "version": self._version, "episodes": len(self._episodes), "skills": [h.__dict__ for h in self.induce()]}

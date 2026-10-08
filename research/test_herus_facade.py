@@ -18,6 +18,13 @@ class HerusFacadeTests(unittest.TestCase):
         self.assertEqual(proposal.action,'enable')
         self.assertEqual(h.inspect()['authority'],'none')
 
+    def test_select_action_uses_native_core_without_target_effect(self):
+        h=Herus()
+        self.assertTrue(h.observe({'ready':0},'enable',{'ready':1}))
+        proposal=h.select_action({'ready':0})
+        self.assertEqual((proposal.status, proposal.action), ('PROPOSE', 'enable'))
+        self.assertIn('select_action', h.help())
+
     def test_update_applies_verified_feedback_without_authority(self):
         h=Herus()
         result=h.update({'ready':0}, 'enable', {'ready':1}, {'ready':1}, utility=2, verifier='test')
