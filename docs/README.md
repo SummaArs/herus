@@ -9,6 +9,7 @@ A documentação antiga conserva decisões e experimentos importantes, mas foi e
 - [135 — Repertório do algoritmo HERUS Symbiotic](135-REPERTORIO-ALGORITMO-HERUS-SYMBIOTIC.md)
 - [84 — Algoritmo Symbiotic Learning](84-ALGORITMO-SYMBIOTIC-LEARNING.md)
 - [136 — Função objetivo e atualização](136-FUNCAO-OBJETIVO-E-ATUALIZACAO-HERUS.md)
+- [137 — Competições desafiadoras e benchmark](137-COMPETICOES-DESAFIADORAS-E-BENCHMARK.md)
 - [119 — Fachada única HERUS](119-FACHADA-UNICA-HERUS.md)
 - [134 — Síntese da crise e reestruturação](134-SINTESE-CRISE-E-REESTRUTURACAO.md)
 - [Arquivo histórico](../archive/README.md)
