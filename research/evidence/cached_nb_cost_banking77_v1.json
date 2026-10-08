@@ -3,12 +3,12 @@
   "dataset": "PolyAI-LDN/task-specific-datasets/banking_data",
   "holdout_examples": 3080,
   "legacy_observed_wall_seconds": 1605.0,
-  "cached_wall_seconds": 41.364,
-  "observed_speedup": 38.78,
-  "observed_wall_reduction_fraction": 0.9742,
-  "cached_peak_rss_kb": 822752,
+  "cached_wall_seconds": 37.514,
+  "observed_speedup": 42.78,
+  "observed_wall_reduction_fraction": 0.9766,
+  "cached_peak_rss_kb": 825548,
   "prediction_equivalence": {
-    "dataset_sample": "500 fit / 50 test real Banking77 rows",
+    "dataset_sample": "6966 fit / 3080 test real Banking77 rows",
     "mismatches": 0,
     "identical": true
   },
@@ -16,10 +16,16 @@
     "universal_default_accuracy": 0.752273,
     "score_calibrated_accuracy": 0.751623
   },
+  "compact_representation": {
+    "integer_token_ids": true,
+    "array_backed_counts": true,
+    "unknown_token_penalty_preserved": true,
+    "process_rss_reduction_demonstrated": false
+  },
   "protocol": {
     "fit_once": true,
     "holdout_labels_used_for_optimization": false,
     "legacy_runtime_is_prior_observed_run_not_controlled_same_process": true,
-    "claim_boundary": "CPU optimization evidence; no general energy or SOTA claim"
+    "claim_boundary": "CPU optimization evidence; memory reduction remains unproven; no general energy or SOTA claim"
   }
 }

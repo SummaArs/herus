@@ -515,7 +515,7 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "28ca9c43307eea280eb2a90e15d07d1b518c1a4a124e3163ea95b8e0dc06a29f",
+      "sha256": "33a032efea24587b0545f70acaf1df7db8f874949f8294e249219e2f81e290d3",
       "role": "organized documentation, maps and historical design records"
     },
     {
@@ -749,7 +749,7 @@
     {
       "path": "research/real_data_baseline_benchmark.py",
       "kind": "file",
-      "sha256": "2dc4d1f08996334868d9200f2bdec63f4eb7f6865a550ac3246a605ff03d56ff",
+      "sha256": "f10433116d38dfe1843d2cbe0e946a3b069b772fe9579d87504a16a36c786987",
       "role": "calibrated coverage precision experiment"
     },
     {
@@ -2099,7 +2099,7 @@
     {
       "path": "research/evidence/cached_nb_cost_banking77_v1.json",
       "kind": "file",
-      "sha256": "f95a8554911a5407a24c8f5b69c1f4748f0f6fbf3db840d00df38f094395dee0",
+      "sha256": "69054e3b6d0235975f960f260b9361f565c6b306764350739d50bb39f7cec6fb",
       "role": "cached NB cost evidence"
     },
     {
@@ -2111,7 +2111,7 @@
     {
       "path": "docs/159-OTIMIZACAO-CPU-E-CUSTO-CACHEADO.md",
       "kind": "file",
-      "sha256": "7c1171f12e1a76317b4b9a8eb316697f642299fc27f3df70b3cbe051caf1a1a3",
+      "sha256": "0ad5c7497f8adf5865e4d32a4b7aedc47abc4e9d20a45711d6bacf3ae171ba45",
       "role": "cached CPU optimization report"
     }
   ],

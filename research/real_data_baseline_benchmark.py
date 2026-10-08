@@ -7,6 +7,7 @@ baseline, not as proof of open-language reasoning.
 """
 from __future__ import annotations
 import json, math, re, time, urllib.error, urllib.parse, urllib.request
+from array import array
 from collections import Counter, defaultdict
 from pathlib import Path
 
@@ -79,19 +80,25 @@ def contextual_memory(train, test):
 class MultinomialNBModel:
     """Cached text model; fitting is separated from per-row scoring."""
     def __init__(self, train):
-        self.labels = sorted({item['label'] for item in train}); self.docs = Counter(item['label'] for item in train)
-        self.words = {label: Counter() for label in self.labels}; self.totals = Counter(); vocabulary = set()
+        self.labels = sorted({item['label'] for item in train}); self.docs = Counter(item['label'] for item in train); vocabulary = {}
         for item in train:
-            counts = vector(item['text']); self.words[item['label']].update(counts)
-            self.totals[item['label']] += sum(counts.values()); vocabulary.update(counts)
-        self.v = max(1, len(vocabulary)); self.n = len(train)
-    def score(self, row):
-        counts = vector(row['text']); scores = {}
+            for token in set(tokens(item['text'])): vocabulary.setdefault(token, len(vocabulary))
+        self.token_ids = vocabulary; self.v = max(1, len(vocabulary)); counts = {label: array('I', [0]) * self.v for label in self.labels}; self.totals = Counter()
+        for item in train:
+            row_counts = vector(item['text']); self.totals[item['label']] += sum(row_counts.values())
+            for token, count in row_counts.items(): counts[item['label']][vocabulary[token]] += count
+        self.log_probs = []; self.unknown_log_probs = []
         for label in self.labels:
-            score = math.log((self.docs[label] + 1) / (self.n + len(self.labels))); denom = self.totals[label] + self.v
-            scores[label] = score + sum(c * math.log((self.words[label][token] + 1) / denom) for token, c in counts.items())
-        ordered = sorted(scores.items(), key=lambda pair: pair[1], reverse=True)
-        return ordered[0][0], ordered[0][1] - ordered[1][1]
+            denom = self.totals[label] + self.v
+            self.log_probs.append(array('d', (math.log((value + 1) / denom) for value in counts[label])))
+            self.unknown_log_probs.append(math.log(1 / denom))
+        self.log_priors = [math.log((self.docs[label] + 1) / (len(train) + len(self.labels))) for label in self.labels]
+    def score(self, row):
+        counts = vector(row['text']); scores = []
+        for prior, probabilities, unknown in zip(self.log_priors, self.log_probs, self.unknown_log_probs):
+            scores.append(prior + sum(c * (probabilities[self.token_ids[token]] if token in self.token_ids else unknown) for token, c in counts.items()))
+        best = sorted(enumerate(scores), key=lambda pair: pair[1], reverse=True)
+        return self.labels[best[0][0]], best[0][1] - best[1][1]
 
 def fit_nb(train):
     return MultinomialNBModel(train)
