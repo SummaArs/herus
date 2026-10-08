@@ -27,6 +27,7 @@ A documentação antiga conserva decisões e experimentos importantes, mas foi e
 - [152 — Ablação do roteador universal](152-ABULACAO-ROTEADOR-UNIVERSAL.md)
 - [153 — Calibração de score e regressão](153-CALIBRACAO-DE-SCORE-E-REGRESSAO.md)
 - [154 — Seleção de política por hospedeiro](154-SELECAO-DE-POLITICA-POR-HOSPEDEIRO.md)
+- [155 — Seletor universal de política](155-SELETOR-UNIVERSAL-DE-POLITICA.md)
 - [119 — Fachada única HERUS](119-FACHADA-UNICA-HERUS.md)
 - [134 — Síntese da crise e reestruturação](134-SINTESE-CRISE-E-REESTRUTURACAO.md)
 - [Arquivo histórico](../archive/README.md)

@@ -515,7 +515,7 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "6b6f532b76fed2f5229c4633a2a73b64ab7a14cfc9e1d03981997e2a796d2777",
+      "sha256": "908b3bee465d52755452129138d00b43af75624d55c860c716efed75c5e64dac",
       "role": "organized documentation, maps and historical design records"
     },
     {
@@ -1993,6 +1993,30 @@
       "kind": "file",
       "sha256": "778c1bbd114a96c0f240c1c84595c0111518b24e10a43a5378db1861b58f7b49",
       "role": "nested policy selection report"
+    },
+    {
+      "path": "research/policy_selection_minds14.py",
+      "kind": "file",
+      "sha256": "76301e18a98708727bf3dd8928c8201ffd19b28bd8056fc0d70239458fd76011",
+      "role": "MInDS-14 nested policy selection"
+    },
+    {
+      "path": "research/evidence/policy_selection_minds14_v1.json",
+      "kind": "file",
+      "sha256": "86f4ad6413c2d76872d0bb7ea3cfb2a263c170e7bd3f0ed4c7a4b55310e08fd9",
+      "role": "MInDS-14 policy selection evidence"
+    },
+    {
+      "path": "research/test_universal_policy_selection.py",
+      "kind": "file",
+      "sha256": "8f39562f47a7eab0bb7e00c27e619fe1309d71f645585abc3fad82cd9e9004ef",
+      "role": "cross-host policy selection tests"
+    },
+    {
+      "path": "docs/155-SELETOR-UNIVERSAL-DE-POLITICA.md",
+      "kind": "file",
+      "sha256": "d08720d0cdc7112c1884d9f6b9355108e022827bf9771c5a3e8bd7fb9f58b667",
+      "role": "universal host policy selector report"
     }
   ],
   "components": [

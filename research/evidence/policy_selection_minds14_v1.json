@@ -1,0 +1,47 @@
+{
+  "dataset": {
+    "calibration": 89,
+    "config": "pt-PT",
+    "fit": 417,
+    "holdout": 98,
+    "id": "PolyAI/minds14"
+  },
+  "metrics": {
+    "chosen_policy": {
+      "accuracy": 0.928571,
+      "coverage": 1.0,
+      "macro_f1": 0.91193,
+      "selective_accuracy": 0.928571
+    },
+    "score_calibrated": {
+      "accuracy": 0.918367,
+      "coverage": 1.0,
+      "macro_f1": 0.902321,
+      "selective_accuracy": 0.918367
+    },
+    "universal_default": {
+      "accuracy": 0.928571,
+      "coverage": 1.0,
+      "macro_f1": 0.91193,
+      "selective_accuracy": 0.928571
+    }
+  },
+  "protocol": {
+    "claim_boundary": "policy selection replication; no SOTA claim",
+    "holdout_labels_used_for_selection": false,
+    "nested_calibration": true
+  },
+  "schema": "herus-policy-selection-minds14-v1",
+  "selection": {
+    "calibration_split": {
+      "tune": 44,
+      "validation": 45
+    },
+    "chosen_policy": "universal_default",
+    "tie_rule": "universal_default",
+    "validation_accuracy": {
+      "score_calibrated": 0.844444,
+      "universal_default": 0.844444
+    }
+  }
+}
