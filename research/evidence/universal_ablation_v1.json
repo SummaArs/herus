@@ -1,0 +1,50 @@
+{
+  "results": [
+    {
+      "always_centroid": 0.877551,
+      "always_naive_bayes": 0.918367,
+      "claim_boundary": "ablation only; not a SOTA claim",
+      "dataset": {
+        "calibration": 89,
+        "config": "pt-PT",
+        "fit": 417,
+        "holdout": 98,
+        "id": "PolyAI/minds14",
+        "rows": 604
+      },
+      "n": 98,
+      "oracle_candidate_ceiling": 0.938776,
+      "random_ci95": [
+        0.867347,
+        0.928571
+      ],
+      "random_mean": 0.897926,
+      "universal_accuracy": 0.928571,
+      "universal_gain_vs_nb": 0.010204
+    },
+    {
+      "always_centroid": 0.360104,
+      "always_naive_bayes": 0.365285,
+      "claim_boundary": "ablation only; not a SOTA claim",
+      "dataset": {
+        "calibration": 1272,
+        "calibration_season": "S05",
+        "fit": 566,
+        "fit_season": "S04",
+        "holdout": 386,
+        "holdout_season": "S06",
+        "id": "THU-IAR/MIntRec"
+      },
+      "n": 386,
+      "oracle_candidate_ceiling": 0.518135,
+      "random_ci95": [
+        0.334197,
+        0.391192
+      ],
+      "random_mean": 0.362612,
+      "universal_accuracy": 0.38342,
+      "universal_gain_vs_nb": 0.018135
+    }
+  ],
+  "schema": "herus-universal-ablation-v1"
+}

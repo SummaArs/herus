@@ -515,7 +515,7 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "20f38fb5a8bdfc70206ff352fb74d709c90f6d59fe95e88c35d04d087906f2fd",
+      "sha256": "77a870743fbd5fbbebd33daa0e56f141463a8b87f879c07dc5018bc73e0413ff",
       "role": "organized documentation, maps and historical design records"
     },
     {
@@ -1921,6 +1921,30 @@
       "kind": "file",
       "sha256": "5ca1da5dfde1982e73e42a81044a8650445169b09cb27a737a4f94634a922ba0",
       "role": "second-dataset replication report"
+    },
+    {
+      "path": "research/universal_ablation.py",
+      "kind": "file",
+      "sha256": "648b0ca18a22b0ed57704d7da1f832db7260df6583d9ecf744e9fbb1c31570f9",
+      "role": "universal router ablation analysis"
+    },
+    {
+      "path": "research/evidence/universal_ablation_v1.json",
+      "kind": "file",
+      "sha256": "da11e9a61b0cf28eb8e80a3ad45eed116a83bcbb33fba558d75ec55b4058be35",
+      "role": "universal router ablation evidence"
+    },
+    {
+      "path": "research/test_universal_ablation.py",
+      "kind": "file",
+      "sha256": "0383c9891fafd3bd98bd1a42771809a79040609c13d665f943780891967699fc",
+      "role": "universal ablation tests"
+    },
+    {
+      "path": "docs/152-ABULACAO-ROTEADOR-UNIVERSAL.md",
+      "kind": "file",
+      "sha256": "8b7457200bb200583e3fc639be881ea79f73bd8e3690e02c5b6264bbf886cf39",
+      "role": "universal ablation report"
     }
   ],
   "components": [

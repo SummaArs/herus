@@ -24,6 +24,7 @@ A documentação antiga conserva decisões e experimentos importantes, mas foi e
 - [149 — Transformer bloqueado pelo contrato universal](149-TRANSFORMER-BLOQUEADO-PELO-CONTRATO-UNIVERSAL.md)
 - [150 — Gate de admissão LLM](150-GATE-ADMISSAO-LLM-UNIVERSAL.md)
 - [151 — Replicação universal em MIntRec](151-REPLICACAO-UNIVERSAL-MINTREC.md)
+- [152 — Ablação do roteador universal](152-ABULACAO-ROTEADOR-UNIVERSAL.md)
 - [119 — Fachada única HERUS](119-FACHADA-UNICA-HERUS.md)
 - [134 — Síntese da crise e reestruturação](134-SINTESE-CRISE-E-REESTRUTURACAO.md)
 - [Arquivo histórico](../archive/README.md)
