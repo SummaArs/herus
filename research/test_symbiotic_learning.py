@@ -168,4 +168,18 @@ class SymbioticLearningTests(unittest.TestCase):
         self.assertEqual(result.reason, 'host_contract_violation')
         self.assertEqual(learner.version, 0)
 
+    def test_migration_retains_compatible_evidence_and_quarantines_the_rest(self):
+        learner = SymbioticLearner()
+        self.assertTrue(learner.observe(Episode.from_maps({}, 'button_a', {'ok': 1}, cost=1)))
+        self.assertTrue(learner.observe(Episode.from_maps({}, 'button_b', {'ok': 2}, cost=1)))
+        source = HostContract('host-a', capabilities=('button_a', 'button_b'), max_cost=2, max_risk=0)
+        target = HostContract('host-b', capabilities=('button_a',), max_cost=1, max_risk=0)
+        before = learner.snapshot()
+        result = learner.migration_plan(source, target)
+        self.assertTrue(result.accepted)
+        self.assertEqual(len(result.retained_evidence_ids), 1)
+        self.assertEqual(len(result.quarantined_evidence_ids), 1)
+        self.assertEqual(learner.snapshot(), before)
+        self.assertEqual(result.reason, 'migration_planned_no_authority_transfer')
+
 if __name__ == '__main__': unittest.main()

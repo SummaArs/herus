@@ -515,19 +515,19 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "f4dd80d6693104a714dc249c939f004b7dd86af5f06d9ed3d9b1cb445984fd50",
+      "sha256": "ce8f4809c468b95fbfbb6651f7706b179b83af1d9a4dd3e48d7b0a1477cde4f4",
       "role": "organized documentation, maps and historical design records"
     },
     {
       "path": "research/symbiotic_learning.py",
       "kind": "file",
-      "sha256": "01f609f5fc04217280166e5cc496544469ca2a43be50f02bf6accd75f12cf231",
+      "sha256": "0b7ef98b6b58caa2fc484b5eb1ce218e4850cd58f99f8c7d2b6562f1ee06318f",
       "role": "Symbiotic Learning v2 algorithm"
     },
     {
       "path": "research/test_symbiotic_learning.py",
       "kind": "file",
-      "sha256": "485eb93a29096b51a5ac90a8fc42f6be7021f47990947d05c29860450cb5537f",
+      "sha256": "d4fd73ae3f78dea4557bc42a2860e25e2a25a9a5228d94426eb585150d98dc0e",
       "role": "adversarial Symbiotic Learning v2 tests"
     },
     {
@@ -1439,7 +1439,7 @@
     {
       "path": "herus_symbiotic/herus.py",
       "kind": "file",
-      "sha256": "1210b9bafd0e522057f3f7fe2a15b44c2272e5c69bfeb5566a96b111922962c5",
+      "sha256": "fc7c11ba7f1ff7c91da19e04f1ec5a6466264824a4b265257904b2a7d5da39f3",
       "role": "single public facade"
     },
     {

@@ -94,6 +94,12 @@ proposta ou atualização incompatível é rejeitada antes de entrar no estado.
 Esse contrato descreve limites do ambiente; ele não cria autoridade de
 execução e não permite que o host substitua a evidência do algoritmo.
 
+`migration_plan(source, target)` implementa a primeira forma de migração
+controlada. Ele conserva IDs de evidência compatíveis, coloca evidência que
+excede as capacidades do destino em quarentena explícita e não altera o
+snapshot do learner. Assim, trocar de host não equivale a carregar capacidades
+ou autoridade implicitamente.
+
 ## O que falta para chamar de algoritmo completo
 
 - entrada que não receba o rótulo/efeito verdadeiro do holdout;

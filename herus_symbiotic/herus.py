@@ -4,7 +4,7 @@ from typing import Any, Mapping, Sequence, Tuple
 from herus_symbiotic.data_science import DataScienceSkill, MLPlan
 from herus_symbiotic.programming import ProgrammingRequest, ProgrammingSkill, ProgrammingProposal
 from research.meta_symbiotic_learning import MetaSymbioticLearner, Problem
-from research.symbiotic_learning import Episode, Feedback, HostContract, Proposal, State, SymbioticLearner, UpdateResult
+from research.symbiotic_learning import Episode, Feedback, HostContract, MigrationResult, Proposal, State, SymbioticLearner, UpdateResult
 
 class Herus:
     """One importable object for beginners and senior users.
@@ -43,10 +43,14 @@ class Herus:
         feedback = Feedback(to_state(before), action, to_state(after), to_state(target_effect), to_state(context or {}), outcome, utility, risk, cost, 0.0, 0.0, provenance, verifier, step, example_id)
         return self.learning.update(feedback, host=host)
 
+    def migrate(self, source: HostContract, target: HostContract) -> MigrationResult:
+        """Plan a bounded host migration; incompatible evidence is quarantined."""
+        return self.learning.migration_plan(source, target)
+
     def inspect(self) -> dict[str, object]:
         """Return an explainable snapshot suitable for logs and teaching."""
         return {"version": self.learning.version, "observations": len(self.learning.snapshot()[0]), "skills": [h.__dict__ for h in self.learning.induce()], "authority": "none"}
 
     @staticmethod
     def help() -> str:
-        return "Herus().data(...) audita ML; .program(...) planeja código; .observe(...) aprende evidência; .update(...) aplica feedback verificado; .propose(...) propõe sem executar; .inspect() explica o estado."
+        return "Herus().data(...) audita ML; .program(...) planeja código; .observe(...) aprende evidência; .update(...) aplica feedback verificado; .propose(...) propõe sem executar; .migrate(...) planeja migração sem transferir autoridade; .inspect() explica o estado."

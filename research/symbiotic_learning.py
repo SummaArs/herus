@@ -138,6 +138,15 @@ class OptimizationResult:
     fit_count: int
 
 @dataclass(frozen=True)
+class MigrationResult:
+    accepted: bool
+    source_host: str
+    target_host: str
+    retained_evidence_ids: tuple[str, ...]
+    quarantined_evidence_ids: tuple[str, ...]
+    reason: str
+
+@dataclass(frozen=True)
 class HostContract:
     """Finite host boundary consumed by the learner, never authority itself."""
     host_id: str
@@ -162,6 +171,18 @@ class SymbioticLearner:
 
     def rollback(self, snapshot: tuple[tuple[Episode, ...], int]) -> None:
         self._episodes, self._version = list(snapshot[0]), snapshot[1]
+
+    def migration_plan(self, source: HostContract, target: HostContract) -> MigrationResult:
+        """Plan a host migration without copying authority or mutating learner state."""
+        if not source.host_id or not target.host_id or target.max_cost < 0 or target.max_risk < 0:
+            return MigrationResult(False, source.host_id, target.host_id, (), (), "host_contract_invalid")
+        retained: list[str] = []
+        quarantined: list[str] = []
+        for episode in self._episodes:
+            evidence_id = _digest((episode.before, episode.action, episode.after, episode.context, episode.step, episode.outcome))
+            allowed = episode.action in target.capabilities and episode.cost <= target.max_cost and episode.risk <= target.max_risk
+            (retained if allowed else quarantined).append(evidence_id)
+        return MigrationResult(True, source.host_id, target.host_id, tuple(retained), tuple(quarantined), "migration_planned_no_authority_transfer")
 
     def objective(self, *, utility: float, risk: float, cost: float, authority_violation: float = 0.0, evidence_deficit: float = 0.0, weights: UtilityWeights = UtilityWeights()) -> float:
         """Score a feedback event under the host contract."""
