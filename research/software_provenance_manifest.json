@@ -29,7 +29,7 @@
     {
       "path": "tools",
       "kind": "tree",
-      "sha256": "380637ee00c155a905f79e2371b151d99cfc5b5cdd894325ed9f747eba2f66e0",
+      "sha256": "0a8fc34c095c2d6d30defead2bfea9c6d04a66ff437083a06db8819f33171488",
       "role": "host proof and provenance tools"
     },
     {
@@ -515,7 +515,7 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "f004aa3b76d67535dc7cdbef2c8a279cd6b054dca174983e0828a06b129cd3b7",
+      "sha256": "c8e8820cbc25d2fe405866b7119ca9d824b0bec19944dfc985b571283bacb1b6",
       "role": "organized documentation, maps and historical design records"
     },
     {
@@ -2077,6 +2077,24 @@
       "kind": "file",
       "sha256": "bc8738c863e6809d60b604305b291512acbea843a70839a09cede2a70183fe68",
       "role": "confidence gate report"
+    },
+    {
+      "path": "tools/capacity_check.py",
+      "kind": "file",
+      "sha256": "6247e5547f7853f8e53abd9933fc2b8540a18ed0a50468dd3ecf755681a8fc51",
+      "role": "capacity analytical gate"
+    },
+    {
+      "path": "tools/test_capacity_check.py",
+      "kind": "file",
+      "sha256": "9c6c1e4ea214caff9e83b1c30b420711e1f631f2f02de036b0060771116c585f",
+      "role": "capacity gate tests"
+    },
+    {
+      "path": "docs/158-CAPACIDADE-E-ECONOMIA-COMPUTACIONAL.md",
+      "kind": "file",
+      "sha256": "f419f8d8ef137eb9c40af6794fe61e0893a85b9d131343d2b4bed370be2acfdf",
+      "role": "capacity and economy report"
     }
   ],
   "components": [
