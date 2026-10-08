@@ -515,7 +515,7 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "359b7048fd2ccee7f02824b5ceb9c1524153536c54895778045fd09298403cc6",
+      "sha256": "2a85e3b9a7886c7507c9fafa7068435b226eecf849af57f4e5d9776d0896f957",
       "role": "organized documentation, maps and historical design records"
     },
     {
@@ -1831,6 +1831,30 @@
       "kind": "file",
       "sha256": "d66716e4c485a95b8cee2a2dbd6e10d090c7c1c0504eca050a0d088e1d56feb5",
       "role": "real-model competition scientific report"
+    },
+    {
+      "path": "research/universal_minds14_benchmark.py",
+      "kind": "file",
+      "sha256": "5f5a142f542b4d9828c311e19ffe85f20bc282f5b350c1b598c4ed0b87881dda",
+      "role": "paired universal router real-data benchmark"
+    },
+    {
+      "path": "research/evidence/universal_minds14_v1.json",
+      "kind": "file",
+      "sha256": "1c5b7cabb67bbd808e1e888defbeb8f3d23428f26926dbd080f02cf175414894",
+      "role": "universal router paired prediction ledger"
+    },
+    {
+      "path": "research/test_universal_minds14_benchmark.py",
+      "kind": "file",
+      "sha256": "3b410f291cc46823ef82c67ced739c9bba431a7c186dac72948ce22250e2238a",
+      "role": "universal router benchmark integrity tests"
+    },
+    {
+      "path": "docs/148-RESULTADO-META-ALGORITMO-UNIVERSAL.md",
+      "kind": "file",
+      "sha256": "ca06e558337b40bab3dc26901eb491b9c137790b4aecb128de80366a1053db8b",
+      "role": "universal router paired-result report"
     }
   ],
   "components": [
