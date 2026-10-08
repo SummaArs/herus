@@ -515,7 +515,7 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "ce8f4809c468b95fbfbb6651f7706b179b83af1d9a4dd3e48d7b0a1477cde4f4",
+      "sha256": "1620c15daee4e9397b9bf0707a9c0e6df8fe6805da7e5171a290661b6f46006f",
       "role": "organized documentation, maps and historical design records"
     },
     {
@@ -1585,6 +1585,30 @@
       "kind": "file",
       "sha256": "0553d83e62432c1e002338f92f8d4c96bbd37566bfe81f80631d5ee22be5fa4f",
       "role": "updated conformal report"
+    },
+    {
+      "path": "research/multi_host_gate.py",
+      "kind": "file",
+      "sha256": "1134a2e1fc6d56aee3b0d972662266001160a5ebac25caf5b3d50d5941b39857",
+      "role": "fail-closed final multi-host validation gate"
+    },
+    {
+      "path": "research/test_multi_host_gate.py",
+      "kind": "file",
+      "sha256": "795cbdc9b8c0f0f167e073d6f7ee78a7b104459bd26ce173fde3284c25ca2184",
+      "role": "multi-host gate anti-overclaim tests"
+    },
+    {
+      "path": "research/evidence/multi_host_gate_v1.json",
+      "kind": "file",
+      "sha256": "2effc7ee085db45cc364be90243043b3c5cea9f0067d53b3958886b31f557fe3",
+      "role": "blocked multi-host execution state"
+    },
+    {
+      "path": "docs/138-GATE-FINAL-MULTI-HOST-E-SOTA.md",
+      "kind": "file",
+      "sha256": "1358a112794820c1bd3dd7a7590343dccf2791c2977f7fc7c8b590e23f73eeb5",
+      "role": "final multi-host and SOTA gate specification"
     }
   ],
   "components": [

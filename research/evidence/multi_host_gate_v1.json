@@ -1,0 +1,7 @@
+{
+  "schema": "herus-multi-host-gate-v1",
+  "data_origin": "not_executed",
+  "dataset_id": "",
+  "hosts": [],
+  "status_note": "Protocol implemented; real multi-host execution is intentionally blocked until three real host partitions, three seeds, and paired baselines are archived."
+}
