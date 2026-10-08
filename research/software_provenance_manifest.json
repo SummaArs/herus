@@ -515,7 +515,7 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "77a870743fbd5fbbebd33daa0e56f141463a8b87f879c07dc5018bc73e0413ff",
+      "sha256": "7f65c6042c78d8cde75091b1a012641a86416b9906b00dffe15d3741dbc99fd7",
       "role": "organized documentation, maps and historical design records"
     },
     {
@@ -1945,6 +1945,30 @@
       "kind": "file",
       "sha256": "8b7457200bb200583e3fc639be881ea79f73bd8e3690e02c5b6264bbf886cf39",
       "role": "universal ablation report"
+    },
+    {
+      "path": "research/score_calibrated_universal.py",
+      "kind": "file",
+      "sha256": "c4f6b0ea8c01fcdc86240cc89a2f85b82477578589951ed784b36330ad6cc762",
+      "role": "per-paradigm score calibration ablation"
+    },
+    {
+      "path": "research/evidence/score_calibrated_universal_v1.json",
+      "kind": "file",
+      "sha256": "52a550db6afe2dacb6b705a0117b8eade7a9cd1c008152ad6a7a21079cc80bd1",
+      "role": "score calibration evidence"
+    },
+    {
+      "path": "research/test_score_calibrated_universal.py",
+      "kind": "file",
+      "sha256": "486b50999e0c076289930a111aeb215e41ad82167ac8c2a87db29fe52da878fd",
+      "role": "score calibration tests"
+    },
+    {
+      "path": "docs/153-CALIBRACAO-DE-SCORE-E-REGRESSAO.md",
+      "kind": "file",
+      "sha256": "54d05994247a7dfc58c9e46eb900bda85d5d0387f9db14e619cf7c1bfbf634d2",
+      "role": "score calibration regression report"
     }
   ],
   "components": [

@@ -1,0 +1,4421 @@
+{
+  "results": [
+    {
+      "dataset": "PolyAI/minds14",
+      "ledger": [
+        {
+          "centroid_prediction": "0",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~ABROAD/CAe0b3bd7802aa8a8c49e631dc963160f0_3.wav",
+          "label": "0",
+          "nb_prediction": "0",
+          "prediction": "0",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "0",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~ABROAD/CAe29689bc7ea0f4101143506baf8d68fe_2.wav",
+          "label": "0",
+          "nb_prediction": "0",
+          "prediction": "0",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "0",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~ABROAD/CAe51c9ca4d2e65b98f00b372a480f8867_2.wav",
+          "label": "0",
+          "nb_prediction": "0",
+          "prediction": "0",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "0",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~ABROAD/CAe9ce705fb3e8095290f0158d209689ee_3.wav",
+          "label": "0",
+          "nb_prediction": "0",
+          "prediction": "0",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "0",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~ABROAD/CAee8bd001ed495a0e732688fa15c855b4_2.wav",
+          "label": "0",
+          "nb_prediction": "0",
+          "prediction": "0",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "9",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~ABROAD/CAeecf6c1d0b688487390760e8a5461fad_1.wav",
+          "label": "0",
+          "nb_prediction": "0",
+          "prediction": "0",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "0",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~ABROAD/CAf127defad3bac3ea426618860ad232aa_1.wav",
+          "label": "0",
+          "nb_prediction": "0",
+          "prediction": "0",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "0",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~ABROAD/CAf2beeb59c82ce2de659bd4a7f3bb6914_3.wav",
+          "label": "0",
+          "nb_prediction": "0",
+          "prediction": "0",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "0",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~ABROAD/CAf3a732f29df53adcac88f32bd91f5640_2.wav",
+          "label": "0",
+          "nb_prediction": "0",
+          "prediction": "0",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "0",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~ABROAD/CAf70be20fff527ed2a53b9434f7012d18_3.wav",
+          "label": "0",
+          "nb_prediction": "0",
+          "prediction": "0",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "6",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~ABROAD/CAf70be20fff527ed2a53b9434f7012d18_5.wav",
+          "label": "0",
+          "nb_prediction": "0",
+          "prediction": "0",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "0",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~ABROAD/CAf725e67d481bd4a064e829adae4b3e74_2.wav",
+          "label": "0",
+          "nb_prediction": "0",
+          "prediction": "0",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "0",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~ABROAD/CAfabed6cccf6c33abd7d291dca9f1f0db_2.wav",
+          "label": "0",
+          "nb_prediction": "0",
+          "prediction": "0",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "0",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~ABROAD/CAfb5d556c6173357ed0695b25fcdca446_3.wav",
+          "label": "0",
+          "nb_prediction": "0",
+          "prediction": "0",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "1",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~ADDRESS/response_34.wav",
+          "label": "1",
+          "nb_prediction": "1",
+          "prediction": "1",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "6",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~ADDRESS/response_38.wav",
+          "label": "1",
+          "nb_prediction": "6",
+          "prediction": "6",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "1",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~ADDRESS/response_4.wav",
+          "label": "1",
+          "nb_prediction": "1",
+          "prediction": "1",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "1",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~ADDRESS/response_40.wav",
+          "label": "1",
+          "nb_prediction": "1",
+          "prediction": "1",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "1",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~ADDRESS/response_41.wav",
+          "label": "1",
+          "nb_prediction": "1",
+          "prediction": "1",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "1",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~ADDRESS/response_5.wav",
+          "label": "1",
+          "nb_prediction": "1",
+          "prediction": "1",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "10",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~HIGH_VALUE_PAYMENT/response_40.wav",
+          "label": "10",
+          "nb_prediction": "10",
+          "prediction": "10",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "10",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~HIGH_VALUE_PAYMENT/response_42.wav",
+          "label": "10",
+          "nb_prediction": "10",
+          "prediction": "10",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "10",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~HIGH_VALUE_PAYMENT/response_5.wav",
+          "label": "10",
+          "nb_prediction": "10",
+          "prediction": "10",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "10",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~HIGH_VALUE_PAYMENT/response_7.wav",
+          "label": "10",
+          "nb_prediction": "10",
+          "prediction": "10",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "10",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~HIGH_VALUE_PAYMENT/response_9.wav",
+          "label": "10",
+          "nb_prediction": "10",
+          "prediction": "10",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "11",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~JOINT_ACCOUNT/response_27.wav",
+          "label": "11",
+          "nb_prediction": "11",
+          "prediction": "11",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "11",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~JOINT_ACCOUNT/response_29.wav",
+          "label": "11",
+          "nb_prediction": "11",
+          "prediction": "11",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "11",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~JOINT_ACCOUNT/response_30.wav",
+          "label": "11",
+          "nb_prediction": "11",
+          "prediction": "11",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "11",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~JOINT_ACCOUNT/response_31.wav",
+          "label": "11",
+          "nb_prediction": "11",
+          "prediction": "11",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "11",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~JOINT_ACCOUNT/response_4.wav",
+          "label": "11",
+          "nb_prediction": "11",
+          "prediction": "11",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "11",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~JOINT_ACCOUNT/response_5.wav",
+          "label": "11",
+          "nb_prediction": "11",
+          "prediction": "11",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "11",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~JOINT_ACCOUNT/response_7.wav",
+          "label": "11",
+          "nb_prediction": "11",
+          "prediction": "11",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "2",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~LATEST_TRANSACTIONS/response_26.wav",
+          "label": "12",
+          "nb_prediction": "12",
+          "prediction": "12",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "12",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~LATEST_TRANSACTIONS/response_3.wav",
+          "label": "12",
+          "nb_prediction": "12",
+          "prediction": "12",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "12",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~LATEST_TRANSACTIONS/response_4.wav",
+          "label": "12",
+          "nb_prediction": "12",
+          "prediction": "12",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "12",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~LATEST_TRANSACTIONS/response_5.wav",
+          "label": "12",
+          "nb_prediction": "12",
+          "prediction": "12",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "12",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~LATEST_TRANSACTIONS/response_8.wav",
+          "label": "12",
+          "nb_prediction": "12",
+          "prediction": "12",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "12",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~LATEST_TRANSACTIONS/response_9.wav",
+          "label": "12",
+          "nb_prediction": "12",
+          "prediction": "12",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "9",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~PAY_BILL/response_32.wav",
+          "label": "13",
+          "nb_prediction": "9",
+          "prediction": "9",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "13",
+          "estimated_precision": 0.9285714285714286,
+          "example_id": "pt-PT~PAY_BILL/response_4.wav",
+          "label": "13",
+          "nb_prediction": "11",
+          "prediction": "11",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "13",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~PAY_BILL/response_6.wav",
+          "label": "13",
+          "nb_prediction": "13",
+          "prediction": "13",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "9",
+          "estimated_precision": 0.9358974358974359,
+          "example_id": "pt-PT~PAY_BILL/response_7.wav",
+          "label": "13",
+          "nb_prediction": "6",
+          "prediction": "9",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "10",
+          "estimated_precision": 0.9512195121951219,
+          "example_id": "pt-PT~PAY_BILL/response_8.wav",
+          "label": "13",
+          "nb_prediction": "10",
+          "prediction": "10",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "13",
+          "estimated_precision": 0.9259259259259259,
+          "example_id": "pt-PT~PAY_BILL/response_9.wav",
+          "label": "13",
+          "nb_prediction": "11",
+          "prediction": "13",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "2",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~APP_ERROR/response_42.wav",
+          "label": "2",
+          "nb_prediction": "2",
+          "prediction": "2",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "2",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~APP_ERROR/response_43.wav",
+          "label": "2",
+          "nb_prediction": "2",
+          "prediction": "2",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "2",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~APP_ERROR/response_5.wav",
+          "label": "2",
+          "nb_prediction": "2",
+          "prediction": "2",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "2",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~APP_ERROR/response_6.wav",
+          "label": "2",
+          "nb_prediction": "2",
+          "prediction": "2",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "2",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~APP_ERROR/response_7.wav",
+          "label": "2",
+          "nb_prediction": "2",
+          "prediction": "2",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "6",
+          "estimated_precision": 0.9722222222222222,
+          "example_id": "pt-PT~APP_ERROR/response_8.wav",
+          "label": "2",
+          "nb_prediction": "2",
+          "prediction": "6",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "2",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~APP_ERROR/response_9.wav",
+          "label": "2",
+          "nb_prediction": "2",
+          "prediction": "2",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "3",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~ATM_LIMIT/response_40.wav",
+          "label": "3",
+          "nb_prediction": "3",
+          "prediction": "3",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "3",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~ATM_LIMIT/response_41.wav",
+          "label": "3",
+          "nb_prediction": "3",
+          "prediction": "3",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "3",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~ATM_LIMIT/response_43.wav",
+          "label": "3",
+          "nb_prediction": "3",
+          "prediction": "3",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "3",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~ATM_LIMIT/response_5.wav",
+          "label": "3",
+          "nb_prediction": "3",
+          "prediction": "3",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "3",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~ATM_LIMIT/response_6.wav",
+          "label": "3",
+          "nb_prediction": "3",
+          "prediction": "3",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "3",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~ATM_LIMIT/response_7.wav",
+          "label": "3",
+          "nb_prediction": "3",
+          "prediction": "3",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "3",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~ATM_LIMIT/response_9.wav",
+          "label": "3",
+          "nb_prediction": "3",
+          "prediction": "3",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "4",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~BALANCE/response_38.wav",
+          "label": "4",
+          "nb_prediction": "4",
+          "prediction": "4",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "4",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~BALANCE/response_4.wav",
+          "label": "4",
+          "nb_prediction": "4",
+          "prediction": "4",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "4",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~BALANCE/response_41.wav",
+          "label": "4",
+          "nb_prediction": "4",
+          "prediction": "4",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "4",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~BALANCE/response_6.wav",
+          "label": "4",
+          "nb_prediction": "4",
+          "prediction": "4",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "4",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~BALANCE/response_7.wav",
+          "label": "4",
+          "nb_prediction": "4",
+          "prediction": "4",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "4",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~BALANCE/response_8.wav",
+          "label": "4",
+          "nb_prediction": "4",
+          "prediction": "4",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "5",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~BUSINESS_LOAN/response_34.wav",
+          "label": "5",
+          "nb_prediction": "5",
+          "prediction": "5",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "5",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~BUSINESS_LOAN/response_35.wav",
+          "label": "5",
+          "nb_prediction": "5",
+          "prediction": "5",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "11",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~BUSINESS_LOAN/response_37.wav",
+          "label": "5",
+          "nb_prediction": "11",
+          "prediction": "11",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "5",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~BUSINESS_LOAN/response_38.wav",
+          "label": "5",
+          "nb_prediction": "5",
+          "prediction": "5",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "5",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~BUSINESS_LOAN/response_4.wav",
+          "label": "5",
+          "nb_prediction": "5",
+          "prediction": "5",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "5",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~BUSINESS_LOAN/response_7.wav",
+          "label": "5",
+          "nb_prediction": "5",
+          "prediction": "5",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "5",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~BUSINESS_LOAN/response_9.wav",
+          "label": "5",
+          "nb_prediction": "5",
+          "prediction": "5",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "6",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~CARD_ISSUES/response_35.wav",
+          "label": "6",
+          "nb_prediction": "6",
+          "prediction": "6",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "6",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~CARD_ISSUES/response_36.wav",
+          "label": "6",
+          "nb_prediction": "6",
+          "prediction": "6",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "6",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~CARD_ISSUES/response_38.wav",
+          "label": "6",
+          "nb_prediction": "6",
+          "prediction": "6",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "6",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~CARD_ISSUES/response_4.wav",
+          "label": "6",
+          "nb_prediction": "6",
+          "prediction": "6",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "6",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~CARD_ISSUES/response_5.wav",
+          "label": "6",
+          "nb_prediction": "6",
+          "prediction": "6",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "6",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~CARD_ISSUES/response_8.wav",
+          "label": "6",
+          "nb_prediction": "6",
+          "prediction": "6",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "9",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~CARD_ISSUES/response_9.wav",
+          "label": "6",
+          "nb_prediction": "6",
+          "prediction": "6",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "7",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~CASH_DEPOSIT/response_26.wav",
+          "label": "7",
+          "nb_prediction": "7",
+          "prediction": "7",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "13",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~CASH_DEPOSIT/response_3.wav",
+          "label": "7",
+          "nb_prediction": "7",
+          "prediction": "7",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "7",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~CASH_DEPOSIT/response_4.wav",
+          "label": "7",
+          "nb_prediction": "7",
+          "prediction": "7",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "7",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~CASH_DEPOSIT/response_6.wav",
+          "label": "7",
+          "nb_prediction": "7",
+          "prediction": "7",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "7",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~CASH_DEPOSIT/response_7.wav",
+          "label": "7",
+          "nb_prediction": "7",
+          "prediction": "7",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "7",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~CASH_DEPOSIT/response_8.wav",
+          "label": "7",
+          "nb_prediction": "7",
+          "prediction": "7",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "7",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~CASH_DEPOSIT/response_9.wav",
+          "label": "7",
+          "nb_prediction": "7",
+          "prediction": "7",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "8",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~DIRECT_DEBIT/response_4.wav",
+          "label": "8",
+          "nb_prediction": "8",
+          "prediction": "8",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "8",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~DIRECT_DEBIT/response_40.wav",
+          "label": "8",
+          "nb_prediction": "8",
+          "prediction": "8",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "8",
+          "estimated_precision": 0.9375,
+          "example_id": "pt-PT~DIRECT_DEBIT/response_42.wav",
+          "label": "8",
+          "nb_prediction": "8",
+          "prediction": "8",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "8",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~DIRECT_DEBIT/response_7.wav",
+          "label": "8",
+          "nb_prediction": "8",
+          "prediction": "8",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "8",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~DIRECT_DEBIT/response_8.wav",
+          "label": "8",
+          "nb_prediction": "8",
+          "prediction": "8",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "2",
+          "estimated_precision": 0.9285714285714286,
+          "example_id": "pt-PT~DIRECT_DEBIT/response_9.wav",
+          "label": "8",
+          "nb_prediction": "2",
+          "prediction": "2",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "9",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~FREEZE/response_36.wav",
+          "label": "9",
+          "nb_prediction": "9",
+          "prediction": "9",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "9",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~FREEZE/response_37.wav",
+          "label": "9",
+          "nb_prediction": "9",
+          "prediction": "9",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "9",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~FREEZE/response_4.wav",
+          "label": "9",
+          "nb_prediction": "9",
+          "prediction": "9",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "9",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~FREEZE/response_5.wav",
+          "label": "9",
+          "nb_prediction": "9",
+          "prediction": "9",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "9",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~FREEZE/response_6.wav",
+          "label": "9",
+          "nb_prediction": "9",
+          "prediction": "9",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "9",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~FREEZE/response_8.wav",
+          "label": "9",
+          "nb_prediction": "9",
+          "prediction": "9",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "9",
+          "estimated_precision": 1.0,
+          "example_id": "pt-PT~FREEZE/response_9.wav",
+          "label": "9",
+          "nb_prediction": "9",
+          "prediction": "9",
+          "selected_paradigm": "supervised"
+        }
+      ],
+      "metrics": {
+        "calibrated_universal": {
+          "accuracy": 0.918367,
+          "coverage": 1.0,
+          "macro_f1": 0.902321,
+          "selective_accuracy": 0.918367
+        },
+        "centroid": {
+          "accuracy": 0.877551,
+          "coverage": 1.0,
+          "macro_f1": 0.876193,
+          "selective_accuracy": 0.877551
+        },
+        "naive_bayes": {
+          "accuracy": 0.918367,
+          "coverage": 1.0,
+          "macro_f1": 0.892947,
+          "selective_accuracy": 0.918367
+        }
+      },
+      "protocol": {
+        "calibration_only": true,
+        "claim_boundary": "score calibration ablation; no SOTA claim",
+        "min_precision": 0.8
+      }
+    },
+    {
+      "dataset": "THU-IAR/MIntRec",
+      "ledger": [
+        {
+          "centroid_prediction": "Inform",
+          "estimated_precision": 0.4885057471264368,
+          "example_id": "S06/E03/218",
+          "label": "Inform",
+          "nb_prediction": "Inform",
+          "prediction": "Inform",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Advise",
+          "estimated_precision": 0.5405405405405406,
+          "example_id": "S06/E10/132",
+          "label": "Prevent",
+          "nb_prediction": "Inform",
+          "prediction": "Advise",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Apologise",
+          "estimated_precision": 0.8775510204081632,
+          "example_id": "S06/E10/534",
+          "label": "Apologise",
+          "nb_prediction": "Inform",
+          "prediction": "Apologise",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Prevent",
+          "estimated_precision": 0.39702970297029705,
+          "example_id": "S06/E01/355",
+          "label": "Inform",
+          "nb_prediction": "Inform",
+          "prediction": "Prevent",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Introduce",
+          "estimated_precision": 0.39219330855018586,
+          "example_id": "S06/E09/163",
+          "label": "Taunt",
+          "nb_prediction": "Complain",
+          "prediction": "Introduce",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Apologise",
+          "estimated_precision": 0.972972972972973,
+          "example_id": "S06/E04/491",
+          "label": "Apologise",
+          "nb_prediction": "Apologise",
+          "prediction": "Apologise",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Introduce",
+          "estimated_precision": 0.775,
+          "example_id": "S06/E03/112",
+          "label": "Advise",
+          "nb_prediction": "Complain",
+          "prediction": "Introduce",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Flaunt",
+          "estimated_precision": 0.44807121661721067,
+          "example_id": "S06/E07/486",
+          "label": "Complain",
+          "nb_prediction": "Complain",
+          "prediction": "Flaunt",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Agree",
+          "estimated_precision": 0.40416210295728366,
+          "example_id": "S06/E02/69",
+          "label": "Advise",
+          "nb_prediction": "Complain",
+          "prediction": "Agree",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Thank",
+          "estimated_precision": 0.4744525547445255,
+          "example_id": "S06/E02/526",
+          "label": "Thank",
+          "nb_prediction": "Thank",
+          "prediction": "Thank",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Praise",
+          "estimated_precision": 0.3928905519176801,
+          "example_id": "S06/E07/195",
+          "label": "Praise",
+          "nb_prediction": "Inform",
+          "prediction": "Praise",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Complain",
+          "estimated_precision": 0.6396103896103896,
+          "example_id": "S06/E07/455",
+          "label": "Flaunt",
+          "nb_prediction": "Complain",
+          "prediction": "Complain",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Complain",
+          "estimated_precision": 0.5217391304347826,
+          "example_id": "S06/E08/118",
+          "label": "Complain",
+          "nb_prediction": "Complain",
+          "prediction": "Complain",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Ask for help",
+          "estimated_precision": 0.6162790697674418,
+          "example_id": "S06/E10/424",
+          "label": "Prevent",
+          "nb_prediction": "Inform",
+          "prediction": "Ask for help",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Advise",
+          "estimated_precision": 0.5051194539249146,
+          "example_id": "S06/E01/282",
+          "label": "Advise",
+          "nb_prediction": "Inform",
+          "prediction": "Inform",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Advise",
+          "estimated_precision": 0.45271317829457364,
+          "example_id": "S06/E02/372",
+          "label": "Advise",
+          "nb_prediction": "Inform",
+          "prediction": "Advise",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Praise",
+          "estimated_precision": 0.45,
+          "example_id": "S06/E09/537",
+          "label": "Care",
+          "nb_prediction": "Complain",
+          "prediction": "Praise",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Thank",
+          "estimated_precision": 0.375,
+          "example_id": "S06/E02/151",
+          "label": "Complain",
+          "nb_prediction": "Complain",
+          "prediction": "Thank",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Advise",
+          "estimated_precision": 0.39037927844588344,
+          "example_id": "S06/E03/139",
+          "label": "Advise",
+          "nb_prediction": "Inform",
+          "prediction": "Advise",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Taunt",
+          "estimated_precision": 0.5080971659919028,
+          "example_id": "S06/E09/545",
+          "label": "Joke",
+          "nb_prediction": "Complain",
+          "prediction": "Taunt",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Advise",
+          "estimated_precision": 0.4695222405271829,
+          "example_id": "S06/E03/12",
+          "label": "Advise",
+          "nb_prediction": "Complain",
+          "prediction": "Advise",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Taunt",
+          "estimated_precision": 0.7130801687763713,
+          "example_id": "S06/E07/601",
+          "label": "Praise",
+          "nb_prediction": "Praise",
+          "prediction": "Taunt",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Criticize",
+          "estimated_precision": 0.7124463519313304,
+          "example_id": "S06/E09/354",
+          "label": "Taunt",
+          "nb_prediction": "Inform",
+          "prediction": "Criticize",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Inform",
+          "estimated_precision": 0.5473684210526316,
+          "example_id": "S06/E06/589",
+          "label": "Introduce",
+          "nb_prediction": "Inform",
+          "prediction": "Inform",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Criticize",
+          "estimated_precision": 0.49056603773584906,
+          "example_id": "S06/E09/429",
+          "label": "Criticize",
+          "nb_prediction": "Complain",
+          "prediction": "Complain",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Praise",
+          "estimated_precision": 0.4609250398724083,
+          "example_id": "S06/E02/38",
+          "label": "Arrange",
+          "nb_prediction": "Praise",
+          "prediction": "Praise",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Thank",
+          "estimated_precision": 0.49074074074074076,
+          "example_id": "S06/E02/115",
+          "label": "Thank",
+          "nb_prediction": "Thank",
+          "prediction": "Thank",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Apologise",
+          "estimated_precision": 0.9285714285714286,
+          "example_id": "S06/E04/503",
+          "label": "Apologise",
+          "nb_prediction": "Apologise",
+          "prediction": "Apologise",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Apologise",
+          "estimated_precision": 1.0,
+          "example_id": "S06/E07/206",
+          "label": "Apologise",
+          "nb_prediction": "Apologise",
+          "prediction": "Apologise",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Advise",
+          "estimated_precision": 0.4700460829493088,
+          "example_id": "S06/E04/14",
+          "label": "Complain",
+          "nb_prediction": "Complain",
+          "prediction": "Complain",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Criticize",
+          "estimated_precision": 0.5138121546961326,
+          "example_id": "S06/E03/101",
+          "label": "Leave",
+          "nb_prediction": "Complain",
+          "prediction": "Complain",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Thank",
+          "estimated_precision": 0.4975369458128079,
+          "example_id": "S06/E10/242",
+          "label": "Thank",
+          "nb_prediction": "Thank",
+          "prediction": "Thank",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Thank",
+          "estimated_precision": 0.9193548387096774,
+          "example_id": "S06/E03/308",
+          "label": "Thank",
+          "nb_prediction": "Thank",
+          "prediction": "Thank",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Complain",
+          "estimated_precision": 0.5271317829457365,
+          "example_id": "S06/E04/595",
+          "label": "Complain",
+          "nb_prediction": "Complain",
+          "prediction": "Complain",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Apologise",
+          "estimated_precision": 1.0,
+          "example_id": "S06/E07/589",
+          "label": "Apologise",
+          "nb_prediction": "Apologise",
+          "prediction": "Apologise",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Comfort",
+          "estimated_precision": 0.5337837837837838,
+          "example_id": "S06/E06/353",
+          "label": "Comfort",
+          "nb_prediction": "Inform",
+          "prediction": "Inform",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Apologise",
+          "estimated_precision": 0.8559322033898306,
+          "example_id": "S06/E05/127",
+          "label": "Apologise",
+          "nb_prediction": "Inform",
+          "prediction": "Apologise",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Inform",
+          "estimated_precision": 0.5302013422818792,
+          "example_id": "S06/E04/432",
+          "label": "Inform",
+          "nb_prediction": "Inform",
+          "prediction": "Inform",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Introduce",
+          "estimated_precision": 0.49616858237547895,
+          "example_id": "S06/E02/332",
+          "label": "Introduce",
+          "nb_prediction": "Inform",
+          "prediction": "Introduce",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Advise",
+          "estimated_precision": 0.4808743169398907,
+          "example_id": "S06/E03/481",
+          "label": "Complain",
+          "nb_prediction": "Complain",
+          "prediction": "Advise",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Comfort",
+          "estimated_precision": 0.46107784431137727,
+          "example_id": "S06/E03/477",
+          "label": "Prevent",
+          "nb_prediction": "Complain",
+          "prediction": "Complain",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Arrange",
+          "estimated_precision": 0.5093632958801498,
+          "example_id": "S06/E08/606",
+          "label": "Inform",
+          "nb_prediction": "Inform",
+          "prediction": "Inform",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Introduce",
+          "estimated_precision": 0.3969986357435198,
+          "example_id": "S06/E07/386",
+          "label": "Praise",
+          "nb_prediction": "Inform",
+          "prediction": "Inform",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Inform",
+          "estimated_precision": 0.4700460829493088,
+          "example_id": "S06/E01/210",
+          "label": "Inform",
+          "nb_prediction": "Inform",
+          "prediction": "Inform",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Praise",
+          "estimated_precision": 0.3900184842883549,
+          "example_id": "S06/E04/15",
+          "label": "Agree",
+          "nb_prediction": "Praise",
+          "prediction": "Praise",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Comfort",
+          "estimated_precision": 0.6319018404907976,
+          "example_id": "S06/E10/263",
+          "label": "Complain",
+          "nb_prediction": "Inform",
+          "prediction": "Comfort",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Apologise",
+          "estimated_precision": 0.5786802030456852,
+          "example_id": "S06/E08/236",
+          "label": "Joke",
+          "nb_prediction": "Complain",
+          "prediction": "Apologise",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Comfort",
+          "estimated_precision": 0.504930966469428,
+          "example_id": "S06/E05/192",
+          "label": "Advise",
+          "nb_prediction": "Complain",
+          "prediction": "Comfort",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Inform",
+          "estimated_precision": 0.5104166666666666,
+          "example_id": "S06/E01/238",
+          "label": "Inform",
+          "nb_prediction": "Inform",
+          "prediction": "Inform",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Praise",
+          "estimated_precision": 0.47333333333333333,
+          "example_id": "S06/E09/597",
+          "label": "Praise",
+          "nb_prediction": "Praise",
+          "prediction": "Praise",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Introduce",
+          "estimated_precision": 0.5225806451612903,
+          "example_id": "S06/E09/330",
+          "label": "Complain",
+          "nb_prediction": "Complain",
+          "prediction": "Complain",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Comfort",
+          "estimated_precision": 0.6319018404907976,
+          "example_id": "S06/E02/252",
+          "label": "Oppose",
+          "nb_prediction": "Complain",
+          "prediction": "Comfort",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Apologise",
+          "estimated_precision": 1.0,
+          "example_id": "S06/E06/422",
+          "label": "Apologise",
+          "nb_prediction": "Apologise",
+          "prediction": "Apologise",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Taunt",
+          "estimated_precision": 0.49074074074074076,
+          "example_id": "S06/E08/479",
+          "label": "Criticize",
+          "nb_prediction": "Complain",
+          "prediction": "Complain",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Flaunt",
+          "estimated_precision": 0.7688172043010753,
+          "example_id": "S06/E10/548",
+          "label": "Praise",
+          "nb_prediction": "Complain",
+          "prediction": "Flaunt",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Ask for help",
+          "estimated_precision": 0.385146804835924,
+          "example_id": "S06/E08/598",
+          "label": "Praise",
+          "nb_prediction": "Inform",
+          "prediction": "Ask for help",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Thank",
+          "estimated_precision": 0.9052631578947369,
+          "example_id": "S06/E09/568",
+          "label": "Thank",
+          "nb_prediction": "Thank",
+          "prediction": "Thank",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Inform",
+          "estimated_precision": 0.48068669527896996,
+          "example_id": "S06/E01/195",
+          "label": "Inform",
+          "nb_prediction": "Inform",
+          "prediction": "Inform",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Care",
+          "estimated_precision": 0.5824742268041238,
+          "example_id": "S06/E01/88",
+          "label": "Praise",
+          "nb_prediction": "Inform",
+          "prediction": "Care",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Arrange",
+          "estimated_precision": 0.46956521739130436,
+          "example_id": "S06/E03/462",
+          "label": "Inform",
+          "nb_prediction": "Complain",
+          "prediction": "Arrange",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Leave",
+          "estimated_precision": 0.6416938110749185,
+          "example_id": "S06/E01/482",
+          "label": "Inform",
+          "nb_prediction": "Leave",
+          "prediction": "Leave",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Praise",
+          "estimated_precision": 0.5625,
+          "example_id": "S06/E02/464",
+          "label": "Praise",
+          "nb_prediction": "Praise",
+          "prediction": "Praise",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Flaunt",
+          "estimated_precision": 0.7024793388429752,
+          "example_id": "S06/E09/579",
+          "label": "Praise",
+          "nb_prediction": "Complain",
+          "prediction": "Flaunt",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Criticize",
+          "estimated_precision": 0.45314900153609833,
+          "example_id": "S06/E05/74",
+          "label": "Agree",
+          "nb_prediction": "Inform",
+          "prediction": "Criticize",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Taunt",
+          "estimated_precision": 0.39471106758080315,
+          "example_id": "S06/E10/420",
+          "label": "Introduce",
+          "nb_prediction": "Complain",
+          "prediction": "Taunt",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Leave",
+          "estimated_precision": 0.7537688442211056,
+          "example_id": "S06/E08/61",
+          "label": "Leave",
+          "nb_prediction": "Leave",
+          "prediction": "Leave",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Comfort",
+          "estimated_precision": 0.7777777777777778,
+          "example_id": "S06/E07/424",
+          "label": "Comfort",
+          "nb_prediction": "Comfort",
+          "prediction": "Comfort",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Apologise",
+          "estimated_precision": 0.4307116104868914,
+          "example_id": "S06/E08/437",
+          "label": "Leave",
+          "nb_prediction": "Leave",
+          "prediction": "Apologise",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Prevent",
+          "estimated_precision": 0.4745011086474501,
+          "example_id": "S06/E10/525",
+          "label": "Comfort",
+          "nb_prediction": "Complain",
+          "prediction": "Complain",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Apologise",
+          "estimated_precision": 1.0,
+          "example_id": "S06/E03/606",
+          "label": "Apologise",
+          "nb_prediction": "Apologise",
+          "prediction": "Apologise",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Arrange",
+          "estimated_precision": 0.5576923076923077,
+          "example_id": "S06/E05/486",
+          "label": "Inform",
+          "nb_prediction": "Inform",
+          "prediction": "Inform",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Apologise",
+          "estimated_precision": 0.9285714285714286,
+          "example_id": "S06/E03/5",
+          "label": "Apologise",
+          "nb_prediction": "Apologise",
+          "prediction": "Apologise",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Joke",
+          "estimated_precision": 0.47115384615384615,
+          "example_id": "S06/E02/509",
+          "label": "Complain",
+          "nb_prediction": "Complain",
+          "prediction": "Complain",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Ask for help",
+          "estimated_precision": 0.3857998289136014,
+          "example_id": "S06/E03/458",
+          "label": "Flaunt",
+          "nb_prediction": "Ask for help",
+          "prediction": "Ask for help",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Apologise",
+          "estimated_precision": 0.6750902527075813,
+          "example_id": "S06/E08/506",
+          "label": "Apologise",
+          "nb_prediction": "Complain",
+          "prediction": "Apologise",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Introduce",
+          "estimated_precision": 0.4307116104868914,
+          "example_id": "S06/E10/396",
+          "label": "Praise",
+          "nb_prediction": "Complain",
+          "prediction": "Introduce",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Oppose",
+          "estimated_precision": 0.7536945812807881,
+          "example_id": "S06/E06/26",
+          "label": "Inform",
+          "nb_prediction": "Complain",
+          "prediction": "Oppose",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Complain",
+          "estimated_precision": 0.5465116279069767,
+          "example_id": "S06/E05/26",
+          "label": "Praise",
+          "nb_prediction": "Complain",
+          "prediction": "Complain",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Criticize",
+          "estimated_precision": 0.7631578947368421,
+          "example_id": "S06/E08/564",
+          "label": "Complain",
+          "nb_prediction": "Praise",
+          "prediction": "Criticize",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Flaunt",
+          "estimated_precision": 0.7536945812807881,
+          "example_id": "S06/E08/126",
+          "label": "Complain",
+          "nb_prediction": "Complain",
+          "prediction": "Flaunt",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Criticize",
+          "estimated_precision": 0.42080378250591016,
+          "example_id": "S06/E05/4",
+          "label": "Inform",
+          "nb_prediction": "Criticize",
+          "prediction": "Criticize",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Comfort",
+          "estimated_precision": 0.49411764705882355,
+          "example_id": "S06/E07/3",
+          "label": "Comfort",
+          "nb_prediction": "Complain",
+          "prediction": "Complain",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Criticize",
+          "estimated_precision": 0.4699828473413379,
+          "example_id": "S06/E04/68",
+          "label": "Ask for help",
+          "nb_prediction": "Criticize",
+          "prediction": "Criticize",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Leave",
+          "estimated_precision": 0.751219512195122,
+          "example_id": "S06/E01/341",
+          "label": "Leave",
+          "nb_prediction": "Complain",
+          "prediction": "Leave",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Joke",
+          "estimated_precision": 0.42822085889570555,
+          "example_id": "S06/E04/89",
+          "label": "Flaunt",
+          "nb_prediction": "Complain",
+          "prediction": "Joke",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Apologise",
+          "estimated_precision": 0.775,
+          "example_id": "S06/E07/324",
+          "label": "Apologise",
+          "nb_prediction": "Inform",
+          "prediction": "Apologise",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Praise",
+          "estimated_precision": 0.49411764705882355,
+          "example_id": "S06/E05/509",
+          "label": "Criticize",
+          "nb_prediction": "Inform",
+          "prediction": "Inform",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Introduce",
+          "estimated_precision": 0.7333333333333333,
+          "example_id": "S06/E05/350",
+          "label": "Complain",
+          "nb_prediction": "Inform",
+          "prediction": "Introduce",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Oppose",
+          "estimated_precision": 0.4847161572052402,
+          "example_id": "S06/E01/258",
+          "label": "Inform",
+          "nb_prediction": "Inform",
+          "prediction": "Inform",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Praise",
+          "estimated_precision": 0.4410112359550562,
+          "example_id": "S06/E04/574",
+          "label": "Thank",
+          "nb_prediction": "Praise",
+          "prediction": "Praise",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Inform",
+          "estimated_precision": 0.4329501915708812,
+          "example_id": "S06/E03/543",
+          "label": "Advise",
+          "nb_prediction": "Complain",
+          "prediction": "Inform",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Leave",
+          "estimated_precision": 0.4079822616407982,
+          "example_id": "S06/E04/486",
+          "label": "Advise",
+          "nb_prediction": "Complain",
+          "prediction": "Leave",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Leave",
+          "estimated_precision": 0.43717728055077454,
+          "example_id": "S06/E01/509",
+          "label": "Introduce",
+          "nb_prediction": "Inform",
+          "prediction": "Inform",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Praise",
+          "estimated_precision": 0.5824742268041238,
+          "example_id": "S06/E03/328",
+          "label": "Praise",
+          "nb_prediction": "Praise",
+          "prediction": "Praise",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Apologise",
+          "estimated_precision": 0.853448275862069,
+          "example_id": "S06/E05/237",
+          "label": "Apologise",
+          "nb_prediction": "Apologise",
+          "prediction": "Apologise",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Inform",
+          "estimated_precision": 0.51171875,
+          "example_id": "S06/E04/434",
+          "label": "Inform",
+          "nb_prediction": "Inform",
+          "prediction": "Inform",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Comfort",
+          "estimated_precision": 0.7136752136752137,
+          "example_id": "S06/E03/622",
+          "label": "Thank",
+          "nb_prediction": "Praise",
+          "prediction": "Comfort",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Inform",
+          "estimated_precision": 0.4911504424778761,
+          "example_id": "S06/E01/78",
+          "label": "Inform",
+          "nb_prediction": "Inform",
+          "prediction": "Inform",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Flaunt",
+          "estimated_precision": 0.7289719626168224,
+          "example_id": "S06/E04/400",
+          "label": "Complain",
+          "nb_prediction": "Complain",
+          "prediction": "Flaunt",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Arrange",
+          "estimated_precision": 0.40971168437025796,
+          "example_id": "S06/E01/105",
+          "label": "Inform",
+          "nb_prediction": "Inform",
+          "prediction": "Inform",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Ask for help",
+          "estimated_precision": 0.3864864864864865,
+          "example_id": "S06/E09/570",
+          "label": "Arrange",
+          "nb_prediction": "Inform",
+          "prediction": "Ask for help",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Introduce",
+          "estimated_precision": 0.5268817204301075,
+          "example_id": "S06/E02/337",
+          "label": "Greet",
+          "nb_prediction": "Complain",
+          "prediction": "Introduce",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Taunt",
+          "estimated_precision": 0.5101626016260162,
+          "example_id": "S06/E06/550",
+          "label": "Comfort",
+          "nb_prediction": "Praise",
+          "prediction": "Taunt",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Inform",
+          "estimated_precision": 0.5434782608695652,
+          "example_id": "S06/E01/495",
+          "label": "Comfort",
+          "nb_prediction": "Inform",
+          "prediction": "Inform",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Care",
+          "estimated_precision": 0.4442857142857143,
+          "example_id": "S06/E06/99",
+          "label": "Care",
+          "nb_prediction": "Complain",
+          "prediction": "Care",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Introduce",
+          "estimated_precision": 0.40594059405940597,
+          "example_id": "S06/E04/575",
+          "label": "Care",
+          "nb_prediction": "Complain",
+          "prediction": "Introduce",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Thank",
+          "estimated_precision": 0.9193548387096774,
+          "example_id": "S06/E04/443",
+          "label": "Thank",
+          "nb_prediction": "Thank",
+          "prediction": "Thank",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Inform",
+          "estimated_precision": 0.46184738955823296,
+          "example_id": "S06/E01/45",
+          "label": "Inform",
+          "nb_prediction": "Inform",
+          "prediction": "Inform",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Arrange",
+          "estimated_precision": 0.44770642201834865,
+          "example_id": "S06/E10/26",
+          "label": "Inform",
+          "nb_prediction": "Inform",
+          "prediction": "Inform",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Introduce",
+          "estimated_precision": 0.39939024390243905,
+          "example_id": "S06/E05/79",
+          "label": "Agree",
+          "nb_prediction": "Inform",
+          "prediction": "Introduce",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Praise",
+          "estimated_precision": 0.42822085889570555,
+          "example_id": "S06/E04/1",
+          "label": "Inform",
+          "nb_prediction": "Inform",
+          "prediction": "Praise",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Comfort",
+          "estimated_precision": 0.7235023041474654,
+          "example_id": "S06/E04/568",
+          "label": "Inform",
+          "nb_prediction": "Inform",
+          "prediction": "Comfort",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Leave",
+          "estimated_precision": 0.37788385043754974,
+          "example_id": "S06/E02/1",
+          "label": "Inform",
+          "nb_prediction": "Leave",
+          "prediction": "Leave",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Praise",
+          "estimated_precision": 0.5034246575342466,
+          "example_id": "S06/E03/106",
+          "label": "Praise",
+          "nb_prediction": "Praise",
+          "prediction": "Praise",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Advise",
+          "estimated_precision": 0.39738430583501005,
+          "example_id": "S06/E03/501",
+          "label": "Advise",
+          "nb_prediction": "Inform",
+          "prediction": "Advise",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Criticize",
+          "estimated_precision": 0.5377777777777778,
+          "example_id": "S06/E01/197",
+          "label": "Inform",
+          "nb_prediction": "Inform",
+          "prediction": "Criticize",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Prevent",
+          "estimated_precision": 0.40413943355119825,
+          "example_id": "S06/E02/134",
+          "label": "Prevent",
+          "nb_prediction": "Prevent",
+          "prediction": "Prevent",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Introduce",
+          "estimated_precision": 0.5157894736842106,
+          "example_id": "S06/E02/478",
+          "label": "Praise",
+          "nb_prediction": "Praise",
+          "prediction": "Praise",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Thank",
+          "estimated_precision": 0.5074626865671642,
+          "example_id": "S06/E08/499",
+          "label": "Criticize",
+          "nb_prediction": "Thank",
+          "prediction": "Thank",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Complain",
+          "estimated_precision": 0.4121306376360809,
+          "example_id": "S06/E09/384",
+          "label": "Comfort",
+          "nb_prediction": "Complain",
+          "prediction": "Complain",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Leave",
+          "estimated_precision": 0.5672371638141809,
+          "example_id": "S06/E01/21",
+          "label": "Inform",
+          "nb_prediction": "Inform",
+          "prediction": "Leave",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Comfort",
+          "estimated_precision": 0.3836065573770492,
+          "example_id": "S06/E06/361",
+          "label": "Agree",
+          "nb_prediction": "Inform",
+          "prediction": "Comfort",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Comfort",
+          "estimated_precision": 0.3857998289136014,
+          "example_id": "S06/E01/200",
+          "label": "Inform",
+          "nb_prediction": "Praise",
+          "prediction": "Comfort",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Apologise",
+          "estimated_precision": 0.9285714285714286,
+          "example_id": "S06/E10/463",
+          "label": "Apologise",
+          "nb_prediction": "Apologise",
+          "prediction": "Apologise",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Arrange",
+          "estimated_precision": 0.5473441108545035,
+          "example_id": "S06/E01/312",
+          "label": "Criticize",
+          "nb_prediction": "Inform",
+          "prediction": "Arrange",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Inform",
+          "estimated_precision": 0.5246913580246914,
+          "example_id": "S06/E01/216",
+          "label": "Inform",
+          "nb_prediction": "Inform",
+          "prediction": "Inform",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Flaunt",
+          "estimated_precision": 0.3912248628884826,
+          "example_id": "S06/E04/67",
+          "label": "Complain",
+          "nb_prediction": "Inform",
+          "prediction": "Flaunt",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Leave",
+          "estimated_precision": 0.5913978494623656,
+          "example_id": "S06/E01/432",
+          "label": "Leave",
+          "nb_prediction": "Inform",
+          "prediction": "Leave",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Thank",
+          "estimated_precision": 1.0,
+          "example_id": "S06/E09/580",
+          "label": "Thank",
+          "nb_prediction": "Thank",
+          "prediction": "Thank",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Arrange",
+          "estimated_precision": 0.48333333333333334,
+          "example_id": "S06/E06/474",
+          "label": "Taunt",
+          "nb_prediction": "Inform",
+          "prediction": "Arrange",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Care",
+          "estimated_precision": 0.38683498647430115,
+          "example_id": "S06/E01/459",
+          "label": "Care",
+          "nb_prediction": "Complain",
+          "prediction": "Care",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Arrange",
+          "estimated_precision": 0.5417607223476298,
+          "example_id": "S06/E10/285",
+          "label": "Arrange",
+          "nb_prediction": "Inform",
+          "prediction": "Arrange",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Praise",
+          "estimated_precision": 0.5138888888888888,
+          "example_id": "S06/E05/170",
+          "label": "Arrange",
+          "nb_prediction": "Praise",
+          "prediction": "Praise",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Complain",
+          "estimated_precision": 0.5122950819672131,
+          "example_id": "S06/E09/558",
+          "label": "Complain",
+          "nb_prediction": "Complain",
+          "prediction": "Complain",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Taunt",
+          "estimated_precision": 0.46996466431095407,
+          "example_id": "S06/E02/524",
+          "label": "Advise",
+          "nb_prediction": "Praise",
+          "prediction": "Taunt",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Inform",
+          "estimated_precision": 0.47,
+          "example_id": "S06/E04/444",
+          "label": "Inform",
+          "nb_prediction": "Inform",
+          "prediction": "Inform",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Arrange",
+          "estimated_precision": 0.40683572216097025,
+          "example_id": "S06/E10/247",
+          "label": "Inform",
+          "nb_prediction": "Complain",
+          "prediction": "Arrange",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Inform",
+          "estimated_precision": 0.5217391304347826,
+          "example_id": "S06/E03/220",
+          "label": "Inform",
+          "nb_prediction": "Inform",
+          "prediction": "Inform",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Praise",
+          "estimated_precision": 0.4918032786885246,
+          "example_id": "S06/E06/42",
+          "label": "Oppose",
+          "nb_prediction": "Complain",
+          "prediction": "Complain",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Advise",
+          "estimated_precision": 0.3840460526315789,
+          "example_id": "S06/E04/601",
+          "label": "Agree",
+          "nb_prediction": "Complain",
+          "prediction": "Advise",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Advise",
+          "estimated_precision": 0.43389830508474575,
+          "example_id": "S06/E09/532",
+          "label": "Leave",
+          "nb_prediction": "Inform",
+          "prediction": "Inform",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Criticize",
+          "estimated_precision": 0.4211764705882353,
+          "example_id": "S06/E08/475",
+          "label": "Criticize",
+          "nb_prediction": "Criticize",
+          "prediction": "Criticize",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Inform",
+          "estimated_precision": 0.5036764705882353,
+          "example_id": "S06/E06/41",
+          "label": "Inform",
+          "nb_prediction": "Inform",
+          "prediction": "Inform",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Praise",
+          "estimated_precision": 0.4629032258064516,
+          "example_id": "S06/E10/3",
+          "label": "Inform",
+          "nb_prediction": "Inform",
+          "prediction": "Praise",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Greet",
+          "estimated_precision": 0.9423076923076923,
+          "example_id": "S06/E02/108",
+          "label": "Greet",
+          "nb_prediction": "Inform",
+          "prediction": "Greet",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Complain",
+          "estimated_precision": 0.38785834738617203,
+          "example_id": "S06/E10/419",
+          "label": "Praise",
+          "nb_prediction": "Complain",
+          "prediction": "Complain",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Comfort",
+          "estimated_precision": 0.45454545454545453,
+          "example_id": "S06/E02/36",
+          "label": "Inform",
+          "nb_prediction": "Inform",
+          "prediction": "Inform",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Criticize",
+          "estimated_precision": 0.506,
+          "example_id": "S06/E07/483",
+          "label": "Criticize",
+          "nb_prediction": "Complain",
+          "prediction": "Criticize",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Criticize",
+          "estimated_precision": 0.4497751124437781,
+          "example_id": "S06/E05/568",
+          "label": "Care",
+          "nb_prediction": "Criticize",
+          "prediction": "Criticize",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Greet",
+          "estimated_precision": 0.47992700729927007,
+          "example_id": "S06/E01/412",
+          "label": "Inform",
+          "nb_prediction": "Inform",
+          "prediction": "Greet",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Comfort",
+          "estimated_precision": 0.4884393063583815,
+          "example_id": "S06/E10/4",
+          "label": "Inform",
+          "nb_prediction": "Inform",
+          "prediction": "Inform",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Praise",
+          "estimated_precision": 0.4321608040201005,
+          "example_id": "S06/E07/535",
+          "label": "Complain",
+          "nb_prediction": "Complain",
+          "prediction": "Praise",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Introduce",
+          "estimated_precision": 0.4449213161659514,
+          "example_id": "S06/E01/564",
+          "label": "Praise",
+          "nb_prediction": "Complain",
+          "prediction": "Introduce",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Leave",
+          "estimated_precision": 0.5672371638141809,
+          "example_id": "S06/E02/320",
+          "label": "Comfort",
+          "nb_prediction": "Inform",
+          "prediction": "Leave",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Inform",
+          "estimated_precision": 0.5133079847908745,
+          "example_id": "S06/E04/531",
+          "label": "Inform",
+          "nb_prediction": "Inform",
+          "prediction": "Inform",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Arrange",
+          "estimated_precision": 0.3927238805970149,
+          "example_id": "S06/E01/208",
+          "label": "Inform",
+          "nb_prediction": "Arrange",
+          "prediction": "Arrange",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Taunt",
+          "estimated_precision": 0.5417607223476298,
+          "example_id": "S06/E02/291",
+          "label": "Leave",
+          "nb_prediction": "Inform",
+          "prediction": "Taunt",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Inform",
+          "estimated_precision": 0.6666666666666666,
+          "example_id": "S06/E04/251",
+          "label": "Inform",
+          "nb_prediction": "Inform",
+          "prediction": "Inform",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Introduce",
+          "estimated_precision": 0.45972495088408644,
+          "example_id": "S06/E04/396",
+          "label": "Complain",
+          "nb_prediction": "Complain",
+          "prediction": "Complain",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Ask for help",
+          "estimated_precision": 0.47368421052631576,
+          "example_id": "S06/E01/438",
+          "label": "Criticize",
+          "nb_prediction": "Complain",
+          "prediction": "Complain",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Introduce",
+          "estimated_precision": 0.4479166666666667,
+          "example_id": "S06/E03/389",
+          "label": "Complain",
+          "nb_prediction": "Criticize",
+          "prediction": "Introduce",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Inform",
+          "estimated_precision": 0.5473684210526316,
+          "example_id": "S06/E03/33",
+          "label": "Inform",
+          "nb_prediction": "Inform",
+          "prediction": "Inform",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Advise",
+          "estimated_precision": 0.39737108190091003,
+          "example_id": "S06/E03/474",
+          "label": "Advise",
+          "nb_prediction": "Inform",
+          "prediction": "Advise",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Inform",
+          "estimated_precision": 0.5294117647058824,
+          "example_id": "S06/E06/213",
+          "label": "Comfort",
+          "nb_prediction": "Inform",
+          "prediction": "Inform",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Oppose",
+          "estimated_precision": 0.3997955010224949,
+          "example_id": "S06/E04/252",
+          "label": "Inform",
+          "nb_prediction": "Inform",
+          "prediction": "Oppose",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Ask for help",
+          "estimated_precision": 0.6891385767790262,
+          "example_id": "S06/E03/555",
+          "label": "Arrange",
+          "nb_prediction": "Complain",
+          "prediction": "Ask for help",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Oppose",
+          "estimated_precision": 0.4932249322493225,
+          "example_id": "S06/E09/333",
+          "label": "Oppose",
+          "nb_prediction": "Complain",
+          "prediction": "Complain",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Introduce",
+          "estimated_precision": 0.4679376083188908,
+          "example_id": "S06/E05/385",
+          "label": "Introduce",
+          "nb_prediction": "Inform",
+          "prediction": "Introduce",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Greet",
+          "estimated_precision": 0.9052631578947369,
+          "example_id": "S06/E05/422",
+          "label": "Apologise",
+          "nb_prediction": "Inform",
+          "prediction": "Greet",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Complain",
+          "estimated_precision": 0.4931129476584022,
+          "example_id": "S06/E08/3",
+          "label": "Introduce",
+          "nb_prediction": "Complain",
+          "prediction": "Complain",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Arrange",
+          "estimated_precision": 0.5429864253393665,
+          "example_id": "S06/E10/436",
+          "label": "Ask for help",
+          "nb_prediction": "Inform",
+          "prediction": "Arrange",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Introduce",
+          "estimated_precision": 0.41580756013745707,
+          "example_id": "S06/E06/415",
+          "label": "Praise",
+          "nb_prediction": "Complain",
+          "prediction": "Introduce",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Flaunt",
+          "estimated_precision": 0.528,
+          "example_id": "S06/E10/552",
+          "label": "Complain",
+          "nb_prediction": "Complain",
+          "prediction": "Complain",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Praise",
+          "estimated_precision": 0.5,
+          "example_id": "S06/E01/535",
+          "label": "Praise",
+          "nb_prediction": "Praise",
+          "prediction": "Praise",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Flaunt",
+          "estimated_precision": 0.5672371638141809,
+          "example_id": "S06/E07/404",
+          "label": "Complain",
+          "nb_prediction": "Complain",
+          "prediction": "Flaunt",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Greet",
+          "estimated_precision": 0.38461538461538464,
+          "example_id": "S06/E02/434",
+          "label": "Praise",
+          "nb_prediction": "Inform",
+          "prediction": "Greet",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Agree",
+          "estimated_precision": 0.7631578947368421,
+          "example_id": "S06/E02/80",
+          "label": "Agree",
+          "nb_prediction": "Praise",
+          "prediction": "Agree",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Prevent",
+          "estimated_precision": 0.38785834738617203,
+          "example_id": "S06/E06/473",
+          "label": "Complain",
+          "nb_prediction": "Complain",
+          "prediction": "Prevent",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Agree",
+          "estimated_precision": 0.7100840336134454,
+          "example_id": "S06/E08/136",
+          "label": "Agree",
+          "nb_prediction": "Praise",
+          "prediction": "Agree",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Inform",
+          "estimated_precision": 0.5180722891566265,
+          "example_id": "S06/E09/15",
+          "label": "Inform",
+          "nb_prediction": "Inform",
+          "prediction": "Inform",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Complain",
+          "estimated_precision": 0.4651639344262295,
+          "example_id": "S06/E03/160",
+          "label": "Leave",
+          "nb_prediction": "Complain",
+          "prediction": "Complain",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Leave",
+          "estimated_precision": 0.5275590551181102,
+          "example_id": "S06/E06/558",
+          "label": "Comfort",
+          "nb_prediction": "Complain",
+          "prediction": "Complain",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Apologise",
+          "estimated_precision": 1.0,
+          "example_id": "S06/E08/14",
+          "label": "Apologise",
+          "nb_prediction": "Apologise",
+          "prediction": "Apologise",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Leave",
+          "estimated_precision": 0.3806818181818182,
+          "example_id": "S06/E10/240",
+          "label": "Introduce",
+          "nb_prediction": "Praise",
+          "prediction": "Leave",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Criticize",
+          "estimated_precision": 0.5483870967741935,
+          "example_id": "S06/E10/110",
+          "label": "Criticize",
+          "nb_prediction": "Criticize",
+          "prediction": "Criticize",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Inform",
+          "estimated_precision": 0.3963963963963964,
+          "example_id": "S06/E03/455",
+          "label": "Criticize",
+          "nb_prediction": "Inform",
+          "prediction": "Inform",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Complain",
+          "estimated_precision": 0.5302013422818792,
+          "example_id": "S06/E04/586",
+          "label": "Complain",
+          "nb_prediction": "Complain",
+          "prediction": "Complain",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Praise",
+          "estimated_precision": 0.6891385767790262,
+          "example_id": "S06/E05/208",
+          "label": "Praise",
+          "nb_prediction": "Praise",
+          "prediction": "Praise",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Comfort",
+          "estimated_precision": 0.524416135881104,
+          "example_id": "S06/E03/542",
+          "label": "Prevent",
+          "nb_prediction": "Inform",
+          "prediction": "Comfort",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Taunt",
+          "estimated_precision": 0.4474074074074074,
+          "example_id": "S06/E01/117",
+          "label": "Taunt",
+          "nb_prediction": "Complain",
+          "prediction": "Taunt",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Introduce",
+          "estimated_precision": 0.49616858237547895,
+          "example_id": "S06/E09/229",
+          "label": "Complain",
+          "nb_prediction": "Inform",
+          "prediction": "Introduce",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Arrange",
+          "estimated_precision": 0.4674457429048414,
+          "example_id": "S06/E03/90",
+          "label": "Advise",
+          "nb_prediction": "Complain",
+          "prediction": "Arrange",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Thank",
+          "estimated_precision": 0.4744525547445255,
+          "example_id": "S06/E02/113",
+          "label": "Thank",
+          "nb_prediction": "Thank",
+          "prediction": "Thank",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Praise",
+          "estimated_precision": 0.47276688453159044,
+          "example_id": "S06/E04/490",
+          "label": "Praise",
+          "nb_prediction": "Praise",
+          "prediction": "Praise",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Care",
+          "estimated_precision": 0.7222222222222222,
+          "example_id": "S06/E01/445",
+          "label": "Criticize",
+          "nb_prediction": "Inform",
+          "prediction": "Care",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Thank",
+          "estimated_precision": 0.3916279069767442,
+          "example_id": "S06/E03/370",
+          "label": "Taunt",
+          "nb_prediction": "Thank",
+          "prediction": "Thank",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Leave",
+          "estimated_precision": 0.7828571428571428,
+          "example_id": "S06/E02/333",
+          "label": "Praise",
+          "nb_prediction": "Complain",
+          "prediction": "Leave",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Introduce",
+          "estimated_precision": 0.49029126213592233,
+          "example_id": "S06/E09/250",
+          "label": "Introduce",
+          "nb_prediction": "Complain",
+          "prediction": "Complain",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Ask for help",
+          "estimated_precision": 0.38785834738617203,
+          "example_id": "S06/E07/426",
+          "label": "Joke",
+          "nb_prediction": "Prevent",
+          "prediction": "Ask for help",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Introduce",
+          "estimated_precision": 0.45251396648044695,
+          "example_id": "S06/E04/577",
+          "label": "Joke",
+          "nb_prediction": "Complain",
+          "prediction": "Complain",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Criticize",
+          "estimated_precision": 0.47985347985347987,
+          "example_id": "S06/E01/447",
+          "label": "Taunt",
+          "nb_prediction": "Praise",
+          "prediction": "Criticize",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Care",
+          "estimated_precision": 0.3840139009556907,
+          "example_id": "S06/E07/488",
+          "label": "Care",
+          "nb_prediction": "Criticize",
+          "prediction": "Care",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Inform",
+          "estimated_precision": 0.47294117647058825,
+          "example_id": "S06/E07/408",
+          "label": "Complain",
+          "nb_prediction": "Inform",
+          "prediction": "Inform",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Apologise",
+          "estimated_precision": 0.9180327868852459,
+          "example_id": "S06/E08/115",
+          "label": "Apologise",
+          "nb_prediction": "Apologise",
+          "prediction": "Apologise",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Apologise",
+          "estimated_precision": 1.0,
+          "example_id": "S06/E07/561",
+          "label": "Apologise",
+          "nb_prediction": "Apologise",
+          "prediction": "Apologise",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Care",
+          "estimated_precision": 0.4479166666666667,
+          "example_id": "S06/E01/67",
+          "label": "Care",
+          "nb_prediction": "Inform",
+          "prediction": "Care",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Advise",
+          "estimated_precision": 0.4053295932678822,
+          "example_id": "S06/E05/173",
+          "label": "Care",
+          "nb_prediction": "Inform",
+          "prediction": "Inform",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Taunt",
+          "estimated_precision": 0.6335403726708074,
+          "example_id": "S06/E07/412",
+          "label": "Joke",
+          "nb_prediction": "Praise",
+          "prediction": "Taunt",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Agree",
+          "estimated_precision": 0.38788426763110306,
+          "example_id": "S06/E05/515",
+          "label": "Thank",
+          "nb_prediction": "Thank",
+          "prediction": "Agree",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Inform",
+          "estimated_precision": 0.40166204986149584,
+          "example_id": "S06/E05/234",
+          "label": "Complain",
+          "nb_prediction": "Complain",
+          "prediction": "Complain",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Comfort",
+          "estimated_precision": 0.6907630522088354,
+          "example_id": "S06/E06/44",
+          "label": "Comfort",
+          "nb_prediction": "Comfort",
+          "prediction": "Comfort",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Oppose",
+          "estimated_precision": 0.4230769230769231,
+          "example_id": "S06/E10/176",
+          "label": "Oppose",
+          "nb_prediction": "Inform",
+          "prediction": "Oppose",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Arrange",
+          "estimated_precision": 0.4499252615844544,
+          "example_id": "S06/E03/83",
+          "label": "Inform",
+          "nb_prediction": "Complain",
+          "prediction": "Arrange",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Arrange",
+          "estimated_precision": 0.5149253731343284,
+          "example_id": "S06/E10/509",
+          "label": "Inform",
+          "nb_prediction": "Inform",
+          "prediction": "Inform",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Flaunt",
+          "estimated_precision": 0.43147208121827413,
+          "example_id": "S06/E10/454",
+          "label": "Complain",
+          "nb_prediction": "Inform",
+          "prediction": "Flaunt",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Criticize",
+          "estimated_precision": 0.3868797308662742,
+          "example_id": "S06/E08/39",
+          "label": "Care",
+          "nb_prediction": "Praise",
+          "prediction": "Criticize",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Inform",
+          "estimated_precision": 0.4613861386138614,
+          "example_id": "S06/E03/247",
+          "label": "Advise",
+          "nb_prediction": "Inform",
+          "prediction": "Inform",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Praise",
+          "estimated_precision": 0.7631578947368421,
+          "example_id": "S06/E07/512",
+          "label": "Care",
+          "nb_prediction": "Praise",
+          "prediction": "Praise",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Leave",
+          "estimated_precision": 0.5757575757575758,
+          "example_id": "S06/E02/246",
+          "label": "Apologise",
+          "nb_prediction": "Inform",
+          "prediction": "Leave",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Criticize",
+          "estimated_precision": 0.4699828473413379,
+          "example_id": "S06/E10/140",
+          "label": "Criticize",
+          "nb_prediction": "Complain",
+          "prediction": "Criticize",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Comfort",
+          "estimated_precision": 0.45121951219512196,
+          "example_id": "S06/E08/542",
+          "label": "Comfort",
+          "nb_prediction": "Complain",
+          "prediction": "Comfort",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Praise",
+          "estimated_precision": 0.5133689839572193,
+          "example_id": "S06/E02/231",
+          "label": "Praise",
+          "nb_prediction": "Praise",
+          "prediction": "Praise",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Apologise",
+          "estimated_precision": 0.925,
+          "example_id": "S06/E09/468",
+          "label": "Apologise",
+          "nb_prediction": "Inform",
+          "prediction": "Apologise",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Comfort",
+          "estimated_precision": 0.49246231155778897,
+          "example_id": "S06/E03/212",
+          "label": "Inform",
+          "nb_prediction": "Inform",
+          "prediction": "Inform",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Inform",
+          "estimated_precision": 0.39042357274401474,
+          "example_id": "S06/E07/328",
+          "label": "Inform",
+          "nb_prediction": "Complain",
+          "prediction": "Inform",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Thank",
+          "estimated_precision": 1.0,
+          "example_id": "S06/E01/536",
+          "label": "Thank",
+          "nb_prediction": "Thank",
+          "prediction": "Thank",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Comfort",
+          "estimated_precision": 0.8111888111888111,
+          "example_id": "S06/E07/184",
+          "label": "Comfort",
+          "nb_prediction": "Inform",
+          "prediction": "Comfort",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Flaunt",
+          "estimated_precision": 0.6091954022988506,
+          "example_id": "S06/E07/364",
+          "label": "Complain",
+          "nb_prediction": "Complain",
+          "prediction": "Flaunt",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Inform",
+          "estimated_precision": 0.40502183406113534,
+          "example_id": "S06/E06/420",
+          "label": "Taunt",
+          "nb_prediction": "Complain",
+          "prediction": "Inform",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Arrange",
+          "estimated_precision": 0.5357142857142857,
+          "example_id": "S06/E04/62",
+          "label": "Arrange",
+          "nb_prediction": "Inform",
+          "prediction": "Inform",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Inform",
+          "estimated_precision": 0.4926829268292683,
+          "example_id": "S06/E01/20",
+          "label": "Inform",
+          "nb_prediction": "Inform",
+          "prediction": "Inform",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Flaunt",
+          "estimated_precision": 0.4523076923076923,
+          "example_id": "S06/E06/220",
+          "label": "Thank",
+          "nb_prediction": "Inform",
+          "prediction": "Flaunt",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Advise",
+          "estimated_precision": 0.40813253012048195,
+          "example_id": "S06/E04/449",
+          "label": "Advise",
+          "nb_prediction": "Leave",
+          "prediction": "Leave",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Greet",
+          "estimated_precision": 0.5608591885441527,
+          "example_id": "S06/E04/581",
+          "label": "Inform",
+          "nb_prediction": "Inform",
+          "prediction": "Greet",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Taunt",
+          "estimated_precision": 0.4090909090909091,
+          "example_id": "S06/E01/114",
+          "label": "Arrange",
+          "nb_prediction": "Complain",
+          "prediction": "Complain",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Thank",
+          "estimated_precision": 0.4744525547445255,
+          "example_id": "S06/E06/218",
+          "label": "Thank",
+          "nb_prediction": "Thank",
+          "prediction": "Thank",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Comfort",
+          "estimated_precision": 0.5672371638141809,
+          "example_id": "S06/E08/62",
+          "label": "Care",
+          "nb_prediction": "Inform",
+          "prediction": "Comfort",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Apologise",
+          "estimated_precision": 0.421301775147929,
+          "example_id": "S06/E01/340",
+          "label": "Apologise",
+          "nb_prediction": "Inform",
+          "prediction": "Apologise",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Care",
+          "estimated_precision": 0.45180722891566266,
+          "example_id": "S06/E02/503",
+          "label": "Care",
+          "nb_prediction": "Complain",
+          "prediction": "Care",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Complain",
+          "estimated_precision": 0.4889867841409692,
+          "example_id": "S06/E09/169",
+          "label": "Complain",
+          "nb_prediction": "Complain",
+          "prediction": "Complain",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Inform",
+          "estimated_precision": 0.5138888888888888,
+          "example_id": "S06/E02/7",
+          "label": "Inform",
+          "nb_prediction": "Inform",
+          "prediction": "Inform",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Care",
+          "estimated_precision": 0.40479548660084624,
+          "example_id": "S06/E04/423",
+          "label": "Care",
+          "nb_prediction": "Inform",
+          "prediction": "Inform",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Flaunt",
+          "estimated_precision": 0.48333333333333334,
+          "example_id": "S06/E03/613",
+          "label": "Inform",
+          "nb_prediction": "Complain",
+          "prediction": "Flaunt",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Complain",
+          "estimated_precision": 0.47018739352640543,
+          "example_id": "S06/E07/287",
+          "label": "Leave",
+          "nb_prediction": "Complain",
+          "prediction": "Complain",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Ask for help",
+          "estimated_precision": 0.46123260437375746,
+          "example_id": "S06/E01/347",
+          "label": "Inform",
+          "nb_prediction": "Inform",
+          "prediction": "Inform",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Praise",
+          "estimated_precision": 0.6407766990291263,
+          "example_id": "S06/E03/471",
+          "label": "Praise",
+          "nb_prediction": "Praise",
+          "prediction": "Praise",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Praise",
+          "estimated_precision": 0.4019088016967126,
+          "example_id": "S06/E07/581",
+          "label": "Criticize",
+          "nb_prediction": "Complain",
+          "prediction": "Praise",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Apologise",
+          "estimated_precision": 0.49903660886319845,
+          "example_id": "S06/E04/164",
+          "label": "Apologise",
+          "nb_prediction": "Inform",
+          "prediction": "Apologise",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Greet",
+          "estimated_precision": 1.0,
+          "example_id": "S06/E05/115",
+          "label": "Greet",
+          "nb_prediction": "Inform",
+          "prediction": "Greet",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Criticize",
+          "estimated_precision": 0.40683572216097025,
+          "example_id": "S06/E07/570",
+          "label": "Inform",
+          "nb_prediction": "Inform",
+          "prediction": "Criticize",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Inform",
+          "estimated_precision": 0.4732142857142857,
+          "example_id": "S06/E05/215",
+          "label": "Praise",
+          "nb_prediction": "Inform",
+          "prediction": "Inform",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Criticize",
+          "estimated_precision": 0.4328732747804266,
+          "example_id": "S06/E03/551",
+          "label": "Criticize",
+          "nb_prediction": "Complain",
+          "prediction": "Criticize",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Taunt",
+          "estimated_precision": 0.47368421052631576,
+          "example_id": "S06/E09/527",
+          "label": "Introduce",
+          "nb_prediction": "Praise",
+          "prediction": "Praise",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Taunt",
+          "estimated_precision": 0.3875338753387534,
+          "example_id": "S06/E01/163",
+          "label": "Inform",
+          "nb_prediction": "Complain",
+          "prediction": "Taunt",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Care",
+          "estimated_precision": 0.4980769230769231,
+          "example_id": "S06/E04/235",
+          "label": "Care",
+          "nb_prediction": "Inform",
+          "prediction": "Care",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Leave",
+          "estimated_precision": 0.926829268292683,
+          "example_id": "S06/E02/290",
+          "label": "Leave",
+          "nb_prediction": "Leave",
+          "prediction": "Leave",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Advise",
+          "estimated_precision": 0.4244604316546763,
+          "example_id": "S06/E03/372",
+          "label": "Complain",
+          "nb_prediction": "Inform",
+          "prediction": "Advise",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Apologise",
+          "estimated_precision": 0.94,
+          "example_id": "S06/E01/426",
+          "label": "Apologise",
+          "nb_prediction": "Inform",
+          "prediction": "Apologise",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Inform",
+          "estimated_precision": 0.49271137026239065,
+          "example_id": "S06/E01/172",
+          "label": "Arrange",
+          "nb_prediction": "Inform",
+          "prediction": "Inform",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Arrange",
+          "estimated_precision": 0.5405405405405406,
+          "example_id": "S06/E08/145",
+          "label": "Prevent",
+          "nb_prediction": "Inform",
+          "prediction": "Arrange",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Introduce",
+          "estimated_precision": 0.3892921960072595,
+          "example_id": "S06/E07/325",
+          "label": "Praise",
+          "nb_prediction": "Complain",
+          "prediction": "Introduce",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Criticize",
+          "estimated_precision": 0.6357827476038339,
+          "example_id": "S06/E06/7",
+          "label": "Joke",
+          "nb_prediction": "Criticize",
+          "prediction": "Criticize",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Thank",
+          "estimated_precision": 0.42080378250591016,
+          "example_id": "S06/E02/405",
+          "label": "Thank",
+          "nb_prediction": "Thank",
+          "prediction": "Thank",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Greet",
+          "estimated_precision": 0.5608591885441527,
+          "example_id": "S06/E01/144",
+          "label": "Inform",
+          "nb_prediction": "Complain",
+          "prediction": "Greet",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Comfort",
+          "estimated_precision": 0.44684684684684683,
+          "example_id": "S06/E03/150",
+          "label": "Advise",
+          "nb_prediction": "Complain",
+          "prediction": "Complain",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Complain",
+          "estimated_precision": 0.5051546391752577,
+          "example_id": "S06/E01/468",
+          "label": "Complain",
+          "nb_prediction": "Complain",
+          "prediction": "Complain",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Care",
+          "estimated_precision": 0.9052631578947369,
+          "example_id": "S06/E07/541",
+          "label": "Care",
+          "nb_prediction": "Inform",
+          "prediction": "Care",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Inform",
+          "estimated_precision": 0.6151603498542274,
+          "example_id": "S06/E05/167",
+          "label": "Advise",
+          "nb_prediction": "Inform",
+          "prediction": "Inform",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Comfort",
+          "estimated_precision": 0.49074074074074076,
+          "example_id": "S06/E02/154",
+          "label": "Prevent",
+          "nb_prediction": "Complain",
+          "prediction": "Complain",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Oppose",
+          "estimated_precision": 0.7537688442211056,
+          "example_id": "S06/E10/280",
+          "label": "Complain",
+          "nb_prediction": "Complain",
+          "prediction": "Oppose",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Criticize",
+          "estimated_precision": 0.5552941176470588,
+          "example_id": "S06/E04/66",
+          "label": "Inform",
+          "nb_prediction": "Complain",
+          "prediction": "Criticize",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Criticize",
+          "estimated_precision": 0.6162790697674418,
+          "example_id": "S06/E07/279",
+          "label": "Criticize",
+          "nb_prediction": "Complain",
+          "prediction": "Criticize",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Introduce",
+          "estimated_precision": 0.5277777777777778,
+          "example_id": "S06/E07/385",
+          "label": "Complain",
+          "nb_prediction": "Complain",
+          "prediction": "Complain",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Criticize",
+          "estimated_precision": 0.4824399260628466,
+          "example_id": "S06/E07/333",
+          "label": "Inform",
+          "nb_prediction": "Complain",
+          "prediction": "Criticize",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Inform",
+          "estimated_precision": 0.5,
+          "example_id": "S06/E09/9",
+          "label": "Inform",
+          "nb_prediction": "Inform",
+          "prediction": "Inform",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Criticize",
+          "estimated_precision": 0.5377777777777778,
+          "example_id": "S06/E09/509",
+          "label": "Criticize",
+          "nb_prediction": "Complain",
+          "prediction": "Criticize",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Comfort",
+          "estimated_precision": 0.38266557645134913,
+          "example_id": "S06/E09/16",
+          "label": "Inform",
+          "nb_prediction": "Leave",
+          "prediction": "Comfort",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Inform",
+          "estimated_precision": 1.0,
+          "example_id": "S06/E01/559",
+          "label": "Ask for help",
+          "nb_prediction": "Inform",
+          "prediction": "Inform",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Oppose",
+          "estimated_precision": 0.3932038834951456,
+          "example_id": "S06/E05/12",
+          "label": "Inform",
+          "nb_prediction": "Prevent",
+          "prediction": "Oppose",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Thank",
+          "estimated_precision": 0.45489443378119004,
+          "example_id": "S06/E03/326",
+          "label": "Thank",
+          "nb_prediction": "Thank",
+          "prediction": "Thank",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Greet",
+          "estimated_precision": 0.4911504424778761,
+          "example_id": "S06/E08/109",
+          "label": "Care",
+          "nb_prediction": "Complain",
+          "prediction": "Complain",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Comfort",
+          "estimated_precision": 0.45754716981132076,
+          "example_id": "S06/E07/573",
+          "label": "Comfort",
+          "nb_prediction": "Complain",
+          "prediction": "Comfort",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Oppose",
+          "estimated_precision": 0.6183431952662722,
+          "example_id": "S06/E01/236",
+          "label": "Prevent",
+          "nb_prediction": "Complain",
+          "prediction": "Oppose",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Inform",
+          "estimated_precision": 0.6837944664031621,
+          "example_id": "S06/E10/455",
+          "label": "Leave",
+          "nb_prediction": "Complain",
+          "prediction": "Inform",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Comfort",
+          "estimated_precision": 0.6530612244897959,
+          "example_id": "S06/E07/191",
+          "label": "Oppose",
+          "nb_prediction": "Complain",
+          "prediction": "Comfort",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Arrange",
+          "estimated_precision": 0.3865546218487395,
+          "example_id": "S06/E03/219",
+          "label": "Inform",
+          "nb_prediction": "Arrange",
+          "prediction": "Arrange",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Complain",
+          "estimated_precision": 0.4321608040201005,
+          "example_id": "S06/E02/297",
+          "label": "Apologise",
+          "nb_prediction": "Complain",
+          "prediction": "Complain",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Apologise",
+          "estimated_precision": 1.0,
+          "example_id": "S06/E03/548",
+          "label": "Apologise",
+          "nb_prediction": "Apologise",
+          "prediction": "Apologise",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Praise",
+          "estimated_precision": 0.7181818181818181,
+          "example_id": "S06/E02/458",
+          "label": "Thank",
+          "nb_prediction": "Praise",
+          "prediction": "Praise",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Flaunt",
+          "estimated_precision": 0.5473684210526316,
+          "example_id": "S06/E04/532",
+          "label": "Advise",
+          "nb_prediction": "Complain",
+          "prediction": "Complain",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Flaunt",
+          "estimated_precision": 0.5978260869565217,
+          "example_id": "S06/E03/4",
+          "label": "Inform",
+          "nb_prediction": "Complain",
+          "prediction": "Flaunt",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Taunt",
+          "estimated_precision": 0.4479166666666667,
+          "example_id": "S06/E03/436",
+          "label": "Joke",
+          "nb_prediction": "Inform",
+          "prediction": "Taunt",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Apologise",
+          "estimated_precision": 1.0,
+          "example_id": "S06/E04/123",
+          "label": "Apologise",
+          "nb_prediction": "Apologise",
+          "prediction": "Apologise",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Flaunt",
+          "estimated_precision": 0.38266557645134913,
+          "example_id": "S06/E09/360",
+          "label": "Inform",
+          "nb_prediction": "Praise",
+          "prediction": "Flaunt",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Thank",
+          "estimated_precision": 1.0,
+          "example_id": "S06/E03/319",
+          "label": "Thank",
+          "nb_prediction": "Thank",
+          "prediction": "Thank",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Complain",
+          "estimated_precision": 0.44395924308588064,
+          "example_id": "S06/E07/442",
+          "label": "Inform",
+          "nb_prediction": "Complain",
+          "prediction": "Complain",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Apologise",
+          "estimated_precision": 0.5714285714285714,
+          "example_id": "S06/E01/237",
+          "label": "Apologise",
+          "nb_prediction": "Apologise",
+          "prediction": "Apologise",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Complain",
+          "estimated_precision": 0.4520123839009288,
+          "example_id": "S06/E06/340",
+          "label": "Complain",
+          "nb_prediction": "Complain",
+          "prediction": "Complain",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Comfort",
+          "estimated_precision": 0.5818181818181818,
+          "example_id": "S06/E02/155",
+          "label": "Care",
+          "nb_prediction": "Complain",
+          "prediction": "Comfort",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Care",
+          "estimated_precision": 0.51440329218107,
+          "example_id": "S06/E04/604",
+          "label": "Care",
+          "nb_prediction": "Criticize",
+          "prediction": "Care",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Criticize",
+          "estimated_precision": 0.45454545454545453,
+          "example_id": "S06/E08/575",
+          "label": "Comfort",
+          "nb_prediction": "Inform",
+          "prediction": "Inform",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Introduce",
+          "estimated_precision": 0.5138121546961326,
+          "example_id": "S06/E04/545",
+          "label": "Complain",
+          "nb_prediction": "Complain",
+          "prediction": "Complain",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Flaunt",
+          "estimated_precision": 0.4307891332470893,
+          "example_id": "S06/E03/67",
+          "label": "Complain",
+          "nb_prediction": "Apologise",
+          "prediction": "Flaunt",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Comfort",
+          "estimated_precision": 0.44395924308588064,
+          "example_id": "S06/E06/575",
+          "label": "Inform",
+          "nb_prediction": "Inform",
+          "prediction": "Comfort",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Flaunt",
+          "estimated_precision": 0.4530046224961479,
+          "example_id": "S06/E04/60",
+          "label": "Complain",
+          "nb_prediction": "Inform",
+          "prediction": "Flaunt",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Ask for help",
+          "estimated_precision": 0.42105263157894735,
+          "example_id": "S06/E06/483",
+          "label": "Inform",
+          "nb_prediction": "Complain",
+          "prediction": "Complain",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Comfort",
+          "estimated_precision": 0.3868797308662742,
+          "example_id": "S06/E08/54",
+          "label": "Prevent",
+          "nb_prediction": "Complain",
+          "prediction": "Comfort",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Flaunt",
+          "estimated_precision": 0.4027777777777778,
+          "example_id": "S06/E03/498",
+          "label": "Advise",
+          "nb_prediction": "Complain",
+          "prediction": "Flaunt",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Inform",
+          "estimated_precision": 0.4328732747804266,
+          "example_id": "S06/E09/10",
+          "label": "Advise",
+          "nb_prediction": "Inform",
+          "prediction": "Inform",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Inform",
+          "estimated_precision": 0.3916279069767442,
+          "example_id": "S06/E06/20",
+          "label": "Inform",
+          "nb_prediction": "Complain",
+          "prediction": "Inform",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Apologise",
+          "estimated_precision": 0.6888888888888889,
+          "example_id": "S06/E10/414",
+          "label": "Advise",
+          "nb_prediction": "Complain",
+          "prediction": "Apologise",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Apologise",
+          "estimated_precision": 0.7085201793721974,
+          "example_id": "S06/E04/35",
+          "label": "Apologise",
+          "nb_prediction": "Inform",
+          "prediction": "Apologise",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Inform",
+          "estimated_precision": 0.6702508960573477,
+          "example_id": "S06/E05/388",
+          "label": "Introduce",
+          "nb_prediction": "Inform",
+          "prediction": "Inform",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Praise",
+          "estimated_precision": 0.4930747922437673,
+          "example_id": "S06/E02/25",
+          "label": "Oppose",
+          "nb_prediction": "Complain",
+          "prediction": "Complain",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Thank",
+          "estimated_precision": 0.375,
+          "example_id": "S06/E01/366",
+          "label": "Introduce",
+          "nb_prediction": "Praise",
+          "prediction": "Thank",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Joke",
+          "estimated_precision": 0.4885057471264368,
+          "example_id": "S06/E06/23",
+          "label": "Complain",
+          "nb_prediction": "Complain",
+          "prediction": "Complain",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Ask for help",
+          "estimated_precision": 0.40843507214206437,
+          "example_id": "S06/E01/260",
+          "label": "Taunt",
+          "nb_prediction": "Inform",
+          "prediction": "Ask for help",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Inform",
+          "estimated_precision": 0.5473684210526316,
+          "example_id": "S06/E01/233",
+          "label": "Praise",
+          "nb_prediction": "Inform",
+          "prediction": "Inform",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Arrange",
+          "estimated_precision": 0.504930966469428,
+          "example_id": "S06/E04/70",
+          "label": "Arrange",
+          "nb_prediction": "Inform",
+          "prediction": "Arrange",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Apologise",
+          "estimated_precision": 0.8111888111888111,
+          "example_id": "S06/E02/263",
+          "label": "Complain",
+          "nb_prediction": "Complain",
+          "prediction": "Apologise",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Criticize",
+          "estimated_precision": 0.38102893890675243,
+          "example_id": "S06/E05/536",
+          "label": "Introduce",
+          "nb_prediction": "Criticize",
+          "prediction": "Criticize",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Apologise",
+          "estimated_precision": 1.0,
+          "example_id": "S06/E03/617",
+          "label": "Apologise",
+          "nb_prediction": "Apologise",
+          "prediction": "Apologise",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Taunt",
+          "estimated_precision": 0.6033057851239669,
+          "example_id": "S06/E10/238",
+          "label": "Inform",
+          "nb_prediction": "Inform",
+          "prediction": "Taunt",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Flaunt",
+          "estimated_precision": 0.5294117647058824,
+          "example_id": "S06/E10/392",
+          "label": "Complain",
+          "nb_prediction": "Complain",
+          "prediction": "Complain",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Complain",
+          "estimated_precision": 0.5179856115107914,
+          "example_id": "S06/E01/283",
+          "label": "Complain",
+          "nb_prediction": "Complain",
+          "prediction": "Complain",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Agree",
+          "estimated_precision": 0.8846153846153846,
+          "example_id": "S06/E07/502",
+          "label": "Agree",
+          "nb_prediction": "Inform",
+          "prediction": "Agree",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Criticize",
+          "estimated_precision": 0.4338138925294889,
+          "example_id": "S06/E03/597",
+          "label": "Care",
+          "nb_prediction": "Inform",
+          "prediction": "Criticize",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Inform",
+          "estimated_precision": 0.515748031496063,
+          "example_id": "S06/E10/308",
+          "label": "Flaunt",
+          "nb_prediction": "Inform",
+          "prediction": "Inform",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Arrange",
+          "estimated_precision": 0.4493192133131619,
+          "example_id": "S06/E06/88",
+          "label": "Inform",
+          "nb_prediction": "Inform",
+          "prediction": "Arrange",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Comfort",
+          "estimated_precision": 0.5032051282051282,
+          "example_id": "S06/E04/39",
+          "label": "Praise",
+          "nb_prediction": "Complain",
+          "prediction": "Complain",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Arrange",
+          "estimated_precision": 0.46924428822495606,
+          "example_id": "S06/E01/461",
+          "label": "Advise",
+          "nb_prediction": "Inform",
+          "prediction": "Arrange",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Criticize",
+          "estimated_precision": 0.6597222222222222,
+          "example_id": "S06/E09/567",
+          "label": "Comfort",
+          "nb_prediction": "Inform",
+          "prediction": "Criticize",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Care",
+          "estimated_precision": 0.4716981132075472,
+          "example_id": "S06/E02/250",
+          "label": "Care",
+          "nb_prediction": "Praise",
+          "prediction": "Praise",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Criticize",
+          "estimated_precision": 0.47584973166368516,
+          "example_id": "S06/E07/569",
+          "label": "Inform",
+          "nb_prediction": "Inform",
+          "prediction": "Criticize",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Apologise",
+          "estimated_precision": 1.0,
+          "example_id": "S06/E07/503",
+          "label": "Apologise",
+          "nb_prediction": "Apologise",
+          "prediction": "Apologise",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Flaunt",
+          "estimated_precision": 0.5652173913043478,
+          "example_id": "S06/E04/90",
+          "label": "Inform",
+          "nb_prediction": "Complain",
+          "prediction": "Flaunt",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Arrange",
+          "estimated_precision": 0.40843507214206437,
+          "example_id": "S06/E10/257",
+          "label": "Praise",
+          "nb_prediction": "Inform",
+          "prediction": "Arrange",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Introduce",
+          "estimated_precision": 0.8359375,
+          "example_id": "S06/E01/343",
+          "label": "Comfort",
+          "nb_prediction": "Inform",
+          "prediction": "Introduce",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Taunt",
+          "estimated_precision": 0.5059288537549407,
+          "example_id": "S06/E08/612",
+          "label": "Praise",
+          "nb_prediction": "Praise",
+          "prediction": "Taunt",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Complain",
+          "estimated_precision": 0.7784431137724551,
+          "example_id": "S06/E05/128",
+          "label": "Inform",
+          "nb_prediction": "Complain",
+          "prediction": "Complain",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Advise",
+          "estimated_precision": 0.5227272727272727,
+          "example_id": "S06/E04/186",
+          "label": "Criticize",
+          "nb_prediction": "Complain",
+          "prediction": "Complain",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Criticize",
+          "estimated_precision": 0.5566037735849056,
+          "example_id": "S06/E04/64",
+          "label": "Arrange",
+          "nb_prediction": "Inform",
+          "prediction": "Criticize",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Flaunt",
+          "estimated_precision": 0.6043956043956044,
+          "example_id": "S06/E10/342",
+          "label": "Complain",
+          "nb_prediction": "Complain",
+          "prediction": "Flaunt",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Complain",
+          "estimated_precision": 0.42105263157894735,
+          "example_id": "S06/E03/141",
+          "label": "Inform",
+          "nb_prediction": "Complain",
+          "prediction": "Complain",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Arrange",
+          "estimated_precision": 0.4468864468864469,
+          "example_id": "S06/E03/129",
+          "label": "Advise",
+          "nb_prediction": "Inform",
+          "prediction": "Inform",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Prevent",
+          "estimated_precision": 0.5066225165562914,
+          "example_id": "S06/E04/542",
+          "label": "Inform",
+          "nb_prediction": "Inform",
+          "prediction": "Inform",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Flaunt",
+          "estimated_precision": 0.4438040345821326,
+          "example_id": "S06/E04/547",
+          "label": "Praise",
+          "nb_prediction": "Complain",
+          "prediction": "Flaunt",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Care",
+          "estimated_precision": 0.7818181818181819,
+          "example_id": "S06/E05/574",
+          "label": "Apologise",
+          "nb_prediction": "Inform",
+          "prediction": "Care",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Apologise",
+          "estimated_precision": 0.6902985074626866,
+          "example_id": "S06/E07/355",
+          "label": "Flaunt",
+          "nb_prediction": "Complain",
+          "prediction": "Apologise",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Oppose",
+          "estimated_precision": 0.5074626865671642,
+          "example_id": "S06/E04/528",
+          "label": "Criticize",
+          "nb_prediction": "Complain",
+          "prediction": "Complain",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Apologise",
+          "estimated_precision": 0.43866666666666665,
+          "example_id": "S06/E06/208",
+          "label": "Inform",
+          "nb_prediction": "Inform",
+          "prediction": "Apologise",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Apologise",
+          "estimated_precision": 1.0,
+          "example_id": "S06/E04/590",
+          "label": "Apologise",
+          "nb_prediction": "Apologise",
+          "prediction": "Apologise",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Complain",
+          "estimated_precision": 0.6162790697674418,
+          "example_id": "S06/E08/481",
+          "label": "Oppose",
+          "nb_prediction": "Complain",
+          "prediction": "Complain",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Taunt",
+          "estimated_precision": 0.3936269915651359,
+          "example_id": "S06/E09/308",
+          "label": "Complain",
+          "nb_prediction": "Complain",
+          "prediction": "Taunt",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Apologise",
+          "estimated_precision": 0.9302325581395349,
+          "example_id": "S06/E07/343",
+          "label": "Apologise",
+          "nb_prediction": "Complain",
+          "prediction": "Apologise",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Thank",
+          "estimated_precision": 1.0,
+          "example_id": "S06/E07/388",
+          "label": "Thank",
+          "nb_prediction": "Thank",
+          "prediction": "Thank",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Apologise",
+          "estimated_precision": 1.0,
+          "example_id": "S06/E09/6",
+          "label": "Apologise",
+          "nb_prediction": "Apologise",
+          "prediction": "Apologise",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Praise",
+          "estimated_precision": 0.5743073047858942,
+          "example_id": "S06/E02/364",
+          "label": "Complain",
+          "nb_prediction": "Complain",
+          "prediction": "Praise",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Complain",
+          "estimated_precision": 0.5152671755725191,
+          "example_id": "S06/E08/476",
+          "label": "Oppose",
+          "nb_prediction": "Complain",
+          "prediction": "Complain",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Complain",
+          "estimated_precision": 0.46794871794871795,
+          "example_id": "S06/E03/146",
+          "label": "Inform",
+          "nb_prediction": "Complain",
+          "prediction": "Complain",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Oppose",
+          "estimated_precision": 0.9240506329113924,
+          "example_id": "S06/E05/280",
+          "label": "Prevent",
+          "nb_prediction": "Prevent",
+          "prediction": "Oppose",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Agree",
+          "estimated_precision": 0.4215456674473068,
+          "example_id": "S06/E06/45",
+          "label": "Inform",
+          "nb_prediction": "Inform",
+          "prediction": "Agree",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Taunt",
+          "estimated_precision": 0.39037927844588344,
+          "example_id": "S06/E03/502",
+          "label": "Advise",
+          "nb_prediction": "Complain",
+          "prediction": "Taunt",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Praise",
+          "estimated_precision": 0.7536945812807881,
+          "example_id": "S06/E02/492",
+          "label": "Thank",
+          "nb_prediction": "Praise",
+          "prediction": "Praise",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Inform",
+          "estimated_precision": 0.5576923076923077,
+          "example_id": "S06/E01/87",
+          "label": "Inform",
+          "nb_prediction": "Inform",
+          "prediction": "Inform",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Criticize",
+          "estimated_precision": 0.7222222222222222,
+          "example_id": "S06/E05/81",
+          "label": "Arrange",
+          "nb_prediction": "Inform",
+          "prediction": "Criticize",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Introduce",
+          "estimated_precision": 0.4679376083188908,
+          "example_id": "S06/E04/370",
+          "label": "Advise",
+          "nb_prediction": "Complain",
+          "prediction": "Introduce",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Inform",
+          "estimated_precision": 0.4221165279429251,
+          "example_id": "S06/E01/246",
+          "label": "Complain",
+          "nb_prediction": "Complain",
+          "prediction": "Inform",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Agree",
+          "estimated_precision": 0.48441926345609065,
+          "example_id": "S06/E07/576",
+          "label": "Thank",
+          "nb_prediction": "Thank",
+          "prediction": "Thank",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Greet",
+          "estimated_precision": 1.0,
+          "example_id": "S06/E07/586",
+          "label": "Greet",
+          "nb_prediction": "Inform",
+          "prediction": "Greet",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Apologise",
+          "estimated_precision": 0.94,
+          "example_id": "S06/E06/212",
+          "label": "Apologise",
+          "nb_prediction": "Apologise",
+          "prediction": "Apologise",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Complain",
+          "estimated_precision": 0.7828571428571428,
+          "example_id": "S06/E06/466",
+          "label": "Criticize",
+          "nb_prediction": "Complain",
+          "prediction": "Complain",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Apologise",
+          "estimated_precision": 0.9130434782608695,
+          "example_id": "S06/E04/546",
+          "label": "Apologise",
+          "nb_prediction": "Apologise",
+          "prediction": "Apologise",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Ask for help",
+          "estimated_precision": 0.4055232558139535,
+          "example_id": "S06/E01/242",
+          "label": "Complain",
+          "nb_prediction": "Complain",
+          "prediction": "Complain",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Greet",
+          "estimated_precision": 0.6530612244897959,
+          "example_id": "S06/E06/9",
+          "label": "Apologise",
+          "nb_prediction": "Inform",
+          "prediction": "Greet",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Criticize",
+          "estimated_precision": 0.8175182481751825,
+          "example_id": "S06/E08/486",
+          "label": "Taunt",
+          "nb_prediction": "Criticize",
+          "prediction": "Criticize",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Joke",
+          "estimated_precision": 0.46435845213849286,
+          "example_id": "S06/E08/60",
+          "label": "Apologise",
+          "nb_prediction": "Inform",
+          "prediction": "Inform",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Inform",
+          "estimated_precision": 0.4791666666666667,
+          "example_id": "S06/E02/109",
+          "label": "Praise",
+          "nb_prediction": "Inform",
+          "prediction": "Inform",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Complain",
+          "estimated_precision": 1.0,
+          "example_id": "S06/E02/124",
+          "label": "Ask for help",
+          "nb_prediction": "Complain",
+          "prediction": "Complain",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Inform",
+          "estimated_precision": 0.42105263157894735,
+          "example_id": "S06/E10/310",
+          "label": "Praise",
+          "nb_prediction": "Inform",
+          "prediction": "Inform",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Arrange",
+          "estimated_precision": 0.39641434262948205,
+          "example_id": "S06/E03/452",
+          "label": "Criticize",
+          "nb_prediction": "Complain",
+          "prediction": "Arrange",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Arrange",
+          "estimated_precision": 0.42874692874692877,
+          "example_id": "S06/E01/32",
+          "label": "Inform",
+          "nb_prediction": "Complain",
+          "prediction": "Arrange",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Criticize",
+          "estimated_precision": 0.4666666666666667,
+          "example_id": "S06/E01/225",
+          "label": "Complain",
+          "nb_prediction": "Complain",
+          "prediction": "Criticize",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Oppose",
+          "estimated_precision": 0.40106382978723404,
+          "example_id": "S06/E09/315",
+          "label": "Inform",
+          "nb_prediction": "Arrange",
+          "prediction": "Oppose",
+          "selected_paradigm": "unsupervised"
+        },
+        {
+          "centroid_prediction": "Inform",
+          "estimated_precision": 0.5055350553505535,
+          "example_id": "S06/E05/177",
+          "label": "Inform",
+          "nb_prediction": "Inform",
+          "prediction": "Inform",
+          "selected_paradigm": "supervised"
+        },
+        {
+          "centroid_prediction": "Oppose",
+          "estimated_precision": 0.853448275862069,
+          "example_id": "S06/E03/92",
+          "label": "Oppose",
+          "nb_prediction": "Complain",
+          "prediction": "Oppose",
+          "selected_paradigm": "unsupervised"
+        }
+      ],
+      "metrics": {
+        "calibrated_universal": {
+          "accuracy": 0.396373,
+          "coverage": 1.0,
+          "macro_f1": 0.307852,
+          "selective_accuracy": 0.396373
+        },
+        "centroid": {
+          "accuracy": 0.360104,
+          "coverage": 1.0,
+          "macro_f1": 0.303352,
+          "selective_accuracy": 0.360104
+        },
+        "naive_bayes": {
+          "accuracy": 0.365285,
+          "coverage": 1.0,
+          "macro_f1": 0.182994,
+          "selective_accuracy": 0.365285
+        }
+      },
+      "protocol": {
+        "calibration_only": true,
+        "claim_boundary": "score calibration ablation; no SOTA claim",
+        "min_precision": 0.8
+      }
+    }
+  ],
+  "schema": "herus-score-calibrated-universal-v1"
+}

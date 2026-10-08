@@ -25,6 +25,7 @@ A documentação antiga conserva decisões e experimentos importantes, mas foi e
 - [150 — Gate de admissão LLM](150-GATE-ADMISSAO-LLM-UNIVERSAL.md)
 - [151 — Replicação universal em MIntRec](151-REPLICACAO-UNIVERSAL-MINTREC.md)
 - [152 — Ablação do roteador universal](152-ABULACAO-ROTEADOR-UNIVERSAL.md)
+- [153 — Calibração de score e regressão](153-CALIBRACAO-DE-SCORE-E-REGRESSAO.md)
 - [119 — Fachada única HERUS](119-FACHADA-UNICA-HERUS.md)
 - [134 — Síntese da crise e reestruturação](134-SINTESE-CRISE-E-REESTRUTURACAO.md)
 - [Arquivo histórico](../archive/README.md)
