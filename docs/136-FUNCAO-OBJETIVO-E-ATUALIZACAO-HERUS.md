@@ -83,6 +83,11 @@ Também existe agora uma primeira implementação executável do objetivo:
 - contexto vazio que não casa universalmente;
 - deriva temporal aplicada inclusive quando o passo é zero.
 
+O módulo `research/holdout_optimization.py` acrescenta o primeiro harness
+fit–holdout: exige `example_id` estável, rejeita duplicatas e interseção entre
+partições, ajusta os pesos apenas no fit e calcula o objetivo do holdout uma
+única vez com os pesos congelados.
+
 ## O que falta para chamar de algoritmo completo
 
 - entrada que não receba o rótulo/efeito verdadeiro do holdout;
@@ -94,6 +99,7 @@ Também existe agora uma primeira implementação executável do objetivo:
 - benchmark de interfaces/hosts permutados;
 - comparação com controles em orçamento equivalente;
 - medição conjunta de utilidade, risco, custo, cobertura e latência.
+- validação com dados reais, em vez de apenas fixtures sintéticos.
 
 ## Critério de avanço
 

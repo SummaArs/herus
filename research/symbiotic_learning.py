@@ -118,6 +118,7 @@ class Feedback:
     provenance: str = "public"
     verifier: str = "unspecified"
     step: int = 0
+    example_id: str = ""
 
 @dataclass(frozen=True)
 class UpdateResult:
