@@ -515,7 +515,7 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "08aececf1dd122565999c6b2ecbf2f86e680b5ebc69617f64e448b4792eadd76",
+      "sha256": "ef9b195a30d82e25df2dfe22e0c0b01480905e6099b3ed3c7db4f84d3df34da5",
       "role": "organized documentation, maps and historical design records"
     },
     {
@@ -1681,6 +1681,30 @@
       "kind": "file",
       "sha256": "926b1b201c2534f25261e0bb3d97defcb11bd335aede313f4214c982e1f45eff",
       "role": "paired bootstrap and final SOTA decision"
+    },
+    {
+      "path": "research/independent_minds14_benchmark.py",
+      "kind": "file",
+      "sha256": "c37fd96b0f30d023a39e08cf3304cfbd3bc93629a4b19206869e3fc9552a20c1",
+      "role": "independent real MInDS-14 benchmark"
+    },
+    {
+      "path": "research/evidence/independent_minds14_v1.json",
+      "kind": "file",
+      "sha256": "9fb42c4f9d88f134d494c2e5492e50d29ab72a37f69977df2be497a11eaae773",
+      "role": "independent MInDS-14 result and ledgers"
+    },
+    {
+      "path": "research/test_independent_minds14_benchmark.py",
+      "kind": "file",
+      "sha256": "b87f238ab5b9255cd867bf97a9e30993cc6170ed4d18a58e5c53b346c91b3a3a",
+      "role": "independent dataset integrity tests"
+    },
+    {
+      "path": "docs/142-VALIDACAO-INDEPENDENTE-MINDS14.md",
+      "kind": "file",
+      "sha256": "f18fd4f608ba64076469e80159ecdf0a4e1caabcade92adf682926d18680e0ab",
+      "role": "independent MInDS-14 scientific report"
     }
   ],
   "components": [
