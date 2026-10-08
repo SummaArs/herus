@@ -7,10 +7,18 @@ from __future__ import annotations
 import json, math
 from collections import Counter, defaultdict
 from pathlib import Path
-from independent_minds14_benchmark import fetch_rows, split
 from real_data_baseline_benchmark import fetch_split, fit_nb, cosine, metrics, vector
 
 MIN_PRECISION=.80
+
+def calibrator(cal, paradigm):
+    ordered=sorted(cal,key=lambda x:x[paradigm][1],reverse=True); total=0; table=[]
+    for x in ordered:
+        total += int(x[paradigm][0]==x['label']); table.append((x[paradigm][1], total/(len(table)+1)))
+    def estimate(score):
+        eligible=[p for s,p in table if s>=score]
+        return eligible[-1] if eligible else 0.0
+    return estimate
 
 def cents(rows):
     sums=defaultdict(Counter); counts=Counter()
@@ -40,6 +48,7 @@ def evaluate(name, rows, fit, cal, hold, idfn):
     return {'dataset':name,'metrics':{'calibrated_universal':metrics(hold,pred),'naive_bayes':metrics(hold,nb),'centroid':metrics(hold,cent)},'ledger':ledger,'protocol':{'min_precision':MIN_PRECISION,'calibration_only':True,'claim_boundary':'score calibration ablation; no SOTA claim'}}
 
 def run():
+    from independent_minds14_benchmark import fetch_rows, split
     m=fetch_rows(); mf,mc,mh=split(m); r1=evaluate('PolyAI/minds14',m,mf,mc,mh,lambda r:r['path'])
     rows=fetch_split('train',2224); f=[r for r in rows if r['season']=='S04']; c=[r for r in rows if r['season']=='S05']; h=[r for r in rows if r['season']=='S06']; r2=evaluate('THU-IAR/MIntRec',rows,f,c,h,lambda r:f"{r['season']}/{r['episode']}/{r['clip']}")
     return {'schema':'herus-score-calibrated-universal-v1','results':[r1,r2]}

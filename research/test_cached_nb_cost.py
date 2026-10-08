@@ -14,7 +14,8 @@ class CachedNBCostTests(unittest.TestCase):
 
     def test_cpu_gain_is_material_but_memory_is_reported(self):
         self.assertGreater(self.data['observed_speedup'],30)
-        self.assertGreater(self.data['cached_peak_rss_kb'],500000)
+        self.assertLess(self.data['cached_peak_rss_kb'],100000)
+        self.assertGreater(self.data['peak_rss_reduction_fraction'],0.90)
 
     def test_claim_boundary_is_bounded(self):
         self.assertIn('no general energy or SOTA claim',self.data['protocol']['claim_boundary'])

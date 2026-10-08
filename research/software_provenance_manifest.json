@@ -515,7 +515,7 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "35ddf66c91cf2951b272147d4a2ee86acca3dee68d4769b8a9cdcd1fb6bb3282",
+      "sha256": "c09f42eb6b89fa511a7bece1dddd852773f8190d543f02d0b976f4ec64e4f068",
       "role": "organized documentation, maps and historical design records"
     },
     {
@@ -1949,7 +1949,7 @@
     {
       "path": "research/score_calibrated_universal.py",
       "kind": "file",
-      "sha256": "9501039d482ba015bd0f545869c4639b3417f157a2db12e054fd8608995b37f8",
+      "sha256": "ab05f4176c9df148614e978b7b4042b148d2a3b7d5f3b76fbf73d65f004ff7f6",
       "role": "per-paradigm score calibration ablation"
     },
     {
@@ -2099,20 +2099,26 @@
     {
       "path": "research/evidence/cached_nb_cost_banking77_v1.json",
       "kind": "file",
-      "sha256": "ef04a19ec4a2eaff3b05a3e76ae5327a98e29202d3b639b4324bdd0d3cdd95ac",
+      "sha256": "d06aa2dbaf5aed0e85736a6b14a6c75f54ae2e658af46e15adc06415d7d89dec",
       "role": "cached NB cost evidence"
     },
     {
       "path": "research/test_cached_nb_cost.py",
       "kind": "file",
-      "sha256": "5a2cd2d57cc1fae1d0a3a7107ac8684300c76abcbd671f7a9a2773cda58afb0f",
+      "sha256": "dbbdd9867ab92fa42969fea743c873ee3dd0642e1ea2ae02a570a1f5539ce32d",
       "role": "cached NB cost tests"
     },
     {
       "path": "docs/159-OTIMIZACAO-CPU-E-CUSTO-CACHEADO.md",
       "kind": "file",
-      "sha256": "96fd24927edcab6998c13afe3c5204af04d2d13a77cfcdb5702f7fecec22d630",
+      "sha256": "1151d595086642b26f4f5209d61e3269fb63c95799ef52e50ed05c978894a3c9",
       "role": "cached CPU optimization report"
+    },
+    {
+      "path": "research/test_lazy_banking_import.py",
+      "kind": "file",
+      "sha256": "90cb577ae183b20d011a220d9c0c9164eb27bb549587397a3a440bf41b40f198",
+      "role": "lazy import regression test"
     }
   ],
   "components": [
