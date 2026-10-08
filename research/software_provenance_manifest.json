@@ -515,7 +515,7 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "5164c71a5abc4669170e49ff2edc21930a903885f530a541d4d91331e3b817fc",
+      "sha256": "aa4fd51a5694ae905cd8c57be1d8cb7ab6811c2122246173fe89339f416cc9f5",
       "role": "organized documentation, maps and historical design records"
     },
     {
@@ -1627,6 +1627,30 @@
       "kind": "file",
       "sha256": "c805bb2b0175eab42c0aa98772c90614d5fdf5f5dc9e55bf3adbe456361d33ae",
       "role": "real multi-host result and selective coverage limits"
+    },
+    {
+      "path": "research/multi_host_transformer_benchmark.py",
+      "kind": "file",
+      "sha256": "6fd23b9d763a6cd4e341772adc31d0f2f1f19cd23ddfb4e884d69ccfdabcd607",
+      "role": "paired transformer risk-coverage benchmark"
+    },
+    {
+      "path": "research/test_multi_host_transformer_benchmark.py",
+      "kind": "file",
+      "sha256": "d62fb759fb359b75649840cb47cb735c5781afb42e18fc4777dc4e111d551f34",
+      "role": "paired transformer evidence integrity tests"
+    },
+    {
+      "path": "research/evidence/multi_host_transformer_mintrec_v1.json",
+      "kind": "file",
+      "sha256": "cf852c96e2f43db0e3a3084c64d23bb8d7fc776bcf52504e5307e2e968ced9e1",
+      "role": "real paired transformer multi-host evidence"
+    },
+    {
+      "path": "docs/140-COMPETICAO-HERUS-TRANSFORMER-MULTI-HOST.md",
+      "kind": "file",
+      "sha256": "0ba79c696a059d88c84a11cb2aeeb8682e1ea162107b488b0187ca99cef35168",
+      "role": "paired transformer risk-coverage report"
     }
   ],
   "components": [

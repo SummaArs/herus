@@ -12,6 +12,7 @@ A documentação antiga conserva decisões e experimentos importantes, mas foi e
 - [137 — Competições desafiadoras e benchmark](137-COMPETICOES-DESAFIADORAS-E-BENCHMARK.md)
 - [138 — Gate final multi-host e SOTA](138-GATE-FINAL-MULTI-HOST-E-SOTA.md)
 - [139 — Resultado multi-host real MIntRec](139-RESULTADO-MULTI-HOST-MINTREC.md)
+- [140 — Competição HERUS contra transformer multi-host](140-COMPETICAO-HERUS-TRANSFORMER-MULTI-HOST.md)
 - [119 — Fachada única HERUS](119-FACHADA-UNICA-HERUS.md)
 - [134 — Síntese da crise e reestruturação](134-SINTESE-CRISE-E-REESTRUTURACAO.md)
 - [Arquivo histórico](../archive/README.md)

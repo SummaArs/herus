@@ -1,0 +1,687 @@
+{
+  "dataset_id": "THU-IAR/MIntRec",
+  "hosts": [
+    {
+      "host_id": "S04",
+      "mean_calibrated_coverage": 0.003922,
+      "mean_calibrated_selective_accuracy": 0.333333,
+      "mean_coverage": 1.0,
+      "mean_selective_accuracy": 0.223529,
+      "runs": [
+        {
+          "calibration_count": 85,
+          "confidence_threshold": null,
+          "fit_count": 396,
+          "history": [
+            {
+              "calibration": {
+                "accuracy": 0.164706,
+                "coverage": 1.0,
+                "macro_f1": 0.025833,
+                "selective_accuracy": 0.164706
+              },
+              "epoch": 1,
+              "loss": 2.920423
+            },
+            {
+              "calibration": {
+                "accuracy": 0.2,
+                "coverage": 1.0,
+                "macro_f1": 0.02125,
+                "selective_accuracy": 0.2
+              },
+              "epoch": 2,
+              "loss": 2.829961
+            },
+            {
+              "calibration": {
+                "accuracy": 0.2,
+                "coverage": 1.0,
+                "macro_f1": 0.02125,
+                "selective_accuracy": 0.2
+              },
+              "epoch": 3,
+              "loss": 2.770264
+            },
+            {
+              "calibration": {
+                "accuracy": 0.2,
+                "coverage": 1.0,
+                "macro_f1": 0.020833,
+                "selective_accuracy": 0.2
+              },
+              "epoch": 4,
+              "loss": 2.724244
+            },
+            {
+              "calibration": {
+                "accuracy": 0.2,
+                "coverage": 1.0,
+                "macro_f1": 0.020833,
+                "selective_accuracy": 0.2
+              },
+              "epoch": 5,
+              "loss": 2.689547
+            }
+          ],
+          "holdout_count": 85,
+          "metrics": {
+            "accuracy": 0.188235,
+            "coverage": 1.0,
+            "macro_f1": 0.019802,
+            "selective_accuracy": 0.188235
+          },
+          "seed": 11,
+          "selective_metrics": {
+            "accuracy": 0.0,
+            "coverage": 0.0,
+            "macro_f1": 0.0,
+            "selective_accuracy": 0.0
+          }
+        },
+        {
+          "calibration_count": 85,
+          "confidence_threshold": 0.12861356,
+          "fit_count": 396,
+          "history": [
+            {
+              "calibration": {
+                "accuracy": 0.152941,
+                "coverage": 1.0,
+                "macro_f1": 0.037894,
+                "selective_accuracy": 0.152941
+              },
+              "epoch": 1,
+              "loss": 2.97019
+            },
+            {
+              "calibration": {
+                "accuracy": 0.258824,
+                "coverage": 1.0,
+                "macro_f1": 0.047752,
+                "selective_accuracy": 0.258824
+              },
+              "epoch": 2,
+              "loss": 2.856295
+            },
+            {
+              "calibration": {
+                "accuracy": 0.258824,
+                "coverage": 1.0,
+                "macro_f1": 0.045612,
+                "selective_accuracy": 0.258824
+              },
+              "epoch": 3,
+              "loss": 2.798414
+            },
+            {
+              "calibration": {
+                "accuracy": 0.223529,
+                "coverage": 1.0,
+                "macro_f1": 0.031299,
+                "selective_accuracy": 0.223529
+              },
+              "epoch": 4,
+              "loss": 2.745674
+            },
+            {
+              "calibration": {
+                "accuracy": 0.270588,
+                "coverage": 1.0,
+                "macro_f1": 0.047606,
+                "selective_accuracy": 0.270588
+              },
+              "epoch": 5,
+              "loss": 2.713665
+            }
+          ],
+          "holdout_count": 85,
+          "metrics": {
+            "accuracy": 0.223529,
+            "coverage": 1.0,
+            "macro_f1": 0.040355,
+            "selective_accuracy": 0.223529
+          },
+          "seed": 23,
+          "selective_metrics": {
+            "accuracy": 0.011765,
+            "coverage": 0.011765,
+            "macro_f1": 0.007353,
+            "selective_accuracy": 1.0
+          }
+        },
+        {
+          "calibration_count": 85,
+          "confidence_threshold": null,
+          "fit_count": 396,
+          "history": [
+            {
+              "calibration": {
+                "accuracy": 0.305882,
+                "coverage": 1.0,
+                "macro_f1": 0.05552,
+                "selective_accuracy": 0.305882
+              },
+              "epoch": 1,
+              "loss": 2.936695
+            },
+            {
+              "calibration": {
+                "accuracy": 0.329412,
+                "coverage": 1.0,
+                "macro_f1": 0.05651,
+                "selective_accuracy": 0.329412
+              },
+              "epoch": 2,
+              "loss": 2.855967
+            },
+            {
+              "calibration": {
+                "accuracy": 0.317647,
+                "coverage": 1.0,
+                "macro_f1": 0.054482,
+                "selective_accuracy": 0.317647
+              },
+              "epoch": 3,
+              "loss": 2.80379
+            },
+            {
+              "calibration": {
+                "accuracy": 0.341176,
+                "coverage": 1.0,
+                "macro_f1": 0.059028,
+                "selective_accuracy": 0.341176
+              },
+              "epoch": 4,
+              "loss": 2.758253
+            },
+            {
+              "calibration": {
+                "accuracy": 0.282353,
+                "coverage": 1.0,
+                "macro_f1": 0.047436,
+                "selective_accuracy": 0.282353
+              },
+              "epoch": 5,
+              "loss": 2.706465
+            }
+          ],
+          "holdout_count": 85,
+          "metrics": {
+            "accuracy": 0.258824,
+            "coverage": 1.0,
+            "macro_f1": 0.049665,
+            "selective_accuracy": 0.258824
+          },
+          "seed": 47,
+          "selective_metrics": {
+            "accuracy": 0.0,
+            "coverage": 0.0,
+            "macro_f1": 0.0,
+            "selective_accuracy": 0.0
+          }
+        }
+      ]
+    },
+    {
+      "host_id": "S05",
+      "mean_calibrated_coverage": 0.020943,
+      "mean_calibrated_selective_accuracy": 0.866667,
+      "mean_coverage": 1.0,
+      "mean_selective_accuracy": 0.25829,
+      "runs": [
+        {
+          "calibration_count": 191,
+          "confidence_threshold": 0.14077708,
+          "fit_count": 890,
+          "history": [
+            {
+              "calibration": {
+                "accuracy": 0.13089,
+                "coverage": 1.0,
+                "macro_f1": 0.028741,
+                "selective_accuracy": 0.13089
+              },
+              "epoch": 1,
+              "loss": 2.957808
+            },
+            {
+              "calibration": {
+                "accuracy": 0.136126,
+                "coverage": 1.0,
+                "macro_f1": 0.023326,
+                "selective_accuracy": 0.136126
+              },
+              "epoch": 2,
+              "loss": 2.898945
+            },
+            {
+              "calibration": {
+                "accuracy": 0.146597,
+                "coverage": 1.0,
+                "macro_f1": 0.02437,
+                "selective_accuracy": 0.146597
+              },
+              "epoch": 3,
+              "loss": 2.837841
+            },
+            {
+              "calibration": {
+                "accuracy": 0.230366,
+                "coverage": 1.0,
+                "macro_f1": 0.096785,
+                "selective_accuracy": 0.230366
+              },
+              "epoch": 4,
+              "loss": 2.77881
+            },
+            {
+              "calibration": {
+                "accuracy": 0.282723,
+                "coverage": 1.0,
+                "macro_f1": 0.137812,
+                "selective_accuracy": 0.282723
+              },
+              "epoch": 5,
+              "loss": 2.692046
+            }
+          ],
+          "holdout_count": 191,
+          "metrics": {
+            "accuracy": 0.204188,
+            "coverage": 1.0,
+            "macro_f1": 0.099905,
+            "selective_accuracy": 0.204188
+          },
+          "seed": 11,
+          "selective_metrics": {
+            "accuracy": 0.005236,
+            "coverage": 0.005236,
+            "macro_f1": 0.007143,
+            "selective_accuracy": 1.0
+          }
+        },
+        {
+          "calibration_count": 191,
+          "confidence_threshold": 0.1243498,
+          "fit_count": 890,
+          "history": [
+            {
+              "calibration": {
+                "accuracy": 0.099476,
+                "coverage": 1.0,
+                "macro_f1": 0.021645,
+                "selective_accuracy": 0.099476
+              },
+              "epoch": 1,
+              "loss": 2.981892
+            },
+            {
+              "calibration": {
+                "accuracy": 0.125654,
+                "coverage": 1.0,
+                "macro_f1": 0.030294,
+                "selective_accuracy": 0.125654
+              },
+              "epoch": 2,
+              "loss": 2.89442
+            },
+            {
+              "calibration": {
+                "accuracy": 0.282723,
+                "coverage": 1.0,
+                "macro_f1": 0.15558,
+                "selective_accuracy": 0.282723
+              },
+              "epoch": 3,
+              "loss": 2.837752
+            },
+            {
+              "calibration": {
+                "accuracy": 0.314136,
+                "coverage": 1.0,
+                "macro_f1": 0.176655,
+                "selective_accuracy": 0.314136
+              },
+              "epoch": 4,
+              "loss": 2.763454
+            },
+            {
+              "calibration": {
+                "accuracy": 0.34555,
+                "coverage": 1.0,
+                "macro_f1": 0.208448,
+                "selective_accuracy": 0.34555
+              },
+              "epoch": 5,
+              "loss": 2.695524
+            }
+          ],
+          "holdout_count": 191,
+          "metrics": {
+            "accuracy": 0.314136,
+            "coverage": 1.0,
+            "macro_f1": 0.190104,
+            "selective_accuracy": 0.314136
+          },
+          "seed": 23,
+          "selective_metrics": {
+            "accuracy": 0.031414,
+            "coverage": 0.052356,
+            "macro_f1": 0.025263,
+            "selective_accuracy": 0.6
+          }
+        },
+        {
+          "calibration_count": 191,
+          "confidence_threshold": 0.12171961,
+          "fit_count": 890,
+          "history": [
+            {
+              "calibration": {
+                "accuracy": 0.104712,
+                "coverage": 1.0,
+                "macro_f1": 0.016824,
+                "selective_accuracy": 0.104712
+              },
+              "epoch": 1,
+              "loss": 2.95914
+            },
+            {
+              "calibration": {
+                "accuracy": 0.136126,
+                "coverage": 1.0,
+                "macro_f1": 0.033867,
+                "selective_accuracy": 0.136126
+              },
+              "epoch": 2,
+              "loss": 2.89762
+            },
+            {
+              "calibration": {
+                "accuracy": 0.157068,
+                "coverage": 1.0,
+                "macro_f1": 0.038227,
+                "selective_accuracy": 0.157068
+              },
+              "epoch": 3,
+              "loss": 2.846559
+            },
+            {
+              "calibration": {
+                "accuracy": 0.240838,
+                "coverage": 1.0,
+                "macro_f1": 0.114464,
+                "selective_accuracy": 0.240838
+              },
+              "epoch": 4,
+              "loss": 2.791229
+            },
+            {
+              "calibration": {
+                "accuracy": 0.335079,
+                "coverage": 1.0,
+                "macro_f1": 0.219507,
+                "selective_accuracy": 0.335079
+              },
+              "epoch": 5,
+              "loss": 2.723267
+            }
+          ],
+          "holdout_count": 191,
+          "metrics": {
+            "accuracy": 0.256545,
+            "coverage": 1.0,
+            "macro_f1": 0.183821,
+            "selective_accuracy": 0.256545
+          },
+          "seed": 47,
+          "selective_metrics": {
+            "accuracy": 0.005236,
+            "coverage": 0.005236,
+            "macro_f1": 0.01,
+            "selective_accuracy": 1.0
+          }
+        }
+      ]
+    },
+    {
+      "host_id": "S06",
+      "mean_calibrated_coverage": 0.0,
+      "mean_calibrated_selective_accuracy": 0.0,
+      "mean_coverage": 1.0,
+      "mean_selective_accuracy": 0.137931,
+      "runs": [
+        {
+          "calibration_count": 58,
+          "confidence_threshold": null,
+          "fit_count": 270,
+          "history": [
+            {
+              "calibration": {
+                "accuracy": 0.12069,
+                "coverage": 1.0,
+                "macro_f1": 0.013183,
+                "selective_accuracy": 0.12069
+              },
+              "epoch": 1,
+              "loss": 2.926675
+            },
+            {
+              "calibration": {
+                "accuracy": 0.12069,
+                "coverage": 1.0,
+                "macro_f1": 0.011966,
+                "selective_accuracy": 0.12069
+              },
+              "epoch": 2,
+              "loss": 2.854897
+            },
+            {
+              "calibration": {
+                "accuracy": 0.12069,
+                "coverage": 1.0,
+                "macro_f1": 0.011966,
+                "selective_accuracy": 0.12069
+              },
+              "epoch": 3,
+              "loss": 2.805354
+            },
+            {
+              "calibration": {
+                "accuracy": 0.12069,
+                "coverage": 1.0,
+                "macro_f1": 0.011966,
+                "selective_accuracy": 0.12069
+              },
+              "epoch": 4,
+              "loss": 2.754306
+            },
+            {
+              "calibration": {
+                "accuracy": 0.12069,
+                "coverage": 1.0,
+                "macro_f1": 0.011966,
+                "selective_accuracy": 0.12069
+              },
+              "epoch": 5,
+              "loss": 2.721851
+            }
+          ],
+          "holdout_count": 58,
+          "metrics": {
+            "accuracy": 0.12069,
+            "coverage": 1.0,
+            "macro_f1": 0.027172,
+            "selective_accuracy": 0.12069
+          },
+          "seed": 11,
+          "selective_metrics": {
+            "accuracy": 0.0,
+            "coverage": 0.0,
+            "macro_f1": 0.0,
+            "selective_accuracy": 0.0
+          }
+        },
+        {
+          "calibration_count": 58,
+          "confidence_threshold": null,
+          "fit_count": 270,
+          "history": [
+            {
+              "calibration": {
+                "accuracy": 0.12069,
+                "coverage": 1.0,
+                "macro_f1": 0.064394,
+                "selective_accuracy": 0.12069
+              },
+              "epoch": 1,
+              "loss": 2.984005
+            },
+            {
+              "calibration": {
+                "accuracy": 0.12069,
+                "coverage": 1.0,
+                "macro_f1": 0.012153,
+                "selective_accuracy": 0.12069
+              },
+              "epoch": 2,
+              "loss": 2.909737
+            },
+            {
+              "calibration": {
+                "accuracy": 0.12069,
+                "coverage": 1.0,
+                "macro_f1": 0.011966,
+                "selective_accuracy": 0.12069
+              },
+              "epoch": 3,
+              "loss": 2.830584
+            },
+            {
+              "calibration": {
+                "accuracy": 0.155172,
+                "coverage": 1.0,
+                "macro_f1": 0.034568,
+                "selective_accuracy": 0.155172
+              },
+              "epoch": 4,
+              "loss": 2.783747
+            },
+            {
+              "calibration": {
+                "accuracy": 0.172414,
+                "coverage": 1.0,
+                "macro_f1": 0.042848,
+                "selective_accuracy": 0.172414
+              },
+              "epoch": 5,
+              "loss": 2.742514
+            }
+          ],
+          "holdout_count": 58,
+          "metrics": {
+            "accuracy": 0.155172,
+            "coverage": 1.0,
+            "macro_f1": 0.041453,
+            "selective_accuracy": 0.155172
+          },
+          "seed": 23,
+          "selective_metrics": {
+            "accuracy": 0.0,
+            "coverage": 0.0,
+            "macro_f1": 0.0,
+            "selective_accuracy": 0.0
+          }
+        },
+        {
+          "calibration_count": 58,
+          "confidence_threshold": 0.09170719,
+          "fit_count": 270,
+          "history": [
+            {
+              "calibration": {
+                "accuracy": 0.103448,
+                "coverage": 1.0,
+                "macro_f1": 0.011494,
+                "selective_accuracy": 0.103448
+              },
+              "epoch": 1,
+              "loss": 2.931
+            },
+            {
+              "calibration": {
+                "accuracy": 0.12069,
+                "coverage": 1.0,
+                "macro_f1": 0.011966,
+                "selective_accuracy": 0.12069
+              },
+              "epoch": 2,
+              "loss": 2.846603
+            },
+            {
+              "calibration": {
+                "accuracy": 0.12069,
+                "coverage": 1.0,
+                "macro_f1": 0.011966,
+                "selective_accuracy": 0.12069
+              },
+              "epoch": 3,
+              "loss": 2.793251
+            },
+            {
+              "calibration": {
+                "accuracy": 0.12069,
+                "coverage": 1.0,
+                "macro_f1": 0.011966,
+                "selective_accuracy": 0.12069
+              },
+              "epoch": 4,
+              "loss": 2.758989
+            },
+            {
+              "calibration": {
+                "accuracy": 0.12069,
+                "coverage": 1.0,
+                "macro_f1": 0.011966,
+                "selective_accuracy": 0.12069
+              },
+              "epoch": 5,
+              "loss": 2.726533
+            }
+          ],
+          "holdout_count": 58,
+          "metrics": {
+            "accuracy": 0.137931,
+            "coverage": 1.0,
+            "macro_f1": 0.013468,
+            "selective_accuracy": 0.137931
+          },
+          "seed": 47,
+          "selective_metrics": {
+            "accuracy": 0.0,
+            "coverage": 0.0,
+            "macro_f1": 0.0,
+            "selective_accuracy": 0.0
+          }
+        }
+      ]
+    }
+  ],
+  "model": "google/bert_uncased_L-2_H-128_A-2",
+  "protocol": {
+    "batch_size": 16,
+    "claim_boundary": "paired transformer evidence only; no SOTA claim",
+    "epochs": 5,
+    "learning_rate": 5e-05,
+    "max_length": 96,
+    "seeds": [
+      11,
+      23,
+      47
+    ],
+    "split": "same within-season 70/15/15 protocol as adapter"
+  },
+  "runtime_seconds": 103.75,
+  "schema": "herus-multi-host-transformer-v1"
+}
