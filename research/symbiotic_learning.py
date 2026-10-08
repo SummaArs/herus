@@ -137,6 +137,15 @@ class OptimizationResult:
     status: str
     fit_count: int
 
+@dataclass(frozen=True)
+class HostContract:
+    """Finite host boundary consumed by the learner, never authority itself."""
+    host_id: str
+    capabilities: tuple[str, ...] = ()
+    max_cost: int = 0
+    max_risk: int = 0
+    version: str = "1"
+
 class SymbioticLearner:
     """Incremental, finite, context-aware and reversible effect learner."""
     def __init__(self, *, max_observations: int = 32, max_cost: int = 32, max_risk: int = 0, max_age: int = 8) -> None:
@@ -187,12 +196,14 @@ class SymbioticLearner:
         assert best is not None
         return OptimizationResult(best[2], best[0], evaluations, "OPTIMIZED", len(feedback))
 
-    def update(self, feedback: Feedback, *, weights: UtilityWeights = UtilityWeights()) -> UpdateResult:
+    def update(self, feedback: Feedback, *, weights: UtilityWeights = UtilityWeights(), host: HostContract | None = None) -> UpdateResult:
         """Apply one bounded, reversible feedback update; never grants authority."""
         if feedback.outcome not in {"positive", "negative"}:
             return UpdateResult(False, "REJECTED", "feedback_outcome_invalid", 0.0, self.version)
         if not feedback.action or feedback.risk < 0 or feedback.cost < 0:
             return UpdateResult(False, "REJECTED", "feedback_contract_invalid", 0.0, self.version)
+        if host is not None and (not host.host_id or feedback.action not in host.capabilities or feedback.cost > host.max_cost or feedback.risk > host.max_risk):
+            return UpdateResult(False, "REJECTED", "host_contract_violation", 0.0, self.version)
         score = self.objective(utility=feedback.utility, risk=feedback.risk, cost=feedback.cost, authority_violation=feedback.authority_violation, evidence_deficit=feedback.evidence_deficit, weights=weights)
         if feedback.authority_violation > 0:
             return UpdateResult(False, "REJECTED", "authority_violation", score, self.version)
@@ -233,11 +244,13 @@ class SymbioticLearner:
             result.append(SkillHypothesis(_digest((context, effect)), effect, next(iter(actions)), max(0, confidence), len(episodes), status, "temporal_drift" if drift else "observable_effect", context, max(0, stability), drift, evidence_ids))
         return tuple(result)
 
-    def propose(self, target_effect: State, candidates: Sequence[Episode], *, cost_budget: int = 4, context: State = (), current_step: int | None = 0, current_state: State | None = None) -> Proposal:
+    def propose(self, target_effect: State, candidates: Sequence[Episode], *, cost_budget: int = 4, context: State = (), current_step: int | None = 0, current_state: State | None = None, host: HostContract | None = None) -> Proposal:
         skill_id = _digest((context, target_effect))
         if cost_budget <= 0:
             return Proposal(skill_id, None, 0, "ABSTAIN", "budget_exhausted", 0, explanation="Nenhuma proposta: o orçamento disponível é zero ou negativo.")
-        matches = [e for e in candidates if e.outcome == "observed" and e.effect == target_effect and _context_matches(context, e.context) and (current_state is None or e.before == current_state) and e.cost <= cost_budget and e.risk <= self.max_risk]
+        if host is not None and (not host.host_id or host.max_cost < 0 or host.max_risk < 0):
+            return Proposal(skill_id, None, 0, "ABSTAIN", "host_contract_invalid", 0, explanation="Abstenção: o contrato do hospedeiro é inválido.")
+        matches = [e for e in candidates if e.outcome == "observed" and e.effect == target_effect and _context_matches(context, e.context) and (current_state is None or e.before == current_state) and e.cost <= cost_budget and e.risk <= self.max_risk and (host is None or (e.action in host.capabilities and e.cost <= host.max_cost and e.risk <= host.max_risk))]
         if not matches:
             return Proposal(skill_id, None, 0, "ABSTAIN", "effect_not_observed", 0, explanation="Nenhum episódio observado reproduz simultaneamente efeito, contexto, risco e custo.")
         evidence_ids = tuple(_digest((e.before, e.action, e.after, e.context, e.step)) for e in matches)

@@ -1,5 +1,5 @@
 import unittest
-from symbiotic_learning import Episode, Feedback, SymbioticLearner, UtilityWeights, _state, _wilson_lower
+from symbiotic_learning import Episode, Feedback, HostContract, SymbioticLearner, UtilityWeights, _state, _wilson_lower
 
 class SymbioticLearningTests(unittest.TestCase):
     def setUp(self):
@@ -150,5 +150,22 @@ class SymbioticLearningTests(unittest.TestCase):
         result = SymbioticLearner().optimize_weights([])
         self.assertEqual(result.status, 'NO_FIT_DATA')
         self.assertEqual(result.evaluations, 0)
+
+    def test_host_contract_limits_proposals_without_granting_authority(self):
+        learner = SymbioticLearner()
+        episode = Episode.from_maps({'mode': 0}, 'button_a', {'mode': 1})
+        host = HostContract('host-b', capabilities=('button_b',), max_cost=4, max_risk=0)
+        proposal = learner.propose(episode.effect, [episode], host=host)
+        self.assertEqual(proposal.reason, 'effect_not_observed')
+        self.assertFalse(hasattr(learner, 'execute'))
+
+    def test_host_contract_blocks_update_outside_capability_budget(self):
+        learner = SymbioticLearner()
+        feedback = Feedback(_state({'mode': 0}), 'button_a', _state({'mode': 1}), _state({'mode': 1}), utility=3, cost=2, example_id='host-1')
+        host = HostContract('host-a', capabilities=('button_a',), max_cost=1, max_risk=0)
+        result = learner.update(feedback, host=host)
+        self.assertFalse(result.accepted)
+        self.assertEqual(result.reason, 'host_contract_violation')
+        self.assertEqual(learner.version, 0)
 
 if __name__ == '__main__': unittest.main()

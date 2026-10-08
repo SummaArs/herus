@@ -88,6 +88,12 @@ fit–holdout: exige `example_id` estável, rejeita duplicatas e interseção en
 partições, ajusta os pesos apenas no fit e calcula o objetivo do holdout uma
 única vez com os pesos congelados.
 
+O tipo `HostContract` acrescenta a primeira fronteira explícita de adaptação:
+um host declara capacidades, orçamento de custo, risco máximo e versão. Uma
+proposta ou atualização incompatível é rejeitada antes de entrar no estado.
+Esse contrato descreve limites do ambiente; ele não cria autoridade de
+execução e não permite que o host substitua a evidência do algoritmo.
+
 ## O que falta para chamar de algoritmo completo
 
 - entrada que não receba o rótulo/efeito verdadeiro do holdout;
