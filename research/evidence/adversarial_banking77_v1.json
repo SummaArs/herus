@@ -1,0 +1,62 @@
+{
+  "attacks": {
+    "case_punctuation": {
+      "abstention_induced_rate": 0.0,
+      "abstention_rate": 0.0,
+      "attacked_accuracy": 0.741883,
+      "clean_accuracy": 0.751623,
+      "coverage": 1.0,
+      "n": 3080,
+      "prediction_change_rate": 0.054221,
+      "selective_risk": 0.258117,
+      "wrong_label_flip_rate": 0.02851
+    },
+    "deletion": {
+      "abstention_induced_rate": 0.0,
+      "abstention_rate": 0.0,
+      "attacked_accuracy": 0.746429,
+      "clean_accuracy": 0.751623,
+      "coverage": 1.0,
+      "n": 3080,
+      "prediction_change_rate": 0.116234,
+      "selective_risk": 0.253571,
+      "wrong_label_flip_rate": 0.053996
+    },
+    "irrelevant_prefix": {
+      "abstention_induced_rate": 0.0,
+      "abstention_rate": 0.0,
+      "attacked_accuracy": 0.627273,
+      "clean_accuracy": 0.751623,
+      "coverage": 1.0,
+      "n": 3080,
+      "prediction_change_rate": 0.266234,
+      "selective_risk": 0.372727,
+      "wrong_label_flip_rate": 0.193952
+    },
+    "typo": {
+      "abstention_induced_rate": 0.0,
+      "abstention_rate": 0.0,
+      "attacked_accuracy": 0.681818,
+      "clean_accuracy": 0.751623,
+      "coverage": 1.0,
+      "n": 3080,
+      "prediction_change_rate": 0.16039,
+      "selective_risk": 0.318182,
+      "wrong_label_flip_rate": 0.124838
+    }
+  },
+  "dataset": "PolyAI-LDN/task-specific-datasets/banking_data",
+  "policy": "calibrated",
+  "protocol": {
+    "claim_boundary": "text stress-test only; not certified label-preserving robustness or OOD",
+    "deterministic_transformations": true,
+    "human_semantic_adjudication": false,
+    "test_labels_used_for_selection": false
+  },
+  "schema": "herus-adversarial-banking77-v1",
+  "split": {
+    "calibration": 3037,
+    "fit": 6966,
+    "test": 3080
+  }
+}

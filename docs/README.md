@@ -99,3 +99,5 @@ Documentos históricos não devem ser apagados para esconder contradições. Qua
 - [155 — Seletor universal de política](155-SELETOR-UNIVERSAL-DE-POLITICA.md)
 - [156 — Terceiro hospedeiro: Banking77](156-TERCEIRO-HOSPEDEIRO-BANKING77.md)
 - [157 — Gate de confiança para seleção](157-GATE-DE-CONFIANCA-PARA-SELECAO.md)
+- [160 — Wide Research: fogo adversarial e expansão de datasets](160-WIDE-RESEARCH-FOGO-ADVERSARIAL.md)
+- [161 — Fogo adversarial no Banking77](161-FOGO-ADVERSARIAL-BANKING77.md)

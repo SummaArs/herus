@@ -515,7 +515,7 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "0c03337d549086a39b8fc319a7752536b46a639665b9d200a31298ddb01d8b78",
+      "sha256": "1ac934e1532583de4c5f70020d29c533833fad330409fa25801a478f076e013b",
       "role": "organized documentation, maps and historical design records"
     },
     {
@@ -2137,6 +2137,24 @@
       "kind": "file",
       "sha256": "cc833c4c432ee28e1607e73f9e62e706c545d40ff54b7e1bee335a4722387dd7",
       "role": "controlled Banking77 cost evidence"
+    },
+    {
+      "path": "research/adversarial_banking77.py",
+      "kind": "file",
+      "sha256": "ecb1c5c5b9421dd5caabd428ed5e058b68e2adbb41b73fa7d28c8499d2a9d1f8",
+      "role": "adversarial Banking77 evidence"
+    },
+    {
+      "path": "research/evidence/adversarial_banking77_v1.json",
+      "kind": "file",
+      "sha256": "5b436d5c17b0e27e66a7205c422d496a115634830a1ba9fa01c7138df0b830ba",
+      "role": "adversarial Banking77 evidence"
+    },
+    {
+      "path": "research/test_adversarial_banking77.py",
+      "kind": "file",
+      "sha256": "4d2b6adb98b73ad1a75a3b0c387fccdd6f98d5ccdb7d4e67d76d952c5b7c68a1",
+      "role": "adversarial Banking77 evidence"
     }
   ],
   "components": [
