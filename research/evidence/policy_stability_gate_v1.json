@@ -1,0 +1,16 @@
+{
+  "schema": "herus-policy-stability-gate/v1",
+  "hosts": ["THU-IAR/MIntRec", "PolyAI/minds14", "PolyAI-LDN/task-specific-datasets/banking_data"],
+  "rule": "promote score_calibrated only when its validation accuracy exceeds universal_default by at least 0.01 on every independent host",
+  "minimum_margin": 0.01,
+  "minimum_hosts": 3,
+  "decision": "ABSTAIN",
+  "selected_policy": "universal_default",
+  "passing_hosts": 1,
+  "deltas": {
+    "THU-IAR/MIntRec": 0.106918,
+    "PolyAI/minds14": 0.0,
+    "PolyAI-LDN/task-specific-datasets/banking_data": 0.004
+  },
+  "claim_boundary": "stability gate demonstrated; no SOTA claim"
+}

@@ -515,7 +515,7 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "1ac934e1532583de4c5f70020d29c533833fad330409fa25801a478f076e013b",
+      "sha256": "c423ec90510358f051583df06ff3f8ca5196725a79b9aee02a3189b1978986c9",
       "role": "organized documentation, maps and historical design records"
     },
     {
@@ -2155,6 +2155,30 @@
       "kind": "file",
       "sha256": "4d2b6adb98b73ad1a75a3b0c387fccdd6f98d5ccdb7d4e67d76d952c5b7c68a1",
       "role": "adversarial Banking77 evidence"
+    },
+    {
+      "path": "research/policy_stability_gate.py",
+      "kind": "file",
+      "sha256": "f1b6f73afe95cc0f4b9b6e72a3ea27d333ec39ebfb06c3e0d4763bcdf0475b6d",
+      "role": "multi-host policy stability gate"
+    },
+    {
+      "path": "research/test_policy_stability_gate.py",
+      "kind": "file",
+      "sha256": "59887be589266b80addbe0d87f51be6bf182176ad9ca36f621658a1f39a2d1b8",
+      "role": "stability gate tests"
+    },
+    {
+      "path": "research/evidence/policy_stability_gate_v1.json",
+      "kind": "file",
+      "sha256": "7d272af587e12e6b5b85daf014a142359153baa780e7a80cf1b41c28bf819e9a",
+      "role": "stability gate evidence"
+    },
+    {
+      "path": "docs/160-GATE-ESTABILIDADE-MULTI-HOST.md",
+      "kind": "file",
+      "sha256": "470b16567345426fa4c5024a31612602130d67e56933b7348a953fc585abb503",
+      "role": "multi-host stability report"
     }
   ],
   "components": [

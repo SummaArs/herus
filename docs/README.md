@@ -29,6 +29,7 @@ A documentação antiga conserva decisões e experimentos importantes, mas foi e
 - [154 — Seleção de política por hospedeiro](154-SELECAO-DE-POLITICA-POR-HOSPEDEIRO.md)
 - [155 — Seletor universal de política](155-SELETOR-UNIVERSAL-DE-POLITICA.md)
 - [156 — Terceiro hospedeiro: Banking77](156-TERCEIRO-HOSPEDEIRO-BANKING77.md)
+- [160 — Gate de estabilidade multi-host](160-GATE-ESTABILIDADE-MULTI-HOST.md)
 - [119 — Fachada única HERUS](119-FACHADA-UNICA-HERUS.md)
 - [134 — Síntese da crise e reestruturação](134-SINTESE-CRISE-E-REESTRUTURACAO.md)
 - [Arquivo histórico](../archive/README.md)
