@@ -15,6 +15,7 @@ A documentação antiga conserva decisões e experimentos importantes, mas foi e
 - [140 — Competição HERUS contra transformer multi-host](140-COMPETICAO-HERUS-TRANSFORMER-MULTI-HOST.md)
 - [141 — Bootstrap pareado e gate final de SOTA](141-BOOTSTRAP-PAREADO-E-GATE-SOTA.md)
 - [142 — Validação independente MInDS-14](142-VALIDACAO-INDEPENDENTE-MINDS14.md)
+- [143 — Bootstrap combinado e efeito de seleção](143-BOOTSTRAP-COMBINADO-EFEITO-DE-SELECAO.md)
 - [119 — Fachada única HERUS](119-FACHADA-UNICA-HERUS.md)
 - [134 — Síntese da crise e reestruturação](134-SINTESE-CRISE-E-REESTRUTURACAO.md)
 - [Arquivo histórico](../archive/README.md)

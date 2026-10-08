@@ -515,7 +515,7 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "ef9b195a30d82e25df2dfe22e0c0b01480905e6099b3ed3c7db4f84d3df34da5",
+      "sha256": "3bdc746d94e346af23364533215ff05326a3e521963dc487a48467e03c076e6f",
       "role": "organized documentation, maps and historical design records"
     },
     {
@@ -1705,6 +1705,30 @@
       "kind": "file",
       "sha256": "f18fd4f608ba64076469e80159ecdf0a4e1caabcade92adf682926d18680e0ab",
       "role": "independent MInDS-14 scientific report"
+    },
+    {
+      "path": "research/combined_coverage_bootstrap.py",
+      "kind": "file",
+      "sha256": "ea414b7ef90aaf0b0df29386cfebaeadecd3061a67d7f9ce9f2066c052b03d31",
+      "role": "combined exact-acceptance-subset bootstrap"
+    },
+    {
+      "path": "research/evidence/combined_coverage_bootstrap_v1.json",
+      "kind": "file",
+      "sha256": "9e8ed928fa24da52d12c066f56c178fee09004cb2e7351a302c3687c35bde50f",
+      "role": "combined multi-dataset selection-effect evidence"
+    },
+    {
+      "path": "research/test_combined_coverage_bootstrap.py",
+      "kind": "file",
+      "sha256": "bd971ee19319c62feb72ca5ef0a2d26f291e853b8958f526533794384e637f05",
+      "role": "combined bootstrap integrity tests"
+    },
+    {
+      "path": "docs/143-BOOTSTRAP-COMBINADO-EFEITO-DE-SELECAO.md",
+      "kind": "file",
+      "sha256": "7af5881d99a5039a05a35cc50c229061487b5a4c08cc8cdf4420d8e792744bb9",
+      "role": "combined selection-effect scientific report"
     }
   ],
   "components": [

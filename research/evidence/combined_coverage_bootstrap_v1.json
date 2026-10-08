@@ -1,0 +1,97 @@
+{
+  "limits": [
+    "selection subset is defined by HERUS",
+    "no coverage-matched retraining",
+    "transformer is small",
+    "MInDS speaker independence not verified"
+  ],
+  "protocol": {
+    "bootstrap_iterations": 4000,
+    "claim_boundary": "selection effect, not general model superiority",
+    "same_examples": "transformer evaluated on the exact HERUS-accepted subset",
+    "seed": 17
+  },
+  "results": [
+    {
+      "comparison": {
+        "examples": 5,
+        "iterations": 4000,
+        "raw_accuracy_delta": {
+          "ci95_high": 1.0,
+          "ci95_low": 0.2,
+          "mean": 0.6032
+        },
+        "same_herus_acceptance_subset_delta": {
+          "ci95_high": 1.0,
+          "ci95_low": 0.2,
+          "mean": 0.6032
+        },
+        "seed": 17
+      },
+      "dataset": "MIntRec",
+      "herus_coverage": 0.058823529411764705,
+      "host_id": "S04"
+    },
+    {
+      "comparison": {
+        "examples": 50,
+        "iterations": 4000,
+        "raw_accuracy_delta": {
+          "ci95_high": 0.44,
+          "ci95_low": 0.16,
+          "mean": 0.298625
+        },
+        "same_herus_acceptance_subset_delta": {
+          "ci95_high": 0.44,
+          "ci95_low": 0.16,
+          "mean": 0.298625
+        },
+        "seed": 17
+      },
+      "dataset": "MIntRec",
+      "herus_coverage": 0.2617801047120419,
+      "host_id": "S05"
+    },
+    {
+      "comparison": {
+        "examples": 10,
+        "iterations": 4000,
+        "raw_accuracy_delta": {
+          "ci95_high": 0.5,
+          "ci95_low": 0.0,
+          "mean": 0.2027
+        },
+        "same_herus_acceptance_subset_delta": {
+          "ci95_high": 0.5,
+          "ci95_low": 0.0,
+          "mean": 0.2027
+        },
+        "seed": 17
+      },
+      "dataset": "MIntRec",
+      "herus_coverage": 0.1724137931034483,
+      "host_id": "S06"
+    },
+    {
+      "comparison": {
+        "examples": 89,
+        "iterations": 4000,
+        "raw_accuracy_delta": {
+          "ci95_high": 0.741573,
+          "ci95_low": 0.539326,
+          "mean": 0.640508
+        },
+        "same_herus_acceptance_subset_delta": {
+          "ci95_high": 0.741573,
+          "ci95_low": 0.539326,
+          "mean": 0.640508
+        },
+        "seed": 17
+      },
+      "dataset": "MInDS-14",
+      "herus_coverage": 0.9081632653061225,
+      "host_id": "pt-PT"
+    }
+  ],
+  "schema": "herus-combined-coverage-bootstrap-v1"
+}
