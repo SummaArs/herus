@@ -515,7 +515,7 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "f6faa92956d6a815da367583e649cbe8cd28e51e8d4ef51431f0ffb2c0428e94",
+      "sha256": "f3226e508f0acbdf976332d4f9be460bbdb0fc3e742dcdbc1a66ed617f5fb03a",
       "role": "organized documentation, maps and historical design records"
     },
     {
@@ -2239,6 +2239,42 @@
       "kind": "file",
       "sha256": "f5c1891a9676568c4c3a5ff34b76974bb517e2b7fd9aba85d70de340d62c5566",
       "role": "cross-domain shift report"
+    },
+    {
+      "path": "research/invariance_gate.py",
+      "kind": "file",
+      "sha256": "60efee21ceb7b5ff8d5ae4d19b816f804cdabf451bfea52ac94ede64664109b4",
+      "role": "decision invariance gate"
+    },
+    {
+      "path": "research/invariance_banking77.py",
+      "kind": "file",
+      "sha256": "8663a165eb6894ccad40f0621bd03a92cb934c4aecafca2deb9fecc90fa8450c",
+      "role": "efficient invariance benchmark"
+    },
+    {
+      "path": "research/evidence/invariance_banking77_v1.json",
+      "kind": "file",
+      "sha256": "962da7a09e1c3c41bf99e6a447187bde94d178f583fd9675e88db5d300e28ec3",
+      "role": "invariance evidence"
+    },
+    {
+      "path": "research/test_invariance_gate.py",
+      "kind": "file",
+      "sha256": "8259a05fb2ea3feedee8baf483f1962e02b1b7298d81dbf0317076914ce23fa8",
+      "role": "invariance gate tests"
+    },
+    {
+      "path": "research/test_invariance_banking77.py",
+      "kind": "file",
+      "sha256": "dc910d3e8d50c73b8b6215d5388c175afe033e1f8ac9d1d8f30e7cb54a45a154",
+      "role": "invariance evidence tests"
+    },
+    {
+      "path": "docs/164-GATE-INVARIANCIA-E-TRADEOFF.md",
+      "kind": "file",
+      "sha256": "d226c2e47e2aa4581d25753ac5025da5929d36906a175e58719375135952871a",
+      "role": "invariance report"
     }
   ],
   "components": [

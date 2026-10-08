@@ -104,3 +104,4 @@ Documentos históricos não devem ser apagados para esconder contradições. Qua
 - [161 — Fogo adversarial no Banking77](161-FOGO-ADVERSARIAL-BANKING77.md)
 - [162 — Detector de shift e abstention](162-DETECTOR-SHIFT-E-ABSTENCAO.md)
 - [163 — Validação cross-domain do detector](163-VALIDACAO-CROSS-DOMAIN-SHIFT.md)
+- [164 — Gate de invariância e trade-off](164-GATE-INVARIANCIA-E-TRADEOFF.md)

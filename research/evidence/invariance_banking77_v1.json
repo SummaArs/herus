@@ -1,0 +1,61 @@
+{
+  "attacks": {
+    "case_punctuation": {
+      "abstention_induced_rate": 0.0,
+      "abstention_rate": 0.0,
+      "attacked_accuracy": 0.742208,
+      "clean_accuracy": 0.751948,
+      "coverage": 1.0,
+      "gate_abstention_rate": 0.0,
+      "n": 3080,
+      "prediction_change_rate": 0.053896,
+      "selective_risk": 0.257792,
+      "wrong_label_flip_rate": 0.028066
+    },
+    "deletion": {
+      "abstention_induced_rate": 0.721934,
+      "abstention_rate": 0.733117,
+      "attacked_accuracy": 0.205519,
+      "clean_accuracy": 0.751948,
+      "coverage": 0.266883,
+      "gate_abstention_rate": 0.733117,
+      "n": 3080,
+      "prediction_change_rate": 0.755519,
+      "selective_risk": 0.229927,
+      "wrong_label_flip_rate": 0.01209
+    },
+    "irrelevant_prefix": {
+      "abstention_induced_rate": 0.090242,
+      "abstention_rate": 0.130195,
+      "attacked_accuracy": 0.614286,
+      "clean_accuracy": 0.751948,
+      "coverage": 0.869805,
+      "gate_abstention_rate": 0.130195,
+      "n": 3080,
+      "prediction_change_rate": 0.280844,
+      "selective_risk": 0.293766,
+      "wrong_label_flip_rate": 0.112263
+    },
+    "typo": {
+      "abstention_induced_rate": 0.722798,
+      "abstention_rate": 0.737013,
+      "attacked_accuracy": 0.193506,
+      "clean_accuracy": 0.751948,
+      "coverage": 0.262987,
+      "gate_abstention_rate": 0.737013,
+      "n": 3080,
+      "prediction_change_rate": 0.769156,
+      "selective_risk": 0.264198,
+      "wrong_label_flip_rate": 0.02677
+    }
+  },
+  "calibration_examples": 1519,
+  "holdout_examples": 3080,
+  "protocol": {
+    "batch_inference": true,
+    "claim_boundary": "ablation only; no certified robustness or SOTA claim",
+    "holdout_labels_used": false
+  },
+  "schema": "herus-invariance-banking77-v1",
+  "scored_unique_texts": 30379
+}
