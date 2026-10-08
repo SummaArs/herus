@@ -6,15 +6,16 @@ A implementação agora separa:
 
 1. `fit_nb(train)`: constrói o modelo uma única vez;
 2. `MultinomialNBModel.score(row)`: pontua cada exemplo sem refazer o ajuste;
-3. representação compacta com IDs inteiros, arrays e penalização explícita para tokens desconhecidos.
+3. representação compacta com IDs inteiros, arrays e penalização explícita para tokens desconhecidos;
+4. o mesmo modelo ajustado é compartilhado entre as políticas default e calibrada.
 
 ## Medição real no Banking77
 
 | Medida | Antes observado | Cacheado |
 |---|---:|---:|
-| Tempo de parede | ~1.605 s | **37,514 s** |
-| Redução observada | — | **97,66%** |
-| Aceleração observada | 1× | **~42,8×** |
+| Tempo de parede | ~1.605 s | **35,627 s** |
+| Redução observada | — | **97,78%** |
+| Aceleração observada | 1× | **~45,1×** |
 | Pico de RSS | não medido no processo anterior | 825.548 KB |
 
 A comparação de velocidade usa a execução anterior real do mesmo benchmark como referência histórica; não é uma medição controlada no mesmo processo. Portanto, o número é evidência operacional forte, mas não uma publicação de performance definitiva.

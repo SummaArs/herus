@@ -3,10 +3,10 @@
   "dataset": "PolyAI-LDN/task-specific-datasets/banking_data",
   "holdout_examples": 3080,
   "legacy_observed_wall_seconds": 1605.0,
-  "cached_wall_seconds": 37.514,
-  "observed_speedup": 42.78,
-  "observed_wall_reduction_fraction": 0.9766,
-  "cached_peak_rss_kb": 825548,
+  "cached_wall_seconds": 35.627,
+  "observed_speedup": 45.06,
+  "observed_wall_reduction_fraction": 0.9778,
+  "cached_peak_rss_kb": 824084,
   "prediction_equivalence": {
     "dataset_sample": "6966 fit / 3080 test real Banking77 rows",
     "mismatches": 0,
@@ -20,6 +20,7 @@
     "integer_token_ids": true,
     "array_backed_counts": true,
     "unknown_token_penalty_preserved": true,
+    "shared_fit_model_across_policies": true,
     "process_rss_reduction_demonstrated": false
   },
   "protocol": {

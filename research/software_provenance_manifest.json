@@ -515,7 +515,7 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "33a032efea24587b0545f70acaf1df7db8f874949f8294e249219e2f81e290d3",
+      "sha256": "35ddf66c91cf2951b272147d4a2ee86acca3dee68d4769b8a9cdcd1fb6bb3282",
       "role": "organized documentation, maps and historical design records"
     },
     {
@@ -2021,7 +2021,7 @@
     {
       "path": "research/policy_selection_banking77.py",
       "kind": "file",
-      "sha256": "8ee570d7854c9c760686e9123e25c39a5f1e055e1ab3e212f940591d2a12b040",
+      "sha256": "e73f5fe5c3afe958acbde74c76234238be414ed53d4ce47f64a4451e5906939d",
       "role": "third-host Banking77 policy selection"
     },
     {
@@ -2051,7 +2051,7 @@
     {
       "path": "research/policy_selection_banking77_v2.py",
       "kind": "file",
-      "sha256": "ea3b6df23c93f4163ff5732276c79ac44785327411ced2eb0eea3012df419f96",
+      "sha256": "73f650653cb8de56a518b75456db15153b19449e4d6e52d1c98e1e2021ebc278",
       "role": "confidence-gated Banking77 replication"
     },
     {
@@ -2099,7 +2099,7 @@
     {
       "path": "research/evidence/cached_nb_cost_banking77_v1.json",
       "kind": "file",
-      "sha256": "69054e3b6d0235975f960f260b9361f565c6b306764350739d50bb39f7cec6fb",
+      "sha256": "ef04a19ec4a2eaff3b05a3e76ae5327a98e29202d3b639b4324bdd0d3cdd95ac",
       "role": "cached NB cost evidence"
     },
     {
@@ -2111,7 +2111,7 @@
     {
       "path": "docs/159-OTIMIZACAO-CPU-E-CUSTO-CACHEADO.md",
       "kind": "file",
-      "sha256": "0ad5c7497f8adf5865e4d32a4b7aedc47abc4e9d20a45711d6bacf3ae171ba45",
+      "sha256": "96fd24927edcab6998c13afe3c5204af04d2d13a77cfcdb5702f7fecec22d630",
       "role": "cached CPU optimization report"
     }
   ],
