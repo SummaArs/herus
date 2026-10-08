@@ -102,3 +102,4 @@ Documentos históricos não devem ser apagados para esconder contradições. Qua
 - [157 — Gate de confiança para seleção](157-GATE-DE-CONFIANCA-PARA-SELECAO.md)
 - [160 — Wide Research: fogo adversarial e expansão de datasets](160-WIDE-RESEARCH-FOGO-ADVERSARIAL.md)
 - [161 — Fogo adversarial no Banking77](161-FOGO-ADVERSARIAL-BANKING77.md)
+- [162 — Detector de shift e abstention](162-DETECTOR-SHIFT-E-ABSTENCAO.md)

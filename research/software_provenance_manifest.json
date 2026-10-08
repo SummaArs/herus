@@ -515,7 +515,7 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "23b1729e041bf8ed7e10bf91f9fc016e58077d4b8eeed7af51f9c43b73b62e9e",
+      "sha256": "11635580e74650356daca5637817e9c091447623cf6726a1e7bbfc81cd8f4f1c",
       "role": "organized documentation, maps and historical design records"
     },
     {
@@ -2179,6 +2179,42 @@
       "kind": "file",
       "sha256": "470b16567345426fa4c5024a31612602130d67e56933b7348a953fc585abb503",
       "role": "multi-host stability report"
+    },
+    {
+      "path": "research/shift_detector.py",
+      "kind": "file",
+      "sha256": "e71c06eea8188c22bd09327403559fc526978a37fafdd225d5de4712292f33fe",
+      "role": "calibrated lexical shift detector"
+    },
+    {
+      "path": "research/adversarial_shift_banking77.py",
+      "kind": "file",
+      "sha256": "a801f019886c1431844421e9bc0f2b3dcbad72e17ed90f09101015c903b0aa64",
+      "role": "real adversarial shift benchmark"
+    },
+    {
+      "path": "research/test_shift_detector.py",
+      "kind": "file",
+      "sha256": "95b5d24c165cc2eb118fe4aeabc9dfb635a2dc6a0c83279a8586593bc5800994",
+      "role": "shift detector tests"
+    },
+    {
+      "path": "research/test_adversarial_shift_banking77.py",
+      "kind": "file",
+      "sha256": "976b4bec62ba014d0caca8a9a7a8f543a58c87f9dc5513562141c441006472eb",
+      "role": "shift benchmark evidence tests"
+    },
+    {
+      "path": "research/evidence/adversarial_shift_banking77_v1.json",
+      "kind": "file",
+      "sha256": "5ddf96597280b53b1ba9b9e3f0d1640d495bf543e89ee83bca8785bf5bbcdcbc",
+      "role": "shift benchmark evidence"
+    },
+    {
+      "path": "docs/162-DETECTOR-SHIFT-E-ABSTENCAO.md",
+      "kind": "file",
+      "sha256": "5e4abcf121d05a02f56674d5881a44d0c9ce7e9a5a1f66984e1538e9f7a94a68",
+      "role": "shift detector report"
     }
   ],
   "components": [
