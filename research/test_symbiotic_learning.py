@@ -182,4 +182,16 @@ class SymbioticLearningTests(unittest.TestCase):
         self.assertEqual(learner.snapshot(), before)
         self.assertEqual(result.reason, 'migration_planned_no_authority_transfer')
 
+    def test_destination_revalidates_with_own_feedback_while_quarantine_stays_blocked(self):
+        learner = SymbioticLearner()
+        learner.observe(Episode.from_maps({}, 'button_b', {'ok': 2}, cost=1))
+        source = HostContract('host-a', capabilities=('button_b',), max_cost=2, max_risk=0)
+        target = HostContract('host-b', capabilities=('button_a',), max_cost=2, max_risk=0)
+        migration = learner.migration_plan(source, target)
+        self.assertEqual(len(migration.quarantined_evidence_ids), 1)
+        feedback = Feedback((), 'button_a', _state({'ok': 1}), _state({'ok': 1}), utility=2, example_id='host-b-1')
+        self.assertTrue(learner.update(feedback, host=target).accepted)
+        self.assertEqual(learner.propose(_state({'ok': 2}), learner.snapshot()[0], host=target).reason, 'effect_not_observed')
+        self.assertEqual(learner.propose(_state({'ok': 1}), learner.snapshot()[0], host=target).action, 'button_a')
+
 if __name__ == '__main__': unittest.main()

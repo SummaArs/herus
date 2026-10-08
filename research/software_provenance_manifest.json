@@ -527,7 +527,7 @@
     {
       "path": "research/test_symbiotic_learning.py",
       "kind": "file",
-      "sha256": "d4fd73ae3f78dea4557bc42a2860e25e2a25a9a5228d94426eb585150d98dc0e",
+      "sha256": "bf8a34d23cec45485292274ef77f20c3c52c921c67c270a34b55223e75dff931",
       "role": "adversarial Symbiotic Learning v2 tests"
     },
     {
