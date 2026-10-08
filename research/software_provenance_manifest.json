@@ -515,7 +515,7 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "384f09db8af7641ccb8ae57878a6f3ed6eeaa7beaaa4aebafc40f45e33b28934",
+      "sha256": "f004aa3b76d67535dc7cdbef2c8a279cd6b054dca174983e0828a06b129cd3b7",
       "role": "organized documentation, maps and historical design records"
     },
     {
@@ -2041,6 +2041,42 @@
       "kind": "file",
       "sha256": "91e1184e69b6aa0fade72177f95f4bb4012ff376b7b02874164ac5b80ad9afc1",
       "role": "third-host negative result report"
+    },
+    {
+      "path": "research/policy_selection_confidence.py",
+      "kind": "file",
+      "sha256": "cd2047fac3cb7ffcbdaeeebdac403b705c3f42860be9b239d663448a83d98932",
+      "role": "paired confidence gate"
+    },
+    {
+      "path": "research/policy_selection_banking77_v2.py",
+      "kind": "file",
+      "sha256": "ea3b6df23c93f4163ff5732276c79ac44785327411ced2eb0eea3012df419f96",
+      "role": "confidence-gated Banking77 replication"
+    },
+    {
+      "path": "research/evidence/policy_selection_banking77_v2.json",
+      "kind": "file",
+      "sha256": "72f4c8c3ab1e78e016c98141b1ed8a02fd9bf7231744d2e03ef5f666417adda4",
+      "role": "confidence-gated evidence"
+    },
+    {
+      "path": "research/test_policy_selection_confidence.py",
+      "kind": "file",
+      "sha256": "fbab90b15196d5d67f90d70b0675305123845821e06da11a19002623ca4ee7c8",
+      "role": "confidence gate tests"
+    },
+    {
+      "path": "research/test_policy_selection_banking77_v2.py",
+      "kind": "file",
+      "sha256": "653812f4247a570290edbbf350bac787bc14a5845180d872e16932b27c825db3",
+      "role": "Banking77 confidence gate tests"
+    },
+    {
+      "path": "docs/157-GATE-DE-CONFIANCA-PARA-SELECAO.md",
+      "kind": "file",
+      "sha256": "bc8738c863e6809d60b604305b291512acbea843a70839a09cede2a70183fe68",
+      "role": "confidence gate report"
     }
   ],
   "components": [

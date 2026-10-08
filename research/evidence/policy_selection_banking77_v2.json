@@ -1,0 +1,43 @@
+{
+  "dataset": {
+    "calibration": 3037,
+    "fit": 6966,
+    "holdout": 3080,
+    "id": "PolyAI-LDN/task-specific-datasets/banking_data",
+    "labels": 77
+  },
+  "metrics": {
+    "chosen_policy": {
+      "accuracy": 0.7522727272727273
+    },
+    "score_calibrated": {
+      "accuracy": 0.7516233766233766
+    },
+    "universal_default": {
+      "accuracy": 0.7522727272727273
+    }
+  },
+  "protocol": {
+    "claim_boundary": "confidence-gated third-host replication; no SOTA claim",
+    "holdout_labels_used_for_selection": false,
+    "paired_bootstrap": true
+  },
+  "schema": "herus-policy-selection-banking77-v2",
+  "selection": {
+    "alternative_name": "score_calibrated",
+    "calibration_split": {
+      "tune": 1518,
+      "validation": 1519
+    },
+    "chosen_policy": "default",
+    "default_name": "universal_default",
+    "rule": "choose alternative only when paired 95% lower confidence bound is strictly positive",
+    "validation_bootstrap": {
+      "lower_95": -0.000658,
+      "observed_delta": 0.00395,
+      "rounds": 2000,
+      "seed": 20261008,
+      "upper_95": 0.009217
+    }
+  }
+}
