@@ -50,7 +50,8 @@ def run(rows=None):
             centroid_metrics = metrics(holdout, centroid_cosine)
             adapter_metrics = metrics(holdout, adapted)
             strongest = max(nb_metrics['selective_accuracy'], centroid_metrics['selective_accuracy'])
-            seed_runs.append({'seed': seed, 'naive_bayes': nb_metrics, 'centroid': centroid_metrics, 'adapter': adapter_metrics, 'threshold': None if threshold == float('inf') else round(threshold, 8), 'strongest_baseline_selective_accuracy': strongest})
+            ledger = [{'example_id': f"{r['season']}:{r['episode']}:{r['clip']}", 'label': r['label'], 'adapter_prediction': adapted[i], 'adapter_accepted': adapted[i] is not None, 'adapter_correct': adapted[i] == r['label'], 'naive_bayes_prediction': naive_bayes[i], 'centroid_prediction': centroid_cosine[i]} for i, r in enumerate(holdout)]
+            seed_runs.append({'seed': seed, 'naive_bayes': nb_metrics, 'centroid': centroid_metrics, 'adapter': adapter_metrics, 'threshold': None if threshold == float('inf') else round(threshold, 8), 'strongest_baseline_selective_accuracy': strongest, 'prediction_ledger': ledger})
         mean_adapter = sum(x['adapter']['selective_accuracy'] for x in seed_runs) / len(seed_runs)
         mean_baseline = sum(x['strongest_baseline_selective_accuracy'] for x in seed_runs) / len(seed_runs)
         hosts.append({'host_id': season, 'fit_count': len(fit), 'holdout_count': len(holdout), 'target_feedback_count': len(calibration), 'retained_evidence': len(fit), 'quarantined_evidence': len(calibration), 'leakage_detected': False, 'seeds': list(SEEDS), 'herus_score': round(mean_adapter, 6), 'baseline_score': round(mean_baseline, 6), 'score_higher_is_better': True, 'adapter': 'calibrated_symbiotic_prototype', 'baseline_definition': 'max(Naive Bayes, centroid cosine) by selective accuracy per seed', 'seed_runs': seed_runs})

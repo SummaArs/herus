@@ -1,0 +1,3088 @@
+{
+  "dataset_id": "THU-IAR/MIntRec",
+  "hosts": [
+    {
+      "comparison": {
+        "examples": 85,
+        "iterations": 4000,
+        "raw_accuracy": {
+          "ci95_high": -0.047059,
+          "ci95_low": -0.235294,
+          "delta_herus_minus_transformer": -0.141285
+        },
+        "seed": 17,
+        "selective_precision": {
+          "ci95_high": 1.0,
+          "ci95_low": 0.333333,
+          "delta_herus_minus_transformer": 0.793855
+        }
+      },
+      "host_id": "S04",
+      "ledger": [
+        {
+          "example_id": "S04:E16:114",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Complain",
+          "transformer_accepted": false,
+          "transformer_correct": true,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S04:E16:117",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Praise",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S04:E16:118",
+          "herus_accepted": true,
+          "herus_correct": true,
+          "label": "Complain",
+          "transformer_accepted": false,
+          "transformer_correct": true,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S04:E16:146",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Complain",
+          "transformer_accepted": false,
+          "transformer_correct": true,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S04:E16:149",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Complain",
+          "transformer_accepted": false,
+          "transformer_correct": true,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S04:E16:151",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Inform",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S04:E16:156",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Arrange",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S04:E16:164",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Ask for help",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S04:E16:174",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Praise",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S04:E16:177",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Leave",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S04:E16:180",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Complain",
+          "transformer_accepted": false,
+          "transformer_correct": true,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S04:E16:184",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Taunt",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S04:E16:214",
+          "herus_accepted": true,
+          "herus_correct": true,
+          "label": "Thank",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S04:E16:216",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Complain",
+          "transformer_accepted": false,
+          "transformer_correct": true,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S04:E16:222",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Criticize",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S04:E16:243",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Complain",
+          "transformer_accepted": false,
+          "transformer_correct": true,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S04:E16:261",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Prevent",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S04:E16:287",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Inform",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S04:E16:297",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Inform",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S04:E16:300",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Complain",
+          "transformer_accepted": false,
+          "transformer_correct": true,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S04:E16:328",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Care",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S04:E16:329",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Care",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S04:E16:331",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Praise",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S04:E16:351",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Comfort",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S04:E16:366",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Complain",
+          "transformer_accepted": false,
+          "transformer_correct": true,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S04:E16:369",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Complain",
+          "transformer_accepted": false,
+          "transformer_correct": true,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S04:E16:376",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Criticize",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S04:E16:387",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Complain",
+          "transformer_accepted": false,
+          "transformer_correct": true,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S04:E16:389",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Joke",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S04:E16:391",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Joke",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S04:E16:398",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Criticize",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S04:E16:408",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Criticize",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S04:E16:414",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Praise",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S04:E16:418",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Praise",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S04:E16:420",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Introduce",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S04:E16:439",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Inform",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S04:E16:446",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Criticize",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S04:E16:453",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Criticize",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S04:E16:467",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Criticize",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S04:E16:48",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Inform",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S04:E16:494",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Inform",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S04:E16:507",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Care",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S04:E16:51",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Inform",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S04:E16:510",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Complain",
+          "transformer_accepted": false,
+          "transformer_correct": true,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S04:E16:514",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Praise",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S04:E16:52",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Inform",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S04:E16:521",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Leave",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S04:E16:528",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Complain",
+          "transformer_accepted": false,
+          "transformer_correct": true,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S04:E16:534",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Complain",
+          "transformer_accepted": false,
+          "transformer_correct": true,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S04:E16:541",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Praise",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S04:E16:568",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Introduce",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S04:E16:62",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Complain",
+          "transformer_accepted": false,
+          "transformer_correct": true,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S04:E16:71",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Inform",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S04:E17:101",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Comfort",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S04:E17:110",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Greet",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S04:E17:113",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Praise",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S04:E17:151",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Prevent",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S04:E17:159",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Inform",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S04:E17:170",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Comfort",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S04:E17:194",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Prevent",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S04:E17:217",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Introduce",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S04:E17:267",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Complain",
+          "transformer_accepted": false,
+          "transformer_correct": true,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S04:E17:271",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Prevent",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S04:E17:284",
+          "herus_accepted": true,
+          "herus_correct": true,
+          "label": "Thank",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S04:E17:286",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Inform",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S04:E17:287",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Inform",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S04:E17:293",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Care",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S04:E17:294",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Praise",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S04:E17:325",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Taunt",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S04:E17:345",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Leave",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S04:E17:349",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Introduce",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S04:E17:350",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Introduce",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S04:E17:359",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Praise",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S04:E17:384",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Care",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S04:E17:386",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Apologise",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S04:E17:403",
+          "herus_accepted": true,
+          "herus_correct": false,
+          "label": "Comfort",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S04:E17:408",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Prevent",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S04:E17:434",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Inform",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S04:E17:444",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Inform",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S04:E17:472",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Arrange",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S04:E17:473",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Inform",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S04:E17:480",
+          "herus_accepted": true,
+          "herus_correct": true,
+          "label": "Praise",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S04:E17:493",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Criticize",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S04:E17:494",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Apologise",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S04:E17:59",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Praise",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        }
+      ],
+      "ledger_count": 85
+    },
+    {
+      "comparison": {
+        "examples": 191,
+        "iterations": 4000,
+        "raw_accuracy": {
+          "ci95_high": 0.04712,
+          "ci95_low": -0.068063,
+          "delta_herus_minus_transformer": -0.010332
+        },
+        "seed": 17,
+        "selective_precision": {
+          "ci95_high": 0.825,
+          "ci95_low": -0.362069,
+          "delta_herus_minus_transformer": 0.1166
+        }
+      },
+      "host_id": "S05",
+      "ledger": [
+        {
+          "example_id": "S05:E18:257",
+          "herus_accepted": true,
+          "herus_correct": false,
+          "label": "Agree",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E18:259",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Agree",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E18:260",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Greet",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E18:278",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Prevent",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E18:279",
+          "herus_accepted": true,
+          "herus_correct": true,
+          "label": "Apologise",
+          "transformer_accepted": false,
+          "transformer_correct": true,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E18:283",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Joke",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E18:285",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Criticize",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E18:298",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Taunt",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E18:305",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Joke",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E18:314",
+          "herus_accepted": true,
+          "herus_correct": true,
+          "label": "Praise",
+          "transformer_accepted": false,
+          "transformer_correct": true,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E18:319",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Leave",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E18:321",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Ask for help",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E18:328",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Care",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E18:332",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Prevent",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E18:335",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Oppose",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E18:366",
+          "herus_accepted": true,
+          "herus_correct": false,
+          "label": "Leave",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E18:386",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Prevent",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E18:395",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Prevent",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E18:397",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Advise",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E18:404",
+          "herus_accepted": true,
+          "herus_correct": true,
+          "label": "Apologise",
+          "transformer_accepted": false,
+          "transformer_correct": true,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E18:410",
+          "herus_accepted": true,
+          "herus_correct": true,
+          "label": "Thank",
+          "transformer_accepted": false,
+          "transformer_correct": true,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E18:423",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Prevent",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E18:503",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Taunt",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E18:505",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Taunt",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E18:508",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Arrange",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E18:510",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Thank",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E18:513",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Inform",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E18:535",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Arrange",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E18:545",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Advise",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E18:546",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Oppose",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E18:552",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Leave",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E18:557",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Thank",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E18:585",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Agree",
+          "transformer_accepted": false,
+          "transformer_correct": true,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E19:110",
+          "herus_accepted": true,
+          "herus_correct": false,
+          "label": "Introduce",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E19:123",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Inform",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E19:124",
+          "herus_accepted": true,
+          "herus_correct": true,
+          "label": "Advise",
+          "transformer_accepted": false,
+          "transformer_correct": true,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E19:160",
+          "herus_accepted": true,
+          "herus_correct": true,
+          "label": "Care",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E19:161",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Inform",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E19:163",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Complain",
+          "transformer_accepted": false,
+          "transformer_correct": true,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E19:165",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Prevent",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E19:17",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Complain",
+          "transformer_accepted": false,
+          "transformer_correct": true,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E19:170",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Arrange",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E19:176",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Care",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E19:189",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Prevent",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E19:19",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Criticize",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E19:195",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Oppose",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E19:196",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Comfort",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E19:206",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Advise",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E19:210",
+          "herus_accepted": true,
+          "herus_correct": false,
+          "label": "Arrange",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E19:213",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Flaunt",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E19:22",
+          "herus_accepted": true,
+          "herus_correct": false,
+          "label": "Criticize",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E19:220",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Care",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E19:224",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Prevent",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E19:225",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Prevent",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E19:227",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Care",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E19:235",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Ask for help",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E19:237",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Arrange",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E19:250",
+          "herus_accepted": true,
+          "herus_correct": true,
+          "label": "Complain",
+          "transformer_accepted": false,
+          "transformer_correct": true,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E19:275",
+          "herus_accepted": true,
+          "herus_correct": true,
+          "label": "Complain",
+          "transformer_accepted": false,
+          "transformer_correct": true,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E19:278",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Prevent",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E19:28",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Criticize",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E19:283",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Leave",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E19:288",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Leave",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E19:296",
+          "herus_accepted": true,
+          "herus_correct": true,
+          "label": "Prevent",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E19:3",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Thank",
+          "transformer_accepted": false,
+          "transformer_correct": true,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E19:307",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Introduce",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E19:341",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Inform",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E19:348",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Thank",
+          "transformer_accepted": false,
+          "transformer_correct": true,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E19:354",
+          "herus_accepted": true,
+          "herus_correct": true,
+          "label": "Inform",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E19:389",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Inform",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E19:391",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Advise",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E19:41",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Arrange",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E19:416",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Complain",
+          "transformer_accepted": false,
+          "transformer_correct": true,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E19:425",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Complain",
+          "transformer_accepted": false,
+          "transformer_correct": true,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E19:429",
+          "herus_accepted": true,
+          "herus_correct": false,
+          "label": "Leave",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E19:435",
+          "herus_accepted": true,
+          "herus_correct": false,
+          "label": "Inform",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E19:457",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Greet",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E19:458",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Greet",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E19:459",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Apologise",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E19:46",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Care",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E19:460",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Apologise",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E19:476",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Arrange",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E19:498",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Agree",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E19:502",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Ask for help",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E19:506",
+          "herus_accepted": true,
+          "herus_correct": false,
+          "label": "Complain",
+          "transformer_accepted": false,
+          "transformer_correct": true,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E19:529",
+          "herus_accepted": true,
+          "herus_correct": true,
+          "label": "Apologise",
+          "transformer_accepted": false,
+          "transformer_correct": true,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E19:530",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Comfort",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E19:534",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Care",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E19:547",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Criticize",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E19:552",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Inform",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E19:570",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Criticize",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E19:64",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Oppose",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E19:90",
+          "herus_accepted": true,
+          "herus_correct": true,
+          "label": "Care",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E19:99",
+          "herus_accepted": true,
+          "herus_correct": true,
+          "label": "Praise",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E20:106",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Leave",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E20:110",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Comfort",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E20:12",
+          "herus_accepted": true,
+          "herus_correct": true,
+          "label": "Thank",
+          "transformer_accepted": false,
+          "transformer_correct": true,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E20:121",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Taunt",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E20:127",
+          "herus_accepted": true,
+          "herus_correct": true,
+          "label": "Apologise",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E20:130",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Oppose",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E20:146",
+          "herus_accepted": true,
+          "herus_correct": false,
+          "label": "Inform",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E20:226",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Praise",
+          "transformer_accepted": false,
+          "transformer_correct": true,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E20:236",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Arrange",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E20:24",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Advise",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E20:25",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Advise",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E20:265",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Care",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E20:274",
+          "herus_accepted": true,
+          "herus_correct": false,
+          "label": "Comfort",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E20:276",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Care",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E20:283",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Leave",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E20:291",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Criticize",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E20:299",
+          "herus_accepted": true,
+          "herus_correct": false,
+          "label": "Introduce",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E20:30",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Introduce",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E20:316",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Joke",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E20:349",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Apologise",
+          "transformer_accepted": false,
+          "transformer_correct": true,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E20:375",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Criticize",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E20:386",
+          "herus_accepted": true,
+          "herus_correct": true,
+          "label": "Apologise",
+          "transformer_accepted": false,
+          "transformer_correct": true,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E20:391",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Leave",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E20:404",
+          "herus_accepted": true,
+          "herus_correct": true,
+          "label": "Thank",
+          "transformer_accepted": false,
+          "transformer_correct": true,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E20:416",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Greet",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E20:417",
+          "herus_accepted": true,
+          "herus_correct": true,
+          "label": "Care",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E20:424",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Apologise",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E20:427",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Agree",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E20:440",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Apologise",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E20:442",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Greet",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E20:445",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Greet",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E20:470",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Comfort",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E20:474",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Criticize",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E20:475",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Criticize",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E20:477",
+          "herus_accepted": true,
+          "herus_correct": true,
+          "label": "Apologise",
+          "transformer_accepted": false,
+          "transformer_correct": true,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E20:487",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Inform",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E20:489",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Inform",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E20:491",
+          "herus_accepted": true,
+          "herus_correct": true,
+          "label": "Apologise",
+          "transformer_accepted": false,
+          "transformer_correct": true,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E20:501",
+          "herus_accepted": true,
+          "herus_correct": true,
+          "label": "Praise",
+          "transformer_accepted": false,
+          "transformer_correct": true,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E20:503",
+          "herus_accepted": true,
+          "herus_correct": true,
+          "label": "Praise",
+          "transformer_accepted": false,
+          "transformer_correct": true,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E20:505",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Apologise",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E20:511",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Criticize",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E20:527",
+          "herus_accepted": true,
+          "herus_correct": false,
+          "label": "Introduce",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E20:53",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Complain",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E20:532",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Apologise",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E20:538",
+          "herus_accepted": true,
+          "herus_correct": true,
+          "label": "Arrange",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E20:544",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Greet",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E20:545",
+          "herus_accepted": true,
+          "herus_correct": true,
+          "label": "Apologise",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E20:547",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Comfort",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E20:77",
+          "herus_accepted": true,
+          "herus_correct": true,
+          "label": "Apologise",
+          "transformer_accepted": false,
+          "transformer_correct": true,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E20:8",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Praise",
+          "transformer_accepted": false,
+          "transformer_correct": true,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E20:88",
+          "herus_accepted": true,
+          "herus_correct": false,
+          "label": "Joke",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E20:93",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Introduce",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E21:1",
+          "herus_accepted": true,
+          "herus_correct": true,
+          "label": "Inform",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E21:10",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Flaunt",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E21:110",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Oppose",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E21:119",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Inform",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E21:142",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Greet",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E21:143",
+          "herus_accepted": true,
+          "herus_correct": true,
+          "label": "Thank",
+          "transformer_accepted": false,
+          "transformer_correct": true,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E21:145",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Introduce",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E21:16",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Praise",
+          "transformer_accepted": false,
+          "transformer_correct": true,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E21:187",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Inform",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E21:197",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Leave",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E21:199",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Criticize",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E21:2",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Praise",
+          "transformer_accepted": false,
+          "transformer_correct": true,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E21:201",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Advise",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E21:202",
+          "herus_accepted": true,
+          "herus_correct": true,
+          "label": "Advise",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E21:217",
+          "herus_accepted": true,
+          "herus_correct": true,
+          "label": "Advise",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E21:240",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Praise",
+          "transformer_accepted": false,
+          "transformer_correct": true,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E21:267",
+          "herus_accepted": true,
+          "herus_correct": true,
+          "label": "Apologise",
+          "transformer_accepted": false,
+          "transformer_correct": true,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E21:268",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Introduce",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E21:272",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Praise",
+          "transformer_accepted": false,
+          "transformer_correct": true,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E21:273",
+          "herus_accepted": true,
+          "herus_correct": true,
+          "label": "Apologise",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E21:305",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Advise",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E21:306",
+          "herus_accepted": true,
+          "herus_correct": true,
+          "label": "Arrange",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E21:312",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Prevent",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E21:325",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Greet",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E21:348",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Taunt",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E21:357",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Oppose",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E21:378",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Inform",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E21:424",
+          "herus_accepted": true,
+          "herus_correct": true,
+          "label": "Praise",
+          "transformer_accepted": true,
+          "transformer_correct": true,
+          "transformer_selective_correct": true
+        },
+        {
+          "example_id": "S05:E21:458",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Thank",
+          "transformer_accepted": false,
+          "transformer_correct": true,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E21:459",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Ask for help",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E21:481",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Greet",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E21:506",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Taunt",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E21:512",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Introduce",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E21:516",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Prevent",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E21:517",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Greet",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E21:518",
+          "herus_accepted": true,
+          "herus_correct": true,
+          "label": "Care",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E21:542",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Complain",
+          "transformer_accepted": false,
+          "transformer_correct": true,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E21:66",
+          "herus_accepted": true,
+          "herus_correct": true,
+          "label": "Praise",
+          "transformer_accepted": false,
+          "transformer_correct": true,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E21:8",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Arrange",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E21:89",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Advise",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E21:90",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Advise",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E21:93",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Praise",
+          "transformer_accepted": false,
+          "transformer_correct": true,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E21:95",
+          "herus_accepted": true,
+          "herus_correct": true,
+          "label": "Thank",
+          "transformer_accepted": false,
+          "transformer_correct": true,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S05:E21:98",
+          "herus_accepted": true,
+          "herus_correct": true,
+          "label": "Apologise",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        }
+      ],
+      "ledger_count": 191
+    },
+    {
+      "comparison": {
+        "examples": 58,
+        "iterations": 4000,
+        "raw_accuracy": {
+          "ci95_high": 0.034483,
+          "ci95_low": -0.137931,
+          "delta_herus_minus_transformer": -0.052491
+        },
+        "seed": 17,
+        "selective_precision": {
+          "ci95_high": 0.727273,
+          "ci95_low": 0.1,
+          "delta_herus_minus_transformer": 0.3974
+        }
+      },
+      "host_id": "S06",
+      "ledger": [
+        {
+          "example_id": "S06:E09:163",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Taunt",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S06:E09:169",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Complain",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S06:E09:229",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Complain",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S06:E09:250",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Introduce",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S06:E09:308",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Complain",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S06:E09:315",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Inform",
+          "transformer_accepted": false,
+          "transformer_correct": true,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S06:E09:330",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Complain",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S06:E09:333",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Oppose",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S06:E09:354",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Taunt",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S06:E09:360",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Inform",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S06:E09:384",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Comfort",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S06:E09:429",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Criticize",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S06:E09:468",
+          "herus_accepted": true,
+          "herus_correct": true,
+          "label": "Apologise",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S06:E09:509",
+          "herus_accepted": true,
+          "herus_correct": false,
+          "label": "Criticize",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S06:E09:527",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Introduce",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S06:E09:532",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Leave",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S06:E09:537",
+          "herus_accepted": true,
+          "herus_correct": false,
+          "label": "Care",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S06:E09:545",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Joke",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S06:E09:558",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Complain",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S06:E09:567",
+          "herus_accepted": true,
+          "herus_correct": false,
+          "label": "Comfort",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S06:E09:568",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Thank",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S06:E09:570",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Arrange",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S06:E09:579",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Praise",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S06:E09:580",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Thank",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S06:E09:597",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Praise",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S06:E10:110",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Criticize",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S06:E10:132",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Prevent",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S06:E10:140",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Criticize",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S06:E10:176",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Oppose",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S06:E10:238",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Inform",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S06:E10:240",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Introduce",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S06:E10:242",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Thank",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S06:E10:247",
+          "herus_accepted": true,
+          "herus_correct": true,
+          "label": "Inform",
+          "transformer_accepted": false,
+          "transformer_correct": true,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S06:E10:257",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Praise",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S06:E10:26",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Inform",
+          "transformer_accepted": false,
+          "transformer_correct": true,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S06:E10:263",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Complain",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S06:E10:280",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Complain",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S06:E10:285",
+          "herus_accepted": true,
+          "herus_correct": false,
+          "label": "Arrange",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S06:E10:3",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Inform",
+          "transformer_accepted": false,
+          "transformer_correct": true,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S06:E10:308",
+          "herus_accepted": true,
+          "herus_correct": false,
+          "label": "Flaunt",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S06:E10:310",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Praise",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S06:E10:342",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Complain",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S06:E10:392",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Complain",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S06:E10:396",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Praise",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S06:E10:4",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Inform",
+          "transformer_accepted": false,
+          "transformer_correct": true,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S06:E10:414",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Advise",
+          "transformer_accepted": false,
+          "transformer_correct": true,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S06:E10:419",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Praise",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S06:E10:420",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Introduce",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S06:E10:424",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Prevent",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S06:E10:436",
+          "herus_accepted": true,
+          "herus_correct": false,
+          "label": "Ask for help",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S06:E10:454",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Complain",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S06:E10:455",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Leave",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S06:E10:463",
+          "herus_accepted": true,
+          "herus_correct": true,
+          "label": "Apologise",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S06:E10:509",
+          "herus_accepted": true,
+          "herus_correct": true,
+          "label": "Inform",
+          "transformer_accepted": false,
+          "transformer_correct": true,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S06:E10:525",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Comfort",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S06:E10:534",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Apologise",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S06:E10:548",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Praise",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        },
+        {
+          "example_id": "S06:E10:552",
+          "herus_accepted": false,
+          "herus_correct": false,
+          "label": "Complain",
+          "transformer_accepted": false,
+          "transformer_correct": false,
+          "transformer_selective_correct": false
+        }
+      ],
+      "ledger_count": 58
+    }
+  ],
+  "independent_dataset_evidence": false,
+  "limits": [
+    "one corpus",
+    "season is a temporal proxy, not a native host",
+    "adapter rather than HERUS core",
+    "selective metric is coverage-dependent"
+  ],
+  "protocol": {
+    "bootstrap_iterations": 4000,
+    "bootstrap_seed": 17,
+    "claim_boundary": "paired MIntRec result only; independent dataset and SOTA gate remain pending",
+    "paired_seed": 11
+  },
+  "schema": "herus-paired-risk-coverage-v1"
+}

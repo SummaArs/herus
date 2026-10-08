@@ -73,7 +73,8 @@ def one_host(rows, seed):
     hold_scored = predict(model, hold, i2l, with_confidence=True)
     predictions = [label for label, _ in hold_scored]
     selective = [label if best_threshold is not None and confidence >= best_threshold else None for label, confidence in hold_scored]
-    return {'seed': seed, 'metrics': metrics(holdout, predictions), 'selective_metrics': metrics(holdout, selective), 'confidence_threshold': None if best_threshold is None else round(best_threshold, 8), 'fit_count': len(fit), 'calibration_count': len(calibration), 'holdout_count': len(holdout), 'history': history}
+    ledger = [{'example_id': f"{r['season']}:{r['episode']}:{r['clip']}", 'label': r['label'], 'transformer_prediction': predictions[i], 'transformer_accepted': selective[i] is not None, 'transformer_correct': predictions[i] == r['label'], 'transformer_selective_correct': selective[i] == r['label']} for i, r in enumerate(holdout)]
+    return {'seed': seed, 'metrics': metrics(holdout, predictions), 'selective_metrics': metrics(holdout, selective), 'confidence_threshold': None if best_threshold is None else round(best_threshold, 8), 'fit_count': len(fit), 'calibration_count': len(calibration), 'holdout_count': len(holdout), 'history': history, 'prediction_ledger': ledger}
 
 
 def run():

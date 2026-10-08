@@ -515,7 +515,7 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "aa4fd51a5694ae905cd8c57be1d8cb7ab6811c2122246173fe89339f416cc9f5",
+      "sha256": "08aececf1dd122565999c6b2ecbf2f86e680b5ebc69617f64e448b4792eadd76",
       "role": "organized documentation, maps and historical design records"
     },
     {
@@ -1613,13 +1613,13 @@
     {
       "path": "research/multi_host_real_benchmark.py",
       "kind": "file",
-      "sha256": "19c73bd66b93cda6a459f587f3eaca1e3dc280d9c6019ab16beb06920d1bcd1c",
+      "sha256": "5bccfb40e80b2f127b86ad6acef6e9415d3546235eb01f4b530db5eae59f7dc4",
       "role": "real temporal multi-host benchmark adapter"
     },
     {
       "path": "research/evidence/multi_host_real_mintrec_v1.json",
       "kind": "file",
-      "sha256": "c47e8e82d5206b4ac04ac2bed17d23ff8c37136e7b1e73efadbf2528e9240b9e",
+      "sha256": "71b0b5e20f8d7c6d6f0e6ffe25472f7fbe64b32aa04e9a371ca29dcc638aefd4",
       "role": "real MIntRec multi-host ledger with strong baselines"
     },
     {
@@ -1631,7 +1631,7 @@
     {
       "path": "research/multi_host_transformer_benchmark.py",
       "kind": "file",
-      "sha256": "6fd23b9d763a6cd4e341772adc31d0f2f1f19cd23ddfb4e884d69ccfdabcd607",
+      "sha256": "014b8c6d2ada95c7b07b81edfd5cab8bd3a177a8c2ee97259adc8c31f50866d7",
       "role": "paired transformer risk-coverage benchmark"
     },
     {
@@ -1643,7 +1643,7 @@
     {
       "path": "research/evidence/multi_host_transformer_mintrec_v1.json",
       "kind": "file",
-      "sha256": "cf852c96e2f43db0e3a3084c64d23bb8d7fc776bcf52504e5307e2e968ced9e1",
+      "sha256": "401500fc75aac78f9050d491656bb4b5cf91ed750f875ffe5a19a822e2e0546c",
       "role": "real paired transformer multi-host evidence"
     },
     {
@@ -1651,6 +1651,36 @@
       "kind": "file",
       "sha256": "0ba79c696a059d88c84a11cb2aeeb8682e1ea162107b488b0187ca99cef35168",
       "role": "paired transformer risk-coverage report"
+    },
+    {
+      "path": "research/paired_risk_coverage.py",
+      "kind": "file",
+      "sha256": "1095bb6b6cfcef3a2300721210a3255652d57f9ceba695a7f3814bb718d2d996",
+      "role": "paired bootstrap over risk-coverage ledgers"
+    },
+    {
+      "path": "research/evidence/paired_risk_coverage_mintrec_v1.json",
+      "kind": "file",
+      "sha256": "7c0aca3e57f3d5ec2c6a7f1126c26cce04faf1586170f2c8dd0266634305d56e",
+      "role": "paired bootstrap real MIntRec evidence"
+    },
+    {
+      "path": "research/final_sota_gate.py",
+      "kind": "file",
+      "sha256": "fdeddc4bff0cb70a8ec710d2480581bda42e5cb181d2fda8da688a7d1c94e10c",
+      "role": "fail-closed final SOTA claim gate"
+    },
+    {
+      "path": "research/test_final_sota_gate.py",
+      "kind": "file",
+      "sha256": "65caa8a3c2a5e28791ccbdf2830148d3b4d5f3fd05a8fb40b271666bb7da5b7d",
+      "role": "final SOTA gate anti-overclaim tests"
+    },
+    {
+      "path": "docs/141-BOOTSTRAP-PAREADO-E-GATE-SOTA.md",
+      "kind": "file",
+      "sha256": "926b1b201c2534f25261e0bb3d97defcb11bd335aede313f4214c982e1f45eff",
+      "role": "paired bootstrap and final SOTA decision"
     }
   ],
   "components": [
