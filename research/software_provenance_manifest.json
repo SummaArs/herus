@@ -515,7 +515,7 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "1620c15daee4e9397b9bf0707a9c0e6df8fe6805da7e5171a290661b6f46006f",
+      "sha256": "5164c71a5abc4669170e49ff2edc21930a903885f530a541d4d91331e3b817fc",
       "role": "organized documentation, maps and historical design records"
     },
     {
@@ -749,7 +749,7 @@
     {
       "path": "research/real_data_baseline_benchmark.py",
       "kind": "file",
-      "sha256": "ccc96945d4ee53dcc2d409afc676aca76f4dfac6a77e7ff23012e8c2ca3f756a",
+      "sha256": "8a9129f147ee9ace41af901bec13a8ce284c7f930fe54e886347b2ff0e967ec6",
       "role": "calibrated coverage precision experiment"
     },
     {
@@ -1589,13 +1589,13 @@
     {
       "path": "research/multi_host_gate.py",
       "kind": "file",
-      "sha256": "1134a2e1fc6d56aee3b0d972662266001160a5ebac25caf5b3d50d5941b39857",
+      "sha256": "5cc1d3bfdffc6ca3ad87d899bdcdfa313a54a98f6cee5d83da364e583fef85a9",
       "role": "fail-closed final multi-host validation gate"
     },
     {
       "path": "research/test_multi_host_gate.py",
       "kind": "file",
-      "sha256": "795cbdc9b8c0f0f167e073d6f7ee78a7b104459bd26ce173fde3284c25ca2184",
+      "sha256": "c05c1fb792d7f7ec983dc86f39c30fc287aab1675c6585509e1db9ec317d46fc",
       "role": "multi-host gate anti-overclaim tests"
     },
     {
@@ -1609,6 +1609,24 @@
       "kind": "file",
       "sha256": "1358a112794820c1bd3dd7a7590343dccf2791c2977f7fc7c8b590e23f73eeb5",
       "role": "final multi-host and SOTA gate specification"
+    },
+    {
+      "path": "research/multi_host_real_benchmark.py",
+      "kind": "file",
+      "sha256": "19c73bd66b93cda6a459f587f3eaca1e3dc280d9c6019ab16beb06920d1bcd1c",
+      "role": "real temporal multi-host benchmark adapter"
+    },
+    {
+      "path": "research/evidence/multi_host_real_mintrec_v1.json",
+      "kind": "file",
+      "sha256": "c47e8e82d5206b4ac04ac2bed17d23ff8c37136e7b1e73efadbf2528e9240b9e",
+      "role": "real MIntRec multi-host ledger with strong baselines"
+    },
+    {
+      "path": "docs/139-RESULTADO-MULTI-HOST-MINTREC.md",
+      "kind": "file",
+      "sha256": "c805bb2b0175eab42c0aa98772c90614d5fdf5f5dc9e55bf3adbe456361d33ae",
+      "role": "real multi-host result and selective coverage limits"
     }
   ],
   "components": [

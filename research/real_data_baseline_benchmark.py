@@ -6,7 +6,7 @@ The Symbiotic reference memory is reported as a finite contextual memory
 baseline, not as proof of open-language reasoning.
 """
 from __future__ import annotations
-import json, math, re, urllib.parse, urllib.request
+import json, math, re, time, urllib.error, urllib.parse, urllib.request
 from collections import Counter, defaultdict
 from pathlib import Path
 
@@ -17,8 +17,15 @@ def fetch_split(split: str, total: int, page: int = 100) -> list[dict[str, str]]
     rows = []
     for offset in range(0, total, page):
         query = urllib.parse.urlencode({'dataset': DATASET, 'config': 'default', 'split': split, 'offset': offset, 'length': min(page, total-offset)})
-        with urllib.request.urlopen(API + '?' + query, timeout=60) as response:
-            payload = json.load(response)
+        for attempt in range(5):
+            try:
+                with urllib.request.urlopen(API + '?' + query, timeout=60) as response:
+                    payload = json.load(response)
+                break
+            except (urllib.error.HTTPError, urllib.error.URLError, TimeoutError):
+                if attempt == 4:
+                    raise
+                time.sleep(2 ** attempt)
         rows.extend({'text': item['row']['text'], 'label': item['row']['label'], 'season': item['row']['season'], 'episode': item['row']['episode'], 'clip': str(item['row']['clip'])} for item in payload['rows'])
     return rows
 

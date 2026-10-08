@@ -7,6 +7,7 @@ REQUIRED_HOST_FIELDS = {
     "host_id", "fit_count", "holdout_count", "target_feedback_count",
     "retained_evidence", "quarantined_evidence", "leakage_detected",
     "seeds", "herus_score", "baseline_score", "score_higher_is_better",
+    "baseline_definition", "seed_runs",
 }
 
 
@@ -38,6 +39,14 @@ def validate(payload: dict) -> tuple[bool, list[str]]:
             errors.append(f"{item['host_id']}:leakage_detected")
         if not isinstance(item["seeds"], list) or len(item["seeds"]) < 3:
             errors.append(f"{item['host_id']}:at_least_three_seeds_required")
+        if not isinstance(item["seed_runs"], list) or len(item["seed_runs"]) != len(item["seeds"]):
+            errors.append(f"{item['host_id']}:seed_ledger_incomplete")
+        else:
+            for run in item["seed_runs"]:
+                if "adapter" not in run or "coverage" not in run["adapter"] or "selective_accuracy" not in run["adapter"]:
+                    errors.append(f"{item['host_id']}:adapter_coverage_or_precision_missing")
+                if "strongest_baseline_selective_accuracy" not in run:
+                    errors.append(f"{item['host_id']}:strong_baseline_missing")
         if item["retained_evidence"] < 0 or item["quarantined_evidence"] < 0:
             errors.append(f"{item['host_id']}:negative_evidence_count")
         if not isinstance(item["score_higher_is_better"], bool):

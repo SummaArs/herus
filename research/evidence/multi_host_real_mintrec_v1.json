@@ -1,0 +1,295 @@
+{
+  "data_origin": "real_world",
+  "dataset_id": "THU-IAR/MIntRec",
+  "dataset_source": "https://datasets-server.huggingface.co/rows",
+  "hosts": [
+    {
+      "adapter": "calibrated_symbiotic_prototype",
+      "baseline_definition": "max(Naive Bayes, centroid cosine) by selective accuracy per seed",
+      "baseline_score": 0.376471,
+      "fit_count": 396,
+      "herus_score": 0.8,
+      "holdout_count": 85,
+      "host_id": "S04",
+      "leakage_detected": false,
+      "quarantined_evidence": 85,
+      "retained_evidence": 396,
+      "score_higher_is_better": true,
+      "seed_runs": [
+        {
+          "adapter": {
+            "accuracy": 0.047059,
+            "coverage": 0.058824,
+            "macro_f1": 0.079468,
+            "selective_accuracy": 0.8
+          },
+          "centroid": {
+            "accuracy": 0.329412,
+            "coverage": 1.0,
+            "macro_f1": 0.380806,
+            "selective_accuracy": 0.329412
+          },
+          "naive_bayes": {
+            "accuracy": 0.376471,
+            "coverage": 1.0,
+            "macro_f1": 0.251692,
+            "selective_accuracy": 0.376471
+          },
+          "seed": 11,
+          "strongest_baseline_selective_accuracy": 0.376471,
+          "threshold": 4.33347316
+        },
+        {
+          "adapter": {
+            "accuracy": 0.047059,
+            "coverage": 0.058824,
+            "macro_f1": 0.079468,
+            "selective_accuracy": 0.8
+          },
+          "centroid": {
+            "accuracy": 0.329412,
+            "coverage": 1.0,
+            "macro_f1": 0.380806,
+            "selective_accuracy": 0.329412
+          },
+          "naive_bayes": {
+            "accuracy": 0.376471,
+            "coverage": 1.0,
+            "macro_f1": 0.251692,
+            "selective_accuracy": 0.376471
+          },
+          "seed": 23,
+          "strongest_baseline_selective_accuracy": 0.376471,
+          "threshold": 4.33347316
+        },
+        {
+          "adapter": {
+            "accuracy": 0.047059,
+            "coverage": 0.058824,
+            "macro_f1": 0.079468,
+            "selective_accuracy": 0.8
+          },
+          "centroid": {
+            "accuracy": 0.329412,
+            "coverage": 1.0,
+            "macro_f1": 0.380806,
+            "selective_accuracy": 0.329412
+          },
+          "naive_bayes": {
+            "accuracy": 0.376471,
+            "coverage": 1.0,
+            "macro_f1": 0.251692,
+            "selective_accuracy": 0.376471
+          },
+          "seed": 47,
+          "strongest_baseline_selective_accuracy": 0.376471,
+          "threshold": 4.33347316
+        }
+      ],
+      "seeds": [
+        11,
+        23,
+        47
+      ],
+      "target_feedback_count": 85
+    },
+    {
+      "adapter": "calibrated_symbiotic_prototype",
+      "baseline_definition": "max(Naive Bayes, centroid cosine) by selective accuracy per seed",
+      "baseline_score": 0.481675,
+      "fit_count": 890,
+      "herus_score": 0.74,
+      "holdout_count": 191,
+      "host_id": "S05",
+      "leakage_detected": false,
+      "quarantined_evidence": 191,
+      "retained_evidence": 890,
+      "score_higher_is_better": true,
+      "seed_runs": [
+        {
+          "adapter": {
+            "accuracy": 0.193717,
+            "coverage": 0.26178,
+            "macro_f1": 0.185315,
+            "selective_accuracy": 0.74
+          },
+          "centroid": {
+            "accuracy": 0.424084,
+            "coverage": 1.0,
+            "macro_f1": 0.364699,
+            "selective_accuracy": 0.424084
+          },
+          "naive_bayes": {
+            "accuracy": 0.481675,
+            "coverage": 1.0,
+            "macro_f1": 0.394614,
+            "selective_accuracy": 0.481675
+          },
+          "seed": 11,
+          "strongest_baseline_selective_accuracy": 0.481675,
+          "threshold": 2.14831082
+        },
+        {
+          "adapter": {
+            "accuracy": 0.193717,
+            "coverage": 0.26178,
+            "macro_f1": 0.185315,
+            "selective_accuracy": 0.74
+          },
+          "centroid": {
+            "accuracy": 0.424084,
+            "coverage": 1.0,
+            "macro_f1": 0.364699,
+            "selective_accuracy": 0.424084
+          },
+          "naive_bayes": {
+            "accuracy": 0.481675,
+            "coverage": 1.0,
+            "macro_f1": 0.394614,
+            "selective_accuracy": 0.481675
+          },
+          "seed": 23,
+          "strongest_baseline_selective_accuracy": 0.481675,
+          "threshold": 2.14831082
+        },
+        {
+          "adapter": {
+            "accuracy": 0.193717,
+            "coverage": 0.26178,
+            "macro_f1": 0.185315,
+            "selective_accuracy": 0.74
+          },
+          "centroid": {
+            "accuracy": 0.424084,
+            "coverage": 1.0,
+            "macro_f1": 0.364699,
+            "selective_accuracy": 0.424084
+          },
+          "naive_bayes": {
+            "accuracy": 0.481675,
+            "coverage": 1.0,
+            "macro_f1": 0.394614,
+            "selective_accuracy": 0.481675
+          },
+          "seed": 47,
+          "strongest_baseline_selective_accuracy": 0.481675,
+          "threshold": 2.14831082
+        }
+      ],
+      "seeds": [
+        11,
+        23,
+        47
+      ],
+      "target_feedback_count": 191
+    },
+    {
+      "adapter": "calibrated_symbiotic_prototype",
+      "baseline_definition": "max(Naive Bayes, centroid cosine) by selective accuracy per seed",
+      "baseline_score": 0.310345,
+      "fit_count": 270,
+      "herus_score": 0.4,
+      "holdout_count": 58,
+      "host_id": "S06",
+      "leakage_detected": false,
+      "quarantined_evidence": 58,
+      "retained_evidence": 270,
+      "score_higher_is_better": true,
+      "seed_runs": [
+        {
+          "adapter": {
+            "accuracy": 0.068966,
+            "coverage": 0.172414,
+            "macro_f1": 0.058333,
+            "selective_accuracy": 0.4
+          },
+          "centroid": {
+            "accuracy": 0.293103,
+            "coverage": 1.0,
+            "macro_f1": 0.197023,
+            "selective_accuracy": 0.293103
+          },
+          "naive_bayes": {
+            "accuracy": 0.310345,
+            "coverage": 1.0,
+            "macro_f1": 0.139056,
+            "selective_accuracy": 0.310345
+          },
+          "seed": 11,
+          "strongest_baseline_selective_accuracy": 0.310345,
+          "threshold": 2.56662135
+        },
+        {
+          "adapter": {
+            "accuracy": 0.068966,
+            "coverage": 0.172414,
+            "macro_f1": 0.058333,
+            "selective_accuracy": 0.4
+          },
+          "centroid": {
+            "accuracy": 0.293103,
+            "coverage": 1.0,
+            "macro_f1": 0.197023,
+            "selective_accuracy": 0.293103
+          },
+          "naive_bayes": {
+            "accuracy": 0.310345,
+            "coverage": 1.0,
+            "macro_f1": 0.139056,
+            "selective_accuracy": 0.310345
+          },
+          "seed": 23,
+          "strongest_baseline_selective_accuracy": 0.310345,
+          "threshold": 2.56662135
+        },
+        {
+          "adapter": {
+            "accuracy": 0.068966,
+            "coverage": 0.172414,
+            "macro_f1": 0.058333,
+            "selective_accuracy": 0.4
+          },
+          "centroid": {
+            "accuracy": 0.293103,
+            "coverage": 1.0,
+            "macro_f1": 0.197023,
+            "selective_accuracy": 0.293103
+          },
+          "naive_bayes": {
+            "accuracy": 0.310345,
+            "coverage": 1.0,
+            "macro_f1": 0.139056,
+            "selective_accuracy": 0.310345
+          },
+          "seed": 47,
+          "strongest_baseline_selective_accuracy": 0.310345,
+          "threshold": 2.56662135
+        }
+      ],
+      "seeds": [
+        11,
+        23,
+        47
+      ],
+      "target_feedback_count": 58
+    }
+  ],
+  "limits": [
+    "MIntRec labels are not HERUS events",
+    "season is a temporal domain proxy, not a native host",
+    "text metadata only",
+    "no speaker-independent guarantee",
+    "adapter is not the SymbioticLearner core"
+  ],
+  "protocol": {
+    "claim_boundary": "adapter evidence only; no HERUS-event mapping, no general symbiosis, no SOTA",
+    "host_definition": "MIntRec season as temporal domain proxy; not a physical host",
+    "seeds": [
+      11,
+      23,
+      47
+    ],
+    "split": "within-season chronological episode/clip order: 70% fit, 15% calibration feedback, 15% holdout"
+  },
+  "schema": "herus-multi-host-gate-v1"
+}

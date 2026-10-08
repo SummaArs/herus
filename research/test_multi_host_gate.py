@@ -15,7 +15,8 @@ class MultiHostGateTests(unittest.TestCase):
             "target_feedback_count": 1, "retained_evidence": 1,
             "quarantined_evidence": 0, "leakage_detected": True,
             "seeds": [1], "herus_score": 1.0, "baseline_score": 0.5,
-            "score_higher_is_better": True,
+            "score_higher_is_better": True, "baseline_definition": "nb",
+            "seed_runs": [],
         }
         ok, errors = validate({"schema": "herus-multi-host-gate-v1", "data_origin": "real_world", "dataset_id": "x", "hosts": [host, {**host, "host_id": "b"}, {**host, "host_id": "c"}]})
         self.assertFalse(ok)
@@ -28,7 +29,8 @@ class MultiHostGateTests(unittest.TestCase):
             "target_feedback_count": 1, "retained_evidence": 1,
             "quarantined_evidence": 1, "leakage_detected": False,
             "seeds": [1, 2, 3], "herus_score": 1.0, "baseline_score": 0.5,
-            "score_higher_is_better": True,
+            "score_higher_is_better": True, "baseline_definition": "nb",
+            "seed_runs": [{"adapter": {"coverage": 1.0, "selective_accuracy": 1.0}, "strongest_baseline_selective_accuracy": 0.5}] * 3,
         }
         payload = {"schema": "herus-multi-host-gate-v1", "data_origin": "real_world", "dataset_id": "real-dataset", "hosts": [host, {**host, "host_id": "b"}, {**host, "host_id": "c"}]}
         result = decision(payload)
