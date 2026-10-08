@@ -8,20 +8,21 @@ A implementação agora separa:
 2. `MultinomialNBModel.score(row)`: pontua cada exemplo sem refazer o ajuste;
 3. representação compacta com IDs inteiros, arrays e penalização explícita para tokens desconhecidos;
 4. o mesmo modelo ajustado é compartilhado entre as políticas default e calibrada;
-5. PyTorch, Transformers, NumPy e o benchmark MInDS-14 não são importados no caminho Banking77.
+5. um cache de features por `example_id` evita tokenização e vetorização repetidas;
+6. PyTorch, Transformers, NumPy e o benchmark MInDS-14 não são importados no caminho Banking77.
 
 ## Medição real no Banking77
 
 | Medida | Antes observado | Cacheado |
 |---|---:|---:|
-| Tempo de parede | ~1.605 s | **35,726 s** |
-| Redução observada | — | **97,77%** |
-| Aceleração observada | 1× | **~44,9×** |
-| Pico de RSS | 824.084 KB | **35.192 KB** |
+| Tempo de parede | ~1.605 s | **28,189 s** |
+| Redução observada | — | **98,24%** |
+| Aceleração observada | 1× | **~56,9×** |
+| Pico de RSS | 824.084 KB | **46.312 KB** |
 
 A comparação de velocidade usa a execução anterior real do mesmo benchmark como referência histórica; não é uma medição controlada no mesmo processo. Portanto, o número é evidência operacional forte, mas não uma publicação de performance definitiva.
 
-A redução de RSS observada é um ganho de footprint do processo causado principalmente pelo isolamento dos imports pesados. Ela não é uma medição de energia.
+A redução de RSS observada é um ganho de footprint do processo causado principalmente pelo isolamento dos imports pesados. O cache de features acrescenta memória limitada, subindo o RSS de cerca de 35 MiB para 46 MiB, mas reduz a latência do benchmark.
 
 ## Equivalência
 
