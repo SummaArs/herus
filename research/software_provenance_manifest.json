@@ -515,7 +515,7 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "e9fefa6abd291b0cd9639d57f82d5587f7432c631cf694d122d9a07a5d2aef8b",
+      "sha256": "20f38fb5a8bdfc70206ff352fb74d709c90f6d59fe95e88c35d04d087906f2fd",
       "role": "organized documentation, maps and historical design records"
     },
     {
@@ -1897,6 +1897,30 @@
       "kind": "file",
       "sha256": "f27c0ff6f8068fa5255c4330fc278d5bc76d0bc3f857c5e543b67bf61bb6fe29",
       "role": "LLM admission gate report"
+    },
+    {
+      "path": "research/universal_mintrec_benchmark.py",
+      "kind": "file",
+      "sha256": "214f7bfb70d4b99d8f095a653b4d047b4a805ede93e5c2561114ab44f4be2f3e",
+      "role": "second-dataset universal router replication"
+    },
+    {
+      "path": "research/evidence/universal_mintrec_v1.json",
+      "kind": "file",
+      "sha256": "e094b6c442beb27276d48f320bad11522b0f04207e28a87c72f18a427fe97e00",
+      "role": "MIntRec universal router ledger"
+    },
+    {
+      "path": "research/test_universal_mintrec_benchmark.py",
+      "kind": "file",
+      "sha256": "1af4f906770b66a83c2576bfb72e22f609f01671a207b56daf6a122a2decb627",
+      "role": "MIntRec replication tests"
+    },
+    {
+      "path": "docs/151-REPLICACAO-UNIVERSAL-MINTREC.md",
+      "kind": "file",
+      "sha256": "5ca1da5dfde1982e73e42a81044a8650445169b09cb27a737a4f94634a922ba0",
+      "role": "second-dataset replication report"
     }
   ],
   "components": [

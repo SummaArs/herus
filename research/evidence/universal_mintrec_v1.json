@@ -1,0 +1,3532 @@
+{
+  "dataset": {
+    "calibration": 1272,
+    "calibration_season": "S05",
+    "fit": 566,
+    "fit_season": "S04",
+    "holdout": 386,
+    "holdout_season": "S06",
+    "id": "THU-IAR/MIntRec"
+  },
+  "fit": {
+    "calibration_examples": 2544,
+    "reason": "per_paradigm_safe_thresholds",
+    "status": "FITTED",
+    "thresholds": [
+      [
+        "supervised",
+        0.5000578645371406
+      ],
+      [
+        "unsupervised",
+        0
+      ]
+    ]
+  },
+  "ledger": [
+    {
+      "centroid_prediction": "Arrange",
+      "example_id": "S06/E01/105",
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Taunt",
+      "example_id": "S06/E01/114",
+      "label": "Arrange",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Taunt",
+      "example_id": "S06/E01/117",
+      "label": "Taunt",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Greet",
+      "example_id": "S06/E01/144",
+      "label": "Inform",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Taunt",
+      "example_id": "S06/E01/163",
+      "label": "Inform",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Inform",
+      "example_id": "S06/E01/172",
+      "label": "Arrange",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Inform",
+      "example_id": "S06/E01/195",
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Criticize",
+      "example_id": "S06/E01/197",
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Inform",
+      "example_id": "S06/E01/20",
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Comfort",
+      "example_id": "S06/E01/200",
+      "label": "Inform",
+      "nb_prediction": "Praise",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Praise"
+    },
+    {
+      "centroid_prediction": "Arrange",
+      "example_id": "S06/E01/208",
+      "label": "Inform",
+      "nb_prediction": "Arrange",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Arrange"
+    },
+    {
+      "centroid_prediction": "Leave",
+      "example_id": "S06/E01/21",
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Inform",
+      "example_id": "S06/E01/210",
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Inform",
+      "example_id": "S06/E01/216",
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Criticize",
+      "example_id": "S06/E01/225",
+      "label": "Complain",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Inform",
+      "example_id": "S06/E01/233",
+      "label": "Praise",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Oppose",
+      "example_id": "S06/E01/236",
+      "label": "Prevent",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Apologise",
+      "example_id": "S06/E01/237",
+      "label": "Apologise",
+      "nb_prediction": "Apologise",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Apologise"
+    },
+    {
+      "centroid_prediction": "Inform",
+      "example_id": "S06/E01/238",
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Ask for help",
+      "example_id": "S06/E01/242",
+      "label": "Complain",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Inform",
+      "example_id": "S06/E01/246",
+      "label": "Complain",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Oppose",
+      "example_id": "S06/E01/258",
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Ask for help",
+      "example_id": "S06/E01/260",
+      "label": "Taunt",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Advise",
+      "example_id": "S06/E01/282",
+      "label": "Advise",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Complain",
+      "example_id": "S06/E01/283",
+      "label": "Complain",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Arrange",
+      "example_id": "S06/E01/312",
+      "label": "Criticize",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Arrange",
+      "example_id": "S06/E01/32",
+      "label": "Inform",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Apologise",
+      "example_id": "S06/E01/340",
+      "label": "Apologise",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Leave",
+      "example_id": "S06/E01/341",
+      "label": "Leave",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Introduce",
+      "example_id": "S06/E01/343",
+      "label": "Comfort",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Ask for help",
+      "example_id": "S06/E01/347",
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Prevent",
+      "example_id": "S06/E01/355",
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Thank",
+      "example_id": "S06/E01/366",
+      "label": "Introduce",
+      "nb_prediction": "Praise",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Praise"
+    },
+    {
+      "centroid_prediction": "Greet",
+      "example_id": "S06/E01/412",
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Apologise",
+      "example_id": "S06/E01/426",
+      "label": "Apologise",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "unsupervised",
+      "universal_correct": true,
+      "universal_prediction": "Apologise"
+    },
+    {
+      "centroid_prediction": "Leave",
+      "example_id": "S06/E01/432",
+      "label": "Leave",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Ask for help",
+      "example_id": "S06/E01/438",
+      "label": "Criticize",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Care",
+      "example_id": "S06/E01/445",
+      "label": "Criticize",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Criticize",
+      "example_id": "S06/E01/447",
+      "label": "Taunt",
+      "nb_prediction": "Praise",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Praise"
+    },
+    {
+      "centroid_prediction": "Inform",
+      "example_id": "S06/E01/45",
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Care",
+      "example_id": "S06/E01/459",
+      "label": "Care",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Arrange",
+      "example_id": "S06/E01/461",
+      "label": "Advise",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Complain",
+      "example_id": "S06/E01/468",
+      "label": "Complain",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Leave",
+      "example_id": "S06/E01/482",
+      "label": "Inform",
+      "nb_prediction": "Leave",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Leave"
+    },
+    {
+      "centroid_prediction": "Inform",
+      "example_id": "S06/E01/495",
+      "label": "Comfort",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Leave",
+      "example_id": "S06/E01/509",
+      "label": "Introduce",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Praise",
+      "example_id": "S06/E01/535",
+      "label": "Praise",
+      "nb_prediction": "Praise",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Praise"
+    },
+    {
+      "centroid_prediction": "Thank",
+      "example_id": "S06/E01/536",
+      "label": "Thank",
+      "nb_prediction": "Thank",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Thank"
+    },
+    {
+      "centroid_prediction": "Inform",
+      "example_id": "S06/E01/559",
+      "label": "Ask for help",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Introduce",
+      "example_id": "S06/E01/564",
+      "label": "Praise",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Care",
+      "example_id": "S06/E01/67",
+      "label": "Care",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Inform",
+      "example_id": "S06/E01/78",
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Inform",
+      "example_id": "S06/E01/87",
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Care",
+      "example_id": "S06/E01/88",
+      "label": "Praise",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Leave",
+      "example_id": "S06/E02/1",
+      "label": "Inform",
+      "nb_prediction": "Leave",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Leave"
+    },
+    {
+      "centroid_prediction": "Greet",
+      "example_id": "S06/E02/108",
+      "label": "Greet",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "unsupervised",
+      "universal_correct": true,
+      "universal_prediction": "Greet"
+    },
+    {
+      "centroid_prediction": "Inform",
+      "example_id": "S06/E02/109",
+      "label": "Praise",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Thank",
+      "example_id": "S06/E02/113",
+      "label": "Thank",
+      "nb_prediction": "Thank",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Thank"
+    },
+    {
+      "centroid_prediction": "Thank",
+      "example_id": "S06/E02/115",
+      "label": "Thank",
+      "nb_prediction": "Thank",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Thank"
+    },
+    {
+      "centroid_prediction": "Complain",
+      "example_id": "S06/E02/124",
+      "label": "Ask for help",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Prevent",
+      "example_id": "S06/E02/134",
+      "label": "Prevent",
+      "nb_prediction": "Prevent",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Prevent"
+    },
+    {
+      "centroid_prediction": "Thank",
+      "example_id": "S06/E02/151",
+      "label": "Complain",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Comfort",
+      "example_id": "S06/E02/154",
+      "label": "Prevent",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Comfort",
+      "example_id": "S06/E02/155",
+      "label": "Care",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Praise",
+      "example_id": "S06/E02/231",
+      "label": "Praise",
+      "nb_prediction": "Praise",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Praise"
+    },
+    {
+      "centroid_prediction": "Leave",
+      "example_id": "S06/E02/246",
+      "label": "Apologise",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Praise",
+      "example_id": "S06/E02/25",
+      "label": "Oppose",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Care",
+      "example_id": "S06/E02/250",
+      "label": "Care",
+      "nb_prediction": "Praise",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Praise"
+    },
+    {
+      "centroid_prediction": "Comfort",
+      "example_id": "S06/E02/252",
+      "label": "Oppose",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Apologise",
+      "example_id": "S06/E02/263",
+      "label": "Complain",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Leave",
+      "example_id": "S06/E02/290",
+      "label": "Leave",
+      "nb_prediction": "Leave",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Leave"
+    },
+    {
+      "centroid_prediction": "Taunt",
+      "example_id": "S06/E02/291",
+      "label": "Leave",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Complain",
+      "example_id": "S06/E02/297",
+      "label": "Apologise",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Leave",
+      "example_id": "S06/E02/320",
+      "label": "Comfort",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Introduce",
+      "example_id": "S06/E02/332",
+      "label": "Introduce",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Leave",
+      "example_id": "S06/E02/333",
+      "label": "Praise",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Introduce",
+      "example_id": "S06/E02/337",
+      "label": "Greet",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Comfort",
+      "example_id": "S06/E02/36",
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Praise",
+      "example_id": "S06/E02/364",
+      "label": "Complain",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Advise",
+      "example_id": "S06/E02/372",
+      "label": "Advise",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Praise",
+      "example_id": "S06/E02/38",
+      "label": "Arrange",
+      "nb_prediction": "Praise",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Praise"
+    },
+    {
+      "centroid_prediction": "Thank",
+      "example_id": "S06/E02/405",
+      "label": "Thank",
+      "nb_prediction": "Thank",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Thank"
+    },
+    {
+      "centroid_prediction": "Greet",
+      "example_id": "S06/E02/434",
+      "label": "Praise",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Praise",
+      "example_id": "S06/E02/458",
+      "label": "Thank",
+      "nb_prediction": "Praise",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Praise"
+    },
+    {
+      "centroid_prediction": "Praise",
+      "example_id": "S06/E02/464",
+      "label": "Praise",
+      "nb_prediction": "Praise",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Praise"
+    },
+    {
+      "centroid_prediction": "Introduce",
+      "example_id": "S06/E02/478",
+      "label": "Praise",
+      "nb_prediction": "Praise",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Praise"
+    },
+    {
+      "centroid_prediction": "Praise",
+      "example_id": "S06/E02/492",
+      "label": "Thank",
+      "nb_prediction": "Praise",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Praise"
+    },
+    {
+      "centroid_prediction": "Care",
+      "example_id": "S06/E02/503",
+      "label": "Care",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Joke",
+      "example_id": "S06/E02/509",
+      "label": "Complain",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Taunt",
+      "example_id": "S06/E02/524",
+      "label": "Advise",
+      "nb_prediction": "Praise",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Praise"
+    },
+    {
+      "centroid_prediction": "Thank",
+      "example_id": "S06/E02/526",
+      "label": "Thank",
+      "nb_prediction": "Thank",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Thank"
+    },
+    {
+      "centroid_prediction": "Agree",
+      "example_id": "S06/E02/69",
+      "label": "Advise",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Inform",
+      "example_id": "S06/E02/7",
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Agree",
+      "example_id": "S06/E02/80",
+      "label": "Agree",
+      "nb_prediction": "Praise",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Praise"
+    },
+    {
+      "centroid_prediction": "Criticize",
+      "example_id": "S06/E03/101",
+      "label": "Leave",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Praise",
+      "example_id": "S06/E03/106",
+      "label": "Praise",
+      "nb_prediction": "Praise",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Praise"
+    },
+    {
+      "centroid_prediction": "Introduce",
+      "example_id": "S06/E03/112",
+      "label": "Advise",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Advise",
+      "example_id": "S06/E03/12",
+      "label": "Advise",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Arrange",
+      "example_id": "S06/E03/129",
+      "label": "Advise",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Advise",
+      "example_id": "S06/E03/139",
+      "label": "Advise",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Complain",
+      "example_id": "S06/E03/141",
+      "label": "Inform",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Complain",
+      "example_id": "S06/E03/146",
+      "label": "Inform",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Comfort",
+      "example_id": "S06/E03/150",
+      "label": "Advise",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Complain",
+      "example_id": "S06/E03/160",
+      "label": "Leave",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Comfort",
+      "example_id": "S06/E03/212",
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Inform",
+      "example_id": "S06/E03/218",
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Arrange",
+      "example_id": "S06/E03/219",
+      "label": "Inform",
+      "nb_prediction": "Arrange",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Arrange"
+    },
+    {
+      "centroid_prediction": "Inform",
+      "example_id": "S06/E03/220",
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Inform",
+      "example_id": "S06/E03/247",
+      "label": "Advise",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Thank",
+      "example_id": "S06/E03/308",
+      "label": "Thank",
+      "nb_prediction": "Thank",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Thank"
+    },
+    {
+      "centroid_prediction": "Thank",
+      "example_id": "S06/E03/319",
+      "label": "Thank",
+      "nb_prediction": "Thank",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Thank"
+    },
+    {
+      "centroid_prediction": "Thank",
+      "example_id": "S06/E03/326",
+      "label": "Thank",
+      "nb_prediction": "Thank",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Thank"
+    },
+    {
+      "centroid_prediction": "Praise",
+      "example_id": "S06/E03/328",
+      "label": "Praise",
+      "nb_prediction": "Praise",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Praise"
+    },
+    {
+      "centroid_prediction": "Inform",
+      "example_id": "S06/E03/33",
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Thank",
+      "example_id": "S06/E03/370",
+      "label": "Taunt",
+      "nb_prediction": "Thank",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Thank"
+    },
+    {
+      "centroid_prediction": "Advise",
+      "example_id": "S06/E03/372",
+      "label": "Complain",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Introduce",
+      "example_id": "S06/E03/389",
+      "label": "Complain",
+      "nb_prediction": "Criticize",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Criticize"
+    },
+    {
+      "centroid_prediction": "Flaunt",
+      "example_id": "S06/E03/4",
+      "label": "Inform",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Taunt",
+      "example_id": "S06/E03/436",
+      "label": "Joke",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Arrange",
+      "example_id": "S06/E03/452",
+      "label": "Criticize",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Inform",
+      "example_id": "S06/E03/455",
+      "label": "Criticize",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Ask for help",
+      "example_id": "S06/E03/458",
+      "label": "Flaunt",
+      "nb_prediction": "Ask for help",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Ask for help"
+    },
+    {
+      "centroid_prediction": "Arrange",
+      "example_id": "S06/E03/462",
+      "label": "Inform",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Praise",
+      "example_id": "S06/E03/471",
+      "label": "Praise",
+      "nb_prediction": "Praise",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Praise"
+    },
+    {
+      "centroid_prediction": "Advise",
+      "example_id": "S06/E03/474",
+      "label": "Advise",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Comfort",
+      "example_id": "S06/E03/477",
+      "label": "Prevent",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Advise",
+      "example_id": "S06/E03/481",
+      "label": "Complain",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Flaunt",
+      "example_id": "S06/E03/498",
+      "label": "Advise",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Apologise",
+      "example_id": "S06/E03/5",
+      "label": "Apologise",
+      "nb_prediction": "Apologise",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Apologise"
+    },
+    {
+      "centroid_prediction": "Advise",
+      "example_id": "S06/E03/501",
+      "label": "Advise",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Taunt",
+      "example_id": "S06/E03/502",
+      "label": "Advise",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Comfort",
+      "example_id": "S06/E03/542",
+      "label": "Prevent",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Inform",
+      "example_id": "S06/E03/543",
+      "label": "Advise",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Apologise",
+      "example_id": "S06/E03/548",
+      "label": "Apologise",
+      "nb_prediction": "Apologise",
+      "selected_paradigm": "unsupervised",
+      "universal_correct": true,
+      "universal_prediction": "Apologise"
+    },
+    {
+      "centroid_prediction": "Criticize",
+      "example_id": "S06/E03/551",
+      "label": "Criticize",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Ask for help",
+      "example_id": "S06/E03/555",
+      "label": "Arrange",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Criticize",
+      "example_id": "S06/E03/597",
+      "label": "Care",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Apologise",
+      "example_id": "S06/E03/606",
+      "label": "Apologise",
+      "nb_prediction": "Apologise",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Apologise"
+    },
+    {
+      "centroid_prediction": "Flaunt",
+      "example_id": "S06/E03/613",
+      "label": "Inform",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Apologise",
+      "example_id": "S06/E03/617",
+      "label": "Apologise",
+      "nb_prediction": "Apologise",
+      "selected_paradigm": "unsupervised",
+      "universal_correct": true,
+      "universal_prediction": "Apologise"
+    },
+    {
+      "centroid_prediction": "Comfort",
+      "example_id": "S06/E03/622",
+      "label": "Thank",
+      "nb_prediction": "Praise",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Praise"
+    },
+    {
+      "centroid_prediction": "Flaunt",
+      "example_id": "S06/E03/67",
+      "label": "Complain",
+      "nb_prediction": "Apologise",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Apologise"
+    },
+    {
+      "centroid_prediction": "Arrange",
+      "example_id": "S06/E03/83",
+      "label": "Inform",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Arrange",
+      "example_id": "S06/E03/90",
+      "label": "Advise",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Oppose",
+      "example_id": "S06/E03/92",
+      "label": "Oppose",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Praise",
+      "example_id": "S06/E04/1",
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Apologise",
+      "example_id": "S06/E04/123",
+      "label": "Apologise",
+      "nb_prediction": "Apologise",
+      "selected_paradigm": "unsupervised",
+      "universal_correct": true,
+      "universal_prediction": "Apologise"
+    },
+    {
+      "centroid_prediction": "Advise",
+      "example_id": "S06/E04/14",
+      "label": "Complain",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Praise",
+      "example_id": "S06/E04/15",
+      "label": "Agree",
+      "nb_prediction": "Praise",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Praise"
+    },
+    {
+      "centroid_prediction": "Apologise",
+      "example_id": "S06/E04/164",
+      "label": "Apologise",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Advise",
+      "example_id": "S06/E04/186",
+      "label": "Criticize",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Care",
+      "example_id": "S06/E04/235",
+      "label": "Care",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Inform",
+      "example_id": "S06/E04/251",
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Oppose",
+      "example_id": "S06/E04/252",
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Apologise",
+      "example_id": "S06/E04/35",
+      "label": "Apologise",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Introduce",
+      "example_id": "S06/E04/370",
+      "label": "Advise",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Comfort",
+      "example_id": "S06/E04/39",
+      "label": "Praise",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Introduce",
+      "example_id": "S06/E04/396",
+      "label": "Complain",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Flaunt",
+      "example_id": "S06/E04/400",
+      "label": "Complain",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Care",
+      "example_id": "S06/E04/423",
+      "label": "Care",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Inform",
+      "example_id": "S06/E04/432",
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Inform",
+      "example_id": "S06/E04/434",
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Thank",
+      "example_id": "S06/E04/443",
+      "label": "Thank",
+      "nb_prediction": "Thank",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Thank"
+    },
+    {
+      "centroid_prediction": "Inform",
+      "example_id": "S06/E04/444",
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Advise",
+      "example_id": "S06/E04/449",
+      "label": "Advise",
+      "nb_prediction": "Leave",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Leave"
+    },
+    {
+      "centroid_prediction": "Leave",
+      "example_id": "S06/E04/486",
+      "label": "Advise",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Praise",
+      "example_id": "S06/E04/490",
+      "label": "Praise",
+      "nb_prediction": "Praise",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Praise"
+    },
+    {
+      "centroid_prediction": "Apologise",
+      "example_id": "S06/E04/491",
+      "label": "Apologise",
+      "nb_prediction": "Apologise",
+      "selected_paradigm": "unsupervised",
+      "universal_correct": true,
+      "universal_prediction": "Apologise"
+    },
+    {
+      "centroid_prediction": "Apologise",
+      "example_id": "S06/E04/503",
+      "label": "Apologise",
+      "nb_prediction": "Apologise",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Apologise"
+    },
+    {
+      "centroid_prediction": "Oppose",
+      "example_id": "S06/E04/528",
+      "label": "Criticize",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Inform",
+      "example_id": "S06/E04/531",
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Flaunt",
+      "example_id": "S06/E04/532",
+      "label": "Advise",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Prevent",
+      "example_id": "S06/E04/542",
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Introduce",
+      "example_id": "S06/E04/545",
+      "label": "Complain",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Apologise",
+      "example_id": "S06/E04/546",
+      "label": "Apologise",
+      "nb_prediction": "Apologise",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Apologise"
+    },
+    {
+      "centroid_prediction": "Flaunt",
+      "example_id": "S06/E04/547",
+      "label": "Praise",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Comfort",
+      "example_id": "S06/E04/568",
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Praise",
+      "example_id": "S06/E04/574",
+      "label": "Thank",
+      "nb_prediction": "Praise",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Praise"
+    },
+    {
+      "centroid_prediction": "Introduce",
+      "example_id": "S06/E04/575",
+      "label": "Care",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Introduce",
+      "example_id": "S06/E04/577",
+      "label": "Joke",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Greet",
+      "example_id": "S06/E04/581",
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Complain",
+      "example_id": "S06/E04/586",
+      "label": "Complain",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Apologise",
+      "example_id": "S06/E04/590",
+      "label": "Apologise",
+      "nb_prediction": "Apologise",
+      "selected_paradigm": "unsupervised",
+      "universal_correct": true,
+      "universal_prediction": "Apologise"
+    },
+    {
+      "centroid_prediction": "Complain",
+      "example_id": "S06/E04/595",
+      "label": "Complain",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Flaunt",
+      "example_id": "S06/E04/60",
+      "label": "Complain",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Advise",
+      "example_id": "S06/E04/601",
+      "label": "Agree",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Care",
+      "example_id": "S06/E04/604",
+      "label": "Care",
+      "nb_prediction": "Criticize",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Criticize"
+    },
+    {
+      "centroid_prediction": "Arrange",
+      "example_id": "S06/E04/62",
+      "label": "Arrange",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Criticize",
+      "example_id": "S06/E04/64",
+      "label": "Arrange",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Criticize",
+      "example_id": "S06/E04/66",
+      "label": "Inform",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Flaunt",
+      "example_id": "S06/E04/67",
+      "label": "Complain",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Criticize",
+      "example_id": "S06/E04/68",
+      "label": "Ask for help",
+      "nb_prediction": "Criticize",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Criticize"
+    },
+    {
+      "centroid_prediction": "Arrange",
+      "example_id": "S06/E04/70",
+      "label": "Arrange",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Joke",
+      "example_id": "S06/E04/89",
+      "label": "Flaunt",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Flaunt",
+      "example_id": "S06/E04/90",
+      "label": "Inform",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Greet",
+      "example_id": "S06/E05/115",
+      "label": "Greet",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "unsupervised",
+      "universal_correct": true,
+      "universal_prediction": "Greet"
+    },
+    {
+      "centroid_prediction": "Oppose",
+      "example_id": "S06/E05/12",
+      "label": "Inform",
+      "nb_prediction": "Prevent",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Prevent"
+    },
+    {
+      "centroid_prediction": "Apologise",
+      "example_id": "S06/E05/127",
+      "label": "Apologise",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Complain",
+      "example_id": "S06/E05/128",
+      "label": "Inform",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Inform",
+      "example_id": "S06/E05/167",
+      "label": "Advise",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Praise",
+      "example_id": "S06/E05/170",
+      "label": "Arrange",
+      "nb_prediction": "Praise",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Praise"
+    },
+    {
+      "centroid_prediction": "Advise",
+      "example_id": "S06/E05/173",
+      "label": "Care",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Inform",
+      "example_id": "S06/E05/177",
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Comfort",
+      "example_id": "S06/E05/192",
+      "label": "Advise",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Praise",
+      "example_id": "S06/E05/208",
+      "label": "Praise",
+      "nb_prediction": "Praise",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Praise"
+    },
+    {
+      "centroid_prediction": "Inform",
+      "example_id": "S06/E05/215",
+      "label": "Praise",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Inform",
+      "example_id": "S06/E05/234",
+      "label": "Complain",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Apologise",
+      "example_id": "S06/E05/237",
+      "label": "Apologise",
+      "nb_prediction": "Apologise",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Apologise"
+    },
+    {
+      "centroid_prediction": "Complain",
+      "example_id": "S06/E05/26",
+      "label": "Praise",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Oppose",
+      "example_id": "S06/E05/280",
+      "label": "Prevent",
+      "nb_prediction": "Prevent",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Prevent"
+    },
+    {
+      "centroid_prediction": "Introduce",
+      "example_id": "S06/E05/350",
+      "label": "Complain",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Introduce",
+      "example_id": "S06/E05/385",
+      "label": "Introduce",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Inform",
+      "example_id": "S06/E05/388",
+      "label": "Introduce",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Criticize",
+      "example_id": "S06/E05/4",
+      "label": "Inform",
+      "nb_prediction": "Criticize",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Criticize"
+    },
+    {
+      "centroid_prediction": "Greet",
+      "example_id": "S06/E05/422",
+      "label": "Apologise",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Arrange",
+      "example_id": "S06/E05/486",
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Praise",
+      "example_id": "S06/E05/509",
+      "label": "Criticize",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Agree",
+      "example_id": "S06/E05/515",
+      "label": "Thank",
+      "nb_prediction": "Thank",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Thank"
+    },
+    {
+      "centroid_prediction": "Criticize",
+      "example_id": "S06/E05/536",
+      "label": "Introduce",
+      "nb_prediction": "Criticize",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Criticize"
+    },
+    {
+      "centroid_prediction": "Criticize",
+      "example_id": "S06/E05/568",
+      "label": "Care",
+      "nb_prediction": "Criticize",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Criticize"
+    },
+    {
+      "centroid_prediction": "Care",
+      "example_id": "S06/E05/574",
+      "label": "Apologise",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Criticize",
+      "example_id": "S06/E05/74",
+      "label": "Agree",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Introduce",
+      "example_id": "S06/E05/79",
+      "label": "Agree",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Criticize",
+      "example_id": "S06/E05/81",
+      "label": "Arrange",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Inform",
+      "example_id": "S06/E06/20",
+      "label": "Inform",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Apologise",
+      "example_id": "S06/E06/208",
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Apologise",
+      "example_id": "S06/E06/212",
+      "label": "Apologise",
+      "nb_prediction": "Apologise",
+      "selected_paradigm": "unsupervised",
+      "universal_correct": true,
+      "universal_prediction": "Apologise"
+    },
+    {
+      "centroid_prediction": "Inform",
+      "example_id": "S06/E06/213",
+      "label": "Comfort",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Thank",
+      "example_id": "S06/E06/218",
+      "label": "Thank",
+      "nb_prediction": "Thank",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Thank"
+    },
+    {
+      "centroid_prediction": "Flaunt",
+      "example_id": "S06/E06/220",
+      "label": "Thank",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Joke",
+      "example_id": "S06/E06/23",
+      "label": "Complain",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Oppose",
+      "example_id": "S06/E06/26",
+      "label": "Inform",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Complain",
+      "example_id": "S06/E06/340",
+      "label": "Complain",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Comfort",
+      "example_id": "S06/E06/353",
+      "label": "Comfort",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Comfort",
+      "example_id": "S06/E06/361",
+      "label": "Agree",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Inform",
+      "example_id": "S06/E06/41",
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Introduce",
+      "example_id": "S06/E06/415",
+      "label": "Praise",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Praise",
+      "example_id": "S06/E06/42",
+      "label": "Oppose",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Inform",
+      "example_id": "S06/E06/420",
+      "label": "Taunt",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Apologise",
+      "example_id": "S06/E06/422",
+      "label": "Apologise",
+      "nb_prediction": "Apologise",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Apologise"
+    },
+    {
+      "centroid_prediction": "Comfort",
+      "example_id": "S06/E06/44",
+      "label": "Comfort",
+      "nb_prediction": "Comfort",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Comfort"
+    },
+    {
+      "centroid_prediction": "Agree",
+      "example_id": "S06/E06/45",
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Complain",
+      "example_id": "S06/E06/466",
+      "label": "Criticize",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Prevent",
+      "example_id": "S06/E06/473",
+      "label": "Complain",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Arrange",
+      "example_id": "S06/E06/474",
+      "label": "Taunt",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Ask for help",
+      "example_id": "S06/E06/483",
+      "label": "Inform",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Taunt",
+      "example_id": "S06/E06/550",
+      "label": "Comfort",
+      "nb_prediction": "Praise",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Praise"
+    },
+    {
+      "centroid_prediction": "Leave",
+      "example_id": "S06/E06/558",
+      "label": "Comfort",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Comfort",
+      "example_id": "S06/E06/575",
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Inform",
+      "example_id": "S06/E06/589",
+      "label": "Introduce",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Criticize",
+      "example_id": "S06/E06/7",
+      "label": "Joke",
+      "nb_prediction": "Criticize",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Criticize"
+    },
+    {
+      "centroid_prediction": "Arrange",
+      "example_id": "S06/E06/88",
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Greet",
+      "example_id": "S06/E06/9",
+      "label": "Apologise",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Care",
+      "example_id": "S06/E06/99",
+      "label": "Care",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Comfort",
+      "example_id": "S06/E07/184",
+      "label": "Comfort",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "unsupervised",
+      "universal_correct": true,
+      "universal_prediction": "Comfort"
+    },
+    {
+      "centroid_prediction": "Comfort",
+      "example_id": "S06/E07/191",
+      "label": "Oppose",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Praise",
+      "example_id": "S06/E07/195",
+      "label": "Praise",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Apologise",
+      "example_id": "S06/E07/206",
+      "label": "Apologise",
+      "nb_prediction": "Apologise",
+      "selected_paradigm": "unsupervised",
+      "universal_correct": true,
+      "universal_prediction": "Apologise"
+    },
+    {
+      "centroid_prediction": "Criticize",
+      "example_id": "S06/E07/279",
+      "label": "Criticize",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Complain",
+      "example_id": "S06/E07/287",
+      "label": "Leave",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Comfort",
+      "example_id": "S06/E07/3",
+      "label": "Comfort",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Apologise",
+      "example_id": "S06/E07/324",
+      "label": "Apologise",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "unsupervised",
+      "universal_correct": true,
+      "universal_prediction": "Apologise"
+    },
+    {
+      "centroid_prediction": "Introduce",
+      "example_id": "S06/E07/325",
+      "label": "Praise",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Inform",
+      "example_id": "S06/E07/328",
+      "label": "Inform",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Criticize",
+      "example_id": "S06/E07/333",
+      "label": "Inform",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Apologise",
+      "example_id": "S06/E07/343",
+      "label": "Apologise",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Apologise",
+      "example_id": "S06/E07/355",
+      "label": "Flaunt",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Flaunt",
+      "example_id": "S06/E07/364",
+      "label": "Complain",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Introduce",
+      "example_id": "S06/E07/385",
+      "label": "Complain",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Introduce",
+      "example_id": "S06/E07/386",
+      "label": "Praise",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Thank",
+      "example_id": "S06/E07/388",
+      "label": "Thank",
+      "nb_prediction": "Thank",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Thank"
+    },
+    {
+      "centroid_prediction": "Flaunt",
+      "example_id": "S06/E07/404",
+      "label": "Complain",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Inform",
+      "example_id": "S06/E07/408",
+      "label": "Complain",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Taunt",
+      "example_id": "S06/E07/412",
+      "label": "Joke",
+      "nb_prediction": "Praise",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Praise"
+    },
+    {
+      "centroid_prediction": "Comfort",
+      "example_id": "S06/E07/424",
+      "label": "Comfort",
+      "nb_prediction": "Comfort",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Comfort"
+    },
+    {
+      "centroid_prediction": "Ask for help",
+      "example_id": "S06/E07/426",
+      "label": "Joke",
+      "nb_prediction": "Prevent",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Prevent"
+    },
+    {
+      "centroid_prediction": "Complain",
+      "example_id": "S06/E07/442",
+      "label": "Inform",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Complain",
+      "example_id": "S06/E07/455",
+      "label": "Flaunt",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Criticize",
+      "example_id": "S06/E07/483",
+      "label": "Criticize",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Flaunt",
+      "example_id": "S06/E07/486",
+      "label": "Complain",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Care",
+      "example_id": "S06/E07/488",
+      "label": "Care",
+      "nb_prediction": "Criticize",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Criticize"
+    },
+    {
+      "centroid_prediction": "Agree",
+      "example_id": "S06/E07/502",
+      "label": "Agree",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Apologise",
+      "example_id": "S06/E07/503",
+      "label": "Apologise",
+      "nb_prediction": "Apologise",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Apologise"
+    },
+    {
+      "centroid_prediction": "Praise",
+      "example_id": "S06/E07/512",
+      "label": "Care",
+      "nb_prediction": "Praise",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Praise"
+    },
+    {
+      "centroid_prediction": "Praise",
+      "example_id": "S06/E07/535",
+      "label": "Complain",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Care",
+      "example_id": "S06/E07/541",
+      "label": "Care",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Apologise",
+      "example_id": "S06/E07/561",
+      "label": "Apologise",
+      "nb_prediction": "Apologise",
+      "selected_paradigm": "unsupervised",
+      "universal_correct": true,
+      "universal_prediction": "Apologise"
+    },
+    {
+      "centroid_prediction": "Criticize",
+      "example_id": "S06/E07/569",
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Criticize",
+      "example_id": "S06/E07/570",
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Comfort",
+      "example_id": "S06/E07/573",
+      "label": "Comfort",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Agree",
+      "example_id": "S06/E07/576",
+      "label": "Thank",
+      "nb_prediction": "Thank",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Thank"
+    },
+    {
+      "centroid_prediction": "Praise",
+      "example_id": "S06/E07/581",
+      "label": "Criticize",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Greet",
+      "example_id": "S06/E07/586",
+      "label": "Greet",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "unsupervised",
+      "universal_correct": true,
+      "universal_prediction": "Greet"
+    },
+    {
+      "centroid_prediction": "Apologise",
+      "example_id": "S06/E07/589",
+      "label": "Apologise",
+      "nb_prediction": "Apologise",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Apologise"
+    },
+    {
+      "centroid_prediction": "Taunt",
+      "example_id": "S06/E07/601",
+      "label": "Praise",
+      "nb_prediction": "Praise",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Praise"
+    },
+    {
+      "centroid_prediction": "Greet",
+      "example_id": "S06/E08/109",
+      "label": "Care",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Apologise",
+      "example_id": "S06/E08/115",
+      "label": "Apologise",
+      "nb_prediction": "Apologise",
+      "selected_paradigm": "unsupervised",
+      "universal_correct": true,
+      "universal_prediction": "Apologise"
+    },
+    {
+      "centroid_prediction": "Complain",
+      "example_id": "S06/E08/118",
+      "label": "Complain",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Flaunt",
+      "example_id": "S06/E08/126",
+      "label": "Complain",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Agree",
+      "example_id": "S06/E08/136",
+      "label": "Agree",
+      "nb_prediction": "Praise",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Praise"
+    },
+    {
+      "centroid_prediction": "Apologise",
+      "example_id": "S06/E08/14",
+      "label": "Apologise",
+      "nb_prediction": "Apologise",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Apologise"
+    },
+    {
+      "centroid_prediction": "Arrange",
+      "example_id": "S06/E08/145",
+      "label": "Prevent",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Apologise",
+      "example_id": "S06/E08/236",
+      "label": "Joke",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Complain",
+      "example_id": "S06/E08/3",
+      "label": "Introduce",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Criticize",
+      "example_id": "S06/E08/39",
+      "label": "Care",
+      "nb_prediction": "Praise",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Praise"
+    },
+    {
+      "centroid_prediction": "Apologise",
+      "example_id": "S06/E08/437",
+      "label": "Leave",
+      "nb_prediction": "Leave",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Leave"
+    },
+    {
+      "centroid_prediction": "Criticize",
+      "example_id": "S06/E08/475",
+      "label": "Criticize",
+      "nb_prediction": "Criticize",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Criticize"
+    },
+    {
+      "centroid_prediction": "Complain",
+      "example_id": "S06/E08/476",
+      "label": "Oppose",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Taunt",
+      "example_id": "S06/E08/479",
+      "label": "Criticize",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Complain",
+      "example_id": "S06/E08/481",
+      "label": "Oppose",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Criticize",
+      "example_id": "S06/E08/486",
+      "label": "Taunt",
+      "nb_prediction": "Criticize",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Criticize"
+    },
+    {
+      "centroid_prediction": "Thank",
+      "example_id": "S06/E08/499",
+      "label": "Criticize",
+      "nb_prediction": "Thank",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Thank"
+    },
+    {
+      "centroid_prediction": "Apologise",
+      "example_id": "S06/E08/506",
+      "label": "Apologise",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Comfort",
+      "example_id": "S06/E08/54",
+      "label": "Prevent",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Comfort",
+      "example_id": "S06/E08/542",
+      "label": "Comfort",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Criticize",
+      "example_id": "S06/E08/564",
+      "label": "Complain",
+      "nb_prediction": "Praise",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Praise"
+    },
+    {
+      "centroid_prediction": "Criticize",
+      "example_id": "S06/E08/575",
+      "label": "Comfort",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Ask for help",
+      "example_id": "S06/E08/598",
+      "label": "Praise",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Joke",
+      "example_id": "S06/E08/60",
+      "label": "Apologise",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Arrange",
+      "example_id": "S06/E08/606",
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Leave",
+      "example_id": "S06/E08/61",
+      "label": "Leave",
+      "nb_prediction": "Leave",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Leave"
+    },
+    {
+      "centroid_prediction": "Taunt",
+      "example_id": "S06/E08/612",
+      "label": "Praise",
+      "nb_prediction": "Praise",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Praise"
+    },
+    {
+      "centroid_prediction": "Comfort",
+      "example_id": "S06/E08/62",
+      "label": "Care",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Inform",
+      "example_id": "S06/E09/10",
+      "label": "Advise",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Inform",
+      "example_id": "S06/E09/15",
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Comfort",
+      "example_id": "S06/E09/16",
+      "label": "Inform",
+      "nb_prediction": "Leave",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Leave"
+    },
+    {
+      "centroid_prediction": "Introduce",
+      "example_id": "S06/E09/163",
+      "label": "Taunt",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Complain",
+      "example_id": "S06/E09/169",
+      "label": "Complain",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Introduce",
+      "example_id": "S06/E09/229",
+      "label": "Complain",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Introduce",
+      "example_id": "S06/E09/250",
+      "label": "Introduce",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Taunt",
+      "example_id": "S06/E09/308",
+      "label": "Complain",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Oppose",
+      "example_id": "S06/E09/315",
+      "label": "Inform",
+      "nb_prediction": "Arrange",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Arrange"
+    },
+    {
+      "centroid_prediction": "Introduce",
+      "example_id": "S06/E09/330",
+      "label": "Complain",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Oppose",
+      "example_id": "S06/E09/333",
+      "label": "Oppose",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Criticize",
+      "example_id": "S06/E09/354",
+      "label": "Taunt",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Flaunt",
+      "example_id": "S06/E09/360",
+      "label": "Inform",
+      "nb_prediction": "Praise",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Praise"
+    },
+    {
+      "centroid_prediction": "Complain",
+      "example_id": "S06/E09/384",
+      "label": "Comfort",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Criticize",
+      "example_id": "S06/E09/429",
+      "label": "Criticize",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Apologise",
+      "example_id": "S06/E09/468",
+      "label": "Apologise",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Criticize",
+      "example_id": "S06/E09/509",
+      "label": "Criticize",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Taunt",
+      "example_id": "S06/E09/527",
+      "label": "Introduce",
+      "nb_prediction": "Praise",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Praise"
+    },
+    {
+      "centroid_prediction": "Advise",
+      "example_id": "S06/E09/532",
+      "label": "Leave",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Praise",
+      "example_id": "S06/E09/537",
+      "label": "Care",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Taunt",
+      "example_id": "S06/E09/545",
+      "label": "Joke",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Complain",
+      "example_id": "S06/E09/558",
+      "label": "Complain",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Criticize",
+      "example_id": "S06/E09/567",
+      "label": "Comfort",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Thank",
+      "example_id": "S06/E09/568",
+      "label": "Thank",
+      "nb_prediction": "Thank",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Thank"
+    },
+    {
+      "centroid_prediction": "Ask for help",
+      "example_id": "S06/E09/570",
+      "label": "Arrange",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Flaunt",
+      "example_id": "S06/E09/579",
+      "label": "Praise",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Thank",
+      "example_id": "S06/E09/580",
+      "label": "Thank",
+      "nb_prediction": "Thank",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Thank"
+    },
+    {
+      "centroid_prediction": "Praise",
+      "example_id": "S06/E09/597",
+      "label": "Praise",
+      "nb_prediction": "Praise",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Praise"
+    },
+    {
+      "centroid_prediction": "Apologise",
+      "example_id": "S06/E09/6",
+      "label": "Apologise",
+      "nb_prediction": "Apologise",
+      "selected_paradigm": "unsupervised",
+      "universal_correct": true,
+      "universal_prediction": "Apologise"
+    },
+    {
+      "centroid_prediction": "Inform",
+      "example_id": "S06/E09/9",
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Criticize",
+      "example_id": "S06/E10/110",
+      "label": "Criticize",
+      "nb_prediction": "Criticize",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Criticize"
+    },
+    {
+      "centroid_prediction": "Advise",
+      "example_id": "S06/E10/132",
+      "label": "Prevent",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Criticize",
+      "example_id": "S06/E10/140",
+      "label": "Criticize",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Oppose",
+      "example_id": "S06/E10/176",
+      "label": "Oppose",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Taunt",
+      "example_id": "S06/E10/238",
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Leave",
+      "example_id": "S06/E10/240",
+      "label": "Introduce",
+      "nb_prediction": "Praise",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Praise"
+    },
+    {
+      "centroid_prediction": "Thank",
+      "example_id": "S06/E10/242",
+      "label": "Thank",
+      "nb_prediction": "Thank",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Thank"
+    },
+    {
+      "centroid_prediction": "Arrange",
+      "example_id": "S06/E10/247",
+      "label": "Inform",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Arrange",
+      "example_id": "S06/E10/257",
+      "label": "Praise",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Arrange",
+      "example_id": "S06/E10/26",
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Comfort",
+      "example_id": "S06/E10/263",
+      "label": "Complain",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Oppose",
+      "example_id": "S06/E10/280",
+      "label": "Complain",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Arrange",
+      "example_id": "S06/E10/285",
+      "label": "Arrange",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Praise",
+      "example_id": "S06/E10/3",
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Inform",
+      "example_id": "S06/E10/308",
+      "label": "Flaunt",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Inform",
+      "example_id": "S06/E10/310",
+      "label": "Praise",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Flaunt",
+      "example_id": "S06/E10/342",
+      "label": "Complain",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Flaunt",
+      "example_id": "S06/E10/392",
+      "label": "Complain",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Introduce",
+      "example_id": "S06/E10/396",
+      "label": "Praise",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Comfort",
+      "example_id": "S06/E10/4",
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Apologise",
+      "example_id": "S06/E10/414",
+      "label": "Advise",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Complain",
+      "example_id": "S06/E10/419",
+      "label": "Praise",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Taunt",
+      "example_id": "S06/E10/420",
+      "label": "Introduce",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Ask for help",
+      "example_id": "S06/E10/424",
+      "label": "Prevent",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Arrange",
+      "example_id": "S06/E10/436",
+      "label": "Ask for help",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Flaunt",
+      "example_id": "S06/E10/454",
+      "label": "Complain",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Inform",
+      "example_id": "S06/E10/455",
+      "label": "Leave",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Apologise",
+      "example_id": "S06/E10/463",
+      "label": "Apologise",
+      "nb_prediction": "Apologise",
+      "selected_paradigm": "unsupervised",
+      "universal_correct": true,
+      "universal_prediction": "Apologise"
+    },
+    {
+      "centroid_prediction": "Arrange",
+      "example_id": "S06/E10/509",
+      "label": "Inform",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Inform"
+    },
+    {
+      "centroid_prediction": "Prevent",
+      "example_id": "S06/E10/525",
+      "label": "Comfort",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Apologise",
+      "example_id": "S06/E10/534",
+      "label": "Apologise",
+      "nb_prediction": "Inform",
+      "selected_paradigm": "unsupervised",
+      "universal_correct": true,
+      "universal_prediction": "Apologise"
+    },
+    {
+      "centroid_prediction": "Flaunt",
+      "example_id": "S06/E10/548",
+      "label": "Praise",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": false,
+      "universal_prediction": "Complain"
+    },
+    {
+      "centroid_prediction": "Flaunt",
+      "example_id": "S06/E10/552",
+      "label": "Complain",
+      "nb_prediction": "Complain",
+      "selected_paradigm": "supervised",
+      "universal_correct": true,
+      "universal_prediction": "Complain"
+    }
+  ],
+  "metrics": {
+    "centroid": {
+      "accuracy": 0.360104,
+      "coverage": 1.0,
+      "macro_f1": 0.303352,
+      "selective_accuracy": 0.360104
+    },
+    "naive_bayes": {
+      "accuracy": 0.365285,
+      "coverage": 1.0,
+      "macro_f1": 0.182994,
+      "selective_accuracy": 0.365285
+    },
+    "universal": {
+      "accuracy": 0.38342,
+      "coverage": 1.0,
+      "macro_f1": 0.234159,
+      "selective_accuracy": 0.38342
+    }
+  },
+  "protocol": {
+    "candidate_paradigms": [
+      "supervised",
+      "unsupervised"
+    ],
+    "chronological_split": true,
+    "claim_boundary": "second-dataset replication; no general SOTA claim",
+    "holdout_labels_used_for_decision": false
+  },
+  "schema": "herus-universal-mintrec-v1"
+}
