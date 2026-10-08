@@ -17,6 +17,7 @@ A documentação antiga conserva decisões e experimentos importantes, mas foi e
 - [142 — Validação independente MInDS-14](142-VALIDACAO-INDEPENDENTE-MINDS14.md)
 - [143 — Bootstrap combinado e efeito de seleção](143-BOOTSTRAP-COMBINADO-EFEITO-DE-SELECAO.md)
 - [144 — Curvas risco–cobertura](144-CURVAS-RISCO-COBERTURA.md)
+- [145 — Identidade do core e resultado negativo](145-IDENTIDADE-DO-CORE-E-RESULTADO-NEGATIVO.md)
 - [119 — Fachada única HERUS](119-FACHADA-UNICA-HERUS.md)
 - [134 — Síntese da crise e reestruturação](134-SINTESE-CRISE-E-REESTRUTURACAO.md)
 - [Arquivo histórico](../archive/README.md)
