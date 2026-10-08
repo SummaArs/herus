@@ -3,7 +3,7 @@ from __future__ import annotations
 import csv, json, math, urllib.request
 from collections import Counter, defaultdict
 from pathlib import Path
-from real_data_baseline_benchmark import _nb_scores, cosine, metrics, vector
+from real_data_baseline_benchmark import fit_nb, cosine, metrics, vector
 from score_calibrated_universal import calibrator
 
 HOST='banking77'; BASE='https://raw.githubusercontent.com/PolyAI-LDN/task-specific-datasets/master/banking_data/'
@@ -26,9 +26,9 @@ def cents(rows):
     return {l:Counter({t:v/counts[l] for t,v in ws.items()}) for l,ws in sums.items()}
 
 def classic(fit,rows,cs):
-    out=[]
+    out=[]; model=fit_nb(fit)
     for r in rows:
-        nl,nm=_nb_scores(fit,r); cl,cm=max(((l,cosine(vector(r['text']),c)) for l,c in cs.items()),key=lambda x:(x[1],x[0]))
+        nl,nm=model.score(r); cl,cm=max(((l,cosine(vector(r['text']),c)) for l,c in cs.items()),key=lambda x:(x[1],x[0]))
         out.append({'id':r['id'],'label':r['label'],'supervised':(nl,1/(1+math.exp(-nm))),'unsupervised':(cl,max(0,cm))})
     return out
 

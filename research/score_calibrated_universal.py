@@ -8,7 +8,7 @@ import json, math
 from collections import Counter, defaultdict
 from pathlib import Path
 from independent_minds14_benchmark import fetch_rows, split
-from real_data_baseline_benchmark import fetch_split, _nb_scores, cosine, metrics, vector
+from real_data_baseline_benchmark import fetch_split, fit_nb, cosine, metrics, vector
 
 MIN_PRECISION=.80
 
@@ -18,9 +18,9 @@ def cents(rows):
     return {l:Counter({t:v/counts[l] for t,v in ws.items()}) for l,ws in sums.items()}
 
 def classic(fit, rows, cs, ids):
-    out=[]
+    out=[]; model=fit_nb(fit)
     for r in rows:
-        eid=ids(r); nl,nm=_nb_scores(fit,r); cl,cm=max(((l,cosine(vector(r['text']),c)) for l,c in cs.items()),key=lambda x:(x[1],x[0]))
+        eid=ids(r); nl,nm=model.score(r); cl,cm=max(((l,cosine(vector(r['text']),c)) for l,c in cs.items()),key=lambda x:(x[1],x[0]))
         out.append({'id':eid,'label':r['label'],'supervised':(nl,1/(1+math.exp(-nm))),'unsupervised':(cl,max(0,cm))})
     return out
 

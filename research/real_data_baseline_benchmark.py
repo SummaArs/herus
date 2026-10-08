@@ -40,25 +40,8 @@ def majority(train, test):
     return [label] * len(test)
 
 def nb(train, test):
-    labels = sorted({row['label'] for row in train})
-    docs = Counter(row['label'] for row in train)
-    words = {label: Counter() for label in labels}
-    totals = Counter()
-    vocabulary = set()
-    for row in train:
-        counts = vector(row['text']); words[row['label']].update(counts); totals[row['label']] += sum(counts.values()); vocabulary.update(counts)
-    v = max(1, len(vocabulary)); n = len(train)
-    predictions = []
-    for row in test:
-        counts = vector(row['text'])
-        scores = {}
-        for label in labels:
-            score = math.log((docs[label] + 1) / (n + len(labels)))
-            denom = totals[label] + v
-            score += sum(count * math.log((words[label][token] + 1) / denom) for token, count in counts.items())
-            scores[label] = score
-        predictions.append(max(labels, key=lambda label: scores[label]))
-    return predictions
+    model = fit_nb(train)
+    return [model.score(row)[0] for row in test]
 
 def cosine(left: Counter[str], right: Counter[str]) -> float:
     dot = sum(value * right.get(token, 0) for token, value in left.items())
@@ -93,20 +76,28 @@ def contextual_memory(train, test):
         predictions.append(memory[key].most_common(1)[0][0] if key in memory else None)
     return predictions
 
+class MultinomialNBModel:
+    """Cached text model; fitting is separated from per-row scoring."""
+    def __init__(self, train):
+        self.labels = sorted({item['label'] for item in train}); self.docs = Counter(item['label'] for item in train)
+        self.words = {label: Counter() for label in self.labels}; self.totals = Counter(); vocabulary = set()
+        for item in train:
+            counts = vector(item['text']); self.words[item['label']].update(counts)
+            self.totals[item['label']] += sum(counts.values()); vocabulary.update(counts)
+        self.v = max(1, len(vocabulary)); self.n = len(train)
+    def score(self, row):
+        counts = vector(row['text']); scores = {}
+        for label in self.labels:
+            score = math.log((self.docs[label] + 1) / (self.n + len(self.labels))); denom = self.totals[label] + self.v
+            scores[label] = score + sum(c * math.log((self.words[label][token] + 1) / denom) for token, c in counts.items())
+        ordered = sorted(scores.items(), key=lambda pair: pair[1], reverse=True)
+        return ordered[0][0], ordered[0][1] - ordered[1][1]
+
+def fit_nb(train):
+    return MultinomialNBModel(train)
+
 def _nb_scores(train, row):
-    labels = sorted({item['label'] for item in train})
-    docs = Counter(item['label'] for item in train)
-    words = {label: Counter() for label in labels}; totals = Counter(); vocabulary = set()
-    for item in train:
-        counts = vector(item['text']); words[item['label']].update(counts)
-        totals[item['label']] += sum(counts.values()); vocabulary.update(counts)
-    v = max(1, len(vocabulary)); n = len(train); counts = vector(row['text']); scores = {}
-    for label in labels:
-        score = math.log((docs[label] + 1) / (n + len(labels)))
-        denom = totals[label] + v
-        scores[label] = score + sum(c * math.log((words[label][token] + 1) / denom) for token, c in counts.items())
-    ordered = sorted(scores.items(), key=lambda pair: pair[1], reverse=True)
-    return ordered[0][0], ordered[0][1] - ordered[1][1]
+    return fit_nb(train).score(row)
 
 def calibrated_symbiotic_memory(fit, calibration, test, minimum_precision=0.80):
     """Use a confidence margin calibrated without seeing the final holdout."""

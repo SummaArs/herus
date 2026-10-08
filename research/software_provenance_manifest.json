@@ -515,7 +515,7 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "c8e8820cbc25d2fe405866b7119ca9d824b0bec19944dfc985b571283bacb1b6",
+      "sha256": "28ca9c43307eea280eb2a90e15d07d1b518c1a4a124e3163ea95b8e0dc06a29f",
       "role": "organized documentation, maps and historical design records"
     },
     {
@@ -749,7 +749,7 @@
     {
       "path": "research/real_data_baseline_benchmark.py",
       "kind": "file",
-      "sha256": "8a9129f147ee9ace41af901bec13a8ce284c7f930fe54e886347b2ff0e967ec6",
+      "sha256": "2dc4d1f08996334868d9200f2bdec63f4eb7f6865a550ac3246a605ff03d56ff",
       "role": "calibrated coverage precision experiment"
     },
     {
@@ -1949,7 +1949,7 @@
     {
       "path": "research/score_calibrated_universal.py",
       "kind": "file",
-      "sha256": "c4f6b0ea8c01fcdc86240cc89a2f85b82477578589951ed784b36330ad6cc762",
+      "sha256": "9501039d482ba015bd0f545869c4639b3417f157a2db12e054fd8608995b37f8",
       "role": "per-paradigm score calibration ablation"
     },
     {
@@ -2021,7 +2021,7 @@
     {
       "path": "research/policy_selection_banking77.py",
       "kind": "file",
-      "sha256": "ee97cf1e9ce0b6c31e98a8a271666fd5e88767f7f1295466ce4bb918818cd6ea",
+      "sha256": "8ee570d7854c9c760686e9123e25c39a5f1e055e1ab3e212f940591d2a12b040",
       "role": "third-host Banking77 policy selection"
     },
     {
@@ -2095,6 +2095,24 @@
       "kind": "file",
       "sha256": "f419f8d8ef137eb9c40af6794fe61e0893a85b9d131343d2b4bed370be2acfdf",
       "role": "capacity and economy report"
+    },
+    {
+      "path": "research/evidence/cached_nb_cost_banking77_v1.json",
+      "kind": "file",
+      "sha256": "f95a8554911a5407a24c8f5b69c1f4748f0f6fbf3db840d00df38f094395dee0",
+      "role": "cached NB cost evidence"
+    },
+    {
+      "path": "research/test_cached_nb_cost.py",
+      "kind": "file",
+      "sha256": "5a2cd2d57cc1fae1d0a3a7107ac8684300c76abcbd671f7a9a2773cda58afb0f",
+      "role": "cached NB cost tests"
+    },
+    {
+      "path": "docs/159-OTIMIZACAO-CPU-E-CUSTO-CACHEADO.md",
+      "kind": "file",
+      "sha256": "7c1171f12e1a76317b4b9a8eb316697f642299fc27f3df70b3cbe051caf1a1a3",
+      "role": "cached CPU optimization report"
     }
   ],
   "components": [

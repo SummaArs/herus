@@ -93,6 +93,7 @@ A documentação antiga conserva decisões e experimentos importantes, mas foi e
 Documentos históricos não devem ser apagados para esconder contradições. Quando um documento antigo divergir do estado atual, o mapa atual deve apontar a divergência e indicar qual contrato ou evidência tem precedência.
 
 - [158 — Capacidade e economia computacional](158-CAPACIDADE-E-ECONOMIA-COMPUTACIONAL.md)
+- [159 — Otimização de CPU e custo cacheado](159-OTIMIZACAO-CPU-E-CUSTO-CACHEADO.md)
 - [153 — Calibração de score e regressão](153-CALIBRACAO-DE-SCORE-E-REGRESSAO.md)
 - [154 — Seleção de política por hospedeiro](154-SELECAO-DE-POLITICA-POR-HOSPEDEIRO.md)
 - [155 — Seletor universal de política](155-SELETOR-UNIVERSAL-DE-POLITICA.md)
