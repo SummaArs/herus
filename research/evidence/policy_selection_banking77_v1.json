@@ -1,0 +1,49 @@
+{
+  "dataset": {
+    "calibration": 3037,
+    "fit": 6966,
+    "holdout": 3080,
+    "id": "PolyAI-LDN/task-specific-datasets/banking_data",
+    "labels": 77,
+    "source": "https://raw.githubusercontent.com/PolyAI-LDN/task-specific-datasets/master/banking_data/"
+  },
+  "metrics": {
+    "chosen_policy": {
+      "accuracy": 0.751623,
+      "coverage": 1.0,
+      "macro_f1": 0.745883,
+      "selective_accuracy": 0.751623
+    },
+    "score_calibrated": {
+      "accuracy": 0.751623,
+      "coverage": 1.0,
+      "macro_f1": 0.745883,
+      "selective_accuracy": 0.751623
+    },
+    "universal_default": {
+      "accuracy": 0.752273,
+      "coverage": 1.0,
+      "macro_f1": 0.746511,
+      "selective_accuracy": 0.752273
+    }
+  },
+  "protocol": {
+    "claim_boundary": "third-host replication; no SOTA claim",
+    "holdout_labels_used_for_selection": false,
+    "nested_calibration": true,
+    "train_test_separate": true
+  },
+  "schema": "herus-policy-selection-banking77-v1",
+  "selection": {
+    "calibration_split": {
+      "tune": 1518,
+      "validation": 1519
+    },
+    "chosen_policy": "score_calibrated",
+    "tie_rule": "universal_default",
+    "validation_accuracy": {
+      "score_calibrated": 0.725477,
+      "universal_default": 0.721527
+    }
+  }
+}

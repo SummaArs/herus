@@ -515,7 +515,7 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "908b3bee465d52755452129138d00b43af75624d55c860c716efed75c5e64dac",
+      "sha256": "384f09db8af7641ccb8ae57878a6f3ed6eeaa7beaaa4aebafc40f45e33b28934",
       "role": "organized documentation, maps and historical design records"
     },
     {
@@ -2017,6 +2017,30 @@
       "kind": "file",
       "sha256": "d08720d0cdc7112c1884d9f6b9355108e022827bf9771c5a3e8bd7fb9f58b667",
       "role": "universal host policy selector report"
+    },
+    {
+      "path": "research/policy_selection_banking77.py",
+      "kind": "file",
+      "sha256": "ee97cf1e9ce0b6c31e98a8a271666fd5e88767f7f1295466ce4bb918818cd6ea",
+      "role": "third-host Banking77 policy selection"
+    },
+    {
+      "path": "research/evidence/policy_selection_banking77_v1.json",
+      "kind": "file",
+      "sha256": "3c83ecac9d00e75320f9a5ab8f726105f87e39734c9a691512c6a7e002a85668",
+      "role": "Banking77 policy selection evidence"
+    },
+    {
+      "path": "research/test_policy_selection_banking77.py",
+      "kind": "file",
+      "sha256": "c952a8fd411e1786d1bac40c38aeed7cb926880e2d75df085bd4caf783021e63",
+      "role": "Banking77 policy selection tests"
+    },
+    {
+      "path": "docs/156-TERCEIRO-HOSPEDEIRO-BANKING77.md",
+      "kind": "file",
+      "sha256": "91e1184e69b6aa0fade72177f95f4bb4012ff376b7b02874164ac5b80ad9afc1",
+      "role": "third-host negative result report"
     }
   ],
   "components": [

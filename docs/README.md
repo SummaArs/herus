@@ -28,6 +28,7 @@ A documentação antiga conserva decisões e experimentos importantes, mas foi e
 - [153 — Calibração de score e regressão](153-CALIBRACAO-DE-SCORE-E-REGRESSAO.md)
 - [154 — Seleção de política por hospedeiro](154-SELECAO-DE-POLITICA-POR-HOSPEDEIRO.md)
 - [155 — Seletor universal de política](155-SELETOR-UNIVERSAL-DE-POLITICA.md)
+- [156 — Terceiro hospedeiro: Banking77](156-TERCEIRO-HOSPEDEIRO-BANKING77.md)
 - [119 — Fachada única HERUS](119-FACHADA-UNICA-HERUS.md)
 - [134 — Síntese da crise e reestruturação](134-SINTESE-CRISE-E-REESTRUTURACAO.md)
 - [Arquivo histórico](../archive/README.md)
