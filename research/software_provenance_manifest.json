@@ -515,7 +515,7 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "1255a78d12cba2ed1b09bee2c150aa0b767604888bc183a8c0c53d2172970ef8",
+      "sha256": "e9fefa6abd291b0cd9639d57f82d5587f7432c631cf694d122d9a07a5d2aef8b",
       "role": "organized documentation, maps and historical design records"
     },
     {
@@ -1879,6 +1879,24 @@
       "kind": "file",
       "sha256": "196698411c938763b547f1bd941c974b68a6091959ff87ebe136a58c9bf5ba18",
       "role": "transformer contract-block report"
+    },
+    {
+      "path": "research/universal_llm_admission.py",
+      "kind": "file",
+      "sha256": "cd4454a4dd0390595eb2c8b2c06dca2122594da7117f5d5f6807d687cae33256",
+      "role": "fail-closed LLM admission gate"
+    },
+    {
+      "path": "research/test_universal_llm_admission.py",
+      "kind": "file",
+      "sha256": "6d04c46aaedd69e0b5dc17ffa2a2f6274a15cbd4dec48e0444491a32bfd8a1a4",
+      "role": "LLM admission gate tests"
+    },
+    {
+      "path": "docs/150-GATE-ADMISSAO-LLM-UNIVERSAL.md",
+      "kind": "file",
+      "sha256": "f27c0ff6f8068fa5255c4330fc278d5bc76d0bc3f857c5e543b67bf61bb6fe29",
+      "role": "LLM admission gate report"
     }
   ],
   "components": [
