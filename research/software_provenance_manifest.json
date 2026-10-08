@@ -515,7 +515,7 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "70c6b67a05647c461594872ae04deaa55a350790c58394318d544458abb895c8",
+      "sha256": "359b7048fd2ccee7f02824b5ceb9c1524153536c54895778045fd09298403cc6",
       "role": "organized documentation, maps and historical design records"
     },
     {
@@ -1807,6 +1807,30 @@
       "kind": "file",
       "sha256": "add51484636cc4956be125fdc4b80a489f534f85c8cd88c55390ea879561bfd3",
       "role": "universal router adversarial tests"
+    },
+    {
+      "path": "research/llm_minds14_benchmark.py",
+      "kind": "file",
+      "sha256": "b36e85cbba4a92919b66719832a2fa7511cca9268bb8eb675265b52cef05708e",
+      "role": "fixed-protocol gpt-5.5 real-data reference benchmark"
+    },
+    {
+      "path": "research/evidence/llm_minds14_reference_v1.json",
+      "kind": "file",
+      "sha256": "b623800d3e01e41e444410fe7b06f79aec3b274ca19c6f04d6bf0990789c8799",
+      "role": "gpt-5.5 MInDS-14 prediction ledger"
+    },
+    {
+      "path": "research/test_llm_minds14_benchmark.py",
+      "kind": "file",
+      "sha256": "99e0b13c566bb88afa353910f31994dca6de9eaf4499c5e15eec3b6b79c3b33e",
+      "role": "LLM reference benchmark integrity tests"
+    },
+    {
+      "path": "docs/147-COMPETICAO-REAL-CONTRA-MODELOS.md",
+      "kind": "file",
+      "sha256": "d66716e4c485a95b8cee2a2dbd6e10d090c7c1c0504eca050a0d088e1d56feb5",
+      "role": "real-model competition scientific report"
     }
   ],
   "components": [
