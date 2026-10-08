@@ -1,0 +1,1044 @@
+{
+  "dataset": {
+    "calibration": 89,
+    "fit": 417,
+    "holdout": 98,
+    "id": "PolyAI/minds14"
+  },
+  "fit": {
+    "calibration_examples": 267,
+    "reason": "per_paradigm_safe_thresholds",
+    "status": "FITTED",
+    "thresholds": [
+      [
+        "supervised",
+        0.6063266522376473
+      ],
+      [
+        "unsupervised",
+        0.37921110360100774
+      ]
+    ]
+  },
+  "ledger": [
+    {
+      "centroid_prediction": "0",
+      "example_id": "pt-PT~ABROAD/CAe0b3bd7802aa8a8c49e631dc963160f0_3.wav",
+      "label": "0",
+      "nb_prediction": "0",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "0",
+      "universal_correct": true,
+      "universal_prediction": "0"
+    },
+    {
+      "centroid_prediction": "0",
+      "example_id": "pt-PT~ABROAD/CAe29689bc7ea0f4101143506baf8d68fe_2.wav",
+      "label": "0",
+      "nb_prediction": "0",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "0",
+      "universal_correct": true,
+      "universal_prediction": "0"
+    },
+    {
+      "centroid_prediction": "0",
+      "example_id": "pt-PT~ABROAD/CAe51c9ca4d2e65b98f00b372a480f8867_2.wav",
+      "label": "0",
+      "nb_prediction": "0",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "0",
+      "universal_correct": true,
+      "universal_prediction": "0"
+    },
+    {
+      "centroid_prediction": "0",
+      "example_id": "pt-PT~ABROAD/CAe9ce705fb3e8095290f0158d209689ee_3.wav",
+      "label": "0",
+      "nb_prediction": "0",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "0",
+      "universal_correct": true,
+      "universal_prediction": "0"
+    },
+    {
+      "centroid_prediction": "0",
+      "example_id": "pt-PT~ABROAD/CAee8bd001ed495a0e732688fa15c855b4_2.wav",
+      "label": "0",
+      "nb_prediction": "0",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "0",
+      "universal_correct": true,
+      "universal_prediction": "0"
+    },
+    {
+      "centroid_prediction": "9",
+      "example_id": "pt-PT~ABROAD/CAeecf6c1d0b688487390760e8a5461fad_1.wav",
+      "label": "0",
+      "nb_prediction": "0",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "0",
+      "universal_correct": true,
+      "universal_prediction": "0"
+    },
+    {
+      "centroid_prediction": "0",
+      "example_id": "pt-PT~ABROAD/CAf127defad3bac3ea426618860ad232aa_1.wav",
+      "label": "0",
+      "nb_prediction": "0",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "0",
+      "universal_correct": true,
+      "universal_prediction": "0"
+    },
+    {
+      "centroid_prediction": "0",
+      "example_id": "pt-PT~ABROAD/CAf2beeb59c82ce2de659bd4a7f3bb6914_3.wav",
+      "label": "0",
+      "nb_prediction": "0",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "0",
+      "universal_correct": true,
+      "universal_prediction": "0"
+    },
+    {
+      "centroid_prediction": "0",
+      "example_id": "pt-PT~ABROAD/CAf3a732f29df53adcac88f32bd91f5640_2.wav",
+      "label": "0",
+      "nb_prediction": "0",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "0",
+      "universal_correct": true,
+      "universal_prediction": "0"
+    },
+    {
+      "centroid_prediction": "0",
+      "example_id": "pt-PT~ABROAD/CAf70be20fff527ed2a53b9434f7012d18_3.wav",
+      "label": "0",
+      "nb_prediction": "0",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "0",
+      "universal_correct": true,
+      "universal_prediction": "0"
+    },
+    {
+      "centroid_prediction": "6",
+      "example_id": "pt-PT~ABROAD/CAf70be20fff527ed2a53b9434f7012d18_5.wav",
+      "label": "0",
+      "nb_prediction": "0",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "0",
+      "universal_correct": true,
+      "universal_prediction": "0"
+    },
+    {
+      "centroid_prediction": "0",
+      "example_id": "pt-PT~ABROAD/CAf725e67d481bd4a064e829adae4b3e74_2.wav",
+      "label": "0",
+      "nb_prediction": "0",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "0",
+      "universal_correct": true,
+      "universal_prediction": "0"
+    },
+    {
+      "centroid_prediction": "0",
+      "example_id": "pt-PT~ABROAD/CAfabed6cccf6c33abd7d291dca9f1f0db_2.wav",
+      "label": "0",
+      "nb_prediction": "0",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "0",
+      "universal_correct": true,
+      "universal_prediction": "0"
+    },
+    {
+      "centroid_prediction": "0",
+      "example_id": "pt-PT~ABROAD/CAfb5d556c6173357ed0695b25fcdca446_3.wav",
+      "label": "0",
+      "nb_prediction": "0",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "0",
+      "universal_correct": true,
+      "universal_prediction": "0"
+    },
+    {
+      "centroid_prediction": "1",
+      "example_id": "pt-PT~ADDRESS/response_34.wav",
+      "label": "1",
+      "nb_prediction": "1",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "1",
+      "universal_correct": true,
+      "universal_prediction": "1"
+    },
+    {
+      "centroid_prediction": "6",
+      "example_id": "pt-PT~ADDRESS/response_38.wav",
+      "label": "1",
+      "nb_prediction": "6",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "0",
+      "universal_correct": false,
+      "universal_prediction": "6"
+    },
+    {
+      "centroid_prediction": "1",
+      "example_id": "pt-PT~ADDRESS/response_4.wav",
+      "label": "1",
+      "nb_prediction": "1",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "1",
+      "universal_correct": true,
+      "universal_prediction": "1"
+    },
+    {
+      "centroid_prediction": "1",
+      "example_id": "pt-PT~ADDRESS/response_40.wav",
+      "label": "1",
+      "nb_prediction": "1",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "1",
+      "universal_correct": true,
+      "universal_prediction": "1"
+    },
+    {
+      "centroid_prediction": "1",
+      "example_id": "pt-PT~ADDRESS/response_41.wav",
+      "label": "1",
+      "nb_prediction": "1",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "0",
+      "universal_correct": true,
+      "universal_prediction": "1"
+    },
+    {
+      "centroid_prediction": "1",
+      "example_id": "pt-PT~ADDRESS/response_5.wav",
+      "label": "1",
+      "nb_prediction": "1",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "1",
+      "universal_correct": true,
+      "universal_prediction": "1"
+    },
+    {
+      "centroid_prediction": "2",
+      "example_id": "pt-PT~APP_ERROR/response_42.wav",
+      "label": "2",
+      "nb_prediction": "2",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "0",
+      "universal_correct": true,
+      "universal_prediction": "2"
+    },
+    {
+      "centroid_prediction": "2",
+      "example_id": "pt-PT~APP_ERROR/response_43.wav",
+      "label": "2",
+      "nb_prediction": "2",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "0",
+      "universal_correct": true,
+      "universal_prediction": "2"
+    },
+    {
+      "centroid_prediction": "2",
+      "example_id": "pt-PT~APP_ERROR/response_5.wav",
+      "label": "2",
+      "nb_prediction": "2",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "0",
+      "universal_correct": true,
+      "universal_prediction": "2"
+    },
+    {
+      "centroid_prediction": "2",
+      "example_id": "pt-PT~APP_ERROR/response_6.wav",
+      "label": "2",
+      "nb_prediction": "2",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "0",
+      "universal_correct": true,
+      "universal_prediction": "2"
+    },
+    {
+      "centroid_prediction": "2",
+      "example_id": "pt-PT~APP_ERROR/response_7.wav",
+      "label": "2",
+      "nb_prediction": "2",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "0",
+      "universal_correct": true,
+      "universal_prediction": "2"
+    },
+    {
+      "centroid_prediction": "6",
+      "example_id": "pt-PT~APP_ERROR/response_8.wav",
+      "label": "2",
+      "nb_prediction": "2",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "0",
+      "universal_correct": true,
+      "universal_prediction": "2"
+    },
+    {
+      "centroid_prediction": "2",
+      "example_id": "pt-PT~APP_ERROR/response_9.wav",
+      "label": "2",
+      "nb_prediction": "2",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "0",
+      "universal_correct": true,
+      "universal_prediction": "2"
+    },
+    {
+      "centroid_prediction": "3",
+      "example_id": "pt-PT~ATM_LIMIT/response_40.wav",
+      "label": "3",
+      "nb_prediction": "3",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "11",
+      "universal_correct": true,
+      "universal_prediction": "3"
+    },
+    {
+      "centroid_prediction": "3",
+      "example_id": "pt-PT~ATM_LIMIT/response_41.wav",
+      "label": "3",
+      "nb_prediction": "3",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "11",
+      "universal_correct": true,
+      "universal_prediction": "3"
+    },
+    {
+      "centroid_prediction": "3",
+      "example_id": "pt-PT~ATM_LIMIT/response_43.wav",
+      "label": "3",
+      "nb_prediction": "3",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "0",
+      "universal_correct": true,
+      "universal_prediction": "3"
+    },
+    {
+      "centroid_prediction": "3",
+      "example_id": "pt-PT~ATM_LIMIT/response_5.wav",
+      "label": "3",
+      "nb_prediction": "3",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "0",
+      "universal_correct": true,
+      "universal_prediction": "3"
+    },
+    {
+      "centroid_prediction": "3",
+      "example_id": "pt-PT~ATM_LIMIT/response_6.wav",
+      "label": "3",
+      "nb_prediction": "3",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "11",
+      "universal_correct": true,
+      "universal_prediction": "3"
+    },
+    {
+      "centroid_prediction": "3",
+      "example_id": "pt-PT~ATM_LIMIT/response_7.wav",
+      "label": "3",
+      "nb_prediction": "3",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "0",
+      "universal_correct": true,
+      "universal_prediction": "3"
+    },
+    {
+      "centroid_prediction": "3",
+      "example_id": "pt-PT~ATM_LIMIT/response_9.wav",
+      "label": "3",
+      "nb_prediction": "3",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "0",
+      "universal_correct": true,
+      "universal_prediction": "3"
+    },
+    {
+      "centroid_prediction": "4",
+      "example_id": "pt-PT~BALANCE/response_38.wav",
+      "label": "4",
+      "nb_prediction": "4",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "5",
+      "universal_correct": true,
+      "universal_prediction": "4"
+    },
+    {
+      "centroid_prediction": "4",
+      "example_id": "pt-PT~BALANCE/response_4.wav",
+      "label": "4",
+      "nb_prediction": "4",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "0",
+      "universal_correct": true,
+      "universal_prediction": "4"
+    },
+    {
+      "centroid_prediction": "4",
+      "example_id": "pt-PT~BALANCE/response_41.wav",
+      "label": "4",
+      "nb_prediction": "4",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "0",
+      "universal_correct": true,
+      "universal_prediction": "4"
+    },
+    {
+      "centroid_prediction": "4",
+      "example_id": "pt-PT~BALANCE/response_6.wav",
+      "label": "4",
+      "nb_prediction": "4",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "0",
+      "universal_correct": true,
+      "universal_prediction": "4"
+    },
+    {
+      "centroid_prediction": "4",
+      "example_id": "pt-PT~BALANCE/response_7.wav",
+      "label": "4",
+      "nb_prediction": "4",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "0",
+      "universal_correct": true,
+      "universal_prediction": "4"
+    },
+    {
+      "centroid_prediction": "4",
+      "example_id": "pt-PT~BALANCE/response_8.wav",
+      "label": "4",
+      "nb_prediction": "4",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "0",
+      "universal_correct": true,
+      "universal_prediction": "4"
+    },
+    {
+      "centroid_prediction": "5",
+      "example_id": "pt-PT~BUSINESS_LOAN/response_34.wav",
+      "label": "5",
+      "nb_prediction": "5",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "0",
+      "universal_correct": true,
+      "universal_prediction": "5"
+    },
+    {
+      "centroid_prediction": "5",
+      "example_id": "pt-PT~BUSINESS_LOAN/response_35.wav",
+      "label": "5",
+      "nb_prediction": "5",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "0",
+      "universal_correct": true,
+      "universal_prediction": "5"
+    },
+    {
+      "centroid_prediction": "11",
+      "example_id": "pt-PT~BUSINESS_LOAN/response_37.wav",
+      "label": "5",
+      "nb_prediction": "11",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "0",
+      "universal_correct": false,
+      "universal_prediction": "11"
+    },
+    {
+      "centroid_prediction": "5",
+      "example_id": "pt-PT~BUSINESS_LOAN/response_38.wav",
+      "label": "5",
+      "nb_prediction": "5",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "0",
+      "universal_correct": true,
+      "universal_prediction": "5"
+    },
+    {
+      "centroid_prediction": "5",
+      "example_id": "pt-PT~BUSINESS_LOAN/response_4.wav",
+      "label": "5",
+      "nb_prediction": "5",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "0",
+      "universal_correct": true,
+      "universal_prediction": "5"
+    },
+    {
+      "centroid_prediction": "5",
+      "example_id": "pt-PT~BUSINESS_LOAN/response_7.wav",
+      "label": "5",
+      "nb_prediction": "5",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "0",
+      "universal_correct": true,
+      "universal_prediction": "5"
+    },
+    {
+      "centroid_prediction": "5",
+      "example_id": "pt-PT~BUSINESS_LOAN/response_9.wav",
+      "label": "5",
+      "nb_prediction": "5",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "0",
+      "universal_correct": true,
+      "universal_prediction": "5"
+    },
+    {
+      "centroid_prediction": "6",
+      "example_id": "pt-PT~CARD_ISSUES/response_35.wav",
+      "label": "6",
+      "nb_prediction": "6",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "0",
+      "universal_correct": true,
+      "universal_prediction": "6"
+    },
+    {
+      "centroid_prediction": "6",
+      "example_id": "pt-PT~CARD_ISSUES/response_36.wav",
+      "label": "6",
+      "nb_prediction": "6",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "0",
+      "universal_correct": true,
+      "universal_prediction": "6"
+    },
+    {
+      "centroid_prediction": "6",
+      "example_id": "pt-PT~CARD_ISSUES/response_38.wav",
+      "label": "6",
+      "nb_prediction": "6",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "0",
+      "universal_correct": true,
+      "universal_prediction": "6"
+    },
+    {
+      "centroid_prediction": "6",
+      "example_id": "pt-PT~CARD_ISSUES/response_4.wav",
+      "label": "6",
+      "nb_prediction": "6",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "0",
+      "universal_correct": true,
+      "universal_prediction": "6"
+    },
+    {
+      "centroid_prediction": "6",
+      "example_id": "pt-PT~CARD_ISSUES/response_5.wav",
+      "label": "6",
+      "nb_prediction": "6",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "0",
+      "universal_correct": true,
+      "universal_prediction": "6"
+    },
+    {
+      "centroid_prediction": "6",
+      "example_id": "pt-PT~CARD_ISSUES/response_8.wav",
+      "label": "6",
+      "nb_prediction": "6",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "0",
+      "universal_correct": true,
+      "universal_prediction": "6"
+    },
+    {
+      "centroid_prediction": "9",
+      "example_id": "pt-PT~CARD_ISSUES/response_9.wav",
+      "label": "6",
+      "nb_prediction": "6",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "0",
+      "universal_correct": true,
+      "universal_prediction": "6"
+    },
+    {
+      "centroid_prediction": "7",
+      "example_id": "pt-PT~CASH_DEPOSIT/response_26.wav",
+      "label": "7",
+      "nb_prediction": "7",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "0",
+      "universal_correct": true,
+      "universal_prediction": "7"
+    },
+    {
+      "centroid_prediction": "13",
+      "example_id": "pt-PT~CASH_DEPOSIT/response_3.wav",
+      "label": "7",
+      "nb_prediction": "7",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "0",
+      "universal_correct": true,
+      "universal_prediction": "7"
+    },
+    {
+      "centroid_prediction": "7",
+      "example_id": "pt-PT~CASH_DEPOSIT/response_4.wav",
+      "label": "7",
+      "nb_prediction": "7",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "0",
+      "universal_correct": true,
+      "universal_prediction": "7"
+    },
+    {
+      "centroid_prediction": "7",
+      "example_id": "pt-PT~CASH_DEPOSIT/response_6.wav",
+      "label": "7",
+      "nb_prediction": "7",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "0",
+      "universal_correct": true,
+      "universal_prediction": "7"
+    },
+    {
+      "centroid_prediction": "7",
+      "example_id": "pt-PT~CASH_DEPOSIT/response_7.wav",
+      "label": "7",
+      "nb_prediction": "7",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "0",
+      "universal_correct": true,
+      "universal_prediction": "7"
+    },
+    {
+      "centroid_prediction": "7",
+      "example_id": "pt-PT~CASH_DEPOSIT/response_8.wav",
+      "label": "7",
+      "nb_prediction": "7",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "0",
+      "universal_correct": true,
+      "universal_prediction": "7"
+    },
+    {
+      "centroid_prediction": "7",
+      "example_id": "pt-PT~CASH_DEPOSIT/response_9.wav",
+      "label": "7",
+      "nb_prediction": "7",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "0",
+      "universal_correct": true,
+      "universal_prediction": "7"
+    },
+    {
+      "centroid_prediction": "8",
+      "example_id": "pt-PT~DIRECT_DEBIT/response_4.wav",
+      "label": "8",
+      "nb_prediction": "8",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "4",
+      "universal_correct": true,
+      "universal_prediction": "8"
+    },
+    {
+      "centroid_prediction": "8",
+      "example_id": "pt-PT~DIRECT_DEBIT/response_40.wav",
+      "label": "8",
+      "nb_prediction": "8",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "0",
+      "universal_correct": true,
+      "universal_prediction": "8"
+    },
+    {
+      "centroid_prediction": "8",
+      "example_id": "pt-PT~DIRECT_DEBIT/response_42.wav",
+      "label": "8",
+      "nb_prediction": "8",
+      "selected_paradigm": "unsupervised",
+      "transformer_prediction": "0",
+      "universal_correct": true,
+      "universal_prediction": "8"
+    },
+    {
+      "centroid_prediction": "8",
+      "example_id": "pt-PT~DIRECT_DEBIT/response_7.wav",
+      "label": "8",
+      "nb_prediction": "8",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "5",
+      "universal_correct": true,
+      "universal_prediction": "8"
+    },
+    {
+      "centroid_prediction": "8",
+      "example_id": "pt-PT~DIRECT_DEBIT/response_8.wav",
+      "label": "8",
+      "nb_prediction": "8",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "5",
+      "universal_correct": true,
+      "universal_prediction": "8"
+    },
+    {
+      "centroid_prediction": "2",
+      "example_id": "pt-PT~DIRECT_DEBIT/response_9.wav",
+      "label": "8",
+      "nb_prediction": "2",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "5",
+      "universal_correct": false,
+      "universal_prediction": "2"
+    },
+    {
+      "centroid_prediction": "9",
+      "example_id": "pt-PT~FREEZE/response_36.wav",
+      "label": "9",
+      "nb_prediction": "9",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "5",
+      "universal_correct": true,
+      "universal_prediction": "9"
+    },
+    {
+      "centroid_prediction": "9",
+      "example_id": "pt-PT~FREEZE/response_37.wav",
+      "label": "9",
+      "nb_prediction": "9",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "5",
+      "universal_correct": true,
+      "universal_prediction": "9"
+    },
+    {
+      "centroid_prediction": "9",
+      "example_id": "pt-PT~FREEZE/response_4.wav",
+      "label": "9",
+      "nb_prediction": "9",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "5",
+      "universal_correct": true,
+      "universal_prediction": "9"
+    },
+    {
+      "centroid_prediction": "9",
+      "example_id": "pt-PT~FREEZE/response_5.wav",
+      "label": "9",
+      "nb_prediction": "9",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "5",
+      "universal_correct": true,
+      "universal_prediction": "9"
+    },
+    {
+      "centroid_prediction": "9",
+      "example_id": "pt-PT~FREEZE/response_6.wav",
+      "label": "9",
+      "nb_prediction": "9",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "0",
+      "universal_correct": true,
+      "universal_prediction": "9"
+    },
+    {
+      "centroid_prediction": "9",
+      "example_id": "pt-PT~FREEZE/response_8.wav",
+      "label": "9",
+      "nb_prediction": "9",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "0",
+      "universal_correct": true,
+      "universal_prediction": "9"
+    },
+    {
+      "centroid_prediction": "9",
+      "example_id": "pt-PT~FREEZE/response_9.wav",
+      "label": "9",
+      "nb_prediction": "9",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "0",
+      "universal_correct": true,
+      "universal_prediction": "9"
+    },
+    {
+      "centroid_prediction": "10",
+      "example_id": "pt-PT~HIGH_VALUE_PAYMENT/response_40.wav",
+      "label": "10",
+      "nb_prediction": "10",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "0",
+      "universal_correct": true,
+      "universal_prediction": "10"
+    },
+    {
+      "centroid_prediction": "10",
+      "example_id": "pt-PT~HIGH_VALUE_PAYMENT/response_42.wav",
+      "label": "10",
+      "nb_prediction": "10",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "0",
+      "universal_correct": true,
+      "universal_prediction": "10"
+    },
+    {
+      "centroid_prediction": "10",
+      "example_id": "pt-PT~HIGH_VALUE_PAYMENT/response_5.wav",
+      "label": "10",
+      "nb_prediction": "10",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "0",
+      "universal_correct": true,
+      "universal_prediction": "10"
+    },
+    {
+      "centroid_prediction": "10",
+      "example_id": "pt-PT~HIGH_VALUE_PAYMENT/response_7.wav",
+      "label": "10",
+      "nb_prediction": "10",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "0",
+      "universal_correct": true,
+      "universal_prediction": "10"
+    },
+    {
+      "centroid_prediction": "10",
+      "example_id": "pt-PT~HIGH_VALUE_PAYMENT/response_9.wav",
+      "label": "10",
+      "nb_prediction": "10",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "0",
+      "universal_correct": true,
+      "universal_prediction": "10"
+    },
+    {
+      "centroid_prediction": "11",
+      "example_id": "pt-PT~JOINT_ACCOUNT/response_27.wav",
+      "label": "11",
+      "nb_prediction": "11",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "0",
+      "universal_correct": true,
+      "universal_prediction": "11"
+    },
+    {
+      "centroid_prediction": "11",
+      "example_id": "pt-PT~JOINT_ACCOUNT/response_29.wav",
+      "label": "11",
+      "nb_prediction": "11",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "0",
+      "universal_correct": true,
+      "universal_prediction": "11"
+    },
+    {
+      "centroid_prediction": "11",
+      "example_id": "pt-PT~JOINT_ACCOUNT/response_30.wav",
+      "label": "11",
+      "nb_prediction": "11",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "0",
+      "universal_correct": true,
+      "universal_prediction": "11"
+    },
+    {
+      "centroid_prediction": "11",
+      "example_id": "pt-PT~JOINT_ACCOUNT/response_31.wav",
+      "label": "11",
+      "nb_prediction": "11",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "0",
+      "universal_correct": true,
+      "universal_prediction": "11"
+    },
+    {
+      "centroid_prediction": "11",
+      "example_id": "pt-PT~JOINT_ACCOUNT/response_4.wav",
+      "label": "11",
+      "nb_prediction": "11",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "0",
+      "universal_correct": true,
+      "universal_prediction": "11"
+    },
+    {
+      "centroid_prediction": "11",
+      "example_id": "pt-PT~JOINT_ACCOUNT/response_5.wav",
+      "label": "11",
+      "nb_prediction": "11",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "0",
+      "universal_correct": true,
+      "universal_prediction": "11"
+    },
+    {
+      "centroid_prediction": "11",
+      "example_id": "pt-PT~JOINT_ACCOUNT/response_7.wav",
+      "label": "11",
+      "nb_prediction": "11",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "5",
+      "universal_correct": true,
+      "universal_prediction": "11"
+    },
+    {
+      "centroid_prediction": "2",
+      "example_id": "pt-PT~LATEST_TRANSACTIONS/response_26.wav",
+      "label": "12",
+      "nb_prediction": "12",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "5",
+      "universal_correct": true,
+      "universal_prediction": "12"
+    },
+    {
+      "centroid_prediction": "12",
+      "example_id": "pt-PT~LATEST_TRANSACTIONS/response_3.wav",
+      "label": "12",
+      "nb_prediction": "12",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "0",
+      "universal_correct": true,
+      "universal_prediction": "12"
+    },
+    {
+      "centroid_prediction": "12",
+      "example_id": "pt-PT~LATEST_TRANSACTIONS/response_4.wav",
+      "label": "12",
+      "nb_prediction": "12",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "5",
+      "universal_correct": true,
+      "universal_prediction": "12"
+    },
+    {
+      "centroid_prediction": "12",
+      "example_id": "pt-PT~LATEST_TRANSACTIONS/response_5.wav",
+      "label": "12",
+      "nb_prediction": "12",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "5",
+      "universal_correct": true,
+      "universal_prediction": "12"
+    },
+    {
+      "centroid_prediction": "12",
+      "example_id": "pt-PT~LATEST_TRANSACTIONS/response_8.wav",
+      "label": "12",
+      "nb_prediction": "12",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "0",
+      "universal_correct": true,
+      "universal_prediction": "12"
+    },
+    {
+      "centroid_prediction": "12",
+      "example_id": "pt-PT~LATEST_TRANSACTIONS/response_9.wav",
+      "label": "12",
+      "nb_prediction": "12",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "0",
+      "universal_correct": true,
+      "universal_prediction": "12"
+    },
+    {
+      "centroid_prediction": "9",
+      "example_id": "pt-PT~PAY_BILL/response_32.wav",
+      "label": "13",
+      "nb_prediction": "9",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "0",
+      "universal_correct": false,
+      "universal_prediction": "9"
+    },
+    {
+      "centroid_prediction": "13",
+      "example_id": "pt-PT~PAY_BILL/response_4.wav",
+      "label": "13",
+      "nb_prediction": "11",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "0",
+      "universal_correct": false,
+      "universal_prediction": "11"
+    },
+    {
+      "centroid_prediction": "13",
+      "example_id": "pt-PT~PAY_BILL/response_6.wav",
+      "label": "13",
+      "nb_prediction": "13",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "0",
+      "universal_correct": true,
+      "universal_prediction": "13"
+    },
+    {
+      "centroid_prediction": "9",
+      "example_id": "pt-PT~PAY_BILL/response_7.wav",
+      "label": "13",
+      "nb_prediction": "6",
+      "selected_paradigm": "unsupervised",
+      "transformer_prediction": "0",
+      "universal_correct": false,
+      "universal_prediction": "9"
+    },
+    {
+      "centroid_prediction": "10",
+      "example_id": "pt-PT~PAY_BILL/response_8.wav",
+      "label": "13",
+      "nb_prediction": "10",
+      "selected_paradigm": "supervised",
+      "transformer_prediction": "0",
+      "universal_correct": false,
+      "universal_prediction": "10"
+    },
+    {
+      "centroid_prediction": "13",
+      "example_id": "pt-PT~PAY_BILL/response_9.wav",
+      "label": "13",
+      "nb_prediction": "11",
+      "selected_paradigm": "unsupervised",
+      "transformer_prediction": "0",
+      "universal_correct": true,
+      "universal_prediction": "13"
+    }
+  ],
+  "metrics": {
+    "centroid": {
+      "accuracy": 0.877551,
+      "coverage": 1.0,
+      "macro_f1": 0.876193,
+      "selective_accuracy": 0.877551
+    },
+    "naive_bayes": {
+      "accuracy": 0.918367,
+      "coverage": 1.0,
+      "macro_f1": 0.892947,
+      "selective_accuracy": 0.918367
+    },
+    "transformer": {
+      "accuracy": 0.183673,
+      "coverage": 1.0,
+      "macro_f1": 0.078882,
+      "selective_accuracy": 0.183673
+    },
+    "universal": {
+      "accuracy": 0.928571,
+      "coverage": 1.0,
+      "macro_f1": 0.91193,
+      "selective_accuracy": 0.928571
+    }
+  },
+  "protocol": {
+    "candidate_paradigms": [
+      "supervised",
+      "unsupervised",
+      "transformer"
+    ],
+    "claim_boundary": "three-candidate proof-of-concept; no SOTA claim",
+    "epochs": 5,
+    "holdout_labels_used_for_decision": false,
+    "seed": 11,
+    "transformer": "google/bert_uncased_L-2_H-128_A-2"
+  },
+  "schema": "herus-universal-transformer-minds14-v1"
+}

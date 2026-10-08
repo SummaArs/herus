@@ -515,7 +515,7 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "2a85e3b9a7886c7507c9fafa7068435b226eecf849af57f4e5d9776d0896f957",
+      "sha256": "1255a78d12cba2ed1b09bee2c150aa0b767604888bc183a8c0c53d2172970ef8",
       "role": "organized documentation, maps and historical design records"
     },
     {
@@ -1855,6 +1855,30 @@
       "kind": "file",
       "sha256": "ca06e558337b40bab3dc26901eb491b9c137790b4aecb128de80366a1053db8b",
       "role": "universal router paired-result report"
+    },
+    {
+      "path": "research/universal_transformer_minds14.py",
+      "kind": "file",
+      "sha256": "1044ab680aa2b5aa8b865152a4d3cd4850626e159504bc53a08a1c76244d2033",
+      "role": "universal router transformer integration benchmark"
+    },
+    {
+      "path": "research/evidence/universal_transformer_minds14_v1.json",
+      "kind": "file",
+      "sha256": "69c82e2303e466a39a12d341fc9f247a98d94fe4804a3dd2281d448931dbad49",
+      "role": "transformer candidate admission evidence"
+    },
+    {
+      "path": "research/test_universal_transformer_minds14.py",
+      "kind": "file",
+      "sha256": "7fdf8c72fb88adb3b64a6c26494ded3aedf53b6ff08fc5e4433744ad855efb52",
+      "role": "transformer admission gate tests"
+    },
+    {
+      "path": "docs/149-TRANSFORMER-BLOQUEADO-PELO-CONTRATO-UNIVERSAL.md",
+      "kind": "file",
+      "sha256": "196698411c938763b547f1bd941c974b68a6091959ff87ebe136a58c9bf5ba18",
+      "role": "transformer contract-block report"
     }
   ],
   "components": [
