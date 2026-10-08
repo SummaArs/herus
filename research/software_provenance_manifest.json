@@ -515,7 +515,7 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "5c68b12328d4775d250f703250fb2ea55efba4ff5426cc2144355f09e26fecfc",
+      "sha256": "bbffdc8098e9d691c8108a64ca368cdae3e9a1d5363e0c0f3ea2571b3677baee",
       "role": "organized documentation, maps and historical design records"
     },
     {
@@ -731,7 +731,7 @@
     {
       "path": "herus_symbiotic/__init__.py",
       "kind": "file",
-      "sha256": "82ec0dbed173826ddf9125cefefa9e9168ede734135ac657d3ea427d77872a93",
+      "sha256": "b130fb71376f3a131c411b4a7bd8760337fd1f074312c4994de3e69edce920f3",
       "role": "single facade export"
     },
     {
@@ -1777,6 +1777,24 @@
       "kind": "file",
       "sha256": "dc3f4e8285eb52d6013c966dc260298bd85be8282c3ac77abefb6a8d1eb926f3",
       "role": "native core identity and negative result report"
+    },
+    {
+      "path": "research/symbiotic_policy.py",
+      "kind": "file",
+      "sha256": "bff7a6bf75771b50876d48db45e22d81a1b777d6bd0a4a58c7ca4c271a6ee15f",
+      "role": "model-agnostic symbiotic acceptance policy"
+    },
+    {
+      "path": "research/test_symbiotic_policy.py",
+      "kind": "file",
+      "sha256": "f676c0db63fa99ac24e70081c6d5eedadcd08ba43d38e73b2c392d827ed58735",
+      "role": "symbiotic policy adversarial tests"
+    },
+    {
+      "path": "docs/146-ERA-DO-APRENDIZADO-SIMBIOTICO.md",
+      "kind": "file",
+      "sha256": "5c25d17ef1334de8fe38f9f2fcad6a341a000a352b299f69c86774663f0bb9fc",
+      "role": "symbiotic learning paradigm specification"
     }
   ],
   "components": [
