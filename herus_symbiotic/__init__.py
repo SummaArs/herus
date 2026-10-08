@@ -9,6 +9,7 @@ from herus_symbiotic.programming import ProgrammingProposal, ProgrammingQuestion
 from herus_symbiotic.programming_evidence import EvidenceRecord, LedgerResult, ProgrammingObligation, build_programming_ledger
 from herus_symbiotic.data_science import DataIssue, DatasetProfile, DataScienceSkill, MLPlan
 from research.symbiotic_policy import Candidate, Decision, HostBudget, PolicyFit, SymbioticDecisionPolicy, VerifiedFeedback
+from research.universal_symbiotic import ParadigmCandidate, UniversalContract, UniversalDecision, UniversalFit, UniversalSymbioticLearner
 from herus_symbiotic.herus import Herus
 
 __all__ = [
@@ -18,5 +19,6 @@ __all__ = [
     'EvidenceRecord', 'LedgerResult', 'ProgrammingObligation', 'build_programming_ledger',
     'DataIssue', 'DatasetProfile', 'DataScienceSkill', 'MLPlan',
     'Candidate', 'Decision', 'HostBudget', 'PolicyFit', 'SymbioticDecisionPolicy', 'VerifiedFeedback', 'Herus',
+    'ParadigmCandidate', 'UniversalContract', 'UniversalDecision', 'UniversalFit', 'UniversalSymbioticLearner',
 ]
 __version__ = '0.1.0'

@@ -55,6 +55,12 @@ A ação válida pode ser `ABSTAIN`. A política é ajustada em calibração e c
 - orçamento finito de atualizações;
 - ausência de autoridade de execução.
 
+`research/universal_symbiotic.py` adiciona a camada meta-algorítmica: recebe
+candidatos supervisionados, não supervisionados, auto-supervisionados e de
+reforço, aplica contratos comuns de risco/custo/evidência, escolhe o melhor
+candidato admissível ou abstém-se diante de conflito. Assim, o HERUS pode ser
+um algoritmo único de decisão mesmo quando os motores internos são diferentes.
+
 ## Estado científico
 
 A política v0 é uma **especificação executável**, não uma prova de SOTA. O benchmark anterior demonstrou assurance seletiva no adapter NB–centróide; o teste do core puro mostrou que essa vantagem ainda não pertence ao `SymbioticLearner` isolado.

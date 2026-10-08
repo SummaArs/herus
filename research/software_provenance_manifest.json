@@ -515,7 +515,7 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "bbffdc8098e9d691c8108a64ca368cdae3e9a1d5363e0c0f3ea2571b3677baee",
+      "sha256": "70c6b67a05647c461594872ae04deaa55a350790c58394318d544458abb895c8",
       "role": "organized documentation, maps and historical design records"
     },
     {
@@ -731,7 +731,7 @@
     {
       "path": "herus_symbiotic/__init__.py",
       "kind": "file",
-      "sha256": "b130fb71376f3a131c411b4a7bd8760337fd1f074312c4994de3e69edce920f3",
+      "sha256": "9f33fc6f13d9d1f5f359d4597e3dc6982237165d7a2db207dafea4891e53ac21",
       "role": "single facade export"
     },
     {
@@ -1793,8 +1793,20 @@
     {
       "path": "docs/146-ERA-DO-APRENDIZADO-SIMBIOTICO.md",
       "kind": "file",
-      "sha256": "5c25d17ef1334de8fe38f9f2fcad6a341a000a352b299f69c86774663f0bb9fc",
+      "sha256": "5bb31a54b57522ea39987af7eeef1e640d08f3189a2269f627944fe661b1ba7d",
       "role": "symbiotic learning paradigm specification"
+    },
+    {
+      "path": "research/universal_symbiotic.py",
+      "kind": "file",
+      "sha256": "0bdb1d359f855511cb645fa88f3f029e96434f9e0696ad48137b3a507e35dbf5",
+      "role": "universal symbiotic paradigm router"
+    },
+    {
+      "path": "research/test_universal_symbiotic.py",
+      "kind": "file",
+      "sha256": "add51484636cc4956be125fdc4b80a489f534f85c8cd88c55390ea879561bfd3",
+      "role": "universal router adversarial tests"
     }
   ],
   "components": [
