@@ -1,0 +1,70 @@
+{
+  "domains": {
+    "MInDS-14": {
+      "attacks": {
+        "case_punctuation": {
+          "abstention_rate": 0.637363,
+          "attacked_acceptance": 0.362637,
+          "clean_acceptance": 0.373626,
+          "n": 91
+        },
+        "deletion": {
+          "abstention_rate": 0.802198,
+          "attacked_acceptance": 0.197802,
+          "clean_acceptance": 0.373626,
+          "n": 91
+        },
+        "irrelevant_prefix": {
+          "abstention_rate": 0.989011,
+          "attacked_acceptance": 0.010989,
+          "clean_acceptance": 0.373626,
+          "n": 91
+        },
+        "typo": {
+          "abstention_rate": 0.791209,
+          "attacked_acceptance": 0.208791,
+          "clean_acceptance": 0.373626,
+          "n": 91
+        }
+      },
+      "calibration_examples": 91,
+      "holdout_examples": 91
+    },
+    "MIntRec": {
+      "attacks": {
+        "case_punctuation": {
+          "abstention_rate": 0.518135,
+          "attacked_acceptance": 0.481865,
+          "clean_acceptance": 0.678756,
+          "n": 386
+        },
+        "deletion": {
+          "abstention_rate": 0.647668,
+          "attacked_acceptance": 0.352332,
+          "clean_acceptance": 0.678756,
+          "n": 386
+        },
+        "irrelevant_prefix": {
+          "abstention_rate": 0.279793,
+          "attacked_acceptance": 0.720207,
+          "clean_acceptance": 0.678756,
+          "n": 386
+        },
+        "typo": {
+          "abstention_rate": 0.528497,
+          "attacked_acceptance": 0.471503,
+          "clean_acceptance": 0.678756,
+          "n": 386
+        }
+      },
+      "calibration_examples": 1272,
+      "holdout_examples": 386
+    }
+  },
+  "protocol": {
+    "calibration_is_clean_and_disjoint": true,
+    "claim_boundary": "shift detection only; no classifier robustness or SOTA claim",
+    "holdout_labels_used": false
+  },
+  "schema": "herus-cross-domain-shift-v1"
+}

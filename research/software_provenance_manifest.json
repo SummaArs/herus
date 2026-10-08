@@ -515,7 +515,7 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "11635580e74650356daca5637817e9c091447623cf6726a1e7bbfc81cd8f4f1c",
+      "sha256": "f6faa92956d6a815da367583e649cbe8cd28e51e8d4ef51431f0ffb2c0428e94",
       "role": "organized documentation, maps and historical design records"
     },
     {
@@ -2215,6 +2215,30 @@
       "kind": "file",
       "sha256": "5e4abcf121d05a02f56674d5881a44d0c9ce7e9a5a1f66984e1538e9f7a94a68",
       "role": "shift detector report"
+    },
+    {
+      "path": "research/cross_domain_shift_benchmark.py",
+      "kind": "file",
+      "sha256": "fa0dc486b2e9f4dc294fec0261199b905ffb734e29efee6c74011b71b9567727",
+      "role": "cross-domain shift benchmark"
+    },
+    {
+      "path": "research/evidence/cross_domain_shift_v1.json",
+      "kind": "file",
+      "sha256": "7782a43260a0945c1de649d70a02d99dc23f1165552ac19040d0ec43f20ab70a",
+      "role": "cross-domain shift evidence"
+    },
+    {
+      "path": "research/test_cross_domain_shift_benchmark.py",
+      "kind": "file",
+      "sha256": "298a20e6c4cae70b878cf1c6fd18a3039d4b3124c78552be329ac64b7e507a19",
+      "role": "cross-domain evidence test"
+    },
+    {
+      "path": "docs/163-VALIDACAO-CROSS-DOMAIN-SHIFT.md",
+      "kind": "file",
+      "sha256": "f5c1891a9676568c4c3a5ff34b76974bb517e2b7fd9aba85d70de340d62c5566",
+      "role": "cross-domain shift report"
     }
   ],
   "components": [
