@@ -515,7 +515,7 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "f3226e508f0acbdf976332d4f9be460bbdb0fc3e742dcdbc1a66ed617f5fb03a",
+      "sha256": "fece4e772caccf7e9ffaeff279daf307f307dc5d20439c070fb24c08df8fabb8",
       "role": "organized documentation, maps and historical design records"
     },
     {
@@ -2275,6 +2275,42 @@
       "kind": "file",
       "sha256": "d226c2e47e2aa4581d25753ac5025da5929d36906a175e58719375135952871a",
       "role": "invariance report"
+    },
+    {
+      "path": "research/risk_coverage_policy.py",
+      "kind": "file",
+      "sha256": "9b83abc35b810eaca2ebfb8104b2cae6a48572a0d97f0e5548c429bcad312b53",
+      "role": "risk coverage calibration"
+    },
+    {
+      "path": "research/risk_coverage_banking77.py",
+      "kind": "file",
+      "sha256": "1745c8c19b9376b1b3ce5b1d2fbde96cdaf4a6169a6e93c326439929b2475d15",
+      "role": "risk coverage calibration"
+    },
+    {
+      "path": "research/evidence/risk_coverage_banking77_v1.json",
+      "kind": "file",
+      "sha256": "603180e532ed2335b99db5407c2479b635771b0a563a9e8349b0889096085f15",
+      "role": "risk coverage calibration"
+    },
+    {
+      "path": "research/test_risk_coverage_policy.py",
+      "kind": "file",
+      "sha256": "067ac98912dc3b0ce25e837a03539a8788bcb7ce0153d06e41bbc56d0abc8f34",
+      "role": "risk coverage calibration"
+    },
+    {
+      "path": "research/test_risk_coverage_banking77.py",
+      "kind": "file",
+      "sha256": "663974ed91f13fdba5f65e70ce9abaae818d8e399c90a07acd1e0df8a9effb31",
+      "role": "risk coverage calibration"
+    },
+    {
+      "path": "docs/165-CALIBRACAO-RISCO-COBERTURA.md",
+      "kind": "file",
+      "sha256": "d552fe4b91aaae71670b6a29aa8917ba43fd9da71b70c9ea166c11c5fb03bc93",
+      "role": "risk coverage calibration"
     }
   ],
   "components": [

@@ -105,3 +105,4 @@ Documentos históricos não devem ser apagados para esconder contradições. Qua
 - [162 — Detector de shift e abstention](162-DETECTOR-SHIFT-E-ABSTENCAO.md)
 - [163 — Validação cross-domain do detector](163-VALIDACAO-CROSS-DOMAIN-SHIFT.md)
 - [164 — Gate de invariância e trade-off](164-GATE-INVARIANCIA-E-TRADEOFF.md)
+- [165 — Calibração risco–cobertura](165-CALIBRACAO-RISCO-COBERTURA.md)

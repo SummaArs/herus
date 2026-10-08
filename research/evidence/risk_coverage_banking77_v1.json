@@ -1,0 +1,38 @@
+{
+  "attacks": {
+    "case_punctuation": {
+      "coverage": 1.0,
+      "selective_risk": 0.2577922077922078,
+      "wrong_label_flip_rate": 0.05389610389610389
+    },
+    "deletion": {
+      "coverage": 1.0,
+      "selective_risk": 0.25487012987012986,
+      "wrong_label_flip_rate": 0.11948051948051948
+    },
+    "irrelevant_prefix": {
+      "coverage": 1.0,
+      "selective_risk": 0.37272727272727274,
+      "wrong_label_flip_rate": 0.26266233766233765
+    },
+    "typo": {
+      "coverage": 1.0,
+      "selective_risk": 0.31655844155844154,
+      "wrong_label_flip_rate": 0.1590909090909091
+    }
+  },
+  "decision": {
+    "agreement_threshold": 1,
+    "calibration_coverage": 1.0,
+    "calibration_risk": 0.2745227123107307,
+    "risk_upper": 0.29751326519716703,
+    "target_risk": 0.32
+  },
+  "holdout_examples": 3080,
+  "protocol": {
+    "calibration_labels_used": true,
+    "claim_boundary": "calibrated selective ablation; not SOTA",
+    "holdout_labels_used_for_policy": false
+  },
+  "schema": "herus-risk-coverage-banking77-v1"
+}
