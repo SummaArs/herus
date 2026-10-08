@@ -515,7 +515,7 @@
     {
       "path": "docs",
       "kind": "tree",
-      "sha256": "7a72338fa5baa2591bc80f0561c70097a6896b1d7ad708b3f339b87ed73644ef",
+      "sha256": "0c03337d549086a39b8fc319a7752536b46a639665b9d200a31298ddb01d8b78",
       "role": "organized documentation, maps and historical design records"
     },
     {
@@ -2021,7 +2021,7 @@
     {
       "path": "research/policy_selection_banking77.py",
       "kind": "file",
-      "sha256": "f63bd4a943dd8a2252c846ff19dc39784636456850a5dafd405f1eddf262ac2a",
+      "sha256": "de3f37089151a011239433c2363fe34cb245e22d00fde0a18987c8f5b364d0ab",
       "role": "third-host Banking77 policy selection"
     },
     {
@@ -2051,7 +2051,7 @@
     {
       "path": "research/policy_selection_banking77_v2.py",
       "kind": "file",
-      "sha256": "dd5e09161f18219d498b58ab098336fbe6b85b3d8922d92084e8b62b04388188",
+      "sha256": "73f650653cb8de56a518b75456db15153b19449e4d6e52d1c98e1e2021ebc278",
       "role": "confidence-gated Banking77 replication"
     },
     {
@@ -2099,7 +2099,7 @@
     {
       "path": "research/evidence/cached_nb_cost_banking77_v1.json",
       "kind": "file",
-      "sha256": "008c00816eaee723e6276bf29f996fdd4d0dc97e48c7d35a2d7c317f209bd6ed",
+      "sha256": "d78cf19bb0af70edd7d52745d5b7b3a2445e99a6c890940d3bf571b8abf4f144",
       "role": "cached NB cost evidence"
     },
     {
@@ -2111,7 +2111,7 @@
     {
       "path": "docs/159-OTIMIZACAO-CPU-E-CUSTO-CACHEADO.md",
       "kind": "file",
-      "sha256": "9dfe37001c216bd36db4857872711a2714e1ac5b104bbff3c74e305eacc2e310",
+      "sha256": "58c44fc704dbd63f0f4ba6737fbfedaf3e81a10dd1dcd58305ca140c9a0be4c9",
       "role": "cached CPU optimization report"
     },
     {
@@ -2119,6 +2119,24 @@
       "kind": "file",
       "sha256": "90cb577ae183b20d011a220d9c0c9164eb27bb549587397a3a440bf41b40f198",
       "role": "lazy import regression test"
+    },
+    {
+      "path": "research/controlled_cost_banking77.py",
+      "kind": "file",
+      "sha256": "eec2b60e94c47ea3cb7860b6dfa942fc70b8824d0d220432b3dfb4c50359d011",
+      "role": "controlled Banking77 cost evidence"
+    },
+    {
+      "path": "research/evidence/controlled_cost_banking77_v1.json",
+      "kind": "file",
+      "sha256": "b33c36e3b5bd23ae89e7f28ceca2c3c00016dc2d7192de94f6fde7dd384965b4",
+      "role": "controlled Banking77 cost evidence"
+    },
+    {
+      "path": "research/test_controlled_cost_banking77.py",
+      "kind": "file",
+      "sha256": "cc833c4c432ee28e1607e73f9e62e706c545d40ff54b7e1bee335a4722387dd7",
+      "role": "controlled Banking77 cost evidence"
     }
   ],
   "components": [

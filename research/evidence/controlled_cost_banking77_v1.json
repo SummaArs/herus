@@ -1,0 +1,35 @@
+{
+  "schema": "herus-controlled-cost-banking77-v1",
+  "dataset": "PolyAI-LDN/task-specific-datasets/banking_data",
+  "protocol": {
+    "same_real_dataset": true,
+    "same_split": true,
+    "timed_region": "model evaluation only; network fetch excluded",
+    "separate_processes_for_rss": true,
+    "claim_boundary": "controlled CPU/latency comparison; no energy or SOTA claim"
+  },
+  "uncached": {
+    "wall_seconds": 24.169189,
+    "cpu_seconds": 24.161413,
+    "peak_rss_kb": 34940,
+    "holdout": 3080,
+    "default_accuracy": 0.752273,
+    "calibrated_accuracy": 0.751623,
+    "feature_cache_entries": 0
+  },
+  "feature_cache_ablation": {
+    "wall_seconds": 25.350128,
+    "cpu_seconds": 25.340717,
+    "peak_rss_kb": 46240,
+    "holdout": 3080,
+    "default_accuracy": 0.752273,
+    "calibrated_accuracy": 0.751623,
+    "feature_cache_entries": 13083
+  },
+  "relative": {
+    "cached_over_uncached_wall_ratio": 1.0482,
+    "cached_over_uncached_cpu_ratio": 1.0489,
+    "predictions_equal": true,
+    "decision": "reject_feature_cache_as_default"
+  }
+}

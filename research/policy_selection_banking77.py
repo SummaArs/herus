@@ -8,6 +8,15 @@ from score_calibrated_universal import calibrator
 
 HOST='banking77'; BASE='https://raw.githubusercontent.com/PolyAI-LDN/task-specific-datasets/master/banking_data/'
 
+def _features(row, feature_cache):
+    if feature_cache is None:
+        return vector(row['text'])
+    key=row['id']
+    features=feature_cache.get(key)
+    if features is None:
+        features=vector(row['text']); feature_cache[key]=features
+    return features
+
 def fetch(name):
     with urllib.request.urlopen(BASE+name+'.csv',timeout=60) as r: rows=list(csv.DictReader(r.read().decode().splitlines()))
     return [{'text':x['text'],'label':x['category'],'id':f'{name}/{i:05d}'} for i,x in enumerate(rows)]
@@ -23,14 +32,14 @@ def split_train(rows):
 def cents(rows, feature_cache=None):
     sums=defaultdict(Counter); counts=Counter()
     for r in rows:
-        features=(feature_cache.setdefault(r['id'],vector(r['text'])) if feature_cache is not None else vector(r['text']))
+        features=_features(r,feature_cache)
         sums[r['label']].update(features); counts[r['label']]+=1
     return {l:Counter({t:v/counts[l] for t,v in ws.items()}) for l,ws in sums.items()}
 
 def classic(fit,rows,cs,model=None,feature_cache=None):
     out=[]; model=model or fit_nb(fit)
     for r in rows:
-        nl,nm=model.score(r); features=(feature_cache.setdefault(r['id'],vector(r['text'])) if feature_cache is not None else vector(r['text']))
+        nl,nm=model.score(r); features=_features(r,feature_cache)
         cl,cm=max(((l,cosine(features,c)) for l,c in cs.items()),key=lambda x:(x[1],x[0]))
         out.append({'id':r['id'],'label':r['label'],'supervised':(nl,1/(1+math.exp(-nm))),'unsupervised':(cl,max(0,cm))})
     return out
@@ -56,7 +65,7 @@ def acc(rows,pred): return sum(r['label']==p for r,p in zip(rows,pred))/len(rows
 
 def run():
     raw_train=fetch('train'); test=fetch('test'); fit,cal=split_train(raw_train); cal=sorted(cal,key=lambda x:x['id']); cut=len(cal)//2; tune,valid=cal[:cut],cal[cut:]
-    model=fit_nb(fit); features={}; cs=cents(fit,features); a=acc(valid,default(fit,tune,valid,cs,model,features)); b=acc(valid,calibrated(fit,tune,valid,cs,model,features)); chosen='score_calibrated' if b>a else 'universal_default'; pa=default(fit,cal,test,cs,model,features); pb=calibrated(fit,cal,test,cs,model,features); pred=pb if chosen=='score_calibrated' else pa
+    model=fit_nb(fit); cs=cents(fit); a=acc(valid,default(fit,tune,valid,cs,model)); b=acc(valid,calibrated(fit,tune,valid,cs,model)); chosen='score_calibrated' if b>a else 'universal_default'; pa=default(fit,cal,test,cs,model); pb=calibrated(fit,cal,test,cs,model); pred=pb if chosen=='score_calibrated' else pa
     out={'schema':'herus-policy-selection-banking77-v1','dataset':{'id':'PolyAI-LDN/task-specific-datasets/banking_data','source':BASE,'fit':len(fit),'calibration':len(cal),'holdout':len(test),'labels':len(set(r['label'] for r in raw_train+test))},'selection':{'calibration_split':{'tune':len(tune),'validation':len(valid)},'validation_accuracy':{'universal_default':round(a,6),'score_calibrated':round(b,6)},'chosen_policy':chosen,'tie_rule':'universal_default'},'metrics':{'chosen_policy':metrics(test,pred),'universal_default':metrics(test,pa),'score_calibrated':metrics(test,pb)},'protocol':{'holdout_labels_used_for_selection':False,'nested_calibration':True,'train_test_separate':True,'claim_boundary':'third-host replication; no SOTA claim'}}
     p=Path('research/evidence/policy_selection_banking77_v1.json'); p.write_text(json.dumps(out,indent=2,sort_keys=True)+'\n'); return out
 
